@@ -201,12 +201,17 @@
             btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
         }
 
+        // Charger la préférence au démarrage (mode nuit par défaut)
         window.addEventListener('DOMContentLoaded', () => {
-            const isDark = localStorage.getItem('darkMode') === 'true';
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
             if (isDark) {
                 document.body.classList.add('dark-mode');
                 const btn = document.querySelector('.dark-mode-toggle');
                 if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
             }
         });
     </script>
