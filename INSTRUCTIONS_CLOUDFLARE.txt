@@ -1,0 +1,45 @@
+═══════════════════════════════════════════════════════════════
+   🚀 INSTRUCTIONS DÉPLOIEMENT CLOUDFLARE PAGES
+═══════════════════════════════════════════════════════════════
+
+✅ Git initialisé et commit créé!
+
+════════════════════════════════════════════════════════════════
+ÉTAPE 1: CRÉER LE REPO GITHUB (2 min)
+════════════════════════════════════════════════════════════════
+
+1. La page GitHub s'est ouverte dans ton navigateur
+   (Si non, va sur: https://github.com/new)
+
+2. Remplis le formulaire:
+   ✏️ Repository name: gematria-academy
+   📝 Description: Académie d'apprentissage des Runes & Gematria
+   🌐 Public (coché)
+   ❌ NE coche PAS "Add a README file"
+   ❌ NE coche PAS ".gitignore"
+   ❌ NE coche PAS "license"
+
+3. Clique "Create repository"
+
+4. GitHub va afficher des commandes. COPIE TON USERNAME!
+   (Il sera dans l'URL: https://github.com/USERNAME/gematria-academy.git)
+
+5. Reviens ici et tape ton username GitHub
+
+════════════════════════════════════════════════════════════════
+ÉTAPE 2: POUSSER LE CODE (30 sec)
+════════════════════════════════════════════════════════════════
+
+Une fois que tu auras donné ton username, je vais:
+- Connecter le repo local à GitHub
+- Pousser tout le code
+
+════════════════════════════════════════════════════════════════
+ÉTAPE 3: CONNECTER CLOUDFLARE PAGES (2 min)
+════════════════════════════════════════════════════════════════
+
+Je vais ouvrir Cloudflare Pages et te guider pour connecter le repo!
+
+═══════════════════════════════════════════════════════════════
+
+👉 MAINTENANT: Crée le repo GitHub, puis reviens me dire ton username!
