@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphabet Runique Complet | Académie des Runes & Gematria</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
     <style>
         .rune-large { font-size: 5rem; font-weight: bold; }
         .alphabet-grid {
@@ -120,6 +121,42 @@
         .aett1 { border-color: var(--accent-beginner); }
         .aett2 { border-color: var(--accent-intermediate); }
         .aett3 { border-color: var(--accent-expert); }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .letter-card-interactive {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .letter-card-interactive .rune-large {
+            color: #64b5f6;
+        }
+        body.dark-mode .letter-card-interactive.learned {
+            background: linear-gradient(135deg, #2d5016 0%, #3a6e1e 100%);
+            color: #c8e6c9;
+        }
+        body.dark-mode .progress-tracker {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .practice-mode {
+            background: linear-gradient(135deg, #5a4a1f 0%, #7a6a3f 100%);
+            color: #fff3cd;
+        }
+        body.dark-mode .answer-btn {
+            background: #2a2a3e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+        body.dark-mode .answer-btn:hover {
+            background: #64b5f6;
+            color: #1a1a2e;
+        }
+        body.dark-mode .modal-content {
+            background: #2a2a3e;
+            color: #eee;
+        }
     </style>
 </head>
 <body>

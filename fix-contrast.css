@@ -1,0 +1,54 @@
+/* ======================================================
+   CORRECTIONS CONTRASTE MODE NUIT
+   Fichier de correctif pour améliorer la lisibilité
+   ====================================================== */
+
+/* Symboles runes et lettres hébraïques - Blanc éclatant */
+body.dark-mode .rune-symbol,
+body.dark-mode .letter-symbol {
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(255,255,255,0.4);
+    font-weight: 900 !important;
+}
+
+/* Noms des runes/lettres - Cyan lumineux */
+body.dark-mode .rune-name,
+body.dark-mode .letter-name {
+    color: #00d4ff !important;
+    font-weight: 700;
+}
+
+/* Significations - Plus visible */
+body.dark-mode .rune-meaning,
+body.dark-mode .letter-value {
+    color: #e8e8e8 !important;
+}
+
+/* Titres des cartes - Amélioration */
+body.dark-mode .card h3,
+body.dark-mode .tool-card h3,
+body.dark-mode .tools h2 {
+    color: #98c1d9 !important;
+}
+
+/* Amélioration contraste général des textes */
+body.dark-mode .card ul li,
+body.dark-mode .tool-card p {
+    color: #c8d5e9 !important;
+}
+
+/* Cards de runes/lettres - Fond plus sombre pour meilleur contraste */
+body.dark-mode .rune-card,
+body.dark-mode .letter-card {
+    background: #1a2a40 !important;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Hero sections */
+body.dark-mode .hero h2 {
+    color: #98c1d9 !important;
+}
+
+body.dark-mode .hero p {
+    color: #b8c5d9 !important;
+}

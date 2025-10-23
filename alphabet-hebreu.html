@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphabet Hébreu Complet | Académie des Runes & Gematria</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
     <style>
         .hebrew-large { font-size: 4rem; font-weight: bold; direction: rtl; }
         .alphabet-grid {
@@ -112,6 +113,70 @@
             border-radius: 25px;
             cursor: pointer;
             margin-top: 2rem;
+        }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .letter-card-interactive {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .letter-card-interactive:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        }
+
+        body.dark-mode .letter-card-interactive.learned {
+            background: linear-gradient(135deg, #2d5016 0%, #3a6e1e 100%);
+            color: #c8e6c9;
+        }
+
+        body.dark-mode .hebrew-large {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .progress-tracker {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .practice-mode {
+            background: linear-gradient(135deg, #5a4a1f 0%, #7a6a3f 100%);
+            color: #fff3cd;
+        }
+
+        body.dark-mode .answer-btn {
+            background: #2a2a3e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .answer-btn:hover {
+            background: #64b5f6;
+            color: #1a1a2e;
+        }
+
+        body.dark-mode .answer-btn.correct {
+            background: var(--accent-beginner);
+            color: white;
+            border-color: var(--accent-beginner);
+        }
+
+        body.dark-mode .answer-btn.wrong {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        body.dark-mode .modal-content {
+            background: #2a2a3e;
+            color: #eee;
+        }
+
+        body.dark-mode .close-modal {
+            background: var(--primary);
+            color: white;
         }
     </style>
 </head>

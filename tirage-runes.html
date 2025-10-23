@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tirage de Runes | Académie des Runes & Gematria</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
     <style>
         .spread-selector {
             display: grid;
@@ -153,6 +154,82 @@
         }
 
         .reset-button:hover {
+            background: var(--primary);
+        }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .spread-card {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .spread-card:hover {
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .spread-card.selected {
+            border-color: var(--accent-beginner);
+            background: linear-gradient(135deg, #2a2a3e 0%, #2d5016 100%);
+            color: #c8e6c9;
+        }
+
+        body.dark-mode .rune-tile {
+            background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+            color: white;
+        }
+
+        body.dark-mode .rune-back {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+
+        body.dark-mode .interpretation {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .rune-detail {
+            background: #1a1a2e;
+            color: #eee;
+            border-left-color: #64b5f6;
+        }
+
+        body.dark-mode .rune-detail h3 {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .position-label {
+            background: var(--accent-intermediate);
+            color: white;
+        }
+
+        body.dark-mode .question-input {
+            background: #1a1a2e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .draw-button {
+            background: var(--accent-beginner);
+            color: white;
+        }
+
+        body.dark-mode .draw-button:hover {
+            background: var(--accent-intermediate);
+        }
+
+        body.dark-mode .draw-button:disabled {
+            background: #555;
+            color: #999;
+        }
+
+        body.dark-mode .reset-button {
+            background: #555;
+            color: #eee;
+        }
+
+        body.dark-mode .reset-button:hover {
             background: var(--primary);
         }
     </style>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculateur de Gematria | Académie des Runes & Gematria</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
     <style>
         .hebrew-input {
             font-size: 2rem;
@@ -159,6 +160,89 @@
         .calc-btn:hover {
             background: var(--accent-intermediate);
             transform: scale(1.02);
+        }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .calculator-container {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .hebrew-input {
+            background: #1a1a2e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        body.dark-mode .breakdown {
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        body.dark-mode .letter-item {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .letter-symbol {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .letter-name {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .letter-value {
+            background: var(--accent-beginner);
+            color: white;
+        }
+
+        body.dark-mode .system-btn {
+            background: #2a2a3e;
+            color: #64b5f6;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .system-btn:hover,
+        body.dark-mode .system-btn.active {
+            background: #64b5f6;
+            color: #1a1a2e;
+        }
+
+        body.dark-mode .preset-btn {
+            background: #2a2a3e;
+            color: #eee;
+        }
+
+        body.dark-mode .preset-btn:hover {
+            background: var(--accent-intermediate);
+            color: white;
+        }
+
+        body.dark-mode .preset-hebrew {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .correspondence-box {
+            background: #2d4a5a;
+            color: #d1ecf1;
+            border-left-color: #64b5f6;
+        }
+
+        body.dark-mode .calc-btn {
+            background: var(--accent-beginner);
+            color: white;
+        }
+
+        body.dark-mode .calc-btn:hover {
+            background: var(--accent-intermediate);
         }
     </style>
 </head>
