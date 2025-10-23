@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique Intermédiaire - Académie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🌿 Logique Niveau Intermédiaire</h1>
+        <p class="subtitle">Raisonnement déductif et logique des prédicats</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index_multilingual.html">Accueil</a>
+            <a href="logique-debutant.html">Débutant</a>
+            <a href="logique-intermediaire.html" class="active">Intermédiaire</a>
+            <a href="logique-expert.html">Expert</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index_multilingual.html">Accueil</a> » <a href="#logique">Logique</a> » Intermédiaire
+            </div>
+
+            <h2>🧠 Logique Niveau Intermédiaire</h2>
+            <p class="intro">Approfondissez votre maîtrise du raisonnement logique avec les syllogismes, la logique des prédicats et les techniques de démonstration.</p>
+
+            <div class="lesson">
+                <h3>📚 1. Raisonnement Déductif et Inductif</h3>
+
+                <h4>Raisonnement Déductif</h4>
+                <p>Va du général au particulier. Si les prémisses sont vraies, la conclusion est nécessairement vraie.</p>
+                <div class="exercise">
+                    <strong>Exemple:</strong><br>
+                    Prémisse 1: Tous les humains sont mortels<br>
+                    Prémisse 2: Socrate est un humain<br>
+                    Conclusion: Donc Socrate est mortel
+                </div>
+
+                <h4>Raisonnement Inductif</h4>
+                <p>Va du particulier au général. La conclusion est probable mais non certaine.</p>
+                <div class="exercise">
+                    <strong>Exemple:</strong><br>
+                    Observation 1: Ce cygne est blanc<br>
+                    Observation 2: Ce cygne est blanc<br>
+                    Observation 3: Ce cygne est blanc<br>
+                    Conclusion probable: Tous les cygnes sont blancs (peut être faux!)
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>🎯 2. Syllogismes</h3>
+                <p>Un syllogisme est un argument déductif composé de trois propositions: deux prémisses et une conclusion.</p>
+
+                <h4>Formes Valides de Syllogismes:</h4>
+                <div class="tip">
+                    <strong>Barbara (AAA-1):</strong><br>
+                    Tous les M sont P<br>
+                    Tous les S sont M<br>
+                    Donc tous les S sont P
+                </div>
+
+                <div class="tip">
+                    <strong>Celarent (EAE-1):</strong><br>
+                    Aucun M n'est P<br>
+                    Tous les S sont M<br>
+                    Donc aucun S n'est P
+                </div>
+
+                <div class="exercise">
+                    <strong>Exercice:</strong> Identifiez si ce syllogisme est valide:<br>
+                    "Tous les chats sont des félins.<br>
+                    Tous les félins sont des mammifères.<br>
+                    Donc tous les chats sont des mammifères."<br>
+                    <em>Réponse: ✓ Valide (forme Barbara)</em>
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>∀∃ 3. Logique des Prédicats</h3>
+                <p>Extension de la logique propositionnelle permettant d'exprimer des relations et des quantifications.</p>
+
+                <h4>Quantificateurs:</h4>
+                <ul>
+                    <li><strong>∀ (Pour tout)</strong> - Quantificateur universel
+                        <br>Ex: ∀x Humain(x) → Mortel(x) = "Tous les humains sont mortels"</li>
+                    <li><strong>∃ (Il existe)</strong> - Quantificateur existentiel
+                        <br>Ex: ∃x (Chat(x) ∧ Noir(x)) = "Il existe un chat qui est noir"</li>
+                </ul>
+
+                <h4>Négation des Quantificateurs:</h4>
+                <div class="tip">
+                    <ul>
+                        <li>¬∀x P(x) ≡ ∃x ¬P(x)</li>
+                        <li>¬∃x P(x) ≡ ∀x ¬P(x)</li>
+                    </ul>
+                </div>
+
+                <div class="exercise">
+                    <strong>Exemple:</strong><br>
+                    "Tous les étudiants réussissent" → ∀x (Étudiant(x) → Réussit(x))<br>
+                    "Certains étudiants réussissent" → ∃x (Étudiant(x) ∧ Réussit(x))<br>
+                    "Aucun étudiant ne réussit" → ∀x (Étudiant(x) → ¬Réussit(x))
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>🔄 4. Règles d'Inférence</h3>
+
+                <h4>Modus Ponens:</h4>
+                <p>Si P → Q et P, alors Q</p>
+
+                <h4>Modus Tollens:</h4>
+                <p>Si P → Q et ¬Q, alors ¬P</p>
+
+                <h4>Syllogisme Hypothétique:</h4>
+                <p>Si P → Q et Q → R, alors P → R</p>
+
+                <h4>Disjonction:</h4>
+                <p>Si P ∨ Q et ¬P, alors Q</p>
+
+                <div class="exercise">
+                    <strong>Exercice d'application:</strong><br>
+                    Prémisse 1: S'il pleut, la route est mouillée (P → Q)<br>
+                    Prémisse 2: Il pleut (P)<br>
+                    Conclusion: La route est mouillée (Q) — <em>Modus Ponens</em>
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>💡 5. Démonstration par l'Absurde</h3>
+                <p>Pour prouver P, on suppose ¬P et on montre que cela mène à une contradiction.</p>
+
+                <div class="tip">
+                    <strong>Exemple classique:</strong> Prouver que √2 est irrationnel<br>
+                    <ol>
+                        <li>Supposons que √2 est rationnel (négation de ce qu'on veut prouver)</li>
+                        <li>Alors √2 = p/q où p et q sont des entiers sans facteur commun</li>
+                        <li>En développant, on arrive à: 2q² = p²</li>
+                        <li>Donc p² est pair, donc p est pair</li>
+                        <li>Si p est pair, p = 2k, donc 4k² = 2q²</li>
+                        <li>Donc q² = 2k², donc q est aussi pair</li>
+                        <li><strong>Contradiction!</strong> p et q ont tous deux 2 comme facteur</li>
+                        <li>Donc √2 ne peut pas être rationnel (irrationnel) ✓</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="logique-debutant.html" class="btn btn-beginner">← Niveau Débutant</a>
+                <a href="exercices-logique.html" class="btn btn-intermediate">📝 Exercices</a>
+                <a href="logique-expert.html" class="btn btn-expert">Niveau Expert →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage moderne</p>
+    </footer>
+
+    <script>
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+            }
+        });
+    </script>
+</body>
+</html>

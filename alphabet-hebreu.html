@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Hébreu Complet | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hebrew-large { font-size: 4rem; font-weight: bold; direction: rtl; }
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .letter-card-interactive {
+            background: white;
+            padding: 2rem 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .letter-card-interactive:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-beginner);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .letter-card-interactive.learned {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-color: var(--accent-beginner);
+        }
+        .progress-tracker {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .practice-mode {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .practice-letter {
+            font-size: 8rem;
+            margin: 2rem 0;
+            direction: rtl;
+        }
+        .answer-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .answer-btn {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            border: 3px solid var(--primary);
+            background: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .answer-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .answer-btn.correct {
+            background: var(--accent-beginner);
+            color: white;
+            border-color: var(--accent-beginner);
+        }
+        .answer-btn.wrong {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+        .close-modal {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✡️ Alphabet Hébreu Complet</h1>
+        <p class="subtitle">Aleph-Bet - Les 22 lettres sacrées</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="gematria-debutant.html">Gematria Débutant</a>
+            <a href="alphabet-hebreu.html" class="active">Alphabet Hébreu</a>
+            <a href="calculateur-gematria.html">Calculateur</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > Outils > Alphabet Hébreu
+            </div>
+
+            <div class="progress-tracker">
+                <h2>Votre Progression</h2>
+                <div class="progress-bar" style="max-width: 800px; margin: 1.5rem auto;">
+                    <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+                </div>
+                <p id="progressText">0/22 lettres maîtrisées</p>
+                <button class="btn btn-intermediate" onclick="startPractice()">
+                    Mode Entraînement
+                </button>
+                <button class="btn btn-beginner" onclick="resetProgress()">
+                    Réinitialiser
+                </button>
+            </div>
+
+            <section class="calculator-container">
+                <h2>Les 22 Lettres de l'Aleph-Bet</h2>
+                <p>Cliquez sur chaque lettre pour l'étudier et la marquer comme apprise</p>
+
+                <div class="alphabet-grid" id="alphabetGrid"></div>
+            </section>
+
+            <section class="calculator-container">
+                <h2>Les 5 Lettres Finales (Sofit)</h2>
+                <p>Ces lettres ont une forme spéciale quand elles apparaissent en fin de mot</p>
+
+                <div class="alphabet-grid" id="finalLettersGrid"></div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="index.html" class="btn btn-beginner">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal pour détails de lettre -->
+    <div class="modal" id="letterModal">
+        <div class="modal-content">
+            <div class="hebrew-large" id="modalLetter"></div>
+            <h2 id="modalName"></h2>
+            <p><strong>Prononciation :</strong> <span id="modalPronunciation"></span></p>
+            <p><strong>Valeur gematria :</strong> <span id="modalValue"></span></p>
+            <p><strong>Signification :</strong> <span id="modalMeaning"></span></p>
+            <p><strong>Élément :</strong> <span id="modalElement"></span></p>
+            <button class="btn btn-beginner" id="markLearnedBtn" onclick="markAsLearned()">
+                ✓ Marquer comme apprise
+            </button>
+            <button class="close-modal" onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Modal pour mode pratique -->
+    <div class="modal" id="practiceModal">
+        <div class="modal-content">
+            <h2>Mode Entraînement</h2>
+            <p id="practiceQuestion">Quelle est cette lettre ?</p>
+            <div class="practice-letter" id="practiceLetter"></div>
+            <div class="answer-buttons" id="answerButtons"></div>
+            <p id="practiceScore" style="margin-top: 2rem; font-size: 1.2rem;"></p>
+            <button class="close-modal" onclick="closePractice()">Terminer</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage moderne</p>
+    </footer>
+
+    <script>
+        const hebrewAlphabet = [
+            { letter: 'א', name: 'Aleph', pronunciation: '\' (souffle)', value: 1, meaning: 'Bœuf, force', element: 'Air' },
+            { letter: 'ב', name: 'Bet', pronunciation: 'B/V', value: 2, meaning: 'Maison', element: 'Terre' },
+            { letter: 'ג', name: 'Gimel', pronunciation: 'G', value: 3, meaning: 'Chameau', element: 'Air' },
+            { letter: 'ד', name: 'Dalet', pronunciation: 'D', value: 4, meaning: 'Porte', element: 'Eau' },
+            { letter: 'ה', name: 'Hé', pronunciation: 'H', value: 5, meaning: 'Fenêtre', element: 'Air' },
+            { letter: 'ו', name: 'Vav', pronunciation: 'V/O/U', value: 6, meaning: 'Crochet', element: 'Air' },
+            { letter: 'ז', name: 'Zayin', pronunciation: 'Z', value: 7, meaning: 'Arme', element: 'Air' },
+            { letter: 'ח', name: 'Het', pronunciation: 'KH', value: 8, meaning: 'Barrière', element: 'Eau' },
+            { letter: 'ט', name: 'Tet', pronunciation: 'T', value: 9, meaning: 'Serpent', element: 'Eau' },
+            { letter: 'י', name: 'Yod', pronunciation: 'Y/I', value: 10, meaning: 'Main', element: 'Feu' },
+            { letter: 'כ', name: 'Kaf', pronunciation: 'K/KH', value: 20, meaning: 'Paume', element: 'Feu' },
+            { letter: 'ל', name: 'Lamed', pronunciation: 'L', value: 30, meaning: 'Aiguillon', element: 'Air' },
+            { letter: 'מ', name: 'Mem', pronunciation: 'M', value: 40, meaning: 'Eau', element: 'Eau' },
+            { letter: 'נ', name: 'Nun', pronunciation: 'N', value: 50, meaning: 'Poisson', element: 'Eau' },
+            { letter: 'ס', name: 'Samekh', pronunciation: 'S', value: 60, meaning: 'Support', element: 'Feu' },
+            { letter: 'ע', name: 'Ayin', pronunciation: '\' (profond)', value: 70, meaning: 'Œil', element: 'Terre' },
+            { letter: 'פ', name: 'Pé', pronunciation: 'P/F', value: 80, meaning: 'Bouche', element: 'Air' },
+            { letter: 'צ', name: 'Tsadé', pronunciation: 'TS', value: 90, meaning: 'Hameçon', element: 'Air' },
+            { letter: 'ק', name: 'Qof', pronunciation: 'Q', value: 100, meaning: 'Nuque', element: 'Eau' },
+            { letter: 'ר', name: 'Resh', pronunciation: 'R', value: 200, meaning: 'Tête', element: 'Feu' },
+            { letter: 'ש', name: 'Shin', pronunciation: 'SH', value: 300, meaning: 'Dent', element: 'Feu' },
+            { letter: 'ת', name: 'Tav', pronunciation: 'T', value: 400, meaning: 'Croix', element: 'Terre' }
+        ];
+
+        const finalLetters = [
+            { letter: 'ך', name: 'Kaf Sofit', normal: 'כ', value: 500 },
+            { letter: 'ם', name: 'Mem Sofit', normal: 'מ', value: 600 },
+            { letter: 'ן', name: 'Nun Sofit', normal: 'נ', value: 700 },
+            { letter: 'ף', name: 'Pé Sofit', normal: 'פ', value: 800 },
+            { letter: 'ץ', name: 'Tsadé Sofit', normal: 'צ', value: 900 }
+        ];
+
+        let learnedLetters = JSON.parse(localStorage.getItem('learnedHebrew') || '[]');
+        let currentLetter = null;
+        let practiceScore = 0;
+        let practiceTotal = 0;
+
+        function renderAlphabet() {
+            const grid = document.getElementById('alphabetGrid');
+            grid.innerHTML = '';
+
+            hebrewAlphabet.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'letter-card-interactive';
+                if (learnedLetters.includes(item.letter)) {
+                    card.classList.add('learned');
+                }
+
+                card.innerHTML = `
+                    <div style="font-size: 3rem; direction: rtl; margin-bottom: 0.5rem;">${item.letter}</div>
+                    <div style="font-weight: bold; color: var(--primary);">${item.name}</div>
+                    <div style="color: var(--secondary);">${item.value}</div>
+                `;
+
+                card.onclick = () => showLetterDetail(item);
+                grid.appendChild(card);
+            });
+
+            updateProgress();
+        }
+
+        function renderFinalLetters() {
+            const grid = document.getElementById('finalLettersGrid');
+            grid.innerHTML = '';
+
+            finalLetters.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'letter-card-interactive';
+
+                card.innerHTML = `
+                    <div style="font-size: 3rem; direction: rtl; margin-bottom: 0.5rem;">${item.letter}</div>
+                    <div style="font-weight: bold; color: var(--primary);">${item.name}</div>
+                    <div style="color: var(--secondary);">Forme de ${item.normal}</div>
+                    <div style="color: var(--accent-expert);">Valeur: ${item.value}</div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function showLetterDetail(letter) {
+            currentLetter = letter;
+            document.getElementById('modalLetter').textContent = letter.letter;
+            document.getElementById('modalName').textContent = letter.name;
+            document.getElementById('modalPronunciation').textContent = letter.pronunciation;
+            document.getElementById('modalValue').textContent = letter.value;
+            document.getElementById('modalMeaning').textContent = letter.meaning;
+            document.getElementById('modalElement').textContent = letter.element;
+
+            const btn = document.getElementById('markLearnedBtn');
+            if (learnedLetters.includes(letter.letter)) {
+                btn.textContent = '✓ Déjà apprise';
+                btn.style.background = '#27ae60';
+            } else {
+                btn.textContent = '✓ Marquer comme apprise';
+                btn.style.background = '';
+            }
+
+            document.getElementById('letterModal').classList.add('active');
+        }
+
+        function markAsLearned() {
+            if (currentLetter && !learnedLetters.includes(currentLetter.letter)) {
+                learnedLetters.push(currentLetter.letter);
+                localStorage.setItem('learnedHebrew', JSON.stringify(learnedLetters));
+                renderAlphabet();
+
+                const btn = document.getElementById('markLearnedBtn');
+                btn.textContent = '✓ Apprise !';
+                btn.style.background = '#27ae60';
+
+                setTimeout(() => {
+                    closeModal();
+                }, 500);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('letterModal').classList.remove('active');
+        }
+
+        function updateProgress() {
+            const total = hebrewAlphabet.length;
+            const learned = learnedLetters.length;
+            const percent = (learned / total) * 100;
+
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `${learned}/${total} lettres maîtrisées`;
+        }
+
+        function resetProgress() {
+            if (confirm('Voulez-vous vraiment réinitialiser votre progression ?')) {
+                learnedLetters = [];
+                localStorage.setItem('learnedHebrew', JSON.stringify(learnedLetters));
+                renderAlphabet();
+            }
+        }
+
+        function startPractice() {
+            if (learnedLetters.length < 4) {
+                alert('Apprenez au moins 4 lettres avant de commencer l\'entraînement !');
+                return;
+            }
+
+            practiceScore = 0;
+            practiceTotal = 0;
+            showPracticeQuestion();
+            document.getElementById('practiceModal').classList.add('active');
+        }
+
+        function showPracticeQuestion() {
+            // Choisir une lettre aléatoire parmi celles apprises
+            const learnedItems = hebrewAlphabet.filter(item => learnedLetters.includes(item.letter));
+            const correctAnswer = learnedItems[Math.floor(Math.random() * learnedItems.length)];
+
+            // Afficher la lettre
+            document.getElementById('practiceLetter').textContent = correctAnswer.letter;
+
+            // Générer 4 réponses (dont la bonne)
+            let answers = [correctAnswer];
+            while (answers.length < 4) {
+                const randomLetter = hebrewAlphabet[Math.floor(Math.random() * hebrewAlphabet.length)];
+                if (!answers.includes(randomLetter)) {
+                    answers.push(randomLetter);
+                }
+            }
+
+            // Mélanger les réponses
+            answers.sort(() => Math.random() - 0.5);
+
+            // Afficher les boutons
+            const buttonsDiv = document.getElementById('answerButtons');
+            buttonsDiv.innerHTML = '';
+
+            answers.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = answer.name;
+                btn.onclick = () => checkAnswer(answer.letter === correctAnswer.letter, btn);
+                buttonsDiv.appendChild(btn);
+            });
+
+            updatePracticeScore();
+        }
+
+        function checkAnswer(isCorrect, button) {
+            practiceTotal++;
+
+            if (isCorrect) {
+                practiceScore++;
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+            }
+
+            // Désactiver tous les boutons
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            // Passer à la question suivante après 1.5s
+            setTimeout(() => {
+                showPracticeQuestion();
+            }, 1500);
+        }
+
+        function updatePracticeScore() {
+            const percent = practiceTotal > 0 ? Math.round((practiceScore / practiceTotal) * 100) : 0;
+            document.getElementById('practiceScore').textContent =
+                `Score : ${practiceScore}/${practiceTotal} (${percent}%)`;
+        }
+
+        function closePractice() {
+            document.getElementById('practiceModal').classList.remove('active');
+        }
+
+        // Initialiser
+        renderAlphabet();
+        renderFinalLetters();
+    </script>
+</body>
+</html>

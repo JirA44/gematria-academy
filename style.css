@@ -1,0 +1,654 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #34495e;
+    --accent-beginner: #27ae60;
+    --accent-intermediate: #f39c12;
+    --accent-expert: #8e44ad;
+    --bg-light: #ecf0f1;
+    --bg-dark: #1a1a2e;
+    --text-light: #333;
+    --text-dark: #fff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    /* Mode clair (par défaut) */
+    --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: #ffffff;
+    --card-text: #333;
+    --header-bg: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+}
+
+/* Mode Nuit */
+body.dark-mode {
+    --body-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --card-bg: #0f3460;
+    --card-text: #e8e8e8;
+    --header-bg: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+    --primary: #3d5a80;
+    --secondary: #98c1d9;
+    --bg-light: #293241;
+    --text-light: #e8e8e8;
+    --shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: var(--body-bg);
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+header {
+    background: var(--header-bg);
+    color: var(--text-dark);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* Bouton Mode Nuit */
+.dark-mode-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 8rem;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.dark-mode-toggle:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+/* Bouton Langue */
+.lang-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.lang-toggle:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+nav {
+    background: var(--primary);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+nav a:hover, nav a.active {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.hero {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.hero h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-category {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.section-category h2 {
+    color: var(--card-text);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+    color: var(--card-text);
+    opacity: 0.8;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.level-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--bg-light);
+    color: var(--card-text);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 5px solid;
+}
+
+.card.beginner {
+    border-color: var(--accent-beginner);
+}
+
+.card.intermediate {
+    border-color: var(--accent-intermediate);
+}
+
+.card.expert {
+    border-color: var(--accent-expert);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.badge {
+    background: var(--primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.card ul {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.card ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--secondary);
+}
+
+.card ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-beginner);
+    font-weight: bold;
+}
+
+.card.intermediate ul li:before {
+    color: var(--accent-intermediate);
+}
+
+.card.expert ul li:before {
+    color: var(--accent-expert);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s;
+    color: white;
+    margin-top: 1rem;
+}
+
+.btn-beginner {
+    background: var(--accent-beginner);
+}
+
+.btn-intermediate {
+    background: var(--accent-intermediate);
+}
+
+.btn-expert {
+    background: var(--accent-expert);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.tools {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.tools h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.tool-card {
+    background: var(--bg-light);
+    color: var(--card-text);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+}
+
+.tool-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.tool-card p {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.btn-small {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.btn-small:hover {
+    background: var(--secondary);
+    transform: scale(1.05);
+}
+
+footer {
+    background: rgba(0,0,0,0.8);
+    color: var(--text-dark);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+}
+
+/* Styles pour les pages de contenu */
+.content-page {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin: 2rem auto;
+    max-width: 1000px;
+}
+
+.breadcrumb {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.lesson {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: var(--bg-light);
+    color: var(--card-text);
+    border-radius: 10px;
+    border-left: 5px solid var(--accent-beginner);
+}
+
+.rune-grid, .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.rune-card, .letter-card {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.rune-card:hover, .letter-card:hover {
+    transform: scale(1.05);
+}
+
+.rune-symbol, .letter-symbol {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.rune-name, .letter-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.rune-meaning, .letter-value {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.progress-bar {
+    background: var(--bg-light);
+    height: 10px;
+    border-radius: 10px;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-beginner), var(--accent-intermediate));
+    transition: width 0.5s;
+}
+
+.exercise {
+    background: #fff3cd;
+    color: #333;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 5px solid var(--accent-intermediate);
+}
+
+body.dark-mode .exercise {
+    background: rgba(243, 156, 18, 0.2);
+    color: var(--text-light);
+}
+
+.tip {
+    background: #d1ecf1;
+    color: #333;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 5px solid #0c5460;
+}
+
+body.dark-mode .tip {
+    background: rgba(52, 152, 219, 0.2);
+    color: var(--text-light);
+    border-left-color: #3498db;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .level-cards, .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+    }
+}
+
+/* === AMÉLIORATIONS MOBILE IPHONE === */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 0.5rem 3.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem !important;
+        padding: 0 0.5rem;
+        margin-top: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    /* Repositionner les boutons en mode mobile */
+    .dark-mode-toggle,
+    .lang-toggle {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 1rem !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 0.9rem !important;
+        z-index: 1000;
+    }
+
+    .dark-mode-toggle {
+        left: 1rem !important;
+        right: auto !important;
+    }
+
+    .lang-toggle {
+        right: 1rem !important;
+        left: auto !important;
+    }
+
+    nav {
+        padding: 0.5rem;
+    }
+
+    .nav-container {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        margin: 1rem auto;
+        padding: 0 0.5rem;
+    }
+
+    .hero {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section-category {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-category h2 {
+        font-size: 1.5rem;
+    }
+
+    .intro {
+        font-size: 1rem;
+    }
+
+    .level-cards, .tools-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .card h3 {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .tools {
+        padding: 1.5rem 1rem;
+    }
+
+    .tools h2 {
+        font-size: 1.5rem;
+    }
+
+    .rune-grid, .letter-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .tool-card {
+        padding: 1.5rem;
+    }
+
+    footer {
+        padding: 1.5rem 1rem 4rem;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Améliorations tactiles pour mobile */
+@media (hover: none) and (pointer: coarse) {
+    .btn, .btn-small, nav a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
