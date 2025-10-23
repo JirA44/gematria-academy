@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
     <header>
         <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
         <h1>🌿 Runes Nordiques - Niveau Intermédiaire</h1>
