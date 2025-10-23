@@ -233,13 +233,19 @@
             btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
         }
 
-        // Charger la préférence au démarrage
+        // Charger la préférence au démarrage (mode nuit par défaut)
         window.addEventListener('DOMContentLoaded', () => {
-            const isDark = localStorage.getItem('darkMode') === 'true';
+            const darkModePref = localStorage.getItem('darkMode');
+            // Si aucune préférence, ou si darkMode === 'true', activer le mode nuit
+            const isDark = darkModePref === null || darkModePref === 'true';
             if (isDark) {
                 document.body.classList.add('dark-mode');
                 const btn = document.querySelector('.dark-mode-toggle');
                 if (btn) btn.textContent = '☀️ Mode Jour';
+                // Enregistrer la préférence par défaut
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
             }
         });
 
