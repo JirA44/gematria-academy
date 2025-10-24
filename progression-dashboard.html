@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Tableau de Progression</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <script src="progression-system.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f23 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #8a2be2, #da70d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+        }
+
+        .stats-global {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(25, 25, 40, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(138, 43, 226, 0.6);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .domaines {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .domaine-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(100, 100, 150, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .domaine-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .domaine-title {
+            font-size: 2rem;
+            color: #f0f0ff;
+        }
+
+        .domaine-badge {
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .badge-debutant {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4caf50;
+            color: #81c784;
+        }
+
+        .badge-intermediaire {
+            background: rgba(255, 152, 0, 0.3);
+            border: 2px solid #ff9800;
+            color: #ffb74d;
+        }
+
+        .badge-expert {
+            background: rgba(156, 39, 176, 0.3);
+            border: 2px solid #9c27b0;
+            color: #ce93d8;
+        }
+
+        .badge-maitrise {
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+        }
+
+        .niveaux {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .niveau-card {
+            background: rgba(40, 40, 60, 0.7);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .niveau-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .niveau-card.locked::before {
+            content: '🔒';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+        }
+
+        .niveau-card.unlocked::before {
+            content: '✅';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+        }
+
+        .niveau-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #f0f0ff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8a2be2, #da70d6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+
+        .niveau-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .niveau-stat {
+            color: #b0b0c0;
+        }
+
+        .niveau-stat strong {
+            color: #e0e0ff;
+        }
+
+        .btn-home {
+            display: block;
+            margin: 3rem auto 0;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            max-width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.5);
+        }
+
+        .btn-reset {
+            display: block;
+            margin: 1rem auto 0;
+            background: rgba(231, 76, 60, 0.3);
+            color: #e57373;
+            border: 2px solid #e74c3c;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .btn-reset:hover {
+            background: rgba(231, 76, 60, 0.5);
+        }
+
+        .empty-message {
+            text-align: center;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            margin: 3rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Votre Progression</h1>
+        <p class="subtitle">Maîtrisez chaque niveau pour progresser</p>
+
+        <div class="stats-global" id="statsGlobal"></div>
+
+        <div class="domaines" id="domaines"></div>
+
+        <a href="index_COMPLET.html" class="btn-home">🏠 Retour à l'accueil</a>
+        <button class="btn-reset" onclick="resetProgression()">🔄 Réinitialiser toute la progression</button>
+    </div>
+
+    <script>
+        function afficherProgression() {
+            const stats = ProgressionSystem.obtenirStatistiquesGlobales();
+            const progressions = ProgressionSystem.obtenirProgressionComplete();
+
+            // Stats globales
+            const statsHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${stats.progression}%</div>
+                    <div class="stat-label">Progression globale</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.totalNiveauxMaitrises}/15</div>
+                    <div class="stat-label">Niveaux maîtrisés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.scoreMoyenGlobal}%</div>
+                    <div class="stat-label">Score moyen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.totalExercices}</div>
+                    <div class="stat-label">Exercices complétés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.totalTentatives}</div>
+                    <div class="stat-label">Tentatives totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.totalDomainesMaitrises}/5</div>
+                    <div class="stat-label">Domaines maîtrisés</div>
+                </div>
+            `;
+            document.getElementById('statsGlobal').innerHTML = statsHTML;
+
+            // Domaines
+            const domaines = {
+                'hieroglyphes': { nom: '𓂀 Hiéroglyphes', icon: '𓂀' },
+                'maya': { nom: '𓊹 Maya', icon: '𓊹' },
+                'runes': { nom: 'ᚱ Runes', icon: 'ᚱ' },
+                'gematria': { nom: 'א Gematria', icon: 'א' },
+                'logique': { nom: '⊕ Logique', icon: '⊕' }
+            };
+
+            let domainesHTML = '';
+
+            Object.entries(domaines).forEach(([key, info]) => {
+                const prog = progressions[key];
+                const niveaux = ['debutant', 'intermediaire', 'expert'];
+
+                let niveauxHTML = '';
+                niveaux.forEach((niveau, index) => {
+                    const data = ProgressionSystem.chargerProgression(key, niveau);
+                    const accessible = ProgressionSystem.estNiveauAccessible(key, niveau);
+                    const niveauNom = niveau.charAt(0).toUpperCase() + niveau.slice(1);
+
+                    niveauxHTML += `
+                        <div class="niveau-card ${accessible ? 'unlocked' : 'locked'}">
+                            <div class="niveau-title">${niveauNom}</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${data.scoreMoyen}%">
+                                    ${data.scoreMoyen}%
+                                </div>
+                            </div>
+                            <div class="niveau-stats">
+                                <div class="niveau-stat">
+                                    <strong>${data.nombreExercices}</strong> exercices
+                                </div>
+                                <div class="niveau-stat">
+                                    <strong>${data.nombreTentatives}</strong> tentatives
+                                </div>
+                                <div class="niveau-stat">
+                                    Meilleur: <strong>${data.meilleurScore}%</strong>
+                                </div>
+                                <div class="niveau-stat">
+                                    ${data.maitrise ? '✅ Maîtrisé' : `⏳ Objectif: ${ProgressionSystem.SEUILS[niveau]}%`}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                const badgeClass = prog.maitrise ? 'badge-maitrise' :
+                                  prog.niveauActuel === 'expert' ? 'badge-expert' :
+                                  prog.niveauActuel === 'intermediaire' ? 'badge-intermediaire' : 'badge-debutant';
+
+                const badgeText = prog.maitrise ? '🏆 MAÎTRISÉ' :
+                                 prog.niveauActuel === 'expert' ? 'Expert' :
+                                 prog.niveauActuel === 'intermediaire' ? 'Intermédiaire' : 'Débutant';
+
+                domainesHTML += `
+                    <div class="domaine-card">
+                        <div class="domaine-header">
+                            <div class="domaine-title">${info.nom}</div>
+                            <div class="domaine-badge ${badgeClass}">${badgeText}</div>
+                        </div>
+                        <div class="niveaux">
+                            ${niveauxHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('domaines').innerHTML = domainesHTML;
+
+            // Afficher message si aucune progression
+            if (stats.totalExercices === 0) {
+                document.getElementById('domaines').innerHTML = `
+                    <div class="empty-message">
+                        Aucun exercice complété pour le moment.<br>
+                        Commencez par un domaine en niveau débutant !
+                    </div>
+                `;
+            }
+        }
+
+        function resetProgression() {
+            if (confirm('Êtes-vous sûr de vouloir réinitialiser TOUTE votre progression ?')) {
+                if (confirm('Cette action est IRRÉVERSIBLE. Continuer ?')) {
+                    ProgressionSystem.reinitialiserTout();
+                    alert('✅ Progression réinitialisée !');
+                    afficherProgression();
+                }
+            }
+        }
+
+        // Charger au démarrage
+        document.addEventListener('DOMContentLoaded', afficherProgression);
+    </script>
+</body>
+</html>

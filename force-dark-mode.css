@@ -1,0 +1,558 @@
+/**
+ * MODE NUIT FORCÉ - TOUTES LES PAGES
+ * Aucun fond blanc, tout est en mode sombre
+ */
+
+/* ========================================
+   RESET GLOBAL - MODE NUIT
+   ======================================== */
+
+* {
+    color-scheme: dark;
+}
+
+html {
+    background: #0a0a0f !important;
+}
+
+body {
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f23 100%) !important;
+    color: #e0e0e0 !important;
+}
+
+/* Conteneurs principaux */
+.container {
+    background: rgba(20, 20, 35, 0.95) !important;
+    color: #e0e0e0 !important;
+}
+
+/* Cards et sections */
+.card,
+.tool-card,
+.level-card,
+.exercise,
+.quiz,
+.info-box,
+.calculation-box,
+.word-example,
+.calendar-box,
+.calendar-system,
+.venus-table,
+.prophecy-box,
+.codex-page,
+.astronomy-section,
+.long-count-box,
+.cartouche-box,
+.papyrus-box {
+    background: rgba(25, 25, 40, 0.9) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(100, 100, 150, 0.3) !important;
+}
+
+/* Cartes spéciales */
+.number-card,
+.hieroglyph-card,
+.glyph-card,
+.month-card {
+    background: rgba(30, 30, 45, 0.85) !important;
+    color: #d0d0e0 !important;
+    border-color: rgba(100, 150, 200, 0.4) !important;
+}
+
+.number-card:hover,
+.hieroglyph-card:hover,
+.glyph-card:hover,
+.month-card:hover {
+    background: rgba(40, 40, 60, 0.95) !important;
+}
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+    color: #f0f0ff !important;
+}
+
+/* Textes et paragraphes */
+p, span, div, li {
+    color: #d0d0e0 !important;
+}
+
+/* Liens */
+a {
+    color: #6495ed !important;
+}
+
+a:hover {
+    color: #87ceeb !important;
+}
+
+/* Boutons */
+.btn,
+.btn-beginner,
+.btn-intermediate,
+.btn-expert,
+.btn-small,
+.card-btn,
+button {
+    background: rgba(50, 50, 80, 0.8) !important;
+    color: #e0e0ff !important;
+    border-color: rgba(100, 100, 150, 0.5) !important;
+}
+
+.btn:hover,
+.btn-beginner:hover,
+.btn-intermediate:hover,
+.btn-expert:hover,
+.btn-small:hover,
+.card-btn:hover,
+button:hover {
+    background: rgba(70, 70, 110, 0.9) !important;
+    color: #ffffff !important;
+}
+
+.btn-home {
+    background: rgba(60, 70, 90, 0.8) !important;
+}
+
+.btn-home:hover {
+    background: rgba(80, 90, 110, 0.9) !important;
+}
+
+/* Badges */
+.badge,
+.level-badge {
+    background: rgba(138, 43, 226, 0.7) !important;
+    color: #ffffff !important;
+}
+
+.badge.beginner,
+.level-badge.beginner {
+    background: rgba(76, 175, 80, 0.7) !important;
+}
+
+.badge.intermediate,
+.level-badge.intermediate {
+    background: rgba(255, 152, 0, 0.7) !important;
+}
+
+.badge.expert,
+.level-badge.expert {
+    background: rgba(156, 39, 176, 0.7) !important;
+}
+
+/* Info boxes */
+.info-box {
+    background: rgba(255, 243, 205, 0.1) !important;
+    border-left-color: rgba(255, 193, 7, 0.7) !important;
+}
+
+.warning-box {
+    background: rgba(248, 215, 218, 0.1) !important;
+    border-left-color: rgba(220, 53, 69, 0.7) !important;
+}
+
+/* Exercises */
+.exercise {
+    background: rgba(227, 242, 253, 0.08) !important;
+    border-left-color: rgba(25, 118, 210, 0.7) !important;
+}
+
+.exercise h3 {
+    color: #64b5f6 !important;
+}
+
+/* Quiz */
+.quiz {
+    background: rgba(243, 229, 245, 0.08) !important;
+    border-left-color: rgba(156, 39, 176, 0.7) !important;
+}
+
+.quiz-question {
+    color: #ce93d8 !important;
+}
+
+.quiz-option {
+    background: rgba(40, 40, 60, 0.7) !important;
+    border-color: rgba(156, 39, 176, 0.5) !important;
+    color: #d0d0e0 !important;
+}
+
+.quiz-option:hover {
+    background: rgba(156, 39, 176, 0.3) !important;
+}
+
+/* Tables */
+table {
+    background: rgba(30, 30, 45, 0.6) !important;
+    color: #d0d0e0 !important;
+}
+
+th {
+    background: rgba(50, 50, 80, 0.8) !important;
+    color: #f0f0ff !important;
+}
+
+td {
+    border-color: rgba(100, 100, 150, 0.3) !important;
+    color: #d0d0e0 !important;
+}
+
+tr:nth-child(even) {
+    background: rgba(40, 40, 60, 0.3) !important;
+}
+
+/* Grilles */
+.number-grid,
+.hieroglyph-grid,
+.glyph-grid,
+.haab-months {
+    background: transparent !important;
+}
+
+/* Sections spéciales */
+.astronomy-section {
+    background: linear-gradient(135deg, rgba(15, 12, 41, 0.95), rgba(48, 43, 99, 0.95), rgba(36, 36, 62, 0.95)) !important;
+    color: #ffffff !important;
+}
+
+.astronomy-section h3 {
+    color: #ffd700 !important;
+}
+
+.astronomy-section ul,
+.astronomy-section p {
+    color: #e0e0e0 !important;
+}
+
+.astronomy-section table {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.astronomy-section th {
+    background: rgba(255, 215, 0, 0.8) !important;
+    color: #0f0c29 !important;
+}
+
+.astronomy-section td {
+    color: #f0f0f0 !important;
+}
+
+/* Codex */
+.codex-page {
+    background: linear-gradient(to bottom, rgba(76, 56, 38, 0.7), rgba(92, 80, 65, 0.7)) !important;
+    border-color: #8b6f47 !important;
+}
+
+/* Long Count */
+.long-count-box {
+    background: linear-gradient(to bottom, rgba(26, 26, 26, 0.95), rgba(45, 45, 45, 0.95)) !important;
+    color: #ffd700 !important;
+    border-color: #ffd700 !important;
+}
+
+.long-count-box table {
+    color: white !important;
+    background: transparent !important;
+}
+
+.long-count-box td,
+.long-count-box th {
+    color: white !important;
+}
+
+/* Prophéties */
+.prophecy-box {
+    background: linear-gradient(135deg, rgba(74, 20, 140, 0.9), rgba(123, 31, 162, 0.9)) !important;
+    color: white !important;
+    border-color: rgba(206, 147, 216, 0.8) !important;
+}
+
+.prophecy-box h3 {
+    color: #f3e5f5 !important;
+}
+
+.prophecy-box table {
+    background: rgba(255,255,255,0.05) !important;
+}
+
+/* Calculs */
+.calculation-box,
+.calculation-example {
+    background: rgba(232, 234, 246, 0.08) !important;
+    border-color: rgba(63, 81, 181, 0.7) !important;
+}
+
+.calculation-example {
+    color: #b3b3cc !important;
+}
+
+/* Messages success/error */
+.success {
+    background: rgba(200, 230, 201, 0.2) !important;
+    color: #81c784 !important;
+}
+
+.error {
+    background: rgba(255, 205, 210, 0.2) !important;
+    color: #e57373 !important;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+    background: rgba(40, 40, 60, 0.7) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(100, 100, 150, 0.4) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: rgba(50, 50, 70, 0.8) !important;
+    border-color: rgba(138, 43, 226, 0.6) !important;
+}
+
+/* Navigation */
+nav,
+.navigation {
+    background: rgba(30, 30, 45, 0.8) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(138, 43, 226, 0.5);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(138, 43, 226, 0.7);
+}
+
+/* Selection */
+::selection {
+    background: rgba(138, 43, 226, 0.5);
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background: rgba(138, 43, 226, 0.5);
+    color: #ffffff;
+}
+
+/* Headers avec gradients */
+.subtitle {
+    color: #b0b0c0 !important;
+}
+
+/* Symboles et emojis - garder leur couleur */
+.intro-symbol,
+.upload-symbol,
+.hieroglyph-symbol,
+.glyph-symbol,
+.center-om {
+    color: inherit !important;
+    filter: brightness(1.2);
+}
+
+/* Spécificités par page */
+
+/* Hiéroglyphes */
+.hieroglyph-name {
+    color: #c49c62 !important;
+}
+
+.hieroglyph-meaning {
+    color: #999 !important;
+}
+
+/* Maya */
+.glyph-name {
+    color: #6aa84f !important;
+}
+
+.glyph-meaning {
+    color: #999 !important;
+}
+
+.number-value {
+    color: #4a7c59 !important;
+}
+
+.month-num {
+    color: #ff9800 !important;
+}
+
+/* Liens de navigation internes */
+.intro-instruction,
+.word-translation,
+.glyph-meaning,
+.hieroglyph-meaning {
+    color: #888 !important;
+}
+
+/* Mandala - écrans sombres conservés */
+.intro-screen {
+    background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f0f23 100%) !important;
+}
+
+/* Override de fond blanc forcé */
+[style*="background: white"],
+[style*="background: #fff"],
+[style*="background: #ffffff"],
+[style*="background-color: white"],
+[style*="background-color: #fff"],
+[style*="background-color: #ffffff"] {
+    background: rgba(30, 30, 45, 0.9) !important;
+}
+
+/* Ensure no white backgrounds anywhere */
+.bg-white,
+.background-white {
+    background: rgba(30, 30, 45, 0.9) !important;
+}
+
+/* Forcer tout texte noir en clair */
+[style*="color: black"],
+[style*="color: #000"],
+[style*="color: #000000"] {
+    color: #e0e0e0 !important;
+}
+
+.text-black {
+    color: #e0e0e0 !important;
+}
+
+/* Pre et code */
+pre,
+code {
+    background: rgba(20, 20, 35, 0.8) !important;
+    color: #d0d0e0 !important;
+    border-color: rgba(100, 100, 150, 0.3) !important;
+}
+
+/* Media queries - garder le mode nuit */
+@media (max-width: 768px) {
+    body {
+        background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%) !important;
+    }
+}
+
+/* Mode sombre système - déjà sombre */
+@media (prefers-color-scheme: dark) {
+    * {
+        color-scheme: dark;
+    }
+}
+
+/* Impression - mode sombre aussi */
+@media print {
+    body {
+        background: #1a1a2e !important;
+        color: #e0e0e0 !important;
+    }
+}
+
+/* ========================================
+   CLASSES ADDITIONNELLES AUTO-DÉTECTÉES
+   ======================================== */
+
+/* Éléments interactifs */
+.active,
+.answer-btn,
+.option-btn,
+.system-btn,
+.nav-btn,
+.upload-trigger,
+.home-btn {
+    background: rgba(50, 50, 80, 0.8) !important;
+    color: #e0e0ff !important;
+    border-color: rgba(100, 100, 150, 0.5) !important;
+}
+
+/* Navigation */
+.nav-arrow,
+.nav-buttons,
+.dot {
+    background: rgba(40, 40, 60, 0.7) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(100, 100, 150, 0.4) !important;
+}
+
+.dragover {
+    background: rgba(138, 43, 226, 0.3) !important;
+}
+
+/* Conteneurs et zones */
+.upload-zone,
+.modal-content,
+.calculator-container,
+.panel,
+.spread-card,
+.interpretation,
+.rune-detail {
+    background: rgba(25, 25, 40, 0.9) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(100, 100, 150, 0.3) !important;
+}
+
+/* Contenus de texte */
+.hebrew-text,
+.sacred-text,
+.gematria-result,
+.letter-item,
+.info-item {
+    background: rgba(30, 30, 45, 0.85) !important;
+    color: #d0d0e0 !important;
+    border-color: rgba(100, 150, 200, 0.4) !important;
+}
+
+/* Éléments d'exercice */
+.interactive-exercise,
+.truth-table,
+.progress-tracker,
+.letter-card-interactive,
+.connector-card {
+    background: rgba(25, 25, 40, 0.9) !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(100, 100, 150, 0.3) !important;
+}
+
+/* Boîtes d'information spéciales */
+.instructions,
+.advantages,
+.correspondence-box,
+.breakdown {
+    background: rgba(255, 243, 205, 0.1) !important;
+    border-left-color: rgba(255, 193, 7, 0.7) !important;
+    color: #e0e0e0 !important;
+}
+
+/* Éléments spirituels/ésotériques */
+.sephirah {
+    background: rgba(40, 40, 60, 0.8) !important;
+    color: #f0f0ff !important;
+    border-color: rgba(138, 43, 226, 0.6) !important;
+}
+
+/* Particules et effets visuels */
+.particle {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Messages d'erreur spécifiques */
+.wrong {
+    background: rgba(231, 76, 60, 0.3) !important;
+    color: #e57373 !important;
+}
+
+/* URL et liens */
+.url {
+    background: rgba(30, 30, 45, 0.85) !important;
+    color: #6495ed !important;
+    border-color: rgba(100, 150, 200, 0.4) !important;
+}

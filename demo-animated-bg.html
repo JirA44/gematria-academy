@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Fonds Animés Bleu Marine</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="animated-backgrounds.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .demo-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)); }
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.5);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(155, 89, 182, 0.7);
+        }
+    </style>
+</head>
+<body class="animated-bg">
+    <div class="demo-container">
+        <h1>✨ Fonds Animés Magnifiques ✨</h1>
+        <p>
+            Gradient bleu marine fluide avec particules scintillantes et étoiles
+            <br>Inspiré des launchers KOF Ultimate Online
+        </p>
+        <a href="index_COMPLET.html" class="btn-home">
+            🏠 Retour à l'académie
+        </a>
+    </div>
+</body>
+</html>

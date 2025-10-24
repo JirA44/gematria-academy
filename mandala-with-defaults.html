@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🕉️</title>
+    <title>🕉️ Mandalas Sacrés</title>
     <style>
         * {
             margin: 0;
@@ -409,7 +409,7 @@
 
     <!-- Visualiseur -->
     <div class="viewer" id="viewer">
-        <a href="index_multilingual.html" class="home-btn">⌂</a>
+        <a href="index_COMPLET.html" class="home-btn">⌂</a>
 
         <img src="" alt="" class="mandala-image" id="mandalaImage">
 
@@ -426,11 +426,112 @@
         <button class="close-upload" onclick="closeUpload()">×</button>
         <label for="fileInput" class="upload-zone" id="uploadZone">
             <div class="upload-symbol">📤</div>
+            <p style="color: white; opacity: 0.7; font-size: 1.2rem; margin-top: 1rem;">
+                Glissez vos mandalas ici ou cliquez pour sélectionner
+            </p>
             <input type="file" id="fileInput" accept="image/*" multiple>
         </label>
     </div>
 
     <script>
+        // MANDALAS PAR DÉFAUT (SVG encodés en base64)
+        const DEFAULT_MANDALAS = [
+            // Mandala 1 - Fleur de Lotus
+            'data:image/svg+xml;base64,' + btoa(`
+                <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="grad1">
+                            <stop offset="0%" stop-color="#9b59b6" />
+                            <stop offset="100%" stop-color="#8e44ad" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="400" cy="400" r="350" fill="url(#grad1)" opacity="0.2"/>
+                    <circle cx="400" cy="400" r="300" fill="none" stroke="#e74c3c" stroke-width="3"/>
+                    <circle cx="400" cy="400" r="250" fill="none" stroke="#f39c12" stroke-width="3"/>
+                    <circle cx="400" cy="400" r="200" fill="none" stroke="#2ecc71" stroke-width="3"/>
+                    <circle cx="400" cy="400" r="150" fill="none" stroke="#3498db" stroke-width="3"/>
+                    <circle cx="400" cy="400" r="100" fill="none" stroke="#9b59b6" stroke-width="3"/>
+                    <circle cx="400" cy="400" r="50" fill="#ffd700"/>
+                    ${[...Array(12)].map((_, i) => {
+                        const angle = (i * 30) * Math.PI / 180;
+                        const x = 400 + 280 * Math.cos(angle);
+                        const y = 400 + 280 * Math.sin(angle);
+                        return `<circle cx="${x}" cy="${y}" r="30" fill="#e74c3c" opacity="0.7"/>`;
+                    }).join('')}
+                    ${[...Array(8)].map((_, i) => {
+                        const angle = (i * 45) * Math.PI / 180;
+                        const x1 = 400;
+                        const y1 = 400;
+                        const x2 = 400 + 320 * Math.cos(angle);
+                        const y2 = 400 + 320 * Math.sin(angle);
+                        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#3498db" stroke-width="2" opacity="0.4"/>`;
+                    }).join('')}
+                </svg>
+            `),
+
+            // Mandala 2 - Géométrie Sacrée
+            'data:image/svg+xml;base64,' + btoa(`
+                <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="grad2">
+                            <stop offset="0%" stop-color="#1abc9c" />
+                            <stop offset="100%" stop-color="#16a085" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="400" cy="400" r="380" fill="url(#grad2)" opacity="0.15"/>
+                    ${[...Array(6)].map((_, i) => {
+                        const angle = (i * 60) * Math.PI / 180;
+                        const x = 400 + 300 * Math.cos(angle);
+                        const y = 400 + 300 * Math.sin(angle);
+                        return `<circle cx="${x}" cy="${y}" r="80" fill="none" stroke="#e74c3c" stroke-width="3" opacity="0.6"/>`;
+                    }).join('')}
+                    <circle cx="400" cy="400" r="200" fill="none" stroke="#f39c12" stroke-width="4"/>
+                    ${[...Array(12)].map((_, i) => {
+                        const angle = (i * 30) * Math.PI / 180;
+                        const x1 = 400 + 200 * Math.cos(angle);
+                        const y1 = 400 + 200 * Math.sin(angle);
+                        const x2 = 400 + 300 * Math.cos(angle + Math.PI/12);
+                        const y2 = 400 + 300 * Math.sin(angle + Math.PI/12);
+                        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#9b59b6" stroke-width="2"/>`;
+                    }).join('')}
+                    <circle cx="400" cy="400" r="80" fill="#ffd700"/>
+                    <text x="400" y="420" font-size="60" text-anchor="middle" fill="#8e44ad" font-weight="bold">OM</text>
+                </svg>
+            `),
+
+            // Mandala 3 - Étoile Cosmique
+            'data:image/svg+xml;base64,' + btoa(`
+                <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="grad3">
+                            <stop offset="0%" stop-color="#34495e" />
+                            <stop offset="100%" stop-color="#2c3e50" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="400" cy="400" r="390" fill="url(#grad3)" opacity="0.2"/>
+                    ${[...Array(8)].map((_, i) => {
+                        const angle = (i * 45) * Math.PI / 180;
+                        const points = [...Array(5)].map((_, j) => {
+                            const a = angle + (j * 2 * Math.PI / 5);
+                            const r = j % 2 === 0 ? 280 : 140;
+                            const x = 400 + r * Math.cos(a);
+                            const y = 400 + r * Math.sin(a);
+                            return `${x},${y}`;
+                        }).join(' ');
+                        return `<polygon points="${points}" fill="none" stroke="#3498db" stroke-width="2" opacity="0.6"/>`;
+                    }).join('')}
+                    ${[...Array(16)].map((_, i) => {
+                        const angle = (i * 22.5) * Math.PI / 180;
+                        const x = 400 + 330 * Math.cos(angle);
+                        const y = 400 + 330 * Math.sin(angle);
+                        return `<circle cx="${x}" cy="${y}" r="15" fill="#e74c3c"/>`;
+                    }).join('')}
+                    <circle cx="400" cy="400" r="100" fill="#ffd700"/>
+                    <circle cx="400" cy="400" r="90" fill="none" stroke="#8e44ad" stroke-width="3"/>
+                </svg>
+            `)
+        ];
+
         let images = [];
         let currentIndex = 0;
 
@@ -438,6 +539,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadImages();
             setupListeners();
+
+            // Si aucune image sauvegardée, charger les mandalas par défaut
+            if (images.length === 0) {
+                images = [...DEFAULT_MANDALAS];
+                saveImages();
+            }
         });
 
         function setupListeners() {
@@ -508,6 +615,7 @@
             try {
                 localStorage.setItem('mandalaImages', JSON.stringify(images));
             } catch (e) {
+                // Si trop grand, garder seulement les 30 dernières
                 images = images.slice(-30);
                 localStorage.setItem('mandalaImages', JSON.stringify(images));
             }
@@ -526,19 +634,16 @@
 
             setTimeout(() => {
                 intro.style.display = 'none';
-                if (images.length > 0) {
-                    document.getElementById('viewer').classList.add('active');
-                    updateDisplay();
-                } else {
-                    openUpload();
-                }
+                document.getElementById('viewer').classList.add('active');
+                updateDisplay();
             }, 1500);
         }
 
         function updateDisplay() {
             if (images.length === 0) {
-                openUpload();
-                return;
+                // Charger les mandalas par défaut si vide
+                images = [...DEFAULT_MANDALAS];
+                saveImages();
             }
 
             const img = document.getElementById('mandalaImage');
