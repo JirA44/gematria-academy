@@ -48,7 +48,7 @@ def generer_cartes(inscriptions, niveau_nom):
                     <p class="inscription-monument">📍 {monument}{', ' + lieu if lieu else ''}</p>
                     <p class="inscription-epoch">📅 {epoque}</p>
                     <p class="inscription-description">{description}</p>
-                    <button class="btn-open">Ouvrir l'inscription →</button>
+                    <button class="btn-open">→</button>
                 </div>
 '''
 
