@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glyphes Mayas - La Civilisation du Savoir Perdu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 87, 34, 0.2));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(255, 152, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ffb74d, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tragedy-banner {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.3), rgba(183, 28, 28, 0.3));
+            border: 3px solid #f44336;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(244, 67, 54, 0.3);
+        }
+
+        .tragedy-banner h2 {
+            color: #ff5252;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tragedy-banner p {
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+
+        .section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section h2 {
+            color: #ffb74d;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid rgba(255, 152, 0, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .section h3 {
+            color: #ffd54f;
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ff9800, #f57c00);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: "📜";
+            position: absolute;
+            left: -3.2rem;
+            top: 0;
+            font-size: 1.5rem;
+            background: #1a1a2e;
+            padding: 0.3rem;
+            border-radius: 50%;
+        }
+
+        .timeline-item.fire::before {
+            content: "🔥";
+        }
+
+        .timeline-item.survivor::before {
+            content: "✨";
+        }
+
+        .codex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .codex-card {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 87, 34, 0.1));
+            border: 2px solid rgba(255, 152, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .codex-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
+            border-color: rgba(255, 152, 0, 0.6);
+        }
+
+        .codex-card h4 {
+            color: #ffb74d;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .lost-knowledge {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .knowledge-box {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15), rgba(183, 28, 28, 0.15));
+            border-left: 4px solid #f44336;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .knowledge-box h4 {
+            color: #ff5252;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .knowledge-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .knowledge-box ul li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .knowledge-box ul li::before {
+            content: "💔";
+            position: absolute;
+            left: 0;
+        }
+
+        .survived-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(56, 142, 60, 0.15));
+            border-left: 4px solid #4caf50;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .survived-box h4 {
+            color: #81c784;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .survived-box ul li::before {
+            content: "✅";
+        }
+
+        .quote-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 5px solid #ff9800;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            border-radius: 10px;
+        }
+
+        .quote-box cite {
+            display: block;
+            text-align: right;
+            margin-top: 1rem;
+            opacity: 0.8;
+            font-style: normal;
+        }
+
+        .stat-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            box-shadow: 0 3px 10px rgba(244, 67, 54, 0.4);
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 152, 0, 0.3);
+            padding: 1rem;
+            text-align: left;
+            color: #ffb74d;
+            border-bottom: 2px solid rgba(255, 152, 0, 0.5);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 152, 0, 0.1);
+        }
+
+        .learning-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .level-card {
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 3px solid;
+        }
+
+        .level-card.beginner {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(56, 142, 60, 0.15));
+            border-color: #4caf50;
+        }
+
+        .level-card.intermediate {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.15));
+            border-color: #ffc107;
+        }
+
+        .level-card.expert {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.15), rgba(142, 36, 170, 0.15));
+            border-color: #9c27b0;
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 152, 0, 0.3);
+        }
+
+        .level-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .level-card.beginner h3 { color: #81c784; }
+        .level-card.intermediate h3 { color: #ffd54f; }
+        .level-card.expert h3 { color: #ba68c8; }
+
+        .level-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .level-card ul li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .level-card ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0.5rem;
+            font-weight: bold;
+        }
+
+        .level-card.beginner ul li::before { color: #81c784; }
+        .level-card.intermediate ul li::before { color: #ffd54f; }
+        .level-card.expert ul li::before { color: #ba68c8; }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-beginner {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-intermediate {
+            background: linear-gradient(135deg, #ffc107, #ffa000);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-expert {
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+            gap: 1rem;
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.5);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(25, 118, 210, 0.2));
+            border: 2px solid rgba(33, 150, 243, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-box h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .codex-grid, .learning-path, .lost-knowledge {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>𓁹 Les Glyphes Mayas</h1>
+            <p class="subtitle">Trésors d'une civilisation brillante, murmures d'un savoir presque perdu à jamais</p>
+        </header>
+
+        <!-- TRAGÉDIE DE MANI -->
+        <div class="tragedy-banner">
+            <h2>💔 12 Juillet 1562 : Le Jour Où le Monde Perdit un Trésor</h2>
+            <p>À Mani (Yucatan), l'évêque espagnol Diego de Landa ordonna la destruction de <span class="stat-highlight">milliers de codex mayas</span></p>
+            <p style="margin-top: 1rem; font-size: 1.3rem; font-weight: bold;">Sur toute la connaissance accumulée pendant des siècles, seulement <span class="stat-highlight">4 codex</span> ont survécu</p>
+            <p style="margin-top: 1rem; opacity: 0.9;">C'est comme si toute la civilisation européenne avait été réduite à 4 livres...</p>
+        </div>
+
+        <!-- INTRODUCTION -->
+        <div class="section">
+            <h2>🌟 La Civilisation Maya : Brillance Scientifique d'Amérique Précolombienne</h2>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Les Mayas (2000 av. J.-C. - 1500 ap. J.-C.) ont construit l'une des civilisations les plus avancées de l'histoire humaine. Leur système d'écriture, leur astronomie et leurs mathématiques rivalisaient avec - et surpassaient parfois - celles de l'Europe contemporaine.</p>
+
+            <div class="info-box">
+                <h3>🎯 Ce que vous allez découvrir</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">✨ <strong>L'histoire tragique</strong> de la destruction des codex et ce qui a été perdu</li>
+                    <li style="padding: 0.5rem 0;">📚 <strong>Les 4 codex survivants</strong> et leur contenu précieux</li>
+                    <li style="padding: 0.5rem 0;">🔢 <strong>Le système de numération base 20</strong> avec invention du zéro</li>
+                    <li style="padding: 0.5rem 0;">📅 <strong>Les calendriers mayas</strong> : Tzolk'in, Haab', Compte Long</li>
+                    <li style="padding: 0.5rem 0;">⭐ <strong>L'astronomie avancée</strong> : Vénus, éclipses, conjonctions planétaires</li>
+                    <li style="padding: 0.5rem 0;">🔤 <strong>Les glyphes</strong> : Lecture et signification</li>
+                </ul>
+            </div>
+
+            <h3>🏛️ Réalisations Mayas : Une Civilisation Exceptionnelle</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Domaine</th>
+                        <th>Réalisations Mayas</th>
+                        <th>Comparaison Europe Contemporaine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mathématiques</strong></td>
+                        <td>Invention du zéro (vers 350 ap. J.-C.)<br>Système vigésimal (base 20)<br>Notation positionnelle</td>
+                        <td>Europe n'adoptera le zéro qu'au 12e siècle via les Arabes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Astronomie</strong></td>
+                        <td>Année solaire : 365,2420 jours<br>Cycle Vénus : 584 jours (précis)<br>Prédiction éclipses sur des siècles</td>
+                        <td>Calendrier Julien moins précis (365,25 jours)<br>Astronomie ptoléméenne avec erreurs majeures</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Écriture</strong></td>
+                        <td>Système logosyllabique complet<br>~800 glyphes différents<br>Capable d'exprimer n'importe quelle idée</td>
+                        <td>Seul système d'écriture complet d'Amérique précolombienne</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Calendrier</strong></td>
+                        <td>Compte Long : couvre des millions d'années<br>3 calendriers synchronisés<br>Roue calendaire de 52 ans</td>
+                        <td>Calendrier Julien imprécis, réformé seulement en 1582</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Architecture</strong></td>
+                        <td>Pyramides de Tikal (65m de haut)<br>Cités de 100 000+ habitants<br>Observatoires astronomiques</td>
+                        <td>Comparables aux grandes cathédrales européennes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- LA TRAGÉDIE -->
+        <div class="section">
+            <h2>🔥 12 Juillet 1562 : L'Autodafé de Mani</h2>
+
+            <div class="quote-box">
+                "Nous avons trouvé un grand nombre de livres avec ces caractères, et comme ils ne contenaient rien que superstition et mensonges du diable, nous les avons tous brûlés, ce qui causa aux Mayas une affliction extraordinaire et leur causa beaucoup de peine."
+                <cite>— Diego de Landa, évêque espagnol responsable de la destruction</cite>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>2000 av. J.-C. - 1500 ap. J.-C.</h4>
+                    <p>La civilisation maya accumule des millénaires de connaissances. Des scribes royaux consignent tout : astronomie, histoire, médecine, rituels, mathématiques, prophéties.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>1517-1546</h4>
+                    <p>Conquête espagnole du Yucatan. Les conquistadors découvrent des bibliothèques entières dans les temples de Chichen Itza, Uxmal, Mayapan, Tikal...</p>
+                </div>
+
+                <div class="timeline-item fire">
+                    <h4>12 Juillet 1562</h4>
+                    <p><strong style="color: #f44336;">LE JOUR TRAGIQUE</strong> : Diego de Landa organise un autodafé massif à Mani. Des <strong>milliers de codex</strong> (certains historiens estiment 5000 à 10 000 codex) sont brûlés en une seule journée.</p>
+                    <p style="margin-top: 0.5rem;">Les Mayas pleurent ouvertement en voyant leur histoire partir en fumée.</p>
+                </div>
+
+                <div class="timeline-item fire">
+                    <h4>1562-1697</h4>
+                    <p>Destruction systématique continue. Les missionnaires brûlent tout ce qui semble "païen". Les bibliothèques de dizaines de cités sont réduites en cendres.</p>
+                </div>
+
+                <div class="timeline-item survivor">
+                    <h4>17e-19e siècle</h4>
+                    <p>Par miracle, 4 codex mayas survivent - tous trouvés en Europe, probablement envoyés comme "curiosités" avant la destruction massive.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>1832-2024</h4>
+                    <p>Redécouverte progressive. Les glyphes mayas ne seront totalement déchiffrés qu'au 20e siècle, grâce aux travaux de Yuri Knorozov (1952) et David Stuart.</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(244, 67, 54, 0.2); padding: 2rem; border-radius: 15px; border-left: 5px solid #f44336; margin-top: 2rem;">
+                <h3 style="color: #ff5252;">💔 L'Ampleur de la Catastrophe</h3>
+                <p style="font-size: 1.15rem; margin-top: 1rem;">Imaginez si <strong>toute la connaissance de la civilisation européenne</strong> avait été réduite à 4 livres survivants :</p>
+                <ul style="margin-top: 1rem; list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">❌ Pas de Platon, Aristote, Socrate</li>
+                    <li style="padding: 0.5rem 0;">❌ Pas de Shakespeare, Dante, Cervantes</li>
+                    <li style="padding: 0.5rem 0;">❌ Pas d'Euclide, Newton, Copernic</li>
+                    <li style="padding: 0.5rem 0;">❌ Pas de Bible complète, pas d'histoire romaine</li>
+                    <li style="padding: 0.5rem 0;">❌ Pas de médecine grecque, pas d'architecture romaine documentée</li>
+                </ul>
+                <p style="margin-top: 1rem; font-weight: bold; font-size: 1.2rem;">C'est exactement ce qui est arrivé à la civilisation maya.</p>
+            </div>
+        </div>
+
+        <!-- LES 4 CODEX SURVIVANTS -->
+        <div class="section">
+            <h2>✨ Les 4 Codex Survivants : Fragments d'un Savoir Immense</h2>
+
+            <p style="font-size: 1.15rem; margin-bottom: 2rem;">Par un miracle historique, 4 codex mayas ont échappé à la destruction. Ils sont notre seule fenêtre directe sur la pensée maya écrite.</p>
+
+            <div class="codex-grid">
+                <div class="codex-card">
+                    <h4>📜 Codex de Dresde</h4>
+                    <p><strong>Localisation :</strong> Bibliothèque de Dresde, Allemagne</p>
+                    <p><strong>Pages :</strong> 74 pages (recto-verso)</p>
+                    <p><strong>Date :</strong> 11e-12e siècle</p>
+                    <p><strong>Contenu :</strong></p>
+                    <ul style="margin-top: 0.5rem; list-style: none;">
+                        <li>⭐ Tables astronomiques de Vénus (précision incroyable)</li>
+                        <li>🌙 Prédictions d'éclipses solaires et lunaires</li>
+                        <li>📅 Calendrier Tzolk'in et Haab'</li>
+                        <li>🌊 Prophéties et almanachs divinatoires</li>
+                        <li>🦎 Rituels agricoles et cérémonies</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-weight: bold; color: #ffb74d;">Le plus sophistiqué scientifiquement</p>
+                </div>
+
+                <div class="codex-card">
+                    <h4>📜 Codex de Madrid</h4>
+                    <p><strong>Localisation :</strong> Musée de l'Amérique, Madrid, Espagne</p>
+                    <p><strong>Pages :</strong> 112 pages</p>
+                    <p><strong>Date :</strong> 15e siècle</p>
+                    <p><strong>Contenu :</strong></p>
+                    <ul style="margin-top: 0.5rem; list-style: none;">
+                        <li>🔮 Almanachs divinatoires</li>
+                        <li>🌾 Rituels agricoles et cérémonies de la pluie</li>
+                        <li>🦌 Chasse, pêche, apiculture</li>
+                        <li>🎭 Représentations de divinités</li>
+                        <li>📆 Horoscopes et prophéties</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-weight: bold; color: #ffb74d;">Le plus long survivant</p>
+                </div>
+
+                <div class="codex-card">
+                    <h4>📜 Codex de Paris</h4>
+                    <p><strong>Localisation :</strong> Bibliothèque Nationale, Paris, France</p>
+                    <p><strong>Pages :</strong> 24 pages (fragmentaire, probablement 44 à l'origine)</p>
+                    <p><strong>Date :</strong> 14e siècle</p>
+                    <p><strong>Contenu :</strong></p>
+                    <ul style="margin-top: 0.5rem; list-style: none;">
+                        <li>🔮 Prophéties katun (périodes de 20 ans)</li>
+                        <li>📅 Rituels calendaires</li>
+                        <li>👑 Possiblement histoire dynastique</li>
+                        <li>🌙 Cérémonies de Nouvel An maya</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-weight: bold; color: #ffb74d;">Le plus endommagé, hélas</p>
+                </div>
+
+                <div class="codex-card">
+                    <h4>📜 Codex Grolier</h4>
+                    <p><strong>Localisation :</strong> Musée National d'Anthropologie, Mexico</p>
+                    <p><strong>Pages :</strong> 11 pages fragmentaires</p>
+                    <p><strong>Date :</strong> 13e siècle</p>
+                    <p><strong>Authenticité :</strong> Débattue jusqu'en 2018, maintenant confirmé authentique</p>
+                    <p><strong>Contenu :</strong></p>
+                    <ul style="margin-top: 0.5rem; list-style: none;">
+                        <li>⭐ Cycle de Vénus (584 jours)</li>
+                        <li>🔮 Almanach divinatoire lié à Vénus</li>
+                        <li>🎭 Représentations de divinités</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-weight: bold; color: #ffb74d;">Le plus fragmentaire</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(76, 175, 80, 0.2); border-radius: 15px;">
+                <p style="font-size: 1.3rem; font-weight: bold; color: #81c784;">Ces 4 codex représentent moins de 0,1% de ce qui existait autrefois</p>
+                <p style="margin-top: 1rem; font-size: 1.1rem;">Imaginez ce que contenaient les 99,9% détruits...</p>
+            </div>
+        </div>
+
+        <!-- CE QUI A ÉTÉ PERDU -->
+        <div class="section">
+            <h2>💔 Le Savoir Perdu à Jamais</h2>
+
+            <p style="font-size: 1.15rem; margin-bottom: 2rem;">Voici ce que les historiens et archéologues estiment avoir été détruit dans les codex brûlés :</p>
+
+            <div class="lost-knowledge">
+                <div class="knowledge-box">
+                    <h4>⭐ Astronomie Avancée</h4>
+                    <ul>
+                        <li>Tables complètes de tous les cycles planétaires</li>
+                        <li>Cycles de Mars, Jupiter, Saturne, Mercure</li>
+                        <li>Carte du ciel maya complète</li>
+                        <li>Prédictions de comètes et météores</li>
+                        <li>Constellations mayas (différentes des occidentales)</li>
+                        <li>Méthodes de calcul astronomique</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>🔢 Mathématiques</h4>
+                    <ul>
+                        <li>Tables de multiplication en base 20</li>
+                        <li>Méthodes de calcul avancées</li>
+                        <li>Géométrie sacrée des temples</li>
+                        <li>Applications mathématiques en architecture</li>
+                        <li>Calculs calendaires complexes</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>🌿 Médecine et Pharmacopée</h4>
+                    <ul>
+                        <li>Centaines de plantes médicinales et leurs usages</li>
+                        <li>Traitement de maladies tropicales</li>
+                        <li>Techniques chirurgicales</li>
+                        <li>Connaissance anatomique</li>
+                        <li>Dentisterie (implants en jade retrouvés !)</li>
+                        <li>Accouchement et soins maternels</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>👑 Histoire et Généalogie</h4>
+                    <ul>
+                        <li>Chroniques des dynasties royales</li>
+                        <li>Histoire de chaque cité-État</li>
+                        <li>Guerres, alliances, traités</li>
+                        <li>Biographies de grands rois</li>
+                        <li>Récits de batailles célèbres</li>
+                        <li>Dates précises des événements majeurs</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>🌙 Religion et Mythologie</h4>
+                    <ul>
+                        <li>Mythes complets de la création</li>
+                        <li>Version originale du Popol Vuh</li>
+                        <li>Panthéon complet des divinités</li>
+                        <li>Rituels détaillés pour chaque cérémonie</li>
+                        <li>Prophéties et divination</li>
+                        <li>Cosmologie des 13 cieux et 9 mondes souterrains</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>🌾 Agriculture et Écologie</h4>
+                    <ul>
+                        <li>Système milpa (maïs-haricot-courge)</li>
+                        <li>Calendrier agricole détaillé</li>
+                        <li>Gestion de l'eau et irrigation</li>
+                        <li>Sélection et amélioration des semences</li>
+                        <li>Techniques de conservation des sols</li>
+                        <li>Prédiction des pluies</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>🎭 Arts et Culture</h4>
+                    <ul>
+                        <li>Poésie et littérature mayas</li>
+                        <li>Théâtre rituel et performances</li>
+                        <li>Musique et instruments</li>
+                        <li>Danse cérémonielle</li>
+                        <li>Légendes et contes populaires</li>
+                        <li>Philosophie maya</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-box">
+                    <h4>🏛️ Sciences et Technologies</h4>
+                    <ul>
+                        <li>Architecture et ingénierie</li>
+                        <li>Construction de pyramides et temples</li>
+                        <li>Systèmes hydrauliques complexes</li>
+                        <li>Technique du stuc et des couleurs</li>
+                        <li>Métallurgie (or, cuivre, jade)</li>
+                        <li>Tissage et textiles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: rgba(244, 67, 54, 0.3); padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                <h3 style="color: #ff5252; font-size: 1.8rem;">🔥 "La plus grande perte intellectuelle de l'histoire de l'humanité"</h3>
+                <p style="font-size: 1.15rem; margin-top: 1rem;">— Michael Coe, archéologue et épigraphiste maya</p>
+                <p style="margin-top: 1.5rem; font-size: 1.1rem;">Des remèdes contre des maladies, des découvertes astronomiques, des techniques agricoles adaptées aux tropiques... perdus à jamais. Combien de vies auraient pu être sauvées ? Combien de connaissances nous manquent aujourd'hui ?</p>
+            </div>
+        </div>
+
+        <!-- CE QUI RESTE -->
+        <div class="section">
+            <h2>✅ Ce Qui Reste : Les Voix qui Murmurent Encore</h2>
+
+            <p style="font-size: 1.15rem; margin-bottom: 2rem;">Heureusement, tout n'est pas perdu. Les Mayas ont laissé d'autres traces de leur savoir :</p>
+
+            <div class="survived-box">
+                <h4>🗿 Inscriptions sur Pierre (Des Milliers)</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">✅ <strong>Stèles monumentales</strong> : Tikal, Copán, Quirigua, Calakmul...</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Escalier hiéroglyphique de Copán</strong> : 2 200 glyphes (plus longue inscription maya !</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Linteaux sculptés</strong> : Yaxchilan, Piedras Negras</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Panneaux de temples</strong> : Palenque, Bonampak</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Tablettes</strong> : Tablette du Palais, Tablette de la Croix</li>
+                </ul>
+                <p style="margin-top: 1rem; font-style: italic;">Ces inscriptions racontent des histoires de rois, batailles, naissances, mariages, et dates astronomiques</p>
+            </div>
+
+            <div class="survived-box">
+                <h4>🏺 Céramiques Peintes (Des Milliers)</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">✅ <strong>Vases cylindriques</strong> avec scènes mythologiques complètes</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Textes glyphiques</strong> sur les céramiques</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Scènes de la cour royale</strong> : banquets, rituels, danses</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Signatures d'artistes</strong> (!) - chose rare dans l'art ancien</li>
+                </ul>
+            </div>
+
+            <div class="survived-box">
+                <h4>📄 Documents Coloniaux (Copies et Transcriptions)</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">✅ <strong>Popol Vuh</strong> : Livre sacré des K'iche', transcrit en alphabet latin vers 1550</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Chilam Balam</strong> : Livres de prophéties de plusieurs villes du Yucatan</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Relación de las Cosas de Yucatán</strong> : Ironiquement écrit par Diego de Landa lui-même après la destruction !</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Titres de propriété</strong> : Documents légaux mayas de l'époque coloniale</li>
+                </ul>
+            </div>
+
+            <div class="survived-box">
+                <h4>🗣️ Tradition Orale Vivante (6 Millions de Locuteurs)</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">✅ <strong>Langues mayas</strong> : 30+ langues encore parlées (Yucatec, K'iche', Kaqchikel, Q'eqchi', etc.)</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Contes et légendes</strong> transmis oralement</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Savoirs traditionnels</strong> : Plantes médicinales, agriculture, rituels</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Cérémonies vivantes</strong> : Les Mayas d'aujourd'hui pratiquent encore certains rituels ancestraux</li>
+                    <li style="padding: 0.5rem 0;">✅ <strong>Ajq'ijab' (gardiens du jour)</strong> : Prêtres mayas gardiens du calendrier sacré</li>
+                </ul>
+                <p style="margin-top: 1rem; font-weight: bold; color: #81c784;">Les Mayas ne sont PAS une civilisation morte - ils vivent encore aujourd'hui !</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(33, 150, 243, 0.2); border-radius: 15px;">
+                <p style="font-size: 1.2rem; font-weight: bold; color: #64b5f6;">Grâce à ces sources, nous avons réussi à déchiffrer ~90% des glyphes mayas</p>
+                <p style="margin-top: 1rem;">Le travail continue - chaque nouvelle découverte nous rapproche de la compréhension complète</p>
+            </div>
+        </div>
+
+        <!-- PARCOURS D'APPRENTISSAGE -->
+        <div class="section">
+            <h2>📚 Votre Parcours d'Apprentissage des Glyphes Mayas</h2>
+
+            <p style="font-size: 1.2rem; text-align: center; margin: 2rem 0;">En apprenant les glyphes mayas, vous participez à la préservation de ce savoir précieux. Chaque personne qui comprend cette écriture devient un gardien de cette mémoire.</p>
+
+            <div class="learning-path">
+                <div class="level-card beginner">
+                    <h3>🌱 Niveau Débutant</h3>
+                    <p style="margin: 1rem 0; font-style: italic;">Fondations du système maya</p>
+                    <ul>
+                        <li>Système de numération base 20 (vigésimal)</li>
+                        <li>Les 3 symboles essentiels : point (1), barre (5), coquille (0)</li>
+                        <li>L'invention maya du ZÉRO (avant l'Europe !)</li>
+                        <li>Compter de 0 à 400</li>
+                        <li>Introduction au calendrier Tzolk'in (260 jours)</li>
+                        <li>Notation positionnelle (unités, 20s, 400s)</li>
+                        <li>Premiers glyphes de base</li>
+                    </ul>
+                    <a href="maya-debutant.html" class="btn btn-beginner">Commencer le Niveau 1 →</a>
+                </div>
+
+                <div class="level-card intermediate">
+                    <h3>🌿 Niveau Intermédiaire</h3>
+                    <p style="margin: 1rem 0; font-style: italic;">Calendriers et astronomie</p>
+                    <ul>
+                        <li>Calendrier Haab' (365 jours, année solaire)</li>
+                        <li>Synchronisation Tzolk'in + Haab' = Roue Calendaire (52 ans)</li>
+                        <li>Cycle de Vénus (584 jours) et son importance</li>
+                        <li>Début du Compte Long</li>
+                        <li>Notation positionnelle avancée (jusqu'à 8 000)</li>
+                        <li>Calculs astronomiques de base</li>
+                        <li>Glyphes des mois et jours</li>
+                    </ul>
+                    <a href="maya-intermediaire.html" class="btn btn-intermediate">Continuer vers Niveau 2 →</a>
+                </div>
+
+                <div class="level-card expert">
+                    <h3>🌳 Niveau Expert</h3>
+                    <p style="margin: 1rem 0; font-style: italic;">Maîtrise complète</p>
+                    <ul>
+                        <li>Compte Long complet (couvre des millions d'années)</li>
+                        <li>Baktun (144 000 jours = 394 ans)</li>
+                        <li>Lecture complète des dates du Compte Long</li>
+                        <li>Synchronisation Vénus-Soleil (2 920 jours)</li>
+                        <li>Codex de Dresde : tables de Vénus</li>
+                        <li>Prédiction d'éclipses solaires et lunaires</li>
+                        <li>Conjonctions planétaires</li>
+                        <li>Lecture de glyphes logographiques et syllabiques</li>
+                    </ul>
+                    <a href="maya-expert.html" class="btn btn-expert">Maîtriser le Niveau 3 →</a>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(56, 142, 60, 0.2)); border-radius: 20px; padding: 2.5rem; margin-top: 3rem; text-align: center; border: 2px solid rgba(76, 175, 80, 0.3);">
+                <h3 style="color: #81c784; font-size: 1.8rem; margin-bottom: 1rem;">🎓 Pourquoi Apprendre les Glyphes Mayas ?</h3>
+                <p style="font-size: 1.15rem; line-height: 2;">
+                    <strong>Honorer une civilisation brillante</strong> dont le savoir a failli disparaître à jamais<br>
+                    <strong>Comprendre un système de pensée unique</strong> : vision cyclique du temps, harmonie avec l'univers<br>
+                    <strong>Participer à la préservation</strong> d'un patrimoine mondial de l'humanité<br>
+                    <strong>Développer une pensée mathématique avancée</strong> : base 20, notation positionnelle<br>
+                    <strong>Se connecter à 6 millions de Mayas</strong> qui vivent encore aujourd'hui<br>
+                </p>
+                <p style="margin-top: 1.5rem; font-size: 1.2rem; font-weight: bold; color: #81c784;">
+                    Chaque apprenant devient un gardien de cette mémoire précieuse
+                </p>
+            </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="navigation">
+            <a href="index.html" class="btn-nav">⬅️ Retour à l'Accueil</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; padding: 2rem; opacity: 0.7;">
+            <p style="font-size: 0.95rem;">En mémoire des scribes mayas dont les œuvres furent détruites</p>
+            <p style="font-size: 0.95rem; margin-top: 0.5rem;">Et en honneur aux 6 millions de Mayas qui perpétuent la culture aujourd'hui</p>
+            <p style="margin-top: 1rem; font-size: 1.2rem;">🌟 In Lak'ech Ala K'in 🌟</p>
+            <p style="font-size: 0.9rem; font-style: italic;">("Je suis un autre toi" - Salutation maya)</p>
+        </div>
+    </div>
+</body>
+</html>
