@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📜 Bibliothèque d'Inscriptions Authentiques</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, #c49c62, #8b6f47);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .level-section {
+            margin-bottom: 3rem;
+        }
+
+        .level-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(196, 156, 98, 0.5);
+        }
+
+        .inscriptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .inscription-card {
+            background: rgba(25, 25, 40, 0.9);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .inscription-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(196, 156, 98, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .inscription-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #c49c62;
+        }
+
+        .inscription-hieroglyphs {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            direction: rtl;
+            letter-spacing: 0.3rem;
+        }
+
+        .inscription-monument {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .inscription-epoch {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .inscription-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .diff-1, .diff-2 {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4caf50;
+            color: #81c784;
+        }
+
+        .diff-3, .diff-4, .diff-5 {
+            background: rgba(255, 152, 0, 0.3);
+            border: 2px solid #ff9800;
+            color: #ffb74d;
+        }
+
+        .diff-6, .diff-7, .diff-8 {
+            background: rgba(156, 39, 176, 0.3);
+            border: 2px solid #9c27b0;
+            color: #ce93d8;
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-open:hover {
+            transform: translateY(-3px);
+        }
+
+        .stats-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            background: rgba(30, 30, 45, 0.85);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .btn-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Bibliothèque d'Inscriptions Authentiques</h1>
+        <p class="subtitle">Apprenez les hiéroglyphes à partir de vraies inscriptions de temples et pyramides égyptiens</p>
+
+        <div class="stats-box">
+            <h2>📊 Statistiques de la bibliothèque</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Inscriptions authentiques</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Niveaux de difficulté</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Monuments différents</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">Questions de quiz</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NIVEAU DÉBUTANT -->
+        <div class="level-section">
+            <h2 class="level-title">🌱 Niveau Débutant</h2>
+            <div class="inscriptions-grid">
+
+                <!-- Temple de Karnak -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-karnak_001.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Temple de Karnak</h3>
+                    <div class="inscription-hieroglyphs">𓇳𓁧𓎟 𓊪𓂋𓏤 𓆣𓂋</div>
+                    <p class="inscription-monument">📍 Temple de Karnak, Louxor</p>
+                    <p class="inscription-epoch">📅 Ramsès II (1279-1213 av. J.-C.)</p>
+                    <p class="inscription-description">Inscription simple à l'entrée du temple accueillant les visiteurs. Apprenez à lire votre première phrase égyptienne !</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Cartouche de Toutânkhamon -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-toutankhamon_cartouche.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★★☆</span>
+                    <h3 class="inscription-title">Cartouche de Toutânkhamon</h3>
+                    <div class="inscription-hieroglyphs">𓇳𓁧𓎟 𓏏𓄿𓈖𓎡𓇯</div>
+                    <p class="inscription-monument">📍 Tombe KV62, Vallée des Rois</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie (1332-1323 av. J.-C.)</p>
+                    <p class="inscription-description">Le célèbre cartouche royal du pharaon-enfant. Découvrez la signification de "l'image vivante d'Amon".</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Obélisque de Louxor -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-louxor_obelisque.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★★☆</span>
+                    <h3 class="inscription-title">Obélisque de Louxor</h3>
+                    <div class="inscription-hieroglyphs">𓅭𓇳 𓈖𓆣𓂋 𓇋𓏏𓆑𓀀</div>
+                    <p class="inscription-monument">📍 Temple de Louxor (jumeau à Paris)</p>
+                    <p class="inscription-epoch">📅 Ramsès II (XIXe dynastie)</p>
+                    <p class="inscription-description">Inscription célébrant Ramsès II. L'obélisque jumeau se trouve place de la Concorde à Paris !</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- NIVEAU INTERMÉDIAIRE -->
+        <div class="level-section">
+            <h2 class="level-title">🌿 Niveau Intermédiaire</h2>
+            <div class="inscriptions-grid">
+
+                <!-- Livre des Morts -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-livre_morts_125.html'">
+                    <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Livre des Morts - Chapitre 125</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓈖𓎡 𓂋𓂝𓊪𓅱 𓅓𓂝𓄿𓏏</div>
+                    <p class="inscription-monument">📍 Papyrus d'Ani, British Museum</p>
+                    <p class="inscription-epoch">📅 XIXe dynastie (vers 1250 av. J.-C.)</p>
+                    <p class="inscription-description">La célèbre "Confession négative" devant Osiris. Découvrez les formules funéraires pour l'au-delà.</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- NIVEAU EXPERT -->
+        <div class="level-section">
+            <h2 class="level-title">🌳 Niveau Expert</h2>
+            <div class="inscriptions-grid">
+
+                <!-- Textes des Pyramides -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-textes_pyramides_unas.html'">
+                    <span class="difficulty-badge diff-8">Difficulté : ★★★★★</span>
+                    <h3 class="inscription-title">Textes des Pyramides</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓏏𓇯 𓊪𓈖 𓈎𓂻𓇯𓏏</div>
+                    <p class="inscription-monument">📍 Pyramide d'Ounas, Saqqarah</p>
+                    <p class="inscription-epoch">📅 Ve dynastie (vers 2350 av. J.-C.)</p>
+                    <p class="inscription-description">Les plus anciens textes religieux égyptiens ! Déchiffrez les formules cosmiques de résurrection pharaonique.</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="hieroglyphes-debutant.html" class="btn-home">📚 Cours théorique</a>
+            <a href="progression-dashboard.html" class="btn-home">📊 Ma progression</a>
+            <a href="index_COMPLET.html" class="btn-home">🏠 Accueil</a>
+        </div>
+    </div>
+</body>
+</html>

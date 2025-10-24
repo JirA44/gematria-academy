@@ -1,0 +1,312 @@
+{
+  "hieroglyphes": {
+    "debutant": [
+      {
+        "id": "karnak_001",
+        "titre": "Porte du Temple de Karnak",
+        "monument": "Temple de Karnak",
+        "lieu": "Louxor, Égypte",
+        "epoque": "Ramsès II (XIXe dynastie, 1279-1213 av. J.-C.)",
+        "difficulte": 1,
+        "description": "Inscription simple à l'entrée du temple, accueillant les visiteurs",
+        "hieroglyphes": "𓇳𓁧𓎟 𓊪𓂋𓏤 𓆣𓂋",
+        "mots": [
+          {
+            "hieroglyph": "𓇳𓁧𓎟",
+            "transliteration": "nṯr",
+            "traduction": "dieu",
+            "explication": "Combinaison du signe du soleil (𓇳) et du signe du dieu (𓁧𓎟)"
+          },
+          {
+            "hieroglyph": "𓊪𓂋",
+            "transliteration": "pr",
+            "traduction": "maison, temple",
+            "explication": "Le signe de la maison (𓊪𓂋) désigne ici un temple"
+          },
+          {
+            "hieroglyph": "𓆣𓂋",
+            "transliteration": "nfr",
+            "traduction": "beau, parfait",
+            "explication": "Adjectif qualificatif, placé après le nom"
+          }
+        ],
+        "traduction_litterale": "Dieu maison belle",
+        "traduction_fluide": "Le beau temple du dieu",
+        "grammaire": "Structure typique : Nom + Nom (génitif) + Adjectif",
+        "contexte_culturel": "Les temples égyptiens étaient appelés 'maisons des dieux' (per netjer). Cette inscription marque l'entrée du domaine sacré.",
+        "exercice": {
+          "instruction": "Recopiez cette inscription en hiéroglyphes sur papier, en respectant la direction de lecture (de droite à gauche).",
+          "points": 10
+        },
+        "quiz": [
+          {
+            "question": "Que signifie le symbole 𓊪𓂋 ?",
+            "options": ["dieu", "maison/temple", "beau", "roi"],
+            "reponse": 1,
+            "explication": "𓊪𓂋 (pr) signifie 'maison' ou 'temple'"
+          },
+          {
+            "question": "Dans quel ordre lit-on cette inscription ?",
+            "options": ["Gauche vers droite", "Droite vers gauche", "Haut vers bas", "Bas vers haut"],
+            "reponse": 1,
+            "explication": "Les hiéroglyphes se lisent généralement de droite à gauche, dans la direction où regardent les personnages/animaux"
+          },
+          {
+            "question": "Sous quel pharaon cette inscription a-t-elle été gravée ?",
+            "options": ["Toutânkhamon", "Ramsès II", "Khéops", "Néfertiti"],
+            "reponse": 1,
+            "explication": "Cette inscription date du règne de Ramsès II, grand bâtisseur de temples"
+          }
+        ]
+      },
+      {
+        "id": "toutankhamon_cartouche",
+        "titre": "Cartouche de Toutânkhamon",
+        "monument": "Tombe de Toutânkhamon (KV62)",
+        "lieu": "Vallée des Rois, Louxor",
+        "epoque": "XVIIIe dynastie (1332-1323 av. J.-C.)",
+        "difficulte": 2,
+        "description": "Le célèbre cartouche royal de Toutânkhamon, trouvé sur de nombreux objets de sa tombe",
+        "hieroglyphes": "𓇳𓁧𓎟 𓏏𓄿𓈖𓎡𓇯",
+        "mots": [
+          {
+            "hieroglyph": "𓇳𓁧𓎟",
+            "transliteration": "ny-swt-bity",
+            "traduction": "Roi de Haute et Basse-Égypte",
+            "explication": "Titre royal standard précédant le nom de trône"
+          },
+          {
+            "hieroglyph": "𓏏𓄿𓈖",
+            "transliteration": "tut-ankh",
+            "traduction": "Image vivante",
+            "explication": "Première partie du nom : 'Tut' (image) + 'Ankh' (vie)"
+          },
+          {
+            "hieroglyph": "𓎡𓇯",
+            "transliteration": "Amon",
+            "traduction": "d'Amon",
+            "explication": "Nom du dieu Amon, signifiant que le pharaon est l'image vivante d'Amon"
+          }
+        ],
+        "traduction_litterale": "Roi de Haute et Basse-Égypte, Image-vivante-Amon",
+        "traduction_fluide": "Le roi de Haute et Basse-Égypte, Toutânkhamon (l'image vivante d'Amon)",
+        "grammaire": "Le cartouche (ovale) entoure le nom de naissance du pharaon",
+        "contexte_culturel": "Toutânkhamon était le pharaon-enfant mort à 19 ans. Sa tombe, découverte intacte en 1922 par Howard Carter, est la plus célèbre de l'histoire égyptienne.",
+        "exercice": {
+          "instruction": "Dessinez un cartouche (ovale) et écrivez votre prénom à l'intérieur en hiéroglyphes phonétiques.",
+          "points": 15
+        },
+        "quiz": [
+          {
+            "question": "Que signifie littéralement 'Toutânkhamon' ?",
+            "options": ["Roi puissant", "Image vivante d'Amon", "Fils du soleil", "Gardien du temple"],
+            "reponse": 1,
+            "explication": "Toutânkhamon = Tut (image) + Ankh (vie) + Amon (dieu)"
+          },
+          {
+            "question": "Qu'est-ce qu'un cartouche ?",
+            "options": ["Une pyramide", "Un ovale contenant un nom royal", "Un sarcophage", "Un temple"],
+            "reponse": 1,
+            "explication": "Le cartouche est un ovale (ou rectangle aux coins arrondis) qui entoure le nom de naissance ou de trône du pharaon"
+          },
+          {
+            "question": "À quel âge Toutânkhamon est-il mort ?",
+            "options": ["9 ans", "19 ans", "29 ans", "39 ans"],
+            "reponse": 1,
+            "explication": "Toutânkhamon est mort vers 19 ans, probablement d'une infection suite à une fracture de la jambe"
+          },
+          {
+            "question": "Qui a découvert la tombe de Toutânkhamon ?",
+            "options": ["Champollion", "Howard Carter", "Mariette", "Petrie"],
+            "reponse": 1,
+            "explication": "Howard Carter a découvert la tombe KV62 en 1922, financé par Lord Carnarvon"
+          }
+        ]
+      },
+      {
+        "id": "louxor_obelisque",
+        "titre": "Obélisque de Louxor",
+        "monument": "Temple de Louxor",
+        "lieu": "Louxor (un des deux est place de la Concorde, Paris)",
+        "epoque": "Ramsès II (XIXe dynastie)",
+        "difficulte": 2,
+        "description": "Inscription sur l'obélisque célébrant les victoires de Ramsès II",
+        "hieroglyphes": "𓅭𓇳 𓈖𓆣𓂋 𓇋𓏏𓆑𓀀",
+        "mots": [
+          {
+            "hieroglyph": "𓅭𓇳",
+            "transliteration": "Hor-Ra",
+            "traduction": "Horus-Rê",
+            "explication": "Fusion du dieu faucon Horus et du dieu soleil Rê"
+          },
+          {
+            "hieroglyph": "𓈖𓆣𓂋",
+            "transliteration": "nefer",
+            "traduction": "parfait, excellent",
+            "explication": "Adjectif de qualité superlative"
+          },
+          {
+            "hieroglyph": "𓇋𓏏𓆑",
+            "transliteration": "itef",
+            "traduction": "son père",
+            "explication": "Pronom possessif 'son' + 'père'"
+          }
+        ],
+        "traduction_litterale": "Horus-Rê parfait son-père",
+        "traduction_fluide": "Horus-Rê, parfait comme son père",
+        "grammaire": "Construction avec pronom possessif suffixe (-f = 'son')",
+        "contexte_culturel": "L'obélisque de Louxor mesurait 23 mètres. Un des deux a été offert à la France en 1830 et se trouve place de la Concorde à Paris.",
+        "exercice": {
+          "instruction": "Identifiez dans cette phrase : le sujet, l'adjectif, et le complément.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Où se trouve l'obélisque jumeau de celui de Louxor ?",
+            "options": ["Londres", "Paris", "New York", "Rome"],
+            "reponse": 1,
+            "explication": "L'obélisque jumeau se trouve place de la Concorde à Paris depuis 1836"
+          },
+          {
+            "question": "Que représente le symbole 𓅭 ?",
+            "options": ["Un scarabée", "Un faucon (Horus)", "Un serpent", "Un chat"],
+            "reponse": 1,
+            "explication": "𓅭 représente un faucon, symbole du dieu Horus"
+          }
+        ]
+      }
+    ],
+    "intermediaire": [
+      {
+        "id": "livre_morts_125",
+        "titre": "Livre des Morts - Chapitre 125",
+        "monument": "Papyrus d'Ani",
+        "lieu": "British Museum, Londres",
+        "epoque": "XIXe dynastie (vers 1250 av. J.-C.)",
+        "difficulte": 5,
+        "description": "La célèbre 'Confession négative' devant le tribunal d'Osiris",
+        "hieroglyphes": "𓇋𓈖𓎡 𓂋𓂝𓊪𓅱 𓅓𓂝𓄿𓏏 𓅨𓂋𓏭",
+        "mots": [
+          {
+            "hieroglyph": "𓇋𓈖𓎡",
+            "transliteration": "ink",
+            "traduction": "je suis",
+            "explication": "Pronom personnel première personne"
+          },
+          {
+            "hieroglyph": "𓂋𓂝𓊪𓅱",
+            "transliteration": "rekhw",
+            "traduction": "connaisseur, sage",
+            "explication": "Participe actif du verbe 'connaître'"
+          },
+          {
+            "hieroglyph": "𓅓𓂝𓄿𓏏",
+            "transliteration": "maat",
+            "traduction": "vérité, justice",
+            "explication": "Concept fondamental de la civilisation égyptienne"
+          },
+          {
+            "hieroglyph": "𓅨𓂋𓏭",
+            "transliteration": "kher",
+            "traduction": "sous, auprès de",
+            "explication": "Préposition de lieu"
+          }
+        ],
+        "traduction_litterale": "Je-suis connaisseur vérité auprès-de",
+        "traduction_fluide": "Je suis celui qui connaît la vérité/justice",
+        "grammaire": "Phrase nominale avec participe substantivé",
+        "contexte_culturel": "Le chapitre 125 décrit la psychostasie (pesée du cœur). Le défunt doit prouver qu'il a vécu selon Maât pour accéder à l'au-delà.",
+        "exercice": {
+          "instruction": "Analysez la structure grammaticale : identifiez le sujet, le verbe d'état, et le prédicat.",
+          "points": 20
+        },
+        "quiz": [
+          {
+            "question": "Qu'est-ce que la Maât ?",
+            "options": ["Une déesse", "Le concept de vérité/justice/ordre cosmique", "Un temple", "Un pharaon"],
+            "reponse": 1,
+            "explication": "Maât est à la fois une déesse et le concept fondamental d'ordre, vérité et justice dans l'Égypte ancienne"
+          },
+          {
+            "question": "Que se passe-t-il au chapitre 125 du Livre des Morts ?",
+            "options": ["Couronnement du pharaon", "Pesée du cœur du défunt", "Construction d'une pyramide", "Bataille contre les ennemis"],
+            "reponse": 1,
+            "explication": "Le chapitre 125 décrit la psychostasie : le cœur du défunt est pesé contre la plume de Maât"
+          },
+          {
+            "question": "Où se trouve le Papyrus d'Ani ?",
+            "options": ["Musée du Caire", "British Museum", "Louvre", "Metropolitan Museum"],
+            "reponse": 1,
+            "explication": "Le célèbre Papyrus d'Ani se trouve au British Museum à Londres"
+          }
+        ]
+      }
+    ],
+    "expert": [
+      {
+        "id": "textes_pyramides_unas",
+        "titre": "Textes des Pyramides - Pyramide d'Ounas",
+        "monument": "Pyramide d'Ounas",
+        "lieu": "Saqqarah, Égypte",
+        "epoque": "Ve dynastie (vers 2350 av. J.-C.)",
+        "difficulte": 8,
+        "description": "Les plus anciens textes religieux égyptiens, gravés dans la chambre funéraire",
+        "hieroglyphes": "𓊪𓏏𓇯 𓊪𓈖 𓈎𓂻𓇯𓏏𓏭 𓂋𓏤𓇳𓅆",
+        "mots": [
+          {
+            "hieroglyph": "𓊪𓏏𓇯",
+            "transliteration": "pet",
+            "traduction": "ciel",
+            "explication": "Substantif féminin, déterminatif du ciel (𓇯)"
+          },
+          {
+            "hieroglyph": "𓊪𓈖",
+            "transliteration": "pen",
+            "traduction": "ce, cet",
+            "explication": "Démonstratif masculin singulier"
+          },
+          {
+            "hieroglyph": "𓈎𓂻𓇯𓏏𓏭",
+            "transliteration": "kheperet",
+            "traduction": "transformation, devenir",
+            "explication": "Nom verbal du verbe kheper (devenir, se transformer)"
+          },
+          {
+            "hieroglyph": "𓂋𓏤𓇳𓅆",
+            "transliteration": "en Ra",
+            "traduction": "de/pour Rê",
+            "explication": "Préposition + nom du dieu soleil"
+          }
+        ],
+        "traduction_litterale": "Ciel ce transformation de-Rê",
+        "traduction_fluide": "Ce ciel est la transformation de Rê",
+        "grammaire": "Phrase nominale complexe avec génitif indirect (n + nom)",
+        "contexte_culturel": "Les Textes des Pyramides (2400-2300 av. J.-C.) sont les plus anciens corpus religieux connus. Ils visaient à assurer la résurrection du pharaon et son ascension vers le ciel.",
+        "exercice": {
+          "instruction": "Analysez cette phrase en identifiant : sujet, prédicat, génitif, et déterminatifs. Expliquez le symbolisme cosmique.",
+          "points": 30
+        },
+        "quiz": [
+          {
+            "question": "Quelle est la particularité des Textes des Pyramides ?",
+            "options": ["Premiers textes religieux égyptiens", "Écrits en démotique", "Trouvés dans des tombes de nobles", "Datant du Nouvel Empire"],
+            "reponse": 0,
+            "explication": "Les Textes des Pyramides sont les plus anciens textes religieux de l'Égypte ancienne (vers 2400-2300 av. J.-C.)"
+          },
+          {
+            "question": "Où sont gravés les Textes des Pyramides ?",
+            "options": ["Sur des papyrus", "Sur des stèles", "Sur les murs intérieurs des pyramides", "Sur des sarcophages"],
+            "reponse": 2,
+            "explication": "Les Textes des Pyramides sont gravés sur les murs des chambres et couloirs intérieurs des pyramides de la fin de l'Ancien Empire"
+          },
+          {
+            "question": "Quel pharaon possède les premiers Textes des Pyramides ?",
+            "options": ["Khéops", "Ounas", "Toutânkhamon", "Ramsès II"],
+            "reponse": 1,
+            "explication": "Les premiers Textes des Pyramides apparaissent dans la pyramide d'Ounas, dernier pharaon de la Ve dynastie"
+          }
+        ]
+      }
+    ]
+  }
+}
