@@ -41,19 +41,34 @@
         "quiz": [
           {
             "question": "Que signifie le symbole 𓊪𓂋 ?",
-            "options": ["dieu", "maison/temple", "beau", "roi"],
+            "options": [
+              "dieu",
+              "maison/temple",
+              "beau",
+              "roi"
+            ],
             "reponse": 1,
             "explication": "𓊪𓂋 (pr) signifie 'maison' ou 'temple'"
           },
           {
             "question": "Dans quel ordre lit-on cette inscription ?",
-            "options": ["Gauche vers droite", "Droite vers gauche", "Haut vers bas", "Bas vers haut"],
+            "options": [
+              "Gauche vers droite",
+              "Droite vers gauche",
+              "Haut vers bas",
+              "Bas vers haut"
+            ],
             "reponse": 1,
             "explication": "Les hiéroglyphes se lisent généralement de droite à gauche, dans la direction où regardent les personnages/animaux"
           },
           {
             "question": "Sous quel pharaon cette inscription a-t-elle été gravée ?",
-            "options": ["Toutânkhamon", "Ramsès II", "Khéops", "Néfertiti"],
+            "options": [
+              "Toutânkhamon",
+              "Ramsès II",
+              "Khéops",
+              "Néfertiti"
+            ],
             "reponse": 1,
             "explication": "Cette inscription date du règne de Ramsès II, grand bâtisseur de temples"
           }
@@ -99,27 +114,125 @@
         "quiz": [
           {
             "question": "Que signifie littéralement 'Toutânkhamon' ?",
-            "options": ["Roi puissant", "Image vivante d'Amon", "Fils du soleil", "Gardien du temple"],
+            "options": [
+              "Roi puissant",
+              "Image vivante d'Amon",
+              "Fils du soleil",
+              "Gardien du temple"
+            ],
             "reponse": 1,
             "explication": "Toutânkhamon = Tut (image) + Ankh (vie) + Amon (dieu)"
           },
           {
             "question": "Qu'est-ce qu'un cartouche ?",
-            "options": ["Une pyramide", "Un ovale contenant un nom royal", "Un sarcophage", "Un temple"],
+            "options": [
+              "Une pyramide",
+              "Un ovale contenant un nom royal",
+              "Un sarcophage",
+              "Un temple"
+            ],
             "reponse": 1,
             "explication": "Le cartouche est un ovale (ou rectangle aux coins arrondis) qui entoure le nom de naissance ou de trône du pharaon"
           },
           {
             "question": "À quel âge Toutânkhamon est-il mort ?",
-            "options": ["9 ans", "19 ans", "29 ans", "39 ans"],
+            "options": [
+              "9 ans",
+              "19 ans",
+              "29 ans",
+              "39 ans"
+            ],
             "reponse": 1,
             "explication": "Toutânkhamon est mort vers 19 ans, probablement d'une infection suite à une fracture de la jambe"
           },
           {
             "question": "Qui a découvert la tombe de Toutânkhamon ?",
-            "options": ["Champollion", "Howard Carter", "Mariette", "Petrie"],
+            "options": [
+              "Champollion",
+              "Howard Carter",
+              "Mariette",
+              "Petrie"
+            ],
             "reponse": 1,
             "explication": "Howard Carter a découvert la tombe KV62 en 1922, financé par Lord Carnarvon"
+          }
+        ]
+      },
+      {
+        "id": "amon_roi_dieux",
+        "titre": "Le dieu Amon - Roi des dieux",
+        "monument": "Temple de Karnak",
+        "lieu": "Louxor, Égypte",
+        "epoque": "Nouvel Empire (XVIIIe-XXe dynasties)",
+        "difficulte": 2,
+        "description": "Le nom du roi des dieux, Amon le Caché, dieu dynastique de Thèbes",
+        "hieroglyphes": "𓇋𓏠𓈖𓀭",
+        "mots": [
+          {
+            "hieroglyph": "𓇋𓏠𓈖",
+            "transliteration": "Imn",
+            "traduction": "Amon",
+            "explication": "Phonétiques formant le nom Amon (Imen en égyptien)"
+          },
+          {
+            "hieroglyph": "𓀭",
+            "transliteration": "(déterminatif)",
+            "traduction": "(dieu)",
+            "explication": "Déterminatif divin (homme assis avec barbe)"
+          }
+        ],
+        "traduction_litterale": "Amon",
+        "traduction_fluide": "Amon (le Caché, le roi des dieux)",
+        "grammaire": "Nom divin : Phonétiques + Déterminatif divin",
+        "contexte_culturel": "Amon (\"le Caché\") est le roi des dieux du Nouvel Empire. Dieu dynastique de Thèbes, il fusionne avec Rê pour devenir Amon-Rê. Son temple de Karnak est le plus grand complexe religieux d'Égypte.",
+        "exercice": {
+          "instruction": "Écrivez le nom Amon en hiéroglyphes et expliquez pourquoi il signifie \"le Caché\".",
+          "points": 15
+        },
+        "quiz": [
+          {
+            "question": "Que signifie le nom \"Amon\" ?",
+            "options": [
+              "Le Puissant",
+              "Le Caché/l'Invisible",
+              "Le Lumineux",
+              "Le Créateur"
+            ],
+            "reponse": 1,
+            "explication": "Amon signifie \"le Caché\" ou \"l'Invisible\", car il transcende toute forme visible"
+          },
+          {
+            "question": "Quelle est la ville sacrée d'Amon ?",
+            "options": [
+              "Memphis",
+              "Thèbes (Louxor)",
+              "Héliopolis",
+              "Abydos"
+            ],
+            "reponse": 1,
+            "explication": "Thèbes (Louxor actuel) est la ville sacrée d'Amon, avec les temples de Karnak et Louxor"
+          },
+          {
+            "question": "Avec quel dieu Amon fusionne-t-il pour devenir suprême ?",
+            "options": [
+              "Osiris",
+              "Rê (dieu soleil)",
+              "Ptah",
+              "Horus"
+            ],
+            "reponse": 1,
+            "explication": "Amon fusionne avec Rê pour devenir Amon-Rê, combinant le pouvoir caché et le soleil visible"
+          },
+          {
+            "question": "Quel est le plus grand temple d'Amon ?",
+            "options": [
+              "Abou Simbel",
+              "Karnak",
+              "Dendérah",
+              "Philae"
+            ],
+            "reponse": 1,
+            "explication": "Le temple de Karnak est le plus grand complexe religieux jamais construit, dédié à Amon"
           }
         ]
       },
@@ -163,13 +276,23 @@
         "quiz": [
           {
             "question": "Où se trouve l'obélisque jumeau de celui de Louxor ?",
-            "options": ["Londres", "Paris", "New York", "Rome"],
+            "options": [
+              "Londres",
+              "Paris",
+              "New York",
+              "Rome"
+            ],
             "reponse": 1,
             "explication": "L'obélisque jumeau se trouve place de la Concorde à Paris depuis 1836"
           },
           {
             "question": "Que représente le symbole 𓅭 ?",
-            "options": ["Un scarabée", "Un faucon (Horus)", "Un serpent", "Un chat"],
+            "options": [
+              "Un scarabée",
+              "Un faucon (Horus)",
+              "Un serpent",
+              "Un chat"
+            ],
             "reponse": 1,
             "explication": "𓅭 représente un faucon, symbole du dieu Horus"
           }
@@ -215,19 +338,34 @@
         "quiz": [
           {
             "question": "Que signifie 'ḥtp-dỉ-nsw' ?",
-            "options": ["Le roi est mort", "Offrande que donne le roi", "Temple du roi", "Pyramide royale"],
+            "options": [
+              "Le roi est mort",
+              "Offrande que donne le roi",
+              "Temple du roi",
+              "Pyramide royale"
+            ],
             "reponse": 1,
             "explication": "Cette expression figée signifie 'offrande que donne le roi' et introduit toutes les formules funéraires"
           },
           {
             "question": "Pourquoi le roi donne-t-il des offrandes à Osiris ?",
-            "options": ["Pour honorer Osiris", "Pour que le défunt reçoive des provisions", "Pour construire un temple", "Pour gagner une bataille"],
+            "options": [
+              "Pour honorer Osiris",
+              "Pour que le défunt reçoive des provisions",
+              "Pour construire un temple",
+              "Pour gagner une bataille"
+            ],
             "reponse": 1,
             "explication": "Le roi fait des offrandes à Osiris qui les redistribue au défunt, assurant sa survie éternelle"
           },
           {
             "question": "Sur quel type de monument trouve-t-on cette formule ?",
-            "options": ["Pyramides seulement", "Toutes les stèles funéraires", "Temples de dieux", "Palais royaux"],
+            "options": [
+              "Pyramides seulement",
+              "Toutes les stèles funéraires",
+              "Temples de dieux",
+              "Palais royaux"
+            ],
             "reponse": 1,
             "explication": "Cette formule apparaît sur presque toutes les stèles funéraires égyptiennes, du simple au plus élaboré"
           }
@@ -267,19 +405,34 @@
         "quiz": [
           {
             "question": "Que signifie le nom 'Néfertiti' ?",
-            "options": ["Reine puissante", "La belle est venue", "Fille du soleil", "Maîtresse d'Égypte"],
+            "options": [
+              "Reine puissante",
+              "La belle est venue",
+              "Fille du soleil",
+              "Maîtresse d'Égypte"
+            ],
             "reponse": 1,
             "explication": "Néfertiti signifie littéralement 'la belle est venue' en égyptien ancien"
           },
           {
             "question": "Qui était le mari de Néfertiti ?",
-            "options": ["Ramsès II", "Akhenaton", "Toutânkhamon", "Thoutmosis III"],
+            "options": [
+              "Ramsès II",
+              "Akhenaton",
+              "Toutânkhamon",
+              "Thoutmosis III"
+            ],
             "reponse": 1,
             "explication": "Néfertiti était l'épouse du pharaon Akhenaton, le roi hérétique qui instaura le culte d'Aton"
           },
           {
             "question": "Où se trouve le célèbre buste de Néfertiti ?",
-            "options": ["Musée du Caire", "British Museum", "Neues Museum Berlin", "Louvre"],
+            "options": [
+              "Musée du Caire",
+              "British Museum",
+              "Neues Museum Berlin",
+              "Louvre"
+            ],
             "reponse": 2,
             "explication": "Le buste de Néfertiti se trouve au Neues Museum de Berlin depuis 1913"
           }
@@ -313,19 +466,34 @@
         "quiz": [
           {
             "question": "Que signifie le symbole Ankh ?",
-            "options": ["Mort", "Vie", "Pouvoir", "Sagesse"],
+            "options": [
+              "Mort",
+              "Vie",
+              "Pouvoir",
+              "Sagesse"
+            ],
             "reponse": 1,
             "explication": "L'Ankh signifie 'vie', particulièrement la vie éternelle"
           },
           {
             "question": "Qui porte généralement l'Ankh dans l'iconographie ?",
-            "options": ["Les esclaves", "Les dieux et pharaons", "Les animaux", "Les enfants"],
+            "options": [
+              "Les esclaves",
+              "Les dieux et pharaons",
+              "Les animaux",
+              "Les enfants"
+            ],
             "reponse": 1,
             "explication": "Les dieux tiennent l'Ankh et l'offrent aux pharaons pour leur donner la vie éternelle"
           },
           {
             "question": "Quelle est la forme de l'Ankh ?",
-            "options": ["Cercle simple", "Croix ansée (croix avec cercle)", "Triangle", "Carré"],
+            "options": [
+              "Cercle simple",
+              "Croix ansée (croix avec cercle)",
+              "Triangle",
+              "Carré"
+            ],
             "reponse": 1,
             "explication": "L'Ankh est une croix ansée : une croix surmontée d'un cercle"
           }
@@ -371,19 +539,34 @@
         "quiz": [
           {
             "question": "Que signifie 'Ramsès' ?",
-            "options": ["Roi du soleil", "Rê l'a enfanté", "Fils de la lune", "Guerrier divin"],
+            "options": [
+              "Roi du soleil",
+              "Rê l'a enfanté",
+              "Fils de la lune",
+              "Guerrier divin"
+            ],
             "reponse": 1,
             "explication": "Ramsès signifie 'Rê (dieu soleil) l'a enfanté'"
           },
           {
             "question": "Combien de temps Ramsès II a-t-il régné ?",
-            "options": ["10 ans", "30 ans", "66 ans", "100 ans"],
+            "options": [
+              "10 ans",
+              "30 ans",
+              "66 ans",
+              "100 ans"
+            ],
             "reponse": 2,
             "explication": "Ramsès II régna 66 ans, l'un des règnes les plus longs de l'histoire égyptienne"
           },
           {
             "question": "Quel est le monument le plus célèbre de Ramsès II ?",
-            "options": ["Grande Pyramide", "Abou Simbel", "Sphinx", "Temple de Karnak"],
+            "options": [
+              "Grande Pyramide",
+              "Abou Simbel",
+              "Sphinx",
+              "Temple de Karnak"
+            ],
             "reponse": 1,
             "explication": "Abou Simbel avec ses 4 colosses de 20 mètres est le monument le plus emblématique de Ramsès II"
           }
@@ -423,19 +606,34 @@
         "quiz": [
           {
             "question": "Quel animal représente Horus ?",
-            "options": ["Lion", "Faucon", "Cobra", "Scarabée"],
+            "options": [
+              "Lion",
+              "Faucon",
+              "Cobra",
+              "Scarabée"
+            ],
             "reponse": 1,
             "explication": "Horus est représenté par un faucon, symbole de la royauté et du ciel"
           },
           {
             "question": "Qui sont les parents d'Horus ?",
-            "options": ["Rê et Nout", "Osiris et Isis", "Amon et Mout", "Geb et Nout"],
+            "options": [
+              "Rê et Nout",
+              "Osiris et Isis",
+              "Amon et Mout",
+              "Geb et Nout"
+            ],
             "reponse": 1,
             "explication": "Horus est le fils d'Osiris (assassiné par Seth) et d'Isis"
           },
           {
             "question": "Quel est le lien entre Horus et le pharaon ?",
-            "options": ["Aucun", "Le pharaon prie Horus", "Le pharaon EST Horus incarné", "Horus protège le pharaon"],
+            "options": [
+              "Aucun",
+              "Le pharaon prie Horus",
+              "Le pharaon EST Horus incarné",
+              "Horus protège le pharaon"
+            ],
             "reponse": 2,
             "explication": "Le pharaon vivant était considéré comme l'incarnation terrestre du dieu Horus"
           }
@@ -475,19 +673,34 @@
         "quiz": [
           {
             "question": "Quel symbole représente la déesse Isis ?",
-            "options": ["Plume", "Trône", "Vautour", "Scarabée"],
+            "options": [
+              "Plume",
+              "Trône",
+              "Vautour",
+              "Scarabée"
+            ],
             "reponse": 1,
             "explication": "Isis est représentée par le hiéroglyphe du trône, symbolisant son rôle de reine des dieux"
           },
           {
             "question": "Quel est le principal pouvoir d'Isis ?",
-            "options": ["Guerre", "Magie", "Agriculture", "Navigation"],
+            "options": [
+              "Guerre",
+              "Magie",
+              "Agriculture",
+              "Navigation"
+            ],
             "reponse": 1,
             "explication": "Isis était la plus grande magicienne, capable même de ressusciter les morts"
           },
           {
             "question": "Qui Isis a-t-elle ressuscité ?",
-            "options": ["Horus", "Osiris", "Rê", "Anubis"],
+            "options": [
+              "Horus",
+              "Osiris",
+              "Rê",
+              "Anubis"
+            ],
             "reponse": 1,
             "explication": "Isis ressuscita son mari Osiris après qu'il fut assassiné par Seth"
           }
@@ -527,19 +740,34 @@
         "quiz": [
           {
             "question": "Que représente le dieu Khépri ?",
-            "options": ["Soleil couchant", "Soleil de midi", "Soleil levant", "Lune"],
+            "options": [
+              "Soleil couchant",
+              "Soleil de midi",
+              "Soleil levant",
+              "Lune"
+            ],
             "reponse": 2,
             "explication": "Khépri représente le soleil levant, symbole de renaissance quotidienne"
           },
           {
             "question": "Quel animal représente Khépri ?",
-            "options": ["Faucon", "Scarabée", "Taureau", "Serpent"],
+            "options": [
+              "Faucon",
+              "Scarabée",
+              "Taureau",
+              "Serpent"
+            ],
             "reponse": 1,
             "explication": "Le scarabée bousier représente Khépri, roulant le soleil comme sa boule de bouse"
           },
           {
             "question": "Que signifie le verbe 'kheper' ?",
-            "options": ["Mourir", "Devenir, se transformer", "Voler", "Nager"],
+            "options": [
+              "Mourir",
+              "Devenir, se transformer",
+              "Voler",
+              "Nager"
+            ],
             "reponse": 1,
             "explication": "Kheper signifie 'devenir, se transformer', symbolisant la métamorphose perpétuelle"
           }
@@ -573,19 +801,34 @@
         "quiz": [
           {
             "question": "Que signifie 'Oudjat' ?",
-            "options": ["Œil blessé", "Œil intact/complet", "Œil fermé", "Œil aveugle"],
+            "options": [
+              "Œil blessé",
+              "Œil intact/complet",
+              "Œil fermé",
+              "Œil aveugle"
+            ],
             "reponse": 1,
             "explication": "Oudjat signifie 'intact, complet', car l'œil fut restauré après avoir été arraché"
           },
           {
             "question": "Qui a restauré l'œil d'Horus ?",
-            "options": ["Rê", "Thot", "Isis", "Osiris"],
+            "options": [
+              "Rê",
+              "Thot",
+              "Isis",
+              "Osiris"
+            ],
             "reponse": 1,
             "explication": "Thot, dieu de la magie et de la sagesse, restaura magiquement l'œil d'Horus"
           },
           {
             "question": "Quelle est la principale fonction de l'Œil Oudjat ?",
-            "options": ["Décoration", "Protection magique", "Écriture", "Monnaie"],
+            "options": [
+              "Décoration",
+              "Protection magique",
+              "Écriture",
+              "Monnaie"
+            ],
             "reponse": 1,
             "explication": "L'Œil Oudjat est une amulette de protection magique contre le mal"
           }
@@ -625,19 +868,34 @@
         "quiz": [
           {
             "question": "Quelles sont les deux offrandes funéraires de base ?",
-            "options": ["Or et argent", "Pain et bière", "Viande et vin", "Encens et myrrhe"],
+            "options": [
+              "Or et argent",
+              "Pain et bière",
+              "Viande et vin",
+              "Encens et myrrhe"
+            ],
             "reponse": 1,
             "explication": "Pain et bière étaient les offrandes funéraires minimales, nourriture de base des vivants et des morts"
           },
           {
             "question": "Pourquoi offrir de la nourriture aux morts ?",
-            "options": ["Décoration", "Assurer leur survie éternelle", "Nourrir les dieux", "Tradition sans raison"],
+            "options": [
+              "Décoration",
+              "Assurer leur survie éternelle",
+              "Nourrir les dieux",
+              "Tradition sans raison"
+            ],
             "reponse": 1,
             "explication": "Les Égyptiens croyaient que le défunt avait besoin de nourriture pour survivre éternellement dans l'au-delà"
           },
           {
             "question": "Que représente le hiéroglyphe 𓏏 ?",
-            "options": ["Bière", "Eau", "Pain", "Vin"],
+            "options": [
+              "Bière",
+              "Eau",
+              "Pain",
+              "Vin"
+            ],
             "reponse": 2,
             "explication": "𓏏 représente un pain, l'aliment de base en Égypte ancienne"
           }
@@ -671,19 +929,34 @@
         "quiz": [
           {
             "question": "Comment les Égyptiens appelaient-ils une pyramide ?",
-            "options": ["Benben", "Mer", "Djed", "Ankh"],
+            "options": [
+              "Benben",
+              "Mer",
+              "Djed",
+              "Ankh"
+            ],
             "reponse": 1,
             "explication": "Les Égyptiens appelaient une pyramide 'mer'"
           },
           {
             "question": "Quelle est la plus grande pyramide d'Égypte ?",
-            "options": ["Khéphren", "Mykérinos", "Khéops", "Djéser"],
+            "options": [
+              "Khéphren",
+              "Mykérinos",
+              "Khéops",
+              "Djéser"
+            ],
             "reponse": 2,
             "explication": "La pyramide de Khéops (Grande Pyramide) est la plus grande, mesurant 146 mètres à l'origine"
           },
           {
             "question": "Que représente le pyramidion (pierre du sommet) ?",
-            "options": ["Le pharaon", "Le benben (monticule primordial)", "Le soleil", "La lune"],
+            "options": [
+              "Le pharaon",
+              "Le benben (monticule primordial)",
+              "Le soleil",
+              "La lune"
+            ],
             "reponse": 1,
             "explication": "Le pyramidion représente le benben, le monticule primordial d'où jaillit la création"
           }
@@ -729,19 +1002,34 @@
         "quiz": [
           {
             "question": "Quel animal représente Thot ?",
-            "options": ["Faucon", "Ibis", "Chat", "Crocodile"],
+            "options": [
+              "Faucon",
+              "Ibis",
+              "Chat",
+              "Crocodile"
+            ],
             "reponse": 1,
             "explication": "L'ibis (oiseau au long bec) représente Thot, parfois aussi le babouin"
           },
           {
             "question": "Qu'a inventé le dieu Thot selon les Égyptiens ?",
-            "options": ["La roue", "Les hiéroglyphes", "Le bronze", "La navigation"],
+            "options": [
+              "La roue",
+              "Les hiéroglyphes",
+              "Le bronze",
+              "La navigation"
+            ],
             "reponse": 1,
             "explication": "Thot était considéré comme l'inventeur de l'écriture hiéroglyphique et de la sagesse"
           },
           {
             "question": "Quel dieu grec correspond à Thot ?",
-            "options": ["Zeus", "Apollon", "Hermès", "Poséidon"],
+            "options": [
+              "Zeus",
+              "Apollon",
+              "Hermès",
+              "Poséidon"
+            ],
             "reponse": 2,
             "explication": "Les Grecs identifièrent Thot à Hermès, tous deux messagers divins et inventeurs de l'écriture"
           }
@@ -787,19 +1075,34 @@
         "quiz": [
           {
             "question": "Que signifie le nom 'Hathor' ?",
-            "options": ["Reine du ciel", "Maison d'Horus", "Mère des dieux", "Étoile brillante"],
+            "options": [
+              "Reine du ciel",
+              "Maison d'Horus",
+              "Mère des dieux",
+              "Étoile brillante"
+            ],
             "reponse": 1,
             "explication": "Hathor signifie 'maison d'Horus', car le ciel (son domaine) est la demeure d'Horus"
           },
           {
             "question": "Quel animal représente Hathor ?",
-            "options": ["Lionne", "Vache", "Chatte", "Hippopotame"],
+            "options": [
+              "Lionne",
+              "Vache",
+              "Chatte",
+              "Hippopotame"
+            ],
             "reponse": 1,
             "explication": "Hathor est représentée comme une vache céleste ou une femme à oreilles de vache"
           },
           {
             "question": "De quoi Hathor est-elle la déesse ?",
-            "options": ["Guerre", "Amour et joie", "Mort", "Sagesse"],
+            "options": [
+              "Guerre",
+              "Amour et joie",
+              "Mort",
+              "Sagesse"
+            ],
             "reponse": 1,
             "explication": "Hathor est la déesse de l'amour, de la joie, de la musique, de la danse et de la beauté"
           }
@@ -845,19 +1148,34 @@
         "quiz": [
           {
             "question": "Quel animal représente Anubis ?",
-            "options": ["Loup", "Chacal", "Chien", "Renard"],
+            "options": [
+              "Loup",
+              "Chacal",
+              "Chien",
+              "Renard"
+            ],
             "reponse": 1,
             "explication": "Anubis est représenté comme un chacal noir ou un homme à tête de chacal"
           },
           {
             "question": "Quel est le rôle principal d'Anubis ?",
-            "options": ["Créer le monde", "Momification et protection des morts", "Faire lever le soleil", "Punir les vivants"],
+            "options": [
+              "Créer le monde",
+              "Momification et protection des morts",
+              "Faire lever le soleil",
+              "Punir les vivants"
+            ],
             "reponse": 1,
             "explication": "Anubis est le dieu de la momification, protecteur des nécropoles et guide des morts"
           },
           {
             "question": "Dans quel rituel funéraire Anubis intervient-il ?",
-            "options": ["Construction de la pyramide", "Pesée du cœur", "Couronnement", "Mariage"],
+            "options": [
+              "Construction de la pyramide",
+              "Pesée du cœur",
+              "Couronnement",
+              "Mariage"
+            ],
             "reponse": 1,
             "explication": "Anubis préside à la pesée du cœur lors du jugement des morts"
           }
@@ -897,19 +1215,34 @@
         "quiz": [
           {
             "question": "Quel animal représente Bastet ?",
-            "options": ["Lionne seulement", "Chatte (ou lionne)", "Vache", "Chienne"],
+            "options": [
+              "Lionne seulement",
+              "Chatte (ou lionne)",
+              "Vache",
+              "Chienne"
+            ],
             "reponse": 1,
             "explication": "Bastet est représentée comme une chatte (forme pacifique) ou une lionne (forme guerrière)"
           },
           {
             "question": "De quoi Bastet est-elle la déesse ?",
-            "options": ["Guerre", "Foyer et protection", "Mort", "Sagesse"],
+            "options": [
+              "Guerre",
+              "Foyer et protection",
+              "Mort",
+              "Sagesse"
+            ],
             "reponse": 1,
             "explication": "Bastet est la déesse protectrice du foyer, de la fertilité, de la joie et des chats"
           },
           {
             "question": "Quelle ville était le centre du culte de Bastet ?",
-            "options": ["Thèbes", "Memphis", "Bubastis", "Héliopolis"],
+            "options": [
+              "Thèbes",
+              "Memphis",
+              "Bubastis",
+              "Héliopolis"
+            ],
             "reponse": 2,
             "explication": "Bubastis dans le Delta était le centre du culte de Bastet, avec d'immenses célébrations annuelles"
           }
@@ -943,19 +1276,34 @@
         "quiz": [
           {
             "question": "Que représente la plume de Maât ?",
-            "options": ["Beauté", "Vérité et justice", "Richesse", "Pouvoir"],
+            "options": [
+              "Beauté",
+              "Vérité et justice",
+              "Richesse",
+              "Pouvoir"
+            ],
             "reponse": 1,
             "explication": "La plume de Maât représente la vérité, la justice et l'ordre cosmique"
           },
           {
             "question": "Comment utilise-t-on la plume dans le jugement des morts ?",
-            "options": ["Décoration", "Pesée contre le cœur du défunt", "Écriture", "Offrande"],
+            "options": [
+              "Décoration",
+              "Pesée contre le cœur du défunt",
+              "Écriture",
+              "Offrande"
+            ],
             "reponse": 1,
             "explication": "Le cœur du défunt est pesé contre la plume de Maât. S'il est plus léger, le défunt est justifié"
           },
           {
             "question": "Si le cœur est plus lourd que la plume, que se passe-t-il ?",
-            "options": ["Paradis assuré", "Dévoré par Ammout", "Réincarnation", "Momification"],
+            "options": [
+              "Paradis assuré",
+              "Dévoré par Ammout",
+              "Réincarnation",
+              "Momification"
+            ],
             "reponse": 1,
             "explication": "Si le cœur est alourdi par les péchés, le monstre Ammout (mi-crocodile, mi-lion, mi-hippopotame) le dévore"
           }
@@ -995,19 +1343,34 @@
         "quiz": [
           {
             "question": "Quelle est la ville sacrée de Ptah ?",
-            "options": ["Thèbes", "Memphis", "Héliopolis", "Abydos"],
+            "options": [
+              "Thèbes",
+              "Memphis",
+              "Héliopolis",
+              "Abydos"
+            ],
             "reponse": 1,
             "explication": "Memphis était la ville sacrée de Ptah, capitale de l'Ancien Empire"
           },
           {
             "question": "De quelle profession Ptah est-il le patron ?",
-            "options": ["Guerriers", "Artisans et bâtisseurs", "Agriculteurs", "Scribes"],
+            "options": [
+              "Guerriers",
+              "Artisans et bâtisseurs",
+              "Agriculteurs",
+              "Scribes"
+            ],
             "reponse": 1,
             "explication": "Ptah est le patron des artisans, sculpteurs, orfèvres et architectes"
           },
           {
             "question": "Comment Ptah créa-t-il le monde ?",
-            "options": ["Par combat", "Par la parole et la pensée", "Par magie", "Par transformation"],
+            "options": [
+              "Par combat",
+              "Par la parole et la pensée",
+              "Par magie",
+              "Par transformation"
+            ],
             "reponse": 1,
             "explication": "Ptah créa le monde en le concevant dans son cœur (pensée) et en le prononçant (parole)"
           }
@@ -1053,19 +1416,34 @@
         "quiz": [
           {
             "question": "Que signifie le nom 'Sekhmet' ?",
-            "options": ["La Belle", "La Puissante", "La Sage", "La Douce"],
+            "options": [
+              "La Belle",
+              "La Puissante",
+              "La Sage",
+              "La Douce"
+            ],
             "reponse": 1,
             "explication": "Sekhmet signifie 'la Puissante', reflétant sa nature de guerrière redoutable"
           },
           {
             "question": "Quel animal représente Sekhmet ?",
-            "options": ["Chatte", "Lionne", "Vache", "Hippopotame"],
+            "options": [
+              "Chatte",
+              "Lionne",
+              "Vache",
+              "Hippopotame"
+            ],
             "reponse": 1,
             "explication": "Sekhmet est représentée comme une femme à tête de lionne ou une lionne"
           },
           {
             "question": "Comment Sekhmet fut-elle apaisée après avoir failli détruire l'humanité ?",
-            "options": ["Sacrifice", "Bière rouge ressemblant au sang", "Prières", "Combat"],
+            "options": [
+              "Sacrifice",
+              "Bière rouge ressemblant au sang",
+              "Prières",
+              "Combat"
+            ],
             "reponse": 1,
             "explication": "On l'a trompée avec de la bière teintée en rouge. Croyant que c'était du sang, elle en but tant qu'elle s'endormit"
           }
@@ -1105,19 +1483,34 @@
         "quiz": [
           {
             "question": "Quel animal représente Sobek ?",
-            "options": ["Serpent", "Crocodile", "Hippopotame", "Lézard"],
+            "options": [
+              "Serpent",
+              "Crocodile",
+              "Hippopotame",
+              "Lézard"
+            ],
             "reponse": 1,
             "explication": "Sobek est représenté comme un crocodile ou un homme à tête de crocodile"
           },
           {
             "question": "De quoi Sobek est-il le dieu ?",
-            "options": ["Désert", "Nil et fertilité", "Guerre", "Mort"],
+            "options": [
+              "Désert",
+              "Nil et fertilité",
+              "Guerre",
+              "Mort"
+            ],
             "reponse": 1,
             "explication": "Sobek est le dieu du Nil, des eaux, de la fertilité et de la protection"
           },
           {
             "question": "Quel temple est partagé entre Sobek et Horus ?",
-            "options": ["Karnak", "Kôm Ombo", "Abou Simbel", "Louxor"],
+            "options": [
+              "Karnak",
+              "Kôm Ombo",
+              "Abou Simbel",
+              "Louxor"
+            ],
             "reponse": 1,
             "explication": "Le temple de Kôm Ombo est unique : moitié dédiée à Sobek, moitié à Horus"
           }
@@ -1165,19 +1558,34 @@
         "quiz": [
           {
             "question": "Qu'est-ce que la Maât ?",
-            "options": ["Une déesse", "Le concept de vérité/justice/ordre cosmique", "Un temple", "Un pharaon"],
+            "options": [
+              "Une déesse",
+              "Le concept de vérité/justice/ordre cosmique",
+              "Un temple",
+              "Un pharaon"
+            ],
             "reponse": 1,
             "explication": "Maât est à la fois une déesse et le concept fondamental d'ordre, vérité et justice dans l'Égypte ancienne"
           },
           {
             "question": "Que se passe-t-il au chapitre 125 du Livre des Morts ?",
-            "options": ["Couronnement du pharaon", "Pesée du cœur du défunt", "Construction d'une pyramide", "Bataille contre les ennemis"],
+            "options": [
+              "Couronnement du pharaon",
+              "Pesée du cœur du défunt",
+              "Construction d'une pyramide",
+              "Bataille contre les ennemis"
+            ],
             "reponse": 1,
             "explication": "Le chapitre 125 décrit la psychostasie : le cœur du défunt est pesé contre la plume de Maât"
           },
           {
             "question": "Où se trouve le Papyrus d'Ani ?",
-            "options": ["Musée du Caire", "British Museum", "Louvre", "Metropolitan Museum"],
+            "options": [
+              "Musée du Caire",
+              "British Museum",
+              "Louvre",
+              "Metropolitan Museum"
+            ],
             "reponse": 1,
             "explication": "Le célèbre Papyrus d'Ani se trouve au British Museum à Londres"
           }
@@ -1231,19 +1639,34 @@
         "quiz": [
           {
             "question": "Quelle est la particularité des Textes des Pyramides ?",
-            "options": ["Premiers textes religieux égyptiens", "Écrits en démotique", "Trouvés dans des tombes de nobles", "Datant du Nouvel Empire"],
+            "options": [
+              "Premiers textes religieux égyptiens",
+              "Écrits en démotique",
+              "Trouvés dans des tombes de nobles",
+              "Datant du Nouvel Empire"
+            ],
             "reponse": 0,
             "explication": "Les Textes des Pyramides sont les plus anciens textes religieux de l'Égypte ancienne (vers 2400-2300 av. J.-C.)"
           },
           {
             "question": "Où sont gravés les Textes des Pyramides ?",
-            "options": ["Sur des papyrus", "Sur des stèles", "Sur les murs intérieurs des pyramides", "Sur des sarcophages"],
+            "options": [
+              "Sur des papyrus",
+              "Sur des stèles",
+              "Sur les murs intérieurs des pyramides",
+              "Sur des sarcophages"
+            ],
             "reponse": 2,
             "explication": "Les Textes des Pyramides sont gravés sur les murs des chambres et couloirs intérieurs des pyramides de la fin de l'Ancien Empire"
           },
           {
             "question": "Quel pharaon possède les premiers Textes des Pyramides ?",
-            "options": ["Khéops", "Ounas", "Toutânkhamon", "Ramsès II"],
+            "options": [
+              "Khéops",
+              "Ounas",
+              "Toutânkhamon",
+              "Ramsès II"
+            ],
             "reponse": 1,
             "explication": "Les premiers Textes des Pyramides apparaissent dans la pyramide d'Ounas, dernier pharaon de la Ve dynastie"
           }
