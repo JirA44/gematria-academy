@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕉️ Les 7 Chakras - Guide Complet</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #9c27b0, #e91e63, #ff9800, #ffc107, #4caf50, #2196f3, #673ab7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: rgba(30, 30, 45, 0.8);
+            border: 2px solid rgba(156, 39, 176, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .intro-box h2 {
+            color: #ba68c8;
+            margin-bottom: 1rem;
+        }
+
+        .chakra-card {
+            background: rgba(25, 25, 40, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-left: 8px solid;
+            transition: transform 0.3s ease;
+        }
+
+        .chakra-card:hover {
+            transform: translateX(10px);
+        }
+
+        .chakra-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chakra-symbol {
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        .chakra-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chakra-sanskrit {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .chakra-location {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .chakra-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .detail-box {
+            background: rgba(40, 40, 60, 0.6);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .detail-box h4 {
+            color: #ffd54f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .detail-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .detail-box li:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: currentColor;
+        }
+
+        .meditation-box {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(103, 58, 183, 0.2));
+            border: 2px solid rgba(156, 39, 176, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .meditation-box h4 {
+            color: #ba68c8;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .mantra {
+            font-size: 2rem;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            font-weight: bold;
+            letter-spacing: 0.3rem;
+        }
+
+        .warning-box {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #ba68c8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            text-decoration: underline;
+        }
+
+        /* Couleurs spécifiques pour chaque chakra */
+        .chakra-1 { border-left-color: #c62828; }
+        .chakra-1 .chakra-symbol { color: #c62828; }
+        .chakra-1 h2 { color: #ef5350; }
+
+        .chakra-2 { border-left-color: #ff6f00; }
+        .chakra-2 .chakra-symbol { color: #ff6f00; }
+        .chakra-2 h2 { color: #ff9800; }
+
+        .chakra-3 { border-left-color: #fbc02d; }
+        .chakra-3 .chakra-symbol { color: #fbc02d; }
+        .chakra-3 h2 { color: #fdd835; }
+
+        .chakra-4 { border-left-color: #388e3c; }
+        .chakra-4 .chakra-symbol { color: #388e3c; }
+        .chakra-4 h2 { color: #66bb6a; }
+
+        .chakra-5 { border-left-color: #1976d2; }
+        .chakra-5 .chakra-symbol { color: #1976d2; }
+        .chakra-5 h2 { color: #42a5f5; }
+
+        .chakra-6 { border-left-color: #4527a0; }
+        .chakra-6 .chakra-symbol { color: #4527a0; }
+        .chakra-6 h2 { color: #7e57c2; }
+
+        .chakra-7 { border-left-color: #6a1b9a; }
+        .chakra-7 .chakra-symbol { color: #6a1b9a; }
+        .chakra-7 h2 { color: #ab47bc; }
+
+        @media (max-width: 768px) {
+            .chakra-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+        <h1>🕉️ Les 7 Chakras</h1>
+        <p class="subtitle">Centres énergétiques du corps - Guide complet de compréhension et de pratique</p>
+
+        <div class="intro-box">
+            <h2>📚 Qu'est-ce qu'un chakra ?</h2>
+            <p><strong>Chakra</strong> est un mot sanskrit (चक्र) signifiant "<strong>roue</strong>" ou "<strong>disque</strong>". Les chakras sont des <strong>centres énergétiques</strong> situés le long de la colonne vertébrale, du bas du dos jusqu'au sommet du crâne.</p>
+
+            <p style="margin-top: 1.5rem;">Selon la tradition yogique indienne et la médecine ayurvédique, il existe <strong>7 chakras principaux</strong> qui régulent le flux d'énergie vitale (prana) dans le corps. Chaque chakra est associé à :</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li>✦ Une <strong>couleur</strong> spécifique</li>
+                <li>✦ Une <strong>localisation anatomique</strong> précise</li>
+                <li>✦ Des <strong>fonctions physiques</strong> et émotionnelles</li>
+                <li>✦ Un <strong>mantra</strong> (son vibratoire)</li>
+                <li>✦ Des <strong>éléments</strong> naturels</li>
+                <li>✦ Des <strong>pierres</strong> et cristaux associés</li>
+            </ul>
+
+            <p style="margin-top: 1.5rem;"><strong>Importance de l'équilibre :</strong> Un chakra équilibré permet une circulation harmonieuse de l'énergie. Un chakra bloqué ou déséquilibré peut entraîner des troubles physiques, émotionnels ou spirituels.</p>
+        </div>
+
+        <!-- CHAKRA 1 : RACINE -->
+        <div class="chakra-card chakra-1">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🔴</div>
+                <div class="chakra-info">
+                    <h2>1. Chakra Racine</h2>
+                    <p class="chakra-sanskrit">Muladhara (मूलाधार) - "Support de la racine"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Base de la colonne vertébrale, entre l'anus et les organes génitaux (périnée)
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Rouge</li>
+                        <li><strong>Élément :</strong> Terre</li>
+                        <li><strong>Mantra :</strong> LAM</li>
+                        <li><strong>Note musicale :</strong> Do (C)</li>
+                        <li><strong>Pierres :</strong> Jaspe rouge, hématite, grenat, obsidienne</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Survie et sécurité</li>
+                        <li>Ancrage et stabilité</li>
+                        <li>Besoins primaires (nourriture, abri)</li>
+                        <li>Connexion à la Terre</li>
+                        <li>Instinct et vitalité</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Glandes surrénales</li>
+                        <li>Colonne vertébrale</li>
+                        <li>Jambes et pieds</li>
+                        <li>Système immunitaire</li>
+                        <li>Intestin (élimination)</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Anxiété, insécurité financière, peur</li>
+                        <li><strong>Excès :</strong> Matérialisme, agressivité, rigidité</li>
+                        <li><strong>Symptômes physiques :</strong> Problèmes de dos, constipation, fatigue</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>Asseyez-vous en posture stable. Visualisez une <strong>sphère rouge lumineuse</strong> à la base de votre colonne vertébrale. Imaginez des racines s'enfonçant profondément dans la terre depuis votre périnée.</p>
+                <div class="mantra">LAM</div>
+                <p>Répétez le mantra <strong>"LAM"</strong> (prononcé "LAME") en vous concentrant sur cette zone. Ressentez la connexion avec la Terre, votre ancrage et votre stabilité.</p>
+            </div>
+        </div>
+
+        <!-- CHAKRA 2 : SACRÉ -->
+        <div class="chakra-card chakra-2">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🟠</div>
+                <div class="chakra-info">
+                    <h2>2. Chakra Sacré</h2>
+                    <p class="chakra-sanskrit">Svadhisthana (स्वाधिष्ठान) - "Demeure du Soi"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Environ 5 cm sous le nombril, au niveau du sacrum
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Orange</li>
+                        <li><strong>Élément :</strong> Eau</li>
+                        <li><strong>Mantra :</strong> VAM</li>
+                        <li><strong>Note musicale :</strong> Ré (D)</li>
+                        <li><strong>Pierres :</strong> Cornaline, calcite orange, pierre de lune</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Créativité et expression</li>
+                        <li>Sexualité et sensualité</li>
+                        <li>Émotions et plaisir</li>
+                        <li>Fluidité et mouvement</li>
+                        <li>Relations et intimité</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Organes génitaux</li>
+                        <li>Reins et vessie</li>
+                        <li>Système reproducteur</li>
+                        <li>Bas-ventre</li>
+                        <li>Hanches</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Manque de créativité, frigidité, blocages émotionnels</li>
+                        <li><strong>Excès :</strong> Dépendance sexuelle, émotions débordantes</li>
+                        <li><strong>Symptômes physiques :</strong> Problèmes urinaires, douleurs lombaires</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>Allongé ou assis, placez vos mains sur votre bas-ventre. Visualisez une <strong>sphère orange rayonnante</strong> sous votre nombril. Imaginez de l'eau qui coule librement, fluide et purifiante.</p>
+                <div class="mantra">VAM</div>
+                <p>Chantez <strong>"VAM"</strong> (prononcé "VAME") en ressentant la fluidité, la créativité et le plaisir circuler dans votre corps.</p>
+            </div>
+        </div>
+
+        <!-- CHAKRA 3 : PLEXUS SOLAIRE -->
+        <div class="chakra-card chakra-3">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🟡</div>
+                <div class="chakra-info">
+                    <h2>3. Chakra du Plexus Solaire</h2>
+                    <p class="chakra-sanskrit">Manipura (मणिपूर) - "Cité des joyaux"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Au niveau de l'estomac, entre le sternum et le nombril
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Jaune</li>
+                        <li><strong>Élément :</strong> Feu</li>
+                        <li><strong>Mantra :</strong> RAM</li>
+                        <li><strong>Note musicale :</strong> Mi (E)</li>
+                        <li><strong>Pierres :</strong> Citrine, ambre, œil de tigre, topaze</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Pouvoir personnel et confiance</li>
+                        <li>Volonté et détermination</li>
+                        <li>Estime de soi</li>
+                        <li>Transformation et métabolisme</li>
+                        <li>Assertivité</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Pancréas</li>
+                        <li>Estomac et foie</li>
+                        <li>Vésicule biliaire</li>
+                        <li>Système digestif</li>
+                        <li>Rate</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Manque de confiance, victimisation, indécision</li>
+                        <li><strong>Excès :</strong> Ego surdimensionné, besoin de contrôle, colère</li>
+                        <li><strong>Symptômes physiques :</strong> Troubles digestifs, ulcères, diabète</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>Assis en tailleur, respirez profondément. Visualisez un <strong>soleil doré éclatant</strong> dans votre plexus solaire. Sentez la chaleur, la puissance et la confiance irradier de ce centre.</p>
+                <div class="mantra">RAM</div>
+                <p>Répétez <strong>"RAM"</strong> (prononcé "RAME") avec force et conviction. Affirmez votre pouvoir personnel : "Je suis fort(e), je suis capable, je suis confiant(e)".</p>
+            </div>
+        </div>
+
+        <!-- CHAKRA 4 : CŒUR -->
+        <div class="chakra-card chakra-4">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🟢</div>
+                <div class="chakra-info">
+                    <h2>4. Chakra du Cœur</h2>
+                    <p class="chakra-sanskrit">Anahata (अनाहत) - "Son non frappé"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Centre de la poitrine, au niveau du cœur
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Vert (parfois rose)</li>
+                        <li><strong>Élément :</strong> Air</li>
+                        <li><strong>Mantra :</strong> YAM</li>
+                        <li><strong>Note musicale :</strong> Fa (F)</li>
+                        <li><strong>Pierres :</strong> Quartz rose, aventurine, jade, émeraude</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Amour inconditionnel</li>
+                        <li>Compassion et empathie</li>
+                        <li>Pardon et acceptation</li>
+                        <li>Connexion et harmonie</li>
+                        <li>Guérison émotionnelle</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Cœur et système circulatoire</li>
+                        <li>Poumons et respiration</li>
+                        <li>Thymus (système immunitaire)</li>
+                        <li>Bras et mains</li>
+                        <li>Poitrine</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Manque d'empathie, froideur, isolement</li>
+                        <li><strong>Excès :</strong> Codépendance, jalousie, possessivité</li>
+                        <li><strong>Symptômes physiques :</strong> Problèmes cardiaques, asthme, tensions thoraciques</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>Placez votre main sur votre cœur. Visualisez une <strong>lumière verte émeraude</strong> rayonnant depuis votre poitrine. Pensez à quelqu'un que vous aimez profondément et ressentez cet amour s'étendre à tous les êtres.</p>
+                <div class="mantra">YAM</div>
+                <p>Chantez doucement <strong>"YAM"</strong> (prononcé "YAME") en respirant lentement. Cultivez l'amour, le pardon et la compassion envers vous-même et les autres.</p>
+            </div>
+        </div>
+
+        <!-- CHAKRA 5 : GORGE -->
+        <div class="chakra-card chakra-5">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🔵</div>
+                <div class="chakra-info">
+                    <h2>5. Chakra de la Gorge</h2>
+                    <p class="chakra-sanskrit">Vishuddha (विशुद्ध) - "Purification"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Centre de la gorge, au niveau de la thyroïde
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Bleu clair/turquoise</li>
+                        <li><strong>Élément :</strong> Éther (Akasha)</li>
+                        <li><strong>Mantra :</strong> HAM</li>
+                        <li><strong>Note musicale :</strong> Sol (G)</li>
+                        <li><strong>Pierres :</strong> Turquoise, aigue-marine, lapis-lazuli, sodalite</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Communication et expression</li>
+                        <li>Vérité et authenticité</li>
+                        <li>Écoute active</li>
+                        <li>Expression créative</li>
+                        <li>Parole juste</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Thyroïde et parathyroïde</li>
+                        <li>Gorge et cordes vocales</li>
+                        <li>Bouche, dents, gencives</li>
+                        <li>Oreilles</li>
+                        <li>Cou et épaules</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Difficulté à s'exprimer, timidité, mensonges</li>
+                        <li><strong>Excès :</strong> Bavardage excessif, critique, médisance</li>
+                        <li><strong>Symptômes physiques :</strong> Maux de gorge, problèmes thyroïdiens, acouphènes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>Assis avec le dos droit, placez vos doigts sur votre gorge. Visualisez une <strong>sphère bleu ciel lumineuse</strong> dans votre gorge. Imaginez votre voix claire et puissante, exprimant votre vérité.</p>
+                <div class="mantra">HAM</div>
+                <p>Chantez <strong>"HAM"</strong> (prononcé "HAME") en sentant les vibrations dans votre gorge. Affirmez : "Je m'exprime librement et authentiquement. Ma voix est importante."</p>
+            </div>
+        </div>
+
+        <!-- CHAKRA 6 : TROISIÈME ŒIL -->
+        <div class="chakra-card chakra-6">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🟣</div>
+                <div class="chakra-info">
+                    <h2>6. Chakra du Troisième Œil</h2>
+                    <p class="chakra-sanskrit">Ajna (आज्ञा) - "Commandement"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Entre les sourcils, au centre du front
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Indigo/Violet foncé</li>
+                        <li><strong>Élément :</strong> Lumière</li>
+                        <li><strong>Mantra :</strong> OM (AUM)</li>
+                        <li><strong>Note musicale :</strong> La (A)</li>
+                        <li><strong>Pierres :</strong> Améthyste, lapis-lazuli, saphir, fluorite violette</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Intuition et clairvoyance</li>
+                        <li>Vision intérieure</li>
+                        <li>Sagesse et connaissance</li>
+                        <li>Imagination et visualisation</li>
+                        <li>Perception subtile</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Glande pinéale (épiphyse)</li>
+                        <li>Hypophyse (pituitaire)</li>
+                        <li>Yeux et vision</li>
+                        <li>Cerveau et système nerveux</li>
+                        <li>Front</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Manque d'imagination, confusion, scepticisme</li>
+                        <li><strong>Excès :</strong> Illusions, cauchemars, détachement de la réalité</li>
+                        <li><strong>Symptômes physiques :</strong> Maux de tête, problèmes de vision, insomnies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>En position de méditation, fermez les yeux et dirigez votre regard intérieur vers le centre de votre front. Visualisez une <strong>sphère indigo profonde</strong> rayonnante entre vos sourcils. Imaginez un troisième œil s'ouvrant, vous permettant de "voir" au-delà du visible.</p>
+                <div class="mantra">OM</div>
+                <p>Chantez le mantra sacré <strong>"OM"</strong> (ou AUM : Aaaaa-Ooooo-Mmmmmm) en prolongeant chaque son. Connectez-vous à votre sagesse intérieure et à votre intuition profonde.</p>
+            </div>
+        </div>
+
+        <!-- CHAKRA 7 : COURONNE -->
+        <div class="chakra-card chakra-7">
+            <div class="chakra-header">
+                <div class="chakra-symbol">🟣</div>
+                <div class="chakra-info">
+                    <h2>7. Chakra Couronne</h2>
+                    <p class="chakra-sanskrit">Sahasrara (सहस्रार) - "Lotus aux mille pétales"</p>
+                </div>
+            </div>
+
+            <div class="chakra-location">
+                📍 <strong>Localisation :</strong> Sommet du crâne (fontanelle)
+            </div>
+
+            <div class="chakra-details">
+                <div class="detail-box">
+                    <h4>🎨 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Couleur :</strong> Violet/Blanc/Or</li>
+                        <li><strong>Élément :</strong> Pensée pure/Conscience</li>
+                        <li><strong>Mantra :</strong> Silence ou OM</li>
+                        <li><strong>Note musicale :</strong> Si (B)</li>
+                        <li><strong>Pierres :</strong> Quartz clair, améthyste, diamant, sélénite</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🧠 Fonctions principales</h4>
+                    <ul>
+                        <li>Conscience universelle</li>
+                        <li>Spiritualité et transcendance</li>
+                        <li>Connexion au divin</li>
+                        <li>Illumination</li>
+                        <li>Unité avec le Tout</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>💪 Organes associés</h4>
+                    <ul>
+                        <li>Glande pinéale</li>
+                        <li>Cerveau (cortex cérébral)</li>
+                        <li>Système nerveux central</li>
+                        <li>Crâne</li>
+                        <li>Connexion corps-esprit-âme</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Déséquilibres possibles</h4>
+                    <ul>
+                        <li><strong>Blocage :</strong> Matérialisme, cynisme, déconnexion spirituelle</li>
+                        <li><strong>Excès :</strong> Obsession spirituelle, déni du corps, élitisme</li>
+                        <li><strong>Symptômes physiques :</strong> Migraines, troubles neurologiques, dépression</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meditation-box">
+                <h4>🧘 Méditation d'activation</h4>
+                <p>Asseyez-vous dans une posture confortable. Visualisez une <strong>lumière violette et dorée</strong> au sommet de votre crâne, s'ouvrant comme un lotus aux mille pétales. Imaginez une colonne de lumière blanche descendant du cosmos et entrant par votre couronne, vous reliant à l'univers tout entier.</p>
+                <div class="mantra">🕉️ Silence sacré ou OM</div>
+                <p>Restez dans le <strong>silence méditatif</strong> ou chantez doucement "OM". Lâchez prise sur toutes les pensées. Ressentez l'unité avec tout ce qui existe. Vous êtes conscience pure, amour universel, lumière divine.</p>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <h3>⚠️ Important : Pratique progressive</h3>
+            <p><strong>Ne forcez jamais l'ouverture des chakras.</strong> Le travail énergétique doit se faire progressivement, en commençant par le chakra racine (ancrage) et en remontant vers la couronne (spiritualité).</p>
+            <p style="margin-top: 1rem;">Si vous ressentez des malaises, étourdissements ou émotions intenses pendant vos pratiques, arrêtez et revenez au chakra racine pour vous ancrer.</p>
+            <p style="margin-top: 1rem;"><strong>Recommandation :</strong> Travaillez avec un enseignant qualifié, surtout si vous êtes débutant.</p>
+        </div>
+
+    </div>
+</body>
+</html>
