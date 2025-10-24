@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Démo - Toutes les Sections avec Animations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <link rel="stylesheet" href="animated-backgrounds.css">
+    <script src="dark-mode-auto.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .demo-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .demo-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            max-width: 800px;
+        }
+
+        .demo-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .demo-content p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-demo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .nav-demo a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-demo a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-demo h3 {
+            color: white;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-demo">
+        <h3>📚 Sections</h3>
+        <a href="#hero">🌌 Hero</a>
+        <a href="#runes">ᚠ Runes</a>
+        <a href="#gematria">✡️ Gematria</a>
+        <a href="#logique">🧠 Logique</a>
+        <a href="#mandala">🕉️ Mandala</a>
+        <a href="#hieroglyphes">𓂀 Hiéroglyphes</a>
+        <a href="#maya">𓇳 Maya</a>
+        <a href="#tools">🛠️ Outils</a>
+        <hr style="border-color: rgba(255,255,255,0.3); margin: 1rem 0;">
+        <a href="index_multilingual.html">← Retour Accueil</a>
+    </nav>
+
+    <section id="hero" class="demo-section hero">
+        <div class="demo-content">
+            <h1>🌌 HERO</h1>
+            <p>Aurore boréale mystique<br>Étoiles scintillantes</p>
+        </div>
+    </section>
+
+    <section id="runes" class="demo-section">
+        <div class="demo-content">
+            <h1>ᚠᚢᚦᚨᚱᚲ</h1>
+            <p>Runes Nordiques<br>Particules glaciales & motifs runiques</p>
+        </div>
+    </section>
+
+    <section id="gematria" class="demo-section">
+        <div class="demo-content">
+            <h1>✡️ אָלֶף־בֵּית</h1>
+            <p>Gematria Hébraïque<br>Étoile de David tournante</p>
+        </div>
+    </section>
+
+    <section id="logique" class="demo-section">
+        <div class="demo-content">
+            <h1>∀ ∃ ⊕ ⊗</h1>
+            <p>Logique & Raisonnement<br>Grille mathématique animée</p>
+        </div>
+    </section>
+
+    <section id="mandala" class="demo-section">
+        <div class="demo-content">
+            <h1>🕉️ ॐ</h1>
+            <p>Mandalas Sacrés<br>Om géant & anneaux pulsants</p>
+        </div>
+    </section>
+
+    <section id="hieroglyphes" class="demo-section">
+        <div class="demo-content">
+            <h1>𓂀 𓃭 𓆓</h1>
+            <p>Hiéroglyphes Égyptiens<br>Pyramides flottantes & papyrus</p>
+        </div>
+    </section>
+
+    <section id="maya" class="demo-section">
+        <div class="demo-content">
+            <h1>𓇳 ☉ ⊕</h1>
+            <p>Symboles Maya<br>Calendrier tournant & jungle mystique</p>
+        </div>
+    </section>
+
+    <section id="tools" class="demo-section tools">
+        <div class="demo-content">
+            <h1>🛠️ OUTILS</h1>
+            <p>Outils Pratiques<br>Particules flottantes</p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mode nuit par défaut
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkMode = localStorage.getItem('darkMode');
+            const isDark = darkMode === null ? true : darkMode === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="page_title">Académie des Runes & Gematria Hébraïque</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fix-contrast.css">`n    <link rel="stylesheet" href="animated-backgrounds.css">
+    <link rel="stylesheet" href="fix-contrast.css">
     <script src="dark-mode-auto.js"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@
             <a href="index_multilingual.html" class="active" data-i18n="nav_home">Accueil</a>
             <a href="#runes" data-i18n="nav_runes">Runes</a>
             <a href="#gematria" data-i18n="nav_gematria">Gematria</a>
-            <a href="#logique" data-i18n="nav_logic">Logique</a>`n            <a href="#mandala" data-i18n="nav_mandala">Mandala</a>
+            <a href="#logique" data-i18n="nav_logic">Logique</a>
         </div>
     </nav>
 
@@ -186,58 +186,6 @@
                 </div>
             </div>
         </section>
-        <section id="mandala" class="section-category">
-            <h2 data-i18n="mandala_title">ðŸ•‰ï¸ Mandalas SacrÃ©s</h2>
-            <p class="intro" data-i18n="mandala_intro">Les mandalas sont des reprÃ©sentations gÃ©omÃ©triques de l''univers, utilisÃ©s depuis des millÃ©naires dans les traditions bouddhistes et hindoues. La contemplation profonde d''un mandala, sans mots ni pensÃ©es, permet d''accÃ©der au silence intÃ©rieur et Ã  la paix de l''esprit.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3 data-i18n="mandala_contemplation">ðŸ§˜ Contemplation Profonde</h3>
-                        <span class="badge" data-i18n="badge_meditation">MÃ©ditation</span>
-                    </div>
-                    <ul data-section="mandala-practice">
-                        <li data-i18n="mandala_1">Galerie plein Ã©cran immersive</li>
-                        <li data-i18n="mandala_2">Sans mots, sans pensÃ©es</li>
-                        <li data-i18n="mandala_3">Silence intÃ©rieur et concentration</li>
-                        <li data-i18n="mandala_4">Navigation intuitive (flÃ¨ches â€¹ â€º)</li>
-                        <li data-i18n="mandala_5">Uploadez vos mandalas personnels</li>
-                    </ul>
-                    <a href="mandala.html" class="btn btn-beginner" data-i18n="btn_contemplate">Contempler â†’</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3 data-i18n="mandala_creation">ðŸŽ¨ CrÃ©ation de Mandalas</h3>
-                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
-                    </div>
-                    <ul data-section="mandala-creation">
-                        <li data-i18n="mandala_create_1">Comprendre la gÃ©omÃ©trie sacrÃ©e</li>
-                        <li data-i18n="mandala_create_2">Symbolisme des formes et couleurs</li>
-                        <li data-i18n="mandala_create_3">Mandalas tibÃ©tains traditionnels</li>
-                        <li data-i18n="mandala_create_4">Techniques de dessin circulaire</li>
-                        <li data-i18n="mandala_create_5">MÃ©ditation crÃ©ative guidÃ©e</li>
-                    </ul>
-                    <a href="mandala.html" class="btn btn-intermediate" data-i18n="btn_create">CrÃ©er â†’</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3 data-i18n="mandala_mastery">ðŸŒº MaÃ®trise des Mandalas</h3>
-                        <span class="badge" data-i18n="badge_mastery">MaÃ®trise</span>
-                    </div>
-                    <ul data-section="mandala-expert">
-                        <li data-i18n="mandala_master_1">Mandalas tantriques avancÃ©s</li>
-                        <li data-i18n="mandala_master_2">Yantras et diagrammes cosmiques</li>
-                        <li data-i18n="mandala_master_3">MÃ©ditation profonde prolongÃ©e</li>
-                        <li data-i18n="mandala_master_4">Rituel de crÃ©ation et destruction</li>
-                        <li data-i18n="mandala_master_5">Transmission spirituelle par le mandala</li>
-                    </ul>
-                    <a href="mandala.html" class="btn btn-expert" data-i18n="btn_master">MaÃ®triser â†’</a>
-                </div>
-            </div>
-        </section>
-
 
         <section class="tools">
             <h2 data-i18n="tools_title">🛠️ Outils Pratiques</h2>

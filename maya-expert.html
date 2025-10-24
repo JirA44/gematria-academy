@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓇳 Symboles Maya - Niveau Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a5f3e 0%, #0d3d27 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a5f3e;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #9C27B0;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #1a5f3e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2e7d52;
+        }
+
+        .long-count-box {
+            background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+            color: #ffd700;
+            border: 4px solid #ffd700;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .long-count-display {
+            font-size: 2.5em;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            letter-spacing: 8px;
+        }
+
+        .codex-page {
+            background: linear-gradient(to bottom, #f4e4c1, #e8d4a8);
+            border: 4px solid #8b6f47;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .astronomy-section {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .astronomy-section h3 {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .venus-table {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .prophecy-box {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            color: white;
+            border: 3px solid #ce93d8;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 0 30px rgba(206, 147, 216, 0.4);
+        }
+
+        .prophecy-box h3 {
+            color: #f3e5f5;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .calculation-example {
+            background: #e8eaf6;
+            border: 3px solid #3f51b5;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .exercise {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .exercise h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .quiz {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #9C27B0;
+        }
+
+        .quiz-question {
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            color: #7b1fa2;
+            font-size: 1.1em;
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border: 2px solid #9C27B0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #e1bee7;
+            transform: translateX(5px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #1a5f3e;
+            color: white;
+        }
+
+        .astronomy-section table th {
+            background: #ffd700;
+            color: #0f0c29;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1a5f3e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #0d3d27;
+        }
+
+        .btn-home {
+            background: #607d8b;
+        }
+
+        .btn-home:hover {
+            background: #455a64;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+        }
+
+        ul {
+            line-height: 2;
+            color: #333;
+        }
+
+        .astronomy-section ul {
+            color: white;
+        }
+
+        .success {
+            background: #c8e6c9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error {
+            background: #ffcdd2;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>𓇳 Symboles Maya</h1>
+        <p class="subtitle">Niveau Expert - Compte Long, Astronomie et Prophéties</p>
+        <div style="text-align: center;">
+            <span class="level-badge">🌳 Expert</span>
+        </div>
+
+        <div class="section">
+            <h2>📜 Le Compte Long - Mesure du Temps Cosmique</h2>
+            <div class="long-count-box">
+                <h3 style="color: #ffd700; font-size: 2em; margin-bottom: 20px;">13.0.0.0.0</h3>
+                <p style="font-size: 1.2em;">21 Décembre 2012 - Fin du 13ème B'ak'tun</p>
+
+                <div class="long-count-display">
+                    13 . 0 . 0 . 0 . 0
+                </div>
+
+                <div style="text-align: left; margin-top: 30px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+                    <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Unités du Compte Long :</strong></p>
+                    <table style="color: white; background: transparent;">
+                        <tr>
+                            <th>Position</th>
+                            <th>Nom</th>
+                            <th>Valeur</th>
+                            <th>En jours</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>K'in</strong></td>
+                            <td>1 jour</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Winal</strong></td>
+                            <td>20 k'in</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Tun</strong></td>
+                            <td>18 winal</td>
+                            <td>360</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>K'atun</strong></td>
+                            <td>20 tun</td>
+                            <td>7 200</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>B'ak'tun</strong></td>
+                            <td>20 k'atun</td>
+                            <td>144 000</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Piktun</strong></td>
+                            <td>20 b'ak'tun</td>
+                            <td>2 880 000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>🌌 Date de Création selon les Mayas :</h4>
+                <p><strong>0.0.0.0.0 = 11 Août 3114 av. J.-C.</strong> (calendrier grégorien proleptique)</p>
+                <p>Cette date marque le début de l'ère actuelle dans la cosmologie maya. Le 13ème B'ak'tun s'est terminé le 21/12/2012, marquant la fin d'un grand cycle de 5 125 ans, mais pas la "fin du monde".</p>
+            </div>
+
+            <div class="calculation-example">
+                <h4 style="color: #1a237e; margin-bottom: 15px;">Exemple de calcul :</h4>
+                <p><strong>Date : 9.16.4.10.8</strong></p>
+                <pre>
+9 B'ak'tun   = 9 × 144 000  = 1 296 000 jours
+16 K'atun    = 16 × 7 200   = 115 200 jours
+4 Tun        = 4 × 360      = 1 440 jours
+10 Winal     = 10 × 20      = 200 jours
+8 K'in       = 8 × 1        = 8 jours
+                              ─────────────
+                TOTAL        = 1 412 848 jours depuis 0.0.0.0.0
+
+= 8 Lamat 1 Muan (Tzolk'in + Haab)
+= 14 Janvier 756 apr. J.-C.
+                </pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌟 Astronomie Maya - Observations Millénaires</h2>
+            <div class="astronomy-section">
+                <h3>☀️ Le Soleil et les Équinoxes</h3>
+                <p style="margin: 15px 0;">Les Mayas ont construit des temples alignés avec une précision extraordinaire sur les événements astronomiques :</p>
+                <ul>
+                    <li><strong>Chichen Itza</strong> - Le serpent de lumière descend la pyramide de Kukulkan aux équinoxes</li>
+                    <li><strong>Uaxactun</strong> - Observatoire solaire marquant solstices et équinoxes</li>
+                    <li><strong>Année solaire</strong> - Calculée à 365,2420 jours (moderne : 365,2422)</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">♀️ Vénus - L'Étoile de la Guerre</h3>
+                <div class="venus-table">
+                    <p><strong>Le Codex de Dresde</strong> contient des tables de Vénus d'une précision remarquable :</p>
+                    <table>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Durée (jours)</th>
+                            <th>Signification</th>
+                        </tr>
+                        <tr>
+                            <td>Étoile du matin</td>
+                            <td>236</td>
+                            <td>Période de guerre favorable</td>
+                        </tr>
+                        <tr>
+                            <td>Conjonction supérieure</td>
+                            <td>90</td>
+                            <td>Vénus derrière le Soleil</td>
+                        </tr>
+                        <tr>
+                            <td>Étoile du soir</td>
+                            <td>250</td>
+                            <td>Période de contemplation</td>
+                        </tr>
+                        <tr>
+                            <td>Conjonction inférieure</td>
+                            <td>8</td>
+                            <td>Vénus entre Terre et Soleil</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cycle complet</strong></td>
+                            <td><strong>584</strong></td>
+                            <td>Période synodique</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 15px;"><strong>Découverte remarquable :</strong> 5 cycles de Vénus (2920 jours) = 8 années solaires (2920 jours)</p>
+                    <p>Les Mayas utilisaient cette synchronisation pour leurs calendriers rituels et guerriers.</p>
+                </div>
+
+                <h3 style="margin-top: 30px;">🌙 La Lune et les Éclipses</h3>
+                <ul>
+                    <li><strong>Mois lunaire</strong> - Calculé à 29,53020 jours (moderne : 29,53059)</li>
+                    <li><strong>Tables d'éclipses</strong> - Prédictions précises sur plusieurs siècles</li>
+                    <li><strong>Cycle de 405 mois lunaires</strong> - Utilisé pour calculer les éclipses</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">🌌 Autres Corps Célestes</h3>
+                <ul>
+                    <li><strong>Mars</strong> - Période synodique de 780 jours tracée</li>
+                    <li><strong>Mercure</strong> - Mentions dans les codex</li>
+                    <li><strong>La Voie Lactée</strong> - "Route Blanche" ou "Arbre Cosmique"</li>
+                    <li><strong>Les Pléiades</strong> - Important marqueur saisonnier agricole</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📖 Les Codex Maya</h2>
+            <div class="codex-page">
+                <p>Sur des milliers de codex mayas, seuls <strong>4 ont survécu</strong> à la destruction coloniale espagnole :</p>
+
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <th>Codex</th>
+                        <th>Localisation</th>
+                        <th>Pages</th>
+                        <th>Contenu Principal</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Dresde</strong></td>
+                        <td>Allemagne</td>
+                        <td>74</td>
+                        <td>Astronomie, tables de Vénus, éclipses, divination</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Madrid</strong></td>
+                        <td>Espagne</td>
+                        <td>112</td>
+                        <td>Almanachs, rituels, agriculture, chasse</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Paris</strong></td>
+                        <td>France</td>
+                        <td>24</td>
+                        <td>Prophéties, rituels, katun (cycles de 20 ans)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grolier</strong></td>
+                        <td>Mexique</td>
+                        <td>11</td>
+                        <td>Tables de Vénus (authenticité débattue)</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box" style="margin-top: 20px;">
+                    <p><strong>⚠️ La Tragédie de la Destruction</strong></p>
+                    <p>En 1562, l'évêque Diego de Landa a ordonné la destruction massive des codex mayas à Mani (Yucatan). Des milliers de documents contenant des connaissances millénaires en astronomie, mathématiques, histoire et philosophie furent brûlés.</p>
+                    <p style="margin-top: 10px; font-style: italic;">"Nous avons trouvé un grand nombre de livres écrits avec ces caractères, et comme ils ne contenaient rien d'autre que superstition et mensonges du diable, nous les avons tous brûlés." - Diego de Landa, 1562</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔮 Prophéties et Cycles Temporels</h2>
+            <div class="prophecy-box">
+                <h3>🌀 Les Prophéties des Katun</h3>
+                <p style="margin: 15px 0;">Chaque K'atun (période de 7 200 jours ≈ 20 ans) porte une prophétie spécifique :</p>
+
+                <table style="margin: 20px 0; background: rgba(255,255,255,0.1);">
+                    <tr style="background: rgba(206, 147, 216, 0.2);">
+                        <th>K'atun</th>
+                        <th>Nom</th>
+                        <th>Prophétie</th>
+                    </tr>
+                    <tr>
+                        <td>2 Ajaw</td>
+                        <td>Le K'atun de la mémoire</td>
+                        <td>Temps de clarté et de vérité révélée</td>
+                    </tr>
+                    <tr>
+                        <td>13 Ajaw</td>
+                        <td>Le K'atun du jugement</td>
+                        <td>Temps de transformation et de renouveau</td>
+                    </tr>
+                    <tr>
+                        <td>11 Ajaw</td>
+                        <td>Le K'atun de la semence</td>
+                        <td>Nouvelles idées et renaissance</td>
+                    </tr>
+                    <tr>
+                        <td>9 Ajaw</td>
+                        <td>Le K'atun de la force</td>
+                        <td>Pouvoir et changements violents</td>
+                    </tr>
+                    <tr>
+                        <td>4 Ajaw</td>
+                        <td>Le K'atun de la faim</td>
+                        <td>Périodes difficiles et pénuries</td>
+                    </tr>
+                </table>
+
+                <div class="info-box">
+                    <h4>📅 2012 - La Prophétie Mal Interprétée</h4>
+                    <p>Le 21 décembre 2012 marquait la fin du 13ème B'ak'tun (13.0.0.0.0), un cycle de 5 125 ans.</p>
+                    <p><strong>Signification réelle :</strong> Fin d'un grand cycle et début d'une nouvelle ère, pas une "fin du monde".</p>
+                    <p><strong>Perspective maya moderne :</strong> Les gardiens de la tradition maya ont toujours dit que c'était un moment de transformation spirituelle et de renouveau, pas d'apocalypse.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎓 Système d'Écriture Logosyllabique</h2>
+            <div class="info-box">
+                <p>L'écriture maya est <strong>logosyllabique</strong> - combinant :</p>
+                <ul>
+                    <li><strong>Logogrammes</strong> - Signes représentant des mots entiers (ex: AJAW = seigneur)</li>
+                    <li><strong>Syllabogrammes</strong> - Signes représentant des syllabes (ex: ba, ka, la...)</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Déchiffrement :</strong> Commencé par Yuri Knorozov (1952), complété dans les années 1980-90.</p>
+                <p><strong>Glyphes connus :</strong> Plus de 800 signes différents identifiés.</p>
+            </div>
+
+            <div class="calculation-example">
+                <h4 style="color: #1a237e; margin-bottom: 15px;">Exemple d'écriture :</h4>
+                <p><strong>Le mot "B'ALAM" (Jaguar)</strong> peut s'écrire de plusieurs façons :</p>
+                <ul style="color: #333;">
+                    <li>Logogramme complet : [BALAM]</li>
+                    <li>Syllabique : [ba]-[la]-[ma]</li>
+                    <li>Mixte : [BALAM]-[ma] (le -ma final est complémentaire)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="quiz">
+                <h3>✅ Quiz de Vérification - Niveau Expert</h3>
+
+                <div class="quiz-question">1. Combien de jours contient un B'ak'tun ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(1, 'a')">a) 7 200 jours</button>
+                    <button class="quiz-option" onclick="checkAnswer(1, 'b')">b) 144 000 jours ✓</button>
+                    <button class="quiz-option" onclick="checkAnswer(1, 'c')">c) 360 jours</button>
+                </div>
+                <div id="result1" class="success"></div>
+
+                <div class="quiz-question">2. Quelle est la durée du cycle synodique de Vénus selon les Mayas ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(2, 'a')">a) 365 jours</button>
+                    <button class="quiz-option" onclick="checkAnswer(2, 'b')">b) 584 jours ✓</button>
+                    <button class="quiz-option" onclick="checkAnswer(2, 'c')">c) 260 jours</button>
+                </div>
+                <div id="result2" class="success"></div>
+
+                <div class="quiz-question">3. Combien de codex mayas authentiques ont survécu ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(3, 'a')">a) 12</button>
+                    <button class="quiz-option" onclick="checkAnswer(3, 'b')">b) 4 ✓</button>
+                    <button class="quiz-option" onclick="checkAnswer(3, 'c')">c) 1</button>
+                </div>
+                <div id="result3" class="success"></div>
+
+                <div class="quiz-question">4. Quelle date marque le début du Compte Long maya ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(4, 'a')">a) 11 Août 3114 av. J.-C. ✓</button>
+                    <button class="quiz-option" onclick="checkAnswer(4, 'b')">b) 21 Décembre 2012</button>
+                    <button class="quiz-option" onclick="checkAnswer(4, 'c')">c) 1er Janvier 1 apr. J.-C.</button>
+                </div>
+                <div id="result4" class="success"></div>
+
+                <div class="quiz-question">5. Combien d'années dure un cycle complet de B'ak'tun (13.0.0.0.0) ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(5, 'a')">a) 1000 ans</button>
+                    <button class="quiz-option" onclick="checkAnswer(5, 'b')">b) 5 125 ans ✓</button>
+                    <button class="quiz-option" onclick="checkAnswer(5, 'c')">c) 10 000 ans</button>
+                </div>
+                <div id="result5" class="success"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="exercise">
+                <h3>📝 Exercices Experts</h3>
+
+                <h4>Exercice 1 : Convertir une date du Compte Long</h4>
+                <p>Convertissez la date <strong>9.12.11.5.18</strong> en nombre de jours depuis 0.0.0.0.0</p>
+                <div style="background: #f5f5f5; padding: 15px; margin-top: 10px; border-radius: 5px;">
+                    <p><strong>Solution :</strong></p>
+                    <pre>
+9 × 144 000 = 1 296 000
+12 × 7 200  = 86 400
+11 × 360    = 3 960
+5 × 20      = 100
+18 × 1      = 18
+            ─────────
+TOTAL       = 1 386 478 jours
+                    </pre>
+                </div>
+
+                <h4 style="margin-top: 30px;">Exercice 2 : Calculer la synchronisation Vénus-Soleil</h4>
+                <p>Vérifiez que 5 cycles de Vénus = 8 années solaires</p>
+                <div style="background: #f5f5f5; padding: 15px; margin-top: 10px; border-radius: 5px;">
+                    <p><strong>Solution :</strong></p>
+                    <p>5 × 584 jours (Vénus) = 2 920 jours</p>
+                    <p>8 × 365 jours (Soleil) = 2 920 jours</p>
+                    <p>✓ Parfaite synchronisation !</p>
+                </div>
+
+                <h4 style="margin-top: 30px;">Exercice 3 : Analyser un K'atun</h4>
+                <p>Si nous sommes en l'an 2025, dans quel K'atun du cycle de 13 K'atun sommes-nous ?</p>
+                <div style="background: #f5f5f5; padding: 15px; margin-top: 10px; border-radius: 5px;">
+                    <p><strong>Indice :</strong> Le dernier B'ak'tun a commencé le 21/12/2012</p>
+                    <p>2025 - 2012 = 13 ans ≈ 0,65 K'atun</p>
+                    <p>Nous sommes dans les premières années du nouveau cycle</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Maîtrise du Niveau Expert</h2>
+            <ul>
+                <li>✅ Maîtriser le Compte Long et ses 6 niveaux</li>
+                <li>✅ Calculer des dates complexes en système maya</li>
+                <li>✅ Connaître les cycles astronomiques (Vénus, Lune, Soleil)</li>
+                <li>✅ Comprendre les 4 codex survivants</li>
+                <li>✅ Connaître les prophéties des K'atun</li>
+                <li>✅ Comprendre le système d'écriture logosyllabique</li>
+                <li>✅ Calculer les synchronisations calendaires</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📚 Pour Aller Plus Loin</h2>
+            <ul>
+                <li><strong>Sites archéologiques</strong> : Palenque, Tikal, Copán, Chichen Itza, Uxmal</li>
+                <li><strong>Livres</strong> : "Breaking the Maya Code" (Michael D. Coe), "The Ancient Maya" (Robert Sharer)</li>
+                <li><strong>Codex en ligne</strong> : Bibliothèques numérisées de Dresde, Madrid, Paris</li>
+                <li><strong>Cours</strong> : Maya Hieroglyphic Database Project (université de Harvard)</li>
+            </ul>
+        </div>
+
+        <div class="navigation">
+            <a href="maya-intermediaire.html" class="btn">← Niveau Intermédiaire</a>
+            <a href="index_COMPLET.html" class="btn btn-home">⌂ Accueil</a>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            1: 'b',
+            2: 'b',
+            3: 'b',
+            4: 'a',
+            5: 'b'
+        };
+
+        function checkAnswer(questionNum, selectedAnswer) {
+            const resultDiv = document.getElementById('result' + questionNum);
+
+            if (selectedAnswer === correctAnswers[questionNum]) {
+                resultDiv.className = 'success';
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = '✅ Parfait ! Vous maîtrisez le sujet !';
+            } else {
+                resultDiv.className = 'error';
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = '❌ Incorrect. Relisez attentivement cette section.';
+            }
+
+            setTimeout(() => {
+                if (resultDiv.className === 'success') {
+                    resultDiv.style.display = 'none';
+                }
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

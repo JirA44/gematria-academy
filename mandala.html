@@ -3,68 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="page_title">Galerie Mandala - Académie des Runes & Gematria</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fix-contrast.css">
-    <script src="dark-mode-auto.js"></script>
+    <title>🕉️</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             overflow: hidden;
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        .viewer-container {
+        /* Écran d'introduction */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f0f23 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1.5s ease;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .intro-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-symbol {
+            font-size: 6rem;
+            margin-bottom: 3rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .intro-text {
+            max-width: 600px;
+            font-size: 1.5rem;
+            line-height: 2;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .intro-instruction {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+
+        .begin-btn {
+            margin-top: 3rem;
+            background: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .begin-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Conteneur de visualisation */
+        .viewer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             background: #000;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
         }
 
+        .viewer.active {
+            display: flex;
+        }
+
         .mandala-image {
-            max-width: 95vw;
-            max-height: 95vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
             object-fit: contain;
             user-select: none;
             -webkit-user-select: none;
+            filter: brightness(1);
+            transition: opacity 0.5s ease;
         }
 
+        /* Navigation ultra-minimaliste */
         .nav-arrow {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            font-size: 3rem;
-            width: 80px;
-            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 4rem;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
+            opacity: 0;
             z-index: 100;
         }
 
+        .viewer:hover .nav-arrow,
         .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.4);
+            opacity: 1;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
             transform: translateY(-50%) scale(1.1);
         }
 
-        .nav-arrow.disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .nav-arrow.disabled:hover {
-            transform: translateY(-50%) scale(1);
+        .nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
         }
 
         .arrow-left {
@@ -75,122 +161,115 @@
             right: 20px;
         }
 
-        .top-bar {
+        /* Indicateur minimal */
+        .indicator {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
-            padding: 1.5rem;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 200;
+            gap: 10px;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 100;
         }
 
-        .top-bar-left, .top-bar-right {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        .viewer:hover .indicator {
+            opacity: 1;
         }
 
-        .top-bar button {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
-            font-size: 1rem;
+            cursor: pointer;
         }
 
-        .top-bar button:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
+        .dot.active {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.3);
         }
 
-        .counter {
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
         }
 
+        /* Contrôle upload (caché par défaut) */
+        .upload-trigger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        .viewer:hover .upload-trigger {
+            opacity: 1;
+        }
+
+        .upload-trigger:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Overlay upload */
         .upload-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 10000;
         }
 
         .upload-overlay.active {
             display: flex;
         }
 
-        .upload-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-        }
-
-        .upload-box h2 {
-            color: white;
-            margin-top: 0;
-            font-size: 2rem;
-        }
-
-        .upload-box p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-        }
-
         .upload-zone {
-            background: rgba(255, 255, 255, 0.2);
-            border: 3px dashed rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            padding: 3rem;
-            margin: 2rem 0;
-            cursor: pointer;
+            width: 80vw;
+            height: 80vh;
+            border: 3px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .upload-zone:hover,
         .upload-zone.dragover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .file-input-label {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        .file-input-label:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        .upload-symbol {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            opacity: 0.3;
         }
 
         #fileInput {
@@ -198,114 +277,82 @@
         }
 
         .close-upload {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 3rem;
             cursor: pointer;
-            font-weight: 600;
-            margin-top: 1rem;
             transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-upload:hover {
-            background: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            transform: rotate(90deg);
         }
 
-        .welcome-screen {
+        /* Bouton retour accueil (caché) */
+        .home-btn {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            opacity: 0;
+            z-index: 100;
+            text-decoration: none;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 500;
-            text-align: center;
-            padding: 2rem;
         }
 
-        .welcome-screen.hidden {
-            display: none;
+        .viewer:hover .home-btn {
+            opacity: 1;
         }
 
-        .welcome-screen h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .welcome-screen p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .welcome-screen .file-input-label {
-            font-size: 1.3rem;
-            padding: 1.5rem 3rem;
-        }
-
-        .thumbnail-strip {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 10px;
-            border-radius: 15px;
-            max-width: 90vw;
-            overflow-x: auto;
-            z-index: 100;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .thumbnail:hover {
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
             transform: scale(1.1);
         }
 
-        .thumbnail.active {
-            border-color: white;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        .info-text {
-            position: fixed;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            z-index: 100;
-        }
-
-        /* Support mobile */
+        /* Mobile */
         @media (max-width: 768px) {
+            .intro-symbol {
+                font-size: 4rem;
+            }
+
+            .intro-text {
+                font-size: 1.2rem;
+            }
+
+            .intro-instruction {
+                font-size: 1rem;
+            }
+
+            .begin-btn {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+
             .nav-arrow {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
             }
 
             .arrow-left {
@@ -316,164 +363,89 @@
                 right: 10px;
             }
 
-            .top-bar {
-                padding: 1rem;
+            .upload-symbol {
+                font-size: 5rem;
             }
 
-            .top-bar button {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+            .dot {
+                width: 10px;
+                height: 10px;
             }
+        }
 
-            .counter {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
+        /* Animation d'entrée de l'image */
+        @keyframes imageAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
             }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-            .welcome-screen h1 {
-                font-size: 2rem;
-            }
-
-            .welcome-screen p {
-                font-size: 1.1rem;
-            }
-
-            .thumbnail-strip {
-                bottom: 10px;
-                padding: 5px;
-            }
-
-            .thumbnail {
-                width: 60px;
-                height: 60px;
-            }
-
-            .info-text {
-                bottom: 90px;
-                font-size: 0.9rem;
-                padding: 0.75rem 1.5rem;
-            }
+        .mandala-image.entering {
+            animation: imageAppear 0.8s ease;
         }
     </style>
 </head>
 <body>
-    <!-- Écran de bienvenue -->
-    <div class="welcome-screen" id="welcomeScreen">
-        <h1 data-i18n="welcome_title">🕉️ Galerie Mandala</h1>
-        <p data-i18n="welcome_text">
-            Contemplez vos mandalas en plein écran. Uploadez vos images et naviguez entre elles avec les flèches ou les touches de votre clavier.
-        </p>
-        <label for="fileInputWelcome" class="file-input-label" data-i18n="upload_btn">
-            📤 Ajouter vos Mandalas
-        </label>
-        <input type="file" id="fileInputWelcome" accept="image/*" multiple>
+    <!-- Écran d'introduction -->
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-symbol">🕉️</div>
+        <div class="intro-text">
+            Contemplation profonde<br>
+            <br>
+            Sans mots<br>
+            Sans pensées<br>
+            <br>
+            Silence intérieur
+        </div>
+        <div class="intro-instruction">
+            · · ·
+        </div>
+        <button class="begin-btn" onclick="beginMeditation()">∞</button>
     </div>
 
-    <!-- Barre supérieure -->
-    <div class="top-bar" style="display: none;" id="topBar">
-        <div class="top-bar-left">
-            <button onclick="window.location.href='index_multilingual.html'" data-i18n="btn_home">
-                🏠 Accueil
-            </button>
-            <button onclick="toggleDarkMode()" class="dark-mode-toggle" data-i18n="btn_dark">
-                🌙 Mode
-            </button>
-            <button onclick="toggleLanguage()" class="lang-toggle">
-                🌐 EN
-            </button>
-        </div>
-        <div class="top-bar-right">
-            <span class="counter" id="counter">1 / 1</span>
-            <button onclick="showUploadOverlay()" data-i18n="btn_add">
-                ➕ Ajouter
-            </button>
-            <button onclick="deleteCurrentImage()" data-i18n="btn_delete">
-                🗑️ Supprimer
-            </button>
-        </div>
+    <!-- Visualiseur -->
+    <div class="viewer" id="viewer">
+        <a href="index_multilingual.html" class="home-btn">⌂</a>
+
+        <img src="" alt="" class="mandala-image" id="mandalaImage">
+
+        <button class="nav-arrow arrow-left" onclick="navigate(-1)">‹</button>
+        <button class="nav-arrow arrow-right" onclick="navigate(1)">›</button>
+
+        <div class="indicator" id="indicator"></div>
+
+        <button class="upload-trigger" onclick="openUpload()">+</button>
     </div>
 
-    <!-- Conteneur principal -->
-    <div class="viewer-container" style="display: none;" id="viewerContainer">
-        <img src="" alt="Mandala" class="mandala-image" id="mandalaImage">
-
-        <!-- Flèches de navigation -->
-        <button class="nav-arrow arrow-left" id="arrowLeft" onclick="previousImage()">
-            ‹
-        </button>
-        <button class="nav-arrow arrow-right" id="arrowRight" onclick="nextImage()">
-            ›
-        </button>
-
-        <!-- Texte informatif -->
-        <div class="info-text" id="infoText" data-i18n="info_navigate">
-            Utilisez les flèches ou les touches ← → pour naviguer
-        </div>
-
-        <!-- Bande de miniatures -->
-        <div class="thumbnail-strip" id="thumbnailStrip"></div>
-    </div>
-
-    <!-- Overlay d'upload -->
+    <!-- Upload -->
     <div class="upload-overlay" id="uploadOverlay">
-        <div class="upload-box">
-            <h2 data-i18n="upload_title">📤 Ajouter des Mandalas</h2>
-            <p data-i18n="upload_text">Glissez-déposez vos images ou cliquez pour sélectionner</p>
-
-            <div class="upload-zone" id="uploadZone">
-                <label for="fileInput" class="file-input-label" data-i18n="choose_files">
-                    Choisir des fichiers
-                </label>
-                <input type="file" id="fileInput" accept="image/*" multiple>
-            </div>
-
-            <button class="close-upload" onclick="closeUploadOverlay()" data-i18n="btn_close">
-                Fermer
-            </button>
-        </div>
+        <button class="close-upload" onclick="closeUpload()">×</button>
+        <label for="fileInput" class="upload-zone" id="uploadZone">
+            <div class="upload-symbol">📤</div>
+            <input type="file" id="fileInput" accept="image/*" multiple>
+        </label>
     </div>
 
     <script>
-        // Variables globales
         let images = [];
         let currentIndex = 0;
 
         // Initialisation
-        window.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             loadImages();
-            setupEventListeners();
-
-            if (images.length > 0) {
-                showGallery();
-            }
-
-            // Mode nuit par défaut
-            const darkMode = localStorage.getItem('darkMode');
-            const isDark = darkMode === null ? true : darkMode === 'true';
-            if (isDark) {
-                document.body.classList.add('dark-mode');
-            }
-            if (darkMode === null) {
-                localStorage.setItem('darkMode', 'true');
-            }
-
-            // Langue
-            const savedLang = localStorage.getItem('language');
-            if (savedLang && savedLang !== 'fr') {
-                currentLang = savedLang;
-                applyTranslations();
-            }
+            setupListeners();
         });
 
-        function setupEventListeners() {
-            // Upload depuis l'écran de bienvenue
-            document.getElementById('fileInputWelcome').addEventListener('change', handleFileSelect);
-
-            // Upload depuis l'overlay
+        function setupListeners() {
             const fileInput = document.getElementById('fileInput');
             const uploadZone = document.getElementById('uploadZone');
 
-            fileInput.addEventListener('change', handleFileSelect);
+            fileInput.addEventListener('change', handleFiles);
 
             // Drag & Drop
             uploadZone.addEventListener('dragover', (e) => {
@@ -488,27 +460,26 @@
             uploadZone.addEventListener('drop', (e) => {
                 e.preventDefault();
                 uploadZone.classList.remove('dragover');
-                handleFileSelect({ target: { files: e.dataTransfer.files } });
+                const files = e.dataTransfer.files;
+                handleFiles({ target: { files } });
             });
 
             // Navigation clavier
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') previousImage();
-                if (e.key === 'ArrowRight') nextImage();
-                if (e.key === 'Escape') closeUploadOverlay();
+                if (e.key === 'ArrowLeft') navigate(-1);
+                if (e.key === 'ArrowRight') navigate(1);
+                if (e.key === 'Escape') closeUpload();
             });
 
-            // Cacher le texte info après 5 secondes
-            setTimeout(() => {
-                const infoText = document.getElementById('infoText');
-                if (infoText) {
-                    infoText.style.opacity = '0';
-                    infoText.style.transition = 'opacity 1s ease';
+            // Clic sur image pour cacher/afficher contrôles
+            document.getElementById('mandalaImage').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    document.getElementById('viewer').classList.toggle('controls-hidden');
                 }
-            }, 5000);
+            });
         }
 
-        function handleFileSelect(e) {
+        function handleFiles(e) {
             const files = e.target.files;
             if (!files || files.length === 0) return;
 
@@ -517,189 +488,119 @@
 
                 const reader = new FileReader();
                 reader.onload = (event) => {
-                    images.push({
-                        data: event.target.result,
-                        name: file.name,
-                        date: new Date().toISOString()
-                    });
+                    images.push(event.target.result);
                     saveImages();
-                    updateGallery();
+                    updateDisplay();
 
                     if (images.length === 1) {
-                        showGallery();
+                        closeUpload();
+                        if (document.getElementById('introScreen').classList.contains('fade-out')) {
+                            document.getElementById('viewer').classList.add('active');
+                        }
                     }
                 };
                 reader.readAsDataURL(file);
             });
 
-            closeUploadOverlay();
+            closeUpload();
         }
 
         function saveImages() {
             try {
-                localStorage.setItem('mandalaGallery', JSON.stringify(images));
+                localStorage.setItem('mandalaImages', JSON.stringify(images));
             } catch (e) {
-                console.warn('LocalStorage full, keeping only recent images');
-                images = images.slice(-20);
-                localStorage.setItem('mandalaGallery', JSON.stringify(images));
+                images = images.slice(-30);
+                localStorage.setItem('mandalaImages', JSON.stringify(images));
             }
         }
 
         function loadImages() {
-            const stored = localStorage.getItem('mandalaGallery');
+            const stored = localStorage.getItem('mandalaImages');
             if (stored) {
                 images = JSON.parse(stored);
             }
         }
 
-        function showGallery() {
-            document.getElementById('welcomeScreen').classList.add('hidden');
-            document.getElementById('viewerContainer').style.display = 'flex';
-            document.getElementById('topBar').style.display = 'flex';
-            updateGallery();
+        function beginMeditation() {
+            const intro = document.getElementById('introScreen');
+            intro.classList.add('fade-out');
+
+            setTimeout(() => {
+                intro.style.display = 'none';
+                if (images.length > 0) {
+                    document.getElementById('viewer').classList.add('active');
+                    updateDisplay();
+                } else {
+                    openUpload();
+                }
+            }, 1500);
         }
 
-        function updateGallery() {
+        function updateDisplay() {
             if (images.length === 0) {
-                document.getElementById('welcomeScreen').classList.remove('hidden');
-                document.getElementById('viewerContainer').style.display = 'none';
-                document.getElementById('topBar').style.display = 'none';
+                openUpload();
                 return;
             }
 
-            // Afficher l'image courante
             const img = document.getElementById('mandalaImage');
-            img.src = images[currentIndex].data;
+            img.classList.remove('entering');
 
-            // Mettre à jour le compteur
-            document.getElementById('counter').textContent = `${currentIndex + 1} / ${images.length}`;
+            setTimeout(() => {
+                img.src = images[currentIndex];
+                img.classList.add('entering');
+            }, 50);
 
-            // Mettre à jour les flèches
-            const leftArrow = document.getElementById('arrowLeft');
-            const rightArrow = document.getElementById('arrowRight');
-
-            if (images.length <= 1) {
-                leftArrow.classList.add('disabled');
-                rightArrow.classList.add('disabled');
-            } else {
-                leftArrow.classList.toggle('disabled', currentIndex === 0);
-                rightArrow.classList.toggle('disabled', currentIndex === images.length - 1);
-            }
-
-            // Mettre à jour les miniatures
-            updateThumbnails();
+            updateIndicator();
         }
 
-        function updateThumbnails() {
-            const strip = document.getElementById('thumbnailStrip');
-            strip.innerHTML = '';
+        function updateIndicator() {
+            const indicator = document.getElementById('indicator');
+            indicator.innerHTML = '';
 
-            images.forEach((img, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = img.data;
-                thumb.className = 'thumbnail' + (index === currentIndex ? ' active' : '');
-                thumb.onclick = () => {
+            if (images.length <= 1) return;
+
+            images.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (index === currentIndex ? ' active' : '');
+                dot.onclick = () => {
                     currentIndex = index;
-                    updateGallery();
+                    updateDisplay();
                 };
-                strip.appendChild(thumb);
+                indicator.appendChild(dot);
             });
         }
 
-        function nextImage() {
-            if (currentIndex < images.length - 1) {
-                currentIndex++;
-                updateGallery();
-            }
+        function navigate(direction) {
+            if (images.length === 0) return;
+
+            currentIndex += direction;
+
+            // Boucle infinie
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+
+            updateDisplay();
         }
 
-        function previousImage() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateGallery();
-            }
-        }
-
-        function deleteCurrentImage() {
-            if (!confirm('Supprimer cette image ?')) return;
-
-            images.splice(currentIndex, 1);
-
-            if (currentIndex >= images.length && currentIndex > 0) {
-                currentIndex--;
-            }
-
-            saveImages();
-            updateGallery();
-        }
-
-        function showUploadOverlay() {
+        function openUpload() {
             document.getElementById('uploadOverlay').classList.add('active');
         }
 
-        function closeUploadOverlay() {
+        function closeUpload() {
             document.getElementById('uploadOverlay').classList.remove('active');
         }
 
-        // Mode Nuit
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-        }
-
-        // Système de traduction
-        const translations = {
-            fr: {
-                page_title: "Galerie Mandala - Académie des Runes & Gematria",
-                welcome_title: "🕉️ Galerie Mandala",
-                welcome_text: "Contemplez vos mandalas en plein écran. Uploadez vos images et naviguez entre elles avec les flèches ou les touches de votre clavier.",
-                upload_btn: "📤 Ajouter vos Mandalas",
-                btn_home: "🏠 Accueil",
-                btn_dark: "🌙 Mode",
-                btn_add: "➕ Ajouter",
-                btn_delete: "🗑️ Supprimer",
-                info_navigate: "Utilisez les flèches ou les touches ← → pour naviguer",
-                upload_title: "📤 Ajouter des Mandalas",
-                upload_text: "Glissez-déposez vos images ou cliquez pour sélectionner",
-                choose_files: "Choisir des fichiers",
-                btn_close: "Fermer"
-            },
-            en: {
-                page_title: "Mandala Gallery - Academy of Runes & Gematria",
-                welcome_title: "🕉️ Mandala Gallery",
-                welcome_text: "Contemplate your mandalas in full screen. Upload your images and navigate between them with arrows or keyboard keys.",
-                upload_btn: "📤 Add Your Mandalas",
-                btn_home: "🏠 Home",
-                btn_dark: "🌙 Mode",
-                btn_add: "➕ Add",
-                btn_delete: "🗑️ Delete",
-                info_navigate: "Use arrows or ← → keys to navigate",
-                upload_title: "📤 Add Mandalas",
-                upload_text: "Drag and drop your images or click to select",
-                choose_files: "Choose files",
-                btn_close: "Close"
-            }
-        };
-
-        let currentLang = 'fr';
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            localStorage.setItem('language', currentLang);
-            applyTranslations();
-        }
-
-        function applyTranslations() {
-            const t = translations[currentLang];
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (t[key]) {
-                    element.textContent = t[key];
+        // Auto-hide cursor après inactivité
+        let cursorTimer;
+        document.addEventListener('mousemove', () => {
+            document.body.style.cursor = 'default';
+            clearTimeout(cursorTimer);
+            cursorTimer = setTimeout(() => {
+                if (document.getElementById('viewer').classList.contains('active')) {
+                    document.body.style.cursor = 'none';
                 }
-            });
-            document.title = t.page_title;
-        }
+            }, 3000);
+        });
     </script>
 </body>
 </html>
