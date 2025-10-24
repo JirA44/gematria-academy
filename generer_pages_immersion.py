@@ -361,6 +361,8 @@ def generer_page_immersion(inscription, niveau):
             font-size: 1.3rem;
         }}
     </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
 </head>
 <body>
     <div class="container">
