@@ -21,8 +21,25 @@ def markdown_to_html(text):
         text = re.sub(r'(<li>.*?</li>)', r'<ul>\1</ul>', text, flags=re.DOTALL)
     return text
 
-def generer_page_immersion(inscription, niveau):
+def generer_page_immersion(inscription, niveau, prev_page=None, next_page=None):
     """Génère une page HTML complète pour une inscription"""
+
+    # Boutons de navigation
+    nav_buttons = '<div style="display: flex; justify-content: space-between; margin: 3rem 0;">'
+
+    if prev_page:
+        nav_buttons += f'<a href="{prev_page}" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">← Précédent</a>'
+    else:
+        nav_buttons += '<div></div>'
+
+    nav_buttons += f'<a href="immersion-inscriptions-index.html" style="background: rgba(100, 100, 150, 0.3); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">📚 Index</a>'
+
+    if next_page:
+        nav_buttons += f'<a href="{next_page}" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">Suivant →</a>'
+    else:
+        nav_buttons += '<div></div>'
+
+    nav_buttons += '</div>'
 
     # Générer les blocs de mots
     mots_html = ""
@@ -370,6 +387,8 @@ def generer_page_immersion(inscription, niveau):
         <h1>𓂀 {inscription['titre']}</h1>
         <p class="subtitle">{inscription['monument']}, {inscription['lieu']}</p>
 
+        {nav_buttons}
+
         <div class="monument-card">
             <div class="context-box">
                 <strong>📍 Contexte historique :</strong><br>
@@ -526,6 +545,9 @@ def generer_page_immersion(inscription, niveau):
             alert('✅ Exercice validé ! Vous avez gagné {inscription['exercice']['points']} points !');
         }}
     </script>
+
+    {nav_buttons}
+
 </body>
 </html>
 """
@@ -554,9 +576,21 @@ def main():
             print(f"  📖 Niveau {niveau} : {len(inscriptions)} inscription(s)")
 
             # Pour chaque inscription
-            for i, inscription in enumerate(inscriptions, 1):
-                # Générer le HTML
-                html = generer_page_immersion(inscription, niveau)
+            for i, inscription in enumerate(inscriptions):
+                # Calculer pages précédente et suivante
+                prev_page = None
+                next_page = None
+
+                if i > 0:
+                    prev_id = inscriptions[i-1]['id']
+                    prev_page = f"{domaine}-immersion-{niveau}-{prev_id}.html"
+
+                if i < len(inscriptions) - 1:
+                    next_id = inscriptions[i+1]['id']
+                    next_page = f"{domaine}-immersion-{niveau}-{next_id}.html"
+
+                # Générer le HTML avec navigation
+                html = generer_page_immersion(inscription, niveau, prev_page, next_page)
 
                 # Nom du fichier
                 filename = f"{domaine}-immersion-{niveau}-{inscription['id']}.html"
@@ -565,7 +599,7 @@ def main():
                 with open(filename, 'w', encoding='utf-8') as f:
                     f.write(html)
 
-                print(f"    ✅ {i}. {filename}")
+                print(f"    ✅ {i+1}. {filename}")
                 total_pages += 1
 
     print("\n" + "=" * 60)
