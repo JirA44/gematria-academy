@@ -174,6 +174,954 @@
             "explication": "𓅭 représente un faucon, symbole du dieu Horus"
           }
         ]
+      },
+      {
+        "id": "formule_offrande_01",
+        "titre": "Formule d'offrande - Version simple",
+        "monument": "Stèle funéraire",
+        "lieu": "Nécropole de Saqqarah",
+        "epoque": "Moyen Empire (XIIe dynastie, vers 1900 av. J.-C.)",
+        "difficulte": 1,
+        "description": "La formule d'offrande funéraire la plus courante dans les tombes égyptiennes",
+        "hieroglyphes": "𓇓𓏏𓊵 𓂞 𓊨𓏏𓉐",
+        "mots": [
+          {
+            "hieroglyph": "𓇓𓏏𓊵",
+            "transliteration": "ḥtp-dỉ",
+            "traduction": "offrande que donne",
+            "explication": "Expression figée signifiant 'offrande royale'"
+          },
+          {
+            "hieroglyph": "𓂞",
+            "transliteration": "nsw",
+            "traduction": "le roi",
+            "explication": "Le pharaon, source de toute offrande légitime"
+          },
+          {
+            "hieroglyph": "𓊨𓏏𓉐",
+            "transliteration": "Wsir",
+            "traduction": "Osiris",
+            "explication": "Dieu des morts et de la résurrection"
+          }
+        ],
+        "traduction_litterale": "Offrande-que-donne roi Osiris",
+        "traduction_fluide": "Offrande que donne le roi à Osiris",
+        "grammaire": "Construction passive avec sujet inversé (roi donne à Osiris pour le défunt)",
+        "contexte_culturel": "Cette formule apparaît sur presque toutes les stèles funéraires. Elle assure au défunt des offrandes éternelles via le roi et Osiris.",
+        "exercice": {
+          "instruction": "Recopiez cette formule qui est la base de toutes les inscriptions funéraires égyptiennes.",
+          "points": 10
+        },
+        "quiz": [
+          {
+            "question": "Que signifie 'ḥtp-dỉ-nsw' ?",
+            "options": ["Le roi est mort", "Offrande que donne le roi", "Temple du roi", "Pyramide royale"],
+            "reponse": 1,
+            "explication": "Cette expression figée signifie 'offrande que donne le roi' et introduit toutes les formules funéraires"
+          },
+          {
+            "question": "Pourquoi le roi donne-t-il des offrandes à Osiris ?",
+            "options": ["Pour honorer Osiris", "Pour que le défunt reçoive des provisions", "Pour construire un temple", "Pour gagner une bataille"],
+            "reponse": 1,
+            "explication": "Le roi fait des offrandes à Osiris qui les redistribue au défunt, assurant sa survie éternelle"
+          },
+          {
+            "question": "Sur quel type de monument trouve-t-on cette formule ?",
+            "options": ["Pyramides seulement", "Toutes les stèles funéraires", "Temples de dieux", "Palais royaux"],
+            "reponse": 1,
+            "explication": "Cette formule apparaît sur presque toutes les stèles funéraires égyptiennes, du simple au plus élaboré"
+          }
+        ]
+      },
+      {
+        "id": "nefertiti_cartouche",
+        "titre": "Cartouche de Néfertiti",
+        "monument": "Temple d'Aton à Akhetaton",
+        "lieu": "Amarna, Égypte",
+        "epoque": "XVIIIe dynastie, règne d'Akhenaton (vers 1350 av. J.-C.)",
+        "difficulte": 2,
+        "description": "Nom de la reine la plus célèbre d'Égypte",
+        "hieroglyphes": "𓆣𓂋𓏏𓇋𓏏𓇋",
+        "mots": [
+          {
+            "hieroglyph": "𓆣𓂋",
+            "transliteration": "nfr",
+            "traduction": "belle, parfaite",
+            "explication": "Adjectif de beauté"
+          },
+          {
+            "hieroglyph": "𓏏𓇋𓏏𓇋",
+            "transliteration": "ỉỉty",
+            "traduction": "est venue",
+            "explication": "Verbe au parfait : 'celle qui est venue'"
+          }
+        ],
+        "traduction_litterale": "Belle est-venue",
+        "traduction_fluide": "La belle est venue (Néfertiti)",
+        "grammaire": "Phrase nominale : Adjectif + Verbe au parfait",
+        "contexte_culturel": "Néfertiti ('la belle est venue') était l'épouse du pharaon Akhenaton. Son buste au musée de Berlin est l'une des œuvres les plus célèbres de l'art égyptien.",
+        "exercice": {
+          "instruction": "Écrivez le nom 'Néfertiti' en hiéroglyphes dans un cartouche.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Que signifie le nom 'Néfertiti' ?",
+            "options": ["Reine puissante", "La belle est venue", "Fille du soleil", "Maîtresse d'Égypte"],
+            "reponse": 1,
+            "explication": "Néfertiti signifie littéralement 'la belle est venue' en égyptien ancien"
+          },
+          {
+            "question": "Qui était le mari de Néfertiti ?",
+            "options": ["Ramsès II", "Akhenaton", "Toutânkhamon", "Thoutmosis III"],
+            "reponse": 1,
+            "explication": "Néfertiti était l'épouse du pharaon Akhenaton, le roi hérétique qui instaura le culte d'Aton"
+          },
+          {
+            "question": "Où se trouve le célèbre buste de Néfertiti ?",
+            "options": ["Musée du Caire", "British Museum", "Neues Museum Berlin", "Louvre"],
+            "reponse": 2,
+            "explication": "Le buste de Néfertiti se trouve au Neues Museum de Berlin depuis 1913"
+          }
+        ]
+      },
+      {
+        "id": "ankh_symbole",
+        "titre": "Le symbole Ankh - Clé de vie",
+        "monument": "Temple de Dendérah",
+        "lieu": "Dendérah, Égypte",
+        "epoque": "Époque ptolémaïque (300 av. J.-C.)",
+        "difficulte": 1,
+        "description": "Le symbole le plus iconique de l'Égypte : l'Ankh, clé de vie",
+        "hieroglyphes": "𓋹",
+        "mots": [
+          {
+            "hieroglyph": "𓋹",
+            "transliteration": "ʿnḫ",
+            "traduction": "vie, vivre",
+            "explication": "Le symbole Ankh représente la vie éternelle, combinant les symboles mâle et femelle"
+          }
+        ],
+        "traduction_litterale": "Vie",
+        "traduction_fluide": "Vie (éternelle)",
+        "grammaire": "Symbole idéogramme représentant un concept abstrait",
+        "contexte_culturel": "L'Ankh est le hiéroglyphe le plus célèbre. Les dieux le tiennent souvent et l'offrent aux pharaons pour leur donner la vie éternelle. Sa forme combine le cercle (éternité) et la croix (matière).",
+        "exercice": {
+          "instruction": "Dessinez l'Ankh et expliquez ses trois composantes : cercle, barre horizontale, barre verticale.",
+          "points": 8
+        },
+        "quiz": [
+          {
+            "question": "Que signifie le symbole Ankh ?",
+            "options": ["Mort", "Vie", "Pouvoir", "Sagesse"],
+            "reponse": 1,
+            "explication": "L'Ankh signifie 'vie', particulièrement la vie éternelle"
+          },
+          {
+            "question": "Qui porte généralement l'Ankh dans l'iconographie ?",
+            "options": ["Les esclaves", "Les dieux et pharaons", "Les animaux", "Les enfants"],
+            "reponse": 1,
+            "explication": "Les dieux tiennent l'Ankh et l'offrent aux pharaons pour leur donner la vie éternelle"
+          },
+          {
+            "question": "Quelle est la forme de l'Ankh ?",
+            "options": ["Cercle simple", "Croix ansée (croix avec cercle)", "Triangle", "Carré"],
+            "reponse": 1,
+            "explication": "L'Ankh est une croix ansée : une croix surmontée d'un cercle"
+          }
+        ]
+      },
+      {
+        "id": "ramses_nom",
+        "titre": "Nom de Ramsès II",
+        "monument": "Temple d'Abou Simbel",
+        "lieu": "Abou Simbel, Nubie",
+        "epoque": "XIXe dynastie (1279-1213 av. J.-C.)",
+        "difficulte": 2,
+        "description": "Le nom du plus grand bâtisseur de l'Égypte ancienne",
+        "hieroglyphes": "𓂋𓏏𓇳𓏺𓇳",
+        "mots": [
+          {
+            "hieroglyph": "𓂋𓏏",
+            "transliteration": "rꜥ",
+            "traduction": "Rê",
+            "explication": "Le dieu soleil Rê"
+          },
+          {
+            "hieroglyph": "𓇳𓏺",
+            "transliteration": "ms",
+            "traduction": "a enfanté",
+            "explication": "Verbe 'enfanter, créer'"
+          },
+          {
+            "hieroglyph": "𓇳",
+            "transliteration": "sw",
+            "traduction": "lui",
+            "explication": "Pronom 'lui, le'"
+          }
+        ],
+        "traduction_litterale": "Rê-a-enfanté-lui",
+        "traduction_fluide": "Ramsès (celui que Rê a enfanté)",
+        "grammaire": "Nom théophore : Dieu + Verbe + Pronom",
+        "contexte_culturel": "Ramsès II régna 66 ans et construisit plus de monuments que tout autre pharaon. Son nom signifie 'Rê l'a enfanté', affirmant son origine divine.",
+        "exercice": {
+          "instruction": "Identifiez les trois éléments du nom : dieu, action, bénéficiaire.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Que signifie 'Ramsès' ?",
+            "options": ["Roi du soleil", "Rê l'a enfanté", "Fils de la lune", "Guerrier divin"],
+            "reponse": 1,
+            "explication": "Ramsès signifie 'Rê (dieu soleil) l'a enfanté'"
+          },
+          {
+            "question": "Combien de temps Ramsès II a-t-il régné ?",
+            "options": ["10 ans", "30 ans", "66 ans", "100 ans"],
+            "reponse": 2,
+            "explication": "Ramsès II régna 66 ans, l'un des règnes les plus longs de l'histoire égyptienne"
+          },
+          {
+            "question": "Quel est le monument le plus célèbre de Ramsès II ?",
+            "options": ["Grande Pyramide", "Abou Simbel", "Sphinx", "Temple de Karnak"],
+            "reponse": 1,
+            "explication": "Abou Simbel avec ses 4 colosses de 20 mètres est le monument le plus emblématique de Ramsès II"
+          }
+        ]
+      },
+      {
+        "id": "horus_nom",
+        "titre": "Le dieu Horus",
+        "monument": "Temple d'Edfou",
+        "lieu": "Edfou, Haute-Égypte",
+        "epoque": "Époque ptolémaïque (237-57 av. J.-C.)",
+        "difficulte": 1,
+        "description": "Le nom du dieu faucon, protecteur des pharaons",
+        "hieroglyphes": "𓅃𓂋𓅱",
+        "mots": [
+          {
+            "hieroglyph": "𓅃",
+            "transliteration": "Ḥr",
+            "traduction": "Horus",
+            "explication": "Le faucon représente directement le dieu Horus"
+          },
+          {
+            "hieroglyph": "𓂋𓅱",
+            "transliteration": "rw",
+            "traduction": "(complément phonétique)",
+            "explication": "Compléments phonétiques précisant la prononciation"
+          }
+        ],
+        "traduction_litterale": "Horus",
+        "traduction_fluide": "Horus (le Lointain)",
+        "grammaire": "Nom divin avec déterminatif (faucon) + compléments phonétiques",
+        "contexte_culturel": "Horus est le dieu faucon, fils d'Osiris et Isis. Chaque pharaon vivant était considéré comme l'incarnation d'Horus sur Terre.",
+        "exercice": {
+          "instruction": "Dessinez le hiéroglyphe du faucon et expliquez pourquoi il représente Horus.",
+          "points": 10
+        },
+        "quiz": [
+          {
+            "question": "Quel animal représente Horus ?",
+            "options": ["Lion", "Faucon", "Cobra", "Scarabée"],
+            "reponse": 1,
+            "explication": "Horus est représenté par un faucon, symbole de la royauté et du ciel"
+          },
+          {
+            "question": "Qui sont les parents d'Horus ?",
+            "options": ["Rê et Nout", "Osiris et Isis", "Amon et Mout", "Geb et Nout"],
+            "reponse": 1,
+            "explication": "Horus est le fils d'Osiris (assassiné par Seth) et d'Isis"
+          },
+          {
+            "question": "Quel est le lien entre Horus et le pharaon ?",
+            "options": ["Aucun", "Le pharaon prie Horus", "Le pharaon EST Horus incarné", "Horus protège le pharaon"],
+            "reponse": 2,
+            "explication": "Le pharaon vivant était considéré comme l'incarnation terrestre du dieu Horus"
+          }
+        ]
+      },
+      {
+        "id": "isis_nom",
+        "titre": "La déesse Isis",
+        "monument": "Temple de Philae",
+        "lieu": "Île de Philae, Assouan",
+        "epoque": "Époque ptolémaïque (IIIe siècle av. J.-C.)",
+        "difficulte": 1,
+        "description": "La grande déesse-mère, magicienne suprême",
+        "hieroglyphes": "𓊨𓏏𓆇",
+        "mots": [
+          {
+            "hieroglyph": "𓊨𓏏",
+            "transliteration": "ꜣst",
+            "traduction": "trône",
+            "explication": "Le hiéroglyphe du trône qui forme le nom d'Isis"
+          },
+          {
+            "hieroglyph": "𓆇",
+            "transliteration": "(déterminatif)",
+            "traduction": "(déesse)",
+            "explication": "Déterminatif féminin divin"
+          }
+        ],
+        "traduction_litterale": "Trône (Isis)",
+        "traduction_fluide": "Isis (celle du trône)",
+        "grammaire": "Nom divin écrit idéographiquement avec le symbole du trône",
+        "contexte_culturel": "Isis est la déesse-mère par excellence. Magicienne puissante, elle ressuscita Osiris et protégea Horus. Son culte se répandit dans tout l'Empire romain.",
+        "exercice": {
+          "instruction": "Dessinez le symbole du trône qui représente Isis et expliquez cette symbolique.",
+          "points": 10
+        },
+        "quiz": [
+          {
+            "question": "Quel symbole représente la déesse Isis ?",
+            "options": ["Plume", "Trône", "Vautour", "Scarabée"],
+            "reponse": 1,
+            "explication": "Isis est représentée par le hiéroglyphe du trône, symbolisant son rôle de reine des dieux"
+          },
+          {
+            "question": "Quel est le principal pouvoir d'Isis ?",
+            "options": ["Guerre", "Magie", "Agriculture", "Navigation"],
+            "reponse": 1,
+            "explication": "Isis était la plus grande magicienne, capable même de ressusciter les morts"
+          },
+          {
+            "question": "Qui Isis a-t-elle ressuscité ?",
+            "options": ["Horus", "Osiris", "Rê", "Anubis"],
+            "reponse": 1,
+            "explication": "Isis ressuscita son mari Osiris après qu'il fut assassiné par Seth"
+          }
+        ]
+      },
+      {
+        "id": "scarabee_khepri",
+        "titre": "Le scarabée Khépri",
+        "monument": "Temple de Karnak",
+        "lieu": "Louxor, Égypte",
+        "epoque": "Nouvel Empire (vers 1500 av. J.-C.)",
+        "difficulte": 1,
+        "description": "Le scarabée sacré symbolisant le soleil levant",
+        "hieroglyphes": "𓆣𓂋𓂋",
+        "mots": [
+          {
+            "hieroglyph": "𓆣",
+            "transliteration": "ḫpr",
+            "traduction": "devenir, se transformer",
+            "explication": "Le scarabée représente la transformation et le devenir"
+          },
+          {
+            "hieroglyph": "𓂋𓂋",
+            "transliteration": "r-r",
+            "traduction": "(compléments phonétiques)",
+            "explication": "Compléments confirmant la prononciation 'kheper'"
+          }
+        ],
+        "traduction_litterale": "Celui qui devient",
+        "traduction_fluide": "Khépri (le scarabée solaire)",
+        "grammaire": "Nom divin basé sur le verbe 'kheper' (devenir, se transformer)",
+        "contexte_culturel": "Khépri est le dieu-scarabée du soleil levant. Comme le scarabée roule sa boule de bouse, Khépri roule le soleil dans le ciel. Le scarabée symbolise aussi la renaissance.",
+        "exercice": {
+          "instruction": "Dessinez le scarabée hiéroglyphique et expliquez pourquoi il symbolise le soleil levant.",
+          "points": 10
+        },
+        "quiz": [
+          {
+            "question": "Que représente le dieu Khépri ?",
+            "options": ["Soleil couchant", "Soleil de midi", "Soleil levant", "Lune"],
+            "reponse": 2,
+            "explication": "Khépri représente le soleil levant, symbole de renaissance quotidienne"
+          },
+          {
+            "question": "Quel animal représente Khépri ?",
+            "options": ["Faucon", "Scarabée", "Taureau", "Serpent"],
+            "reponse": 1,
+            "explication": "Le scarabée bousier représente Khépri, roulant le soleil comme sa boule de bouse"
+          },
+          {
+            "question": "Que signifie le verbe 'kheper' ?",
+            "options": ["Mourir", "Devenir, se transformer", "Voler", "Nager"],
+            "reponse": 1,
+            "explication": "Kheper signifie 'devenir, se transformer', symbolisant la métamorphose perpétuelle"
+          }
+        ]
+      },
+      {
+        "id": "oeil_oudjat",
+        "titre": "L'Œil Oudjat d'Horus",
+        "monument": "Amulette funéraire",
+        "lieu": "Diverses tombes égyptiennes",
+        "epoque": "Toutes périodes (Ancien au Nouvel Empire)",
+        "difficulte": 1,
+        "description": "L'œil magique protecteur le plus puissant d'Égypte",
+        "hieroglyphes": "𓂀",
+        "mots": [
+          {
+            "hieroglyph": "𓂀",
+            "transliteration": "wḏꜣt",
+            "traduction": "Oudjat (œil complet, intact)",
+            "explication": "L'œil d'Horus restauré par Thot après le combat contre Seth"
+          }
+        ],
+        "traduction_litterale": "Œil intact",
+        "traduction_fluide": "Oudjat (l'œil d'Horus restauré)",
+        "grammaire": "Symbole idéogramme complexe représentant un concept magique",
+        "contexte_culturel": "L'Œil Oudjat est l'amulette la plus puissante d'Égypte. Après qu'Horus perdit son œil en combattant Seth, Thot le restaura magiquement. L'œil symbolise protection, guérison, intégrité.",
+        "exercice": {
+          "instruction": "Dessinez l'Œil Oudjat avec ses détails : sourcil, pupille, larme, spirale.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Que signifie 'Oudjat' ?",
+            "options": ["Œil blessé", "Œil intact/complet", "Œil fermé", "Œil aveugle"],
+            "reponse": 1,
+            "explication": "Oudjat signifie 'intact, complet', car l'œil fut restauré après avoir été arraché"
+          },
+          {
+            "question": "Qui a restauré l'œil d'Horus ?",
+            "options": ["Rê", "Thot", "Isis", "Osiris"],
+            "reponse": 1,
+            "explication": "Thot, dieu de la magie et de la sagesse, restaura magiquement l'œil d'Horus"
+          },
+          {
+            "question": "Quelle est la principale fonction de l'Œil Oudjat ?",
+            "options": ["Décoration", "Protection magique", "Écriture", "Monnaie"],
+            "reponse": 1,
+            "explication": "L'Œil Oudjat est une amulette de protection magique contre le mal"
+          }
+        ]
+      },
+      {
+        "id": "formule_offrande_02",
+        "titre": "Formule d'offrande complète - Pain et bière",
+        "monument": "Stèle funéraire d'un noble",
+        "lieu": "Thèbes, nécropole",
+        "epoque": "Nouvel Empire (XVIIIe dynastie)",
+        "difficulte": 2,
+        "description": "Formule garantissant pain et bière au défunt pour l'éternité",
+        "hieroglyphes": "𓏏𓈖𓏥 𓍯𓏏𓏥",
+        "mots": [
+          {
+            "hieroglyph": "𓏏𓈖𓏥",
+            "transliteration": "t",
+            "traduction": "pain",
+            "explication": "Hiéroglyphe représentant un pain (aliment de base)"
+          },
+          {
+            "hieroglyph": "𓍯𓏏𓏥",
+            "transliteration": "ḥnḳt",
+            "traduction": "bière",
+            "explication": "La bière, boisson quotidienne des Égyptiens"
+          }
+        ],
+        "traduction_litterale": "Pain bière",
+        "traduction_fluide": "Pain et bière (offrandes funéraires)",
+        "grammaire": "Liste d'offrandes, structure la plus simple : Nom + Nom",
+        "contexte_culturel": "Pain et bière étaient les deux aliments de base en Égypte. Cette formule assure que le défunt ne souffrira jamais de la faim ou de la soif dans l'au-delà.",
+        "exercice": {
+          "instruction": "Recopiez les hiéroglyphes du pain et de la bière, éléments essentiels de toute offrande.",
+          "points": 10
+        },
+        "quiz": [
+          {
+            "question": "Quelles sont les deux offrandes funéraires de base ?",
+            "options": ["Or et argent", "Pain et bière", "Viande et vin", "Encens et myrrhe"],
+            "reponse": 1,
+            "explication": "Pain et bière étaient les offrandes funéraires minimales, nourriture de base des vivants et des morts"
+          },
+          {
+            "question": "Pourquoi offrir de la nourriture aux morts ?",
+            "options": ["Décoration", "Assurer leur survie éternelle", "Nourrir les dieux", "Tradition sans raison"],
+            "reponse": 1,
+            "explication": "Les Égyptiens croyaient que le défunt avait besoin de nourriture pour survivre éternellement dans l'au-delà"
+          },
+          {
+            "question": "Que représente le hiéroglyphe 𓏏 ?",
+            "options": ["Bière", "Eau", "Pain", "Vin"],
+            "reponse": 2,
+            "explication": "𓏏 représente un pain, l'aliment de base en Égypte ancienne"
+          }
+        ]
+      },
+      {
+        "id": "pyramide_simple",
+        "titre": "Le mot 'Pyramide'",
+        "monument": "Pyramide de Khéops",
+        "lieu": "Gizeh, Égypte",
+        "epoque": "IVe dynastie (vers 2560 av. J.-C.)",
+        "difficulte": 1,
+        "description": "Comment les Égyptiens appelaient leurs pyramides",
+        "hieroglyphes": "𓉐",
+        "mots": [
+          {
+            "hieroglyph": "𓉐",
+            "transliteration": "mr",
+            "traduction": "pyramide",
+            "explication": "Le hiéroglyphe représente une pyramide vue de profil"
+          }
+        ],
+        "traduction_litterale": "Pyramide",
+        "traduction_fluide": "Mer (pyramide)",
+        "grammaire": "Idéogramme représentant directement l'objet",
+        "contexte_culturel": "Les Égyptiens appelaient la pyramide 'mer'. Le pyramidion au sommet (pierre pointue) s'appelait 'benben', symbole du monticule primordial de la création.",
+        "exercice": {
+          "instruction": "Dessinez le hiéroglyphe de la pyramide et comparez-le à une vraie pyramide vue de côté.",
+          "points": 8
+        },
+        "quiz": [
+          {
+            "question": "Comment les Égyptiens appelaient-ils une pyramide ?",
+            "options": ["Benben", "Mer", "Djed", "Ankh"],
+            "reponse": 1,
+            "explication": "Les Égyptiens appelaient une pyramide 'mer'"
+          },
+          {
+            "question": "Quelle est la plus grande pyramide d'Égypte ?",
+            "options": ["Khéphren", "Mykérinos", "Khéops", "Djéser"],
+            "reponse": 2,
+            "explication": "La pyramide de Khéops (Grande Pyramide) est la plus grande, mesurant 146 mètres à l'origine"
+          },
+          {
+            "question": "Que représente le pyramidion (pierre du sommet) ?",
+            "options": ["Le pharaon", "Le benben (monticule primordial)", "Le soleil", "La lune"],
+            "reponse": 1,
+            "explication": "Le pyramidion représente le benben, le monticule primordial d'où jaillit la création"
+          }
+        ]
+      },
+      {
+        "id": "thot_nom",
+        "titre": "Le dieu Thot",
+        "monument": "Temple d'Hermopolis",
+        "lieu": "Hermopolis Magna, Moyenne-Égypte",
+        "epoque": "Nouvel Empire (vers 1400 av. J.-C.)",
+        "difficulte": 2,
+        "description": "Le dieu de la sagesse, de l'écriture et de la magie",
+        "hieroglyphes": "𓅝𓏏𓏏𓅆",
+        "mots": [
+          {
+            "hieroglyph": "𓅝",
+            "transliteration": "Ḏḥwty",
+            "traduction": "Thot",
+            "explication": "L'ibis représente le dieu Thot"
+          },
+          {
+            "hieroglyph": "𓏏𓏏",
+            "transliteration": "ty",
+            "traduction": "(compléments phonétiques)",
+            "explication": "Précisent la prononciation du nom"
+          },
+          {
+            "hieroglyph": "𓅆",
+            "transliteration": "(déterminatif)",
+            "traduction": "(dieu)",
+            "explication": "Déterminatif divin"
+          }
+        ],
+        "traduction_litterale": "Thot",
+        "traduction_fluide": "Thot (le deux fois grand)",
+        "grammaire": "Nom divin avec idéogramme (ibis) + phonétiques + déterminatif",
+        "contexte_culturel": "Thot est le dieu de la sagesse, inventeur des hiéroglyphes, scribe des dieux, maître de la magie et du calcul. Les Grecs l'identifièrent à Hermès (d'où Hermopolis).",
+        "exercice": {
+          "instruction": "Dessinez l'ibis (oiseau de Thot) et listez ses 5 domaines : écriture, magie, calcul, sagesse, médecine.",
+          "points": 15
+        },
+        "quiz": [
+          {
+            "question": "Quel animal représente Thot ?",
+            "options": ["Faucon", "Ibis", "Chat", "Crocodile"],
+            "reponse": 1,
+            "explication": "L'ibis (oiseau au long bec) représente Thot, parfois aussi le babouin"
+          },
+          {
+            "question": "Qu'a inventé le dieu Thot selon les Égyptiens ?",
+            "options": ["La roue", "Les hiéroglyphes", "Le bronze", "La navigation"],
+            "reponse": 1,
+            "explication": "Thot était considéré comme l'inventeur de l'écriture hiéroglyphique et de la sagesse"
+          },
+          {
+            "question": "Quel dieu grec correspond à Thot ?",
+            "options": ["Zeus", "Apollon", "Hermès", "Poséidon"],
+            "reponse": 2,
+            "explication": "Les Grecs identifièrent Thot à Hermès, tous deux messagers divins et inventeurs de l'écriture"
+          }
+        ]
+      },
+      {
+        "id": "hathor_nom",
+        "titre": "La déesse Hathor",
+        "monument": "Temple de Dendérah",
+        "lieu": "Dendérah, Haute-Égypte",
+        "epoque": "Époque ptolémaïque (IIe siècle av. J.-C.)",
+        "difficulte": 2,
+        "description": "La déesse de l'amour, de la joie et de la musique",
+        "hieroglyphes": "𓉡𓏏𓁐",
+        "mots": [
+          {
+            "hieroglyph": "𓉡",
+            "transliteration": "ḥwt",
+            "traduction": "maison, demeure",
+            "explication": "Le hiéroglyphe de la maison/enceinte"
+          },
+          {
+            "hieroglyph": "𓏏",
+            "transliteration": "t",
+            "traduction": "(marque féminine)",
+            "explication": "Désinence féminine"
+          },
+          {
+            "hieroglyph": "𓁐",
+            "transliteration": "Ḥr",
+            "traduction": "Horus",
+            "explication": "Le faucon Horus"
+          }
+        ],
+        "traduction_litterale": "Maison-de-Horus",
+        "traduction_fluide": "Hathor (la maison d'Horus)",
+        "grammaire": "Nom composé : Nom (maison) + Génitif (de) + Nom (Horus)",
+        "contexte_culturel": "Hathor ('maison d'Horus') est la déesse de l'amour, de la joie, de la danse et de la musique. Vache céleste, elle protège le pharaon et accueille les morts. Son temple de Dendérah est magnifique.",
+        "exercice": {
+          "instruction": "Décomposez le nom Hathor en ses trois parties : 'Maison' + féminin + 'Horus'.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Que signifie le nom 'Hathor' ?",
+            "options": ["Reine du ciel", "Maison d'Horus", "Mère des dieux", "Étoile brillante"],
+            "reponse": 1,
+            "explication": "Hathor signifie 'maison d'Horus', car le ciel (son domaine) est la demeure d'Horus"
+          },
+          {
+            "question": "Quel animal représente Hathor ?",
+            "options": ["Lionne", "Vache", "Chatte", "Hippopotame"],
+            "reponse": 1,
+            "explication": "Hathor est représentée comme une vache céleste ou une femme à oreilles de vache"
+          },
+          {
+            "question": "De quoi Hathor est-elle la déesse ?",
+            "options": ["Guerre", "Amour et joie", "Mort", "Sagesse"],
+            "reponse": 1,
+            "explication": "Hathor est la déesse de l'amour, de la joie, de la musique, de la danse et de la beauté"
+          }
+        ]
+      },
+      {
+        "id": "anubis_nom",
+        "titre": "Le dieu Anubis",
+        "monument": "Tombe de Séthi Ier",
+        "lieu": "Vallée des Rois, Louxor",
+        "epoque": "XIXe dynastie (vers 1290 av. J.-C.)",
+        "difficulte": 2,
+        "description": "Le dieu chacal de la momification et gardien des nécropoles",
+        "hieroglyphes": "𓇋𓈖𓊪𓅱𓃣",
+        "mots": [
+          {
+            "hieroglyph": "𓇋𓈖𓊪",
+            "transliteration": "Inpw",
+            "traduction": "Anubis",
+            "explication": "Phonétiques formant le nom 'Inpou' (Anubis)"
+          },
+          {
+            "hieroglyph": "𓅱",
+            "transliteration": "w",
+            "traduction": "(complément)",
+            "explication": "Complément phonétique"
+          },
+          {
+            "hieroglyph": "𓃣",
+            "transliteration": "(déterminatif)",
+            "traduction": "(chacal couché)",
+            "explication": "Le chacal couché sur un piédestal, symbole d'Anubis"
+          }
+        ],
+        "traduction_litterale": "Anubis",
+        "traduction_fluide": "Anubis (Inpou en égyptien)",
+        "grammaire": "Nom divin : Phonétiques + Déterminatif animal",
+        "contexte_culturel": "Anubis est le dieu chacal de la momification et de la nécropole. Il guide les morts vers l'au-delà et préside à la pesée du cœur. Patron des embaumeurs.",
+        "exercice": {
+          "instruction": "Dessinez le chacal couché d'Anubis et expliquez pourquoi cet animal fut choisi.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Quel animal représente Anubis ?",
+            "options": ["Loup", "Chacal", "Chien", "Renard"],
+            "reponse": 1,
+            "explication": "Anubis est représenté comme un chacal noir ou un homme à tête de chacal"
+          },
+          {
+            "question": "Quel est le rôle principal d'Anubis ?",
+            "options": ["Créer le monde", "Momification et protection des morts", "Faire lever le soleil", "Punir les vivants"],
+            "reponse": 1,
+            "explication": "Anubis est le dieu de la momification, protecteur des nécropoles et guide des morts"
+          },
+          {
+            "question": "Dans quel rituel funéraire Anubis intervient-il ?",
+            "options": ["Construction de la pyramide", "Pesée du cœur", "Couronnement", "Mariage"],
+            "reponse": 1,
+            "explication": "Anubis préside à la pesée du cœur lors du jugement des morts"
+          }
+        ]
+      },
+      {
+        "id": "bastet_nom",
+        "titre": "La déesse Bastet",
+        "monument": "Temple de Bubastis",
+        "lieu": "Bubastis (Tell Basta), Delta du Nil",
+        "epoque": "Basse Époque (664-332 av. J.-C.)",
+        "difficulte": 2,
+        "description": "La déesse chatte protectrice du foyer",
+        "hieroglyphes": "𓃀𓏏𓏏𓏤𓏏𓏏𓏏𓏏𓏏𓏏",
+        "mots": [
+          {
+            "hieroglyph": "𓃀𓏏𓏏",
+            "transliteration": "Bꜣstt",
+            "traduction": "Bastet",
+            "explication": "Phonétiques du nom Bastet"
+          },
+          {
+            "hieroglyph": "𓏤𓏏𓏏𓏏𓏏𓏏𓏏",
+            "transliteration": "(déterminatif)",
+            "traduction": "(chatte/lionne)",
+            "explication": "Déterminatif félin"
+          }
+        ],
+        "traduction_litterale": "Bastet",
+        "traduction_fluide": "Bastet (la chatte de Bubastis)",
+        "grammaire": "Nom divin : Phonétiques + Déterminatif félin + Marque féminine",
+        "contexte_culturel": "Bastet est la déesse chatte, protectrice du foyer, de la fertilité et de la joie. À l'origine lionne guerrière, elle devint chatte pacifique. Les chats étaient sacrés en Égypte.",
+        "exercice": {
+          "instruction": "Expliquez la transformation de Bastet de lionne guerrière à chatte domestique.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Quel animal représente Bastet ?",
+            "options": ["Lionne seulement", "Chatte (ou lionne)", "Vache", "Chienne"],
+            "reponse": 1,
+            "explication": "Bastet est représentée comme une chatte (forme pacifique) ou une lionne (forme guerrière)"
+          },
+          {
+            "question": "De quoi Bastet est-elle la déesse ?",
+            "options": ["Guerre", "Foyer et protection", "Mort", "Sagesse"],
+            "reponse": 1,
+            "explication": "Bastet est la déesse protectrice du foyer, de la fertilité, de la joie et des chats"
+          },
+          {
+            "question": "Quelle ville était le centre du culte de Bastet ?",
+            "options": ["Thèbes", "Memphis", "Bubastis", "Héliopolis"],
+            "reponse": 2,
+            "explication": "Bubastis dans le Delta était le centre du culte de Bastet, avec d'immenses célébrations annuelles"
+          }
+        ]
+      },
+      {
+        "id": "ma_at_plume",
+        "titre": "La plume de Maât",
+        "monument": "Papyrus du Livre des Morts",
+        "lieu": "Diverses tombes thébaines",
+        "epoque": "Nouvel Empire (XVIIIe-XXe dynasties)",
+        "difficulte": 1,
+        "description": "La plume d'autruche symbole de vérité et justice",
+        "hieroglyphes": "𓆄",
+        "mots": [
+          {
+            "hieroglyph": "𓆄",
+            "transliteration": "mꜣꜥt",
+            "traduction": "vérité, justice, ordre cosmique",
+            "explication": "La plume d'autruche représente Maât, concept fondamental égyptien"
+          }
+        ],
+        "traduction_litterale": "Maât (vérité)",
+        "traduction_fluide": "Maât (vérité, justice, ordre cosmique)",
+        "grammaire": "Idéogramme représentant directement le concept abstrait",
+        "contexte_culturel": "Maât est le concept central de la civilisation égyptienne : vérité, justice, ordre cosmique. Lors de la pesée du cœur, celui-ci doit être plus léger que la plume de Maât pour accéder à l'au-delà.",
+        "exercice": {
+          "instruction": "Dessinez la plume de Maât et expliquez son rôle dans la pesée du cœur.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Que représente la plume de Maât ?",
+            "options": ["Beauté", "Vérité et justice", "Richesse", "Pouvoir"],
+            "reponse": 1,
+            "explication": "La plume de Maât représente la vérité, la justice et l'ordre cosmique"
+          },
+          {
+            "question": "Comment utilise-t-on la plume dans le jugement des morts ?",
+            "options": ["Décoration", "Pesée contre le cœur du défunt", "Écriture", "Offrande"],
+            "reponse": 1,
+            "explication": "Le cœur du défunt est pesé contre la plume de Maât. S'il est plus léger, le défunt est justifié"
+          },
+          {
+            "question": "Si le cœur est plus lourd que la plume, que se passe-t-il ?",
+            "options": ["Paradis assuré", "Dévoré par Ammout", "Réincarnation", "Momification"],
+            "reponse": 1,
+            "explication": "Si le cœur est alourdi par les péchés, le monstre Ammout (mi-crocodile, mi-lion, mi-hippopotame) le dévore"
+          }
+        ]
+      },
+      {
+        "id": "ptah_nom",
+        "titre": "Le dieu Ptah",
+        "monument": "Temple de Ptah à Memphis",
+        "lieu": "Memphis, Basse-Égypte",
+        "epoque": "Toutes périodes (Memphis capitale de l'Ancien Empire)",
+        "difficulte": 2,
+        "description": "Le dieu créateur, patron des artisans",
+        "hieroglyphes": "𓊪𓏏𓎛𓁰",
+        "mots": [
+          {
+            "hieroglyph": "𓊪𓏏𓎛",
+            "transliteration": "Ptḥ",
+            "traduction": "Ptah",
+            "explication": "Phonétiques formant le nom Ptah"
+          },
+          {
+            "hieroglyph": "𓁰",
+            "transliteration": "(déterminatif)",
+            "traduction": "(dieu)",
+            "explication": "Déterminatif du dieu momiforme"
+          }
+        ],
+        "traduction_litterale": "Ptah",
+        "traduction_fluide": "Ptah (l'Ouvreur, le Créateur)",
+        "grammaire": "Nom divin : Phonétiques + Déterminatif divin",
+        "contexte_culturel": "Ptah est le dieu créateur de Memphis, qui créa le monde par la parole et la pensée. Patron des artisans, sculpteurs et bâtisseurs. Toujours représenté momiforme tenant un sceptre.",
+        "exercice": {
+          "instruction": "Recherchez comment Ptah créa le monde (par la parole) et comparez avec d'autres mythes de création.",
+          "points": 15
+        },
+        "quiz": [
+          {
+            "question": "Quelle est la ville sacrée de Ptah ?",
+            "options": ["Thèbes", "Memphis", "Héliopolis", "Abydos"],
+            "reponse": 1,
+            "explication": "Memphis était la ville sacrée de Ptah, capitale de l'Ancien Empire"
+          },
+          {
+            "question": "De quelle profession Ptah est-il le patron ?",
+            "options": ["Guerriers", "Artisans et bâtisseurs", "Agriculteurs", "Scribes"],
+            "reponse": 1,
+            "explication": "Ptah est le patron des artisans, sculpteurs, orfèvres et architectes"
+          },
+          {
+            "question": "Comment Ptah créa-t-il le monde ?",
+            "options": ["Par combat", "Par la parole et la pensée", "Par magie", "Par transformation"],
+            "reponse": 1,
+            "explication": "Ptah créa le monde en le concevant dans son cœur (pensée) et en le prononçant (parole)"
+          }
+        ]
+      },
+      {
+        "id": "sekhmet_nom",
+        "titre": "La déesse Sekhmet",
+        "monument": "Temple de Karnak - Chapelle de Sekhmet",
+        "lieu": "Louxor, Égypte",
+        "epoque": "Nouvel Empire (XVIIIe dynastie)",
+        "difficulte": 2,
+        "description": "La lionne guerrière, déesse de la destruction et de la guérison",
+        "hieroglyphes": "𓌂𓐍𓏏𓏏𓏤",
+        "mots": [
+          {
+            "hieroglyph": "𓌂𓐍𓏏",
+            "transliteration": "sḫmt",
+            "traduction": "la Puissante",
+            "explication": "Sekhmet signifie littéralement 'la Puissante'"
+          },
+          {
+            "hieroglyph": "𓏏",
+            "transliteration": "t",
+            "traduction": "(féminin)",
+            "explication": "Marque du féminin"
+          },
+          {
+            "hieroglyph": "𓏤",
+            "transliteration": "(déterminatif)",
+            "traduction": "(déesse lionne)",
+            "explication": "Déterminatif de la déesse lionne"
+          }
+        ],
+        "traduction_litterale": "La-Puissante",
+        "traduction_fluide": "Sekhmet (la Puissante)",
+        "grammaire": "Adjectif substantivé au féminin + Déterminatif divin",
+        "contexte_culturel": "Sekhmet est la déesse lionne de la guerre et des épidémies, mais aussi de la guérison. Épouse de Ptah, mère de Nefertoum. Quand Rê l'envoya punir l'humanité, elle faillit exterminer tous les humains.",
+        "exercice": {
+          "instruction": "Racontez le mythe de Sekhmet assoiffée de sang et comment elle fut apaisée par de la bière rouge.",
+          "points": 15
+        },
+        "quiz": [
+          {
+            "question": "Que signifie le nom 'Sekhmet' ?",
+            "options": ["La Belle", "La Puissante", "La Sage", "La Douce"],
+            "reponse": 1,
+            "explication": "Sekhmet signifie 'la Puissante', reflétant sa nature de guerrière redoutable"
+          },
+          {
+            "question": "Quel animal représente Sekhmet ?",
+            "options": ["Chatte", "Lionne", "Vache", "Hippopotame"],
+            "reponse": 1,
+            "explication": "Sekhmet est représentée comme une femme à tête de lionne ou une lionne"
+          },
+          {
+            "question": "Comment Sekhmet fut-elle apaisée après avoir failli détruire l'humanité ?",
+            "options": ["Sacrifice", "Bière rouge ressemblant au sang", "Prières", "Combat"],
+            "reponse": 1,
+            "explication": "On l'a trompée avec de la bière teintée en rouge. Croyant que c'était du sang, elle en but tant qu'elle s'endormit"
+          }
+        ]
+      },
+      {
+        "id": "sobek_nom",
+        "titre": "Le dieu Sobek",
+        "monument": "Temple de Kôm Ombo",
+        "lieu": "Kôm Ombo, Haute-Égypte",
+        "epoque": "Époque ptolémaïque (IIe siècle av. J.-C.)",
+        "difficulte": 2,
+        "description": "Le dieu crocodile du Nil, fertilité et protection",
+        "hieroglyphes": "𓊃𓃀𓎡𓆌",
+        "mots": [
+          {
+            "hieroglyph": "𓊃𓃀𓎡",
+            "transliteration": "Sbk",
+            "traduction": "Sobek",
+            "explication": "Phonétiques du nom Sobek"
+          },
+          {
+            "hieroglyph": "𓆌",
+            "transliteration": "(déterminatif)",
+            "traduction": "(crocodile)",
+            "explication": "Le crocodile, animal de Sobek"
+          }
+        ],
+        "traduction_litterale": "Sobek",
+        "traduction_fluide": "Sobek (le crocodile du Nil)",
+        "grammaire": "Nom divin : Phonétiques + Déterminatif animal",
+        "contexte_culturel": "Sobek est le dieu crocodile du Nil, maître des eaux et de la fertilité. Son temple de Kôm Ombo est unique car partagé avec Horus. Des crocodiles sacrés étaient élevés dans des bassins de temples.",
+        "exercice": {
+          "instruction": "Expliquez pourquoi les Égyptiens vénéraient un animal aussi dangereux que le crocodile.",
+          "points": 12
+        },
+        "quiz": [
+          {
+            "question": "Quel animal représente Sobek ?",
+            "options": ["Serpent", "Crocodile", "Hippopotame", "Lézard"],
+            "reponse": 1,
+            "explication": "Sobek est représenté comme un crocodile ou un homme à tête de crocodile"
+          },
+          {
+            "question": "De quoi Sobek est-il le dieu ?",
+            "options": ["Désert", "Nil et fertilité", "Guerre", "Mort"],
+            "reponse": 1,
+            "explication": "Sobek est le dieu du Nil, des eaux, de la fertilité et de la protection"
+          },
+          {
+            "question": "Quel temple est partagé entre Sobek et Horus ?",
+            "options": ["Karnak", "Kôm Ombo", "Abou Simbel", "Louxor"],
+            "reponse": 1,
+            "explication": "Le temple de Kôm Ombo est unique : moitié dédiée à Sobek, moitié à Horus"
+          }
+        ]
       }
     ],
     "intermediaire": [
@@ -185,7 +1133,7 @@
         "epoque": "XIXe dynastie (vers 1250 av. J.-C.)",
         "difficulte": 5,
         "description": "La célèbre 'Confession négative' devant le tribunal d'Osiris",
-        "hieroglyphes": "𓇋𓈖𓎡 𓂋𓂝𓊪𓅱 𓅓𓂝𓄿𓏏 𓅨𓂋𓏭",
+        "hieroglyphes": "𓇋𓈖𓎡 𓂋𓂝𓊪𓅱 𓅓𓂝𓄿𓏏",
         "mots": [
           {
             "hieroglyph": "𓇋𓈖𓎡",
@@ -204,15 +1152,9 @@
             "transliteration": "maat",
             "traduction": "vérité, justice",
             "explication": "Concept fondamental de la civilisation égyptienne"
-          },
-          {
-            "hieroglyph": "𓅨𓂋𓏭",
-            "transliteration": "kher",
-            "traduction": "sous, auprès de",
-            "explication": "Préposition de lieu"
           }
         ],
-        "traduction_litterale": "Je-suis connaisseur vérité auprès-de",
+        "traduction_litterale": "Je-suis connaisseur vérité",
         "traduction_fluide": "Je suis celui qui connaît la vérité/justice",
         "grammaire": "Phrase nominale avec participe substantivé",
         "contexte_culturel": "Le chapitre 125 décrit la psychostasie (pesée du cœur). Le défunt doit prouver qu'il a vécu selon Maât pour accéder à l'au-delà.",
