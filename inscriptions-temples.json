@@ -15,19 +15,22 @@
             "hieroglyph": "𓇳𓁧𓎟",
             "transliteration": "nṯr",
             "traduction": "dieu",
-            "explication": "Combinaison du signe du soleil (𓇳) et du signe du dieu (𓁧𓎟)"
+            "explication": "Combinaison du signe du soleil (𓇳) et du signe du dieu (𓁧𓎟)",
+            "pronunciation": "NÉ-tcher"
           },
           {
             "hieroglyph": "𓊪𓂋",
             "transliteration": "pr",
             "traduction": "maison, temple",
-            "explication": "Le signe de la maison (𓊪𓂋) désigne ici un temple"
+            "explication": "Le signe de la maison (𓊪𓂋) désigne ici un temple",
+            "pronunciation": "pèr"
           },
           {
             "hieroglyph": "𓆣𓂋",
             "transliteration": "nfr",
             "traduction": "beau, parfait",
-            "explication": "Adjectif qualificatif, placé après le nom"
+            "explication": "Adjectif qualificatif, placé après le nom",
+            "pronunciation": "né-fer"
           }
         ],
         "traduction_litterale": "Dieu maison belle",
@@ -88,19 +91,22 @@
             "hieroglyph": "𓇳𓁧𓎟",
             "transliteration": "ny-swt-bity",
             "traduction": "Roi de Haute et Basse-Égypte",
-            "explication": "Titre royal standard précédant le nom de trône"
+            "explication": "Titre royal standard précédant le nom de trône",
+            "pronunciation": "ni-sout-bi-ti"
           },
           {
             "hieroglyph": "𓏏𓄿𓈖",
             "transliteration": "tut-ankh",
             "traduction": "Image vivante",
-            "explication": "Première partie du nom : 'Tut' (image) + 'Ankh' (vie)"
+            "explication": "Première partie du nom : 'Tut' (image) + 'Ankh' (vie)",
+            "pronunciation": "tout-ânkh"
           },
           {
             "hieroglyph": "𓎡𓇯",
             "transliteration": "Amon",
             "traduction": "d'Amon",
-            "explication": "Nom du dieu Amon, signifiant que le pharaon est l'image vivante d'Amon"
+            "explication": "Nom du dieu Amon, signifiant que le pharaon est l'image vivante d'Amon",
+            "pronunciation": "a-mon"
           }
         ],
         "traduction_litterale": "Roi de Haute et Basse-Égypte, Image-vivante-Amon",
@@ -172,22 +178,24 @@
             "hieroglyph": "𓇋𓏠𓈖",
             "transliteration": "Imn",
             "traduction": "Amon",
-            "explication": "Phonétiques formant le nom Amon (Imen en égyptien)"
+            "explication": "Phonétiques formant le nom Amon (Imen en égyptien)",
+            "pronunciation": "i-men"
           },
           {
             "hieroglyph": "𓀭",
             "transliteration": "(déterminatif)",
             "traduction": "(dieu)",
-            "explication": "Déterminatif divin (homme assis avec barbe)"
+            "explication": "Déterminatif divin (homme assis avec barbe)",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Amon",
         "traduction_fluide": "Amon (le Caché, le roi des dieux)",
         "grammaire": "Nom divin : Phonétiques + Déterminatif divin",
-        "contexte_culturel": "Amon (\"le Caché\") est le roi des dieux du Nouvel Empire. Dieu dynastique de Thèbes, il fusionne avec Rê pour devenir Amon-Rê. Son temple de Karnak est le plus grand complexe religieux d'Égypte.",
+        "contexte_culturel": "\n        🔱 **AMON - LE ROI DES DIEUX**\n\n        **Origine et signification:**\n        Amon (Imn en égyptien) signifie \"le Caché\" ou \"l'Invisible\". C'est la divinité suprême du panthéon égyptien pendant le Nouvel Empire (1550-1070 av. J.-C.).\n\n        **Histoire:**\n        - Dieu local de Thèbes (Louxor) pendant le Moyen Empire\n        - Devient roi des dieux sous la XVIIIe dynastie\n        - Fusionne avec Rê (dieu soleil d'Héliopolis) → Amon-Rê\n        - Son clergé devient le plus puissant d'Égypte\n\n        **Théologie:**\n        Amon représente le \"souffle vital invisible\" qui anime toute chose. Paradoxalement, il est:\n        - Invisible (Amon) ET visible (Rê soleil)\n        - Caché ET omniprésent\n        - Transcendant ET immanent\n\n        **Temples principaux:**\n        1. **Karnak** (Louxor) - Plus grand complexe religieux du monde antique\n           - 200 hectares\n           - Construit sur 2000 ans\n           - Salle hypostyle: 134 colonnes géantes\n\n        2. **Louxor** - Temple de la \"demeure du Ka d'Amon\"\n           - Reliée à Karnak par l'allée des Sphinx (2,7 km)\n\n        3. **Temples de Nubie** - Expansion impériale\n\n        **Fête d'Opet:**\n        Chaque année, la statue d'Amon voyageait de Karnak à Louxor sur la barque sacrée, portée par les prêtres. Festival de 11 jours célébrant la régénération divine.\n\n        **Iconographie:**\n        - Homme à peau bleue (invisible comme l'air)\n        - Coiffe à deux hautes plumes\n        - Parfois représenté comme un bélier (virilité)\n        - Ou comme un oie (souffle créateur)\n\n        **Pouvoir politique:**\n        Les pharaons se disaient \"fils d'Amon\". L'oracle d'Amon désignait les rois et validait les décisions politiques.\n\n        **Déclin:**\n        - Akhenaton tente de le remplacer par Aton (1350 av. J.-C.) → échec\n        - Restauré sous Toutânkhamon\n        - Reste suprême jusqu'à l'époque ptolémaïque\n        ",
         "exercice": {
-          "instruction": "Écrivez le nom Amon en hiéroglyphes et expliquez pourquoi il signifie \"le Caché\".",
-          "points": 15
+          "instruction": "\n            **EXERCICE COMPLET SUR AMON:**\n\n            1. Écrivez le nom Amon en hiéroglyphes (𓇋𓏠𓈖𓀭)\n            2. Expliquez pourquoi il s'appelle \"le Caché\" alors qu'il est le roi des dieux\n            3. Décrivez sa fusion avec Rê et ce qu'elle symbolise\n            4. Expliquez le rôle politique de l'oracle d'Amon\n            5. Racontez l'échec d'Akhenaton à supprimer Amon\n\n            **Bonus:** Recherchez des photos de Karnak et identifiez:\n            - La salle hypostyle\n            - L'allée des Sphinx\n            - Les obélisques\n            ",
+          "points": 50
         },
         "quiz": [
           {
@@ -233,6 +241,72 @@
             ],
             "reponse": 1,
             "explication": "Le temple de Karnak est le plus grand complexe religieux jamais construit, dédié à Amon"
+          },
+          {
+            "question": "Pourquoi Amon est-il représenté avec une peau bleue ?",
+            "options": [
+              "C'était la couleur royale",
+              "Symbolise l'invisible comme l'air et le ciel",
+              "Lien avec le Nil",
+              "Erreur des scribes"
+            ],
+            "reponse": 1,
+            "explication": "La peau bleue symbolise l'invisible et l'imperceptible, comme l'air (invisible mais vital)"
+          },
+          {
+            "question": "Quelle était la durée de la Fête d'Opet ?",
+            "options": [
+              "1 jour",
+              "7 jours",
+              "11 jours",
+              "1 mois"
+            ],
+            "reponse": 2,
+            "explication": "La Fête d'Opet durait 11 jours, processus de régénération d'Amon et du pharaon"
+          },
+          {
+            "question": "Quel pharaon a tenté de supprimer Amon ?",
+            "options": [
+              "Ramsès II",
+              "Akhenaton",
+              "Khéops",
+              "Thoutmosis III"
+            ],
+            "reponse": 1,
+            "explication": "Akhenaton a tenté de remplacer Amon par Aton, le disque solaire (révolution monothéiste ratée)"
+          },
+          {
+            "question": "Quelle est la superficie du temple de Karnak ?",
+            "options": [
+              "10 hectares",
+              "50 hectares",
+              "200 hectares",
+              "500 hectares"
+            ],
+            "reponse": 2,
+            "explication": "Karnak couvre 200 hectares, c'est le plus grand complexe religieux antique au monde"
+          },
+          {
+            "question": "Combien de colonnes dans la grande salle hypostyle de Karnak ?",
+            "options": [
+              "12",
+              "50",
+              "134",
+              "365"
+            ],
+            "reponse": 2,
+            "explication": "134 colonnes géantes soutiennent le toit de la salle hypostyle (dont 12 centrales de 21m)"
+          },
+          {
+            "question": "Quelle distance sépare Karnak du temple de Louxor ?",
+            "options": [
+              "500 mètres",
+              "1 km",
+              "2,7 km (allée des Sphinx)",
+              "10 km"
+            ],
+            "reponse": 2,
+            "explication": "L'allée des Sphinx fait 2,7 km, bordée de centaines de sphinx à tête de bélier (animal d'Amon)"
           }
         ]
       },
@@ -250,19 +324,22 @@
             "hieroglyph": "𓅭𓇳",
             "transliteration": "Hor-Ra",
             "traduction": "Horus-Rê",
-            "explication": "Fusion du dieu faucon Horus et du dieu soleil Rê"
+            "explication": "Fusion du dieu faucon Horus et du dieu soleil Rê",
+            "pronunciation": "Hor-Ra"
           },
           {
             "hieroglyph": "𓈖𓆣𓂋",
             "transliteration": "nefer",
             "traduction": "parfait, excellent",
-            "explication": "Adjectif de qualité superlative"
+            "explication": "Adjectif de qualité superlative",
+            "pronunciation": "nefer"
           },
           {
             "hieroglyph": "𓇋𓏏𓆑",
             "transliteration": "itef",
             "traduction": "son père",
-            "explication": "Pronom possessif 'son' + 'père'"
+            "explication": "Pronom possessif 'son' + 'père'",
+            "pronunciation": "itef"
           }
         ],
         "traduction_litterale": "Horus-Rê parfait son-père",
@@ -312,19 +389,22 @@
             "hieroglyph": "𓇓𓏏𓊵",
             "transliteration": "ḥtp-dỉ",
             "traduction": "offrande que donne",
-            "explication": "Expression figée signifiant 'offrande royale'"
+            "explication": "Expression figée signifiant 'offrande royale'",
+            "pronunciation": "htp-dỉ"
           },
           {
             "hieroglyph": "𓂞",
             "transliteration": "nsw",
             "traduction": "le roi",
-            "explication": "Le pharaon, source de toute offrande légitime"
+            "explication": "Le pharaon, source de toute offrande légitime",
+            "pronunciation": "ni-sou"
           },
           {
             "hieroglyph": "𓊨𓏏𓉐",
             "transliteration": "Wsir",
             "traduction": "Osiris",
-            "explication": "Dieu des morts et de la résurrection"
+            "explication": "Dieu des morts et de la résurrection",
+            "pronunciation": "ou-sir"
           }
         ],
         "traduction_litterale": "Offrande-que-donne roi Osiris",
@@ -385,13 +465,15 @@
             "hieroglyph": "𓆣𓂋",
             "transliteration": "nfr",
             "traduction": "belle, parfaite",
-            "explication": "Adjectif de beauté"
+            "explication": "Adjectif de beauté",
+            "pronunciation": "né-fer"
           },
           {
             "hieroglyph": "𓏏𓇋𓏏𓇋",
             "transliteration": "ỉỉty",
             "traduction": "est venue",
-            "explication": "Verbe au parfait : 'celle qui est venue'"
+            "explication": "Verbe au parfait : 'celle qui est venue'",
+            "pronunciation": "ỉỉty"
           }
         ],
         "traduction_litterale": "Belle est-venue",
@@ -452,7 +534,8 @@
             "hieroglyph": "𓋹",
             "transliteration": "ʿnḫ",
             "traduction": "vie, vivre",
-            "explication": "Le symbole Ankh représente la vie éternelle, combinant les symboles mâle et femelle"
+            "explication": "Le symbole Ankh représente la vie éternelle, combinant les symboles mâle et femelle",
+            "pronunciation": "ʿnkh"
           }
         ],
         "traduction_litterale": "Vie",
@@ -513,19 +596,22 @@
             "hieroglyph": "𓂋𓏏",
             "transliteration": "rꜥ",
             "traduction": "Rê",
-            "explication": "Le dieu soleil Rê"
+            "explication": "Le dieu soleil Rê",
+            "pronunciation": "rê"
           },
           {
             "hieroglyph": "𓇳𓏺",
             "transliteration": "ms",
             "traduction": "a enfanté",
-            "explication": "Verbe 'enfanter, créer'"
+            "explication": "Verbe 'enfanter, créer'",
+            "pronunciation": "ms"
           },
           {
             "hieroglyph": "𓇳",
             "transliteration": "sw",
             "traduction": "lui",
-            "explication": "Pronom 'lui, le'"
+            "explication": "Pronom 'lui, le'",
+            "pronunciation": "sou"
           }
         ],
         "traduction_litterale": "Rê-a-enfanté-lui",
@@ -586,13 +672,15 @@
             "hieroglyph": "𓅃",
             "transliteration": "Ḥr",
             "traduction": "Horus",
-            "explication": "Le faucon représente directement le dieu Horus"
+            "explication": "Le faucon représente directement le dieu Horus",
+            "pronunciation": "hor"
           },
           {
             "hieroglyph": "𓂋𓅱",
             "transliteration": "rw",
             "traduction": "(complément phonétique)",
-            "explication": "Compléments phonétiques précisant la prononciation"
+            "explication": "Compléments phonétiques précisant la prononciation",
+            "pronunciation": "rou"
           }
         ],
         "traduction_litterale": "Horus",
@@ -653,13 +741,15 @@
             "hieroglyph": "𓊨𓏏",
             "transliteration": "ꜣst",
             "traduction": "trône",
-            "explication": "Le hiéroglyphe du trône qui forme le nom d'Isis"
+            "explication": "Le hiéroglyphe du trône qui forme le nom d'Isis",
+            "pronunciation": "âst"
           },
           {
             "hieroglyph": "𓆇",
             "transliteration": "(déterminatif)",
             "traduction": "(déesse)",
-            "explication": "Déterminatif féminin divin"
+            "explication": "Déterminatif féminin divin",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Trône (Isis)",
@@ -720,13 +810,15 @@
             "hieroglyph": "𓆣",
             "transliteration": "ḫpr",
             "traduction": "devenir, se transformer",
-            "explication": "Le scarabée représente la transformation et le devenir"
+            "explication": "Le scarabée représente la transformation et le devenir",
+            "pronunciation": "khpr"
           },
           {
             "hieroglyph": "𓂋𓂋",
             "transliteration": "r-r",
             "traduction": "(compléments phonétiques)",
-            "explication": "Compléments confirmant la prononciation 'kheper'"
+            "explication": "Compléments confirmant la prononciation 'kheper'",
+            "pronunciation": "r-r"
           }
         ],
         "traduction_litterale": "Celui qui devient",
@@ -787,7 +879,8 @@
             "hieroglyph": "𓂀",
             "transliteration": "wḏꜣt",
             "traduction": "Oudjat (œil complet, intact)",
-            "explication": "L'œil d'Horus restauré par Thot après le combat contre Seth"
+            "explication": "L'œil d'Horus restauré par Thot après le combat contre Seth",
+            "pronunciation": "oudjât"
           }
         ],
         "traduction_litterale": "Œil intact",
@@ -848,13 +941,15 @@
             "hieroglyph": "𓏏𓈖𓏥",
             "transliteration": "t",
             "traduction": "pain",
-            "explication": "Hiéroglyphe représentant un pain (aliment de base)"
+            "explication": "Hiéroglyphe représentant un pain (aliment de base)",
+            "pronunciation": "et"
           },
           {
             "hieroglyph": "𓍯𓏏𓏥",
             "transliteration": "ḥnḳt",
             "traduction": "bière",
-            "explication": "La bière, boisson quotidienne des Égyptiens"
+            "explication": "La bière, boisson quotidienne des Égyptiens",
+            "pronunciation": "hnkt"
           }
         ],
         "traduction_litterale": "Pain bière",
@@ -915,7 +1010,8 @@
             "hieroglyph": "𓉐",
             "transliteration": "mr",
             "traduction": "pyramide",
-            "explication": "Le hiéroglyphe représente une pyramide vue de profil"
+            "explication": "Le hiéroglyphe représente une pyramide vue de profil",
+            "pronunciation": "mr"
           }
         ],
         "traduction_litterale": "Pyramide",
@@ -976,19 +1072,22 @@
             "hieroglyph": "𓅝",
             "transliteration": "Ḏḥwty",
             "traduction": "Thot",
-            "explication": "L'ibis représente le dieu Thot"
+            "explication": "L'ibis représente le dieu Thot",
+            "pronunciation": "Ḏhouty"
           },
           {
             "hieroglyph": "𓏏𓏏",
             "transliteration": "ty",
             "traduction": "(compléments phonétiques)",
-            "explication": "Précisent la prononciation du nom"
+            "explication": "Précisent la prononciation du nom",
+            "pronunciation": "ty"
           },
           {
             "hieroglyph": "𓅆",
             "transliteration": "(déterminatif)",
             "traduction": "(dieu)",
-            "explication": "Déterminatif divin"
+            "explication": "Déterminatif divin",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Thot",
@@ -1049,19 +1148,22 @@
             "hieroglyph": "𓉡",
             "transliteration": "ḥwt",
             "traduction": "maison, demeure",
-            "explication": "Le hiéroglyphe de la maison/enceinte"
+            "explication": "Le hiéroglyphe de la maison/enceinte",
+            "pronunciation": "hout"
           },
           {
             "hieroglyph": "𓏏",
             "transliteration": "t",
             "traduction": "(marque féminine)",
-            "explication": "Désinence féminine"
+            "explication": "Désinence féminine",
+            "pronunciation": "et"
           },
           {
             "hieroglyph": "𓁐",
             "transliteration": "Ḥr",
             "traduction": "Horus",
-            "explication": "Le faucon Horus"
+            "explication": "Le faucon Horus",
+            "pronunciation": "hor"
           }
         ],
         "traduction_litterale": "Maison-de-Horus",
@@ -1122,19 +1224,22 @@
             "hieroglyph": "𓇋𓈖𓊪",
             "transliteration": "Inpw",
             "traduction": "Anubis",
-            "explication": "Phonétiques formant le nom 'Inpou' (Anubis)"
+            "explication": "Phonétiques formant le nom 'Inpou' (Anubis)",
+            "pronunciation": "Inpou"
           },
           {
             "hieroglyph": "𓅱",
             "transliteration": "w",
             "traduction": "(complément)",
-            "explication": "Complément phonétique"
+            "explication": "Complément phonétique",
+            "pronunciation": "ou"
           },
           {
             "hieroglyph": "𓃣",
             "transliteration": "(déterminatif)",
             "traduction": "(chacal couché)",
-            "explication": "Le chacal couché sur un piédestal, symbole d'Anubis"
+            "explication": "Le chacal couché sur un piédestal, symbole d'Anubis",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Anubis",
@@ -1195,13 +1300,15 @@
             "hieroglyph": "𓃀𓏏𓏏",
             "transliteration": "Bꜣstt",
             "traduction": "Bastet",
-            "explication": "Phonétiques du nom Bastet"
+            "explication": "Phonétiques du nom Bastet",
+            "pronunciation": "Bâstt"
           },
           {
             "hieroglyph": "𓏤𓏏𓏏𓏏𓏏𓏏𓏏",
             "transliteration": "(déterminatif)",
             "traduction": "(chatte/lionne)",
-            "explication": "Déterminatif félin"
+            "explication": "Déterminatif félin",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Bastet",
@@ -1262,7 +1369,8 @@
             "hieroglyph": "𓆄",
             "transliteration": "mꜣꜥt",
             "traduction": "vérité, justice, ordre cosmique",
-            "explication": "La plume d'autruche représente Maât, concept fondamental égyptien"
+            "explication": "La plume d'autruche représente Maât, concept fondamental égyptien",
+            "pronunciation": "mâat"
           }
         ],
         "traduction_litterale": "Maât (vérité)",
@@ -1323,13 +1431,15 @@
             "hieroglyph": "𓊪𓏏𓎛",
             "transliteration": "Ptḥ",
             "traduction": "Ptah",
-            "explication": "Phonétiques formant le nom Ptah"
+            "explication": "Phonétiques formant le nom Ptah",
+            "pronunciation": "Pth"
           },
           {
             "hieroglyph": "𓁰",
             "transliteration": "(déterminatif)",
             "traduction": "(dieu)",
-            "explication": "Déterminatif du dieu momiforme"
+            "explication": "Déterminatif du dieu momiforme",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Ptah",
@@ -1390,19 +1500,22 @@
             "hieroglyph": "𓌂𓐍𓏏",
             "transliteration": "sḫmt",
             "traduction": "la Puissante",
-            "explication": "Sekhmet signifie littéralement 'la Puissante'"
+            "explication": "Sekhmet signifie littéralement 'la Puissante'",
+            "pronunciation": "skhmt"
           },
           {
             "hieroglyph": "𓏏",
             "transliteration": "t",
             "traduction": "(féminin)",
-            "explication": "Marque du féminin"
+            "explication": "Marque du féminin",
+            "pronunciation": "et"
           },
           {
             "hieroglyph": "𓏤",
             "transliteration": "(déterminatif)",
             "traduction": "(déesse lionne)",
-            "explication": "Déterminatif de la déesse lionne"
+            "explication": "Déterminatif de la déesse lionne",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "La-Puissante",
@@ -1463,13 +1576,15 @@
             "hieroglyph": "𓊃𓃀𓎡",
             "transliteration": "Sbk",
             "traduction": "Sobek",
-            "explication": "Phonétiques du nom Sobek"
+            "explication": "Phonétiques du nom Sobek",
+            "pronunciation": "Sbk"
           },
           {
             "hieroglyph": "𓆌",
             "transliteration": "(déterminatif)",
             "traduction": "(crocodile)",
-            "explication": "Le crocodile, animal de Sobek"
+            "explication": "Le crocodile, animal de Sobek",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Sobek",
@@ -1530,13 +1645,15 @@
             "hieroglyph": "𓎡𓅱",
             "transliteration": "Ḫw",
             "traduction": "Khou (protection)",
-            "explication": "Première partie du nom"
+            "explication": "Première partie du nom",
+            "pronunciation": "Ḫou"
           },
           {
             "hieroglyph": "𓆑𓅱",
             "transliteration": "fw",
             "traduction": "Fou (lui)",
-            "explication": "Pronom suffixe 'lui'"
+            "explication": "Pronom suffixe 'lui'",
+            "pronunciation": "fou"
           }
         ],
         "traduction_litterale": "Khoufou",
@@ -1586,19 +1703,22 @@
             "hieroglyph": "𓊨",
             "transliteration": "Wsir",
             "traduction": "Osiris",
-            "explication": "Le trône + œil forment le nom Osiris"
+            "explication": "Le trône + œil forment le nom Osiris",
+            "pronunciation": "ou-sir"
           },
           {
             "hieroglyph": "𓁹",
             "transliteration": "(œil)",
             "traduction": "(complément)",
-            "explication": "L'œil oudjat associé à Osiris"
+            "explication": "L'œil oudjat associé à Osiris",
+            "pronunciation": "(œil)"
           },
           {
             "hieroglyph": "𓀭",
             "transliteration": "(dieu)",
             "traduction": "(déterminatif divin)",
-            "explication": "Marque qu'il s'agit d'un dieu"
+            "explication": "Marque qu'il s'agit d'un dieu",
+            "pronunciation": "(dieu)"
           }
         ],
         "traduction_litterale": "Osiris",
@@ -1659,19 +1779,22 @@
             "hieroglyph": "𓃩",
             "transliteration": "Stẖ",
             "traduction": "Seth",
-            "explication": "Animal de Seth (créature composite)"
+            "explication": "Animal de Seth (créature composite)",
+            "pronunciation": "seth"
           },
           {
             "hieroglyph": "𓏏",
             "transliteration": "t",
             "traduction": "(phonétique)",
-            "explication": "Complément phonétique"
+            "explication": "Complément phonétique",
+            "pronunciation": "et"
           },
           {
             "hieroglyph": "𓃩",
             "transliteration": "(déterminatif)",
             "traduction": "(animal de Seth)",
-            "explication": "L'animal de Seth, créature mythique"
+            "explication": "L'animal de Seth, créature mythique",
+            "pronunciation": "(déterminatif)"
           }
         ],
         "traduction_litterale": "Seth",
@@ -1732,7 +1855,8 @@
             "hieroglyph": "𓊽",
             "transliteration": "ḏd",
             "traduction": "djed (stabilité, durée)",
-            "explication": "Pilier symbolisant la colonne vertébrale d'Osiris"
+            "explication": "Pilier symbolisant la colonne vertébrale d'Osiris",
+            "pronunciation": "djed"
           }
         ],
         "traduction_litterale": "Djed",
@@ -1782,7 +1906,8 @@
             "hieroglyph": "𓌀",
             "transliteration": "wꜣs",
             "traduction": "pouvoir, domination",
-            "explication": "Sceptre fourchu symbolisant le pouvoir divin"
+            "explication": "Sceptre fourchu symbolisant le pouvoir divin",
+            "pronunciation": "ouâs"
           }
         ],
         "traduction_litterale": "Ouas",
@@ -1834,19 +1959,22 @@
             "hieroglyph": "𓇋𓈖𓎡",
             "transliteration": "ink",
             "traduction": "je suis",
-            "explication": "Pronom personnel première personne"
+            "explication": "Pronom personnel première personne",
+            "pronunciation": "inek"
           },
           {
             "hieroglyph": "𓂋𓂝𓊪𓅱",
             "transliteration": "rekhw",
             "traduction": "connaisseur, sage",
-            "explication": "Participe actif du verbe 'connaître'"
+            "explication": "Participe actif du verbe 'connaître'",
+            "pronunciation": "rekhou"
           },
           {
             "hieroglyph": "𓅓𓂝𓄿𓏏",
             "transliteration": "maat",
             "traduction": "vérité, justice",
-            "explication": "Concept fondamental de la civilisation égyptienne"
+            "explication": "Concept fondamental de la civilisation égyptienne",
+            "pronunciation": "maat"
           }
         ],
         "traduction_litterale": "Je-suis connaisseur vérité",
@@ -1907,19 +2035,22 @@
             "hieroglyph": "𓊪𓂋𓏏",
             "transliteration": "prt",
             "traduction": "sortie, sortir",
-            "explication": "Nom verbal du verbe 'sortir'"
+            "explication": "Nom verbal du verbe 'sortir'",
+            "pronunciation": "pé-ret"
           },
           {
             "hieroglyph": "𓅓",
             "transliteration": "m",
             "traduction": "vers, en",
-            "explication": "Préposition de direction"
+            "explication": "Préposition de direction",
+            "pronunciation": "em"
           },
           {
             "hieroglyph": "𓊵𓅱",
             "transliteration": "hrw",
             "traduction": "jour, lumière",
-            "explication": "Le jour opposé à la nuit/mort"
+            "explication": "Le jour opposé à la nuit/mort",
+            "pronunciation": "hérou"
           }
         ],
         "traduction_litterale": "Sortie vers jour",
@@ -1969,25 +2100,29 @@
             "hieroglyph": "𓇋𓏠𓈖",
             "transliteration": "Imn",
             "traduction": "Amon",
-            "explication": "Le roi des dieux"
+            "explication": "Le roi des dieux",
+            "pronunciation": "i-men"
           },
           {
             "hieroglyph": "𓆣𓂋",
             "transliteration": "nfr",
             "traduction": "parfait, beau",
-            "explication": "Adjectif de louange"
+            "explication": "Adjectif de louange",
+            "pronunciation": "né-fer"
           },
           {
             "hieroglyph": "𓇳𓏤",
             "transliteration": "Ra",
             "traduction": "Rê",
-            "explication": "Le dieu soleil"
+            "explication": "Le dieu soleil",
+            "pronunciation": "râ"
           },
           {
             "hieroglyph": "𓎟𓅱",
             "transliteration": "nṯrw",
             "traduction": "des dieux",
-            "explication": "Pluriel de 'dieu'"
+            "explication": "Pluriel de 'dieu'",
+            "pronunciation": "né-tcherou"
           }
         ],
         "traduction_litterale": "Amon parfait Rê des-dieux",
@@ -2037,31 +2172,36 @@
             "hieroglyph": "𓂋𓂞",
             "transliteration": "dỉ",
             "traduction": "donner",
-            "explication": "Verbe 'donner' à l'accompli"
+            "explication": "Verbe 'donner' à l'accompli",
+            "pronunciation": "di"
           },
           {
             "hieroglyph": "𓂞",
             "transliteration": "nsw",
             "traduction": "le roi",
-            "explication": "Le pharaon comme donateur"
+            "explication": "Le pharaon comme donateur",
+            "pronunciation": "ni-sou"
           },
           {
             "hieroglyph": "𓈖",
             "transliteration": "n",
             "traduction": "pour",
-            "explication": "Préposition de bénéficiaire"
+            "explication": "Préposition de bénéficiaire",
+            "pronunciation": "en"
           },
           {
             "hieroglyph": "𓄿𓇋𓏏",
             "transliteration": "ꜣḥt",
             "traduction": "champs",
-            "explication": "Terres cultivables"
+            "explication": "Terres cultivables",
+            "pronunciation": "a-khet"
           },
           {
             "hieroglyph": "𓇳𓁧𓎟",
             "transliteration": "nṯr",
             "traduction": "dieu",
-            "explication": "Destinataire divin"
+            "explication": "Destinataire divin",
+            "pronunciation": "NÉ-tcher"
           }
         ],
         "traduction_litterale": "A-donné roi pour champs dieu",
@@ -2111,25 +2251,29 @@
             "hieroglyph": "𓇋𓈖𓎡",
             "transliteration": "ink",
             "traduction": "je suis",
-            "explication": "Pronom indépendant 1ère personne"
+            "explication": "Pronom indépendant 1ère personne",
+            "pronunciation": "inek"
           },
           {
             "hieroglyph": "𓊪𓏏𓎛",
             "transliteration": "Ptḥ",
             "traduction": "Ptah",
-            "explication": "Le défunt s'identifie au dieu créateur"
+            "explication": "Le défunt s'identifie au dieu créateur",
+            "pronunciation": "Pth"
           },
           {
             "hieroglyph": "𓅓𓂋",
             "transliteration": "mr",
             "traduction": "comme, tel",
-            "explication": "Particule de comparaison"
+            "explication": "Particule de comparaison",
+            "pronunciation": "mr"
           },
           {
             "hieroglyph": "𓇋𓏏𓇯",
             "transliteration": "itỉ",
             "traduction": "souverain",
-            "explication": "Titre royal et divin"
+            "explication": "Titre royal et divin",
+            "pronunciation": "itỉ"
           }
         ],
         "traduction_litterale": "Je-suis Ptah comme souverain",
@@ -2179,25 +2323,29 @@
             "hieroglyph": "𓇋𓈖𓎡",
             "transliteration": "ink",
             "traduction": "je (suis)",
-            "explication": "Début autobiographique"
+            "explication": "Début autobiographique",
+            "pronunciation": "inek"
           },
           {
             "hieroglyph": "𓐍𓂋",
             "transliteration": "ỉr",
             "traduction": "faire, agir",
-            "explication": "Verbe d'action au passé"
+            "explication": "Verbe d'action au passé",
+            "pronunciation": "ỉr"
           },
           {
             "hieroglyph": "𓈖𓋴𓏏",
             "transliteration": "nst",
             "traduction": "trône, siège",
-            "explication": "Position, fonction"
+            "explication": "Position, fonction",
+            "pronunciation": "nst"
           },
           {
             "hieroglyph": "𓅓𓂋𓂋𓏏",
             "transliteration": "mrrt",
             "traduction": "aimée, favorite",
-            "explication": "Position de confiance"
+            "explication": "Position de confiance",
+            "pronunciation": "mrrt"
           }
         ],
         "traduction_litterale": "Je ai-fait position aimée",
@@ -2247,19 +2395,22 @@
             "hieroglyph": "𓌃𓂧𓌃",
             "transliteration": "ḏd",
             "traduction": "parler, dire",
-            "explication": "Verbe infinitif - introduit l'enseignement"
+            "explication": "Verbe infinitif - introduit l'enseignement",
+            "pronunciation": "djed"
           },
           {
             "hieroglyph": "𓂋𓏤𓏏𓆑",
             "transliteration": "rḫ.t=f",
             "traduction": "sa connaissance",
-            "explication": "Nom + pronom suffixe possessif"
+            "explication": "Nom + pronom suffixe possessif",
+            "pronunciation": "rkh.t=f"
           },
           {
             "hieroglyph": "𓅓𓂝𓄿𓏏",
             "transliteration": "mꜣꜥt",
             "traduction": "vérité, justice",
-            "explication": "Concept de Maât"
+            "explication": "Concept de Maât",
+            "pronunciation": "mâat"
           }
         ],
         "traduction_litterale": "Dire sa-connaissance (de la) vérité",
@@ -2309,25 +2460,29 @@
             "hieroglyph": "𓇋𓈖𓎡",
             "transliteration": "ink",
             "traduction": "je",
-            "explication": "Narrateur à la 1ère personne"
+            "explication": "Narrateur à la 1ère personne",
+            "pronunciation": "inek"
           },
           {
             "hieroglyph": "𓃀𓐍𓂋",
             "transliteration": "bꜣk",
             "traduction": "serviteur, marin",
-            "explication": "Profession du narrateur"
+            "explication": "Profession du narrateur",
+            "pronunciation": "bâk"
           },
           {
             "hieroglyph": "𓅓",
             "transliteration": "m",
             "traduction": "dans, sur",
-            "explication": "Préposition de lieu"
+            "explication": "Préposition de lieu",
+            "pronunciation": "em"
           },
           {
             "hieroglyph": "𓇋𓏤𓅱",
             "transliteration": "jw",
             "traduction": "île",
-            "explication": "Lieu de l'aventure"
+            "explication": "Lieu de l'aventure",
+            "pronunciation": "jou"
           }
         ],
         "traduction_litterale": "Je serviteur sur île",
@@ -2377,7 +2532,8 @@
             "hieroglyph": "𓇋𓋴𓂋𓏤𓅪𓂋",
             "transliteration": "Ysrꜣr",
             "traduction": "Israël",
-            "explication": "Transcription phonétique du nom 'Israël' en hiéroglyphes"
+            "explication": "Transcription phonétique du nom 'Israël' en hiéroglyphes",
+            "pronunciation": "Ysrâr"
           }
         ],
         "traduction_litterale": "Israël",
@@ -2427,13 +2583,15 @@
             "hieroglyph": "𓇋𓈖𓎡",
             "transliteration": "ink",
             "traduction": "je suis",
-            "explication": "Narrateur"
+            "explication": "Narrateur",
+            "pronunciation": "inek"
           },
           {
             "hieroglyph": "𓊃𓈖𓎛",
             "transliteration": "Snḥ",
             "traduction": "Sinouhé",
-            "explication": "Nom du héros"
+            "explication": "Nom du héros",
+            "pronunciation": "si-nou-hé"
           }
         ],
         "traduction_litterale": "Je-suis Sinouhé",
@@ -2474,25 +2632,29 @@
             "hieroglyph": "𓊪𓏏𓇯",
             "transliteration": "pet",
             "traduction": "ciel",
-            "explication": "Substantif féminin, déterminatif du ciel (𓇯)"
+            "explication": "Substantif féminin, déterminatif du ciel (𓇯)",
+            "pronunciation": "pet"
           },
           {
             "hieroglyph": "𓊪𓈖",
             "transliteration": "pen",
             "traduction": "ce, cet",
-            "explication": "Démonstratif masculin singulier"
+            "explication": "Démonstratif masculin singulier",
+            "pronunciation": "pen"
           },
           {
             "hieroglyph": "𓈎𓂻𓇯𓏏𓏭",
             "transliteration": "kheperet",
             "traduction": "transformation, devenir",
-            "explication": "Nom verbal du verbe kheper (devenir, se transformer)"
+            "explication": "Nom verbal du verbe kheper (devenir, se transformer)",
+            "pronunciation": "kheperet"
           },
           {
             "hieroglyph": "𓂋𓏤𓇳𓅆",
             "transliteration": "en Ra",
             "traduction": "de/pour Rê",
-            "explication": "Préposition + nom du dieu soleil"
+            "explication": "Préposition + nom du dieu soleil",
+            "pronunciation": "en Ra"
           }
         ],
         "traduction_litterale": "Ciel ce transformation de-Rê",
@@ -2553,31 +2715,36 @@
             "hieroglyph": "𓊪𓊪𓇋",
             "transliteration": "Ppy",
             "traduction": "Pépi",
-            "explication": "Nom du pharaon Pépi Ier"
+            "explication": "Nom du pharaon Pépi Ier",
+            "pronunciation": "pé-pi"
           },
           {
             "hieroglyph": "𓊪𓈖",
             "transliteration": "pn",
             "traduction": "ce",
-            "explication": "Démonstratif proche"
+            "explication": "Démonstratif proche",
+            "pronunciation": "pen"
           },
           {
             "hieroglyph": "𓇋𓏏",
             "transliteration": "ỉt",
             "traduction": "père",
-            "explication": "Titre royal divin"
+            "explication": "Titre royal divin",
+            "pronunciation": "it"
           },
           {
             "hieroglyph": "𓅃𓂋",
             "transliteration": "Ḥr",
             "traduction": "Horus",
-            "explication": "Le pharaon devient Horus"
+            "explication": "Le pharaon devient Horus",
+            "pronunciation": "hor"
           },
           {
             "hieroglyph": "𓊪𓏏𓇯",
             "transliteration": "pt",
             "traduction": "ciel",
-            "explication": "Destination céleste"
+            "explication": "Destination céleste",
+            "pronunciation": "pèt"
           }
         ],
         "traduction_litterale": "Pépi ce père Horus ciel",
@@ -2627,25 +2794,29 @@
             "hieroglyph": "𓂞𓏏𓀀",
             "transliteration": "wḏt",
             "traduction": "décret, ordre",
-            "explication": "Nom féminin - document officiel"
+            "explication": "Nom féminin - document officiel",
+            "pronunciation": "ou-djet"
           },
           {
             "hieroglyph": "𓈖",
             "transliteration": "n",
             "traduction": "de",
-            "explication": "Génitif"
+            "explication": "Génitif",
+            "pronunciation": "en"
           },
           {
             "hieroglyph": "𓊪𓏏𓏤",
             "transliteration": "pt",
             "traduction": "Ptolémée",
-            "explication": "Nom du roi grec écrit phonétiquement"
+            "explication": "Nom du roi grec écrit phonétiquement",
+            "pronunciation": "pèt"
           },
           {
             "hieroglyph": "𓏏𓏤𓏏𓏤𓅱𓃭𓐝𓊪",
             "transliteration": "Trygwtrẃs",
             "traduction": "Trypho...",
-            "explication": "Titre ou épithète grecque transcrite"
+            "explication": "Titre ou épithète grecque transcrite",
+            "pronunciation": "tri-gou-tros"
           }
         ],
         "traduction_litterale": "Décret de Ptolémée...",
@@ -2695,19 +2866,22 @@
             "hieroglyph": "𓊪𓊃𓎛𓂝𓏏",
             "transliteration": "pshẖt",
             "traduction": "prescription, remède",
-            "explication": "Terme médical technique"
+            "explication": "Terme médical technique",
+            "pronunciation": "pshẖt"
           },
           {
             "hieroglyph": "𓈖",
             "transliteration": "n",
             "traduction": "pour",
-            "explication": "Préposition de destination"
+            "explication": "Préposition de destination",
+            "pronunciation": "en"
           },
           {
             "hieroglyph": "𓇋𓂋𓏏𓏤",
             "transliteration": "ỉrt",
             "traduction": "œil",
-            "explication": "Organe à traiter"
+            "explication": "Organe à traiter",
+            "pronunciation": "ỉrt"
           }
         ],
         "traduction_litterale": "Prescription pour œil",
@@ -2757,13 +2931,15 @@
             "hieroglyph": "𓇼𓄿𓅓",
             "transliteration": "sbꜣw",
             "traduction": "étoiles",
-            "explication": "Pluriel - les corps célestes"
+            "explication": "Pluriel - les corps célestes",
+            "pronunciation": "sbâou"
           },
           {
             "hieroglyph": "𓇳𓅱𓏏𓏥",
             "transliteration": "hrwt",
             "traduction": "décans, heures",
-            "explication": "Divisions du ciel nocturne"
+            "explication": "Divisions du ciel nocturne",
+            "pronunciation": "hrout"
           }
         ],
         "traduction_litterale": "Étoiles décans",
@@ -2813,19 +2989,22 @@
             "hieroglyph": "𓇋𓏏𓈖",
             "transliteration": "Jtn",
             "traduction": "Aton",
-            "explication": "Le disque solaire, dieu unique d'Akhenaton"
+            "explication": "Le disque solaire, dieu unique d'Akhenaton",
+            "pronunciation": "Jtn"
           },
           {
             "hieroglyph": "𓆣𓂋",
             "transliteration": "nfr",
             "traduction": "beau, parfait",
-            "explication": "Adjectif de louange"
+            "explication": "Adjectif de louange",
+            "pronunciation": "né-fer"
           },
           {
             "hieroglyph": "𓇳𓏤",
             "transliteration": "Rꜥ",
             "traduction": "Rê",
-            "explication": "Association au soleil"
+            "explication": "Association au soleil",
+            "pronunciation": "rê"
           }
         ],
         "traduction_litterale": "Aton beau Rê",
@@ -2886,19 +3065,22 @@
             "hieroglyph": "𓏤𓏤𓏤𓏤𓏤",
             "transliteration": "5",
             "traduction": "cinq",
-            "explication": "Numération décimale - 5 traits"
+            "explication": "Numération décimale - 5 traits",
+            "pronunciation": "5"
           },
           {
             "hieroglyph": "𓅓",
             "transliteration": "m",
             "traduction": "dans, par",
-            "explication": "Opération mathématique"
+            "explication": "Opération mathématique",
+            "pronunciation": "em"
           },
           {
             "hieroglyph": "𓆐",
             "transliteration": "10",
             "traduction": "dix",
-            "explication": "Numération - fer à cheval = 10"
+            "explication": "Numération - fer à cheval = 10",
+            "pronunciation": "10"
           }
         ],
         "traduction_litterale": "5 par 10",
@@ -2948,7 +3130,8 @@
             "hieroglyph": "𓊪𓏏𓏤𓃭𓐝𓊪",
             "transliteration": "Ptrwmjs",
             "traduction": "Ptolémée",
-            "explication": "Nom royal grec transcrit phonétiquement"
+            "explication": "Nom royal grec transcrit phonétiquement",
+            "pronunciation": "pto-lé-mé"
           }
         ],
         "traduction_litterale": "Ptolémée",
@@ -3009,7 +3192,8 @@
             "hieroglyph": "𓎛𓎡𓏏𓅱",
             "transliteration": "ḥkꜣw",
             "traduction": "magie, sortilèges",
-            "explication": "Pouvoir magique"
+            "explication": "Pouvoir magique",
+            "pronunciation": "hé-kaou"
           }
         ],
         "traduction_litterale": "Magie",

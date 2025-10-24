@@ -6,6 +6,20 @@ Lit inscriptions-temples.json et génère des pages HTML interactives
 
 import json
 import os
+import re
+
+def markdown_to_html(text):
+    """Convertit Markdown simple en HTML"""
+    # Gras **texte** → <strong>texte</strong>
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    # Retours à la ligne → <br>
+    text = text.replace('\n', '<br>')
+    # Listes - texte → <li>texte</li>
+    text = re.sub(r'<br>\s*-\s*(.+?)<br>', r'<li>\1</li>', text)
+    # Envelopper les <li> dans <ul>
+    if '<li>' in text:
+        text = re.sub(r'(<li>.*?</li>)', r'<ul>\1</ul>', text, flags=re.DOTALL)
+    return text
 
 def generer_page_immersion(inscription, niveau):
     """Génère une page HTML complète pour une inscription"""
@@ -13,9 +27,14 @@ def generer_page_immersion(inscription, niveau):
     # Générer les blocs de mots
     mots_html = ""
     for mot in inscription['mots']:
+        # Prononciation phonétique
+        pronunciation = mot.get('pronunciation', '')
+        pronunciation_html = f'<div class="word-pronunciation">🗣️ {pronunciation}</div>' if pronunciation else ''
+
         mots_html += f"""
                     <div class="word-block">
                         <div class="word-hieroglyph">{mot['hieroglyph']}</div>
+                        {pronunciation_html}
                         <div class="word-transliteration">{mot['transliteration']}</div>
                         <div class="word-translation">{mot['traduction']}</div>
                         <div class="word-explanation">{mot['explication']}</div>
@@ -172,6 +191,16 @@ def generer_page_immersion(inscription, niveau):
         .word-hieroglyph {{
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+        }}
+
+        .word-pronunciation {{
+            font-size: 1.3rem;
+            color: #ffa726;
+            font-weight: bold;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 167, 38, 0.1);
+            border-radius: 5px;
         }}
 
         .word-transliteration {{
@@ -378,7 +407,7 @@ def generer_page_immersion(inscription, niveau):
                     </div>
 
                     <div class="hint-box">
-                        🏛️ <strong>Contexte culturel :</strong> {inscription['contexte_culturel']}
+                        🏛️ <strong>Contexte culturel :</strong><br>{markdown_to_html(inscription['contexte_culturel'])}
                     </div>
                 </div>
             </div>

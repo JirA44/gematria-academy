@@ -123,6 +123,16 @@
             margin-bottom: 0.5rem;
         }
 
+        .word-pronunciation {
+            font-size: 1.3rem;
+            color: #ffa726;
+            font-weight: bold;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 167, 38, 0.1);
+            border-radius: 5px;
+        }
+
         .word-transliteration {
             font-size: 1.2rem;
             color: #64b5f6;
@@ -314,6 +324,7 @@
 
                     <div class="word-block">
                         <div class="word-hieroglyph">𓇋𓏠𓈖</div>
+                        <div class="word-pronunciation">🗣️ i-men</div>
                         <div class="word-transliteration">Imn</div>
                         <div class="word-translation">Amon</div>
                         <div class="word-explanation">Phonétiques formant le nom Amon (Imen en égyptien)</div>
@@ -321,6 +332,7 @@
 
                     <div class="word-block">
                         <div class="word-hieroglyph">𓀭</div>
+                        <div class="word-pronunciation">🗣️ (déterminatif)</div>
                         <div class="word-transliteration">(déterminatif)</div>
                         <div class="word-translation">(dieu)</div>
                         <div class="word-explanation">Déterminatif divin (homme assis avec barbe)</div>
@@ -341,16 +353,29 @@
                     </div>
 
                     <div class="hint-box">
-                        🏛️ <strong>Contexte culturel :</strong> Amon ("le Caché") est le roi des dieux du Nouvel Empire. Dieu dynastique de Thèbes, il fusionne avec Rê pour devenir Amon-Rê. Son temple de Karnak est le plus grand complexe religieux d'Égypte.
+                        🏛️ <strong>Contexte culturel :</strong><br><br>        🔱 <strong>AMON - LE ROI DES DIEUX</strong><br><br>        <strong>Origine et signification:</strong><br>        Amon (Imn en égyptien) signifie "le Caché" ou "l'Invisible". C'est la divinité suprême du panthéon égyptien pendant le Nouvel Empire (1550-1070 av. J.-C.).<br><br>        <strong>Histoire:</strong><ul><li>Dieu local de Thèbes (Louxor) pendant le Moyen Empire</li></ul>        - Devient roi des dieux sous la XVIIIe dynastie<ul><li>Fusionne avec Rê (dieu soleil d'Héliopolis) → Amon-Rê</li></ul>        - Son clergé devient le plus puissant d'Égypte<br><br>        <strong>Théologie:</strong><br>        Amon représente le "souffle vital invisible" qui anime toute chose. Paradoxalement, il est:<ul><li>Invisible (Amon) ET visible (Rê soleil)</li></ul>        - Caché ET omniprésent<ul><li>Transcendant ET immanent</li></ul><br>        <strong>Temples principaux:</strong><br>        1. <strong>Karnak</strong> (Louxor) - Plus grand complexe religieux du monde antique<ul><li>200 hectares</li></ul>           - Construit sur 2000 ans<ul><li>Salle hypostyle: 134 colonnes géantes</li></ul><br>        2. <strong>Louxor</strong> - Temple de la "demeure du Ka d'Amon"<ul><li>Reliée à Karnak par l'allée des Sphinx (2,7 km)</li></ul><br>        3. <strong>Temples de Nubie</strong> - Expansion impériale<br><br>        <strong>Fête d'Opet:</strong><br>        Chaque année, la statue d'Amon voyageait de Karnak à Louxor sur la barque sacrée, portée par les prêtres. Festival de 11 jours célébrant la régénération divine.<br><br>        <strong>Iconographie:</strong><ul><li>Homme à peau bleue (invisible comme l'air)</li></ul>        - Coiffe à deux hautes plumes<ul><li>Parfois représenté comme un bélier (virilité)</li></ul>        - Ou comme un oie (souffle créateur)<br><br>        <strong>Pouvoir politique:</strong><br>        Les pharaons se disaient "fils d'Amon". L'oracle d'Amon désignait les rois et validait les décisions politiques.<br><br>        <strong>Déclin:</strong><ul><li>Akhenaton tente de le remplacer par Aton (1350 av. J.-C.) → échec</li></ul>        - Restauré sous Toutânkhamon<ul><li>Reste suprême jusqu'à l'époque ptolémaïque</li></ul>        
                     </div>
                 </div>
             </div>
 
             <div class="exercise-box">
                 <h3>✍️ Exercice pratique</h3>
-                <p style="margin: 1rem 0;">Écrivez le nom Amon en hiéroglyphes et expliquez pourquoi il signifie "le Caché".</p>
+                <p style="margin: 1rem 0;">
+            **EXERCICE COMPLET SUR AMON:**
+
+            1. Écrivez le nom Amon en hiéroglyphes (𓇋𓏠𓈖𓀭)
+            2. Expliquez pourquoi il s'appelle "le Caché" alors qu'il est le roi des dieux
+            3. Décrivez sa fusion avec Rê et ce qu'elle symbolise
+            4. Expliquez le rôle politique de l'oracle d'Amon
+            5. Racontez l'échec d'Akhenaton à supprimer Amon
+
+            **Bonus:** Recherchez des photos de Karnak et identifiez:
+            - La salle hypostyle
+            - L'allée des Sphinx
+            - Les obélisques
+            </p>
                 <button class="btn" onclick="completeExercise()">
-                    J'ai terminé mon exercice (15 points)
+                    J'ai terminé mon exercice (50 points)
                 </button>
             </div>
 
@@ -457,8 +482,158 @@
                     <div class="quiz-feedback" id="feedback-3" style="display: none;"></div>
                 </div>
 
+                <div class="quiz-question" id="quiz-4">
+                    <h4>Question 5 :</h4>
+                    <p>Pourquoi Amon est-il représenté avec une peau bleue ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('amon_roi_dieux', 4, 0, 1)">
+                        C'était la couleur royale
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('amon_roi_dieux', 4, 1, 1)">
+                        Symbolise l'invisible comme l'air et le ciel
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('amon_roi_dieux', 4, 2, 1)">
+                        Lien avec le Nil
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('amon_roi_dieux', 4, 3, 1)">
+                        Erreur des scribes
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-4" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-5">
+                    <h4>Question 6 :</h4>
+                    <p>Quelle était la durée de la Fête d'Opet ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('amon_roi_dieux', 5, 0, 2)">
+                        1 jour
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('amon_roi_dieux', 5, 1, 2)">
+                        7 jours
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('amon_roi_dieux', 5, 2, 2)">
+                        11 jours
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('amon_roi_dieux', 5, 3, 2)">
+                        1 mois
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-5" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-6">
+                    <h4>Question 7 :</h4>
+                    <p>Quel pharaon a tenté de supprimer Amon ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('amon_roi_dieux', 6, 0, 1)">
+                        Ramsès II
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('amon_roi_dieux', 6, 1, 1)">
+                        Akhenaton
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('amon_roi_dieux', 6, 2, 1)">
+                        Khéops
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('amon_roi_dieux', 6, 3, 1)">
+                        Thoutmosis III
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-6" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-7">
+                    <h4>Question 8 :</h4>
+                    <p>Quelle est la superficie du temple de Karnak ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('amon_roi_dieux', 7, 0, 2)">
+                        10 hectares
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('amon_roi_dieux', 7, 1, 2)">
+                        50 hectares
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('amon_roi_dieux', 7, 2, 2)">
+                        200 hectares
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('amon_roi_dieux', 7, 3, 2)">
+                        500 hectares
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-7" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-8">
+                    <h4>Question 9 :</h4>
+                    <p>Combien de colonnes dans la grande salle hypostyle de Karnak ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('amon_roi_dieux', 8, 0, 2)">
+                        12
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('amon_roi_dieux', 8, 1, 2)">
+                        50
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('amon_roi_dieux', 8, 2, 2)">
+                        134
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('amon_roi_dieux', 8, 3, 2)">
+                        365
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-8" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-9">
+                    <h4>Question 10 :</h4>
+                    <p>Quelle distance sépare Karnak du temple de Louxor ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('amon_roi_dieux', 9, 0, 2)">
+                        500 mètres
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('amon_roi_dieux', 9, 1, 2)">
+                        1 km
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('amon_roi_dieux', 9, 2, 2)">
+                        2,7 km (allée des Sphinx)
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('amon_roi_dieux', 9, 3, 2)">
+                        10 km
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-9" style="display: none;"></div>
+                </div>
+
                 <div class="score-display" id="quiz-score" style="display: none;">
-                    Score : <span id="score-value">0</span> / 4
+                    Score : <span id="score-value">0</span> / 10
                 </div>
             </div>
         </div>
@@ -485,7 +660,7 @@
 
             const options = document.querySelectorAll(`#quiz-${questionIndex} .quiz-option`);
             const feedback = document.getElementById(`feedback-${questionIndex}`);
-            const explanation = ["Amon signifie \"le Cach\u00e9\" ou \"l'Invisible\", car il transcende toute forme visible", "Th\u00e8bes (Louxor actuel) est la ville sacr\u00e9e d'Amon, avec les temples de Karnak et Louxor", "Amon fusionne avec R\u00ea pour devenir Amon-R\u00ea, combinant le pouvoir cach\u00e9 et le soleil visible", "Le temple de Karnak est le plus grand complexe religieux jamais construit, d\u00e9di\u00e9 \u00e0 Amon"];
+            const explanation = ["Amon signifie \"le Cach\u00e9\" ou \"l'Invisible\", car il transcende toute forme visible", "Th\u00e8bes (Louxor actuel) est la ville sacr\u00e9e d'Amon, avec les temples de Karnak et Louxor", "Amon fusionne avec R\u00ea pour devenir Amon-R\u00ea, combinant le pouvoir cach\u00e9 et le soleil visible", "Le temple de Karnak est le plus grand complexe religieux jamais construit, d\u00e9di\u00e9 \u00e0 Amon", "La peau bleue symbolise l'invisible et l'imperceptible, comme l'air (invisible mais vital)", "La F\u00eate d'Opet durait 11 jours, processus de r\u00e9g\u00e9n\u00e9ration d'Amon et du pharaon", "Akhenaton a tent\u00e9 de remplacer Amon par Aton, le disque solaire (r\u00e9volution monoth\u00e9iste rat\u00e9e)", "Karnak couvre 200 hectares, c'est le plus grand complexe religieux antique au monde", "134 colonnes g\u00e9antes soutiennent le toit de la salle hypostyle (dont 12 centrales de 21m)", "L'all\u00e9e des Sphinx fait 2,7 km, bord\u00e9e de centaines de sphinx \u00e0 t\u00eate de b\u00e9lier (animal d'Amon)"];
 
             quizAnswered[questionIndex] = true;
 
@@ -507,14 +682,14 @@
             options.forEach(opt => opt.style.pointerEvents = 'none');
 
             // Afficher le score si toutes les questions sont répondues
-            if (Object.keys(quizAnswered).length === 4) {
+            if (Object.keys(quizAnswered).length === 10) {
                 const scoreDisplay = document.getElementById('quiz-score');
                 const scoreValue = document.getElementById('score-value');
                 scoreValue.textContent = correctAnswers;
                 scoreDisplay.style.display = 'block';
 
                 // Calculer le score en pourcentage
-                const percentage = Math.round((correctAnswers / 4) * 100);
+                const percentage = Math.round((correctAnswers / 10) * 100);
 
                 // Sauvegarder dans le système de progression
                 if (typeof ProgressionSystem !== 'undefined') {
@@ -555,7 +730,7 @@
                 );
             }
 
-            alert('✅ Exercice validé ! Vous avez gagné 15 points !');
+            alert('✅ Exercice validé ! Vous avez gagné 50 points !');
         }
     </script>
 </body>
