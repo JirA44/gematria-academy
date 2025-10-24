@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types de Raisonnement - Académie Gématria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, rgba(103, 58, 183, 0.2), rgba(156, 39, 176, 0.2));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(103, 58, 183, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ce93d8, #ba68c8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(25, 118, 210, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border-left: 5px solid #2196f3;
+        }
+
+        .reasoning-type {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .reasoning-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .reasoning-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reasoning-icon {
+            font-size: 3rem;
+        }
+
+        .reasoning-title {
+            flex: 1;
+        }
+
+        .reasoning-title h2 {
+            color: #ba68c8;
+            margin-bottom: 0.5rem;
+        }
+
+        .reasoning-subtitle {
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .reasoning-content {
+            margin-top: 1.5rem;
+        }
+
+        .detail-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid #ba68c8;
+        }
+
+        .detail-box h4 {
+            color: #ce93d8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-box ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .detail-box ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ba68c8;
+            font-weight: bold;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(56, 142, 60, 0.2));
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #4caf50;
+        }
+
+        .example-box h4 {
+            color: #81c784;
+            margin-bottom: 1rem;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.2));
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .tip-box h4 {
+            color: #ffd54f;
+            margin-bottom: 1rem;
+        }
+
+        .tree-diagram {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-nav {
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .btn-nav-cyan {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+        }
+
+        .btn-nav-yellow {
+            background: linear-gradient(135deg, #ffc107, #ffa000);
+            box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .reasoning-type {
+                padding: 1.5rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Types de Raisonnement</h1>
+            <p class="subtitle">Apprenez à penser différemment : explorez les diverses manières d'utiliser votre esprit</p>
+        </header>
+
+        <div class="intro">
+            <h3>🌟 Pourquoi apprendre différents types de raisonnement ?</h3>
+            <p>Notre cerveau est capable de penser de multiples façons. Chaque type de raisonnement a ses forces et ses applications. En maîtrisant plusieurs approches cognitives, vous devenez plus flexible, créatif et efficace dans la résolution de problèmes.</p>
+            <p style="margin-top: 1rem;"><strong>Cette page vous enseigne 8 types majeurs de raisonnement</strong>, de la pensée linéaire classique à la pensée en arborescence complexe.</p>
+        </div>
+
+        <!-- PENSÉE EN ARBORESCENCE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">🌳</div>
+                <div class="reasoning-title">
+                    <h2>1. Pensée en Arborescence</h2>
+                    <p class="reasoning-subtitle">Pensée Multi-branches, Exploratoire</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>La pensée en arborescence est une méthode cognitive où <strong>une idée centrale se ramifie en multiples directions simultanément</strong>. Comme un arbre qui développe de nombreuses branches, ce type de pensée explore toutes les possibilités en même temps plutôt que de suivre un seul chemin.</p>
+                    <p style="margin-top: 1rem;">C'est l'opposé de la pensée linéaire : au lieu d'aller de A → B → C, on va de A vers B1, B2, B3, B4... et chacune de ces branches peut elle-même se diviser en C1, C2, C3...</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Simultanéité</strong> : Plusieurs pistes de réflexion en même temps</li>
+                        <li><strong>Exploration exhaustive</strong> : Ne laisse aucune possibilité de côté</li>
+                        <li><strong>Connexions multiples</strong> : Trouve des liens entre branches apparemment séparées</li>
+                        <li><strong>Créativité explosive</strong> : Génère un grand nombre d'idées rapidement</li>
+                        <li><strong>Vision panoramique</strong> : Voit l'ensemble du paysage conceptuel</li>
+                        <li><strong>Non-linéaire</strong> : Pas de séquence stricte A→B→C</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : Résoudre un problème quotidien</h4>
+                    <p><strong>Problème :</strong> "Comment améliorer ma productivité ?"</p>
+
+                    <div class="tree-diagram">
+Améliorer ma productivité
+├── Gestion du temps
+│   ├── Techniques Pomodoro
+│   ├── Time blocking
+│   ├── Éliminer distractions
+│   │   ├── Bloquer réseaux sociaux
+│   │   ├── Mode avion
+│   │   └── Bureau propre
+│   └── Priorisation
+│       ├── Matrice Eisenhower
+│       └── Manger la grenouille
+├── Énergie physique
+│   ├── Sommeil optimal (7-9h)
+│   ├── Exercice quotidien
+│   ├── Nutrition
+│   │   ├── Petit-déjeuner protéiné
+│   │   └── Éviter sucres rapides
+│   └── Hydratation (2L/jour)
+├── État mental
+│   ├── Méditation (10min/jour)
+│   ├── Journaling
+│   ├── Limiter stress
+│   └── Pauses régulières
+├── Outils & Systèmes
+│   ├── Applications productivité
+│   │   ├── Notion
+│   │   ├── Todoist
+│   │   └── Forest app
+│   ├── Automatisation
+│   └── Templates
+└── Environnement
+    ├── Espace de travail dédié
+    ├── Éclairage optimal
+    ├── Température confortable
+    └── Plantes vertes (concentration)
+                    </div>
+
+                    <p style="margin-top: 1rem;">Avec la pensée en arborescence, on explore TOUTES les dimensions du problème simultanément, créant un réseau complet de solutions potentielles.</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>✅ Avantages</h4>
+                    <ul>
+                        <li>Découvre des solutions que la pensée linéaire manquerait</li>
+                        <li>Excellente pour brainstorming et créativité</li>
+                        <li>Permet de voir les connexions cachées entre concepts</li>
+                        <li>Idéale pour les esprits TDAH/HPI (Haut Potentiel Intellectuel)</li>
+                        <li>Génère beaucoup d'idées en peu de temps</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Défis</h4>
+                    <ul>
+                        <li>Peut être écrasant si trop de branches sont ouvertes</li>
+                        <li>Difficulté à terminer : toujours une nouvelle branche à explorer</li>
+                        <li>Nécessite de l'organisation pour ne pas se perdre</li>
+                        <li>Consomme beaucoup d'énergie mentale</li>
+                        <li>Peut sembler chaotique pour les penseurs linéaires</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Comment pratiquer la pensée en arborescence</h4>
+                    <ul>
+                        <li><strong>Mind mapping</strong> : Utilisez des cartes mentales (MindMeister, XMind)</li>
+                        <li><strong>Technique des 6 chapeaux</strong> : Explorez un problème sous 6 angles différents</li>
+                        <li><strong>Questions "Et si...?"</strong> : Posez-vous 20 variations d'un même problème</li>
+                        <li><strong>SCAMPER</strong> : Substituer, Combiner, Adapter, Modifier, Proposer, Éliminer, Réorganiser</li>
+                        <li><strong>Journaling non-linéaire</strong> : Écrivez avec des flèches et connexions, pas en lignes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE LINÉAIRE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">➡️</div>
+                <div class="reasoning-title">
+                    <h2>2. Pensée Linéaire</h2>
+                    <p class="reasoning-subtitle">Séquentielle, Logique, Étape par Étape</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>La pensée linéaire suit une <strong>progression logique séquentielle : A → B → C → D</strong>. Chaque étape découle naturellement de la précédente. C'est le mode de pensée standard enseigné à l'école.</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Séquentialité</strong> : Une chose à la fois, dans l'ordre</li>
+                        <li><strong>Causalité claire</strong> : Cause → Effet facilement identifiable</li>
+                        <li><strong>Prédictibilité</strong> : Chaque étape mène logiquement à la suivante</li>
+                        <li><strong>Structure</strong> : Plan clair avec début, milieu, fin</li>
+                        <li><strong>Reproductibilité</strong> : Facile à documenter et répéter</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : Recette de cuisine</h4>
+                    <ol style="list-style: decimal; padding-left: 2rem;">
+                        <li>Préchauffer le four à 180°C</li>
+                        <li>Mélanger la farine et le sucre</li>
+                        <li>Ajouter les œufs un par un</li>
+                        <li>Incorporer le beurre fondu</li>
+                        <li>Verser dans le moule</li>
+                        <li>Cuire 35 minutes</li>
+                        <li>Laisser refroidir</li>
+                        <li>Servir</li>
+                    </ol>
+                    <p style="margin-top: 1rem;">Chaque étape doit être faite dans l'ordre. On ne peut pas passer à l'étape 6 avant d'avoir fait l'étape 5.</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>✅ Avantages</h4>
+                    <ul>
+                        <li>Simple et facile à suivre</li>
+                        <li>Excellente pour tâches procédurales (tutoriels, recettes, assemblage)</li>
+                        <li>Peu de charge mentale : une étape à la fois</li>
+                        <li>Facile à enseigner et à documenter</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Limites</h4>
+                    <ul>
+                        <li>Manque de créativité : ne voit qu'un seul chemin</li>
+                        <li>Rigide : difficulté à s'adapter si une étape échoue</li>
+                        <li>Peut manquer des solutions alternatives</li>
+                        <li>Ne convient pas aux problèmes complexes multi-variables</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE LATÉRALE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">↗️</div>
+                <div class="reasoning-title">
+                    <h2>3. Pensée Latérale</h2>
+                    <p class="reasoning-subtitle">Créative, Indirecte, "Sortir du cadre"</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>Concept créé par <strong>Edward de Bono</strong> en 1967. La pensée latérale consiste à <strong>résoudre un problème par une approche indirecte, créative et non conventionnelle</strong>. Au lieu d'attaquer le problème frontalement (pensée verticale), on l'aborde de côté.</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Remise en question des hypothèses</strong> : "Et si on faisait l'inverse ?"</li>
+                        <li><strong>Connexions improbables</strong> : Relier des domaines sans rapport</li>
+                        <li><strong>Pensée provocatrice</strong> : Utiliser des idées absurdes pour débloquer</li>
+                        <li><strong>Solutions non évidentes</strong> : Le résultat surprend</li>
+                        <li><strong>Changement de perspective</strong> : Voir le problème sous un angle totalement différent</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple classique : Le problème des 9 points</h4>
+                    <p><strong>Problème :</strong> Reliez les 9 points ci-dessous avec 4 lignes droites sans lever le crayon.</p>
+                    <pre style="font-size: 1.5rem; margin: 1rem 0;">
+·   ·   ·
+
+·   ·   ·
+
+·   ·   ·
+                    </pre>
+                    <p><strong>Pensée conventionnelle :</strong> Essaie de rester dans le carré formé par les points → IMPOSSIBLE avec 4 lignes</p>
+                    <p style="margin-top: 1rem;"><strong>Pensée latérale :</strong> Qui a dit qu'on devait rester dans le carré ? <em>Sortez littéralement du cadre !</em></p>
+                    <p style="margin-top: 1rem; padding: 1rem; background: rgba(76, 175, 80, 0.2); border-radius: 5px;">
+                        <strong>Solution :</strong> Les lignes peuvent dépasser les points ! En traçant des lignes qui sortent du carré imaginaire, c'est faisable avec 4 lignes (et même 3 lignes si on utilise des lignes très épaisses ou si on plie le papier).
+                    </p>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple réel : Le problème de l'ascenseur</h4>
+                    <p><strong>Problème :</strong> Les employés d'un immeuble se plaignent que l'ascenseur est trop lent.</p>
+                    <p><strong>Pensée verticale (directe) :</strong></p>
+                    <ul>
+                        <li>Installer un ascenseur plus rapide (coûteux)</li>
+                        <li>Ajouter un second ascenseur (très coûteux)</li>
+                        <li>Améliorer l'algorithme d'arrêt (complexe)</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Pensée latérale (indirecte) :</strong></p>
+                    <p style="padding: 1rem; background: rgba(76, 175, 80, 0.2); border-radius: 5px; margin-top: 0.5rem;">
+                        Installer des <strong>miroirs</strong> dans le hall d'ascenseur. Les gens sont distraits en se regardant et en observant les autres → <em>Le temps d'attente perçu diminue drastiquement</em> → Plaintes résolues pour un coût minime !
+                    </p>
+                    <p style="margin-top: 1rem;"><strong>Clé :</strong> Le vrai problème n'était pas la vitesse, mais <em>la perception du temps d'attente</em>.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Techniques de pensée latérale</h4>
+                    <ul>
+                        <li><strong>Inversion</strong> : "Et si on faisait exactement l'inverse ?"</li>
+                        <li><strong>Analogies farfelues</strong> : "Comment un chat résoudrait-il ce problème ?"</li>
+                        <li><strong>Contraintes impossibles</strong> : "Et si on avait 0€ de budget et 1 heure ?"</li>
+                        <li><strong>Mot aléatoire</strong> : Ouvrez un dictionnaire au hasard et forcez une connexion</li>
+                        <li><strong>Reformulation radicale</strong> : Changez complètement la question</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE SYSTÉMIQUE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">🔄</div>
+                <div class="reasoning-title">
+                    <h2>4. Pensée Systémique</h2>
+                    <p class="reasoning-subtitle">Holistique, Interconnexions, Vue d'ensemble</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>La pensée systémique considère <strong>les problèmes comme des systèmes complexes d'éléments interconnectés</strong> plutôt que comme des événements isolés. Elle s'intéresse aux relations, boucles de rétroaction et dynamiques émergentes.</p>
+                    <p style="margin-top: 1rem;">Principe clé : <em>"Le tout est plus que la somme des parties"</em> - Aristote</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Vision holistique</strong> : Voir l'ensemble, pas seulement les pièces</li>
+                        <li><strong>Interconnexions</strong> : Tout affecte tout</li>
+                        <li><strong>Boucles de rétroaction</strong> : Causes et effets circulaires</li>
+                        <li><strong>Effets émergents</strong> : Propriétés qui apparaissent seulement au niveau système</li>
+                        <li><strong>Délais temporels</strong> : Les effets peuvent être différés</li>
+                        <li><strong>Non-linéarité</strong> : Petites causes, grands effets (et vice-versa)</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : L'écosystème du jardin</h4>
+                    <p><strong>Pensée non-systémique :</strong> "Il y a trop d'insectes nuisibles → J'utilise des pesticides"</p>
+                    <p style="margin-top: 1rem;"><strong>Pensée systémique :</strong></p>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 0, 0, 0.2); border-radius: 5px;">
+                        <p>Insectes nuisibles ↑</p>
+                        <p>↓ Pourquoi ?</p>
+                        <p>Prédateurs naturels (coccinelles, oiseaux) ↓</p>
+                        <p>↓ Pourquoi ?</p>
+                        <p>Pesticides antérieurs ont tué prédateurs</p>
+                        <p>↓ Donc :</p>
+                        <p><strong>Solution systémique :</strong> Attirer prédateurs (nichoirs, plantes à nectar) → Équilibre naturel restauré</p>
+                    </div>
+                    <p style="margin-top: 1rem;">La pensée systémique voit que <em>les pesticides créent le problème qu'ils prétendent résoudre</em> (boucle de rétroaction négative).</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🌍 Applications réelles</h4>
+                    <ul>
+                        <li><strong>Écologie</strong> : Changement climatique, chaînes alimentaires</li>
+                        <li><strong>Économie</strong> : Marchés financiers, politiques monétaires</li>
+                        <li><strong>Santé</strong> : Corps humain comme système (hormones, immunité, microbiome)</li>
+                        <li><strong>Organisations</strong> : Culture d'entreprise, dynamiques d'équipe</li>
+                        <li><strong>Technologie</strong> : Réseaux informatiques, infrastructures</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Outils de pensée systémique</h4>
+                    <ul>
+                        <li><strong>Diagrammes de boucles causales</strong> : Visualiser les relations cause-effet circulaires</li>
+                        <li><strong>Archétypes systémiques</strong> : Modèles récurrents (limites à la croissance, tragédie des communs)</li>
+                        <li><strong>Modélisation par stocks et flux</strong> : Quantifier les dynamiques</li>
+                        <li><strong>Cartographie des parties prenantes</strong> : Identifier tous les acteurs et leurs intérêts</li>
+                        <li><strong>Analyse des leviers</strong> : Trouver les points d'intervention les plus efficaces</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE DIVERGENTE vs CONVERGENTE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">🌐</div>
+                <div class="reasoning-title">
+                    <h2>5. Pensée Divergente vs Convergente</h2>
+                    <p class="reasoning-subtitle">Expansion vs Contraction, Créativité vs Analyse</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p><strong>Pensée divergente :</strong> Génère un maximum d'idées, de possibilités et de solutions. C'est la phase d'<em>expansion créative</em>.</p>
+                    <p style="margin-top: 1rem;"><strong>Pensée convergente :</strong> Évalue, filtre et sélectionne la meilleure option parmi toutes les possibilités. C'est la phase d'<em>analyse et de décision</em>.</p>
+                    <p style="margin-top: 1rem; padding: 1rem; background: rgba(255, 193, 7, 0.2); border-radius: 5px;">
+                        <strong>💡 Important :</strong> Ces deux modes sont complémentaires ! Un processus créatif efficace alterne entre les deux : Divergence → Convergence → Divergence → Convergence...
+                    </p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card" style="border: 2px solid #4caf50;">
+                        <h4 style="color: #81c784;">🌟 Pensée Divergente</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Génère des idées</li>
+                            <li>Quantité > Qualité</li>
+                            <li>Suspendre le jugement</li>
+                            <li>Toutes les idées bienvenues</li>
+                            <li>Imagination libre</li>
+                            <li>"Oui, et..."</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card" style="border: 2px solid #2196f3;">
+                        <h4 style="color: #64b5f6;">🎯 Pensée Convergente</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Évalue les idées</li>
+                            <li>Qualité > Quantité</li>
+                            <li>Jugement critique actif</li>
+                            <li>Filtrage rigoureux</li>
+                            <li>Logique et critères</li>
+                            <li>"Quelle est la meilleure ?"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : Organiser une fête d'anniversaire</h4>
+                    <p><strong>Phase 1 - Divergence :</strong> Brainstorming de toutes les idées possibles</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Fête à la maison, restaurant, parc, plage, montagne, escape game, bowling...</li>
+                        <li>Thèmes : années 80, super-héros, tropical, médiéval, casino, mascarade...</li>
+                        <li>10 personnes, 30 personnes, 100 personnes, surprise ou pas...</li>
+                        <li>Budget : 500€, 2000€, 5000€...</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Phase 2 - Convergence :</strong> Évaluation selon critères</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Budget disponible : 1500€ max</li>
+                        <li>Préférences de la personne : aime plage, déteste costumes</li>
+                        <li>Contraintes : mi-juillet, 25 invités confirmés</li>
+                        <li>Logistique : parking, accès, météo</li>
+                    </ul>
+                    <p style="margin-top: 1rem; padding: 1rem; background: rgba(76, 175, 80, 0.2); border-radius: 5px;">
+                        <strong>Décision convergente :</strong> Beach party au coucher du soleil, location de yourtes, BBQ et DJ, thème tropical léger (optionnel)
+                    </p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>⚠️ Erreurs fréquentes</h4>
+                    <ul>
+                        <li><strong>Converger trop tôt</strong> : Tuer les idées créatives avant qu'elles n'émergent → "Oui mais..." syndrome</li>
+                        <li><strong>Diverger sans fin</strong> : Générer 1000 idées mais jamais décider → Paralysie d'analyse</li>
+                        <li><strong>Mélanger les deux</strong> : Juger pendant le brainstorming → Tue la créativité</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Techniques</h4>
+                    <p><strong>Pour la divergence :</strong></p>
+                    <ul>
+                        <li>Brainstorming classique (règle : pas de critique)</li>
+                        <li>Brainwriting (écrire idées en silence)</li>
+                        <li>SCAMPER, mind mapping, associations libres</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Pour la convergence :</strong></p>
+                    <ul>
+                        <li>Matrice de décision (critères vs options)</li>
+                        <li>Vote pondéré</li>
+                        <li>Analyse coûts-bénéfices</li>
+                        <li>Tests rapides / MVP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE ANALOGIQUE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">🔗</div>
+                <div class="reasoning-title">
+                    <h2>6. Pensée Analogique</h2>
+                    <p class="reasoning-subtitle">Raisonnement par Similarité, Métaphores</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>La pensée analogique résout un problème en <strong>le comparant à une situation similaire dans un autre domaine</strong>. Elle trouve des correspondances structurelles entre deux situations apparemment différentes.</p>
+                    <p style="margin-top: 1rem;">Formule : <em>"A est à B ce que C est à D"</em></p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Pourquoi c'est puissant</h4>
+                    <ul>
+                        <li><strong>Transfert de connaissance</strong> : Réutilise des solutions éprouvées</li>
+                        <li><strong>Compréhension rapide</strong> : Explique des concepts complexes simplement</li>
+                        <li><strong>Innovation</strong> : Applique des idées d'un domaine à un autre</li>
+                        <li><strong>Mémorisation</strong> : Les analogies sont plus faciles à retenir</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemples d'analogies célèbres</h4>
+
+                    <p><strong>1. Internet = Autoroutes de l'information</strong></p>
+                    <p style="margin-left: 1rem; margin-top: 0.5rem;">→ Aide à comprendre : flux de données, congestion, vitesse, péages (paywall)</p>
+
+                    <p style="margin-top: 1rem;"><strong>2. Cerveau = Ordinateur</strong></p>
+                    <p style="margin-left: 1rem; margin-top: 0.5rem;">→ Aide à comprendre : traitement, mémoire (RAM vs disque dur), bugs (erreurs cognitives)</p>
+
+                    <p style="margin-top: 1rem;"><strong>3. Atome = Système solaire</strong></p>
+                    <p style="margin-left: 1rem; margin-top: 0.5rem;">→ Aide à comprendre : noyau (soleil), électrons (planètes), orbites</p>
+
+                    <p style="margin-top: 1rem;"><strong>4. ADN = Code source d'un programme</strong></p>
+                    <p style="margin-left: 1rem; margin-top: 0.5rem;">→ Aide à comprendre : instructions, compilation (expression génétique), bugs (mutations)</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Innovation par analogie : Le velcro</h4>
+                    <p>En 1941, George de Mestral rentre de chasse et trouve des graines de bardane accrochées à son chien.</p>
+                    <p style="margin-top: 0.5rem;"><strong>Analogie :</strong> "Et si on créait un système de fermeture qui fonctionne comme ces graines ?"</p>
+                    <p style="margin-top: 0.5rem;">→ Résultat : <strong>Le velcro</strong> (crochets + boucles), utilisé dans l'aérospatiale, vêtements, chaussures...</p>
+                    <p style="margin-top: 1rem; padding: 1rem; background: rgba(76, 175, 80, 0.2); border-radius: 5px;">
+                        <strong>Principe :</strong> Observation dans la nature → Analogie → Innovation technologique
+                    </p>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Comment utiliser la pensée analogique</h4>
+                    <ul>
+                        <li><strong>Cherchez dans d'autres domaines</strong> : "Comment ce problème est-il résolu en biologie ? En économie ? En sport ?"</li>
+                        <li><strong>Biomimétisme</strong> : La nature a souvent déjà résolu votre problème</li>
+                        <li><strong>Études de cas</strong> : "Qui a déjà fait face à quelque chose de similaire ?"</li>
+                        <li><strong>Créez vos propres métaphores</strong> : Forcez-vous à expliquer avec une analogie</li>
+                        <li><strong>Lisez large</strong> : Plus de domaines = plus d'analogies disponibles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE CRITIQUE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">🔍</div>
+                <div class="reasoning-title">
+                    <h2>7. Pensée Critique</h2>
+                    <p class="reasoning-subtitle">Analyse Rigoureuse, Scepticisme Constructif</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>La pensée critique est <strong>l'analyse objective et rigoureuse d'informations pour former un jugement éclairé</strong>. Elle questionne les hypothèses, identifie les biais et évalue la validité des arguments.</p>
+                    <p style="margin-top: 1rem;">Ce n'est PAS être négatif ou cynique - c'est être <em>rigoureux et honnête intellectuellement</em>.</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Compétences clés</h4>
+                    <ul>
+                        <li><strong>Identifier les présupposés</strong> : Quelles hypothèses cachées ?</li>
+                        <li><strong>Évaluer les preuves</strong> : Source fiable ? Données solides ?</li>
+                        <li><strong>Détecter les biais</strong> : Confirmation, ancrage, disponibilité...</li>
+                        <li><strong>Analyser la logique</strong> : L'argument tient-il debout ?</li>
+                        <li><strong>Considérer des alternatives</strong> : Y a-t-il d'autres explications ?</li>
+                        <li><strong>Reconnaître les sophismes</strong> : Appel à l'autorité, faux dilemme, pente glissante...</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : Évaluer une affirmation</h4>
+                    <p><strong>Affirmation :</strong> "95% des dentistes recommandent notre dentifrice !"</p>
+                    <p style="margin-top: 1rem;"><strong>Questions de pensée critique :</strong></p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Combien de dentistes ont été interrogés ? (5 ? 1000 ?)</li>
+                        <li>Qui a mené l'étude ? (L'entreprise elle-même ?)</li>
+                        <li>Quelle était la question exacte ? ("Recommandez-vous CE dentifrice ?" ou "Recommandez-vous le brossage de dents ?")</li>
+                        <li>Les dentistes étaient-ils payés ?</li>
+                        <li>Quelles alternatives ont été comparées ?</li>
+                        <li>Les 5% qui ne recommandent pas - pourquoi ?</li>
+                    </ul>
+                    <p style="margin-top: 1rem; padding: 1rem; background: rgba(255, 152, 0, 0.2); border-radius: 5px;">
+                        <strong>Résultat :</strong> Une affirmation marketing vague peut sembler impressionnante mais ne nous dit presque rien d'utile.
+                    </p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🚨 Sophismes courants à détecter</h4>
+                    <ul>
+                        <li><strong>Ad hominem</strong> : Attaquer la personne au lieu de l'argument</li>
+                        <li><strong>Faux dilemme</strong> : "C'est noir ou blanc" (en ignorant les nuances)</li>
+                        <li><strong>Appel à l'autorité</strong> : "Un expert l'a dit" (mais quel expert ? Dans quel domaine ?)</li>
+                        <li><strong>Pente glissante</strong> : "Si A, alors forcément Z" (sans prouver les étapes)</li>
+                        <li><strong>Post hoc ergo propter hoc</strong> : "Après donc à cause de" (corrélation ≠ causalité)</li>
+                        <li><strong>Homme de paille</strong> : Déformer l'argument adverse pour mieux l'attaquer</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Développer sa pensée critique</h4>
+                    <ul>
+                        <li><strong>Posez "Pourquoi ?" 5 fois</strong> : Méthode Toyota pour trouver la vraie cause</li>
+                        <li><strong>Jouez l'avocat du diable</strong> : Défendez la position opposée</li>
+                        <li><strong>Vérifiez les sources</strong> : D'où vient cette information ?</li>
+                        <li><strong>Quantifiez</strong> : Remplacez "beaucoup" par des nombres précis</li>
+                        <li><strong>Testez</strong> : Expérimentation > opinion</li>
+                        <li><strong>Lisez des arguments contradictoires</strong> : Sortez de votre bulle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PENSÉE ABSTRAITE -->
+        <div class="reasoning-type">
+            <div class="reasoning-header">
+                <div class="reasoning-icon">💭</div>
+                <div class="reasoning-title">
+                    <h2>8. Pensée Abstraite</h2>
+                    <p class="reasoning-subtitle">Concepts, Principes, Généralisation</p>
+                </div>
+            </div>
+
+            <div class="reasoning-content">
+                <div class="detail-box">
+                    <h4>📖 Définition</h4>
+                    <p>La pensée abstraite est la capacité à <strong>penser en termes de concepts, principes et idées générales plutôt qu'en objets concrets</strong>. C'est penser au-delà du visible et du tangible.</p>
+                    <p style="margin-top: 1rem;">Opposé : Pensée concrète (limité aux objets physiques, ici et maintenant)</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>🎯 Caractéristiques</h4>
+                    <ul>
+                        <li><strong>Généralisation</strong> : Extraire des principes à partir d'exemples spécifiques</li>
+                        <li><strong>Symbolisation</strong> : Utiliser des symboles pour représenter des idées</li>
+                        <li><strong>Hypothèse</strong> : Envisager des scénarios "et si..."</li>
+                        <li><strong>Métacognition</strong> : Penser à la façon dont on pense</li>
+                        <li><strong>Concepts complexes</strong> : Justice, liberté, temps, infini...</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card" style="border: 2px solid #ff9800;">
+                        <h4 style="color: #ffb74d;">🧱 Pensée Concrète</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>"Cette pomme est rouge"</li>
+                            <li>"J'ai 5 doigts"</li>
+                            <li>"Il fait froid dehors"</li>
+                            <li>"Mon chat s'appelle Félix"</li>
+                            <li>Focus sur l'objet physique</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card" style="border: 2px solid #9c27b0;">
+                        <h4 style="color: #ba68c8;">☁️ Pensée Abstraite</h4>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>"Qu'est-ce que la couleur ?"</li>
+                            <li>"Qu'est-ce que les nombres ?"</li>
+                            <li>"Qu'est-ce que la température ?"</li>
+                            <li>"Qu'est-ce que l'identité ?"</li>
+                            <li>Focus sur le concept général</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : Du concret vers l'abstrait</h4>
+                    <p><strong>Niveau 1 - Concret :</strong></p>
+                    <p style="margin-left: 1rem;">"J'ai prêté 10€ à Jean et il ne me les a pas rendus. Je suis fâché."</p>
+
+                    <p style="margin-top: 1rem;"><strong>Niveau 2 - Semi-abstrait :</strong></p>
+                    <p style="margin-left: 1rem;">"Quand on prête de l'argent, on risque de perdre à la fois l'argent et l'ami."</p>
+
+                    <p style="margin-top: 1rem;"><strong>Niveau 3 - Abstrait :</strong></p>
+                    <p style="margin-left: 1rem;">"La confiance est un contrat social implicite dont la violation engendre des émotions négatives proportionnelles à l'investissement initial."</p>
+
+                    <p style="margin-top: 1rem;"><strong>Niveau 4 - Très abstrait (philosophique) :</strong></p>
+                    <p style="margin-left: 1rem;">"Qu'est-ce que la confiance ? Comment se forme-t-elle ? Peut-elle être quantifiée ? Existe-t-elle objectivement ou n'est-elle qu'une construction mentale ?"</p>
+                </div>
+
+                <div class="detail-box">
+                    <h4>✅ Pourquoi développer la pensée abstraite</h4>
+                    <ul>
+                        <li><strong>Résolution de problèmes complexes</strong> : Voir les patterns sous-jacents</li>
+                        <li><strong>Créativité</strong> : Combiner des concepts de façons nouvelles</li>
+                        <li><strong>Compréhension profonde</strong> : Saisir l'essence plutôt que la surface</li>
+                        <li><strong>Transfert de connaissances</strong> : Appliquer un principe dans plusieurs contextes</li>
+                        <li><strong>Mathématiques et sciences</strong> : Indispensable pour les concepts avancés</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Exercices pour développer la pensée abstraite</h4>
+                    <ul>
+                        <li><strong>Analogies</strong> : "La mémoire est au cerveau ce que X est à Y"</li>
+                        <li><strong>Définitions</strong> : "Qu'est-ce que la beauté ? Le courage ? Le temps ?"</li>
+                        <li><strong>Patterns</strong> : Trouvez les similarités entre des situations différentes</li>
+                        <li><strong>Symboles</strong> : Créez des diagrammes abstraits pour représenter des idées</li>
+                        <li><strong>Philosophie</strong> : Lisez sur l'ontologie, l'épistémologie, la métaphysique</li>
+                        <li><strong>Mathématiques</strong> : Algèbre, théorie des ensembles, topologie</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLEAU RÉCAPITULATIF -->
+        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border-radius: 20px; padding: 2.5rem; margin: 3rem 0; border: 2px solid rgba(255, 255, 255, 0.1);">
+            <h2 style="text-align: center; color: #ba68c8; margin-bottom: 2rem;">📊 Tableau Récapitulatif : Quand Utiliser Quel Type de Raisonnement ?</h2>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; background: rgba(0, 0, 0, 0.2); border-radius: 10px;">
+                    <thead>
+                        <tr style="background: rgba(156, 39, 176, 0.3);">
+                            <th style="padding: 1rem; text-align: left; border-bottom: 2px solid rgba(255, 255, 255, 0.2);">Type</th>
+                            <th style="padding: 1rem; text-align: left; border-bottom: 2px solid rgba(255, 255, 255, 0.2);">Meilleur pour...</th>
+                            <th style="padding: 1rem; text-align: left; border-bottom: 2px solid rgba(255, 255, 255, 0.2);">Éviter si...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>🌳 Arborescence</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Brainstorming, exploration créative, décisions complexes</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Tâches procédurales simples, urgences</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>➡️ Linéaire</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Recettes, tutoriels, processus standardisés</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Problèmes créatifs, situations ambiguës</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>↗️ Latérale</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Problèmes insolubles par méthodes conventionnelles, innovation</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Situations nécessitant rigueur/conformité</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>🔄 Systémique</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Problèmes complexes interconnectés, long terme</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Décisions rapides, problèmes isolés</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>🌐 Divergente</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Phase de génération d'idées, créativité</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Phase de décision (utiliser convergente)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>🎯 Convergente</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Prise de décision, sélection, priorisation</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Phase créative (utiliser divergente)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>🔗 Analogique</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Comprendre concepts nouveaux, innovation par transfert</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Situations où les analogies sont trompeuses</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"><strong>🔍 Critique</strong></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Évaluer informations, détecter manipulations, argumenter</td>
+                            <td style="padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Phase créative initiale (bloque l'imagination)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem;"><strong>💭 Abstraite</strong></td>
+                            <td style="padding: 1rem;">Philosophie, mathématiques, principes généraux</td>
+                            <td style="padding: 1rem;">Actions concrètes immédiates</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CONCLUSION -->
+        <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(56, 142, 60, 0.2)); border-radius: 20px; padding: 2.5rem; margin: 3rem 0; border: 2px solid rgba(76, 175, 80, 0.3); text-align: center;">
+            <h2 style="color: #81c784; margin-bottom: 1.5rem;">🎓 Maîtrisez Tous les Types de Raisonnement</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                <strong>La clé n'est pas de choisir UN type de raisonnement, mais de savoir quand utiliser chacun.</strong>
+            </p>
+            <p style="margin-top: 1rem; font-size: 1.1rem; line-height: 1.8;">
+                Les penseurs les plus efficaces sont comme des artisans avec une boîte à outils complète :
+                ils sélectionnent l'outil mental approprié pour chaque situation.
+            </p>
+            <p style="margin-top: 1rem; font-size: 1.1rem; line-height: 1.8;">
+                <em>Pratiquez chaque type, identifiez vos forces naturelles, et développez intentionnellement vos faiblesses.</em>
+            </p>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="navigation">
+            <a href="logique-expert.html" class="btn-nav btn-nav-cyan">⬅️ Logique Expert</a>
+            <a href="index.html" class="btn-nav btn-nav-yellow">🏠 Accueil</a>
+        </div>
+    </div>
+</body>
+</html>
