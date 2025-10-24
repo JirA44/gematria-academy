@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📜 Bibliothèque d'Inscriptions Authentiques</title>
     <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
     <style>
         * {
             margin: 0;
@@ -19,7 +21,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -40,15 +42,47 @@
             opacity: 0.8;
         }
 
+        .stats-box {
+            background: rgba(30, 30, 45, 0.8);
+            border: 2px solid rgba(196, 156, 98, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #c49c62;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
         .level-section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .level-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(196, 156, 98, 0.5);
+            border-bottom: 3px solid rgba(196, 156, 98, 0.5);
         }
 
         .inscriptions-grid {
@@ -70,8 +104,23 @@
         .inscription-card:hover {
             transform: translateY(-10px);
             border-color: rgba(196, 156, 98, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(196, 156, 98, 0.3);
         }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .diff-1, .diff-2 { background: rgba(76, 175, 80, 0.3); color: #81c784; }
+        .diff-3, .diff-4 { background: rgba(255, 193, 7, 0.3); color: #ffd54f; }
+        .diff-5, .diff-6 { background: rgba(255, 152, 0, 0.3); color: #ffb74d; }
+        .diff-7, .diff-8 { background: rgba(244, 67, 54, 0.3); color: #e57373; }
+        .diff-9, .diff-10 { background: rgba(156, 39, 176, 0.3); color: #ba68c8; }
 
         .inscription-title {
             font-size: 1.5rem;
@@ -85,6 +134,7 @@
             margin: 1.5rem 0;
             direction: rtl;
             letter-spacing: 0.3rem;
+            line-height: 1.5;
         }
 
         .inscription-monument {
@@ -101,114 +151,45 @@
 
         .inscription-description {
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 1.5rem;
-        }
-
-        .difficulty-badge {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .diff-1, .diff-2 {
-            background: rgba(76, 175, 80, 0.3);
-            border: 2px solid #4caf50;
-            color: #81c784;
-        }
-
-        .diff-3, .diff-4, .diff-5 {
-            background: rgba(255, 152, 0, 0.3);
-            border: 2px solid #ff9800;
-            color: #ffb74d;
-        }
-
-        .diff-6, .diff-7, .diff-8 {
-            background: rgba(156, 39, 176, 0.3);
-            border: 2px solid #9c27b0;
-            color: #ce93d8;
+            opacity: 0.9;
         }
 
         .btn-open {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            color: white;
+            background: linear-gradient(135deg, #c49c62, #8b6f47);
             border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
+            color: white;
+            padding: 1rem 2rem;
             border-radius: 25px;
+            font-size: 1rem;
             cursor: pointer;
+            transition: all 0.3s ease;
             width: 100%;
-            transition: transform 0.3s ease;
         }
 
         .btn-open:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 156, 98, 0.4);
         }
 
-        .stats-box {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .stat-item {
-            background: rgba(30, 30, 45, 0.85);
-            padding: 1rem;
-            border-radius: 10px;
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-
-        .btn-home {
+        .back-link {
             display: inline-block;
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
+            margin-bottom: 2rem;
+            color: #c49c62;
             text-decoration: none;
-            border-radius: 25px;
-            transition: transform 0.3s ease;
+            font-size: 1.1rem;
         }
 
-        .btn-home:hover {
-            transform: translateY(-3px);
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+        .back-link:hover {
+            text-decoration: underline;
         }
     </style>
-    <link rel="stylesheet" href="animated-background.css">
-    <script src="animated-background.js" defer></script>
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
         <h1>📜 Bibliothèque d'Inscriptions Authentiques</h1>
         <p class="subtitle">Apprenez les hiéroglyphes à partir de vraies inscriptions de temples et pyramides égyptiens</p>
 
@@ -235,40 +216,304 @@
         </div>
 
         <!-- NIVEAU DÉBUTANT -->
-        <div class="level-section">
-            <h2 class="level-title">🌱 Niveau Débutant</h2>
+        <div class="level-section" id="debutant">
+            <h2 class="level-title">🌱 Niveau Débutant (27 inscriptions)</h2>
             <div class="inscriptions-grid">
 
-                <!-- Temple de Karnak -->
+                <!-- Porte du Temple de Karnak -->
                 <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-karnak_001.html'">
                     <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
-                    <h3 class="inscription-title">Temple de Karnak</h3>
+                    <h3 class="inscription-title">Porte du Temple de Karnak</h3>
                     <div class="inscription-hieroglyphs">𓇳𓁧𓎟 𓊪𓂋𓏤 𓆣𓂋</div>
-                    <p class="inscription-monument">📍 Temple de Karnak, Louxor</p>
-                    <p class="inscription-epoch">📅 Ramsès II (1279-1213 av. J.-C.)</p>
-                    <p class="inscription-description">Inscription simple à l'entrée du temple accueillant les visiteurs. Apprenez à lire votre première phrase égyptienne !</p>
+                    <p class="inscription-monument">📍 Temple de Karnak, Louxor, Égypte</p>
+                    <p class="inscription-epoch">📅 Ramsès II (XIXe dynastie, 1279-1213 av. J.-C.)</p>
+                    <p class="inscription-description">Inscription simple à l'entrée du temple, accueillant les visiteurs</p>
                     <button class="btn-open">Ouvrir l'inscription →</button>
                 </div>
 
                 <!-- Cartouche de Toutânkhamon -->
                 <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-toutankhamon_cartouche.html'">
-                    <span class="difficulty-badge diff-2">Difficulté : ★★☆</span>
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
                     <h3 class="inscription-title">Cartouche de Toutânkhamon</h3>
                     <div class="inscription-hieroglyphs">𓇳𓁧𓎟 𓏏𓄿𓈖𓎡𓇯</div>
-                    <p class="inscription-monument">📍 Tombe KV62, Vallée des Rois</p>
+                    <p class="inscription-monument">📍 Tombe de Toutânkhamon (KV62), Vallée des Rois, Louxor</p>
                     <p class="inscription-epoch">📅 XVIIIe dynastie (1332-1323 av. J.-C.)</p>
-                    <p class="inscription-description">Le célèbre cartouche royal du pharaon-enfant. Découvrez la signification de "l'image vivante d'Amon".</p>
+                    <p class="inscription-description">Le célèbre cartouche royal de Toutânkhamon, trouvé sur de nombreux objets de sa tombe</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Amon - Roi des dieux -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-amon_roi_dieux.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Amon - Roi des dieux</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓏠𓈖𓀭</div>
+                    <p class="inscription-monument">📍 Temple de Karnak, Louxor, Égypte</p>
+                    <p class="inscription-epoch">📅 Nouvel Empire (XVIIIe-XXe dynasties)</p>
+                    <p class="inscription-description">Le nom du roi des dieux, Amon le Caché, dieu dynastique de Thèbes</p>
                     <button class="btn-open">Ouvrir l'inscription →</button>
                 </div>
 
                 <!-- Obélisque de Louxor -->
                 <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-louxor_obelisque.html'">
-                    <span class="difficulty-badge diff-2">Difficulté : ★★☆</span>
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
                     <h3 class="inscription-title">Obélisque de Louxor</h3>
                     <div class="inscription-hieroglyphs">𓅭𓇳 𓈖𓆣𓂋 𓇋𓏏𓆑𓀀</div>
-                    <p class="inscription-monument">📍 Temple de Louxor (jumeau à Paris)</p>
+                    <p class="inscription-monument">📍 Temple de Louxor, Louxor (un des deux est place de la Concorde, Paris)</p>
                     <p class="inscription-epoch">📅 Ramsès II (XIXe dynastie)</p>
-                    <p class="inscription-description">Inscription célébrant Ramsès II. L'obélisque jumeau se trouve place de la Concorde à Paris !</p>
+                    <p class="inscription-description">Inscription sur l'obélisque célébrant les victoires de Ramsès II</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Formule d'offrande - Version simple -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-formule_offrande_01.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Formule d'offrande - Version simple</h3>
+                    <div class="inscription-hieroglyphs">𓇓𓏏𓊵 𓂞 𓊨𓏏𓉐</div>
+                    <p class="inscription-monument">📍 Stèle funéraire, Nécropole de Saqqarah</p>
+                    <p class="inscription-epoch">📅 Moyen Empire (XIIe dynastie, vers 1900 av. J.-C.)</p>
+                    <p class="inscription-description">La formule d'offrande funéraire la plus courante dans les tombes égyptiennes</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Cartouche de Néfertiti -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-nefertiti_cartouche.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Cartouche de Néfertiti</h3>
+                    <div class="inscription-hieroglyphs">𓆣𓂋𓏏𓇋𓏏𓇋</div>
+                    <p class="inscription-monument">📍 Temple d'Aton à Akhetaton, Amarna, Égypte</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie, règne d'Akhenaton (vers 1350 av. J.-C.)</p>
+                    <p class="inscription-description">Nom de la reine la plus célèbre d'Égypte</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le symbole Ankh - Clé de vie -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-ankh_symbole.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le symbole Ankh - Clé de vie</h3>
+                    <div class="inscription-hieroglyphs">𓋹</div>
+                    <p class="inscription-monument">📍 Temple de Dendérah, Dendérah, Égypte</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (300 av. J.-C.)</p>
+                    <p class="inscription-description">Le symbole le plus iconique de l'Égypte : l'Ankh, clé de vie</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Nom de Ramsès II -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-ramses_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Nom de Ramsès II</h3>
+                    <div class="inscription-hieroglyphs">𓂋𓏏𓇳𓏺𓇳</div>
+                    <p class="inscription-monument">📍 Temple d'Abou Simbel, Abou Simbel, Nubie</p>
+                    <p class="inscription-epoch">📅 XIXe dynastie (1279-1213 av. J.-C.)</p>
+                    <p class="inscription-description">Le nom du plus grand bâtisseur de l'Égypte ancienne</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Horus -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-horus_nom.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Horus</h3>
+                    <div class="inscription-hieroglyphs">𓅃𓂋𓅱</div>
+                    <p class="inscription-monument">📍 Temple d'Edfou, Edfou, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (237-57 av. J.-C.)</p>
+                    <p class="inscription-description">Le nom du dieu faucon, protecteur des pharaons</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- La déesse Isis -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-isis_nom.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">La déesse Isis</h3>
+                    <div class="inscription-hieroglyphs">𓊨𓏏𓆇</div>
+                    <p class="inscription-monument">📍 Temple de Philae, Île de Philae, Assouan</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (IIIe siècle av. J.-C.)</p>
+                    <p class="inscription-description">La grande déesse-mère, magicienne suprême</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le scarabée Khépri -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-scarabee_khepri.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le scarabée Khépri</h3>
+                    <div class="inscription-hieroglyphs">𓆣𓂋𓂋</div>
+                    <p class="inscription-monument">📍 Temple de Karnak, Louxor, Égypte</p>
+                    <p class="inscription-epoch">📅 Nouvel Empire (vers 1500 av. J.-C.)</p>
+                    <p class="inscription-description">Le scarabée sacré symbolisant le soleil levant</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- L'Œil Oudjat d'Horus -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-oeil_oudjat.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">L'Œil Oudjat d'Horus</h3>
+                    <div class="inscription-hieroglyphs">𓂀</div>
+                    <p class="inscription-monument">📍 Amulette funéraire, Diverses tombes égyptiennes</p>
+                    <p class="inscription-epoch">📅 Toutes périodes (Ancien au Nouvel Empire)</p>
+                    <p class="inscription-description">L'œil magique protecteur le plus puissant d'Égypte</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Formule d'offrande complète - Pain et bière -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-formule_offrande_02.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Formule d'offrande complète - Pain et bière</h3>
+                    <div class="inscription-hieroglyphs">𓏏𓈖𓏥 𓍯𓏏𓏥</div>
+                    <p class="inscription-monument">📍 Stèle funéraire d'un noble, Thèbes, nécropole</p>
+                    <p class="inscription-epoch">📅 Nouvel Empire (XVIIIe dynastie)</p>
+                    <p class="inscription-description">Formule garantissant pain et bière au défunt pour l'éternité</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le mot 'Pyramide' -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-pyramide_simple.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le mot 'Pyramide'</h3>
+                    <div class="inscription-hieroglyphs">𓉐</div>
+                    <p class="inscription-monument">📍 Pyramide de Khéops, Gizeh, Égypte</p>
+                    <p class="inscription-epoch">📅 IVe dynastie (vers 2560 av. J.-C.)</p>
+                    <p class="inscription-description">Comment les Égyptiens appelaient leurs pyramides</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Thot -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-thot_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Thot</h3>
+                    <div class="inscription-hieroglyphs">𓅝𓏏𓏏𓅆</div>
+                    <p class="inscription-monument">📍 Temple d'Hermopolis, Hermopolis Magna, Moyenne-Égypte</p>
+                    <p class="inscription-epoch">📅 Nouvel Empire (vers 1400 av. J.-C.)</p>
+                    <p class="inscription-description">Le dieu de la sagesse, de l'écriture et de la magie</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- La déesse Hathor -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-hathor_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">La déesse Hathor</h3>
+                    <div class="inscription-hieroglyphs">𓉡𓏏𓁐</div>
+                    <p class="inscription-monument">📍 Temple de Dendérah, Dendérah, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (IIe siècle av. J.-C.)</p>
+                    <p class="inscription-description">La déesse de l'amour, de la joie et de la musique</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Anubis -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-anubis_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Anubis</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓈖𓊪𓅱𓃣</div>
+                    <p class="inscription-monument">📍 Tombe de Séthi Ier, Vallée des Rois, Louxor</p>
+                    <p class="inscription-epoch">📅 XIXe dynastie (vers 1290 av. J.-C.)</p>
+                    <p class="inscription-description">Le dieu chacal de la momification et gardien des nécropoles</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- La déesse Bastet -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-bastet_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">La déesse Bastet</h3>
+                    <div class="inscription-hieroglyphs">𓃀𓏏𓏏𓏤𓏏𓏏𓏏𓏏𓏏𓏏</div>
+                    <p class="inscription-monument">📍 Temple de Bubastis, Bubastis (Tell Basta), Delta du Nil</p>
+                    <p class="inscription-epoch">📅 Basse Époque (664-332 av. J.-C.)</p>
+                    <p class="inscription-description">La déesse chatte protectrice du foyer</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- La plume de Maât -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-ma_at_plume.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">La plume de Maât</h3>
+                    <div class="inscription-hieroglyphs">𓆄</div>
+                    <p class="inscription-monument">📍 Papyrus du Livre des Morts, Diverses tombes thébaines</p>
+                    <p class="inscription-epoch">📅 Nouvel Empire (XVIIIe-XXe dynasties)</p>
+                    <p class="inscription-description">La plume d'autruche symbole de vérité et justice</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Ptah -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-ptah_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Ptah</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓏏𓎛𓁰</div>
+                    <p class="inscription-monument">📍 Temple de Ptah à Memphis, Memphis, Basse-Égypte</p>
+                    <p class="inscription-epoch">📅 Toutes périodes (Memphis capitale de l'Ancien Empire)</p>
+                    <p class="inscription-description">Le dieu créateur, patron des artisans</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- La déesse Sekhmet -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-sekhmet_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">La déesse Sekhmet</h3>
+                    <div class="inscription-hieroglyphs">𓌂𓐍𓏏𓏏𓏤</div>
+                    <p class="inscription-monument">📍 Temple de Karnak - Chapelle de Sekhmet, Louxor, Égypte</p>
+                    <p class="inscription-epoch">📅 Nouvel Empire (XVIIIe dynastie)</p>
+                    <p class="inscription-description">La lionne guerrière, déesse de la destruction et de la guérison</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Sobek -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-sobek_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Sobek</h3>
+                    <div class="inscription-hieroglyphs">𓊃𓃀𓎡𓆌</div>
+                    <p class="inscription-monument">📍 Temple de Kôm Ombo, Kôm Ombo, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (IIe siècle av. J.-C.)</p>
+                    <p class="inscription-description">Le dieu crocodile du Nil, fertilité et protection</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Cartouche de Khéops -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-kheops_cartouche.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Cartouche de Khéops</h3>
+                    <div class="inscription-hieroglyphs">𓎡𓅱𓆑𓅱</div>
+                    <p class="inscription-monument">📍 Grande Pyramide de Gizeh, Gizeh, Égypte</p>
+                    <p class="inscription-epoch">📅 IVe dynastie (vers 2560 av. J.-C.)</p>
+                    <p class="inscription-description">Le nom du pharaon bâtisseur de la Grande Pyramide</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Osiris -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-osiris_nom.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Osiris</h3>
+                    <div class="inscription-hieroglyphs">𓊨𓁹𓀭</div>
+                    <p class="inscription-monument">📍 Temple d'Abydos, Abydos, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 XIXe dynastie (Séthi Ier)</p>
+                    <p class="inscription-description">Le nom du dieu des morts et de la résurrection</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le dieu Seth -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-set_nom.html'">
+                    <span class="difficulty-badge diff-2">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le dieu Seth</h3>
+                    <div class="inscription-hieroglyphs">𓃩𓏏𓃩</div>
+                    <p class="inscription-monument">📍 Temple d'Ombos, Kom Ombo, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque</p>
+                    <p class="inscription-description">Le dieu du chaos, frère d'Osiris</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le pilier Djed -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-djed_pilier.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le pilier Djed</h3>
+                    <div class="inscription-hieroglyphs">𓊽</div>
+                    <p class="inscription-monument">📍 Temple de Dendérah, Dendérah, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque</p>
+                    <p class="inscription-description">Symbole de stabilité et colonne vertébrale d'Osiris</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Le sceptre Ouas -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-debutant-was_sceptre.html'">
+                    <span class="difficulty-badge diff-1">Difficulté : ★☆☆</span>
+                    <h3 class="inscription-title">Le sceptre Ouas</h3>
+                    <div class="inscription-hieroglyphs">𓌀</div>
+                    <p class="inscription-monument">📍 Temple de Louxor, Louxor, Égypte</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie</p>
+                    <p class="inscription-description">Sceptre de pouvoir et domination</p>
                     <button class="btn-open">Ouvrir l'inscription →</button>
                 </div>
 
@@ -276,18 +521,117 @@
         </div>
 
         <!-- NIVEAU INTERMÉDIAIRE -->
-        <div class="level-section">
-            <h2 class="level-title">🌿 Niveau Intermédiaire</h2>
+        <div class="level-section" id="intermediaire">
+            <h2 class="level-title">🌿 Niveau Intermédiaire (10 inscriptions)</h2>
             <div class="inscriptions-grid">
 
-                <!-- Livre des Morts -->
+                <!-- Livre des Morts - Chapitre 125 -->
                 <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-livre_morts_125.html'">
                     <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
                     <h3 class="inscription-title">Livre des Morts - Chapitre 125</h3>
                     <div class="inscription-hieroglyphs">𓇋𓈖𓎡 𓂋𓂝𓊪𓅱 𓅓𓂝𓄿𓏏</div>
-                    <p class="inscription-monument">📍 Papyrus d'Ani, British Museum</p>
+                    <p class="inscription-monument">📍 Papyrus d'Ani, British Museum, Londres</p>
                     <p class="inscription-epoch">📅 XIXe dynastie (vers 1250 av. J.-C.)</p>
-                    <p class="inscription-description">La célèbre "Confession négative" devant Osiris. Découvrez les formules funéraires pour l'au-delà.</p>
+                    <p class="inscription-description">La célèbre 'Confession négative' devant le tribunal d'Osiris</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Livre des Morts - Chapitre 1 -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-livre_morts_001.html'">
+                    <span class="difficulty-badge diff-4">Difficulté : ★★☆</span>
+                    <h3 class="inscription-title">Livre des Morts - Chapitre 1</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓂋𓏏 𓅓 𓊵𓅱 𓉔𓂋𓅱</div>
+                    <p class="inscription-monument">📍 Papyrus de Nebseni, British Museum</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie (vers 1400 av. J.-C.)</p>
+                    <p class="inscription-description">Début du Livre des Morts - Sortie au jour</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Hymne à Amon - Temple de Karnak -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-hymne_amon_karnak.html'">
+                    <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Hymne à Amon - Temple de Karnak</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓏠𓈖 𓆣𓂋 𓇳𓏤 𓎟𓅱</div>
+                    <p class="inscription-monument">📍 Temple de Karnak, Louxor, Égypte</p>
+                    <p class="inscription-epoch">📅 XIXe dynastie (Ramsès II)</p>
+                    <p class="inscription-description">Extrait d'un hymne glorifiant Amon-Rê</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Stèle de donation - Abydos -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-stele_donation_abydos.html'">
+                    <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Stèle de donation - Abydos</h3>
+                    <div class="inscription-hieroglyphs">𓂋𓂞 𓂞 𓈖 𓄿𓇋𓏏 𓇳𓁧𓎟</div>
+                    <p class="inscription-monument">📍 Temple d'Osiris à Abydos, Abydos, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 Moyen Empire (XIIe dynastie)</p>
+                    <p class="inscription-description">Stèle enregistrant une donation de terres à un temple</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Textes des Sarcophages - Formule 335 -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-textes_sarcophages_spell_335.html'">
+                    <span class="difficulty-badge diff-6">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Textes des Sarcophages - Formule 335</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓈖𓎡 𓊪𓏏𓎛 𓅓𓂋 𓇋𓏏𓇯</div>
+                    <p class="inscription-monument">📍 Sarcophage de Gua, Deir el-Bersha, Moyenne-Égypte</p>
+                    <p class="inscription-epoch">📅 Moyen Empire (XIIe dynastie, vers 1850 av. J.-C.)</p>
+                    <p class="inscription-description">Formule pour devenir le dieu Ptah</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Autobiographie d'Ouni -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-autobiographie_ounas_ankh.html'">
+                    <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Autobiographie d'Ouni</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓈖𓎡 𓐍𓂋 𓈖𓋴𓏏 𓅓𓂋𓂋𓏏</div>
+                    <p class="inscription-monument">📍 Stèle funéraire d'Ouni, Abydos, Haute-Égypte</p>
+                    <p class="inscription-epoch">📅 VIe dynastie (vers 2300 av. J.-C.)</p>
+                    <p class="inscription-description">Récit de carrière d'un haut fonctionnaire</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Enseignement de Ptahhotep -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-enseignement_ptahhotep.html'">
+                    <span class="difficulty-badge diff-6">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Enseignement de Ptahhotep</h3>
+                    <div class="inscription-hieroglyphs">𓌃𓂧𓌃 𓂋𓏤𓏏𓆑 𓅓𓂝𓄿𓏏</div>
+                    <p class="inscription-monument">📍 Papyrus Prisse, Bibliothèque nationale de France, Paris</p>
+                    <p class="inscription-epoch">📅 Moyen Empire (copie d'un texte de l'Ancien Empire)</p>
+                    <p class="inscription-description">Sagesse d'un vizir à son fils</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Conte du Naufragé -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-conte_naufrage.html'">
+                    <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Conte du Naufragé</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓈖𓎡 𓃀𓐍𓂋 𓅓 𓇋𓏤𓅱</div>
+                    <p class="inscription-monument">📍 Papyrus de l'Ermitage, Musée de l'Ermitage, Saint-Pétersbourg</p>
+                    <p class="inscription-epoch">📅 Moyen Empire (XIIe dynastie)</p>
+                    <p class="inscription-description">Récit d'aventure sur une île merveilleuse</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Stèle de Merneptah (mention d'Israël) -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-stele_merneptah_israel.html'">
+                    <span class="difficulty-badge diff-5">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Stèle de Merneptah (mention d'Israël)</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓋴𓂋𓏤𓅪𓂋</div>
+                    <p class="inscription-monument">📍 Stèle de Merneptah, Musée égyptien du Caire</p>
+                    <p class="inscription-epoch">📅 XIXe dynastie (Merneptah, vers 1208 av. J.-C.)</p>
+                    <p class="inscription-description">Première mention d'Israël dans l'histoire</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Conte de Sinouhé -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-intermediaire-sinouhe_conte.html'">
+                    <span class="difficulty-badge diff-6">Difficulté : ★★★☆☆</span>
+                    <h3 class="inscription-title">Conte de Sinouhé</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓈖𓎡 𓊃𓈖𓎛</div>
+                    <p class="inscription-monument">📍 Papyrus Berlin, Berlin, Allemagne</p>
+                    <p class="inscription-epoch">📅 Moyen Empire (XIIe dynastie)</p>
+                    <p class="inscription-description">Chef-d'œuvre de la littérature égyptienne</p>
                     <button class="btn-open">Ouvrir l'inscription →</button>
                 </div>
 
@@ -295,29 +639,112 @@
         </div>
 
         <!-- NIVEAU EXPERT -->
-        <div class="level-section">
-            <h2 class="level-title">🌳 Niveau Expert</h2>
+        <div class="level-section" id="expert">
+            <h2 class="level-title">🌳 Niveau Expert (9 inscriptions)</h2>
             <div class="inscriptions-grid">
 
-                <!-- Textes des Pyramides -->
+                <!-- Textes des Pyramides - Pyramide d'Ounas -->
                 <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-textes_pyramides_unas.html'">
-                    <span class="difficulty-badge diff-8">Difficulté : ★★★★★</span>
-                    <h3 class="inscription-title">Textes des Pyramides</h3>
-                    <div class="inscription-hieroglyphs">𓊪𓏏𓇯 𓊪𓈖 𓈎𓂻𓇯𓏏</div>
-                    <p class="inscription-monument">📍 Pyramide d'Ounas, Saqqarah</p>
+                    <span class="difficulty-badge diff-8">Difficulté : ★★★★☆</span>
+                    <h3 class="inscription-title">Textes des Pyramides - Pyramide d'Ounas</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓏏𓇯 𓊪𓈖 𓈎𓂻𓇯𓏏𓏭 𓂋𓏤𓇳𓅆</div>
+                    <p class="inscription-monument">📍 Pyramide d'Ounas, Saqqarah, Égypte</p>
                     <p class="inscription-epoch">📅 Ve dynastie (vers 2350 av. J.-C.)</p>
-                    <p class="inscription-description">Les plus anciens textes religieux égyptiens ! Déchiffrez les formules cosmiques de résurrection pharaonique.</p>
+                    <p class="inscription-description">Les plus anciens textes religieux égyptiens, gravés dans la chambre funéraire</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Textes des Pyramides - Pépi Ier -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-textes_pyramides_pepi_i.html'">
+                    <span class="difficulty-badge diff-9">Difficulté : ★★★★★</span>
+                    <h3 class="inscription-title">Textes des Pyramides - Pépi Ier</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓊪𓇋 𓊪𓈖 𓇋𓏏 𓅃𓂋 𓊪𓏏𓇯</div>
+                    <p class="inscription-monument">📍 Pyramide de Pépi Ier, Saqqarah, Égypte</p>
+                    <p class="inscription-epoch">📅 VIe dynastie (vers 2280 av. J.-C.)</p>
+                    <p class="inscription-description">Formule de résurrection astrale du pharaon</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Décret de Canope -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-decret_canope.html'">
+                    <span class="difficulty-badge diff-8">Difficulté : ★★★★☆</span>
+                    <h3 class="inscription-title">Décret de Canope</h3>
+                    <div class="inscription-hieroglyphs">𓂞𓏏𓀀 𓈖 𓊪𓏏𓏤 𓏏𓏤𓏏𓏤𓅱𓃭𓐝𓊪</div>
+                    <p class="inscription-monument">📍 Stèle de Canope, Canope (Aboukir), Delta</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (238 av. J.-C.)</p>
+                    <p class="inscription-description">Décret royal trilingue (comme la pierre de Rosette)</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Papyrus Ebers - Médecine -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-papyrus_ebers_medecine.html'">
+                    <span class="difficulty-badge diff-8">Difficulté : ★★★★☆</span>
+                    <h3 class="inscription-title">Papyrus Ebers - Médecine</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓊃𓎛𓂝𓏏 𓈖 𓇋𓂋𓏏𓏤</div>
+                    <p class="inscription-monument">📍 Papyrus médical Ebers, Bibliothèque universitaire de Leipzig, Allemagne</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie (vers 1550 av. J.-C.)</p>
+                    <p class="inscription-description">Traité médical - prescription pour les yeux</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Plafond astronomique de Senmout -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-calendrier_astronomique_senmut.html'">
+                    <span class="difficulty-badge diff-9">Difficulté : ★★★★★</span>
+                    <h3 class="inscription-title">Plafond astronomique de Senmout</h3>
+                    <div class="inscription-hieroglyphs">𓇼𓄿𓅓 𓇳𓅱𓏏𓏥</div>
+                    <p class="inscription-monument">📍 Tombe de Senmout (TT353), Deir el-Bahari, Thèbes</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie (Hatchepsout, vers 1470 av. J.-C.)</p>
+                    <p class="inscription-description">Carte céleste la plus ancienne d'Égypte</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Grand Hymne à Aton -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-hymne_aton_akhenaton.html'">
+                    <span class="difficulty-badge diff-7">Difficulté : ★★★★☆</span>
+                    <h3 class="inscription-title">Grand Hymne à Aton</h3>
+                    <div class="inscription-hieroglyphs">𓇋𓏏𓈖 𓆣𓂋 𓇳𓏤</div>
+                    <p class="inscription-monument">📍 Tombe d'Ay à Amarna, Amarna, Moyenne-Égypte</p>
+                    <p class="inscription-epoch">📅 XVIIIe dynastie (Akhenaton, vers 1340 av. J.-C.)</p>
+                    <p class="inscription-description">Hymne au dieu unique Aton composé par Akhenaton</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Papyrus Rhind - Mathématiques -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-papyrus_rhind_mathematiques.html'">
+                    <span class="difficulty-badge diff-8">Difficulté : ★★★★☆</span>
+                    <h3 class="inscription-title">Papyrus Rhind - Mathématiques</h3>
+                    <div class="inscription-hieroglyphs">𓏤𓏤𓏤𓏤𓏤 𓅓 𓆐</div>
+                    <p class="inscription-monument">📍 Papyrus mathématique Rhind, British Museum, Londres</p>
+                    <p class="inscription-epoch">📅 Deuxième Période Intermédiaire (vers 1650 av. J.-C.)</p>
+                    <p class="inscription-description">Traité mathématique avec problèmes et solutions</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Pierre de Rosette -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-pierre_rosette_ptolemee.html'">
+                    <span class="difficulty-badge diff-9">Difficulté : ★★★★★</span>
+                    <h3 class="inscription-title">Pierre de Rosette</h3>
+                    <div class="inscription-hieroglyphs">𓊪𓏏𓏤𓃭𓐝𓊪</div>
+                    <p class="inscription-monument">📍 Stèle trilingue, British Museum, Londres (trouvée à Rosette)</p>
+                    <p class="inscription-epoch">📅 Époque ptolémaïque (196 av. J.-C., Ptolémée V)</p>
+                    <p class="inscription-description">Décret trilingue qui permit le déchiffrement des hiéroglyphes</p>
+                    <button class="btn-open">Ouvrir l'inscription →</button>
+                </div>
+
+                <!-- Papyrus Westcar - Contes magiques -->
+                <div class="inscription-card" onclick="window.location.href='hieroglyphes-immersion-expert-papyrus_westcar_magie.html'">
+                    <span class="difficulty-badge diff-8">Difficulté : ★★★★☆</span>
+                    <h3 class="inscription-title">Papyrus Westcar - Contes magiques</h3>
+                    <div class="inscription-hieroglyphs">𓎛𓎡𓏏𓅱</div>
+                    <p class="inscription-monument">📍 Papyrus Westcar, Musée égyptien de Berlin</p>
+                    <p class="inscription-epoch">📅 Deuxième Période Intermédiaire</p>
+                    <p class="inscription-description">Contes de magiciens à la cour de Khéops</p>
                     <button class="btn-open">Ouvrir l'inscription →</button>
                 </div>
 
             </div>
         </div>
 
-        <div class="navigation">
-            <a href="hieroglyphes-debutant.html" class="btn-home">📚 Cours théorique</a>
-            <a href="progression-dashboard.html" class="btn-home">📊 Ma progression</a>
-            <a href="index_COMPLET.html" class="btn-home">🏠 Accueil</a>
-        </div>
     </div>
 </body>
 </html>
