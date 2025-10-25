@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil - Académie Gématria</title>
+    <link rel="stylesheet" href="bleus-cosmiques.css">
+    <script type="module" src="firebase-config.js"></script>
+    <script src="auth-system.js" defer></script>
+    <script src="progression-system.js" defer></script>
+    <script src="user-progression-cloud.js" defer></script>
+
+    <style>
+        body {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg,
+                rgba(0, 26, 51, 0.9) 0%,
+                rgba(0, 51, 102, 0.8) 100%);
+            border: 2px solid rgba(65, 105, 225, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-saphir);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid var(--bleu-royal);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: bold;
+            background: var(--gradient-saphir);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-level {
+            font-size: 1.2rem;
+            color: var(--bleu-azur);
+            margin-bottom: 1rem;
+        }
+
+        .xp-bar {
+            background: rgba(0, 26, 51, 0.6);
+            border: 2px solid rgba(65, 105, 225, 0.3);
+            border-radius: 10px;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .xp-fill {
+            background: var(--gradient-saphir);
+            height: 100%;
+            transition: width 0.5s ease;
+            box-shadow: var(--glow-bleu-soft);
+        }
+
+        .xp-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg,
+                rgba(0, 26, 51, 0.7) 0%,
+                rgba(0, 51, 102, 0.5) 100%);
+            border: 2px solid rgba(65, 105, 225, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: var(--gradient-saphir);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--bleu-azur);
+            margin-top: 0.5rem;
+        }
+
+        .badges-section {
+            background: linear-gradient(135deg,
+                rgba(0, 26, 51, 0.9) 0%,
+                rgba(0, 51, 102, 0.8) 100%);
+            border: 2px solid rgba(65, 105, 225, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            background: var(--gradient-saphir);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .badge-card {
+            background: rgba(0, 26, 51, 0.6);
+            border: 2px solid rgba(65, 105, 225, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .badge-card:hover {
+            border-color: var(--bleu-royal);
+            transform: translateY(-5px);
+            box-shadow: var(--glow-bleu-soft);
+        }
+
+        .badge-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-name {
+            font-weight: bold;
+            color: var(--bleu-azur);
+            margin-bottom: 0.3rem;
+        }
+
+        .badge-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .badge-locked {
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+
+        .progression-section {
+            background: linear-gradient(135deg,
+                rgba(0, 26, 51, 0.9) 0%,
+                rgba(0, 51, 102, 0.8) 100%);
+            border: 2px solid rgba(65, 105, 225, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .progression-item {
+            background: rgba(0, 26, 51, 0.6);
+            border: 2px solid rgba(65, 105, 225, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .progression-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progression-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--bleu-azur);
+        }
+
+        .progression-bar {
+            background: rgba(0, 26, 51, 0.8);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .progression-fill {
+            height: 100%;
+            background: var(--gradient-saphir);
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-avatar" id="avatar">👤</div>
+            <div class="profile-info">
+                <div class="profile-name" id="username">Chargement...</div>
+                <div class="profile-level">
+                    <span id="level-text">Niveau 1</span>
+                    <span style="opacity: 0.7;">•</span>
+                    <span id="xp-text">0 XP</span>
+                </div>
+                <div class="xp-bar">
+                    <div class="xp-fill" id="xp-fill"></div>
+                    <div class="xp-text" id="xp-progress">0 / 100 XP</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-exercises">0</div>
+                <div class="stat-label">Exercices complétés</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-value" id="avg-score">0%</div>
+                <div class="stat-label">Score moyen</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-value" id="total-badges">0</div>
+                <div class="stat-label">Badges débloqués</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-value" id="streak-days">0</div>
+                <div class="stat-label">Jours consécutifs</div>
+            </div>
+        </div>
+
+        <div class="badges-section">
+            <h2 class="section-title">🏆 Badges</h2>
+            <div class="badges-grid" id="badges-container">
+                <!-- Badges loaded by JS -->
+            </div>
+        </div>
+
+        <div class="progression-section">
+            <h2 class="section-title">📊 Progression par domaine</h2>
+            <div id="progression-container">
+                <!-- Progression loaded by JS -->
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="index.html" class="btn-nav">← Retour à l'accueil</a>
+            <button onclick="logout()" class="btn-nav" style="background: linear-gradient(135deg, #e74c3c, #c0392b); margin-left: 1rem;">Déconnexion</button>
+        </div>
+    </div>
+
+    <script>
+        // Vérifier authentification
+        window.addEventListener('authStateChanged', async (e) => {
+            const user = e.detail.user;
+
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            await loadProfile(user);
+        });
+
+        async function loadProfile(user) {
+            // Afficher info basique
+            document.getElementById('username').textContent = user.displayName || 'Anonyme';
+            document.getElementById('avatar').textContent = (user.displayName || 'A')[0].toUpperCase();
+
+            // Charger données Firestore
+            try {
+                const { doc, getDoc } = await import(
+                    'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'
+                );
+
+                const userRef = doc(window.firebaseDB, 'users', user.uid);
+                const userDoc = await getDoc(userRef);
+
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+
+                    // Niveau et XP
+                    const level = data.level || 1;
+                    const totalXP = data.totalXP || 0;
+                    const nextLevelXP = Math.pow(level, 2) * 100;
+                    const currentLevelXP = totalXP - Math.pow(level - 1, 2) * 100;
+                    const progress = (currentLevelXP / nextLevelXP) * 100;
+
+                    document.getElementById('level-text').textContent = `Niveau ${level}`;
+                    document.getElementById('xp-text').textContent = `${totalXP} XP`;
+                    document.getElementById('xp-progress').textContent = `${currentLevelXP} / ${nextLevelXP} XP`;
+                    document.getElementById('xp-fill').style.width = `${progress}%`;
+
+                    // Stats
+                    document.getElementById('total-badges').textContent = (data.badges || []).length;
+                    document.getElementById('streak-days').textContent = data.streak || 0;
+
+                    // Badges
+                    loadBadges(data.badges || []);
+                }
+
+                // Charger progression
+                await loadProgression(user.uid);
+
+            } catch (error) {
+                console.error('Erreur chargement profil:', error);
+            }
+        }
+
+        function loadBadges(userBadges) {
+            // Liste de tous les badges possibles
+            const allBadges = [
+                { id: 'first_exercise', name: 'Premiers Pas', description: 'Premier exercice complété', icon: '🎯' },
+                { id: 'exercices_10', name: 'Dévoué', description: '10 exercices complétés', icon: '📚' },
+                { id: 'exercices_50', name: 'Studieux', description: '50 exercices complétés', icon: '📖' },
+                { id: 'perfect_hieroglyphes', name: 'Perfection Hiéroglyphes', description: 'Score parfait en hiéroglyphes', icon: '⭐' },
+                { id: 'master_hieroglyphes_debutant', name: 'Maître Débutant', description: 'Maîtriser hiéroglyphes niveau débutant', icon: '🏆' },
+                { id: 'level_5', name: 'Niveau 5', description: 'Atteindre niveau 5', icon: '🔥' },
+                { id: 'level_10', name: 'Niveau 10', description: 'Atteindre niveau 10', icon: '💎' },
+                { id: 'streak_7', name: 'Semaine Parfaite', description: '7 jours consécutifs', icon: '📅' },
+            ];
+
+            const container = document.getElementById('badges-container');
+            container.innerHTML = '';
+
+            allBadges.forEach(badge => {
+                const unlocked = userBadges.some(b => b.id === badge.id);
+
+                const card = document.createElement('div');
+                card.className = `badge-card ${unlocked ? '' : 'badge-locked'}`;
+                card.innerHTML = `
+                    <div class="badge-icon">${badge.icon}</div>
+                    <div class="badge-name">${badge.name}</div>
+                    <div class="badge-desc">${badge.description}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        async function loadProgression(userId) {
+            const domaines = [
+                { id: 'hieroglyphes', name: '𓂀 Hiéroglyphes' },
+                { id: 'maya', name: '𓁹 Glyphes Mayas' },
+                { id: 'runes', name: 'ᚱ Runes' },
+                { id: 'gematria', name: 'א Gematria' }
+            ];
+
+            const niveaux = ['debutant', 'intermediaire', 'expert'];
+            const container = document.getElementById('progression-container');
+            container.innerHTML = '';
+
+            let totalExercises = 0;
+            let totalScores = [];
+
+            for (const domaine of domaines) {
+                for (const niveau of niveaux) {
+                    const data = await UserProgressionSystem.loadFromCloud(domaine.id, niveau);
+
+                    if (data.nombreExercices > 0) {
+                        totalExercises += data.nombreExercices;
+                        totalScores.push(data.scoreMoyen);
+
+                        const item = document.createElement('div');
+                        item.className = 'progression-item';
+                        item.innerHTML = `
+                            <div class="progression-header">
+                                <div class="progression-title">${domaine.name} - ${niveau}</div>
+                                <div style="color: var(--bleu-azur); font-weight: bold;">${Math.round(data.scoreMoyen)}%</div>
+                            </div>
+                            <div class="progression-bar">
+                                <div class="progression-fill" style="width: ${data.scoreMoyen}%"></div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                                ${data.nombreExercices} exercice(s) • Meilleur: ${data.meilleurScore}%
+                            </div>
+                        `;
+                        container.appendChild(item);
+                    }
+                }
+            }
+
+            // Mettre à jour stats globales
+            document.getElementById('total-exercises').textContent = totalExercises;
+
+            if (totalScores.length > 0) {
+                const avgScore = Math.round(totalScores.reduce((a, b) => a + b, 0) / totalScores.length);
+                document.getElementById('avg-score').textContent = `${avgScore}%`;
+            }
+        }
+
+        async function logout() {
+            const result = await AuthSystem.logout();
+
+            if (result.success) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
