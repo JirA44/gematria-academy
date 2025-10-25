@@ -586,5 +586,35 @@
             }
         });
     </script>
+
+    <script>
+        // Gérer l'affichage des boutons login/profil selon l'état d'authentification
+        window.addEventListener('authStateChanged', (e) => {
+            const loginBtn = document.getElementById('login-button');
+            const profileBtn = document.getElementById('profile-button');
+            const userName = document.getElementById('user-name');
+
+            if (e.detail.user) {
+                // Utilisateur connecté
+                loginBtn.style.display = 'none';
+                profileBtn.style.display = 'block';
+                userName.textContent = `👤 ${e.detail.user.displayName || 'Mon Profil'}`;
+            } else {
+                // Utilisateur non connecté
+                loginBtn.style.display = 'block';
+                profileBtn.style.display = 'none';
+            }
+        });
+
+        // Au chargement initial, vérifier s'il y a un utilisateur connecté
+        window.addEventListener('DOMContentLoaded', () => {
+            // Le bouton login sera affiché par défaut une fois que Firebase sera initialisé
+            setTimeout(() => {
+                if (!window.currentUser) {
+                    document.getElementById('login-button').style.display = 'block';
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
