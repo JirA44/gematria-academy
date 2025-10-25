@@ -607,11 +607,11 @@
             if (e.detail.user) {
                 // Utilisateur connecté
                 loginBtn.style.display = 'none';
-                profileBtn.style.display = 'block';
-                userName.textContent = `👤 ${e.detail.user.displayName || 'Mon Profil'}`;
+                profileBtn.style.display = 'flex'; // Changed to flex pour l'alignement
+                userName.textContent = e.detail.user.displayName || 'Mon Profil';
             } else {
                 // Utilisateur non connecté
-                loginBtn.style.display = 'block';
+                loginBtn.style.display = 'flex'; // Changed to flex pour l'alignement
                 profileBtn.style.display = 'none';
             }
         });
@@ -621,7 +621,7 @@
             // Le bouton login sera affiché par défaut une fois que Firebase sera initialisé
             setTimeout(() => {
                 if (!window.currentUser) {
-                    document.getElementById('login-button').style.display = 'block';
+                    document.getElementById('login-button').style.display = 'flex';
                 }
             }, 1000);
         });
