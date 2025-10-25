@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "progression",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "domaine",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "scoreMoyen",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

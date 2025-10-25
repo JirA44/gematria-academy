@@ -1,0 +1,46 @@
+# Firebase
+.firebase/
+.firebaserc.backup
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables (si vous en ajoutez)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node modules (si vous en installez)
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.env
+.venv
+venv/
+ENV/
+
+# Temporary files
+*.tmp
+*.temp
