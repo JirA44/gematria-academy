@@ -191,8 +191,8 @@ def main():
     """Point d'entrée principal"""
     base_dir = Path(__file__).parent
 
-    # Lister tous les fichiers d'immersion débutant
-    files = sorted(base_dir.glob('hieroglyphes-immersion-debutant-*.html'))
+    # Lister TOUS les fichiers d'immersion (débutant + intermédiaire + expert)
+    files = sorted(base_dir.glob('hieroglyphes-immersion-*.html'))
 
     print(f"\n🔍 {len(files)} fichiers trouvés\n")
 
