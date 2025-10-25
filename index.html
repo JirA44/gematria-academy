@@ -25,15 +25,16 @@
         })();
     </script>
     <header>
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
-        <button class="lang-toggle" onclick="toggleLanguage()">🌐 EN</button>
+        <!-- Boutons en haut à droite regroupés -->
+        <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; align-items: center; z-index: 1000;">
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" style="margin: 0;">🌙 Mode Nuit</button>
+            <button class="lang-toggle" onclick="toggleLanguage()" style="margin: 0;">🌐 EN</button>
 
-        <!-- Bouton User (dynamique selon connexion) -->
-        <div id="user-button-container" style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem;">
-            <button id="login-button" class="btn-nav" onclick="window.location.href='login.html'" style="background: linear-gradient(135deg, #4caf50, #45a049); display: none;">
+            <!-- Boutons User (dynamique selon connexion) -->
+            <button id="login-button" class="btn-nav" onclick="window.location.href='login.html'" style="background: linear-gradient(135deg, #4caf50, #45a049); display: none; margin: 0;">
                 🔐 Connexion
             </button>
-            <button id="profile-button" class="btn-nav" onclick="window.location.href='profile.html'" style="background: linear-gradient(135deg, #8a2be2, #9b59b6); display: none;">
+            <button id="profile-button" class="btn-nav" onclick="window.location.href='profile.html'" style="background: linear-gradient(135deg, #8a2be2, #9b59b6); display: none; margin: 0;">
                 <span id="user-name">👤 Mon Profil</span>
             </button>
         </div>
