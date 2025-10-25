@@ -1,0 +1,379 @@
+/*
+ * PALETTE BLEUS COSMIQUES - Académie Gématria
+ * Bleus marines profonds, bleus intenses, bleus parfaits
+ */
+
+:root {
+    /* Bleus Marines Profonds */
+    --bleu-abyssal: #000d1a;
+    --bleu-ocean-profond: #001a33;
+    --bleu-nuit-cosmique: #001f3f;
+    --bleu-marine-intense: #003366;
+    --bleu-saphir-sombre: #002d4d;
+
+    /* Bleus Intenses */
+    --bleu-royal: #4169e1;
+    --bleu-dodger: #1e90ff;
+    --bleu-vif: #0080ff;
+    --bleu-electrique: #0066cc;
+    --bleu-azur: #00bfff;
+
+    /* Bleus Parfaits */
+    --bleu-celeste: #5f9ea0;
+    --bleu-acier: #4682b4;
+    --bleu-clair-intense: #00bfff;
+
+    /* Dégradés Signature */
+    --gradient-ocean: linear-gradient(135deg, var(--bleu-abyssal) 0%, var(--bleu-marine-intense) 50%, var(--bleu-nuit-cosmique) 100%);
+    --gradient-cosmos: linear-gradient(135deg, var(--bleu-ocean-profond) 0%, var(--bleu-marine-intense) 100%);
+    --gradient-saphir: linear-gradient(135deg, var(--bleu-royal), var(--bleu-dodger), var(--bleu-electrique));
+    --gradient-lueur: radial-gradient(circle, var(--bleu-royal) 0%, var(--bleu-dodger) 50%, transparent 100%);
+
+    /* Effets Lumineux */
+    --glow-bleu-soft: 0 0 20px rgba(65, 105, 225, 0.3);
+    --glow-bleu-medium: 0 0 30px rgba(30, 144, 255, 0.5);
+    --glow-bleu-intense: 0 0 40px rgba(65, 105, 225, 0.7);
+    --glow-bleu-fort: 0 0 60px rgba(30, 144, 255, 0.9);
+}
+
+/* =================== ARRIÈRE-PLANS =================== */
+
+body {
+    background: var(--gradient-ocean) !important;
+    background-attachment: fixed !important;
+    position: relative;
+}
+
+/* Effet de profondeur avec pseudo-élément */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top, rgba(65, 105, 225, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* =================== HEADERS ET TITRES =================== */
+
+header {
+    background: var(--gradient-cosmos) !important;
+    border: 2px solid var(--bleu-royal) !important;
+    box-shadow: var(--glow-bleu-soft), inset 0 0 60px rgba(65, 105, 225, 0.1) !important;
+}
+
+h1 {
+    background: var(--gradient-saphir) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-shadow: none !important;
+    filter: drop-shadow(0 0 15px rgba(65, 105, 225, 0.5));
+}
+
+h2 {
+    color: var(--bleu-dodger) !important;
+    text-shadow: var(--glow-bleu-soft) !important;
+}
+
+h3 {
+    color: var(--bleu-celeste) !important;
+}
+
+/* =================== CARTES ET SECTIONS =================== */
+
+.card, .section-category, .lesson, .reasoning-type {
+    background: linear-gradient(135deg,
+        rgba(0, 26, 51, 0.6) 0%,
+        rgba(0, 51, 102, 0.4) 50%,
+        rgba(0, 31, 63, 0.6) 100%) !important;
+    border: 2px solid rgba(65, 105, 225, 0.3) !important;
+    box-shadow: var(--glow-bleu-soft), inset 0 0 40px rgba(65, 105, 225, 0.05) !important;
+}
+
+.card:hover, .reasoning-type:hover {
+    border-color: var(--bleu-royal) !important;
+    box-shadow: var(--glow-bleu-medium), inset 0 0 60px rgba(65, 105, 225, 0.1) !important;
+    transform: translateY(-5px) !important;
+}
+
+/* Cards de niveau */
+.card.beginner {
+    background: linear-gradient(135deg,
+        rgba(0, 26, 51, 0.7) 0%,
+        rgba(30, 144, 255, 0.15) 100%) !important;
+    border-color: var(--bleu-dodger) !important;
+}
+
+.card.intermediate {
+    background: linear-gradient(135deg,
+        rgba(0, 31, 63, 0.7) 0%,
+        rgba(65, 105, 225, 0.15) 100%) !important;
+    border-color: var(--bleu-royal) !important;
+}
+
+.card.expert {
+    background: linear-gradient(135deg,
+        rgba(0, 51, 102, 0.7) 0%,
+        rgba(0, 102, 204, 0.15) 100%) !important;
+    border-color: var(--bleu-vif) !important;
+}
+
+/* =================== BOUTONS =================== */
+
+.btn, .btn-nav, button {
+    background: var(--gradient-saphir) !important;
+    border: 2px solid var(--bleu-royal) !important;
+    box-shadow: var(--glow-bleu-soft) !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn:hover, .btn-nav:hover, button:hover {
+    box-shadow: var(--glow-bleu-intense) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    border-color: var(--bleu-azur) !important;
+}
+
+/* Boutons spécifiques */
+.btn-beginner {
+    background: linear-gradient(135deg, #1e90ff, #0080ff) !important;
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.4) !important;
+}
+
+.btn-intermediate {
+    background: linear-gradient(135deg, #4169e1, #1e90ff) !important;
+    box-shadow: 0 5px 15px rgba(65, 105, 225, 0.4) !important;
+}
+
+.btn-expert {
+    background: linear-gradient(135deg, #0066cc, #003366) !important;
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4) !important;
+}
+
+/* =================== NAVIGATION =================== */
+
+nav {
+    background: rgba(0, 26, 51, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 2px solid var(--bleu-royal) !important;
+    box-shadow: 0 5px 30px rgba(65, 105, 225, 0.3) !important;
+}
+
+nav a {
+    color: var(--bleu-azur) !important;
+    text-shadow: var(--glow-bleu-soft) !important;
+    transition: all 0.3s ease !important;
+}
+
+nav a:hover, nav a.active {
+    color: white !important;
+    background: rgba(65, 105, 225, 0.2) !important;
+    text-shadow: var(--glow-bleu-medium) !important;
+}
+
+/* =================== BOXES ET CONTAINERS =================== */
+
+.intro, .importance-box, .detail-box, .example-box {
+    background: linear-gradient(135deg,
+        rgba(0, 26, 51, 0.5) 0%,
+        rgba(0, 51, 102, 0.3) 100%) !important;
+    border-left: 4px solid var(--bleu-royal) !important;
+    box-shadow: var(--glow-bleu-soft) !important;
+}
+
+.tip-box {
+    background: linear-gradient(135deg,
+        rgba(30, 144, 255, 0.15) 0%,
+        rgba(65, 105, 225, 0.1) 100%) !important;
+    border-left: 4px solid var(--bleu-dodger) !important;
+    box-shadow: var(--glow-bleu-soft) !important;
+}
+
+.quiz, .quote-box {
+    background: rgba(0, 31, 63, 0.6) !important;
+    border: 2px solid rgba(65, 105, 225, 0.4) !important;
+    box-shadow: var(--glow-bleu-medium) !important;
+}
+
+/* =================== TABLEAUX =================== */
+
+table, .comparison-table {
+    background: rgba(0, 13, 26, 0.6) !important;
+    border: 1px solid rgba(65, 105, 225, 0.3) !important;
+}
+
+table th {
+    background: rgba(0, 51, 102, 0.8) !important;
+    border-bottom: 2px solid var(--bleu-royal) !important;
+    color: var(--bleu-azur) !important;
+}
+
+table tr:hover {
+    background: rgba(65, 105, 225, 0.1) !important;
+}
+
+table td {
+    border-bottom: 1px solid rgba(65, 105, 225, 0.2) !important;
+}
+
+/* =================== LIENS =================== */
+
+a {
+    color: var(--bleu-dodger) !important;
+    transition: all 0.3s ease !important;
+}
+
+a:hover {
+    color: var(--bleu-azur) !important;
+    text-shadow: var(--glow-bleu-soft) !important;
+}
+
+/* =================== INPUTS ET FORMS =================== */
+
+input, textarea, select {
+    background: rgba(0, 26, 51, 0.6) !important;
+    border: 2px solid rgba(65, 105, 225, 0.3) !important;
+    color: white !important;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--bleu-royal) !important;
+    box-shadow: var(--glow-bleu-medium) !important;
+    outline: none !important;
+}
+
+/* =================== BADGES =================== */
+
+.badge, .level-badge {
+    background: var(--gradient-saphir) !important;
+    color: white !important;
+    box-shadow: var(--glow-bleu-soft) !important;
+}
+
+/* =================== SCROLLBAR =================== */
+
+::-webkit-scrollbar {
+    width: 12px;
+    background: var(--bleu-abyssal);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bleu-ocean-profond);
+    border-left: 1px solid rgba(65, 105, 225, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--bleu-royal), var(--bleu-dodger));
+    border-radius: 6px;
+    box-shadow: var(--glow-bleu-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--bleu-dodger), var(--bleu-azur));
+    box-shadow: var(--glow-bleu-medium);
+}
+
+/* =================== EFFETS SPÉCIAUX =================== */
+
+/* Lueur sur les icônes */
+.hero, .intro-symbol {
+    filter: drop-shadow(0 0 20px rgba(65, 105, 225, 0.4));
+}
+
+/* Animations de lueur pulsante */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(65, 105, 225, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(30, 144, 255, 0.6);
+    }
+}
+
+.card:hover, .btn:hover {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Effet de vagues bleues */
+@keyframes waveEffect {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 0.6;
+    }
+}
+
+/* Particules bleues flottantes (optionnel) */
+.cosmic-particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cosmic-particles::before,
+.cosmic-particles::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--bleu-azur);
+    border-radius: 50%;
+    box-shadow:
+        100px 200px 0 var(--bleu-royal),
+        300px 100px 0 var(--bleu-dodger),
+        500px 400px 0 var(--bleu-azur),
+        700px 150px 0 var(--bleu-royal),
+        200px 500px 0 var(--bleu-dodger);
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* =================== MODE SOMBRE AMÉLIORÉ =================== */
+
+.dark-mode {
+    background: var(--gradient-ocean) !important;
+}
+
+.dark-mode body::before {
+    background: radial-gradient(ellipse at top, rgba(65, 105, 225, 0.15) 0%, transparent 70%);
+}
+
+/* =================== RESPONSIVE =================== */
+
+@media (max-width: 768px) {
+    :root {
+        --glow-bleu-soft: 0 0 10px rgba(65, 105, 225, 0.2);
+        --glow-bleu-medium: 0 0 15px rgba(30, 144, 255, 0.3);
+    }
+
+    .card, .section-category {
+        box-shadow: var(--glow-bleu-soft) !important;
+    }
+}
+
+/* =================== PRINT =================== */
+
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+}
