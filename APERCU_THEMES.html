@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aperçu des Thèmes Animés - Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3em;
+            margin-bottom: 50px;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .theme-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-icon {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .theme-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .theme-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .theme-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .theme-features li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .theme-features li:before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .theme-link {
+            display: block;
+            text-align: center;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+
+        .theme-link:hover {
+            transform: scale(1.05);
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats h2 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Thèmes Animés - Gematria Academy</h1>
+        <p class="subtitle">Découvrez les 4 thèmes immersifs créés pour enrichir votre expérience d'apprentissage</p>
+
+        <div class="themes-grid">
+            <!-- Thème Hiéroglyphes -->
+            <div class="theme-card">
+                <div class="theme-icon">🌙</div>
+                <h3 class="theme-title">Hiéroglyphes Égyptiens</h3>
+                <p class="theme-description">
+                    Plongez dans la nuit étoilée du désert égyptien avec des pyramides majestueuses,
+                    une lune dorée pulsante et un ciel scintillant d'étoiles.
+                </p>
+                <ul class="theme-features">
+                    <li>Champ d'étoiles animées (7 couches)</li>
+                    <li>Constellation d'Orion</li>
+                    <li>Lune égyptienne dorée</li>
+                    <li>Voie lactée en dérive</li>
+                    <li>Silhouettes de pyramides</li>
+                </ul>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: #0a0e27;"></div>
+                    <div class="color-swatch" style="background: #1a1f3a;"></div>
+                    <div class="color-swatch" style="background: #ffd700;"></div>
+                    <div class="color-swatch" style="background: #fdcb6e;"></div>
+                </div>
+                <a href="https://gematria-academy.pages.dev/hieroglyphes-debutant.html" class="theme-link" target="_blank">
+                    Voir le thème 🔗
+                </a>
+            </div>
+
+            <!-- Thème Maya -->
+            <div class="theme-card">
+                <div class="theme-icon">🌴</div>
+                <h3 class="theme-title">Civilisation Maya</h3>
+                <p class="theme-description">
+                    Explorez la jungle mystique avec ses pyramides anciennes, oiseaux tropicaux,
+                    lucioles flottantes et une atmosphère crépusculaire envoûtante.
+                </p>
+                <ul class="theme-features">
+                    <li>Jungle luxuriante animée</li>
+                    <li>Pyramides mayas en silhouette</li>
+                    <li>3 oiseaux tropicaux volants</li>
+                    <li>5 lucioles lumineuses</li>
+                    <li>Brume de jungle mystique</li>
+                </ul>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: #1a3a2e;"></div>
+                    <div class="color-swatch" style="background: #0f2922;"></div>
+                    <div class="color-swatch" style="background: #ff8c00;"></div>
+                    <div class="color-swatch" style="background: #ffff96;"></div>
+                </div>
+                <a href="https://gematria-academy.pages.dev/maya-debutant.html" class="theme-link" target="_blank">
+                    Voir le thème 🔗
+                </a>
+            </div>
+
+            <!-- Thème Runes -->
+            <div class="theme-card">
+                <div class="theme-icon">❄️</div>
+                <h3 class="theme-title">Runes Nordiques</h3>
+                <p class="theme-description">
+                    Vivez la magie du Grand Nord avec son aurore boréale dansante,
+                    ses montagnes enneigées, ses flocons de neige et ses runes mystiques.
+                </p>
+                <ul class="theme-features">
+                    <li>Aurore boréale multicolore</li>
+                    <li>Flocons de neige tombants</li>
+                    <li>Montagnes enneigées</li>
+                    <li>Forêt de sapins nordiques</li>
+                    <li>Runes flottantes (ᚠᚢᚦᚨᚱ)</li>
+                </ul>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: #2c3e50;"></div>
+                    <div class="color-swatch" style="background: #34e78f;"></div>
+                    <div class="color-swatch" style="background: #34a8eb;"></div>
+                    <div class="color-swatch" style="background: #8e44eb;"></div>
+                </div>
+                <a href="https://gematria-academy.pages.dev/runes-debutant.html" class="theme-link" target="_blank">
+                    Voir le thème 🔗
+                </a>
+            </div>
+
+            <!-- Thème Gematria -->
+            <div class="theme-card">
+                <div class="theme-icon">✡️</div>
+                <h3 class="theme-title">Gematria Hébraïque</h3>
+                <p class="theme-description">
+                    Entrez dans le monde mystique de la Kabbale avec sa lumière divine descendante,
+                    l'étoile de David, la menorah scintillante et les lettres sacrées.
+                </p>
+                <ul class="theme-features">
+                    <li>Lumière divine dorée</li>
+                    <li>Étoile de David en rotation</li>
+                    <li>Lettres hébraïques (אבגד)</li>
+                    <li>Arbre de vie kabbalistique</li>
+                    <li>Menorah à 7 branches</li>
+                </ul>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: #1a1a2e;"></div>
+                    <div class="color-swatch" style="background: #0f3460;"></div>
+                    <div class="color-swatch" style="background: #ffd700;"></div>
+                    <div class="color-swatch" style="background: #ffeb3b;"></div>
+                </div>
+                <a href="https://gematria-academy.pages.dev/gematria-debutant.html" class="theme-link" target="_blank">
+                    Voir le thème 🔗
+                </a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <h2>📊 Statistiques du Projet</h2>
+            <div class="stats-grid">
+                <div class="stat-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Thèmes Créés</div>
+                </div>
+                <div class="stat-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="stat-value">60+</div>
+                    <div class="stat-label">Pages Modifiées</div>
+                </div>
+                <div class="stat-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="stat-value">1550</div>
+                    <div class="stat-label">Lignes de CSS</div>
+                </div>
+                <div class="stat-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <div class="stat-value">30</div>
+                    <div class="stat-label">Animations</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; color: white;">
+            <p style="font-size: 1.2em;">
+                🌐 <a href="https://gematria-academy.pages.dev" style="color: white; text-decoration: none; border-bottom: 2px solid white;">
+                    Visiter Gematria Academy
+                </a>
+            </p>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                Développé avec ❤️ par Claude Code • Octobre 2025
+            </p>
+        </div>
+    </div>
+</body>
+</html>
