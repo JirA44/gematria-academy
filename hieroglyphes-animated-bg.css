@@ -1,0 +1,199 @@
+/* Fond animé ciel étoilé égyptien pour les pages hiéroglyphes */
+
+body.hieroglyphes-theme {
+    background: linear-gradient(to bottom, #0a0e27 0%, #1a1f3a 50%, #2d1b3d 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.hieroglyphes-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent),
+        radial-gradient(2px 2px at 70% 20%, white, transparent);
+    background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%;
+    background-position: 0% 0%, 40% 60%, 80% 20%, 10% 90%, 70% 40%, 30% 70%, 50% 10%;
+    animation: starfield 120s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Étoiles scintillantes */
+body.hieroglyphes-theme::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 45%, rgba(255, 255, 255, 0.8) 0%, transparent 1%),
+        radial-gradient(circle at 85% 25%, rgba(255, 255, 255, 0.6) 0%, transparent 1%),
+        radial-gradient(circle at 45% 75%, rgba(255, 255, 255, 0.7) 0%, transparent 1%),
+        radial-gradient(circle at 65% 55%, rgba(255, 255, 255, 0.5) 0%, transparent 1%),
+        radial-gradient(circle at 25% 15%, rgba(255, 255, 255, 0.9) 0%, transparent 1%);
+    background-size: 100% 100%;
+    animation: twinkle 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Constellation d'Orion stylisée */
+.constellation {
+    position: fixed;
+    top: 15%;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+    animation: constellation-glow 8s ease-in-out infinite;
+}
+
+.constellation::before,
+.constellation::after {
+    content: '⭐';
+    position: absolute;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.constellation::before {
+    top: 30%;
+    left: 20%;
+}
+
+.constellation::after {
+    bottom: 30%;
+    right: 20%;
+}
+
+/* Lune croissante égyptienne */
+.egyptian-moon {
+    position: fixed;
+    top: 8%;
+    left: 12%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffeaa7 0%, #fdcb6e 50%, #e17055 100%);
+    box-shadow:
+        0 0 40px rgba(253, 203, 110, 0.6),
+        0 0 80px rgba(253, 203, 110, 0.4),
+        inset -10px -10px 20px rgba(0, 0, 0, 0.3);
+    animation: moon-pulse 6s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Voie lactée subtile */
+.milky-way {
+    position: fixed;
+    top: 0;
+    left: -10%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(100, 70, 150, 0.1) 20%,
+        rgba(150, 100, 200, 0.15) 40%,
+        rgba(100, 70, 150, 0.1) 60%,
+        transparent 80%
+    );
+    transform: rotate(-25deg);
+    animation: milky-way-drift 180s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Silhouettes de pyramides au loin */
+.pyramids-silhouette {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><polygon points="200,200 300,50 400,200" fill="rgba(0,0,0,0.4)"/><polygon points="500,200 650,20 800,200" fill="rgba(0,0,0,0.5)"/><polygon points="900,200 1000,80 1100,200" fill="rgba(0,0,0,0.3)"/></svg>');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Animations */
+@keyframes starfield {
+    0% {
+        background-position: 0% 0%, 40% 60%, 80% 20%, 10% 90%, 70% 40%, 30% 70%, 50% 10%;
+    }
+    100% {
+        background-position: 100% 100%, 140% 160%, 180% 120%, 110% 190%, 170% 140%, 130% 170%, 150% 110%;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes constellation-glow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes moon-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 40px rgba(253, 203, 110, 0.6),
+            0 0 80px rgba(253, 203, 110, 0.4),
+            inset -10px -10px 20px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow:
+            0 0 60px rgba(253, 203, 110, 0.8),
+            0 0 120px rgba(253, 203, 110, 0.6),
+            inset -10px -10px 20px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@keyframes milky-way-drift {
+    0% {
+        transform: rotate(-25deg) translateX(0);
+    }
+    100% {
+        transform: rotate(-25deg) translateX(-20%);
+    }
+}
+
+/* Container doit avoir un z-index plus élevé */
+body.hieroglyphes-theme .container {
+    position: relative;
+    z-index: 10;
+}
