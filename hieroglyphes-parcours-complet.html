@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Parcours Complet - Apprendre les Hiéroglyphes</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c49c62;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(196, 156, 98, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(196, 156, 98, 0.2), rgba(139, 111, 71, 0.2));
+            border: 3px solid rgba(196, 156, 98, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #c49c62;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: #8a2be2;
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .step-icon {
+            font-size: 5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step-title {
+            color: #ba68c8;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .step-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #81c784;
+            font-weight: bold;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+        }
+
+        .methodology-box {
+            background: rgba(76, 175, 80, 0.1);
+            border: 3px solid rgba(76, 175, 80, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .methodology-box h2 {
+            color: #81c784;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-item {
+            background: rgba(30, 30, 45, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .method-item h3 {
+            color: #81c784;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-box h2 {
+            color: #ba68c8;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+
+        .btn-secondary {
+            background: rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>𓂀 Parcours Complet d'Apprentissage</h1>
+        <p class="subtitle">Apprenez à déchiffrer les hiéroglyphes comme un véritable égyptologue</p>
+
+        <div class="hero-box">
+            <h2>🎯 Objectif Final</h2>
+            <p>
+                À la fin de ce parcours, vous serez capable de <strong>déchiffrer par vous-même un nouveau texte hiéroglyphique</strong> sans aide extérieure.
+            </p>
+            <p style="font-size: 1.2rem;">
+                Vous maîtriserez l'alphabet complet, la grammaire de base, et vous aurez pratiqué avec des dizaines d'inscriptions authentiques.
+            </p>
+        </div>
+
+        <h2 style="text-align: center; color: #c49c62; font-size: 2.5rem; margin-bottom: 3rem;">
+            📖 Les 4 Étapes du Parcours
+        </h2>
+
+        <div class="parcours-grid">
+            <!-- ÉTAPE 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">📖</div>
+                <h3 class="step-title">Alphabet Complet</h3>
+                <p class="step-description">
+                    Découvrez et mémorisez les 26 signes unilitères (l'alphabet phonétique égyptien) + les déterminatifs essentiels + les nombres.
+                </p>
+                <ul class="step-features">
+                    <li>Unilitères avec sons et noms</li>
+                    <li>Bilitères et trilitères fréquents</li>
+                    <li>Déterminatifs (signes muets)</li>
+                    <li>Système de numération décimal</li>
+                    <li>Recherche interactive et filtres</li>
+                </ul>
+                <a href="hieroglyphes-alphabet-complet.html" class="btn-start">Commencer l'Alphabet →</a>
+            </div>
+
+            <!-- ÉTAPE 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">📚</div>
+                <h3 class="step-title">Grammaire Niveau 1</h3>
+                <p class="step-description">
+                    Apprenez les 4 règles fondamentales pour lire correctement les hiéroglyphes : sens de lecture, phonogrammes, déterminatifs et compléments.
+                </p>
+                <ul class="step-features">
+                    <li>Sens de lecture (gauche/droite/haut)</li>
+                    <li>Phonogrammes unilitères</li>
+                    <li>Rôle des déterminatifs</li>
+                    <li>Compléments phonétiques</li>
+                    <li>Quiz interactifs intégrés</li>
+                </ul>
+                <a href="hieroglyphes-grammaire-niveau1.html" class="btn-start">Étudier la Grammaire →</a>
+            </div>
+
+            <!-- ÉTAPE 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">✍️</div>
+                <h3 class="step-title">Exercices de Déchiffrage</h3>
+                <p class="step-description">
+                    Pratiquez avec 15+ exercices progressifs : mots simples, phrases courtes, cartouches royaux et formules d'offrande.
+                </p>
+                <ul class="step-features">
+                    <li>5 niveaux de difficulté</li>
+                    <li>Correction instantanée</li>
+                    <li>Explications détaillées</li>
+                    <li>Système de scoring</li>
+                    <li>Suivi de progression</li>
+                </ul>
+                <a href="hieroglyphes-exercices-dechiffrage.html" class="btn-start">Commencer les Exercices →</a>
+            </div>
+
+            <!-- ÉTAPE 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">🎴</div>
+                <h3 class="step-title">Flashcards Quotidiennes</h3>
+                <p class="step-description">
+                    Entraînez-vous quotidiennement à reconnaître instantanément les signes avec notre système de flashcards interactif.
+                </p>
+                <ul class="step-features">
+                    <li>3 modes : Unilitères, Déterminatifs, Mixte</li>
+                    <li>Sessions de 20 cartes</li>
+                    <li>Animation flip 3D</li>
+                    <li>Statistiques détaillées</li>
+                    <li>Révision espacée</li>
+                </ul>
+                <a href="hieroglyphes-flashcards.html" class="btn-start">Lancer les Flashcards →</a>
+            </div>
+        </div>
+
+        <!-- MÉTHODOLOGIE -->
+        <div class="methodology-box">
+            <h2>🧠 Notre Méthodologie Pédagogique</h2>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <h3>📊 Évaluations Fréquentes</h3>
+                    <p>
+                        Après chaque concept appris, testez immédiatement vos connaissances avec des mini-quiz intégrés.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>🔁 Répétition Espacée</h3>
+                    <p>
+                        Les flashcards utilisent la technique de répétition espacée pour ancrer durablement les signes dans votre mémoire.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>🎯 Apprentissage Progressif</h3>
+                    <p>
+                        Du plus simple au plus complexe, chaque étape s'appuie sur les connaissances précédentes.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>✍️ Pratique Intensive</h3>
+                    <p>
+                        Vous déchiffrez de vrais textes hiéroglyphiques dès le début du parcours pour une immersion totale.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="cta-box">
+            <h2>🚀 Prêt à Commencer ?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem;">
+                Le parcours complet prend environ <strong>6-8 heures</strong> à suivre en continu,<br>
+                mais vous pouvez le faire à votre rythme sur plusieurs jours ou semaines.
+            </p>
+            <a href="hieroglyphes-alphabet-complet.html" class="btn-start" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
+                📖 Commencer Maintenant l'Étape 1
+            </a>
+        </div>
+
+        <!-- BONUS : Inscriptions authentiques -->
+        <div style="background: rgba(255, 193, 7, 0.1); border: 3px solid rgba(255, 193, 7, 0.5); border-radius: 20px; padding: 3rem; margin-top: 4rem; text-align: center;">
+            <h2 style="color: #ffc107; font-size: 2.3rem; margin-bottom: 2rem;">
+                🎁 Bonus : 46 Inscriptions Authentiques
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                En complément du parcours d'apprentissage, explorez 46 inscriptions authentiques des temples et tombes égyptiennes avec traduction mot à mot.
+            </p>
+            <a href="immersion-inscriptions-index.html" class="btn-secondary" style="font-size: 1.2rem;">
+                📜 Voir les Inscriptions Authentiques
+            </a>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index.html" class="btn-secondary">🏠 Retour Accueil</a>
+            <a href="hieroglyphes-debutant.html" class="btn-secondary">📖 Introduction aux Hiéroglyphes</a>
+        </div>
+    </div>
+</body>
+</html>

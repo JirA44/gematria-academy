@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Exercices de Déchiffrage - Hiéroglyphes</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c49c62;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(196, 156, 98, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .score-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .score-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .score-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ba68c8;
+        }
+
+        .score-label {
+            color: #b0b0c0;
+            margin-top: 0.5rem;
+        }
+
+        .level-indicator {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.4));
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .level-indicator h2 {
+            color: #81c784;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercise {
+            background: rgba(30, 30, 45, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .exercise-number {
+            background: rgba(138, 43, 226, 0.3);
+            color: #ba68c8;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .exercise-difficulty {
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .diff-facile {
+            background: rgba(76, 175, 80, 0.3);
+            color: #81c784;
+        }
+
+        .diff-moyen {
+            background: rgba(255, 152, 0, 0.3);
+            color: #ffb74d;
+        }
+
+        .diff-difficile {
+            background: rgba(244, 67, 54, 0.3);
+            color: #e57373;
+        }
+
+        .hieroglyph-display {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 3px solid rgba(196, 156, 98, 0.5);
+        }
+
+        .hieroglyph-text {
+            font-size: 4rem;
+            text-align: center;
+            color: #ffa726;
+            line-height: 1.8;
+            direction: rtl;
+            letter-spacing: 0.8rem;
+            margin: 2rem 0;
+        }
+
+        .hint-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .hint-box.visible {
+            display: block;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            background: rgba(40, 40, 60, 0.8);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 10px;
+            color: #e0e0e0;
+            margin: 1.5rem 0;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #8a2be2;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-hint {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            font-size: 1.3rem;
+            padding: 1.2rem 3rem;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+        }
+
+        .feedback {
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .feedback.visible {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4caf50;
+            color: #81c784;
+        }
+
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            color: #e57373;
+        }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .sign-card {
+            background: rgba(40, 40, 60, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .sign-symbol {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .sign-sound {
+            color: #ffa726;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .sign-meaning {
+            color: #81c784;
+            font-size: 1rem;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(30, 30, 45, 0.95);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .progress-tracker h3 {
+            color: #ba68c8;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8rem 0;
+            font-size: 1rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .progress-tracker {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>𓂀 Exercices de Déchiffrage</h1>
+        <p class="subtitle">Pratiquez la lecture des hiéroglyphes avec des textes progressifs</p>
+
+        <!-- Tableau de bord des scores -->
+        <div class="score-dashboard">
+            <div class="score-card">
+                <div class="score-number" id="totalExercises">0</div>
+                <div class="score-label">Exercices complétés</div>
+            </div>
+            <div class="score-card">
+                <div class="score-number" id="correctAnswers">0</div>
+                <div class="score-label">Réponses correctes</div>
+            </div>
+            <div class="score-card">
+                <div class="score-number" id="successRate">0%</div>
+                <div class="score-label">Taux de réussite</div>
+            </div>
+            <div class="score-card">
+                <div class="score-number" id="currentStreak">0🔥</div>
+                <div class="score-label">Série en cours</div>
+            </div>
+        </div>
+
+        <!-- Indicateur de niveau -->
+        <div class="level-indicator">
+            <h2 id="levelTitle">Niveau Débutant - Mots Simples</h2>
+            <p id="levelDescription">Déchiffrez des mots courts avec des signes unilitères</p>
+        </div>
+
+        <!-- Tracker de progression (fixe à droite) -->
+        <div class="progress-tracker">
+            <h3>📊 Progression</h3>
+            <div class="progress-item">
+                <span>Facile:</span>
+                <span id="easyProgress">0/10</span>
+            </div>
+            <div class="progress-item">
+                <span>Moyen:</span>
+                <span id="mediumProgress">0/10</span>
+            </div>
+            <div class="progress-item">
+                <span>Difficile:</span>
+                <span id="hardProgress">0/10</span>
+            </div>
+        </div>
+
+        <!-- EXERCICE 1 : Mot simple NFR -->
+        <div class="exercise" data-exercise="1" data-difficulty="facile">
+            <div class="exercise-header">
+                <div class="exercise-number">Exercice #1</div>
+                <div class="exercise-difficulty diff-facile">⭐ Facile</div>
+            </div>
+
+            <h3 style="color: #ba68c8; font-size: 1.8rem; margin-bottom: 1.5rem;">Déchiffrez ce mot hiéroglyphique</h3>
+
+            <div class="hieroglyph-display">
+                <div class="hieroglyph-text">𓈖𓆑𓂋</div>
+            </div>
+
+            <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+                <strong>Consigne :</strong> Identifiez chaque signe et écrivez la prononciation complète (lettres latines)
+            </p>
+
+            <input type="text" class="answer-input" id="answer1" placeholder="Tapez votre réponse (ex: NFR)...">
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="btn btn-hint" onclick="showHint(1)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(1)">✓ Vérifier ma réponse</button>
+            </div>
+
+            <div class="hint-box" id="hint1">
+                <strong>💡 Indice :</strong><br>
+                • Le premier signe (zigzag) = N (eau)<br>
+                • Le deuxième signe (serpent) = F (vipère)<br>
+                • Le troisième signe (bouche) = R
+            </div>
+
+            <div class="feedback" id="feedback1">
+                <!-- Rempli dynamiquement par JS -->
+            </div>
+        </div>
+
+        <!-- EXERCICE 2 : Mot avec déterminatif -->
+        <div class="exercise" data-exercise="2" data-difficulty="facile">
+            <div class="exercise-header">
+                <div class="exercise-number">Exercice #2</div>
+                <div class="exercise-difficulty diff-facile">⭐ Facile</div>
+            </div>
+
+            <h3 style="color: #ba68c8; font-size: 1.8rem; margin-bottom: 1.5rem;">Déchiffrez avec déterminatif</h3>
+
+            <div class="hieroglyph-display">
+                <div class="hieroglyph-text">𓇋𓏠𓈖𓀭</div>
+            </div>
+
+            <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+                <strong>Consigne :</strong> Quelle est la prononciation ? (Attention, le dernier signe est un déterminatif muet !)
+            </p>
+
+            <input type="text" class="answer-input" id="answer2" placeholder="Tapez la prononciation...">
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="btn btn-hint" onclick="showHint(2)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(2)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint2">
+                <strong>💡 Indice :</strong><br>
+                • 𓇋 = I (roseau)<br>
+                • 𓏠 = M (chouette variante)<br>
+                • 𓈖 = N (eau)<br>
+                • 𓀭 = déterminatif "dieu" (ne se prononce PAS)
+            </div>
+
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+        <!-- EXERCICE 3 : Phrase simple -->
+        <div class="exercise" data-exercise="3" data-difficulty="moyen">
+            <div class="exercise-header">
+                <div class="exercise-number">Exercice #3</div>
+                <div class="exercise-difficulty diff-moyen">⭐⭐ Moyen</div>
+            </div>
+
+            <h3 style="color: #ba68c8; font-size: 1.8rem; margin-bottom: 1.5rem;">Phrase courte</h3>
+
+            <div class="hieroglyph-display">
+                <div class="hieroglyph-text">𓅱𓈖 𓈖𓆑𓂋</div>
+            </div>
+
+            <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+                <strong>Consigne :</strong> Cette phrase signifie "être bon" ou "il est bon". Quelle est la prononciation complète ?
+            </p>
+
+            <input type="text" class="answer-input" id="answer3" placeholder="Tapez la prononciation (ex: WN NFR)...">
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="btn btn-hint" onclick="showHint(3)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(3)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint3">
+                <strong>💡 Indice :</strong><br>
+                • Mot 1: 𓅱𓈖 = WN (être, exister)<br>
+                • Mot 2: 𓈖𓆑𓂋 = NFR (bon, beau)<br>
+                • Prononciation: WN NFR (ou "ounen nefer")
+            </div>
+
+            <div class="feedback" id="feedback3"></div>
+        </div>
+
+        <!-- EXERCICE 4 : Cartouche royal -->
+        <div class="exercise" data-exercise="4" data-difficulty="moyen">
+            <div class="exercise-header">
+                <div class="exercise-number">Exercice #4</div>
+                <div class="exercise-difficulty diff-moyen">⭐⭐ Moyen</div>
+            </div>
+
+            <h3 style="color: #ba68c8; font-size: 1.8rem; margin-bottom: 1.5rem;">Cartouche royal</h3>
+
+            <div class="hieroglyph-display">
+                <div class="hieroglyph-text">𓇳𓏤𓊃𓇓</div>
+            </div>
+
+            <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+                <strong>Consigne :</strong> Identifiez les signes de ce nom royal. Quelle est la prononciation ?
+            </p>
+
+            <input type="text" class="answer-input" id="answer4" placeholder="Tapez votre réponse...">
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="btn btn-hint" onclick="showHint(4)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(4)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint4">
+                <strong>💡 Indice :</strong><br>
+                • 𓇳 = RA (le soleil)<br>
+                • 𓏤 = 1 (trait unique)<br>
+                • 𓊃 = S (verrou)<br>
+                • 𓇓 = déterminatif royal<br>
+                • Ce nom se lit: RA-S ou RAMSÈS (Ramsès)
+            </div>
+
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+        <!-- EXERCICE 5 : Formule d'offrande -->
+        <div class="exercise" data-exercise="5" data-difficulty="difficile">
+            <div class="exercise-header">
+                <div class="exercise-number">Exercice #5</div>
+                <div class="exercise-difficulty diff-difficile">⭐⭐⭐ Difficile</div>
+            </div>
+
+            <h3 style="color: #ba68c8; font-size: 1.8rem; margin-bottom: 1.5rem;">Formule d'offrande</h3>
+
+            <div class="hieroglyph-display">
+                <div class="hieroglyph-text">𓎛𓏏𓊪 𓂧𓇋 𓈖𓋴𓅱𓏏</div>
+            </div>
+
+            <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+                <strong>Consigne :</strong> Formule très fréquente signifiant "offrande que donne le roi". Déchiffrez la prononciation.
+            </p>
+
+            <input type="text" class="answer-input" id="answer5" placeholder="Tapez votre réponse (HTP DI NSWT)...">
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="btn btn-hint" onclick="showHint(5)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(5)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint5">
+                <strong>💡 Indice :</strong><br>
+                • 𓎛𓏏𓊪 = HTP (offrande, autel)<br>
+                • 𓂧𓇋 = DI (donner)<br>
+                • 𓈖𓋴𓅱𓏏 = NSWT (roi)<br>
+                • Prononciation complète: HTP DI NSWT ("hetep di nesout")
+            </div>
+
+            <div class="feedback" id="feedback5"></div>
+        </div>
+
+        <!-- Boutons de navigation -->
+        <div class="nav-buttons">
+            <a href="hieroglyphes-grammaire-niveau1.html" class="btn">← Revoir la Grammaire</a>
+            <a href="hieroglyphes-alphabet-complet.html" class="btn">📖 Alphabet</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+            <a href="hieroglyphes-flashcards.html" class="btn">🎴 Flashcards →</a>
+        </div>
+    </div>
+
+    <script>
+        // Système de stockage des progrès
+        let progress = JSON.parse(localStorage.getItem('hieroglyphes_exercises') || '{"completed": [], "correct": 0, "total": 0, "streak": 0}');
+
+        // Réponses correctes pour chaque exercice
+        const correctAnswers = {
+            1: ['nfr', 'nefer', 'n-f-r'],
+            2: ['imn', 'imen', 'i-m-n', 'amon'],
+            3: ['wn nfr', 'wn-nfr', 'wnfr', 'ounen nefer', 'wnnfr'],
+            4: ['ras', 'ra-s', 'ramses', 'ramsès', 'rameses'],
+            5: ['htp di nswt', 'hetep di nesout', 'htp-di-nswt', 'htpdijnswt']
+        };
+
+        // Affichage des indices
+        function showHint(exerciseNum) {
+            const hint = document.getElementById('hint' + exerciseNum);
+            hint.classList.add('visible');
+        }
+
+        // Vérification des réponses
+        function checkAnswer(exerciseNum) {
+            const input = document.getElementById('answer' + exerciseNum);
+            const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const feedback = document.getElementById('feedback' + exerciseNum);
+
+            // Vérifier si la réponse est correcte
+            const isCorrect = correctAnswers[exerciseNum].some(answer => {
+                return userAnswer === answer.toLowerCase() ||
+                       userAnswer.replace(/\s/g, '') === answer.replace(/\s/g, '').toLowerCase();
+            });
+
+            feedback.classList.add('visible');
+
+            if (isCorrect) {
+                feedback.className = 'feedback visible correct';
+                feedback.innerHTML = `
+                    <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">✅ Excellent ! Réponse correcte !</h4>
+                    <p style="margin-bottom: 1.5rem;">Vous avez correctement déchiffré cette inscription.</p>
+                    ${getDetailedExplanation(exerciseNum)}
+                `;
+
+                // Mettre à jour les statistiques
+                if (!progress.completed.includes(exerciseNum)) {
+                    progress.completed.push(exerciseNum);
+                    progress.correct++;
+                    progress.streak++;
+                }
+                progress.total = Math.max(progress.total, progress.completed.length);
+
+                input.disabled = true;
+                input.style.borderColor = '#4caf50';
+            } else {
+                feedback.className = 'feedback visible incorrect';
+                feedback.innerHTML = `
+                    <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">❌ Pas tout à fait...</h4>
+                    <p style="margin-bottom: 1rem;">La bonne réponse est : <strong>${correctAnswers[exerciseNum][0].toUpperCase()}</strong></p>
+                    <p>Relisez les indices et réessayez !</p>
+                    ${getDetailedExplanation(exerciseNum)}
+                `;
+
+                progress.streak = 0;
+            }
+
+            localStorage.setItem('hieroglyphes_exercises', JSON.stringify(progress));
+            updateDashboard();
+        }
+
+        // Explications détaillées pour chaque exercice
+        function getDetailedExplanation(exerciseNum) {
+            const explanations = {
+                1: `
+                    <div class="breakdown-grid">
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓈖</div>
+                            <div class="sign-sound">N</div>
+                            <div class="sign-meaning">Eau (zigzag)</div>
+                        </div>
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓆑</div>
+                            <div class="sign-sound">F</div>
+                            <div class="sign-meaning">Vipère</div>
+                        </div>
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓂋</div>
+                            <div class="sign-sound">R</div>
+                            <div class="sign-meaning">Bouche</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;">Prononciation : <strong>NFR</strong> (nefer) = "bon, beau, parfait"</p>
+                `,
+                2: `
+                    <div class="breakdown-grid">
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓇋</div>
+                            <div class="sign-sound">I</div>
+                            <div class="sign-meaning">Roseau</div>
+                        </div>
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓏠</div>
+                            <div class="sign-sound">M</div>
+                            <div class="sign-meaning">Chouette</div>
+                        </div>
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓈖</div>
+                            <div class="sign-sound">N</div>
+                            <div class="sign-meaning">Eau</div>
+                        </div>
+                        <div class="sign-card">
+                            <div class="sign-symbol">𓀭</div>
+                            <div class="sign-sound">(muet)</div>
+                            <div class="sign-meaning">Dieu (déterminatif)</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;">Prononciation : <strong>IMN</strong> (Amon) = nom du dieu Amon, "le Caché"</p>
+                `,
+                3: `
+                    <p style="margin-bottom: 1rem;"><strong>Analyse grammaticale :</strong></p>
+                    <p>• <strong>𓅱𓈖</strong> (WN) = verbe "être"</p>
+                    <p>• <strong>𓈖𓆑𓂋</strong> (NFR) = adjectif "bon"</p>
+                    <p style="margin-top: 1rem;">Traduction : "Être bon" ou "Il est bon"</p>
+                `,
+                4: `
+                    <p style="margin-bottom: 1rem;"><strong>Nom royal de Ramsès :</strong></p>
+                    <p>• 𓇳 (RA) = le dieu soleil Rê</p>
+                    <p>• 𓏤 = marque du duel ou insistance</p>
+                    <p>• 𓊃 (S) = verrou</p>
+                    <p style="margin-top: 1rem;">= <strong>RA-S</strong> ou <strong>RAMSÈS</strong> ("Rê l'a enfanté")</p>
+                `,
+                5: `
+                    <p style="margin-bottom: 1rem;"><strong>Formule d'offrande classique :</strong></p>
+                    <p>• 𓎛𓏏𓊪 (HTP) = offrande, autel</p>
+                    <p>• 𓂧𓇋 (DI) = donner</p>
+                    <p>• 𓈖𓋴𓅱𓏏 (NSWT) = roi</p>
+                    <p style="margin-top: 1rem;">= "Offrande que donne le roi" (formule standard d'invocation)</p>
+                `
+            };
+            return explanations[exerciseNum];
+        }
+
+        // Mise à jour du tableau de bord
+        function updateDashboard() {
+            document.getElementById('totalExercises').textContent = progress.completed.length;
+            document.getElementById('correctAnswers').textContent = progress.correct;
+
+            const rate = progress.total > 0 ? Math.round((progress.correct / progress.total) * 100) : 0;
+            document.getElementById('successRate').textContent = rate + '%';
+            document.getElementById('currentStreak').textContent = progress.streak + '🔥';
+
+            // Mise à jour progression par difficulté
+            const easy = progress.completed.filter(n => n <= 2).length;
+            const medium = progress.completed.filter(n => n > 2 && n <= 4).length;
+            const hard = progress.completed.filter(n => n > 4).length;
+
+            document.getElementById('easyProgress').textContent = easy + '/2';
+            document.getElementById('mediumProgress').textContent = medium + '/2';
+            document.getElementById('hardProgress').textContent = hard + '/1';
+        }
+
+        // Initialiser au chargement
+        updateDashboard();
+    </script>
+</body>
+</html>

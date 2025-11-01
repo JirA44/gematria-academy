@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Flashcards Hiéroglyphes - Entraînement Quotidien</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c49c62;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(196, 156, 98, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .session-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-box {
+            background: rgba(30, 30, 45, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ba68c8;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #b0b0c0;
+            margin-top: 0.3rem;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            margin-bottom: 3rem;
+        }
+
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+            border: 3px solid rgba(138, 43, 226, 0.6);
+        }
+
+        .flashcard-back {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(56, 142, 60, 0.3));
+            border: 3px solid rgba(76, 175, 80, 0.6);
+            transform: rotateY(180deg);
+        }
+
+        .card-symbol {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            color: #ffa726;
+        }
+
+        .card-question {
+            font-size: 1.5rem;
+            color: #ba68c8;
+            margin-bottom: 1rem;
+        }
+
+        .card-hint {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            font-style: italic;
+        }
+
+        .card-answer {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #81c784;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-details {
+            font-size: 1.2rem;
+            color: #b0b0c0;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-easy {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+        }
+
+        .btn-hard {
+            background: linear-gradient(135deg, #f44336, #da190b);
+        }
+
+        .btn-skip {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+
+        .progress-bar-container {
+            background: rgba(30, 30, 45, 0.8);
+            border-radius: 20px;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #8a2be2, #ba68c8);
+            height: 30px;
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .mode-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .mode-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mode-card:hover, .mode-card.active {
+            border-color: #8a2be2;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+        }
+
+        .mode-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mode-title {
+            font-size: 1.3rem;
+            color: #ba68c8;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .mode-description {
+            font-size: 0.9rem;
+            color: #b0b0c0;
+        }
+
+        .completion-screen {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(30, 30, 45, 0.95);
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            border-radius: 20px;
+            display: none;
+        }
+
+        .completion-screen.visible {
+            display: block;
+        }
+
+        .celebration-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>𓂀 Flashcards Hiéroglyphes</h1>
+        <p class="subtitle">Entraînez-vous quotidiennement à reconnaître les signes</p>
+
+        <!-- Sélecteur de mode -->
+        <div id="modeSelector" class="mode-selector">
+            <div class="mode-card active" onclick="selectMode('uniliteres')">
+                <div class="mode-icon">🔤</div>
+                <div class="mode-title">Unilitères</div>
+                <div class="mode-description">26 signes de l'alphabet</div>
+            </div>
+            <div class="mode-card" onclick="selectMode('determinatifs')">
+                <div class="mode-icon">🔍</div>
+                <div class="mode-title">Déterminatifs</div>
+                <div class="mode-description">Signes muets fréquents</div>
+            </div>
+            <div class="mode-card" onclick="selectMode('mixte')">
+                <div class="mode-icon">🎲</div>
+                <div class="mode-title">Mixte</div>
+                <div class="mode-description">Tous les signes mélangés</div>
+            </div>
+        </div>
+
+        <!-- Bouton de démarrage -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <button class="btn" style="font-size: 1.5rem; padding: 1.5rem 4rem;" onclick="startSession()">
+                🚀 Commencer la Session
+            </button>
+        </div>
+
+        <!-- Zone de session (cachée au début) -->
+        <div id="sessionArea" style="display: none;">
+            <!-- Statistiques de session -->
+            <div class="session-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="currentCard">0</div>
+                    <div class="stat-label">Carte actuelle</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalCards">20</div>
+                    <div class="stat-label">Total cartes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="knownCards">0</div>
+                    <div class="stat-label">Connues</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="toReview">0</div>
+                    <div class="stat-label">À revoir</div>
+                </div>
+            </div>
+
+            <!-- Barre de progression -->
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%;">0%</div>
+            </div>
+
+            <!-- Flashcard -->
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-face flashcard-front">
+                        <div class="card-symbol" id="cardSymbol">𓄿</div>
+                        <div class="card-question">Quel est ce hiéroglyphe ?</div>
+                        <div class="card-hint">Cliquez pour révéler</div>
+                    </div>
+                    <div class="flashcard-face flashcard-back">
+                        <div class="card-answer" id="cardAnswer">A (ꜣ)</div>
+                        <div class="card-details" id="cardDetails">
+                            <strong>Vautour égyptien</strong><br>
+                            Représente le coup de glotte "A"<br>
+                            Code Gardiner : G1
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="action-buttons">
+                <button class="btn btn-hard" onclick="markCard('hard')">
+                    😰 Difficile<br><small>À revoir</small>
+                </button>
+                <button class="btn btn-skip" onclick="flipCard()">
+                    🔄 Retourner<br><small>la carte</small>
+                </button>
+                <button class="btn btn-easy" onclick="markCard('easy')">
+                    😊 Facile<br><small>Je connais</small>
+                </button>
+            </div>
+        </div>
+
+        <!-- Écran de complétion -->
+        <div class="completion-screen" id="completionScreen">
+            <div class="celebration-icon">🎉</div>
+            <h2 style="color: #81c784; font-size: 2.5rem; margin-bottom: 1rem;">Session Terminée !</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Excellent travail !</p>
+
+            <div class="session-stats" style="margin-bottom: 2rem;">
+                <div class="stat-box">
+                    <div class="stat-number" id="finalTotal">20</div>
+                    <div class="stat-label">Cartes vues</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="finalKnown">0</div>
+                    <div class="stat-label">Maîtrisées</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="finalToReview">0</div>
+                    <div class="stat-label">À revoir</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="finalAccuracy">0%</div>
+                    <div class="stat-label">Précision</div>
+                </div>
+            </div>
+
+            <button class="btn" style="font-size: 1.3rem; padding: 1.2rem 3rem;" onclick="restartSession()">
+                🔄 Nouvelle Session
+            </button>
+        </div>
+
+        <!-- Boutons de navigation -->
+        <div class="nav-buttons">
+            <a href="hieroglyphes-alphabet-complet.html" class="btn">📖 Alphabet Complet</a>
+            <a href="hieroglyphes-exercices-dechiffrage.html" class="btn">✍️ Exercices</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+        </div>
+    </div>
+
+    <script>
+        // Base de données des flashcards
+        const flashcardsData = {
+            uniliteres: [
+                { symbol: '𓄿', answer: 'A (ꜣ)', name: 'Vautour égyptien', details: 'Coup de glotte "A"<br>Code: G1' },
+                { symbol: '𓇋', answer: 'I / Y', name: 'Roseau fleuri', details: 'Son "i" ou "y"<br>Code: M17' },
+                { symbol: '𓅱', answer: 'W / U', name: 'Caille', details: 'Son "ou" ou "w"<br>Code: G43' },
+                { symbol: '𓃀', answer: 'B', name: 'Jambe', details: 'Son "b"<br>Code: D58' },
+                { symbol: '𓊪', answer: 'P', name: 'Tabouret', details: 'Son "p"<br>Code: Q3' },
+                { symbol: '𓆑', answer: 'F', name: 'Vipère à cornes', details: 'Son "f"<br>Code: I9' },
+                { symbol: '𓅓', answer: 'M', name: 'Chouette', details: 'Son "m"<br>Code: G17' },
+                { symbol: '𓈖', answer: 'N', name: 'Eau', details: 'Son "n"<br>Code: N35' },
+                { symbol: '𓂋', answer: 'R', name: 'Bouche', details: 'Son "r"<br>Code: D21' },
+                { symbol: '𓎛', answer: 'H', name: 'Verrou', details: 'Son "h" doux<br>Code: V28' },
+                { symbol: '𓋴', answer: 'S', name: 'Étoffe pliée', details: 'Son "s"<br>Code: S29' },
+                { symbol: '𓊃', answer: 'S', name: 'Verrou', details: 'Son "s" (variante)<br>Code: O34' },
+                { symbol: '𓈙', answer: 'Š / SH', name: 'Bassin d\'eau', details: 'Son "sh"<br>Code: N37' },
+                { symbol: '𓈎', answer: 'K / Q', name: 'Colline', details: 'Son "k" emphatique<br>Code: N29' },
+                { symbol: '𓎡', answer: 'K', name: 'Corbeille', details: 'Son "k"<br>Code: V31' },
+                { symbol: '𓎼', answer: 'G', name: 'Support de jarre', details: 'Son "g" dur<br>Code: W11' },
+                { symbol: '𓏏', answer: 'T', name: 'Pain', details: 'Son "t"<br>Code: X1' },
+                { symbol: '𓂧', answer: 'D', name: 'Main', details: 'Son "d"<br>Code: D46' },
+                { symbol: '𓆓', answer: 'Ḏ / DJ', name: 'Serpent cobra', details: 'Son "dj" emphatique<br>Code: I10' }
+            ],
+            determinatifs: [
+                { symbol: '𓀀', answer: '(muet)', name: 'Homme assis', details: 'Déterminatif : homme, masculin, "je"<br>Code: A1' },
+                { symbol: '𓁐', answer: '(muet)', name: 'Femme assise', details: 'Déterminatif : femme, féminin<br>Code: B1' },
+                { symbol: '𓀭', answer: '(muet)', name: 'Dieu assis', details: 'Déterminatif : dieu, divinité<br>Code: A40' },
+                { symbol: '𓊹', answer: '(muet)', name: 'Déesse', details: 'Déterminatif : déesse<br>Code: R8' },
+                { symbol: '𓏛', answer: '(muet)', name: 'Rouleau de papyrus', details: 'Déterminatif : abstrait, écriture<br>Code: Y1' },
+                { symbol: '𓊖', answer: '(muet)', name: 'Enceinte de ville', details: 'Déterminatif : ville, lieu<br>Code: O49' },
+                { symbol: '𓀎', answer: '(muet)', name: 'Homme tombant', details: 'Déterminatif : ennemi, captif<br>Code: A14' },
+                { symbol: '𓈉', answer: '(muet)', name: 'Collines du désert', details: 'Déterminatif : pays étranger<br>Code: N25' }
+            ]
+        };
+
+        let currentMode = 'uniliteres';
+        let currentDeck = [];
+        let currentIndex = 0;
+        let knownCount = 0;
+        let toReviewCount = 0;
+        let isFlipped = false;
+
+        function selectMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-card').forEach(card => card.classList.remove('active'));
+            event.target.closest('.mode-card').classList.add('active');
+        }
+
+        function startSession() {
+            // Préparer le deck selon le mode
+            if (currentMode === 'mixte') {
+                currentDeck = [...flashcardsData.uniliteres, ...flashcardsData.determinatifs];
+            } else {
+                currentDeck = [...flashcardsData[currentMode]];
+            }
+
+            // Mélanger le deck
+            currentDeck.sort(() => Math.random() - 0.5);
+
+            // Réinitialiser les stats
+            currentIndex = 0;
+            knownCount = 0;
+            toReviewCount = 0;
+
+            // Afficher la zone de session
+            document.getElementById('modeSelector').style.display = 'none';
+            document.querySelector('[onclick="startSession()"]').parentElement.style.display = 'none';
+            document.getElementById('sessionArea').style.display = 'block';
+
+            // Charger la première carte
+            loadCard();
+        }
+
+        function loadCard() {
+            if (currentIndex >= currentDeck.length) {
+                showCompletion();
+                return;
+            }
+
+            const card = currentDeck[currentIndex];
+            isFlipped = false;
+
+            // Mettre à jour l'affichage
+            document.getElementById('flashcard').classList.remove('flipped');
+            document.getElementById('cardSymbol').textContent = card.symbol;
+            document.getElementById('cardAnswer').textContent = card.answer;
+            document.getElementById('cardDetails').innerHTML = `<strong>${card.name}</strong><br>${card.details}`;
+
+            // Mettre à jour les stats
+            document.getElementById('currentCard').textContent = currentIndex + 1;
+            document.getElementById('totalCards').textContent = currentDeck.length;
+            document.getElementById('knownCards').textContent = knownCount;
+            document.getElementById('toReview').textContent = toReviewCount;
+
+            // Mettre à jour la barre de progression
+            const progress = Math.round(((currentIndex + 1) / currentDeck.length) * 100);
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressBar').textContent = progress + '%';
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function markCard(difficulty) {
+            if (!isFlipped) {
+                alert('Retournez d\'abord la carte pour voir la réponse !');
+                return;
+            }
+
+            if (difficulty === 'easy') {
+                knownCount++;
+            } else {
+                toReviewCount++;
+            }
+
+            currentIndex++;
+            loadCard();
+        }
+
+        function showCompletion() {
+            document.getElementById('sessionArea').style.display = 'none';
+            document.getElementById('completionScreen').classList.add('visible');
+
+            // Calculer les stats finales
+            const accuracy = Math.round((knownCount / currentDeck.length) * 100);
+
+            document.getElementById('finalTotal').textContent = currentDeck.length;
+            document.getElementById('finalKnown').textContent = knownCount;
+            document.getElementById('finalToReview').textContent = toReviewCount;
+            document.getElementById('finalAccuracy').textContent = accuracy + '%';
+
+            // Sauvegarder dans localStorage
+            const stats = JSON.parse(localStorage.getItem('hieroglyphes_flashcards') || '{"sessions": 0, "totalCards": 0, "totalKnown": 0}');
+            stats.sessions++;
+            stats.totalCards += currentDeck.length;
+            stats.totalKnown += knownCount;
+            localStorage.setItem('hieroglyphes_flashcards', JSON.stringify(stats));
+        }
+
+        function restartSession() {
+            document.getElementById('completionScreen').classList.remove('visible');
+            document.getElementById('modeSelector').style.display = 'grid';
+            document.querySelector('[onclick="startSession()"]').parentElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
