@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices de Lecture Runique | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(100, 200, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .exercise-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .exercise-title {
+            font-size: 1.8rem;
+            color: #64b5f6;
+        }
+
+        .difficulty {
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .difficulty.easy {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4caf50;
+            color: #81c784;
+        }
+
+        .difficulty.medium {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            color: #ffd54f;
+        }
+
+        .difficulty.hard {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            color: #e57373;
+        }
+
+        .runic-text {
+            font-size: 3rem;
+            text-align: center;
+            color: #64b5f6;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 15px;
+            letter-spacing: 0.5rem;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            color: #b0bec5;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .answer-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            display: block;
+            margin: 1.5rem auto;
+        }
+
+        .answer-input::placeholder {
+            color: #b0bec5;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(100, 181, 246, 0.5);
+        }
+
+        .btn-hint {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+        }
+
+        .feedback {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4caf50;
+            color: #81c784;
+            display: block;
+        }
+
+        .feedback.wrong {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            color: #e57373;
+            display: block;
+        }
+
+        .hint-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: #ffd54f;
+            display: none;
+        }
+
+        .hint-box.show {
+            display: block;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            height: 30px;
+            margin: 2rem 0;
+            overflow: hidden;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .score-display span {
+            color: #64b5f6;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .context-box {
+            background: rgba(100, 181, 246, 0.1);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: #b0bec5;
+        }
+
+        .context-box h4 {
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .completion-message {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4caf50;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .completion-message.show {
+            display: block;
+        }
+
+        .completion-message h2 {
+            color: #81c784;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .exercise-title {
+                font-size: 1.4rem;
+            }
+
+            .runic-text {
+                font-size: 2rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <header>
+            <h1>📜 Étape 3 : Exercices de Lecture Runique</h1>
+            <p>Déchiffrez des inscriptions runiques authentiques</p>
+        </header>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%;">0 / 5</div>
+        </div>
+
+        <div class="score-display">
+            Score : <span id="scoreDisplay">0</span> / 5
+        </div>
+
+        <!-- Exercise 1 -->
+        <div class="exercise-container" id="exercise1">
+            <div class="exercise-header">
+                <h2 class="exercise-title">Exercice 1 : Mot Simple</h2>
+                <span class="difficulty easy">Facile</span>
+            </div>
+
+            <div class="runic-text">ᚱᚢᚾ</div>
+
+            <div class="question">Que signifie ce mot en vieux norrois ?</div>
+
+            <input type="text" class="answer-input" id="answer1" placeholder="Entrez votre réponse...">
+
+            <div class="button-group">
+                <button class="btn btn-hint" onclick="showHint(1)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(1)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint1">
+                <strong>Indice :</strong> Ce mot est à l'origine du mot français "rune". Il se prononce "run" et signifie "secret" ou "mystère".
+            </div>
+
+            <div class="feedback" id="feedback1"></div>
+
+            <div class="context-box">
+                <h4>Contexte :</h4>
+                <p>Ce mot apparaît fréquemment sur les pierres runiques. Les runes étaient considérées comme des symboles magiques porteurs de secrets.</p>
+            </div>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise-container" id="exercise2" style="display: none;">
+            <div class="exercise-header">
+                <h2 class="exercise-title">Exercice 2 : Nom Viking</h2>
+                <span class="difficulty easy">Facile</span>
+            </div>
+
+            <div class="runic-text">ᚦᚢᚱ</div>
+
+            <div class="question">Quel dieu nordique est représenté par ce nom ?</div>
+
+            <input type="text" class="answer-input" id="answer2" placeholder="Entrez votre réponse...">
+
+            <div class="button-group">
+                <button class="btn btn-hint" onclick="showHint(2)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(2)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint2">
+                <strong>Indice :</strong> C'est le dieu du tonnerre, fils d'Odin. Son nom commence par "Th" et contient les sons "u" et "r".
+            </div>
+
+            <div class="feedback" id="feedback2"></div>
+
+            <div class="context-box">
+                <h4>Contexte :</h4>
+                <p>Ce nom était très populaire chez les Vikings. Le jour "jeudi" (Thursday en anglais) porte son nom.</p>
+            </div>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise-container" id="exercise3" style="display: none;">
+            <div class="exercise-header">
+                <h2 class="exercise-title">Exercice 3 : Lieu Mythique</h2>
+                <span class="difficulty medium">Moyen</span>
+            </div>
+
+            <div class="runic-text">ᛗᛁᛞᚷᚨᚱᛞ</div>
+
+            <div class="question">Quel est ce lieu de la mythologie nordique ?</div>
+
+            <input type="text" class="answer-input" id="answer3" placeholder="Entrez votre réponse...">
+
+            <div class="button-group">
+                <button class="btn btn-hint" onclick="showHint(3)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(3)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint3">
+                <strong>Indice :</strong> C'est le royaume des humains dans la cosmologie nordique. Littéralement "l'enclos du milieu". M-I-D-G-A-R-D.
+            </div>
+
+            <div class="feedback" id="feedback3"></div>
+
+            <div class="context-box">
+                <h4>Contexte :</h4>
+                <p>Ce mot représente la Terre dans la mythologie nordique, située au centre des neuf mondes, protégée par un serpent géant.</p>
+            </div>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise-container" id="exercise4" style="display: none;">
+            <div class="exercise-header">
+                <h2 class="exercise-title">Exercice 4 : Inscription de Pierre Runique</h2>
+                <span class="difficulty hard">Difficile</span>
+            </div>
+
+            <div class="runic-text">ᚠᚨᚦᛁᚱ ᛗᛁᚾ</div>
+
+            <div class="question">Que signifie cette inscription ? (deux mots)</div>
+
+            <input type="text" class="answer-input" id="answer4" placeholder="Entrez votre réponse...">
+
+            <div class="button-group">
+                <button class="btn btn-hint" onclick="showHint(4)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(4)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint4">
+                <strong>Indice :</strong> Premier mot : relation familiale masculine (F-A-Þ-I-R). Second mot : pronom possessif "mon/ma" (M-I-N).
+            </div>
+
+            <div class="feedback" id="feedback4"></div>
+
+            <div class="context-box">
+                <h4>Contexte :</h4>
+                <p>Cette inscription typique apparaît sur de nombreuses pierres runiques érigées en mémoire de proches décédés.</p>
+            </div>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise-container" id="exercise5" style="display: none;">
+            <div class="exercise-header">
+                <h2 class="exercise-title">Exercice 5 : Phrase Complète</h2>
+                <span class="difficulty hard">Difficile</span>
+            </div>
+
+            <div class="runic-text">ᚱᚢᚾᚨᚱ ᚱᛁᛊᛏᚢ</div>
+
+            <div class="question">Traduisez cette phrase complète</div>
+
+            <input type="text" class="answer-input" id="answer5" placeholder="Entrez votre réponse...">
+
+            <div class="button-group">
+                <button class="btn btn-hint" onclick="showHint(5)">💡 Indice</button>
+                <button class="btn btn-check" onclick="checkAnswer(5)">✓ Vérifier</button>
+            </div>
+
+            <div class="hint-box" id="hint5">
+                <strong>Indice :</strong> Formule d'inscription commune : "[Nom] a gravé [ces] runes". RUNAR = runes, RISTU = a gravé/taillé.
+            </div>
+
+            <div class="feedback" id="feedback5"></div>
+
+            <div class="context-box">
+                <h4>Contexte :</h4>
+                <p>Cette formule apparaît sur de nombreuses pierres runiques vikings. Le graveur signait souvent son œuvre avec cette phrase.</p>
+            </div>
+        </div>
+
+        <!-- Completion Message -->
+        <div class="completion-message" id="completionMessage">
+            <h2>🎉 Félicitations !</h2>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">Vous avez terminé tous les exercices de lecture runique !</p>
+            <p style="font-size: 1.5rem; color: #64b5f6; margin: 1rem 0;">
+                Score final : <span id="finalScore">0</span> / 5
+            </p>
+            <p style="margin-top: 1rem;">Continuez votre apprentissage avec les flashcards d'entraînement !</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="runes-parcours-complet.html" class="btn">← Retour au Parcours</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+            <a href="runes-flashcards.html" class="btn" style="background: linear-gradient(135deg, #9c27b0, #7b1fa2);">Étape 4 : Flashcards →</a>
+        </div>
+    </div>
+
+    <script>
+        let currentExercise = 1;
+        let score = 0;
+        const totalExercises = 5;
+
+        // Correct answers for each exercise
+        const correctAnswers = {
+            1: ['run', 'rune', 'secret', 'mystère', 'mystere'],
+            2: ['thor', 'þor'],
+            3: ['midgard', 'miðgarð', 'miðgard'],
+            4: ['mon père', 'mon pere', 'father min', 'fadir min', 'père', 'pere'],
+            5: ['runes gravées', 'runes gravees', 'a gravé les runes', 'a grave les runes', 'runar ristu', 'runes taillées', 'runes taillees']
+        };
+
+        function showHint(exerciseNum) {
+            const hint = document.getElementById('hint' + exerciseNum);
+            hint.classList.add('show');
+        }
+
+        function normalizeAnswer(text) {
+            return text.toLowerCase()
+                .trim()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '') // Remove accents
+                .replace(/[þð]/g, 'th');
+        }
+
+        function checkAnswer(exerciseNum) {
+            const userAnswer = document.getElementById('answer' + exerciseNum).value;
+            const feedback = document.getElementById('feedback' + exerciseNum);
+            const normalizedAnswer = normalizeAnswer(userAnswer);
+
+            const isCorrect = correctAnswers[exerciseNum].some(answer =>
+                normalizeAnswer(answer) === normalizedAnswer ||
+                normalizedAnswer.includes(normalizeAnswer(answer))
+            );
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '✅ Excellent ! Réponse correcte !';
+                score++;
+                updateScore();
+
+                // Show next button
+                setTimeout(() => {
+                    if (currentExercise < totalExercises) {
+                        showNextExercise();
+                    } else {
+                        showCompletion();
+                    }
+                }, 2000);
+            } else {
+                feedback.className = 'feedback wrong';
+                feedback.innerHTML = '❌ Pas tout à fait. Réessayez ou consultez l\'indice !';
+            }
+        }
+
+        function showNextExercise() {
+            document.getElementById('exercise' + currentExercise).style.display = 'none';
+            currentExercise++;
+            document.getElementById('exercise' + currentExercise).style.display = 'block';
+            updateProgress();
+        }
+
+        function updateScore() {
+            document.getElementById('scoreDisplay').textContent = score;
+        }
+
+        function updateProgress() {
+            const progress = (currentExercise / totalExercises) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = currentExercise + ' / ' + totalExercises;
+        }
+
+        function showCompletion() {
+            document.getElementById('exercise' + currentExercise).style.display = 'none';
+            document.getElementById('completionMessage').classList.add('show');
+            document.getElementById('finalScore').textContent = score;
+            updateProgress();
+        }
+
+        // Initialize
+        updateProgress();
+
+        // Fond étoilé animé
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        const stars = [];
+        const starCount = 250;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5 + 0.5, opacity: Math.random(), twinkleSpeed: Math.random() * 0.02 + 0.01, increasing: Math.random() > 0.5 });
+        }
+        const shootingStars = [];
+        function createShootingStar() {
+            shootingStars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height / 2, length: Math.random() * 80 + 40, speed: Math.random() * 8 + 6, angle: Math.PI / 4 + Math.random() * 0.3, opacity: 1 });
+        }
+        setInterval(() => { if (shootingStars.length < 3) createShootingStar(); }, Math.random() * 2000 + 3000);
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+                if (star.increasing) { star.opacity += star.twinkleSpeed; if (star.opacity >= 1) { star.opacity = 1; star.increasing = false; } } else { star.opacity -= star.twinkleSpeed; if (star.opacity <= 0.2) { star.opacity = 0.2; star.increasing = true; } }
+            });
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) { shootingStars.splice(i, 1); continue; }
+                const gradient = ctx.createLinearGradient(star.x, star.y, star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+        function animate() { drawStars(); requestAnimationFrame(animate); }
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

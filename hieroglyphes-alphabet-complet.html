@@ -223,9 +223,20 @@
             gap: 1rem;
             margin-top: 3rem;
         }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
     </style>
 </head>
 <body>
+    <canvas id="starfield"></canvas>
     <div class="container">
         <h1>𓂀 Alphabet Hiéroglyphique Complet</h1>
         <p class="subtitle">Manuel de lecture - Tous les signes essentiels pour déchiffrer les textes</p>
@@ -745,6 +756,130 @@
                 alert(`${name}\nPrononciation : ${sound}`);
             });
         });
+
+        // Fond étoilé animé avec étoiles scintillantes et étoiles filantes
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 250;
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5
+            });
+        }
+
+        const shootingStars = [];
+
+        function createShootingStar() {
+            const startX = Math.random() * canvas.width;
+            const startY = Math.random() * canvas.height / 2;
+
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                length: Math.random() * 80 + 40,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 4 + Math.random() * 0.3,
+                opacity: 1,
+                tail: []
+            });
+        }
+
+        setInterval(() => {
+            if (shootingStars.length < 3) {
+                createShootingStar();
+            }
+        }, Math.random() * 2000 + 3000);
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const gradient = ctx.createLinearGradient(
+                    star.x,
+                    star.y,
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
     </script>
 </body>
 </html>

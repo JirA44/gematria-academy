@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Runique Complet | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(100, 200, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-box {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .search-box input {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            width: 100%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box input::placeholder {
+            color: #b0bec5;
+        }
+
+        .section-title {
+            color: #64b5f6;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem 0;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 15px;
+        }
+
+        .aett-title {
+            color: #81c784;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            text-align: center;
+        }
+
+        .runes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .rune-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .rune-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 181, 246, 0.7);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
+        }
+
+        .rune-symbol {
+            font-size: 4rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #64b5f6;
+        }
+
+        .rune-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .rune-pronunciation {
+            text-align: center;
+            color: #81c784;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .rune-meaning {
+            text-align: center;
+            color: #b0bec5;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .rune-sound {
+            text-align: center;
+            background: rgba(100, 181, 246, 0.2);
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        .quiz-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(255, 193, 7, 0.5);
+        }
+
+        .quiz-section h3 {
+            color: #ffc107;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .quiz-rune {
+            font-size: 5rem;
+            text-align: center;
+            color: #64b5f6;
+            margin: 2rem 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: rgba(100, 181, 246, 0.1);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .quiz-option:hover {
+            background: rgba(100, 181, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+        }
+
+        .quiz-feedback {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(100, 181, 246, 0.5);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .runes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <header>
+            <h1>📿 Étape 1 : L'Alphabet Runique Complet</h1>
+            <p>Futhark Elder (24 runes) • Futhark Younger (16 runes)</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Rechercher une rune (nom, son, signification...)">
+        </div>
+
+        <!-- FUTHARK ELDER -->
+        <div class="section-title">⚔️ FUTHARK ELDER (Elder Futhark) - 24 Runes</div>
+        <p style="text-align: center; color: #b0bec5; margin-bottom: 2rem;">L'alphabet runique le plus ancien, utilisé du 2e au 8e siècle</p>
+
+        <!-- Premier Aett : Aett de Freyr -->
+        <div class="aett-title">🌾 Premier Aett : Aett de Freyr (Fertilité & Prospérité)</div>
+        <div class="runes-grid">
+            <div class="rune-card" data-search="fehu f richesse bétail prospérité">
+                <div class="rune-symbol">ᚠ</div>
+                <div class="rune-name">Fehu</div>
+                <div class="rune-pronunciation">[fé-hou]</div>
+                <div class="rune-meaning">Bétail, Richesse, Prospérité</div>
+                <div class="rune-sound">Son : F</div>
+            </div>
+
+            <div class="rune-card" data-search="uruz u force taureau sauvage vitalité">
+                <div class="rune-symbol">ᚢ</div>
+                <div class="rune-name">Uruz</div>
+                <div class="rune-pronunciation">[ou-rouz]</div>
+                <div class="rune-meaning">Aurochs, Force, Vitalité</div>
+                <div class="rune-sound">Son : U</div>
+            </div>
+
+            <div class="rune-card" data-search="thurisaz th géant épine protection">
+                <div class="rune-symbol">ᚦ</div>
+                <div class="rune-name">Thurisaz</div>
+                <div class="rune-pronunciation">[thou-ri-saz]</div>
+                <div class="rune-meaning">Géant, Épine, Protection</div>
+                <div class="rune-sound">Son : TH</div>
+            </div>
+
+            <div class="rune-card" data-search="ansuz a dieu odin sagesse communication">
+                <div class="rune-symbol">ᚨ</div>
+                <div class="rune-name">Ansuz</div>
+                <div class="rune-pronunciation">[an-souz]</div>
+                <div class="rune-meaning">Dieu (Odin), Sagesse, Communication</div>
+                <div class="rune-sound">Son : A</div>
+            </div>
+
+            <div class="rune-card" data-search="raido r voyage chevauchée mouvement">
+                <div class="rune-symbol">ᚱ</div>
+                <div class="rune-name">Raido</div>
+                <div class="rune-pronunciation">[raï-do]</div>
+                <div class="rune-meaning">Voyage, Chevauchée, Mouvement</div>
+                <div class="rune-sound">Son : R</div>
+            </div>
+
+            <div class="rune-card" data-search="kenaz k torche feu connaissance">
+                <div class="rune-symbol">ᚲ</div>
+                <div class="rune-name">Kenaz</div>
+                <div class="rune-pronunciation">[ké-naz]</div>
+                <div class="rune-meaning">Torche, Feu, Connaissance</div>
+                <div class="rune-sound">Son : K</div>
+            </div>
+
+            <div class="rune-card" data-search="gebo g don cadeau échange">
+                <div class="rune-symbol">ᚷ</div>
+                <div class="rune-name">Gebo</div>
+                <div class="rune-pronunciation">[gué-bo]</div>
+                <div class="rune-meaning">Don, Cadeau, Échange</div>
+                <div class="rune-sound">Son : G</div>
+            </div>
+
+            <div class="rune-card" data-search="wunjo w joie bonheur harmonie">
+                <div class="rune-symbol">ᚹ</div>
+                <div class="rune-name">Wunjo</div>
+                <div class="rune-pronunciation">[woun-yo]</div>
+                <div class="rune-meaning">Joie, Bonheur, Harmonie</div>
+                <div class="rune-sound">Son : W</div>
+            </div>
+        </div>
+
+        <!-- Deuxième Aett : Aett de Heimdall -->
+        <div class="aett-title">🌉 Deuxième Aett : Aett de Heimdall (Transformation & Destin)</div>
+        <div class="runes-grid">
+            <div class="rune-card" data-search="hagalaz h grêle destruction changement">
+                <div class="rune-symbol">ᚺ</div>
+                <div class="rune-name">Hagalaz</div>
+                <div class="rune-pronunciation">[ha-ga-laz]</div>
+                <div class="rune-meaning">Grêle, Destruction, Changement</div>
+                <div class="rune-sound">Son : H</div>
+            </div>
+
+            <div class="rune-card" data-search="nauthiz n besoin nécessité contrainte">
+                <div class="rune-symbol">ᚾ</div>
+                <div class="rune-name">Nauthiz</div>
+                <div class="rune-pronunciation">[naw-tiz]</div>
+                <div class="rune-meaning">Besoin, Nécessité, Contrainte</div>
+                <div class="rune-sound">Son : N</div>
+            </div>
+
+            <div class="rune-card" data-search="isa i glace immobilité concentration">
+                <div class="rune-symbol">ᛁ</div>
+                <div class="rune-name">Isa</div>
+                <div class="rune-pronunciation">[i-sa]</div>
+                <div class="rune-meaning">Glace, Immobilité, Concentration</div>
+                <div class="rune-sound">Son : I</div>
+            </div>
+
+            <div class="rune-card" data-search="jera j année moisson cycle">
+                <div class="rune-symbol">ᛃ</div>
+                <div class="rune-name">Jera</div>
+                <div class="rune-pronunciation">[yé-ra]</div>
+                <div class="rune-meaning">Année, Moisson, Cycle</div>
+                <div class="rune-sound">Son : J/Y</div>
+            </div>
+
+            <div class="rune-card" data-search="eihwaz e if arbre mort renaissance">
+                <div class="rune-symbol">ᛇ</div>
+                <div class="rune-name">Eihwaz</div>
+                <div class="rune-pronunciation">[aï-waz]</div>
+                <div class="rune-meaning">If, Mort & Renaissance, Transformation</div>
+                <div class="rune-sound">Son : E (EI)</div>
+            </div>
+
+            <div class="rune-card" data-search="perthro p coupe mystère destin">
+                <div class="rune-symbol">ᛈ</div>
+                <div class="rune-name">Perthro</div>
+                <div class="rune-pronunciation">[pèr-thro]</div>
+                <div class="rune-meaning">Coupe, Mystère, Destin</div>
+                <div class="rune-sound">Son : P</div>
+            </div>
+
+            <div class="rune-card" data-search="algiz z protection élan défense">
+                <div class="rune-symbol">ᛉ</div>
+                <div class="rune-name">Algiz</div>
+                <div class="rune-pronunciation">[al-guiz]</div>
+                <div class="rune-meaning">Élan, Protection, Défense</div>
+                <div class="rune-sound">Son : Z</div>
+            </div>
+
+            <div class="rune-card" data-search="sowilo s soleil victoire énergie">
+                <div class="rune-symbol">ᛊ</div>
+                <div class="rune-name">Sowilo</div>
+                <div class="rune-pronunciation">[so-wi-lo]</div>
+                <div class="rune-meaning">Soleil, Victoire, Énergie</div>
+                <div class="rune-sound">Son : S</div>
+            </div>
+        </div>
+
+        <!-- Troisième Aett : Aett de Tyr -->
+        <div class="aett-title">⚖️ Troisième Aett : Aett de Tyr (Courage & Justice)</div>
+        <div class="runes-grid">
+            <div class="rune-card" data-search="tiwaz t tyr guerre justice courage">
+                <div class="rune-symbol">ᛏ</div>
+                <div class="rune-name">Tiwaz</div>
+                <div class="rune-pronunciation">[ti-waz]</div>
+                <div class="rune-meaning">Tyr, Guerre, Justice, Courage</div>
+                <div class="rune-sound">Son : T</div>
+            </div>
+
+            <div class="rune-card" data-search="berkano b bouleau croissance féminité">
+                <div class="rune-symbol">ᛒ</div>
+                <div class="rune-name">Berkano</div>
+                <div class="rune-pronunciation">[bèr-ka-no]</div>
+                <div class="rune-meaning">Bouleau, Croissance, Féminité</div>
+                <div class="rune-sound">Son : B</div>
+            </div>
+
+            <div class="rune-card" data-search="ehwaz e cheval partenariat mouvement">
+                <div class="rune-symbol">ᛖ</div>
+                <div class="rune-name">Ehwaz</div>
+                <div class="rune-pronunciation">[é-waz]</div>
+                <div class="rune-meaning">Cheval, Partenariat, Mouvement</div>
+                <div class="rune-sound">Son : E</div>
+            </div>
+
+            <div class="rune-card" data-search="mannaz m humanité homme société">
+                <div class="rune-symbol">ᛗ</div>
+                <div class="rune-name">Mannaz</div>
+                <div class="rune-pronunciation">[man-naz]</div>
+                <div class="rune-meaning">Humanité, Homme, Société</div>
+                <div class="rune-sound">Son : M</div>
+            </div>
+
+            <div class="rune-card" data-search="laguz l eau lac flux">
+                <div class="rune-symbol">ᛚ</div>
+                <div class="rune-name">Laguz</div>
+                <div class="rune-pronunciation">[la-gouz]</div>
+                <div class="rune-meaning">Eau, Lac, Flux, Intuition</div>
+                <div class="rune-sound">Son : L</div>
+            </div>
+
+            <div class="rune-card" data-search="ingwaz ng fertilité potentiel freyr">
+                <div class="rune-symbol">ᛜ</div>
+                <div class="rune-name">Ingwaz</div>
+                <div class="rune-pronunciation">[ing-waz]</div>
+                <div class="rune-meaning">Freyr, Fertilité, Potentiel</div>
+                <div class="rune-sound">Son : NG</div>
+            </div>
+
+            <div class="rune-card" data-search="dagaz d jour éveil transformation">
+                <div class="rune-symbol">ᛞ</div>
+                <div class="rune-name">Dagaz</div>
+                <div class="rune-pronunciation">[da-gaz]</div>
+                <div class="rune-meaning">Jour, Éveil, Transformation</div>
+                <div class="rune-sound">Son : D</div>
+            </div>
+
+            <div class="rune-card" data-search="othala o héritage patrimoine foyer">
+                <div class="rune-symbol">ᛟ</div>
+                <div class="rune-name">Othala</div>
+                <div class="rune-pronunciation">[o-tha-la]</div>
+                <div class="rune-meaning">Héritage, Patrimoine, Foyer</div>
+                <div class="rune-sound">Son : O</div>
+            </div>
+        </div>
+
+        <!-- FUTHARK YOUNGER -->
+        <div class="section-title">🛡️ FUTHARK YOUNGER (Younger Futhark) - 16 Runes</div>
+        <p style="text-align: center; color: #b0bec5; margin-bottom: 2rem;">Version simplifiée utilisée par les Vikings du 8e au 12e siècle</p>
+
+        <div class="runes-grid">
+            <div class="rune-card" data-search="fe f richesse bétail">
+                <div class="rune-symbol">ᚠ</div>
+                <div class="rune-name">Fé</div>
+                <div class="rune-pronunciation">[fé]</div>
+                <div class="rune-meaning">Richesse, Bétail</div>
+                <div class="rune-sound">Son : F</div>
+            </div>
+
+            <div class="rune-card" data-search="ur u laitier scories">
+                <div class="rune-symbol">ᚢ</div>
+                <div class="rune-name">Úr</div>
+                <div class="rune-pronunciation">[our]</div>
+                <div class="rune-meaning">Laitier, Scories</div>
+                <div class="rune-sound">Son : U</div>
+            </div>
+
+            <div class="rune-card" data-search="thurs th géant">
+                <div class="rune-symbol">ᚦ</div>
+                <div class="rune-name">Þurs</div>
+                <div class="rune-pronunciation">[thurse]</div>
+                <div class="rune-meaning">Géant</div>
+                <div class="rune-sound">Son : TH</div>
+            </div>
+
+            <div class="rune-card" data-search="ass a dieu odin">
+                <div class="rune-symbol">ᚬ</div>
+                <div class="rune-name">Áss</div>
+                <div class="rune-pronunciation">[asse]</div>
+                <div class="rune-meaning">Dieu, Odin</div>
+                <div class="rune-sound">Son : A</div>
+            </div>
+
+            <div class="rune-card" data-search="reid r chevauchée">
+                <div class="rune-symbol">ᚱ</div>
+                <div class="rune-name">Reið</div>
+                <div class="rune-pronunciation">[raïde]</div>
+                <div class="rune-meaning">Chevauchée</div>
+                <div class="rune-sound">Son : R</div>
+            </div>
+
+            <div class="rune-card" data-search="kaun k ulcère blessure">
+                <div class="rune-symbol">ᚴ</div>
+                <div class="rune-name">Kaun</div>
+                <div class="rune-pronunciation">[kaoune]</div>
+                <div class="rune-meaning">Ulcère, Blessure</div>
+                <div class="rune-sound">Son : K</div>
+            </div>
+
+            <div class="rune-card" data-search="hagall h grêle">
+                <div class="rune-symbol">ᚼ</div>
+                <div class="rune-name">Hagall</div>
+                <div class="rune-pronunciation">[ha-gal]</div>
+                <div class="rune-meaning">Grêle</div>
+                <div class="rune-sound">Son : H</div>
+            </div>
+
+            <div class="rune-card" data-search="naud n besoin contrainte">
+                <div class="rune-symbol">ᚾ</div>
+                <div class="rune-name">Nauð</div>
+                <div class="rune-pronunciation">[naude]</div>
+                <div class="rune-meaning">Besoin, Contrainte</div>
+                <div class="rune-sound">Son : N</div>
+            </div>
+
+            <div class="rune-card" data-search="is i glace">
+                <div class="rune-symbol">ᛁ</div>
+                <div class="rune-name">Íss</div>
+                <div class="rune-pronunciation">[isse]</div>
+                <div class="rune-meaning">Glace</div>
+                <div class="rune-sound">Son : I</div>
+            </div>
+
+            <div class="rune-card" data-search="ar a année récolte">
+                <div class="rune-symbol">ᛅ</div>
+                <div class="rune-name">Ár</div>
+                <div class="rune-pronunciation">[are]</div>
+                <div class="rune-meaning">Année, Récolte</div>
+                <div class="rune-sound">Son : A</div>
+            </div>
+
+            <div class="rune-card" data-search="sol s soleil">
+                <div class="rune-symbol">ᛋ</div>
+                <div class="rune-name">Sól</div>
+                <div class="rune-pronunciation">[sole]</div>
+                <div class="rune-meaning">Soleil</div>
+                <div class="rune-sound">Son : S</div>
+            </div>
+
+            <div class="rune-card" data-search="tyr t victoire justice">
+                <div class="rune-symbol">ᛏ</div>
+                <div class="rune-name">Týr</div>
+                <div class="rune-pronunciation">[tire]</div>
+                <div class="rune-meaning">Victoire, Justice</div>
+                <div class="rune-sound">Son : T</div>
+            </div>
+
+            <div class="rune-card" data-search="bjarkan b bouleau">
+                <div class="rune-symbol">ᛒ</div>
+                <div class="rune-name">Bjarkan</div>
+                <div class="rune-pronunciation">[byar-kane]</div>
+                <div class="rune-meaning">Bouleau</div>
+                <div class="rune-sound">Son : B</div>
+            </div>
+
+            <div class="rune-card" data-search="madhr m homme">
+                <div class="rune-symbol">ᛘ</div>
+                <div class="rune-name">Maðr</div>
+                <div class="rune-pronunciation">[madre]</div>
+                <div class="rune-meaning">Homme</div>
+                <div class="rune-sound">Son : M</div>
+            </div>
+
+            <div class="rune-card" data-search="logr l eau">
+                <div class="rune-symbol">ᛚ</div>
+                <div class="rune-name">Lögr</div>
+                <div class="rune-pronunciation">[leu-gre]</div>
+                <div class="rune-meaning">Eau</div>
+                <div class="rune-sound">Son : L</div>
+            </div>
+
+            <div class="rune-card" data-search="yr y if arc">
+                <div class="rune-symbol">ᛦ</div>
+                <div class="rune-name">Ýr</div>
+                <div class="rune-pronunciation">[ire]</div>
+                <div class="rune-meaning">If, Arc</div>
+                <div class="rune-sound">Son : Y</div>
+            </div>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        <div class="quiz-section">
+            <h3>🎯 Quiz : Reconnaissez-vous ces runes ?</h3>
+            <p style="text-align: center; color: #b0bec5; margin-bottom: 1rem;">Testez vos connaissances !</p>
+
+            <div id="quizContainer">
+                <div class="quiz-question" id="questionText">Quelle est cette rune ?</div>
+                <div class="quiz-rune" id="quizRune">ᚠ</div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="feedback"></div>
+                <button class="btn" id="nextBtn" style="display: none; margin: 1rem auto; display: none;">Question Suivante →</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <p>Score : <span id="score" style="color: #4caf50; font-weight: bold; font-size: 1.5rem;">0</span> / <span id="total" style="color: #64b5f6; font-weight: bold; font-size: 1.5rem;">0</span></p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="runes-parcours-complet.html" class="btn">← Retour au Parcours</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+            <a href="runes-significations-symbolisme.html" class="btn" style="background: linear-gradient(135deg, #ffc107, #ff9800);">Étape 2 : Symbolisme →</a>
+        </div>
+    </div>
+
+    <script>
+        // SEARCH FUNCTIONALITY
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.rune-card');
+
+            cards.forEach(card => {
+                const searchData = card.getAttribute('data-search') || '';
+                const visible = searchData.includes(searchTerm) || searchTerm === '';
+                card.style.display = visible ? 'block' : 'none';
+            });
+        });
+
+        // QUIZ FUNCTIONALITY
+        const elderRunes = [
+            {symbol: 'ᚠ', name: 'Fehu', meaning: 'Richesse'},
+            {symbol: 'ᚢ', name: 'Uruz', meaning: 'Force'},
+            {symbol: 'ᚦ', name: 'Thurisaz', meaning: 'Géant'},
+            {symbol: 'ᚨ', name: 'Ansuz', meaning: 'Dieu'},
+            {symbol: 'ᚱ', name: 'Raido', meaning: 'Voyage'},
+            {symbol: 'ᚲ', name: 'Kenaz', meaning: 'Torche'},
+            {symbol: 'ᚷ', name: 'Gebo', meaning: 'Don'},
+            {symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joie'},
+            {symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Grêle'},
+            {symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Besoin'},
+            {symbol: 'ᛁ', name: 'Isa', meaning: 'Glace'},
+            {symbol: 'ᛃ', name: 'Jera', meaning: 'Année'},
+            {symbol: 'ᛇ', name: 'Eihwaz', meaning: 'If'},
+            {symbol: 'ᛈ', name: 'Perthro', meaning: 'Coupe'},
+            {symbol: 'ᛉ', name: 'Algiz', meaning: 'Protection'},
+            {symbol: 'ᛊ', name: 'Sowilo', meaning: 'Soleil'},
+            {symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Tyr'},
+            {symbol: 'ᛒ', name: 'Berkano', meaning: 'Bouleau'},
+            {symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Cheval'},
+            {symbol: 'ᛗ', name: 'Mannaz', meaning: 'Homme'},
+            {symbol: 'ᛚ', name: 'Laguz', meaning: 'Eau'},
+            {symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Fertilité'},
+            {symbol: 'ᛞ', name: 'Dagaz', meaning: 'Jour'},
+            {symbol: 'ᛟ', name: 'Othala', meaning: 'Héritage'}
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let total = 0;
+        let currentRune = null;
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function generateQuestion() {
+            const feedback = document.getElementById('feedback');
+            const nextBtn = document.getElementById('nextBtn');
+            feedback.textContent = '';
+            nextBtn.style.display = 'none';
+
+            // Pick random rune
+            currentRune = elderRunes[Math.floor(Math.random() * elderRunes.length)];
+            document.getElementById('quizRune').textContent = currentRune.symbol;
+
+            // Generate wrong answers
+            const wrongAnswers = elderRunes
+                .filter(r => r.name !== currentRune.name)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3);
+
+            // Shuffle all options
+            const allOptions = shuffleArray([currentRune, ...wrongAnswers]);
+
+            // Display options
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+
+            allOptions.forEach(rune => {
+                const option = document.createElement('div');
+                option.className = 'quiz-option';
+                option.textContent = rune.name;
+                option.onclick = () => checkAnswer(option, rune.name);
+                optionsContainer.appendChild(option);
+            });
+
+            total++;
+            document.getElementById('total').textContent = total;
+        }
+
+        function checkAnswer(element, answer) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            const feedback = document.getElementById('feedback');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (answer === currentRune.name) {
+                element.classList.add('correct');
+                feedback.textContent = '✅ Correct ! ' + currentRune.name + ' signifie "' + currentRune.meaning + '"';
+                feedback.style.color = '#4caf50';
+                score++;
+                document.getElementById('score').textContent = score;
+            } else {
+                element.classList.add('wrong');
+                feedback.textContent = '❌ Incorrect. C\'était ' + currentRune.name + ' (' + currentRune.meaning + ')';
+                feedback.style.color = '#f44336';
+
+                // Highlight correct answer
+                options.forEach(opt => {
+                    if (opt.textContent === currentRune.name) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'auto';
+                opt.classList.remove('correct', 'wrong');
+            });
+            generateQuestion();
+        });
+
+        // Initialize first question
+        generateQuestion();
+
+        // Fond étoilé animé
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        const stars = [];
+        const starCount = 250;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5 + 0.5, opacity: Math.random(), twinkleSpeed: Math.random() * 0.02 + 0.01, increasing: Math.random() > 0.5 });
+        }
+        const shootingStars = [];
+        function createShootingStar() {
+            shootingStars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height / 2, length: Math.random() * 80 + 40, speed: Math.random() * 8 + 6, angle: Math.PI / 4 + Math.random() * 0.3, opacity: 1 });
+        }
+        setInterval(() => { if (shootingStars.length < 3) createShootingStar(); }, Math.random() * 2000 + 3000);
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+                if (star.increasing) { star.opacity += star.twinkleSpeed; if (star.opacity >= 1) { star.opacity = 1; star.increasing = false; } } else { star.opacity -= star.twinkleSpeed; if (star.opacity <= 0.2) { star.opacity = 0.2; star.increasing = true; } }
+            });
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) { shootingStars.splice(i, 1); continue; }
+                const gradient = ctx.createLinearGradient(star.x, star.y, star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+        function animate() { drawStars(); requestAnimationFrame(animate); }
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

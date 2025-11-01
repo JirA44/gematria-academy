@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Runiques | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(100, 200, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 1rem 2rem;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-btn:hover {
+            transform: scale(1.05);
+            border-color: #64b5f6;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            border-color: #64b5f6;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .stats-panel {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card h3 {
+            color: #64b5f6;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+
+        .flashcard-area {
+            perspective: 1000px;
+            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .flashcard {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border: 3px solid rgba(100, 181, 246, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .flashcard-front {
+            background: rgba(100, 181, 246, 0.1);
+        }
+
+        .flashcard-back {
+            background: rgba(129, 199, 132, 0.1);
+            border-color: rgba(129, 199, 132, 0.5);
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-content {
+            font-size: 5rem;
+            color: #64b5f6;
+            margin: 2rem 0;
+        }
+
+        .flashcard-label {
+            font-size: 1.2rem;
+            color: #b0bec5;
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-text {
+            font-size: 2rem;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .flashcard-meaning {
+            font-size: 1.3rem;
+            color: #81c784;
+            margin-top: 1rem;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-flip {
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .btn-know {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-learn {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .instruction {
+            text-align: center;
+            color: #b0bec5;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            height: 30px;
+            margin: 2rem 0;
+            overflow: hidden;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .completion-panel {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4caf50;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .completion-panel.show {
+            display: block;
+        }
+
+        .completion-panel h2 {
+            color: #81c784;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .flashcard {
+                height: 350px;
+            }
+
+            .flashcard-content {
+                font-size: 3.5rem;
+            }
+
+            .flashcard-text {
+                font-size: 1.5rem;
+            }
+
+            .mode-selector {
+                flex-direction: column;
+            }
+
+            .mode-btn {
+                width: 100%;
+            }
+
+            .control-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <header>
+            <h1>🎴 Étape 4 : Flashcards d'Entraînement</h1>
+            <p>Maîtrisez les runes avec l'apprentissage par répétition espacée</p>
+        </header>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="setMode('lecture')" id="modeLecture">
+                📖 Lecture (Rune → Nom)
+            </button>
+            <button class="mode-btn" onclick="setMode('ecriture')" id="modeEcriture">
+                ✍️ Écriture (Nom → Rune)
+            </button>
+            <button class="mode-btn" onclick="setMode('symbolisme')" id="modeSymbolisme">
+                🔮 Symbolisme (Signification)
+            </button>
+        </div>
+
+        <div class="stats-panel">
+            <div class="stat-card">
+                <h3 id="masteredCount">0</h3>
+                <p>Cartes Maîtrisées</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="remainingCount">24</h3>
+                <p>À Apprendre</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalReviewed">0</h3>
+                <p>Total Révisé</p>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="instruction" id="instruction">
+            Cliquez sur la carte pour révéler la réponse
+        </div>
+
+        <div class="flashcard-area">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-face flashcard-front">
+                    <div class="flashcard-label" id="frontLabel">Rune</div>
+                    <div class="flashcard-content" id="frontContent">ᚠ</div>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                    <div class="flashcard-label">Réponse</div>
+                    <div class="flashcard-text" id="backContent">Fehu</div>
+                    <div class="flashcard-meaning" id="backMeaning">Richesse, Prospérité</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-buttons">
+            <button class="btn btn-flip" onclick="flipCard()">🔄 Retourner</button>
+            <button class="btn btn-learn" onclick="markCard('learning')" id="btnLearning">📚 À Revoir</button>
+            <button class="btn btn-know" onclick="markCard('mastered')" id="btnMastered">✓ Je Maîtrise</button>
+        </div>
+
+        <div class="control-buttons">
+            <button class="btn btn-reset" onclick="resetProgress()">🔄 Réinitialiser</button>
+        </div>
+
+        <div class="completion-panel" id="completionPanel">
+            <h2>🎉 Félicitations !</h2>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">Vous avez maîtrisé toutes les runes dans ce mode !</p>
+            <p style="margin-top: 1rem;">Essayez un autre mode ou continuez votre parcours d'apprentissage.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="runes-parcours-complet.html" class="btn btn-flip">← Retour au Parcours</a>
+            <a href="index.html" class="btn btn-flip">🏠 Accueil</a>
+            <a href="runes-exercices-lecture.html" class="btn btn-flip">← Exercices de Lecture</a>
+        </div>
+    </div>
+
+    <script>
+        // Runes database
+        const runesData = [
+            {symbol: 'ᚠ', name: 'Fehu', meaning: 'Richesse, Prospérité', sound: 'F'},
+            {symbol: 'ᚢ', name: 'Uruz', meaning: 'Force, Vitalité', sound: 'U'},
+            {symbol: 'ᚦ', name: 'Thurisaz', meaning: 'Géant, Protection', sound: 'TH'},
+            {symbol: 'ᚨ', name: 'Ansuz', meaning: 'Sagesse, Communication', sound: 'A'},
+            {symbol: 'ᚱ', name: 'Raido', meaning: 'Voyage, Mouvement', sound: 'R'},
+            {symbol: 'ᚲ', name: 'Kenaz', meaning: 'Torche, Connaissance', sound: 'K'},
+            {symbol: 'ᚷ', name: 'Gebo', meaning: 'Don, Échange', sound: 'G'},
+            {symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joie, Bonheur', sound: 'W'},
+            {symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Grêle, Changement', sound: 'H'},
+            {symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Besoin, Nécessité', sound: 'N'},
+            {symbol: 'ᛁ', name: 'Isa', meaning: 'Glace, Concentration', sound: 'I'},
+            {symbol: 'ᛃ', name: 'Jera', meaning: 'Année, Moisson', sound: 'J/Y'},
+            {symbol: 'ᛇ', name: 'Eihwaz', meaning: 'If, Transformation', sound: 'E'},
+            {symbol: 'ᛈ', name: 'Perthro', meaning: 'Coupe, Mystère', sound: 'P'},
+            {symbol: 'ᛉ', name: 'Algiz', meaning: 'Protection, Défense', sound: 'Z'},
+            {symbol: 'ᛊ', name: 'Sowilo', meaning: 'Soleil, Victoire', sound: 'S'},
+            {symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Guerre, Justice', sound: 'T'},
+            {symbol: 'ᛒ', name: 'Berkano', meaning: 'Bouleau, Croissance', sound: 'B'},
+            {symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Cheval, Partenariat', sound: 'E'},
+            {symbol: 'ᛗ', name: 'Mannaz', meaning: 'Humanité, Société', sound: 'M'},
+            {symbol: 'ᛚ', name: 'Laguz', meaning: 'Eau, Intuition', sound: 'L'},
+            {symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Fertilité, Potentiel', sound: 'NG'},
+            {symbol: 'ᛞ', name: 'Dagaz', meaning: 'Jour, Éveil', sound: 'D'},
+            {symbol: 'ᛟ', name: 'Othala', meaning: 'Héritage, Foyer', sound: 'O'}
+        ];
+
+        let currentMode = 'lecture';
+        let currentIndex = 0;
+        let deck = [...runesData];
+        let masteredCards = [];
+        let totalReviewed = 0;
+        let isFlipped = false;
+
+        function shuffleDeck() {
+            deck = deck.sort(() => Math.random() - 0.5);
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+
+            // Update active button
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('mode' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
+
+            // Reset and shuffle
+            resetProgress();
+            showNextCard();
+        }
+
+        function showNextCard() {
+            if (deck.length === 0) {
+                showCompletion();
+                return;
+            }
+
+            const card = deck[currentIndex % deck.length];
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.remove('flipped');
+            isFlipped = false;
+
+            const frontLabel = document.getElementById('frontLabel');
+            const frontContent = document.getElementById('frontContent');
+            const backContent = document.getElementById('backContent');
+            const backMeaning = document.getElementById('backMeaning');
+
+            if (currentMode === 'lecture') {
+                frontLabel.textContent = 'Rune';
+                frontContent.textContent = card.symbol;
+                backContent.textContent = card.name;
+                backMeaning.textContent = 'Son : ' + card.sound;
+            } else if (currentMode === 'ecriture') {
+                frontLabel.textContent = 'Nom de la Rune';
+                frontContent.textContent = card.name;
+                frontContent.style.fontSize = '3rem';
+                backContent.textContent = card.symbol;
+                backContent.style.fontSize = '5rem';
+                backMeaning.textContent = card.meaning;
+            } else if (currentMode === 'symbolisme') {
+                frontLabel.textContent = 'Rune';
+                frontContent.textContent = card.symbol;
+                backContent.textContent = card.meaning;
+                backContent.style.fontSize = '2rem';
+                backMeaning.textContent = card.name + ' (' + card.sound + ')';
+            }
+
+            updateStats();
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function markCard(status) {
+            if (!isFlipped) {
+                flipCard();
+                setTimeout(() => markCard(status), 300);
+                return;
+            }
+
+            totalReviewed++;
+
+            if (status === 'mastered') {
+                const card = deck[currentIndex % deck.length];
+                if (!masteredCards.includes(card.name)) {
+                    masteredCards.push(card.name);
+                }
+                deck.splice(currentIndex % deck.length, 1);
+
+                if (currentIndex >= deck.length && deck.length > 0) {
+                    currentIndex = 0;
+                }
+            } else {
+                currentIndex = (currentIndex + 1) % deck.length;
+            }
+
+            showNextCard();
+        }
+
+        function updateStats() {
+            document.getElementById('masteredCount').textContent = masteredCards.length;
+            document.getElementById('remainingCount').textContent = deck.length;
+            document.getElementById('totalReviewed').textContent = totalReviewed;
+
+            const progress = (masteredCards.length / runesData.length) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+        }
+
+        function resetProgress() {
+            deck = [...runesData];
+            masteredCards = [];
+            totalReviewed = 0;
+            currentIndex = 0;
+            document.getElementById('completionPanel').classList.remove('show');
+            shuffleDeck();
+            showNextCard();
+        }
+
+        function showCompletion() {
+            document.getElementById('completionPanel').classList.add('show');
+            document.querySelector('.flashcard-area').style.display = 'none';
+            document.querySelector('.control-buttons').style.display = 'none';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                flipCard();
+            } else if (e.key === 'ArrowRight' || e.key === 'y') {
+                markCard('mastered');
+            } else if (e.key === 'ArrowLeft' || e.key === 'n') {
+                markCard('learning');
+            }
+        });
+
+        // Initialize
+        shuffleDeck();
+        showNextCard();
+
+        // Fond étoilé animé
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        const stars = [];
+        const starCount = 250;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5 + 0.5, opacity: Math.random(), twinkleSpeed: Math.random() * 0.02 + 0.01, increasing: Math.random() > 0.5 });
+        }
+        const shootingStars = [];
+        function createShootingStar() {
+            shootingStars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height / 2, length: Math.random() * 80 + 40, speed: Math.random() * 8 + 6, angle: Math.PI / 4 + Math.random() * 0.3, opacity: 1 });
+        }
+        setInterval(() => { if (shootingStars.length < 3) createShootingStar(); }, Math.random() * 2000 + 3000);
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+                if (star.increasing) { star.opacity += star.twinkleSpeed; if (star.opacity >= 1) { star.opacity = 1; star.increasing = false; } } else { star.opacity -= star.twinkleSpeed; if (star.opacity <= 0.2) { star.opacity = 0.2; star.increasing = true; } }
+            });
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) { shootingStars.splice(i, 1); continue; }
+                const gradient = ctx.createLinearGradient(star.x, star.y, star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+        function animate() { drawStars(); requestAnimationFrame(animate); }
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

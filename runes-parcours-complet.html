@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours Complet - Runes Nordiques | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(100, 200, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5, #1e88e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b0bec5;
+            margin-bottom: 1rem;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.15), rgba(66, 165, 245, 0.15));
+            border: 3px solid rgba(100, 181, 246, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #64b5f6;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-box p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 181, 246, 0.6);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
+        }
+
+        .step-card.step-1 {
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        .step-card.step-2 {
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+
+        .step-card.step-3 {
+            border-color: rgba(255, 87, 34, 0.5);
+        }
+
+        .step-card.step-4 {
+            border-color: rgba(156, 39, 176, 0.5);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3 {
+            color: #64b5f6;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: #b0bec5;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .step-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .step-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        .step-card ul li:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        .duration {
+            display: inline-block;
+            background: rgba(100, 181, 246, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: #64b5f6;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(100, 181, 246, 0.5);
+        }
+
+        .methodology {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .methodology h2 {
+            color: #64b5f6;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .methodology ul {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .methodology ul li {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 10px;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .methodology ul li:before {
+            content: "⚡";
+            position: absolute;
+            left: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .rune-symbol {
+            font-size: 3rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <header>
+            <h1>📿 Parcours Complet d'Apprentissage des Runes Nordiques</h1>
+            <p class="subtitle">De l'alphabet runique à la maîtrise complète du Futhark ancien et récent</p>
+        </header>
+
+        <div class="hero-box">
+            <h2>🎯 Objectif Final</h2>
+            <p>À la fin de ce parcours, vous serez capable de :</p>
+            <p><strong>✨ Lire et écrire en runes de manière fluide</strong></p>
+            <p><strong>🔮 Comprendre la signification ésotérique et symbolique de chaque rune</strong></p>
+            <p><strong>📖 Déchiffrer des inscriptions runiques authentiques</strong></p>
+            <p><strong>🎴 Utiliser les runes pour la divination et la méditation</strong></p>
+        </div>
+
+        <h2 style="text-align: center; color: #64b5f6; font-size: 2.5rem; margin: 3rem 0;">📚 Les 4 Étapes du Parcours</h2>
+
+        <div class="steps-container">
+            <!-- Étape 1 -->
+            <div class="step-card step-1">
+                <div class="step-number">1</div>
+                <h3>🌱 L'Alphabet Runique Complet</h3>
+                <div class="rune-symbol">ᚠᚢᚦᚨᚱᚲ</div>
+                <p><strong>Maîtrisez le Futhark Elder (24 runes) et le Futhark Younger (16 runes)</strong></p>
+                <div class="duration">⏱️ Durée estimée : 2-3 semaines</div>
+                <ul>
+                    <li>Les 24 runes du Futhark Elder avec prononciation</li>
+                    <li>Les 16 runes du Futhark Younger (Viking)</li>
+                    <li>Les trois Aettir (familles de 8 runes)</li>
+                    <li>Tracé correct et calligraphie</li>
+                    <li>Fonction de recherche interactive</li>
+                    <li>Quiz de reconnaissance</li>
+                </ul>
+                <a href="runes-alphabet-complet.html" class="btn">Commencer l'Étape 1 →</a>
+            </div>
+
+            <!-- Étape 2 -->
+            <div class="step-card step-2">
+                <div class="step-number">2</div>
+                <h3>🔮 Significations & Symbolisme</h3>
+                <div class="rune-symbol">ᚨᚾᛋᚢᛉ</div>
+                <p><strong>Plongez dans la mythologie nordique et le sens ésotérique</strong></p>
+                <div class="duration">⏱️ Durée estimée : 3-4 semaines</div>
+                <ul>
+                    <li>Signification littérale et ésotérique de chaque rune</li>
+                    <li>Associations avec les dieux nordiques</li>
+                    <li>Correspondances élémentaires (feu, glace, terre...)</li>
+                    <li>Interprétation divinatoire (position droite/inversée)</li>
+                    <li>Bind runes et combinaisons</li>
+                    <li>Quiz de compréhension après chaque Aett</li>
+                </ul>
+                <a href="runes-significations-symbolisme.html" class="btn">Continuer vers l'Étape 2 →</a>
+            </div>
+
+            <!-- Étape 3 -->
+            <div class="step-card step-3">
+                <div class="step-number">3</div>
+                <h3>📖 Exercices de Lecture</h3>
+                <div class="rune-symbol">ᚱᚢᚾᚨᚱ</div>
+                <p><strong>Déchiffrez des inscriptions runiques authentiques</strong></p>
+                <div class="duration">⏱️ Durée estimée : 2-3 semaines</div>
+                <ul>
+                    <li>5 exercices progressifs (facile → difficile)</li>
+                    <li>Inscriptions de pierres runiques historiques</li>
+                    <li>Textes de l'Edda poétique</li>
+                    <li>Noms de lieux scandinaves</li>
+                    <li>Validation instantanée avec feedback</li>
+                    <li>Contexte historique et culturel</li>
+                </ul>
+                <a href="runes-exercices-lecture.html" class="btn">Pratiquer l'Étape 3 →</a>
+            </div>
+
+            <!-- Étape 4 -->
+            <div class="step-card step-4">
+                <div class="step-number">4</div>
+                <h3>🎴 Flashcards d'Entraînement</h3>
+                <div class="rune-symbol">ᛟᛞᛁᚾ</div>
+                <p><strong>Entraînement quotidien pour la mémorisation parfaite</strong></p>
+                <div class="duration">⏱️ Durée estimée : Pratique continue</div>
+                <ul>
+                    <li>Flashcards 3D interactives (cliquez pour retourner)</li>
+                    <li>Mode "Lecture" : de la rune au nom</li>
+                    <li>Mode "Écriture" : du nom à la rune</li>
+                    <li>Mode "Symbolisme" : signification ésotérique</li>
+                    <li>Suivi des cartes maîtrisées</li>
+                    <li>Système de répétition espacée</li>
+                </ul>
+                <a href="runes-flashcards.html" class="btn">S'entraîner avec l'Étape 4 →</a>
+            </div>
+        </div>
+
+        <div class="methodology">
+            <h2>💡 Notre Méthodologie d'Apprentissage</h2>
+            <ul>
+                <li><strong>Progression Structurée</strong> : Des bases aux concepts avancés, chaque étape construit sur la précédente</li>
+                <li><strong>Évaluations Fréquentes</strong> : Quiz intégrés pour valider votre compréhension à chaque étape</li>
+                <li><strong>Apprentissage Actif</strong> : Exercices pratiques de lecture et déchiffrage</li>
+                <li><strong>Répétition Espacée</strong> : Flashcards pour ancrer les connaissances dans la mémoire long terme</li>
+                <li><strong>Contexte Culturel</strong> : Chaque rune est présentée avec son contexte mythologique et historique</li>
+                <li><strong>Autonomie Progressive</strong> : L'objectif est que vous puissiez déchiffrer de nouveaux textes par vous-même</li>
+            </ul>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(139, 195, 74, 0.15)); border: 3px solid rgba(76, 175, 80, 0.4); border-radius: 20px; padding: 2rem; margin: 3rem 0; text-align: center;">
+            <h3 style="color: #81c784; font-size: 1.8rem; margin-bottom: 1rem;">✨ Prêt à Commencer Votre Voyage Runique ?</h3>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                Suivez les 4 étapes dans l'ordre pour une progression optimale. Prenez votre temps, pratiquez régulièrement, et vous maîtriserez les runes !
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="btn">🏠 Retour à l'Accueil</a>
+            <a href="runes-alphabet-complet.html" class="btn" style="background: linear-gradient(135deg, #4caf50, #388e3c);">🚀 Commencer l'Étape 1 →</a>
+        </div>
+    </div>
+
+    <script>
+        // Fond étoilé animé
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        const stars = [];
+        const starCount = 250;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.5 + 0.5, opacity: Math.random(), twinkleSpeed: Math.random() * 0.02 + 0.01, increasing: Math.random() > 0.5 });
+        }
+        const shootingStars = [];
+        function createShootingStar() {
+            shootingStars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height / 2, length: Math.random() * 80 + 40, speed: Math.random() * 8 + 6, angle: Math.PI / 4 + Math.random() * 0.3, opacity: 1 });
+        }
+        setInterval(() => { if (shootingStars.length < 3) createShootingStar(); }, Math.random() * 2000 + 3000);
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+                if (star.increasing) { star.opacity += star.twinkleSpeed; if (star.opacity >= 1) { star.opacity = 1; star.increasing = false; } } else { star.opacity -= star.twinkleSpeed; if (star.opacity <= 0.2) { star.opacity = 0.2; star.increasing = true; } }
+            });
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) { shootingStars.splice(i, 1); continue; }
+                const gradient = ctx.createLinearGradient(star.x, star.y, star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+        function animate() { drawStars(); requestAnimationFrame(animate); }
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>
