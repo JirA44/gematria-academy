@@ -517,10 +517,185 @@
             }
         }
 
+        function getDefaultMandalas() {
+            return [
+                // Mandala 1: Fleur de Vie
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#1a1a2e"/>
+                    <g transform="translate(200,200)">
+                        <circle cx="0" cy="0" r="30" fill="none" stroke="#9d4edd" stroke-width="2" opacity="0.8"/>
+                        <circle cx="30" cy="0" r="30" fill="none" stroke="#c77dff" stroke-width="2" opacity="0.8"/>
+                        <circle cx="15" cy="26" r="30" fill="none" stroke="#e0aaff" stroke-width="2" opacity="0.8"/>
+                        <circle cx="-15" cy="26" r="30" fill="none" stroke="#c77dff" stroke-width="2" opacity="0.8"/>
+                        <circle cx="-30" cy="0" r="30" fill="none" stroke="#9d4edd" stroke-width="2" opacity="0.8"/>
+                        <circle cx="-15" cy="-26" r="30" fill="none" stroke="#7b2cbf" stroke-width="2" opacity="0.8"/>
+                        <circle cx="15" cy="-26" r="30" fill="none" stroke="#9d4edd" stroke-width="2" opacity="0.8"/>
+                        <circle cx="0" cy="0" r="60" fill="none" stroke="#5a189a" stroke-width="3" opacity="0.5"/>
+                        <circle cx="0" cy="0" r="90" fill="none" stroke="#240046" stroke-width="2" opacity="0.4"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 2: Sri Yantra
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#0f0f23"/>
+                    <g transform="translate(200,200)">
+                        <circle cx="0" cy="0" r="150" fill="none" stroke="#ff006e" stroke-width="2" opacity="0.3"/>
+                        <circle cx="0" cy="0" r="130" fill="none" stroke="#fb5607" stroke-width="2" opacity="0.4"/>
+                        <circle cx="0" cy="0" r="110" fill="none" stroke="#ffbe0b" stroke-width="2" opacity="0.5"/>
+                        <polygon points="0,-100 95,50 -95,50" fill="none" stroke="#ff006e" stroke-width="2.5" opacity="0.7"/>
+                        <polygon points="0,100 -95,-50 95,-50" fill="none" stroke="#fb5607" stroke-width="2.5" opacity="0.7"/>
+                        <circle cx="0" cy="0" r="50" fill="none" stroke="#ffbe0b" stroke-width="3" opacity="0.8"/>
+                        <circle cx="0" cy="0" r="30" fill="none" stroke="#ff006e" stroke-width="2" opacity="0.9"/>
+                        <circle cx="0" cy="0" r="10" fill="#ffbe0b" opacity="0.9"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 3: Lotus
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#1a1a2e"/>
+                    <g transform="translate(200,200)">
+                        <circle cx="0" cy="0" r="140" fill="none" stroke="#06ffa5" stroke-width="2" opacity="0.3"/>
+                        ${[0,1,2,3,4,5,6,7].map(i => {
+                            const angle = (i * 45) * Math.PI / 180;
+                            const x = Math.cos(angle) * 80;
+                            const y = Math.sin(angle) * 80;
+                            return `<ellipse cx="${x}" cy="${y}" rx="40" ry="70" fill="none" stroke="#06ffa5" stroke-width="2" opacity="0.7" transform="rotate(${i*45} ${x} ${y})"/>`;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7].map(i => {
+                            const angle = (i * 45 + 22.5) * Math.PI / 180;
+                            const x = Math.cos(angle) * 50;
+                            const y = Math.sin(angle) * 50;
+                            return `<ellipse cx="${x}" cy="${y}" rx="30" ry="50" fill="none" stroke="#4cc9f0" stroke-width="2" opacity="0.8" transform="rotate(${i*45+22.5} ${x} ${y})"/>`;
+                        }).join('')}
+                        <circle cx="0" cy="0" r="30" fill="none" stroke="#06ffa5" stroke-width="3" opacity="0.9"/>
+                        <circle cx="0" cy="0" r="15" fill="#4cc9f0" opacity="0.9"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 4: Étoile géométrique
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#0f0f23"/>
+                    <g transform="translate(200,200)">
+                        <circle cx="0" cy="0" r="150" fill="none" stroke="#f72585" stroke-width="2" opacity="0.3"/>
+                        ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
+                            const angle = (i * 30) * Math.PI / 180;
+                            return `<line x1="0" y1="0" x2="${Math.cos(angle)*120}" y2="${Math.sin(angle)*120}" stroke="#b5179e" stroke-width="1.5" opacity="0.5"/>`;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
+                            const angle1 = (i * 30) * Math.PI / 180;
+                            const angle2 = ((i+1) * 30) * Math.PI / 180;
+                            return `<line x1="${Math.cos(angle1)*120}" y1="${Math.sin(angle1)*120}" x2="${Math.cos(angle2)*120}" y2="${Math.sin(angle2)*120}" stroke="#7209b7" stroke-width="2" opacity="0.7"/>`;
+                        }).join('')}
+                        <circle cx="0" cy="0" r="80" fill="none" stroke="#560bad" stroke-width="2.5" opacity="0.8"/>
+                        <circle cx="0" cy="0" r="40" fill="none" stroke="#f72585" stroke-width="3" opacity="0.9"/>
+                        <circle cx="0" cy="0" r="20" fill="#b5179e" opacity="0.9"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 5: Cercles concentriques
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#1a1a2e"/>
+                    <g transform="translate(200,200)">
+                        ${[150,135,120,105,90,75,60,45,30,15].map((r, i) => {
+                            const colors = ['#3a0ca3', '#4361ee', '#4895ef', '#4cc9f0', '#06ffa5', '#06ffa5', '#4cc9f0', '#4895ef', '#4361ee', '#3a0ca3'];
+                            return `<circle cx="0" cy="0" r="${r}" fill="none" stroke="${colors[i]}" stroke-width="3" opacity="${0.3 + i*0.07}"/>`;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
+                            const angle = (i * 30) * Math.PI / 180;
+                            return `<circle cx="${Math.cos(angle)*100}" cy="${Math.sin(angle)*100}" r="8" fill="#06ffa5" opacity="0.7"/>`;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7].map(i => {
+                            const angle = (i * 45) * Math.PI / 180;
+                            return `<circle cx="${Math.cos(angle)*65}" cy="${Math.sin(angle)*65}" r="6" fill="#4cc9f0" opacity="0.8"/>`;
+                        }).join('')}
+                        <circle cx="0" cy="0" r="10" fill="#06ffa5" opacity="1"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 6: Floral
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#0f0f23"/>
+                    <g transform="translate(200,200)">
+                        <circle cx="0" cy="0" r="145" fill="none" stroke="#ff9e00" stroke-width="2" opacity="0.3"/>
+                        ${[0,1,2,3,4,5,6,7].map(i => {
+                            const angle = (i * 45) * Math.PI / 180;
+                            const x = Math.cos(angle) * 90;
+                            const y = Math.sin(angle) * 90;
+                            return `
+                                <circle cx="${x}" cy="${y}" r="35" fill="none" stroke="#ff006e" stroke-width="2.5" opacity="0.7"/>
+                                <circle cx="${x}" cy="${y}" r="20" fill="none" stroke="#fb5607" stroke-width="2" opacity="0.8"/>
+                            `;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7].map(i => {
+                            const angle = (i * 45 + 22.5) * Math.PI / 180;
+                            const x = Math.cos(angle) * 60;
+                            const y = Math.sin(angle) * 60;
+                            return `<circle cx="${x}" cy="${y}" r="25" fill="none" stroke="#ffbe0b" stroke-width="2" opacity="0.8"/>`;
+                        }).join('')}
+                        <circle cx="0" cy="0" r="35" fill="none" stroke="#ff006e" stroke-width="3" opacity="0.9"/>
+                        <circle cx="0" cy="0" r="20" fill="none" stroke="#fb5607" stroke-width="2.5" opacity="0.95"/>
+                        <circle cx="0" cy="0" r="10" fill="#ffbe0b" opacity="1"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 7: Tibétain
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#1a1a2e"/>
+                    <g transform="translate(200,200)">
+                        <rect x="-140" y="-140" width="280" height="280" fill="none" stroke="#e63946" stroke-width="3" opacity="0.5"/>
+                        <circle cx="0" cy="0" r="130" fill="none" stroke="#f1faee" stroke-width="2" opacity="0.6"/>
+                        ${[0,1,2,3].map(i => {
+                            const angle = (i * 90) * Math.PI / 180;
+                            const x = Math.cos(angle) * 100;
+                            const y = Math.sin(angle) * 100;
+                            return `
+                                <circle cx="${x}" cy="${y}" r="30" fill="none" stroke="#a8dadc" stroke-width="2.5" opacity="0.7"/>
+                                <line x1="0" y1="0" x2="${x}" y2="${y}" stroke="#457b9d" stroke-width="2" opacity="0.6"/>
+                            `;
+                        }).join('')}
+                        <circle cx="0" cy="0" r="70" fill="none" stroke="#1d3557" stroke-width="2.5" opacity="0.7"/>
+                        <circle cx="0" cy="0" r="50" fill="none" stroke="#457b9d" stroke-width="2" opacity="0.8"/>
+                        <circle cx="0" cy="0" r="30" fill="none" stroke="#a8dadc" stroke-width="3" opacity="0.9"/>
+                        <circle cx="0" cy="0" r="15" fill="#f1faee" opacity="0.95"/>
+                    </g>
+                </svg>`),
+
+                // Mandala 8: Spirale sacrée
+                'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <rect width="400" height="400" fill="#0f0f23"/>
+                    <g transform="translate(200,200)">
+                        <circle cx="0" cy="0" r="140" fill="none" stroke="#7209b7" stroke-width="2" opacity="0.3"/>
+                        ${[0,1,2,3,4,5].map(i => {
+                            const r = 20 + i * 20;
+                            return `<circle cx="0" cy="0" r="${r}" fill="none" stroke="#9d4edd" stroke-width="2" opacity="${0.5 + i*0.08}"/>`;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
+                            const angle = (i * 30) * Math.PI / 180;
+                            const r1 = 20;
+                            const r2 = 120;
+                            return `<line x1="${Math.cos(angle)*r1}" y1="${Math.sin(angle)*r1}" x2="${Math.cos(angle)*r2}" y2="${Math.sin(angle)*r2}" stroke="#c77dff" stroke-width="1.5" opacity="0.6"/>`;
+                        }).join('')}
+                        ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
+                            const angle = (i * 30 + 15) * Math.PI / 180;
+                            const x = Math.cos(angle) * 80;
+                            const y = Math.sin(angle) * 80;
+                            return `<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="#e0aaff" stroke-width="2" opacity="0.8"/>`;
+                        }).join('')}
+                        <circle cx="0" cy="0" r="25" fill="none" stroke="#9d4edd" stroke-width="3" opacity="0.9"/>
+                        <circle cx="0" cy="0" r="12" fill="#c77dff" opacity="0.95"/>
+                    </g>
+                </svg>`)
+            ];
+        }
+
         function loadImages() {
             const stored = localStorage.getItem('mandalaImages');
             if (stored) {
                 images = JSON.parse(stored);
+            } else {
+                // Charger les mandalas par défaut
+                images = getDefaultMandalas();
+                saveImages();
             }
         }
 
