@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Parcours Complet - Déchiffrer les Glyphes Mayas</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 150, 180, 0.2));
+            border: 3px solid rgba(0, 212, 255, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #00d4ff;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(34, 139, 34, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: #228b22;
+            box-shadow: 0 15px 40px rgba(34, 139, 34, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #228b22, #006400);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(34, 139, 34, 0.5);
+        }
+
+        .step-icon {
+            font-size: 5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step-title {
+            color: #90ee90;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .step-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #90ee90;
+            font-weight: bold;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #228b22, #006400);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(34, 139, 34, 0.6);
+        }
+
+        .methodology-box {
+            background: rgba(0, 212, 255, 0.1);
+            border: 3px solid rgba(0, 212, 255, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .methodology-box h2 {
+            color: #00d4ff;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-item {
+            background: rgba(30, 30, 45, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .method-item h3 {
+            color: #00d4ff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.3), rgba(0, 100, 0, 0.3));
+            border: 3px solid rgba(34, 139, 34, 0.6);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-box h2 {
+            color: #90ee90;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(34, 139, 34, 0.3);
+            border: 2px solid rgba(34, 139, 34, 0.6);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 139, 34, 0.5);
+            transform: translateY(-3px);
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+
+        .bonus-box {
+            background: rgba(255, 69, 0, 0.1);
+            border: 3px solid rgba(255, 69, 0, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .bonus-box h2 {
+            color: #ff6347;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>🏛️ Parcours Complet Glyphes Mayas</h1>
+        <p class="subtitle">Percez les mystères de l'écriture sacrée des astronomes-rois du Yucatán</p>
+
+        <div class="hero-box">
+            <h2>🎯 Objectif Final</h2>
+            <p>
+                À la fin de ce parcours, vous serez capable de <strong>déchiffrer les glyphes mayas</strong>,
+                <strong>comprendre le calendrier sacré Tzolk'in</strong> et <strong>lire les codex mayas</strong>
+                comme les stèles de Palenque, Tikal et Copán.
+            </p>
+            <p style="font-size: 1.2rem;">
+                Vous maîtriserez le syllabaire maya (800+ glyphes), le système numérique vigésimal,
+                les noms des dieux et rois, et les inscriptions monumentales.
+            </p>
+        </div>
+
+        <h2 style="text-align: center; color: #00d4ff; font-size: 2.5rem; margin-bottom: 3rem;">
+            📖 Les 6 Étapes du Parcours
+        </h2>
+
+        <div class="parcours-grid">
+            <!-- ÉTAPE 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">🔤</div>
+                <h3 class="step-title">Syllabaire Maya de Base</h3>
+                <p class="step-description">
+                    Apprenez les 80 glyphes syllabiques les plus fréquents (ba, ka, la, ma...) et les logogrammes essentiels.
+                </p>
+                <ul class="step-features">
+                    <li>80 syllabes phonétiques fondamentales</li>
+                    <li>Prononciation en maya yucatèque</li>
+                    <li>Variantes graphiques des glyphes</li>
+                    <li>Logogrammes courants (AJAW, K'UH, K'IN)</li>
+                    <li>Exercices de reconnaissance interactive</li>
+                </ul>
+                <a href="mayas-syllabaire.html" class="btn-start">Commencer le Syllabaire →</a>
+            </div>
+
+            <!-- ÉTAPE 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">🔢</div>
+                <h3 class="step-title">Numération Maya</h3>
+                <p class="step-description">
+                    Découvrez le système vigésimal (base 20) avec points et barres, et le concept révolutionnaire du zéro.
+                </p>
+                <ul class="step-features">
+                    <li>Système point-barre (0-19)</li>
+                    <li>Notation positionnelle verticale</li>
+                    <li>Le zéro maya (coquillage)</li>
+                    <li>Variantes de tête (Head Variants)</li>
+                    <li>Calculs et conversions pratiques</li>
+                </ul>
+                <a href="mayas-numeration.html" class="btn-start">Étudier les Nombres →</a>
+            </div>
+
+            <!-- ÉTAPE 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">📅</div>
+                <h3 class="step-title">Calendriers Tzolk'in & Haab</h3>
+                <p class="step-description">
+                    Maîtrisez les deux calendriers mayas : le Tzolk'in sacré (260 jours) et le Haab civil (365 jours).
+                </p>
+                <ul class="step-features">
+                    <li>20 noms de jours du Tzolk'in</li>
+                    <li>18 mois du Haab + Wayeb</li>
+                    <li>Roue calendaire (Calendar Round)</li>
+                    <li>Compte Long (Long Count)</li>
+                    <li>Calcul de dates historiques</li>
+                </ul>
+                <a href="mayas-calendriers.html" class="btn-start">Découvrir les Calendriers →</a>
+            </div>
+
+            <!-- ÉTAPE 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">👑</div>
+                <h3 class="step-title">Noms Royaux & Divins</h3>
+                <p class="step-description">
+                    Apprenez à identifier les noms des grands rois mayas (K'inich Janaab Pakal, Yax Pasaj Chan Yopaat) et des divinités.
+                </p>
+                <ul class="step-features">
+                    <li>Glyphes-emblèmes des cités</li>
+                    <li>Titres royaux (K'uhul Ajaw, Kaloomte')</li>
+                    <li>Panthéon maya (Itzamna, K'awiil, Chaak)</li>
+                    <li>Généalogies dynastiques</li>
+                    <li>Analyse de cartouches nominaux</li>
+                </ul>
+                <a href="mayas-noms-royaux.html" class="btn-start">Étudier les Noms →</a>
+            </div>
+
+            <!-- ÉTAPE 5 -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-icon">📜</div>
+                <h3 class="step-title">Déchiffrage de Stèles</h3>
+                <p class="step-description">
+                    Pratiquez avec 20+ stèles et inscriptions authentiques de Palenque, Tikal, Copán, Yaxchilán avec traduction complète.
+                </p>
+                <ul class="step-features">
+                    <li>15 stèles progressives avec photos</li>
+                    <li>Temple des Inscriptions (Palenque)</li>
+                    <li>Escalier hiéroglyphique (Copán)</li>
+                    <li>Traduction mot-à-mot interactive</li>
+                    <li>Contexte historique et archéologique</li>
+                </ul>
+                <a href="mayas-steles-dechiffrage.html" class="btn-start">Déchiffrer les Stèles →</a>
+            </div>
+
+            <!-- ÉTAPE 6 -->
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <div class="step-icon">🎴</div>
+                <h3 class="step-title">Flashcards & Codex</h3>
+                <p class="step-description">
+                    Entraînement quotidien avec flashcards + exploration interactive des 4 codex mayas survivants.
+                </p>
+                <ul class="step-features">
+                    <li>4 modes : Syllabes, Nombres, Jours, Glyphes</li>
+                    <li>Codex de Dresde (astronomie)</li>
+                    <li>Codex de Madrid (rituel)</li>
+                    <li>Codex de Paris (cérémonies)</li>
+                    <li>Statistiques de progression</li>
+                </ul>
+                <a href="mayas-flashcards-codex.html" class="btn-start">Lancer les Flashcards →</a>
+            </div>
+        </div>
+
+        <!-- MÉTHODOLOGIE -->
+        <div class="methodology-box">
+            <h2>🧠 Notre Méthodologie Pédagogique</h2>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <h3>📊 Approche Épigraphique</h3>
+                    <p>
+                        Méthode basée sur les travaux de Yuri Knorosov, David Stuart et Linda Schele,
+                        avec déchiffrement progressif syllabe par syllabe.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>🔁 Immersion Visuelle</h3>
+                    <p>
+                        Photos haute résolution de stèles, codex et céramiques authentiques
+                        pour une reconnaissance réelle des glyphes érodés.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>🎯 Contexte Historique</h3>
+                    <p>
+                        Chaque inscription est située dans son contexte dynastique, rituel et astronomique
+                        pour une compréhension profonde de la civilisation maya.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>✍️ Pratique Cumulative</h3>
+                    <p>
+                        Les exercices combinent syllabes, nombres, calendriers et noms pour renforcer
+                        la mémorisation globale du système d'écriture.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="cta-box">
+            <h2>🚀 Prêt à Commencer ?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem;">
+                Le parcours complet prend environ <strong>10-12 heures</strong> à suivre en continu,<br>
+                mais vous pouvez le faire à votre rythme sur plusieurs mois.<br>
+                <em style="color: #00d4ff;">Bienvenue dans le monde fascinant des scribes mayas !</em>
+            </p>
+            <a href="mayas-syllabaire.html" class="btn-start" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
+                🔤 Commencer Maintenant l'Étape 1
+            </a>
+        </div>
+
+        <!-- BONUS : Carte Interactive -->
+        <div class="bonus-box">
+            <h2>🎁 Bonus : Carte Interactive des Sites Mayas</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Explorez une carte interactive de 50+ sites mayas (Tikal, Palenque, Chichén Itzá, Copán...)
+                avec inscriptions, photos et reconstitutions 3D.
+            </p>
+            <a href="mayas-carte-sites.html" class="btn-secondary" style="font-size: 1.2rem;">
+                🗺️ Explorer la Carte Interactive
+            </a>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index_multilingual.html" class="btn-secondary">🏠 Retour Accueil</a>
+            <a href="mayas-introduction.html" class="btn-secondary">📖 Introduction aux Glyphes Mayas</a>
+            <a href="mayas-syllabaire.html" class="btn-secondary">🔤 Syllabaire Maya</a>
+        </div>
+    </div>
+
+    <script>
+        // Fond étoilé animé avec constellations mayas
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 300;
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5,
+                color: Math.random() > 0.8 ? '#00d4ff' : '#90ee90'
+            });
+        }
+
+        const shootingStars = [];
+
+        function createShootingStar() {
+            const startX = Math.random() * canvas.width;
+            const startY = Math.random() * canvas.height / 2;
+
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                length: Math.random() * 80 + 40,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 4 + Math.random() * 0.3,
+                opacity: 1,
+                tail: []
+            });
+        }
+
+        setInterval(() => {
+            if (shootingStars.length < 3) {
+                createShootingStar();
+            }
+        }, Math.random() * 2000 + 3000);
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                const r = star.color === '#00d4ff' ? 0 : 144;
+                const g = star.color === '#00d4ff' ? 212 : 238;
+                const b = star.color === '#00d4ff' ? 255 : 144;
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const gradient = ctx.createLinearGradient(
+                    star.x,
+                    star.y,
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+
+                gradient.addColorStop(0, `rgba(0, 212, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(144, 238, 144, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(144, 238, 144, 0)');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 212, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

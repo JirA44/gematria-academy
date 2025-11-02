@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Gematria Academy - Nouveaux Parcours Complets</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(90deg, #c49c62, #ffd700, #00d4ff, #ba68c8, #90ee90, #ff6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2));
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #ba68c8;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 2rem 0;
+        }
+
+        .section-header h2 {
+            color: #ba68c8;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .parcours-card {
+            background: rgba(30, 30, 45, 0.8);
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .parcours-card.egypt { border-color: rgba(196, 156, 98, 0.6); }
+        .parcours-card.hebrew { border-color: rgba(255, 215, 0, 0.6); }
+        .parcours-card.maya { border-color: rgba(0, 212, 255, 0.6); }
+        .parcours-card.compare { border-color: rgba(138, 43, 226, 0.6); }
+        .parcours-card.crypto { border-color: rgba(0, 255, 136, 0.6); }
+
+        .parcours-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.5);
+        }
+
+        .card-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .parcours-card.egypt .card-title { color: #c49c62; }
+        .parcours-card.hebrew .card-title { color: #ffd700; }
+        .parcours-card.maya .card-title { color: #00d4ff; }
+        .parcours-card.compare .card-title { color: #ba68c8; }
+        .parcours-card.crypto .card-title { color: #00ff88; }
+
+        .card-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .card-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .card-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #81c784;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px);
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>🔮 Gematria Academy - Nouveaux Parcours</h1>
+        <p class="subtitle">Programmes complets d'apprentissage des écritures sacrées + Parcours bonus innovants</p>
+
+        <div class="hero-box">
+            <h2>🎉 Mise à Jour Majeure !</h2>
+            <p style="font-size: 1.3rem; line-height: 2;">
+                Découvrez <strong>5 nouveaux parcours complets</strong> jamais vus ailleurs :<br>
+                3 parcours d'apprentissage structurés (Hiéroglyphes, Hébreu, Maya)<br>
+                + 2 parcours bonus révolutionnaires (Comparaison 7 écritures, Cryptographie)
+            </p>
+        </div>
+
+        <!-- PARCOURS COMPLETS -->
+        <div class="section-header">
+            <h2>📚 Parcours Complets d'Apprentissage</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Programmes structurés pour maîtriser totalement chaque écriture</p>
+        </div>
+
+        <div class="parcours-grid">
+            <!-- HIÉROGLYPHES -->
+            <div class="parcours-card egypt">
+                <div class="card-icon">𓂀</div>
+                <h3 class="card-title">Hiéroglyphes Égyptiens</h3>
+                <p class="card-description">
+                    Parcours complet en 4 étapes pour déchiffrer les inscriptions des pharaons
+                </p>
+                <ul class="card-features">
+                    <li>800+ signes hiéroglyphiques avec prononciation</li>
+                    <li>Grammaire de base et règles de lecture</li>
+                    <li>15+ exercices de déchiffrage progressifs</li>
+                    <li>Flashcards interactives quotidiennes</li>
+                    <li>46 inscriptions authentiques avec traduction</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>⏱️ Durée estimée : 6-8 heures</strong>
+                </div>
+                <a href="hieroglyphes-parcours-complet.html" class="btn-primary">📖 Commencer →</a>
+            </div>
+
+            <!-- HÉBREU GEMATRIA -->
+            <div class="parcours-card hebrew">
+                <div class="card-icon">✡️</div>
+                <h3 class="card-title">Hébreu & Gematria</h3>
+                <p class="card-description">
+                    Parcours complet en 5 étapes : alphabet sacré + numérologie mystique + Kabbale
+                </p>
+                <ul class="card-features">
+                    <li>22 lettres de l'Aleph-Bet avec audio</li>
+                    <li>Systèmes de gematria (8 variantes)</li>
+                    <li>15+ textes bibliques avec traduction</li>
+                    <li>Arbre de Vie et 72 Noms de Dieu</li>
+                    <li>Flashcards multi-modes</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>⏱️ Durée estimée : 8-10 heures</strong>
+                </div>
+                <a href="hebreu-gematria-parcours-complet.html" class="btn-primary">📖 Commencer →</a>
+            </div>
+
+            <!-- GLYPHES MAYAS -->
+            <div class="parcours-card maya">
+                <div class="card-icon">🏛️</div>
+                <h3 class="card-title">Glyphes Mayas</h3>
+                <p class="card-description">
+                    Parcours complet en 6 étapes : syllabaire + calendriers + déchiffrage de codex
+                </p>
+                <ul class="card-features">
+                    <li>800+ glyphes syllabiques et logogrammes</li>
+                    <li>Système vigésimal et concept du zéro</li>
+                    <li>Calendriers Tzolk'in & Haab (260/365 jours)</li>
+                    <li>Noms royaux et divins</li>
+                    <li>20+ stèles de Palenque, Tikal, Copán</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>⏱️ Durée estimée : 10-12 heures</strong>
+                </div>
+                <a href="mayas-glyphes-parcours-complet.html" class="btn-primary">📖 Commencer →</a>
+            </div>
+        </div>
+
+        <!-- PARCOURS BONUS -->
+        <div class="section-header">
+            <h2 style="color: #00ff88;">🌟 Parcours Bonus Innovants</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Explorations uniques jamais proposées ailleurs</p>
+        </div>
+
+        <div class="parcours-grid">
+            <!-- ÉCRITURES COMPARÉES -->
+            <div class="parcours-card compare">
+                <div class="card-icon">🌍</div>
+                <h3 class="card-title">7 Écritures Sacrées Comparées</h3>
+                <p class="card-description">
+                    <strong>PREMIER PARCOURS COMPARATIF AU MONDE</strong><br>
+                    Analyse transversale approfondie de 7 systèmes d'écriture
+                </p>
+                <ul class="card-features">
+                    <li>Hiéroglyphes (Égypte)</li>
+                    <li>Alphabet hébreu (Israël)</li>
+                    <li>Glyphes mayas (Mésoamérique)</li>
+                    <li>Sanskrit devanagari (Inde)</li>
+                    <li>Caractères chinois classiques (Chine)</li>
+                    <li>Calligraphie arabe (Péninsule arabique)</li>
+                    <li>Cunéiforme (Mésopotamie)</li>
+                </ul>
+                <div class="highlight-box" style="background: rgba(138, 43, 226, 0.1); border-color: rgba(138, 43, 226, 0.5);">
+                    <strong>📊 Comparaisons : Typologie, Numération, Direction, Textes Sacrés</strong>
+                </div>
+                <a href="parcours-ecritures-sacrees-comparees.html" class="btn-primary">🌏 Explorer →</a>
+            </div>
+
+            <!-- CRYPTOGRAPHIE -->
+            <div class="parcours-card crypto">
+                <div class="card-icon">🔐</div>
+                <h3 class="card-title">Cryptographie Sacrée</h3>
+                <p class="card-description">
+                    <strong>3000 ANS DE CODES SECRETS</strong><br>
+                    De l'Atbash kabbalistique au chiffrement quantique
+                </p>
+                <ul class="card-features">
+                    <li>Codes de l'Antiquité (César, Scytale, Polybe)</li>
+                    <li>Cryptographie kabbalistique (Atbash, Temurah)</li>
+                    <li>Chiffres médiévaux (Vigenère, Templiers)</li>
+                    <li>Renaissance & ère moderne (Playfair, Enigma)</li>
+                    <li>Cryptographie moderne (RSA, AES, Blockchain)</li>
+                    <li>Cryptographie quantique (QKD, post-quantique)</li>
+                </ul>
+                <div class="highlight-box" style="background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.5);">
+                    <strong>🔧 Includes: Encodeur/décodeur interactif + 50+ challenges</strong>
+                </div>
+                <a href="parcours-cryptographie-sacree.html" class="btn-primary">🔒 Découvrir →</a>
+            </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index_multilingual.html" class="btn-secondary">🏠 Retour Accueil Principal</a>
+            <a href="alphabet-hebreu.html" class="btn-secondary">א Alphabet Hébreu</a>
+            <a href="alphabet-runes.html" class="btn-secondary">ᚠ Alphabet Runique</a>
+            <a href="calculateur-gematria.html" class="btn-secondary">🔢 Calculateur Gematria</a>
+        </div>
+
+        <!-- FOOTER INFO -->
+        <div style="background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 15px; padding: 2rem; margin-top: 4rem; text-align: center;">
+            <h3 style="color: #ba68c8; margin-bottom: 1rem;">💡 Pourquoi ces parcours sont uniques ?</h3>
+            <p style="line-height: 1.8; opacity: 0.9;">
+                <strong>✓</strong> Seule académie au monde combinant 7 écritures sacrées<br>
+                <strong>✓</strong> Parcours structurés basés sur la méthodologie pédagogique scientifique<br>
+                <strong>✓</strong> Outils interactifs (flashcards, exercices, corrections instantanées)<br>
+                <strong>✓</strong> Connexion entre mystique ancienne et science moderne<br>
+                <strong>✓</strong> Contenus authentiques (stèles, codex, textes bibliques originaux)<br>
+                <strong>✓</strong> Totalement gratuit et accessible à tous
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 300;
+        const colors = ['#c49c62', '#ffd700', '#00d4ff', '#ba68c8', '#90ee90', '#ff6347', '#00ff88'];
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                const hexToRgb = (hex) => {
+                    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                    return result ? {
+                        r: parseInt(result[1], 16),
+                        g: parseInt(result[2], 16),
+                        b: parseInt(result[3], 16)
+                    } : null;
+                };
+                const rgb = hexToRgb(star.color);
+                ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

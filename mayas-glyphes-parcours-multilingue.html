@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Parcours Glyphes Mayas | Mayan Glyphs Course | Curso Glifos Mayas</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2a1810 0%, #1a0f08 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .lang-switch-btn {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a0f08;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .lang-switch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #555, #333);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(135deg, #666, #444);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            color: #ffd700;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 69, 19, 0.3));
+            border: 3px solid rgba(212, 175, 55, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .duration {
+            font-size: 1.2rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background: rgba(40, 25, 15, 0.9);
+            border: 3px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #1a0f08;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .step-icon {
+            font-size: 5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step-title {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(30, 20, 10, 0.6);
+            border-radius: 10px;
+        }
+
+        .step-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .step-duration {
+            font-size: 1rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a0f08;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .methodology-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 3px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .methodology-box h2 {
+            color: #d4af37;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-item {
+            background: rgba(40, 25, 15, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .method-item h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(139, 69, 19, 0.3));
+            border: 3px solid rgba(212, 175, 55, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-box h2 {
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a0f08;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.7);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            opacity: 0.8;
+            font-size: 1.1rem;
+            background: rgba(40, 25, 15, 0.5);
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .parcours-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step-icon {
+                font-size: 3.5rem;
+            }
+
+            .step-title {
+                font-size: 1.5rem;
+            }
+
+            .btn-start {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-controls">
+            <a href="index_multilingual.html" class="home-btn" data-i18n="nav.home">🏠 Retour Accueil</a>
+            <button class="lang-switch-btn" onclick="switchLanguage()" data-i18n="nav.langSwitch">🌐 EN / ES</button>
+        </div>
+
+        <h1 data-i18n="mayan.title">🏛️ Parcours Complet - Maîtriser les Glyphes Mayas</h1>
+        <div class="subtitle" data-i18n="mayan.subtitle">Déchiffrez l'écriture des rois et des dieux de Mésoamérique</div>
+
+        <div class="hero-box">
+            <h2 data-i18n="mayan.heroTitle">Bienvenue dans l'Univers des Glyphes Mayas</h2>
+            <p data-i18n="mayan.heroDesc">Découvrez le système d'écriture le plus sophistiqué des Amériques anciennes. Apprenez à lire les stèles royales, les codex et les calendriers sacrés.</p>
+            <div class="duration" data-i18n="mayan.duration">⏱️ Durée totale estimée: 20-30 heures</div>
+        </div>
+
+        <div class="parcours-grid">
+            <!-- Step 1: Syllabaire -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">📖</div>
+                <h3 class="step-title" data-i18n="mayan.step1Title">Syllabaire & Logogrammes</h3>
+                <p class="step-description" data-i18n="mayan.step1Desc">Maîtrisez les 800+ glyphes syllabiques et logographiques</p>
+                <ul class="step-features" id="step1-features"></ul>
+                <div class="step-duration" data-i18n="mayan.step1Duration">⏱️ 6-8 heures</div>
+                <a href="maya-syllabaire.html" class="btn-start" data-i18n="mayan.step1Btn">📖 Apprendre le Syllabaire</a>
+            </div>
+
+            <!-- Step 2: Chiffres -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">🔢</div>
+                <h3 class="step-title" data-i18n="mayan.step2Title">Système Numérique Vigésimal</h3>
+                <p class="step-description" data-i18n="mayan.step2Desc">Décodez les chiffres mayas en base 20 avec le concept du zéro</p>
+                <ul class="step-features" id="step2-features"></ul>
+                <div class="step-duration" data-i18n="mayan.step2Duration">⏱️ 3-4 heures</div>
+                <a href="maya-chiffres.html" class="btn-start" data-i18n="mayan.step2Btn">🔢 Maîtriser les Chiffres</a>
+            </div>
+
+            <!-- Step 3: Calendriers -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">📅</div>
+                <h3 class="step-title" data-i18n="mayan.step3Title">Calendriers Tzolk'in & Haab</h3>
+                <p class="step-description" data-i18n="mayan.step3Desc">Comprenez les systèmes calendaires sacrés et solaires mayas</p>
+                <ul class="step-features" id="step3-features"></ul>
+                <div class="step-duration" data-i18n="mayan.step3Duration">⏱️ 4-6 heures</div>
+                <a href="maya-calendriers.html" class="btn-start" data-i18n="mayan.step3Btn">📅 Explorer les Calendriers</a>
+            </div>
+
+            <!-- Step 4: Noms Royaux -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">👑</div>
+                <h3 class="step-title" data-i18n="mayan.step4Title">Noms Royaux & Divins</h3>
+                <p class="step-description" data-i18n="mayan.step4Desc">Lisez les noms des rois, reines et dieux mayas</p>
+                <ul class="step-features" id="step4-features"></ul>
+                <div class="step-duration" data-i18n="mayan.step4Duration">⏱️ 4-5 heures</div>
+                <a href="maya-noms-royaux.html" class="btn-start" data-i18n="mayan.step4Btn">👑 Déchiffrer les Noms</a>
+            </div>
+
+            <!-- Step 5: Stèles -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-icon">🗿</div>
+                <h3 class="step-title" data-i18n="mayan.step5Title">Stèles & Codex Authentiques</h3>
+                <p class="step-description" data-i18n="mayan.step5Desc">Lisez les inscriptions originales des monuments mayas</p>
+                <ul class="step-features" id="step5-features"></ul>
+                <div class="step-duration" data-i18n="mayan.step5Duration">⏱️ 5-7 heures</div>
+                <a href="maya-steles.html" class="btn-start" data-i18n="mayan.step5Btn">🗿 Lire les Stèles</a>
+            </div>
+
+            <!-- Step 6: Flashcards -->
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <div class="step-icon">🎯</div>
+                <h3 class="step-title" data-i18n="mayan.step6Title">Flashcards Interactives</h3>
+                <p class="step-description" data-i18n="mayan.step6Desc">Mémorisez avec 4 modes d'apprentissage</p>
+                <ul class="step-features" id="step6-features"></ul>
+                <div class="step-duration" data-i18n="mayan.step6Duration">⏱️ 3-5 heures</div>
+                <a href="flashcards-maya.html" class="btn-start" data-i18n="mayan.step6Btn">🎯 Pratiquer</a>
+            </div>
+        </div>
+
+        <div class="methodology-box">
+            <h2>📚 Méthodologie d'Apprentissage</h2>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <h3>1️⃣ Progression Logique</h3>
+                    <p>Syllabes → Chiffres → Calendriers → Noms → Textes complets</p>
+                </div>
+                <div class="method-item">
+                    <h3>2️⃣ Contexte Archéologique</h3>
+                    <p>Chaque glyphe dans son contexte historique et culturel</p>
+                </div>
+                <div class="method-item">
+                    <h3>3️⃣ Exemples Authentiques</h3>
+                    <p>Stèles, codex et monuments réels des sites mayas</p>
+                </div>
+                <div class="method-item">
+                    <h3>4️⃣ Pratique Active</h3>
+                    <p>Exercices de déchiffrage et flashcards interactives</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>🚀 Commencez Votre Voyage dans le Monde Maya</h2>
+            <p>Plongez dans la civilisation la plus avancée des Amériques anciennes</p>
+            <button class="btn-cta" onclick="window.location.href='maya-syllabaire.html'">✨ Débuter le Parcours Maya</button>
+        </div>
+
+        <div class="footer-note">
+            Ce parcours utilise les dernières découvertes en épigraphie maya. Parfait pour débutants et étudiants avancés.
+        </div>
+    </div>
+
+    <script src="i18n-parcours.js"></script>
+    <script>
+        function populateFeatures() {
+            const lang = localStorage.getItem('preferredLang') || 'fr';
+            for (let i = 1; i <= 6; i++) {
+                const features = i18n.mayan[lang][`step${i}Features`];
+                const list = document.getElementById(`step${i}-features`);
+                if (features && list) {
+                    list.innerHTML = features.map(f => `<li>${f}</li>`).join('');
+                }
+            }
+        }
+
+        const originalUpdate = updatePageLanguage;
+        updatePageLanguage = function() {
+            originalUpdate();
+            populateFeatures();
+        };
+
+        document.addEventListener('DOMContentLoaded', populateFeatures);
+    </script>
+</body>
+</html>

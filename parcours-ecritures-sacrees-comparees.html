@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Parcours Comparatif - 7 Écritures Sacrées du Monde</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(90deg, #c49c62, #ffd700, #00d4ff, #ba68c8, #90ee90, #ff6347, #87ceeb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(196, 156, 98, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(196, 156, 98, 0.2), rgba(255, 215, 0, 0.2), rgba(0, 212, 255, 0.2));
+            border: 3px solid rgba(196, 156, 98, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .civilizations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .civ-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .civ-card.egypt { border-color: rgba(196, 156, 98, 0.6); }
+        .civ-card.hebrew { border-color: rgba(255, 215, 0, 0.6); }
+        .civ-card.maya { border-color: rgba(0, 212, 255, 0.6); }
+        .civ-card.sanskrit { border-color: rgba(255, 140, 0, 0.6); }
+        .civ-card.chinese { border-color: rgba(220, 20, 60, 0.6); }
+        .civ-card.arabic { border-color: rgba(34, 139, 34, 0.6); }
+        .civ-card.cuneiform { border-color: rgba(138, 43, 226, 0.6); }
+
+        .civ-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.5);
+        }
+
+        .civ-icon {
+            font-size: 5rem;
+            margin: 1rem 0;
+        }
+
+        .civ-title {
+            color: #ba68c8;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .civ-card.egypt .civ-title { color: #c49c62; }
+        .civ-card.hebrew .civ-title { color: #ffd700; }
+        .civ-card.maya .civ-title { color: #00d4ff; }
+        .civ-card.sanskrit .civ-title { color: #ff8c00; }
+        .civ-card.chinese .civ-title { color: #dc143c; }
+        .civ-card.arabic .civ-title { color: #90ee90; }
+        .civ-card.cuneiform .civ-title { color: #ba68c8; }
+
+        .civ-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .civ-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .civ-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .civ-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #81c784;
+            font-weight: bold;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+        }
+
+        .comparison-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .comparison-box h2 {
+            color: #ba68c8;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .comparison-item {
+            background: rgba(30, 30, 45, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .comparison-item h3 {
+            color: #ba68c8;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px);
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>🌍 Parcours Écritures Sacrées Comparées</h1>
+        <p class="subtitle">Voyage à travers 7 systèmes d'écriture qui ont façonné les grandes civilisations</p>
+
+        <div class="hero-box">
+            <h2>🎯 Objectif Unique au Monde</h2>
+            <p>
+                Premier parcours pédagogique au monde permettant de <strong>comparer en profondeur 7 écritures sacrées</strong> :
+                hiéroglyphes égyptiens, alphabet hébreu, glyphes mayas, sanskrit devanagari, caractères chinois, calligraphie arabe et cunéiforme mésopotamien.
+            </p>
+            <p style="font-size: 1.2rem;">
+                Découvrez les points communs et différences entre ces systèmes, leur évolution, leurs usages religieux et philosophiques,
+                et maîtrisez l'art du déchiffrage universel.
+            </p>
+        </div>
+
+        <h2 style="text-align: center; color: #ba68c8; font-size: 2.5rem; margin-bottom: 3rem;">
+            🌏 Les 7 Civilisations de l'Écriture Sacrée
+        </h2>
+
+        <div class="civilizations-grid">
+            <!-- ÉGYPTE -->
+            <div class="civ-card egypt">
+                <div class="civ-icon">𓂀</div>
+                <h3 class="civ-title">Hiéroglyphes Égyptiens</h3>
+                <p class="civ-description">
+                    <strong>Égypte Antique (3200 av. J.-C.)</strong><br>
+                    Écriture monumentale des pharaons, mêlant phonogrammes et idéogrammes.
+                </p>
+                <ul class="civ-features">
+                    <li>800+ signes hiéroglyphiques</li>
+                    <li>Système phonétique + déterminatifs</li>
+                    <li>3 sens de lecture possibles</li>
+                    <li>Pierre de Rosette & déchiffrement Champollion</li>
+                </ul>
+                <a href="hieroglyphes-parcours-complet.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- HÉBREU -->
+            <div class="civ-card hebrew">
+                <div class="civ-icon">✡️</div>
+                <h3 class="civ-title">Alphabet Hébreu & Gematria</h3>
+                <p class="civ-description">
+                    <strong>Terre d'Israël (1200 av. J.-C.)</strong><br>
+                    Alphabet consonantique sacré avec système de numérologie mystique.
+                </p>
+                <ul class="civ-features">
+                    <li>22 lettres de l'Aleph-Bet</li>
+                    <li>Système de gematria (valeurs numériques)</li>
+                    <li>Kabbale et Arbre de Vie</li>
+                    <li>Torah, Talmud, Zohar</li>
+                </ul>
+                <a href="hebreu-gematria-parcours-complet.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- MAYAS -->
+            <div class="civ-card maya">
+                <div class="civ-icon">🏛️</div>
+                <h3 class="civ-title">Glyphes Mayas</h3>
+                <p class="civ-description">
+                    <strong>Mésoamérique (300 av. J.-C.)</strong><br>
+                    Syllabaire logographique des astronomes-rois du Yucatán.
+                </p>
+                <ul class="civ-features">
+                    <li>800+ glyphes syllabiques et logogrammes</li>
+                    <li>Système vigésimal (base 20)</li>
+                    <li>Calendriers Tzolk'in et Haab</li>
+                    <li>Codex de Dresde, Madrid, Paris</li>
+                </ul>
+                <a href="mayas-glyphes-parcours-complet.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- SANSKRIT -->
+            <div class="civ-card sanskrit">
+                <div class="civ-icon">🕉️</div>
+                <h3 class="civ-title">Sanskrit Devanagari</h3>
+                <p class="civ-description">
+                    <strong>Inde Antique (1500 av. J.-C.)</strong><br>
+                    Langue sacrée des Védas, écriture parfaitement phonétique.
+                </p>
+                <ul class="civ-features">
+                    <li>48 caractères devanagari</li>
+                    <li>Langue des mantras védiques</li>
+                    <li>Rigveda, Upanishads, Bhagavad Gita</li>
+                    <li>Système de voyelles et consonnes combinées</li>
+                </ul>
+                <a href="sanskrit-devanagari-parcours.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- CHINOIS -->
+            <div class="civ-card chinese">
+                <div class="civ-icon">漢</div>
+                <h3 class="civ-title">Caractères Chinois Classiques</h3>
+                <p class="civ-description">
+                    <strong>Chine Ancienne (1200 av. J.-C.)</strong><br>
+                    Système logographique des inscriptions oraculaires et textes taoïstes.
+                </p>
+                <ul class="civ-features">
+                    <li>214 radicaux de base (Kangxi)</li>
+                    <li>Caractères sur os et carapaces (Jiaguwen)</li>
+                    <li>Calligraphie artistique</li>
+                    <li>Dao De Jing, I Ching, Classiques confucéens</li>
+                </ul>
+                <a href="chinois-classique-parcours.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- ARABE -->
+            <div class="civ-card arabic">
+                <div class="civ-icon">☪️</div>
+                <h3 class="civ-title">Calligraphie Arabe</h3>
+                <p class="civ-description">
+                    <strong>Péninsule Arabique (400 ap. J.-C.)</strong><br>
+                    Alphabet cursif du Coran, art calligraphique suprême.
+                </p>
+                <ul class="civ-features">
+                    <li>28 lettres de l'alphabet arabe</li>
+                    <li>6 styles calligraphiques (Naskh, Thuluth, Diwani...)</li>
+                    <li>Lecture coranique (Tajwid)</li>
+                    <li>Système de voyelles courtes (Harakat)</li>
+                </ul>
+                <a href="calligraphie-arabe-parcours.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- CUNÉIFORME -->
+            <div class="civ-card cuneiform">
+                <div class="civ-icon">𒀭</div>
+                <h3 class="civ-title">Cunéiforme Mésopotamien</h3>
+                <p class="civ-description">
+                    <strong>Mésopotamie (3400 av. J.-C.)</strong><br>
+                    Plus ancien système d'écriture au monde, inscriptions en forme de coins.
+                </p>
+                <ul class="civ-features">
+                    <li>600+ signes cunéiformes sumériens</li>
+                    <li>Évolution vers l'akkadien, babylonien</li>
+                    <li>Tablettes d'argile</li>
+                    <li>Épopée de Gilgamesh, Code d'Hammurabi</li>
+                </ul>
+                <a href="cuneiforme-parcours.html" class="btn-start">Explorer →</a>
+            </div>
+        </div>
+
+        <!-- COMPARAISON -->
+        <div class="comparison-box">
+            <h2>🔍 Analyses Comparatives Uniques</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>📊 Typologie des Écritures</h3>
+                    <p>
+                        <strong>Logographiques</strong> : Chinois, Hiéroglyphes (partiel)<br>
+                        <strong>Syllabaires</strong> : Maya, Sanskrit (partiel)<br>
+                        <strong>Alphabétiques</strong> : Hébreu, Arabe<br>
+                        <strong>Mixtes</strong> : Cunéiforme, Égyptien
+                    </p>
+                </div>
+                <div class="comparison-item">
+                    <h3>🔢 Systèmes Numériques</h3>
+                    <p>
+                        <strong>Décimal</strong> : Chinois, Sanskrit, Arabe<br>
+                        <strong>Vigésimal</strong> : Maya<br>
+                        <strong>Sexagésimal</strong> : Cunéiforme<br>
+                        <strong>Lettres-Nombres</strong> : Hébreu (gematria)
+                    </p>
+                </div>
+                <div class="comparison-item">
+                    <h3>🎨 Directions de Lecture</h3>
+                    <p>
+                        <strong>Gauche → Droite</strong> : Sanskrit, Chinois (moderne)<br>
+                        <strong>Droite → Gauche</strong> : Hébreu, Arabe<br>
+                        <strong>Multiple</strong> : Hiéroglyphes, Maya<br>
+                        <strong>Vertical</strong> : Chinois classique, Maya
+                    </p>
+                </div>
+                <div class="comparison-item">
+                    <h3>📜 Textes Sacrés Fondateurs</h3>
+                    <p>
+                        Comparez le <strong>Livre des Morts</strong> (égyptien), la <strong>Torah</strong> (hébreu),
+                        le <strong>Popol Vuh</strong> (maya), les <strong>Védas</strong> (sanskrit),
+                        le <strong>Dao De Jing</strong> (chinois), le <strong>Coran</strong> (arabe),
+                        et l'<strong>Épopée de Gilgamesh</strong> (cunéiforme).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index_multilingual.html" class="btn-secondary">🏠 Retour Accueil</a>
+            <a href="comparaison-interactive.html" class="btn-secondary">🔍 Outil de Comparaison Interactive</a>
+            <a href="timeline-ecritures.html" class="btn-secondary">📅 Timeline Chronologique</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 300;
+        const colors = ['#c49c62', '#ffd700', '#00d4ff', '#ff8c00', '#dc143c', '#90ee90', '#ba68c8'];
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                const hexToRgb = (hex) => {
+                    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                    return result ? {
+                        r: parseInt(result[1], 16),
+                        g: parseInt(result[2], 16),
+                        b: parseInt(result[3], 16)
+                    } : null;
+                };
+                const rgb = hexToRgb(star.color);
+                ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

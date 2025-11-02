@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Parcours Cryptographie Sacrée - Des Codes Anciens au Chiffrement Moderne</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ff88;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 180, 100, 0.2));
+            border: 3px solid rgba(0, 255, 136, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #00ff88;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(255, 0, 255, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card.ancient { border-color: rgba(196, 156, 98, 0.6); }
+        .step-card.kabbalistic { border-color: rgba(255, 215, 0, 0.6); }
+        .step-card.medieval { border-color: rgba(138, 43, 226, 0.6); }
+        .step-card.renaissance { border-color: rgba(0, 212, 255, 0.6); }
+        .step-card.modern { border-color: rgba(0, 255, 136, 0.6); }
+        .step-card.quantum { border-color: rgba(255, 0, 255, 0.6); }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 0, 255, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff00ff, #8b008b);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .step-icon {
+            font-size: 5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step-title {
+            color: #ff69b4;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card.ancient .step-title { color: #c49c62; }
+        .step-card.kabbalistic .step-title { color: #ffd700; }
+        .step-card.medieval .step-title { color: #ba68c8; }
+        .step-card.renaissance .step-title { color: #00d4ff; }
+        .step-card.modern .step-title { color: #00ff88; }
+        .step-card.quantum .step-title { color: #ff00ff; }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .step-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-features li:before {
+            content: "🔐";
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #ff00ff, #8b008b);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.6);
+        }
+
+        .methodology-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 3px solid rgba(0, 255, 136, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .methodology-box h2 {
+            color: #00ff88;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 0, 255, 0.3);
+            border: 2px solid rgba(255, 0, 255, 0.6);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 0, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>🔐 Parcours Cryptographie Sacrée</h1>
+        <p class="subtitle">De l'Atbash kabbalistique au chiffrement quantique : 3000 ans de codes secrets</p>
+
+        <div class="hero-box">
+            <h2>🎯 Objectif Final</h2>
+            <p>
+                Maîtrisez l'art ancestral et moderne du <strong>chiffrement de l'information</strong>,
+                des techniques ésotériques de la Kabbale (Atbash, Gematria, Temurah) aux algorithmes cryptographiques
+                contemporains (RSA, AES, blockchain) et aux perspectives du <strong>chiffrement quantique</strong>.
+            </p>
+            <p style="font-size: 1.2rem;">
+                Un voyage unique reliant mystique ancienne et cybersécurité moderne.
+            </p>
+        </div>
+
+        <h2 style="text-align: center; color: #00ff88; font-size: 2.5rem; margin-bottom: 3rem;">
+            🔒 Les 6 Étapes du Parcours
+        </h2>
+
+        <div class="parcours-grid">
+            <!-- ÉTAPE 1 -->
+            <div class="step-card ancient">
+                <div class="step-number">1</div>
+                <div class="step-icon">📜</div>
+                <h3 class="step-title">Codes de l'Antiquité</h3>
+                <p class="step-description">
+                    <strong>3000 av. J.-C. - 500 ap. J.-C.</strong><br>
+                    Chiffre de César, Scytale spartiate, carré de Polybe et codes hiéroglyphiques secrets.
+                </p>
+                <ul class="step-features">
+                    <li>Chiffre de César (décalage alphabétique)</li>
+                    <li>Scytale de Sparte (transposition)</li>
+                    <li>Carré de Polybe (substitution bi-littérale)</li>
+                    <li>Hiéroglyphes cryptographiques égyptiens</li>
+                    <li>Atbash hébreu (inversion A↔Z)</li>
+                </ul>
+                <a href="crypto-antiquite.html" class="btn-start">Explorer →</a>
+            </div>
+
+            <!-- ÉTAPE 2 -->
+            <div class="step-card kabbalistic">
+                <div class="step-number">2</div>
+                <div class="step-icon">✡️</div>
+                <h3 class="step-title">Cryptographie Kabbalistique</h3>
+                <p class="step-description">
+                    <strong>500 - 1600 ap. J.-C.</strong><br>
+                    Techniques mystiques juives : Atbash, Albam, Temurah, Notarikon et Gematria avancée.
+                </p>
+                <ul class="step-features">
+                    <li>Atbash (א↔ת inversion complète)</li>
+                    <li>Albam (permutation par 11)</li>
+                    <li>Temurah (9 permutations des 22 lettres)</li>
+                    <li>Notarikon (acronymes cachés)</li>
+                    <li>Gematria multi-niveaux (Mispar, Atbash, etc.)</li>
+                </ul>
+                <a href="crypto-kabbale.html" class="btn-start">Décoder →</a>
+            </div>
+
+            <!-- ÉTAPE 3 -->
+            <div class="step-card medieval">
+                <div class="step-number">3</div>
+                <div class="step-icon">🏰</div>
+                <h3 class="step-title">Chiffres Médiévaux</h3>
+                <p class="step-description">
+                    <strong>500 - 1400 ap. J.-C.</strong><br>
+                    Codes secrets des moines, alchimistes et ordres templiers.
+                </p>
+                <ul class="step-features">
+                    <li>Chiffre de Vigenère (clé poly-alphabétique)</li>
+                    <li>Cryptographie alchimique</li>
+                    <li>Codes des Templiers</li>
+                    <li>Roue chiffrante d'Alberti</li>
+                    <li>Manuscrit de Voynich (non déchiffré)</li>
+                </ul>
+                <a href="crypto-medieval.html" class="btn-start">Déchiffrer →</a>
+            </div>
+
+            <!-- ÉTAPE 4 -->
+            <div class="step-card renaissance">
+                <div class="step-number">4</div>
+                <div class="step-icon">🎨</div>
+                <h3 class="step-title">Renaissance & Ère Moderne</h3>
+                <p class="step-description">
+                    <strong>1400 - 1900 ap. J.-C.</strong><br>
+                    Playfair, chiffrement mécanique, codes militaires et diplomatiques.
+                </p>
+                <ul class="step-features">
+                    <li>Chiffre de Playfair (digrammes)</li>
+                    <li>Great Cipher de Louis XIV</li>
+                    <li>Codes maçonniques (Pigpen)</li>
+                    <li>Machine d'Enigma (prélude)</li>
+                    <li>Télégraphe chiffré de Baudot</li>
+                </ul>
+                <a href="crypto-renaissance.html" class="btn-start">Analyser →</a>
+            </div>
+
+            <!-- ÉTAPE 5 -->
+            <div class="step-card modern">
+                <div class="step-number">5</div>
+                <div class="step-icon">💻</div>
+                <h3 class="step-title">Cryptographie Moderne</h3>
+                <p class="step-description">
+                    <strong>1900 - 2020</strong><br>
+                    DES, AES, RSA, courbes elliptiques, hachage SHA et blockchain.
+                </p>
+                <ul class="step-features">
+                    <li>Enigma et Turing (WWII)</li>
+                    <li>Clés symétriques : DES, AES-256</li>
+                    <li>Clés asymétriques : RSA, ECC</li>
+                    <li>Hachage : SHA-256, SHA-3</li>
+                    <li>Blockchain et Bitcoin (SHA-256)</li>
+                </ul>
+                <a href="crypto-moderne.html" class="btn-start">Programmer →</a>
+            </div>
+
+            <!-- ÉTAPE 6 -->
+            <div class="step-card quantum">
+                <div class="step-number">6</div>
+                <div class="step-icon">⚛️</div>
+                <h3 class="step-title">Cryptographie Quantique</h3>
+                <p class="step-description">
+                    <strong>2020 - Futur</strong><br>
+                    Distribution quantique de clés (QKD), résistance post-quantique et ordinateurs quantiques.
+                </p>
+                <ul class="step-features">
+                    <li>Protocole BB84 (Bennett & Brassard)</li>
+                    <li>Intrication quantique et téléportation</li>
+                    <li>Algorithmes post-quantiques (lattice-based)</li>
+                    <li>Menace de Shor (cassage RSA quantique)</li>
+                    <li>Réseaux quantiques sécurisés</li>
+                </ul>
+                <a href="crypto-quantique.html" class="btn-start">Découvrir →</a>
+            </div>
+        </div>
+
+        <!-- MÉTHODOLOGIE -->
+        <div class="methodology-box">
+            <h2>🧠 Outils Interactifs Uniques</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(30, 30, 45, 0.8); padding: 2rem; border-radius: 15px; border: 2px solid rgba(0, 255, 136, 0.3);">
+                    <h3 style="color: #00ff88; font-size: 1.5rem; margin-bottom: 1rem;">🔧 Cryptography Playground</h3>
+                    <p>
+                        Encodeur/décodeur interactif multi-algorithmes : testez César, Vigenère, Atbash, RSA, AES
+                        avec vos propres messages en temps réel.
+                    </p>
+                </div>
+                <div style="background: rgba(30, 30, 45, 0.8); padding: 2rem; border-radius: 15px; border: 2px solid rgba(255, 0, 255, 0.3);">
+                    <h3 style="color: #ff00ff; font-size: 1.5rem; margin-bottom: 1rem;">🎮 Challenges de Déchiffrement</h3>
+                    <p>
+                        50+ messages chiffrés à décoder avec difficulté croissante, du chiffre de César
+                        au RSA-2048. Système de hints et scoring.
+                    </p>
+                </div>
+                <div style="background: rgba(30, 30, 45, 0.8); padding: 2rem; border-radius: 15px; border: 2px solid rgba(196, 156, 98, 0.3);">
+                    <h3 style="color: #c49c62; font-size: 1.5rem; margin-bottom: 1rem;">📚 Bibliothèque de Codes Historiques</h3>
+                    <p>
+                        Base de données de messages authentiques déchiffrés : codes nazis, correspondance kabbalistique,
+                        tablettes cunéiformes chiffrées.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA BOX -->
+        <div style="background: linear-gradient(135deg, rgba(255, 0, 255, 0.3), rgba(139, 0, 139, 0.3)); border: 3px solid rgba(255, 0, 255, 0.6); border-radius: 20px; padding: 4rem; text-align: center; margin-top: 4rem;">
+            <h2 style="color: #ff69b4; font-size: 2.5rem; margin-bottom: 2rem;">🚀 Devenez Maître Cryptographe</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem;">
+                Parcours estimé : <strong>12-15 heures</strong><br>
+                <em style="color: #00ff88;">De l'Atbash aux qubits, percez tous les codes de l'Histoire !</em>
+            </p>
+            <a href="crypto-antiquite.html" class="btn-start" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
+                🔐 Commencer le Parcours
+            </a>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index_multilingual.html" class="btn-secondary">🏠 Retour Accueil</a>
+            <a href="crypto-playground.html" class="btn-secondary">🔧 Cryptography Playground</a>
+            <a href="crypto-challenges.html" class="btn-secondary">🎮 Challenges</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 300;
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5,
+                color: Math.random() > 0.5 ? '#00ff88' : '#ff00ff'
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                const [r, g, b] = star.color === '#00ff88' ? [0, 255, 136] : [255, 0, 255];
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
