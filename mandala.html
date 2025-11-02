@@ -392,6 +392,7 @@
     </style>
     <link rel="stylesheet" href="animated-background.css">
     <script src="animated-background.js" defer></script>
+    <script src="mandalas/mandalas-list.js"></script>
 </head>
 <body>
     <!-- Écran d'introduction -->
@@ -439,8 +440,8 @@
         let currentIndex = 0;
 
         // Initialisation
-        document.addEventListener('DOMContentLoaded', () => {
-            loadImages();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadImages();
             setupListeners();
         });
 
@@ -688,15 +689,43 @@
             ];
         }
 
-        function loadImages() {
+        async function loadImages() {
+            // Priorité 1: Mandalas du dossier /mandalas/
+            if (typeof getMandalaUrls === 'function') {
+                const mandalaUrls = getMandalaUrls();
+                if (mandalaUrls && mandalaUrls.length > 0) {
+                    // Vérifier que les images existent
+                    const validImages = [];
+                    for (const url of mandalaUrls) {
+                        try {
+                            const response = await fetch(url, { method: 'HEAD' });
+                            if (response.ok) {
+                                validImages.push(url);
+                            }
+                        } catch (e) {
+                            console.log('Image non trouvée:', url);
+                        }
+                    }
+                    if (validImages.length > 0) {
+                        images = validImages;
+                        return;
+                    }
+                }
+            }
+
+            // Priorité 2: Mandalas du localStorage
             const stored = localStorage.getItem('mandalaImages');
             if (stored) {
-                images = JSON.parse(stored);
-            } else {
-                // Charger les mandalas par défaut
-                images = getDefaultMandalas();
-                saveImages();
+                const storedImages = JSON.parse(stored);
+                if (storedImages && storedImages.length > 0) {
+                    images = storedImages;
+                    return;
+                }
             }
+
+            // Priorité 3: Mandalas SVG par défaut
+            images = getDefaultMandalas();
+            saveImages();
         }
 
         function beginMeditation() {
