@@ -390,7 +390,23 @@ const i18n = {
                 'Suivi de progression'
             ],
             step6Duration: '⏱️ 3-5 heures',
-            step6Btn: '🎯 Pratiquer'
+            step6Btn: '🎯 Pratiquer',
+
+            methodologyTitle: '📚 Méthodologie d\'Apprentissage',
+            method1Title: '1️⃣ Progression Logique',
+            method1Desc: 'Syllabes → Chiffres → Calendriers → Noms → Textes complets',
+            method2Title: '2️⃣ Contexte Archéologique',
+            method2Desc: 'Chaque glyphe dans son contexte historique et culturel',
+            method3Title: '3️⃣ Exemples Authentiques',
+            method3Desc: 'Stèles, codex et monuments réels des sites mayas',
+            method4Title: '4️⃣ Pratique Active',
+            method4Desc: 'Exercices de déchiffrage et flashcards interactives',
+
+            ctaTitle: '🚀 Commencez Votre Voyage dans le Monde Maya',
+            ctaText: 'Plongez dans la civilisation la plus avancée des Amériques anciennes',
+            ctaBtn: '✨ Débuter le Parcours Maya',
+
+            footer: 'Ce parcours utilise les dernières découvertes en épigraphie maya. Parfait pour débutants et étudiants avancés.'
         },
         en: {
             title: '🏛️ Complete Course - Master Mayan Glyphs',
@@ -479,7 +495,23 @@ const i18n = {
                 'Progress tracking'
             ],
             step6Duration: '⏱️ 3-5 hours',
-            step6Btn: '🎯 Practice'
+            step6Btn: '🎯 Practice',
+
+            methodologyTitle: '📚 Learning Methodology',
+            method1Title: '1️⃣ Logical Progression',
+            method1Desc: 'Syllables → Numbers → Calendars → Names → Complete texts',
+            method2Title: '2️⃣ Archaeological Context',
+            method2Desc: 'Each glyph in its historical and cultural context',
+            method3Title: '3️⃣ Authentic Examples',
+            method3Desc: 'Real stelae, codices and monuments from Mayan sites',
+            method4Title: '4️⃣ Active Practice',
+            method4Desc: 'Decipherment exercises and interactive flashcards',
+
+            ctaTitle: '🚀 Start Your Journey into the Mayan World',
+            ctaText: 'Dive into the most advanced civilization of ancient Americas',
+            ctaBtn: '✨ Begin Mayan Course',
+
+            footer: 'This course uses the latest discoveries in Mayan epigraphy. Perfect for beginners and advanced students.'
         },
         es: {
             title: '🏛️ Curso Completo - Dominar los Glifos Mayas',
@@ -568,7 +600,252 @@ const i18n = {
                 'Seguimiento de progreso'
             ],
             step6Duration: '⏱️ 3-5 horas',
-            step6Btn: '🎯 Practicar'
+            step6Btn: '🎯 Practicar',
+
+            methodologyTitle: '📚 Metodología de Aprendizaje',
+            method1Title: '1️⃣ Progresión Lógica',
+            method1Desc: 'Sílabas → Números → Calendarios → Nombres → Textos completos',
+            method2Title: '2️⃣ Contexto Arqueológico',
+            method2Desc: 'Cada glifo en su contexto histórico y cultural',
+            method3Title: '3️⃣ Ejemplos Auténticos',
+            method3Desc: 'Estelas, códices y monumentos reales de sitios mayas',
+            method4Title: '4️⃣ Práctica Activa',
+            method4Desc: 'Ejercicios de desciframiento y tarjetas interactivas',
+
+            ctaTitle: '🚀 Comienza tu Viaje al Mundo Maya',
+            ctaText: 'Sumérgete en la civilización más avanzada de las Américas antiguas',
+            ctaBtn: '✨ Comenzar Curso Maya',
+
+            footer: 'Este curso utiliza los últimos descubrimientos en epigrafía maya. Perfecto para principiantes y estudiantes avanzados.'
+        }
+    },
+
+    // ===== PARCOURS HIÉROGLYPHES ÉGYPTIENS =====
+    hieroglyphs: {
+        fr: {
+            title: '𓂀 Parcours Complet - Apprendre les Hiéroglyphes',
+            subtitle: 'Déchiffrez l\'écriture sacrée des pharaons',
+            heroTitle: 'Bienvenue dans l\'Univers des Hiéroglyphes',
+            heroDesc: 'Découvrez l\'écriture des pharaons et apprenez à lire les inscriptions des temples et tombes égyptiennes.',
+            duration: 'Durée totale estimée: 10-15 heures',
+
+            step1Title: 'Alphabet Complet',
+            step1Desc: 'Découvrez et mémorisez les 26 signes unilitères + déterminatifs essentiels',
+            step1Features: [
+                'Unilitères avec sons et noms',
+                'Bilitères et trilitères fréquents',
+                'Déterminatifs (signes muets)',
+                'Système de numération décimal',
+                'Recherche interactive et filtres'
+            ],
+            step1Duration: '⏱️ 2-3 heures',
+            step1Btn: '📖 Commencer l\'Alphabet',
+
+            step2Title: 'Grammaire Niveau 1',
+            step2Desc: 'Apprenez les 4 règles fondamentales pour lire correctement',
+            step2Features: [
+                'Sens de lecture (gauche/droite/haut)',
+                'Phonogrammes unilitères',
+                'Rôle des déterminatifs',
+                'Compléments phonétiques',
+                'Quiz interactifs intégrés'
+            ],
+            step2Duration: '⏱️ 2-3 heures',
+            step2Btn: '📚 Étudier la Grammaire',
+
+            step3Title: 'Exercices de Déchiffrage',
+            step3Desc: 'Pratiquez avec 15+ exercices progressifs',
+            step3Features: [
+                '5 niveaux de difficulté',
+                'Correction instantanée',
+                'Explications détaillées',
+                'Système de scoring',
+                'Suivi de progression'
+            ],
+            step3Duration: '⏱️ 3-4 heures',
+            step3Btn: '✍️ Commencer les Exercices',
+
+            step4Title: 'Flashcards Quotidiennes',
+            step4Desc: 'Entraînez-vous quotidiennement à reconnaître les signes',
+            step4Features: [
+                '3 modes : Unilitères, Déterminatifs, Mixte',
+                'Sessions de 20 cartes',
+                'Animation flip 3D',
+                'Statistiques détaillées',
+                'Révision espacée'
+            ],
+            step4Duration: '⏱️ 2-3 heures',
+            step4Btn: '🎴 Lancer les Flashcards',
+
+            methodologyTitle: '🧠 Notre Méthodologie Pédagogique',
+            method1Title: '📊 Évaluations Fréquentes',
+            method1Desc: 'Après chaque concept appris, testez immédiatement vos connaissances',
+            method2Title: '🔁 Répétition Espacée',
+            method2Desc: 'Ancrez durablement les signes dans votre mémoire',
+            method3Title: '🎯 Apprentissage Progressif',
+            method3Desc: 'Du plus simple au plus complexe, chaque étape s\'appuie sur les précédentes',
+            method4Title: '✍️ Pratique Intensive',
+            method4Desc: 'Déchiffrez de vrais textes hiéroglyphiques dès le début',
+
+            ctaTitle: '🚀 Prêt à Commencer ?',
+            ctaText: 'Le parcours complet prend environ 6-8 heures à suivre en continu',
+            ctaBtn: '📖 Commencer Maintenant l\'Étape 1',
+
+            bonusTitle: '🎁 Bonus : 46 Inscriptions Authentiques',
+            bonusText: 'Explorez 46 inscriptions authentiques des temples et tombes égyptiennes',
+            bonusBtn: '📜 Voir les Inscriptions',
+
+            footer: 'Parcours complet d\'apprentissage des hiéroglyphes pour tous niveaux'
+        },
+        en: {
+            title: '𓂀 Complete Course - Learn Hieroglyphs',
+            subtitle: 'Decipher the sacred writing of the pharaohs',
+            heroTitle: 'Welcome to the World of Hieroglyphs',
+            heroDesc: 'Discover the writing of pharaohs and learn to read inscriptions from Egyptian temples and tombs.',
+            duration: 'Total estimated duration: 10-15 hours',
+
+            step1Title: 'Complete Alphabet',
+            step1Desc: 'Discover and memorize the 26 uniliteral signs + essential determinatives',
+            step1Features: [
+                'Uniliterals with sounds and names',
+                'Frequent biliterals and triliterals',
+                'Determinatives (silent signs)',
+                'Decimal numeration system',
+                'Interactive search and filters'
+            ],
+            step1Duration: '⏱️ 2-3 hours',
+            step1Btn: '📖 Start the Alphabet',
+
+            step2Title: 'Grammar Level 1',
+            step2Desc: 'Learn the 4 fundamental rules to read correctly',
+            step2Features: [
+                'Reading direction (left/right/top)',
+                'Uniliteral phonograms',
+                'Role of determinatives',
+                'Phonetic complements',
+                'Integrated interactive quizzes'
+            ],
+            step2Duration: '⏱️ 2-3 hours',
+            step2Btn: '📚 Study Grammar',
+
+            step3Title: 'Decipherment Exercises',
+            step3Desc: 'Practice with 15+ progressive exercises',
+            step3Features: [
+                '5 difficulty levels',
+                'Instant correction',
+                'Detailed explanations',
+                'Scoring system',
+                'Progress tracking'
+            ],
+            step3Duration: '⏱️ 3-4 hours',
+            step3Btn: '✍️ Start Exercises',
+
+            step4Title: 'Daily Flashcards',
+            step4Desc: 'Train daily to recognize signs instantly',
+            step4Features: [
+                '3 modes: Uniliterals, Determinatives, Mixed',
+                '20-card sessions',
+                '3D flip animation',
+                'Detailed statistics',
+                'Spaced repetition'
+            ],
+            step4Duration: '⏱️ 2-3 hours',
+            step4Btn: '🎴 Launch Flashcards',
+
+            methodologyTitle: '🧠 Our Pedagogical Methodology',
+            method1Title: '📊 Frequent Assessments',
+            method1Desc: 'After each learned concept, immediately test your knowledge',
+            method2Title: '🔁 Spaced Repetition',
+            method2Desc: 'Anchor signs durably in your memory',
+            method3Title: '🎯 Progressive Learning',
+            method3Desc: 'From simple to complex, each step builds on previous ones',
+            method4Title: '✍️ Intensive Practice',
+            method4Desc: 'Decipher real hieroglyphic texts from the start',
+
+            ctaTitle: '🚀 Ready to Start?',
+            ctaText: 'The complete course takes about 6-8 hours to follow continuously',
+            ctaBtn: '📖 Start Now - Step 1',
+
+            bonusTitle: '🎁 Bonus: 46 Authentic Inscriptions',
+            bonusText: 'Explore 46 authentic inscriptions from Egyptian temples and tombs',
+            bonusBtn: '📜 View Inscriptions',
+
+            footer: 'Complete hieroglyphs learning course for all levels'
+        },
+        es: {
+            title: '𓂀 Curso Completo - Aprender Jeroglíficos',
+            subtitle: 'Descifra la escritura sagrada de los faraones',
+            heroTitle: 'Bienvenido al Mundo de los Jeroglíficos',
+            heroDesc: 'Descubre la escritura de los faraones y aprende a leer inscripciones de templos y tumbas egipcias.',
+            duration: 'Duración total estimada: 10-15 horas',
+
+            step1Title: 'Alfabeto Completo',
+            step1Desc: 'Descubre y memoriza los 26 signos unilíteros + determinativos esenciales',
+            step1Features: [
+                'Unilíteros con sonidos y nombres',
+                'Bilíteros y trilíteros frecuentes',
+                'Determinativos (signos mudos)',
+                'Sistema de numeración decimal',
+                'Búsqueda interactiva y filtros'
+            ],
+            step1Duration: '⏱️ 2-3 horas',
+            step1Btn: '📖 Comenzar el Alfabeto',
+
+            step2Title: 'Gramática Nivel 1',
+            step2Desc: 'Aprende las 4 reglas fundamentales para leer correctamente',
+            step2Features: [
+                'Dirección de lectura (izquierda/derecha/arriba)',
+                'Fonogramas unilíteros',
+                'Papel de los determinativos',
+                'Complementos fonéticos',
+                'Cuestionarios interactivos integrados'
+            ],
+            step2Duration: '⏱️ 2-3 horas',
+            step2Btn: '📚 Estudiar Gramática',
+
+            step3Title: 'Ejercicios de Desciframiento',
+            step3Desc: 'Practica con 15+ ejercicios progresivos',
+            step3Features: [
+                '5 niveles de dificultad',
+                'Corrección instantánea',
+                'Explicaciones detalladas',
+                'Sistema de puntuación',
+                'Seguimiento de progreso'
+            ],
+            step3Duration: '⏱️ 3-4 horas',
+            step3Btn: '✍️ Comenzar Ejercicios',
+
+            step4Title: 'Tarjetas Diarias',
+            step4Desc: 'Entrena diariamente para reconocer signos al instante',
+            step4Features: [
+                '3 modos: Unilíteros, Determinativos, Mixto',
+                'Sesiones de 20 tarjetas',
+                'Animación 3D de volteo',
+                'Estadísticas detalladas',
+                'Repetición espaciada'
+            ],
+            step4Duration: '⏱️ 2-3 horas',
+            step4Btn: '🎴 Lanzar Tarjetas',
+
+            methodologyTitle: '🧠 Nuestra Metodología Pedagógica',
+            method1Title: '📊 Evaluaciones Frecuentes',
+            method1Desc: 'Después de cada concepto aprendido, prueba inmediatamente tus conocimientos',
+            method2Title: '🔁 Repetición Espaciada',
+            method2Desc: 'Ancla los signos duraderamente en tu memoria',
+            method3Title: '🎯 Aprendizaje Progresivo',
+            method3Desc: 'De lo simple a lo complejo, cada paso se basa en los anteriores',
+            method4Title: '✍️ Práctica Intensiva',
+            method4Desc: 'Descifra textos jeroglíficos reales desde el principio',
+
+            ctaTitle: '🚀 ¿Listo para Comenzar?',
+            ctaText: 'El curso completo toma aproximadamente 6-8 horas seguir continuamente',
+            ctaBtn: '📖 Comenzar Ahora - Paso 1',
+
+            bonusTitle: '🎁 Bonus: 46 Inscripciones Auténticas',
+            bonusText: 'Explora 46 inscripciones auténticas de templos y tumbas egipcias',
+            bonusBtn: '📜 Ver Inscripciones',
+
+            footer: 'Curso completo de aprendizaje de jeroglíficos para todos los niveles'
         }
     },
 
