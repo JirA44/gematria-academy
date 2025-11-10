@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Divination Runique | Académie Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="runes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, #4a148c, #8e24aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #4a148c, #6a1b9a);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .method-section {
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-radius: 20px;
+            border: 3px solid #9c27b0;
+        }
+
+        .method-section h2 {
+            color: #4a148c;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .spread-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .spread-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .rune-position {
+            width: 120px;
+            height: 160px;
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border: 3px solid #9c27b0;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .rune-position:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.4);
+        }
+
+        .rune-position.revealed {
+            background: linear-gradient(135deg, #9c27b0, #ce93d8);
+            color: white;
+        }
+
+        .rune-symbol {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .position-label {
+            font-size: 0.9em;
+            font-weight: bold;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .rune-meaning {
+            font-size: 0.85em;
+            text-align: center;
+            margin-top: 5px;
+            padding: 0 5px;
+        }
+
+        .interactive-draw {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 3px solid #4CAF50;
+            text-align: center;
+        }
+
+        .draw-button {
+            background: linear-gradient(135deg, #4CAF50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.3em;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .draw-button:hover {
+            background: linear-gradient(135deg, #66bb6a, #81c784);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        .draw-button:active {
+            transform: scale(0.95);
+        }
+
+        .interpretation-box {
+            background: linear-gradient(135deg, #fff9c4, #fff59d);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid #f57f17;
+        }
+
+        .interpretation-box h4 {
+            color: #e65100;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .info-box h4 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .warning-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .ritual-steps {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .ritual-step {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #9c27b0;
+        }
+
+        .ritual-step h4 {
+            color: #4a148c;
+            margin-bottom: 10px;
+        }
+
+        .rune-bag {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            border-radius: 15px;
+        }
+
+        .rune-stone {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8d6e63, #6d4c41);
+            border: 2px solid #4e342e;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #f5f5dc;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .rune-stone:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .rune-stone.selected {
+            background: linear-gradient(135deg, #ffd54f, #ffca28);
+            transform: scale(1.2);
+        }
+
+        .question-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            font-size: 1.1em;
+            border: 3px solid #9c27b0;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+            text-align: center;
+        }
+
+        .question-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .spread-visual {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Divination Runique</h1>
+        <p class="subtitle">Consultez l'ancienne sagesse des runes pour éclairer votre chemin</p>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">⬅ Accueil</a>
+            <a href="runes-debutant.html" class="nav-btn">🌱 Réviser les Runes</a>
+            <a href="runes-mythologie-nordique.html" class="nav-btn">⚔️ Mythologie</a>
+            <a href="runes-bind-runes.html" class="nav-btn">✨ Bind Runes</a>
+        </div>
+
+        <!-- INTRODUCTION -->
+        <div class="method-section">
+            <h2>📖 Introduction à la Divination Runique</h2>
+
+            <div class="info-box">
+                <h4>🔮 Qu'est-ce que la Divination Runique ?</h4>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    La divination runique n'est pas de la "prédiction du futur" au sens strict. C'est plutôt une <strong>consultation des forces cosmiques</strong> et des <strong>tendances énergétiques</strong> qui influencent votre vie. Les runes révèlent ce qui est caché, clarifient les situations complexes, et offrent des conseils ancestraux.
+                </p>
+                <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">
+                    Dans la tradition nordique, les runes étaient sacrées - elles contenaient le <em>örlög</em> (destin/loi primordiale) et permettaient de percevoir les fils du <em>wyrd</em> (trame du destin).
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Éthique et Respect</h4>
+                <ul style="line-height: 2;">
+                    <li>Abordez les runes avec respect et intentions pures</li>
+                    <li>Ne consultez pas les runes de manière obsessionnelle</li>
+                    <li>Les runes conseillent mais ne dictent pas - vous gardez votre libre arbitre</li>
+                    <li>Créez un espace calme et sacré pour vos tirages</li>
+                    <li>Tenez un journal de vos tirages pour suivre les patterns</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PRÉPARATION -->
+        <div class="method-section" style="background: linear-gradient(135deg, #e0f2f1, #b2dfdb); border-color: #00897b;">
+            <h2>🕯️ Préparation au Tirage</h2>
+
+            <div class="ritual-steps">
+                <div class="ritual-step">
+                    <h4>1️⃣ Purification de l'Espace</h4>
+                    <p>Allumez de la sauge, de l'encens ou une bougie. Vous pouvez aussi simplement ouvrir une fenêtre pour faire circuler l'énergie.</p>
+                </div>
+
+                <div class="ritual-step">
+                    <h4>2️⃣ Centrage Personnel</h4>
+                    <p>Prenez quelques respirations profondes. Videz votre esprit des préoccupations quotidiennes. Ancrez-vous dans le moment présent.</p>
+                </div>
+
+                <div class="ritual-step">
+                    <h4>3️⃣ Formulation de la Question</h4>
+                    <p>Clarifiez votre question. Les runes répondent mieux aux questions ouvertes ("Comment puis-je...?", "Que dois-je savoir sur...?") plutôt qu'aux questions fermées ("Oui/Non").</p>
+                </div>
+
+                <div class="ritual-step">
+                    <h4>4️⃣ Invocation (Optionnel)</h4>
+                    <p>Vous pouvez invoquer Odin, découvreur des runes :</p>
+                    <em style="display: block; text-align: center; margin: 15px 0; color: #4a148c;">
+                        "Odin Alföðr, Père de Tout,<br>
+                        Toi qui as sacrifié ton œil pour la sagesse,<br>
+                        Toi qui t'es pendu à Yggdrasil pour les runes,<br>
+                        Guide ma main et éclaire ma vision."
+                    </em>
+                </div>
+
+                <div class="ritual-step">
+                    <h4>5️⃣ Mélange des Runes</h4>
+                    <p>Placez toutes vos runes dans un sac. Mélangez-les avec intention, en gardant votre question à l'esprit.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>💎 Créer Votre Propre Jeu de Runes</h4>
+                <p>Idéalement, fabriquez vos propres runes pour créer un lien personnel :</p>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Matériaux :</strong> Pierres, bois, argile, os (traditionnellement)</li>
+                    <li><strong>Gravure :</strong> Tracez chaque rune avec intention et méditation</li>
+                    <li><strong>Consécration :</strong> Laissez-les une nuit sous la pleine lune ou exposez-les à la fumée d'encens</li>
+                    <li><strong>Charge :</strong> Tenez chaque rune et visualisez son pouvoir s'y installer</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MÉTHODE 1 : RUNE UNIQUE -->
+        <div class="method-section">
+            <h2>1️⃣ La Rune du Jour</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                Le tirage le plus simple : une seule rune pour guidance quotidienne
+            </p>
+
+            <div class="spread-container">
+                <div class="spread-visual">
+                    <div class="rune-position" id="daily-rune" onclick="drawDailyRune()">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Cliquez pour tirer</div>
+                    </div>
+                </div>
+
+                <div class="interpretation-box" id="daily-interpretation" style="display: none;">
+                    <h4>📜 Interprétation</h4>
+                    <div id="daily-meaning"></div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>🌅 Comment utiliser la Rune du Jour :</h4>
+                <ul style="line-height: 2;">
+                    <li>Tirez une rune chaque matin</li>
+                    <li>Méditez sur sa signification pendant quelques minutes</li>
+                    <li>Gardez-la à l'esprit durant la journée</li>
+                    <li>Le soir, notez comment son énergie s'est manifestée</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MÉTHODE 2 : TIRAGE À TROIS RUNES -->
+        <div class="method-section" style="background: linear-gradient(135deg, #e8eaf6, #c5cae9); border-color: #3f51b5;">
+            <h2>2️⃣ Le Tirage des Trois Nornes</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                Passé - Présent - Futur (ou Situation - Action - Résultat)
+            </p>
+
+            <div class="info-box">
+                <h4>👁️ Les Trois Nornes</h4>
+                <p>Les Nornes sont les trois déesses du destin nordiques qui tissent le fil de vie de chaque être :</p>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Urðr</strong> : "Ce qui a été" - Le Passé</li>
+                    <li><strong>Verðandi</strong> : "Ce qui devient" - Le Présent</li>
+                    <li><strong>Skuld</strong> : "Ce qui devrait être" - Le Futur</li>
+                </ul>
+            </div>
+
+            <div class="spread-container">
+                <input type="text" class="question-input" placeholder="Posez votre question..." id="norns-question">
+
+                <div class="spread-visual">
+                    <div class="rune-position" id="norn1" onclick="revealNorn(1)">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Urðr<br>(Passé)</div>
+                    </div>
+                    <div class="rune-position" id="norn2" onclick="revealNorn(2)">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Verðandi<br>(Présent)</div>
+                    </div>
+                    <div class="rune-position" id="norn3" onclick="revealNorn(3)">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Skuld<br>(Futur)</div>
+                    </div>
+                </div>
+
+                <button class="draw-button" onclick="drawNorns()">🔮 Tirer les Trois Nornes</button>
+
+                <div class="interpretation-box" id="norns-interpretation" style="display: none;">
+                    <h4>📜 Interprétation Complète</h4>
+                    <div id="norns-meaning"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÉTHODE 3 : CROIX CELTIQUE RUNIQUE -->
+        <div class="method-section" style="background: linear-gradient(135deg, #fff8e1, #ffecb3); border-color: #ffa000;">
+            <h2>3️⃣ La Croix de Thor</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                Un tirage complet en 5 runes pour une analyse approfondie
+            </p>
+
+            <div class="spread-container">
+                <input type="text" class="question-input" placeholder="Posez votre question détaillée..." id="thor-question">
+
+                <div class="spread-visual" style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; gap: 20px; max-width: 500px; margin: 0 auto;">
+                    <div style="grid-column: 2;"></div>
+                    <div class="rune-position" id="thor1" onclick="revealThor(1)" style="grid-column: 2; grid-row: 1;">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Défis</div>
+                    </div>
+                    <div style="grid-column: 2;"></div>
+
+                    <div class="rune-position" id="thor2" onclick="revealThor(2)" style="grid-column: 1; grid-row: 2;">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Passé</div>
+                    </div>
+                    <div class="rune-position" id="thor3" onclick="revealThor(3)" style="grid-column: 2; grid-row: 2;">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Situation</div>
+                    </div>
+                    <div class="rune-position" id="thor4" onclick="revealThor(4)" style="grid-column: 3; grid-row: 2;">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Futur</div>
+                    </div>
+
+                    <div style="grid-column: 2;"></div>
+                    <div class="rune-position" id="thor5" onclick="revealThor(5)" style="grid-column: 2; grid-row: 3;">
+                        <div class="rune-symbol">?</div>
+                        <div class="position-label">Conseil</div>
+                    </div>
+                </div>
+
+                <button class="draw-button" onclick="drawThor()">⚡ Tirer la Croix de Thor</button>
+
+                <div class="interpretation-box" id="thor-interpretation" style="display: none;">
+                    <h4>📜 Lecture Complète</h4>
+                    <div id="thor-meaning"></div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>⚡ Signification des Positions :</h4>
+                <ol style="line-height: 2;">
+                    <li><strong>Haut (Défis) :</strong> Ce qui vous bloque ou vous défie</li>
+                    <li><strong>Gauche (Passé) :</strong> Influences passées qui façonnent la situation</li>
+                    <li><strong>Centre (Situation) :</strong> Cœur de la question, énergie principale</li>
+                    <li><strong>Droite (Futur) :</strong> Vers où vous vous dirigez</li>
+                    <li><strong>Bas (Conseil) :</strong> Action recommandée ou attitude à adopter</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- RUNE CASTING (LANCER DE RUNES) -->
+        <div class="method-section" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0); border-color: #e91e63;">
+            <h2>4️⃣ Le Lancer de Runes (Casting)</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                Méthode traditionnelle : lancez plusieurs runes et interprétez leur disposition
+            </p>
+
+            <div class="warning-box">
+                <h4>🎲 Comment Pratiquer le Casting :</h4>
+                <ol style="line-height: 2;">
+                    <li>Utilisez un tissu blanc ou un cercle tracé au sol</li>
+                    <li>Prenez 9 runes dans votre sac (ou toutes les 24)</li>
+                    <li>Concentrez-vous sur votre question</li>
+                    <li>Lancez les runes doucement sur le tissu</li>
+                    <li>Lisez celles qui sont face visible et à l'intérieur du cercle</li>
+                    <li>Celles plus proches de vous = influences immédiates</li>
+                    <li>Celles plus éloignées = influences futures ou contextuelles</li>
+                    <li>Runes inversées = énergies bloquées ou défis</li>
+                </ol>
+            </div>
+
+            <div class="info-box">
+                <h4>🌀 Zones de Lecture :</h4>
+                <p>Divisez votre espace de lancer en sections :</p>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Nord :</strong> Défis, obstacles, leçons</li>
+                    <li><strong>Est :</strong> Nouveaux départs, opportunités</li>
+                    <li><strong>Sud :</strong> Passion, action, énergie</li>
+                    <li><strong>Ouest :</strong> Émotions, intuition, relations</li>
+                    <li><strong>Centre :</strong> Cœur de la situation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SAC INTERACTIF DE RUNES -->
+        <div class="interactive-draw">
+            <h2 style="color: #2e7d32; margin-bottom: 20px;">🎒 Votre Sac de Runes Interactif</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px;">
+                Cliquez sur les runes ci-dessous pour les découvrir et apprendre leurs significations
+            </p>
+
+            <div class="rune-bag" id="rune-bag">
+                <!-- Runes will be generated here by JavaScript -->
+            </div>
+
+            <div id="selected-rune-info" style="display: none; background: white; padding: 30px; border-radius: 15px; margin-top: 30px; border: 3px solid #4CAF50;">
+                <h3 id="selected-rune-name" style="color: #2e7d32; font-size: 2em; margin-bottom: 15px;"></h3>
+                <div id="selected-rune-symbol" style="font-size: 5em; text-align: center; color: #4CAF50; margin: 20px 0;"></div>
+                <div id="selected-rune-meaning" style="font-size: 1.1em; line-height: 1.8;"></div>
+            </div>
+        </div>
+
+        <!-- INTERPRÉTATION DES RUNES INVERSÉES -->
+        <div class="method-section">
+            <h2>🔄 Runes Inversées (Merkstave)</h2>
+
+            <div class="warning-box">
+                <h4>⚠️ Comprendre les Runes Inversées</h4>
+                <p style="line-height: 1.8;">
+                    Certaines runes (16 sur 24) peuvent apparaître inversées lors des tirages. Une rune inversée ne signifie pas nécessairement quelque chose de "négatif" - elle indique plutôt :
+                </p>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li>Une énergie bloquée ou retenue</li>
+                    <li>Un aspect de la rune qui doit être travaillé</li>
+                    <li>Une leçon pas encore apprise</li>
+                    <li>Une force qui s'exprime de manière déséquilibrée</li>
+                    <li>Un avertissement sur un excès ou un manque</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>🔮 Les 8 Runes Non-Inversables :</h4>
+                <p>Ces runes sont symétriques et ont la même signification dans les deux sens :</p>
+                <div style="font-size: 2em; text-align: center; margin: 20px 0; color: #2196F3;">
+                    ᚷ ᚺ ᛁ ᛇ ᚾ ᛁ ᛋ ᛞ
+                </div>
+                <p style="text-align: center;"><em>Gebo, Hagalaz, Isa, Eihwaz, Nauthiz, Isa, Sowilo, Dagaz</em></p>
+            </div>
+        </div>
+
+        <!-- CONCLUSION -->
+        <div class="method-section" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-color: #4CAF50;">
+            <h2>🎓 Maîtriser la Divination Runique</h2>
+
+            <div class="info-box" style="border-left-color: #4CAF50; background: white;">
+                <h4>💎 Conseils pour Progresser :</h4>
+                <ol style="line-height: 2;">
+                    <li><strong>Pratiquez quotidiennement :</strong> Tirez au moins une rune par jour</li>
+                    <li><strong>Tenez un journal :</strong> Notez tous vos tirages et leur manifestation</li>
+                    <li><strong>Étudiez les mythes :</strong> Comprenez les histoires derrière chaque rune</li>
+                    <li><strong>Méditez avec les runes :</strong> Tenez une rune et connectez-vous à son énergie</li>
+                    <li><strong>Faites confiance à votre intuition :</strong> Les runes parlent différemment à chacun</li>
+                    <li><strong>Respectez les cycles :</strong> Certaines périodes (pleine lune, équinoxes) amplifient les lectures</li>
+                </ol>
+            </div>
+
+            <div class="interpretation-box" style="background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left-color: #9c27b0;">
+                <h4>📚 Continuer Votre Apprentissage :</h4>
+                <ul style="list-style: none; font-size: 1.1em; line-height: 2;">
+                    <li><a href="runes-debutant.html" style="color: #4a148c; font-weight: bold; text-decoration: none;">→ Réviser toutes les runes du Futhark</a></li>
+                    <li><a href="runes-mythologie-nordique.html" style="color: #4a148c; font-weight: bold; text-decoration: none;">→ Approfondir la mythologie nordique</a></li>
+                    <li><a href="runes-bind-runes.html" style="color: #4a148c; font-weight: bold; text-decoration: none;">→ Créer des bind runes magiques</a></li>
+                    <li><a href="runes-parcours-complet.html" style="color: #4a148c; font-weight: bold; text-decoration: none;">→ Parcours complet de maîtrise</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database des runes
+        const runes = [
+            { symbol: 'ᚠ', name: 'Fehu', meaning: 'Richesse, bétail, abondance matérielle, mobilité', detail: 'Représente la prospérité dynamique qui doit circuler.' },
+            { symbol: 'ᚢ', name: 'Uruz', meaning: 'Force primitive, santé, vitalité, endurance', detail: 'La puissance brute du bœuf sauvage, force de transformation.' },
+            { symbol: 'ᚦ', name: 'Thurisaz', meaning: 'Géant, épine, protection, défense', detail: 'Le marteau de Thor, force protectrice mais potentiellement destructrice.' },
+            { symbol: 'ᚨ', name: 'Ansuz', meaning: 'Dieu, parole divine, communication, sagesse', detail: 'Odin et le pouvoir de la parole créatrice, inspiration divine.' },
+            { symbol: 'ᚱ', name: 'Raidho', meaning: 'Voyage, roue, rythme, progression', detail: 'Le voyage physique et spirituel, suivre le bon chemin.' },
+            { symbol: 'ᚲ', name: 'Kenaz', meaning: 'Torche, connaissance, illumination', detail: 'Le feu maîtrisé qui éclaire les ténèbres, créativité et compétence.' },
+            { symbol: 'ᚷ', name: 'Gebo', meaning: 'Don, échange, partenariat', detail: 'Le don sacré qui crée des liens, équilibre dans les relations.' },
+            { symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joie, harmonie, perfection', detail: 'Le bonheur authentique, alignement avec son vrai moi.' },
+            { symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Grêle, destruction, transformation forcée', detail: 'Changement soudain et nécessaire, destruction qui précède la renaissance.' },
+            { symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Besoin, nécessité, contrainte', detail: 'Les épreuves qui forgent le caractère, résistance et résilience.' },
+            { symbol: 'ᛁ', name: 'Isa', meaning: 'Glace, stagnation, concentration', detail: 'L\'immobilité qui permet la contemplation, patience forcée.' },
+            { symbol: 'ᛃ', name: 'Jera', meaning: 'Année, récolte, cycle naturel', detail: 'Les fruits du travail patient, récompense méritée.' },
+            { symbol: 'ᛇ', name: 'Eihwaz', meaning: 'If, endurance, mort et renaissance', detail: 'L\'arbre sacré de vie et de mort, connexion entre les mondes.' },
+            { symbol: 'ᛈ', name: 'Perthro', meaning: 'Coupe à dés, mystère, destin', detail: 'Les secrets cachés, ce qui est encore non-révélé.' },
+            { symbol: 'ᛉ', name: 'Algiz', meaning: 'Élan, protection, connexion divine', detail: 'Les cornes protectrices, antenne vers le divin.' },
+            { symbol: 'ᛋ', name: 'Sowilo', meaning: 'Soleil, succès, vitalité', detail: 'L\'énergie solaire victorieuse, clarté et guidance.' },
+            { symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Dieu Tyr, justice, honneur, victoire', detail: 'Le guerrier spirituel, sacrifice pour le bien commun.' },
+            { symbol: 'ᛒ', name: 'Berkano', meaning: 'Bouleau, croissance, fertilité', detail: 'Le féminin sacré, naissance et nouveaux commencements.' },
+            { symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Cheval, mouvement, partenariat', detail: 'Le mouvement progressif, coopération harmonieuse.' },
+            { symbol: 'ᛗ', name: 'Mannaz', meaning: 'Humanité, soi, pensée', detail: 'L\'essence humaine, conscience de soi et communauté.' },
+            { symbol: 'ᛚ', name: 'Laguz', meaning: 'Eau, flux, intuition', detail: 'Le pouvoir de l\'eau, émotions et subconscient.' },
+            { symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Dieu Ing, gestation, fertilité', detail: 'Potentiel en développement, conclusion naturelle.' },
+            { symbol: 'ᛞ', name: 'Dagaz', meaning: 'Jour, aube, percée', detail: 'L\'illumination soudaine, transformation radicale.' },
+            { symbol: 'ᛟ', name: 'Othala', meaning: 'Héritage, maison ancestrale, tradition', detail: 'La richesse héritée, connexion aux racines.' }
+        ];
+
+        let currentTirage = [];
+
+        // Générer le sac de runes interactif
+        function generateRuneBag() {
+            const bag = document.getElementById('rune-bag');
+            runes.forEach((rune, index) => {
+                const stone = document.createElement('div');
+                stone.className = 'rune-stone';
+                stone.textContent = rune.symbol;
+                stone.onclick = () => showRuneInfo(index);
+                bag.appendChild(stone);
+            });
+        }
+
+        function showRuneInfo(index) {
+            const rune = runes[index];
+            const infoBox = document.getElementById('selected-rune-info');
+            document.getElementById('selected-rune-name').textContent = rune.name;
+            document.getElementById('selected-rune-symbol').textContent = rune.symbol;
+            document.getElementById('selected-rune-meaning').innerHTML = `
+                <p><strong>Signification principale :</strong> ${rune.meaning}</p>
+                <p style="margin-top: 15px;"><strong>Détails :</strong> ${rune.detail}</p>
+            `;
+            infoBox.style.display = 'block';
+            infoBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function drawDailyRune() {
+            const randomIndex = Math.floor(Math.random() * runes.length);
+            const rune = runes[randomIndex];
+            const runePos = document.getElementById('daily-rune');
+            const interpretation = document.getElementById('daily-interpretation');
+            const meaning = document.getElementById('daily-meaning');
+
+            runePos.classList.add('revealed');
+            runePos.querySelector('.rune-symbol').textContent = rune.symbol;
+            runePos.querySelector('.position-label').textContent = rune.name;
+
+            meaning.innerHTML = `
+                <h3 style="color: #4a148c; font-size: 1.8em; margin-bottom: 15px;">${rune.symbol} ${rune.name}</h3>
+                <p style="font-size: 1.2em; line-height: 1.8;"><strong>Énergie du jour :</strong> ${rune.meaning}</p>
+                <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">${rune.detail}</p>
+                <p style="margin-top: 20px; font-style: italic; color: #666;">Méditez sur cette rune aujourd'hui et observez comment son énergie se manifeste dans votre vie.</p>
+            `;
+            interpretation.style.display = 'block';
+        }
+
+        function drawNorns() {
+            currentTirage = [];
+            for (let i = 0; i < 3; i++) {
+                let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * runes.length);
+                } while (currentTirage.includes(randomIndex));
+                currentTirage.push(randomIndex);
+            }
+            document.getElementById('norns-interpretation').style.display = 'none';
+        }
+
+        function revealNorn(position) {
+            if (currentTirage.length === 0) {
+                drawNorns();
+            }
+
+            const rune = runes[currentTirage[position - 1]];
+            const runePos = document.getElementById('norn' + position);
+            runePos.classList.add('revealed');
+            runePos.querySelector('.rune-symbol').textContent = rune.symbol;
+
+            // Check if all three are revealed
+            if (document.querySelectorAll('#norn1.revealed, #norn2.revealed, #norn3.revealed').length === 3) {
+                showNornsInterpretation();
+            }
+        }
+
+        function showNornsInterpretation() {
+            const question = document.getElementById('norns-question').value || 'Votre question';
+            const meaning = document.getElementById('norns-meaning');
+            const interpretation = document.getElementById('norns-interpretation');
+
+            const rune1 = runes[currentTirage[0]];
+            const rune2 = runes[currentTirage[1]];
+            const rune3 = runes[currentTirage[2]];
+
+            meaning.innerHTML = `
+                <h3 style="color: #4a148c; margin-bottom: 20px;">Question : ${question}</h3>
+
+                <div style="margin: 20px 0; padding: 20px; background: white; border-radius: 10px;">
+                    <h4 style="color: #2196F3;">🌙 Urðr (Passé) : ${rune1.symbol} ${rune1.name}</h4>
+                    <p style="line-height: 1.8;">${rune1.detail}</p>
+                    <p style="margin-top: 10px; font-style: italic;">Ce qui vous a amené ici, les influences passées qui façonnent la situation actuelle.</p>
+                </div>
+
+                <div style="margin: 20px 0; padding: 20px; background: white; border-radius: 10px;">
+                    <h4 style="color: #4CAF50;">⚡ Verðandi (Présent) : ${rune2.symbol} ${rune2.name}</h4>
+                    <p style="line-height: 1.8;">${rune2.detail}</p>
+                    <p style="margin-top: 10px; font-style: italic;">L'énergie actuelle, ce qui SE PASSE maintenant, votre situation présente.</p>
+                </div>
+
+                <div style="margin: 20px 0; padding: 20px; background: white; border-radius: 10px;">
+                    <h4 style="color: #ff9800;">🌅 Skuld (Futur) : ${rune3.symbol} ${rune3.name}</h4>
+                    <p style="line-height: 1.8;">${rune3.detail}</p>
+                    <p style="margin-top: 10px; font-style: italic;">Ce qui se développe, le résultat probable si vous maintenez votre direction actuelle.</p>
+                </div>
+
+                <div style="margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-radius: 10px;">
+                    <h4 style="color: #4a148c;">🔮 Synthèse Globale</h4>
+                    <p style="line-height: 1.8;">
+                        Votre passé (${rune1.name}) a créé les fondations de votre présent (${rune2.name}),
+                        qui vous guide vers ${rune3.name}. Ensemble, ces trois runes révèlent le fil de votre destin actuel.
+                    </p>
+                </div>
+            `;
+            interpretation.style.display = 'block';
+            interpretation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function drawThor() {
+            currentTirage = [];
+            for (let i = 0; i < 5; i++) {
+                let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * runes.length);
+                } while (currentTirage.includes(randomIndex));
+                currentTirage.push(randomIndex);
+            }
+            document.getElementById('thor-interpretation').style.display = 'none';
+            // Reset visual
+            for (let i = 1; i <= 5; i++) {
+                const pos = document.getElementById('thor' + i);
+                pos.classList.remove('revealed');
+                pos.querySelector('.rune-symbol').textContent = '?';
+            }
+        }
+
+        function revealThor(position) {
+            if (currentTirage.length === 0) {
+                drawThor();
+            }
+
+            const rune = runes[currentTirage[position - 1]];
+            const runePos = document.getElementById('thor' + position);
+            runePos.classList.add('revealed');
+            runePos.querySelector('.rune-symbol').textContent = rune.symbol;
+
+            // Check if all five are revealed
+            if (document.querySelectorAll('[id^="thor"].revealed').length === 5) {
+                showThorInterpretation();
+            }
+        }
+
+        function showThorInterpretation() {
+            const question = document.getElementById('thor-question').value || 'Votre question';
+            const meaning = document.getElementById('thor-meaning');
+            const interpretation = document.getElementById('thor-interpretation');
+
+            const labels = ['Défis', 'Passé', 'Situation', 'Futur', 'Conseil'];
+            let html = `<h3 style="color: #4a148c; margin-bottom: 20px;">Question : ${question}</h3>`;
+
+            for (let i = 0; i < 5; i++) {
+                const rune = runes[currentTirage[i]];
+                const colors = ['#f44336', '#2196F3', '#4CAF50', '#ff9800', '#9c27b0'];
+                html += `
+                    <div style="margin: 20px 0; padding: 20px; background: white; border-radius: 10px; border-left: 5px solid ${colors[i]};">
+                        <h4 style="color: ${colors[i]};">${labels[i]} : ${rune.symbol} ${rune.name}</h4>
+                        <p style="line-height: 1.8; margin-top: 10px;">${rune.detail}</p>
+                    </div>
+                `;
+            }
+
+            meaning.innerHTML = html;
+            interpretation.style.display = 'block';
+            interpretation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            generateRuneBag();
+        });
+    </script>
+</body>
+</html>

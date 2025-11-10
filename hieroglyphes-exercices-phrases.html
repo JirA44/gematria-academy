@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Exercices de Phrases Hiéroglyphiques | Académie Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #c49c62 0%, #8b6f47 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b6f47;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #8b6f47;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #c49c62;
+            transform: translateY(-3px);
+        }
+
+        .exercise-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f9f6f0 0%, #fff 100%);
+            border-radius: 15px;
+            border: 3px solid #c49c62;
+        }
+
+        .exercise-section h2 {
+            color: #8b6f47;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #c49c62;
+            padding-bottom: 10px;
+        }
+
+        .phrase-card {
+            background: white;
+            border: 2px solid #c49c62;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hieroglyph-phrase {
+            font-size: 3em;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f9f6f0, #e8dcc8);
+            border-radius: 10px;
+            margin: 20px 0;
+            letter-spacing: 10px;
+            color: #8b6f47;
+            border: 2px dashed #c49c62;
+        }
+
+        .translation-box {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .word-by-word {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .word-card {
+            background: white;
+            border: 2px solid #c49c62;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .word-hieroglyph {
+            font-size: 2.5em;
+            color: #8b6f47;
+            margin-bottom: 10px;
+        }
+
+        .word-meaning {
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 5px 0;
+        }
+
+        .phonetic {
+            color: #2196F3;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .cultural-note {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+            margin: 20px 0;
+        }
+
+        .cultural-note h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .interactive-quiz {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #4CAF50;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: #4CAF50;
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        .quiz-option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #c62828;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            border: 2px solid #4CAF50;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            border: 2px solid #f44336;
+            color: #c62828;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-easy {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .difficulty-medium {
+            background: #ff9800;
+            color: white;
+        }
+
+        .difficulty-hard {
+            background: #f44336;
+            color: white;
+        }
+
+        .practice-area {
+            background: white;
+            border: 3px dashed #c49c62;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 150px;
+            text-align: center;
+        }
+
+        .hint-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .hint-button:hover {
+            background: #1976D2;
+            transform: scale(1.05);
+        }
+
+        .hint-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #2196F3;
+            display: none;
+        }
+
+        .hint-box.show {
+            display: block;
+        }
+
+        .score-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.95);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .hieroglyph-phrase {
+                font-size: 2em;
+                letter-spacing: 5px;
+            }
+
+            .score-tracker {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="score-tracker" id="scoreTracker">
+        🏆 Score: <span id="score">0</span> / <span id="total">0</span>
+    </div>
+
+    <div class="container">
+        <h1>𓂀 Exercices de Phrases Hiéroglyphiques</h1>
+        <p class="subtitle">Apprenez à lire et comprendre des phrases complètes en hiéroglyphes égyptiens</p>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">⬅ Retour Accueil</a>
+            <a href="hieroglyphes-debutant.html" class="nav-btn">📚 Réviser les bases</a>
+            <a href="hieroglyphes-contexte-culturel.html" class="nav-btn">🏛 Contexte culturel</a>
+        </div>
+
+        <!-- EXERCICE 1: Phrases Simples -->
+        <div class="exercise-section">
+            <h2>📝 Niveau 1 : Phrases Simples de Salutation</h2>
+            <span class="difficulty-badge difficulty-easy">✨ Facile</span>
+
+            <div class="phrase-card">
+                <h3>Phrase 1 : La salutation royale</h3>
+                <div class="hieroglyph-phrase">
+                    𓇋 𓈖 𓊪 𓎛 𓂋 𓂝 𓇳
+                </div>
+
+                <div class="word-by-word">
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓇋</div>
+                        <div class="word-meaning">i (salut)</div>
+                        <div class="phonetic">/i/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓈖 𓊪</div>
+                        <div class="word-meaning">en (à)</div>
+                        <div class="phonetic">/en/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓎛 𓂋</div>
+                        <div class="word-meaning">ḥr (visage/face)</div>
+                        <div class="phonetic">/ḥer/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓂝</div>
+                        <div class="word-meaning">k (toi)</div>
+                        <div class="phonetic">/k/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓇳</div>
+                        <div class="word-meaning">Râ (dieu soleil)</div>
+                        <div class="phonetic">/Rā/</div>
+                    </div>
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Traduction littérale :</strong> "Salut à toi, Râ"<br>
+                    <strong>🗣 Traduction moderne :</strong> "Salutations au dieu Râ"
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Note Culturelle</h3>
+                    <p>Cette formule était couramment utilisée dans les temples solaires pour honorer Râ, le dieu du soleil. Les prêtres récitaient cette salutation à l'aube, lors de la "renaissance" quotidienne du soleil.</p>
+                </div>
+
+                <div class="interactive-quiz">
+                    <h3>🧠 Quiz de Compréhension</h3>
+                    <p>Quel dieu est mentionné dans cette phrase ?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'Osiris')">
+                            A) Osiris - Dieu de l'au-delà
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'Râ')">
+                            B) Râ - Dieu du soleil
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'Anubis')">
+                            C) Anubis - Dieu de la momification
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'Thot')">
+                            D) Thot - Dieu de la sagesse
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback1"></div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>Phrase 2 : L'offrande au temple</h3>
+                <div class="hieroglyph-phrase">
+                    𓂞 𓏏 𓊪 𓏏 𓈖 𓊹 𓏤
+                </div>
+
+                <div class="word-by-word">
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓂞 𓏏 𓊪</div>
+                        <div class="word-meaning">ḥtp (offrande)</div>
+                        <div class="phonetic">/ḥetep/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓏏</div>
+                        <div class="word-meaning">t (pain)</div>
+                        <div class="phonetic">/t/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓈖</div>
+                        <div class="word-meaning">n (pour)</div>
+                        <div class="phonetic">/n/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓊹</div>
+                        <div class="word-meaning">nṯr (dieu)</div>
+                        <div class="phonetic">/netjer/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓏤</div>
+                        <div class="word-meaning">(mille)</div>
+                        <div class="phonetic">/ḫā/</div>
+                    </div>
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Traduction littérale :</strong> "Offrande de mille pains pour le dieu"<br>
+                    <strong>🗣 Traduction moderne :</strong> "Une offrande de mille pains au dieu"
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Note Culturelle</h3>
+                    <p>La formule "ḥtp-dỉ-nsw" (offrande que donne le roi) était l'une des plus communes dans les tombes égyptiennes. Elle garantissait que le défunt recevrait éternellement de la nourriture dans l'au-delà. Le nombre "mille" symbolisait l'abondance infinie.</p>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint('hint2')">💡 Besoin d'aide ?</button>
+                <div class="hint-box" id="hint2">
+                    <strong>Astuce :</strong> Le symbole 𓂞 représente une table d'offrande vue de dessus. C'est le déterminatif du mot "ḥtp" qui signifie "être satisfait, en paix" et par extension "offrande".
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCICE 2: Phrases de la vie quotidienne -->
+        <div class="exercise-section">
+            <h2>🏠 Niveau 2 : Vie Quotidienne</h2>
+            <span class="difficulty-badge difficulty-medium">🔥 Intermédiaire</span>
+
+            <div class="phrase-card">
+                <h3>Phrase 3 : Construction d'une maison</h3>
+                <div class="hieroglyph-phrase">
+                    𓂋 𓏇 𓊃 𓇏 𓊪 𓂋
+                </div>
+
+                <div class="word-by-word">
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓂋 𓏇</div>
+                        <div class="word-meaning">rꜥ (soleil/jour)</div>
+                        <div class="phonetic">/ra/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓊃 𓇏</div>
+                        <div class="word-meaning">sw (il)</div>
+                        <div class="phonetic">/su/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓊪 𓂋</div>
+                        <div class="word-meaning">pr (maison)</div>
+                        <div class="phonetic">/per/</div>
+                    </div>
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Traduction :</strong> "Le jour où il construit une maison"
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Note Culturelle</h3>
+                    <p>Les maisons égyptiennes étaient construites en briques de boue séchée au soleil. Le mot "pr" (maison) a donné le mot "Pharaon" (pr-ꜥꜣ = grande maison), désignant initialement le palais royal puis le roi lui-même.</p>
+                </div>
+
+                <div class="interactive-quiz">
+                    <h3>🧠 Quiz : Identifiez le mot</h3>
+                    <p>Quel hiéroglyphe signifie "maison" dans cette phrase ?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 3, '𓂋 𓏇')">
+                            A) 𓂋 𓏇
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true, 3, '𓊪 𓂋')">
+                            B) 𓊪 𓂋
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 3, '𓊃 𓇏')">
+                            C) 𓊃 𓇏
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback3"></div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>Phrase 4 : Navigation sur le Nil</h3>
+                <div class="hieroglyph-phrase">
+                    𓂧 𓊪 𓂷 𓇋 𓅓 𓎔 𓏏 𓏤
+                </div>
+
+                <div class="word-by-word">
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓂧 𓊪</div>
+                        <div class="word-meaning">ḏp (bateau)</div>
+                        <div class="phonetic">/djep/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓂷</div>
+                        <div class="word-meaning">ỉm (dans)</div>
+                        <div class="phonetic">/im/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓇋 𓏏 𓏤</div>
+                        <div class="word-meaning">ỉtrw (fleuve)</div>
+                        <div class="phonetic">/iteru/</div>
+                    </div>
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Traduction :</strong> "Le bateau sur le fleuve"<br>
+                    <strong>🌊 Contexte :</strong> Le Nil était l'autoroute de l'Égypte antique !
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Note Culturelle</h3>
+                    <p>Le Nil (ỉtrw en égyptien ancien) était l'artère vitale de l'Égypte. Les bateaux voguaient vers le sud en utilisant le vent, et descendaient vers le nord en suivant le courant. Cette dualité se reflète dans les hiéroglyphes avec des bateaux ayant leurs voiles déployées ou repliées selon la direction.</p>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint('hint4')">💡 Indice sur les bateaux</button>
+                <div class="hint-box" id="hint4">
+                    <strong>Saviez-vous ?</strong> Les Égyptiens avaient plusieurs mots pour "bateau" selon le type : 𓂧𓊪 (ḏp) pour les barques, 𓊃𓎡𓂧𓊛 (skd) pour les navires de guerre, et 𓊃𓏇𓈖𓉐 (šmꜥ) pour les bateaux funéraires sacrés.
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCICE 3: Phrases royales et religieuses -->
+        <div class="exercise-section">
+            <h2>👑 Niveau 3 : Phrases Royales et Religieuses</h2>
+            <span class="difficulty-badge difficulty-hard">⚡ Avancé</span>
+
+            <div class="phrase-card">
+                <h3>Phrase 5 : Cartouche royal de Toutânkhamon</h3>
+                <div class="hieroglyph-phrase">
+                    𓇳 𓏠 𓈖 𓐍 𓏏 𓆇 𓇌
+                </div>
+
+                <div class="word-by-word">
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓇳</div>
+                        <div class="word-meaning">twt (image)</div>
+                        <div class="phonetic">/tut/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓏠 𓈖</div>
+                        <div class="word-meaning">ꜥnḫ (vivant)</div>
+                        <div class="phonetic">/ankh/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓐍</div>
+                        <div class="word-meaning">ỉmn (Amon)</div>
+                        <div class="phonetic">/Amon/</div>
+                    </div>
+                    <div class="word-card">
+                        <div class="word-hieroglyph">𓇌</div>
+                        <div class="word-meaning">ḥḳꜣ (souverain)</div>
+                        <div class="phonetic">/heqa/</div>
+                    </div>
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Traduction :</strong> "Toutânkhamon, image vivante d'Amon, souverain"<br>
+                    <strong>👑 Nom complet :</strong> "Image vivante d'Amon, prince d'Héliopolis"
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Note Historique Importante</h3>
+                    <p><strong>Le jeune pharaon :</strong> Toutânkhamon (né Toutânkhaton) monta sur le trône vers l'âge de 9 ans et régna jusqu'à sa mort mystérieuse à 19 ans. Son nom signifie littéralement "Image vivante d'Amon".</p>
+                    <p><strong>Changement religieux :</strong> À son accession, il changea son nom de Toutânkhaton (en l'honneur d'Aton, le disque solaire promu par Akhenaton) en Toutânkhamon, restaurant ainsi le culte d'Amon après la période amarnienne.</p>
+                    <p><strong>Le cartouche :</strong> L'ovale qui entoure le nom royal (𓍹...𓍺) symbolise "tout ce que le soleil encercle" - l'univers entier sous l'autorité du pharaon.</p>
+                </div>
+
+                <div class="interactive-quiz">
+                    <h3>🧠 Quiz Expert</h3>
+                    <p>Pourquoi Toutânkhamon a-t-il changé son nom ?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'guerre')">
+                            A) Pour commémorer une victoire militaire
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'religion')">
+                            B) Pour restaurer le culte du dieu Amon après la réforme d'Akhenaton
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'mariage')">
+                            C) Lors de son mariage avec Ankhesenamon
+                        </div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'majeur')">
+                            D) Quand il atteignit sa majorité à 16 ans
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback5"></div>
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>Phrase 6 : Formule du Livre des Morts</h3>
+                <div class="hieroglyph-phrase">
+                    𓇋 𓈖 𓂓 𓏤 𓂋 𓏲 𓐍 𓏏 𓊖
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Formule de protection :</strong> "Je suis pur, ma pureté est la pureté du grand phénix"<br>
+                    <strong>🔮 Contexte :</strong> Extrait du chapitre 125 du Livre des Morts (Pesée du cœur)
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Le Jugement d'Osiris</h3>
+                    <p><strong>La pesée du cœur :</strong> Cette scène cruciale du Livre des Morts montre le défunt devant le tribunal d'Osiris. Son cœur (𓇋𓃀) est pesé sur une balance contre la plume de Maât (𓐢), symbole de vérité et justice.</p>
+                    <p><strong>Les 42 déclarations négatives :</strong> Le défunt devait réciter 42 confessions négatives ("Je n'ai pas tué", "Je n'ai pas volé", etc.) devant les 42 juges divins.</p>
+                    <p><strong>Le phénix (Bénou) :</strong> Oiseau sacré symbole de renaissance et de pureté, associé au dieu Râ et à la ville d'Héliopolis.</p>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint('hint6')">📖 En savoir plus sur le Livre des Morts</button>
+                <div class="hint-box" id="hint6">
+                    <strong>Le Livre des Morts :</strong> En réalité appelé "Livre pour sortir au jour" (𓅱𓂋𓏏 𓅓 𓉔𓂋𓅱), c'était un recueil de formules magiques et d'instructions pour naviguer dans l'au-delà. Chaque formule (environ 200 au total) avait un usage spécifique : protection contre les serpents, transformation en différentes créatures, accès aux champs d'Ialou (paradis égyptien), etc.
+                </div>
+            </div>
+
+            <div class="phrase-card">
+                <h3>Phrase 7 : Inscription royale monumentale</h3>
+                <div class="hieroglyph-phrase">
+                    𓊹 𓅓 𓋴 𓅱 𓈖 𓊃 𓅱 𓏏 𓏤 𓏏 𓎔 𓏏 𓏤
+                </div>
+
+                <div class="translation-box">
+                    <strong>📖 Traduction :</strong> "Le dieu parfait, seigneur des Deux Terres"<br>
+                    <strong>👑 Titre pharaonique :</strong> Un des cinq noms du protocole royal complet
+                </div>
+
+                <div class="cultural-note">
+                    <h3>📜 Les Cinq Noms du Pharaon</h3>
+                    <p>Chaque pharaon possédait cinq noms officiels (titulature royale) :</p>
+                    <ol>
+                        <li><strong>Nom d'Horus (𓅃)</strong> : Le pharaon en tant qu'incarnation du dieu faucon</li>
+                        <li><strong>Nom de Nebty (𓆓)</strong> : "Les Deux Dames" (Nekhbet et Ouadjet, déesses protectrices de Haute et Basse-Égypte)</li>
+                        <li><strong>Nom d'Horus d'or (𓅉)</strong> : Symbolisant l'aspect divin et éternel</li>
+                        <li><strong>Nom de Nesout-bity (𓇳)</strong> : "Celui du jonc et de l'abeille" (Roi de Haute et Basse-Égypte)</li>
+                        <li><strong>Nom de Sa-Râ (𓅭)</strong> : "Fils de Râ" (nom de naissance dans un cartouche)</li>
+                    </ol>
+                    <p>Les titres "Seigneur des Deux Terres" (𓎟𓏏𓏤𓏏𓎔𓏏𓏤) et "Dieu parfait" (𓊹𓅓𓋴𓅱) rappelaient constamment le rôle unificateur et divin du pharaon.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCICE 4: Pratique libre -->
+        <div class="exercise-section">
+            <h2>✍️ Zone de Pratique Libre</h2>
+            <p>Utilisez cette zone pour pratiquer l'écriture de vos propres phrases en hiéroglyphes !</p>
+
+            <div class="practice-area" contenteditable="true" id="practiceArea">
+                Cliquez ici pour commencer à écrire en hiéroglyphes...
+                <br><br>
+                💡 Astuce : Copiez-collez les hiéroglyphes des exercices ci-dessus pour créer vos propres phrases !
+            </div>
+
+            <div class="cultural-note">
+                <h3>🎯 Suggestions d'exercices :</h3>
+                <ol>
+                    <li>Essayez d'écrire votre nom en utilisant les phonèmes hiéroglyphiques</li>
+                    <li>Créez une simple salutation aux dieux</li>
+                    <li>Composez une offrande pour un temple</li>
+                    <li>Décrivez un voyage sur le Nil</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Résumé des apprentissages -->
+        <div class="exercise-section" style="background: linear-gradient(135deg, #c8e6c9, #a5d6a7);">
+            <h2>🎓 Résumé de vos Apprentissages</h2>
+            <div class="translation-box" style="border-left-color: #4CAF50; background: white;">
+                <h3>✅ Vous avez appris :</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✨ Les salutations aux dieux égyptiens</li>
+                    <li>🏛 Les formules d'offrande des temples</li>
+                    <li>🏠 Le vocabulaire de la vie quotidienne</li>
+                    <li>🚤 La navigation sur le Nil</li>
+                    <li>👑 Les cartouches royaux et la titulature</li>
+                    <li>📖 Les formules du Livre des Morts</li>
+                    <li>⚖️ Le jugement d'Osiris et la pesée du cœur</li>
+                    <li>🔮 Les symboles religieux et leur signification</li>
+                </ul>
+            </div>
+
+            <div class="cultural-note" style="border-left-color: #2196F3; background: #e3f2fd;">
+                <h3>📚 Pour aller plus loin :</h3>
+                <ul>
+                    <li><a href="hieroglyphes-intermediaire.html" style="color: #1976D2; font-weight: bold;">→ Niveau Intermédiaire : Grammaire et syntaxe</a></li>
+                    <li><a href="hieroglyphes-contexte-culturel.html" style="color: #1976D2; font-weight: bold;">→ Contexte culturel : La vie dans l'Égypte antique</a></li>
+                    <li><a href="hieroglyphes-immersion-temples.html" style="color: #1976D2; font-weight: bold;">→ Immersion : Inscriptions des temples</a></li>
+                    <li><a href="hieroglyphes-expert.html" style="color: #1976D2; font-weight: bold;">→ Niveau Expert : Textes complexes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let totalQuestions = 0;
+
+        function checkAnswer(element, isCorrect, questionId, answerText) {
+            const feedback = document.getElementById('feedback' + questionId);
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+
+            // Désactiver tous les boutons
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+
+            // Incrémenter le total
+            if (!feedback.classList.contains('show')) {
+                totalQuestions++;
+            }
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = '✅ <strong>Excellent !</strong> C\'est la bonne réponse. ' + getExtraInfo(questionId);
+                if (!feedback.dataset.counted) {
+                    score++;
+                    feedback.dataset.counted = 'true';
+                }
+            } else {
+                element.classList.add('incorrect');
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = '❌ <strong>Pas tout à fait...</strong> ' + getCorrectAnswer(questionId);
+            }
+
+            updateScore();
+
+            // Scroll vers le feedback
+            feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function getExtraInfo(questionId) {
+            const extras = {
+                1: 'Râ (𓇳) était le dieu suprême dans la mythologie égyptienne, créateur du monde et souverain des dieux.',
+                3: 'Le hiéroglyphe 𓊪 représente un plan de maison vu du dessus, avec une ouverture pour la porte.',
+                5: 'Le jeune pharaon a restauré les anciens cultes après la période monothéiste d\'Akhenaton.'
+            };
+            return extras[questionId] || 'Continuez comme ça !';
+        }
+
+        function getCorrectAnswer(questionId) {
+            const answers = {
+                1: 'La bonne réponse est B) Râ - Dieu du soleil. Le hiéroglyphe 𓇳 représente le disque solaire.',
+                3: 'La bonne réponse est B) 𓊪 𓂋 qui se prononce "per" et signifie "maison".',
+                5: 'La bonne réponse est B. Il restaura le culte d\'Amon pour rompre avec la période d\'Akhenaton.'
+            };
+            return answers[questionId] || 'Relisez l\'explication ci-dessus.';
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = totalQuestions;
+        }
+
+        function toggleHint(hintId) {
+            const hint = document.getElementById(hintId);
+            hint.classList.toggle('show');
+        }
+
+        // Animation du score au chargement
+        window.addEventListener('load', () => {
+            updateScore();
+        });
+    </script>
+</body>
+</html>

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏛️ Parcours Glyphes Mayas | Mayan Glyphs Course | Curso Glifos Mayas</title>
-    <link rel="stylesheet" href="force-dark-mode.css">
-    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <link rel="stylesheet" href="force-dark-mode.css">n    <script src="i18n-global.js"></script>n    <button class="lang-toggle">EN</button>
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">n    <script src="i18n-global.js"></script>n    <button class="lang-toggle">EN</button>
     <style>
         * {
             margin: 0;
@@ -333,10 +333,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="lang-button.css">
 </head>
 <body>
-    <button class="lang-toggle">🌐 EN</button>
     <div class="container">
         <div class="header-controls">
             <a href="index_multilingual.html" class="home-btn" data-i18n="nav.home">🏠 Retour Accueil</a>
@@ -474,6 +472,5 @@
 
         document.addEventListener('DOMContentLoaded', populateFeatures);
     </script>
-    <script src="i18n-auto-translate.js"></script>
 </body>
 </html>

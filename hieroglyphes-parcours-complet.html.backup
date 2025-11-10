@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𓂀 Parcours Complet - Apprendre les Hiéroglyphes</title>
-    <link rel="stylesheet" href="force-dark-mode.css">
-    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <link rel="stylesheet" href="force-dark-mode.css">n    <script src="i18n-global.js"></script>n    <button class="lang-toggle">EN</button>
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">n    <script src="i18n-global.js"></script>n    <button class="lang-toggle">EN</button>
     <style>
         * {
             margin: 0;
@@ -246,17 +246,15 @@
             background: #000814;
         }
     </style>
-    <link rel="stylesheet" href="lang-button.css">
 </head>
 <body>
-    <button class="lang-toggle">🌐 EN</button>
     <canvas id="starfield"></canvas>
     <div class="container">
         <h1>𓂀 Parcours Complet d'Apprentissage</h1>
-        <p class="subtitle" data-i18n="hieroglyph_subtitle">Apprenez à déchiffrer les hiéroglyphes comme un véritable égyptologue</p>
+        <p class="subtitle">Apprenez à déchiffrer les hiéroglyphes comme un véritable égyptologue</p>
 
         <div class="hero-box">
-            <h2 data-i18n="hieroglyph_welcome">🎯 Objectif Final</h2>
+            <h2>🎯 Objectif Final</h2>
             <p>
                 À la fin de ce parcours, vous serez capable de <strong>déchiffrer par vous-même un nouveau texte hiéroglyphique</strong> sans aide extérieure.
             </p>
@@ -545,6 +543,5 @@
         setTimeout(() => createShootingStar(), 1000);
         setTimeout(() => createShootingStar(), 3000);
     </script>
-    <script src="i18n-auto-translate.js"></script>
 </body>
 </html>
