@@ -3,910 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary Meta Tags -->
-    <title>🔮 Académie des Sagesses Ésotériques - Runes, Gématrie, Hiéroglyphes</title>
-    <meta name="title" content="Académie des Sagesses Ésotériques - Gematria Academy">
-    <meta name="description" content="Plateforme d'apprentissage complète des sagesses anciennes : Runes Nordiques, Gématrie Hébraïque, Hiéroglyphes Égyptiens, Glyphes Mayas. Plus de 500 leçons interactives avec système de validation des connaissances.">
-    <meta name="keywords" content="runes nordiques, gématrie hébraïque, hiéroglyphes égyptiens, glyphes mayas, kabbale, ésotérisme, sagesses anciennes, apprentissage en ligne, cours ésotériques, futhark, aleph-bet, méditation, mandalas, chakras">
-    <meta name="author" content="Gematria Academy">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="French">
-    <meta name="revisit-after" content="7 days">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://master.gematria-academy.pages.dev/">
-    <meta property="og:title" content="🔮 Académie des Sagesses Ésotériques - Gematria Academy">
-    <meta property="og:description" content="Découvrez les secrets ancestraux : Runes, Gématrie, Hiéroglyphes, Glyphes Mayas. Plus de 500 leçons interactives pour maîtriser les sagesses anciennes.">
-    <meta property="og:image" content="https://master.gematria-academy.pages.dev/assets/images/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Gematria Academy">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://master.gematria-academy.pages.dev/">
-    <meta property="twitter:title" content="🔮 Académie des Sagesses Ésotériques">
-    <meta property="twitter:description" content="Maîtrisez les runes nordiques, la gématrie hébraïque, les hiéroglyphes égyptiens et les glyphes mayas avec plus de 500 leçons interactives.">
-    <meta property="twitter:image" content="https://master.gematria-academy.pages.dev/assets/images/og-image.jpg">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://master.gematria-academy.pages.dev/">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#8a2be2">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Gematria Academy">
-
-    <!-- Preconnect to external domains for better performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-
-    <!-- CSS - Fixed paths to assets folder (note: files don't exist yet, will need to be created) -->
-    <link rel="stylesheet" href="assets/css/main/style.css">
-    <link rel="stylesheet" href="assets/css/main/fix-contrast.css">
-    <link rel="stylesheet" href="assets/css/animations/animated-background.css">
-    <link rel="stylesheet" href="assets/css/animations/bleus-cosmiques.css">
-    <link rel="stylesheet" href="assets/css/main/cosmic-header-styles.css">
-
-    <!-- JavaScript - Fixed paths to assets folder -->
-    <script src="assets/js/animations/animated-background.js" defer></script>
-    <script type="module" src="assets/js/auth/firebase-config.js"></script>
-    <script src="assets/js/auth/auth-system.js" defer></script>
-    <script src="assets/js/progression/progression-system.js" defer></script>
-    <script src="assets/js/progression/user-progression-cloud.js" defer></script>
-
-    <!-- Service Worker Registration -->
-    <script>
-        // Enregistrer le Service Worker pour PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('✅ Service Worker enregistré avec succès:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('❌ Échec de l\'enregistrement du Service Worker:', error);
-                    });
-            });
+    <title>🔮 Gematria Academy - Portail Principal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
 
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Gematria Academy - Académie des Sagesses Ésotériques",
-        "description": "Plateforme d'apprentissage des sagesses anciennes : Runes Nordiques, Gématrie Hébraïque, Hiéroglyphes Égyptiens, Glyphes Mayas",
-        "url": "https://master.gematria-academy.pages.dev/",
-        "logo": "https://master.gematria-academy.pages.dev/assets/icons/icon-512x512.png",
-        "sameAs": [],
-        "offers": {
-            "@type": "Offer",
-            "category": "Education",
-            "availability": "https://schema.org/InStock",
-            "price": "0",
-            "priceCurrency": "EUR"
-        },
-        "educationalLevel": "Beginner, Intermediate, Expert",
-        "teaches": [
-            "Runes Nordiques",
-            "Gématrie Hébraïque",
-            "Hiéroglyphes Égyptiens",
-            "Glyphes Mayas",
-            "Kabbale",
-            "Méditation",
-            "Logique"
-        ]
-    }
-    </script>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            opacity: 0.7;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .portals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .portal-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .portal-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .portal-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f59e0b;
+        }
+
+        .portal-description {
+            font-size: 1.1em;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .portal-stats {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .stat-badge {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+
+        .portal-card.main {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 2px solid #8b5cf6;
+        }
+
+        .portal-card.main:hover {
+            box-shadow: 0 30px 80px rgba(139, 92, 246, 0.6);
+        }
+
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(245, 158, 11, 0.4) 0%, transparent 50%);
+        }
+
+        .version-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .portals {
+                grid-template-columns: 1fr;
+            }
+            .portal-card.main {
+                grid-column: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <script>
-        // Appliquer le mode nuit immédiatement pour éviter le flash
-        (function() {
-            const darkModePref = localStorage.getItem('darkMode');
-            if (darkModePref === null || darkModePref === 'true') {
-                document.body.classList.add('dark-mode');
-            }
-        })();
-    </script>
-    <!-- Skip to main content link for keyboard navigation -->
-    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+    <div class="cosmic-bg"></div>
 
-    <header role="banner">
-        <!-- Boutons en haut à droite - Design cosmique -->
-        <div class="header-buttons-cosmic" role="group" aria-label="Commandes principales">
-            <button class="cosmic-btn cosmic-btn-dark"
-                    onclick="toggleDarkMode()"
-                    aria-label="Basculer entre le mode jour et nuit"
-                    aria-pressed="true">
-                <span class="btn-icon" aria-hidden="true">🌙</span>
-                <span class="btn-text">Mode Nuit</span>
-            </button>
-            <button class="cosmic-btn cosmic-btn-lang"
-                    onclick="toggleLanguage()"
-                    aria-label="Changer la langue en anglais"
-                    aria-pressed="false">
-                <span class="btn-icon" aria-hidden="true">🌐</span>
-                <span class="btn-text">EN</span>
-            </button>
+    <div class="container">
+        <header>
+            <h1>🔮 GEMATRIA ACADEMY</h1>
+            <div class="subtitle">Portail d'Accès aux Systèmes d'Écriture Sacrés</div>
+            <p class="description">
+                Explorez les trois principaux systèmes d'écriture sacrés de l'humanité :
+                les glyphes mayas de Mésoamérique, les runes nordiques des peuples germaniques,
+                et les hiéroglyphes de l'Égypte ancienne.
+            </p>
+        </header>
 
-            <!-- Boutons User (dynamique selon connexion) -->
-            <button id="login-button"
-                    class="cosmic-btn cosmic-btn-login"
-                    onclick="window.location.href='pages/user/login.html'"
-                    style="display: none;"
-                    aria-label="Se connecter à votre compte">
-                <span class="btn-icon" aria-hidden="true">🔐</span>
-                <span class="btn-text">Connexion</span>
-            </button>
-            <button id="profile-button"
-                    class="cosmic-btn cosmic-btn-profile"
-                    onclick="window.location.href='pages/user/profile.html'"
-                    style="display: none;"
-                    aria-label="Accéder à votre profil">
-                <span class="btn-icon" aria-hidden="true">👤</span>
-                <span class="btn-text" id="user-name">Mon Profil</span>
-            </button>
+        <div class="portals">
+            <!-- Portail Académie Principale -->
+            <a href="index_standard.html" class="portal-card main">
+                <span class="portal-icon">🏛️</span>
+                <div class="portal-title">Académie Principale</div>
+                <div class="portal-description">
+                    Accédez à l'académie principale avec TOUS les systèmes : Runes, Gematria, Hiéroglyphes, Glyphes Mayas, Chakras, Mandalas, Logique et Raisonnements.
+                    Parcours progressifs et outils interactifs.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">📿 Runes Nordiques</span>
+                    <span class="stat-badge">🔯 Gematria Hébraïque</span>
+                    <span class="stat-badge">𓂀 Hiéroglyphes</span>
+                    <span class="stat-badge">🌞 Glyphes Mayas</span>
+                    <span class="stat-badge">🧘 Chakras</span>
+                    <span class="stat-badge">🎨 Mandalas</span>
+                    <span class="stat-badge">🧠 Logique</span>
+                    <span class="stat-badge">💭 Raisonnements</span>
+                </div>
+            </a>
 
-            <!-- Lien vers version enrichie -->
-            <button class="cosmic-btn cosmic-btn-enriched"
-                    onclick="window.location.href='index_mega_enriched.html'"
-                    aria-label="Accéder à la version enrichie avec 800+ glyphes"
-                    style="background: linear-gradient(135deg, #f59e0b, #d97706); border: 2px solid #fbbf24;">
-                <span class="btn-icon" aria-hidden="true">✨</span>
-                <span class="btn-text">Version Enrichie</span>
-            </button>
+            <!-- Version Ultra-Enrichie -->
+            <a href="index_mega_enriched.html" class="portal-card" style="border-color: #8b5cf6; grid-column: 1 / -1; background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));">
+                <span class="portal-icon">✨</span>
+                <div class="portal-title">Version Ultra-Enrichie (150+ Leçons)</div>
+                <div class="portal-description">
+                    Académie ultra-enrichie dédiée aux 3 systèmes d'écriture sacrés avec contenu massif :
+                    35 leçons Mayas (800+ glyphes), 8 leçons Runes (30+ inscriptions), 40 leçons Hiéroglyphes (1000+ signes).
+                    Textes des Pyramides, Livre des Morts, Codex Mayas, Poèmes Runiques et bien plus !
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">🌞 35 Leçons Mayas</span>
+                    <span class="stat-badge">ᚠ 8 Leçons Runes</span>
+                    <span class="stat-badge">𓂀 40 Leçons Hiéroglyphes</span>
+                    <span class="stat-badge">📚 150+ Leçons Totales</span>
+                    <span class="stat-badge">⏱️ 100+ Heures</span>
+                    <span class="stat-badge">✅ Version 3.0</span>
+                </div>
+            </a>
+
+            <!-- Glyphes Mayas -->
+            <a href="index_mega_enriched.html#maya" class="portal-card" style="border-color: #d97706;">
+                <span class="portal-icon">🌞</span>
+                <div class="portal-title">Glyphes Mayas</div>
+                <div class="portal-description">
+                    Système d'écriture sophistiqué de la civilisation maya.
+                    Maîtrisez 800+ glyphes à travers 35 leçons couvrant les 4 codex,
+                    l'escalier de Copán (2200 glyphes), et la mythologie du Popol Vuh.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">📖 4 Codex Complets</span>
+                    <span class="stat-badge">🗿 2200 Glyphes Copán</span>
+                    <span class="stat-badge">📅 Calendriers Tzolk'in/Haab</span>
+                </div>
+            </a>
+
+            <!-- Runes Nordiques -->
+            <a href="index_mega_enriched.html#runes" class="portal-card" style="border-color: #3b82f6;">
+                <span class="portal-icon">ᚠ</span>
+                <div class="portal-title">Runes Nordiques</div>
+                <div class="portal-description">
+                    Écriture sacrée des peuples germaniques et vikings.
+                    Apprenez les 24 runes de l'Elder Futhark à travers 8 leçons incluant
+                    30+ inscriptions authentiques et la mythologie d'Odin.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">⚡ 3 Aettir Sacrés</span>
+                    <span class="stat-badge">🏺 30+ Inscriptions</span>
+                    <span class="stat-badge">📜 3 Poèmes Runiques</span>
+                </div>
+            </a>
+
+            <!-- Hiéroglyphes Égyptiens -->
+            <a href="index_mega_enriched.html#hieroglyphs" class="portal-card" style="border-color: #dc2626;">
+                <span class="portal-icon">𓂀</span>
+                <div class="portal-title">Hiéroglyphes Égyptiens</div>
+                <div class="portal-description">
+                    3500 ans d'écriture sacrée égyptienne.
+                    Maîtrisez 1000+ signes avec 40 leçons couvrant les Textes des Pyramides,
+                    le Livre des Morts complet, l'hiératique, le démotique et le copte.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">📜 Textes Pyramides</span>
+                    <span class="stat-badge">⚱️ Livre des Morts (190 ch.)</span>
+                    <span class="stat-badge">🗿 Pierre de Rosette</span>
+                    <span class="stat-badge">ⲁ Hiératique/Démotique/Copte</span>
+                </div>
+            </a>
         </div>
 
-        <h1 data-i18n="title">🔮 Académie des Sagesses Anciennes</h1>
-        <p class="subtitle" data-i18n="subtitle">Runes, Gematria, Hiéroglyphes & Glyphes Mayas - Voyage initiatique de la connaissance ésotérique</p>
-    </header>
-
-    <nav role="navigation" aria-label="Navigation principale">
-        <div class="nav-container">
-            <a href="index_production.html" class="active" aria-current="page">Accueil</a>
-            <a href="#runes">Runes</a>
-            <a href="#gematria">Gematria</a>
-            <a href="#hieroglyphes">Hiéroglyphes</a>
-            <a href="#maya">Glyphes Mayas</a>
-            <a href="pages/meditation/chakras.html">Chakras</a>
-            <a href="#mandala">Mandalas</a>
-            <a href="#logique">Logique</a>
-            <a href="pages/logique/types-raisonnement.html">Raisonnements</a>
+        <div class="version-info">
+            <p style="font-size: 1.1em; margin-bottom: 10px;">
+                <strong>📅 Dernière mise à jour :</strong> 13 novembre 2025
+            </p>
+            <p style="font-size: 0.9em; opacity: 0.8;">
+                Version 3.0 - Ultra Enrichie | 500+ Symboles | 200+ Exercices | Interface Interactive
+            </p>
         </div>
-    </nav>
-
-    <main id="main-content" role="main">
-                <div class="fullscreen-hint"
-                     role="note"
-                     aria-label="Astuce d'utilisation"
-                     style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(33, 150, 243, 0.2)); border: 2px solid rgba(76, 175, 80, 0.5); border-radius: 15px; padding: 1rem 2rem; margin-bottom: 2rem; text-align: center; font-size: 1.1rem;">
-            <span aria-hidden="true">💡</span> <strong>Astuce :</strong> Appuyez sur <kbd style="background: rgba(255, 255, 255, 0.1); padding: 0.3rem 0.6rem; border-radius: 5px; border: 1px solid rgba(255, 255, 255, 0.3); font-family: monospace;">F11</kbd> pour profiter du site en plein écran !
-        </div>
-
-<section class="hero" aria-labelledby="hero-title">
-            <h2 id="hero-title">Bienvenue dans votre parcours initiatique</h2>
-            <p>Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.</p>
-        </section>
-
-        <section id="runes" class="section-category" aria-labelledby="runes-title">
-            <h2 id="runes-title"><span aria-hidden="true">📿</span> Les Runes Nordiques</h2>
-            <p class="intro">Les runes sont un ancien système d'écriture utilisé par les peuples germaniques et scandinaves. Maîtrisez l'art sacré du Futhark !</p>
-
-            <!-- NOUVEAU ENCART PARCOURS RUNES -->
-            <div style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(66, 165, 245, 0.2)); border: 3px solid rgba(100, 181, 246, 0.6); border-radius: 20px; padding: 2rem; margin: 2rem 0; text-align: center;">
-                <h3 style="color: #64b5f6; font-size: 2rem; margin-bottom: 1rem;">🎓 NOUVEAU : Parcours Complet d'Apprentissage</h3>
-                <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9;">
-                    Suivez notre méthode progressive en 4 étapes pour maîtriser le Futhark Elder et Younger !
-                </p>
-                <a href="runes-parcours-complet.html" style="display: inline-block; background: linear-gradient(135deg, #64b5f6, #1e88e5); color: white; padding: 1.2rem 3rem; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    🚀 Commencer le Parcours →
-                </a>
-            </div>
-
-            <h3 style="color: #64b5f6; font-size: 1.8rem; margin: 3rem 0 1.5rem 0; text-align: center;">📜 Niveaux Traditionnels</h3>
-            <p class="intro">Chaque rune porte une signification symbolique profonde.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3>🌱 Niveau Débutant</h3>
-                        <span class="badge">Fondations</span>
-                    </div>
-                    <ul>
-                        <li>Introduction au Futhark ancien (24 runes)</li>
-                        <li>Prononciation et tracé de base</li>
-                        <li>Les 8 premières runes du Futhark</li>
-                        <li>Significations élémentaires</li>
-                        <li>Exercices de reconnaissance</li>
-                    </ul>
-                    <a href="pages/runes/runes-debutant.html" class="btn btn-beginner" aria-label="Commencer le niveau débutant des runes nordiques">Commencer →</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3>🌿 Niveau Intermédiaire</h3>
-                        <span class="badge">Approfondissement</span>
-                    </div>
-                    <ul>
-                        <li>Les 24 runes complètes du Futhark</li>
-                        <li>Les trois Aettir (familles de runes)</li>
-                        <li>Symbolisme et mythologie nordique</li>
-                        <li>Combinaisons runiques</li>
-                        <li>Introduction à la divination</li>
-                    </ul>
-                    <a href="runes-intermediaire.html" class="btn btn-intermediate">Continuer →</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3>🌳 Niveau Expert</h3>
-                        <span class="badge">Maîtrise</span>
-                    </div>
-                    <ul>
-                        <li>Magie runique (Galdr & Seidr)</li>
-                        <li>Bind runes et sigils</li>
-                        <li>Interprétations ésotériques avancées</li>
-                        <li>Runes dans l'Edda et les sagas</li>
-                        <li>Pratique divinatoire approfondie</li>
-                    </ul>
-                    <a href="runes-expert.html" class="btn btn-expert">Maîtriser →</a>
-                </div>
-            </div>
-
-            <!-- NOUVELLES SECTIONS ENRICHIES RUNES -->
-            <div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.15), rgba(103, 58, 183, 0.15)); border: 2px solid rgba(156, 39, 176, 0.4); border-radius: 20px; padding: 2.5rem; margin: 3rem 0;">
-                <h3 style="color: #9c27b0; font-size: 2rem; margin-bottom: 2rem; text-align: center;">⚔️ Approfondissement : Mythologie & Pratiques Runiques</h3>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #9c27b0;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">⚔️</div>
-                        <h4 style="color: #4a148c; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Mythologie Nordique</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            Découvrez Yggdrasil, les 9 mondes, le panthéon complet des dieux (Odin, Thor, Freyr...) et le Ragnarök
-                        </p>
-                        <a href="runes-mythologie-nordique.html" style="display: block; background: linear-gradient(135deg, #4a148c, #6a1b9a); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Explorer la Mythologie →
-                        </a>
-                    </div>
-
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #9c27b0;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">🔮</div>
-                        <h4 style="color: #4a148c; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Divination Runique</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            Tirage interactif des runes : Rune du Jour, Les Trois Nornes, Croix de Thor, Lancer de runes
-                        </p>
-                        <a href="runes-divination.html" style="display: block; background: linear-gradient(135deg, #4a148c, #6a1b9a); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Pratiquer la Divination →
-                        </a>
-                    </div>
-
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #9c27b0;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">📚</div>
-                        <h4 style="color: #4a148c; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Ressources Complètes</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            Flashcards interactives, exercices de lecture, alphabet complet, significations symboliques
-                        </p>
-                        <a href="runes-flashcards.html" style="display: block; background: linear-gradient(135deg, #4a148c, #6a1b9a); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Accéder aux Ressources →
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gematria" class="section-category">
-            <h2>✡️ La Gematria Hébraïque</h2>
-            <p class="intro">La gematria est un système numérologique basé sur les lettres hébraïques. Chaque lettre possède une valeur numérique révélant des correspondances mystiques.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3>🌱 Niveau Débutant</h3>
-                        <span class="badge">Fondations</span>
-                    </div>
-                    <ul>
-                        <li>L'alphabet hébreu (Aleph-Bet)</li>
-                        <li>Les 22 lettres et leurs valeurs</li>
-                        <li>Prononciation et écriture</li>
-                        <li>Introduction à la gematria simple</li>
-                        <li>Calculs de base</li>
-                    </ul>
-                    <a href="gematria-debutant.html" class="btn btn-beginner">Commencer →</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3>🌿 Niveau Intermédiaire</h3>
-                        <span class="badge">Approfondissement</span>
-                    </div>
-                    <ul>
-                        <li>Lettres finales et variations</li>
-                        <li>Différents systèmes de gematria</li>
-                        <li>Notarikon et Temurah</li>
-                        <li>Noms divins et leur gematria</li>
-                        <li>Correspondances dans la Torah</li>
-                    </ul>
-                    <a href="gematria-intermediaire.html" class="btn btn-intermediate">Continuer →</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3>🌳 Niveau Expert</h3>
-                        <span class="badge">Maîtrise</span>
-                    </div>
-                    <ul>
-                        <li>Kabbale et Arbre de Vie</li>
-                        <li>Gematria des 72 Noms de Dieu</li>
-                        <li>Analyse de textes sacrés</li>
-                        <li>Correspondances astrologiques</li>
-                        <li>Applications méditatives et mystiques</li>
-                    </ul>
-                    <a href="gematria-expert.html" class="btn btn-expert">Maîtriser →</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="hieroglyphes" class="section-category">
-            <h2>𓂀 Les Hiéroglyphes Égyptiens</h2>
-            <p class="intro">Les hiéroglyphes sont l'écriture sacrée de l'Égypte ancienne. Apprenez à lire et déchiffrer les textes comme un véritable égyptologue !</p>
-
-            <!-- NOUVEAU ENCART PARCOURS -->
-            <div style="background: linear-gradient(135deg, rgba(196, 156, 98, 0.2), rgba(139, 111, 71, 0.2)); border: 3px solid rgba(196, 156, 98, 0.6); border-radius: 20px; padding: 2rem; margin: 2rem 0; text-align: center;">
-                <h3 style="color: #c49c62; font-size: 2rem; margin-bottom: 1rem;">🎓 NOUVEAU : Parcours Complet d'Apprentissage</h3>
-                <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9;">
-                    Suivez notre méthode progressive en 4 étapes pour apprendre à déchiffrer les hiéroglyphes par vous-même !
-                </p>
-                <a href="hieroglyphes-parcours-complet.html" style="display: inline-block; background: linear-gradient(135deg, #8a2be2, #6a0dad); color: white; padding: 1.2rem 3rem; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    🚀 Commencer le Parcours →
-                </a>
-            </div>
-
-            <h3 style="color: #c49c62; font-size: 1.8rem; margin: 3rem 0 1.5rem 0; text-align: center;">📜 Inscriptions Authentiques</h3>
-            <p class="intro">Découvrez 46 inscriptions authentiques des temples et tombes pharaoniques, avec traduction mot à mot et prononciation.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3>🌱 Niveau Débutant</h3>
-                        <span class="badge">27 inscriptions</span>
-                    </div>
-                    <ul>
-                        <li>Cartouches royaux (Toutânkhamon, Ramsès II)</li>
-                        <li>Noms des dieux (Amon, Osiris, Isis, Horus)</li>
-                        <li>Symboles (Ankh, Djed, Was)</li>
-                        <li>Formules d'offrandes simples</li>
-                        <li>Prononciation phonétique de chaque mot</li>
-                    </ul>
-                    <a href="immersion-inscriptions-index.html#debutant" class="btn btn-beginner">Commencer →</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3>🌿 Niveau Intermédiaire</h3>
-                        <span class="badge">10 inscriptions</span>
-                    </div>
-                    <ul>
-                        <li>Livre des Morts (Chapitre 125, Sortie au jour)</li>
-                        <li>Hymnes aux dieux (Amon-Rê à Karnak)</li>
-                        <li>Textes littéraires (Conte de Sinouhé)</li>
-                        <li>Stèles administratives et donations</li>
-                        <li>Enseignements de sagesse (Ptahhotep)</li>
-                    </ul>
-                    <a href="immersion-inscriptions-index.html#intermediaire" class="btn btn-intermediate">Explorer →</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3>🌳 Niveau Expert</h3>
-                        <span class="badge">9 inscriptions</span>
-                    </div>
-                    <ul>
-                        <li>Textes des Pyramides (Ounas, Pépi)</li>
-                        <li>Pierre de Rosette (décret trilingue)</li>
-                        <li>Papyrus scientifiques (Ebers médecine, Rhind maths)</li>
-                        <li>Calendriers astronomiques (Senmout)</li>
-                        <li>Hymne à Aton (révolution monothéiste)</li>
-                    </ul>
-                    <a href="immersion-inscriptions-index.html#expert" class="btn btn-expert">Maîtriser →</a>
-                </div>
-            </div>
-
-            <!-- NOUVELLES SECTIONS ENRICHIES HIÉROGLYPHES -->
-            <div style="background: linear-gradient(135deg, rgba(196, 156, 98, 0.15), rgba(139, 111, 71, 0.15)); border: 2px solid rgba(196, 156, 98, 0.5); border-radius: 20px; padding: 2.5rem; margin: 3rem 0;">
-                <h3 style="color: #8b6f47; font-size: 2rem; margin-bottom: 2rem; text-align: center;">🏛️ Approfondissement : Culture & Exercices Égyptiens</h3>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #c49c62;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">✍️</div>
-                        <h4 style="color: #8b6f47; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Exercices de Phrases</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            Déchiffrez 7 phrases complètes avec quiz interactifs : salutations, vie quotidienne, textes royaux
-                        </p>
-                        <a href="hieroglyphes-exercices-phrases.html" style="display: block; background: linear-gradient(135deg, #8b6f47, #c49c62); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            S'Exercer aux Phrases →
-                        </a>
-                    </div>
-
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #c49c62;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">𓆣</div>
-                        <h4 style="color: #8b6f47; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Contexte Culturel</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            3000 ans d'histoire, panthéon des dieux, vie quotidienne, chronologie complète de l'Égypte
-                        </p>
-                        <a href="hieroglyphes-contexte-culturel.html" style="display: block; background: linear-gradient(135deg, #8b6f47, #c49c62); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Découvrir la Culture →
-                        </a>
-                    </div>
-
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #c49c62;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">🏛️</div>
-                        <h4 style="color: #8b6f47; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Immersion Temples</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            46 inscriptions authentiques des temples et tombes avec traduction complète mot à mot
-                        </p>
-                        <a href="immersion-inscriptions-index.html" style="display: block; background: linear-gradient(135deg, #8b6f47, #c49c62); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Lire les Inscriptions →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- ENCORE PLUS DE CONTENU ENRICHI -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #c49c62;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">🎮</div>
-                        <h4 style="color: #8b6f47; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Jeux Interactifs</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            Memory, associations, constructeur de mots, quiz éclair - Apprenez en jouant !
-                        </p>
-                        <a href="hieroglyphes-jeux-interactifs.html" style="display: block; background: linear-gradient(135deg, #4CAF50, #66bb6a); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Jouer Maintenant →
-                        </a>
-                    </div>
-
-                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); border: 2px solid #c49c62;">
-                        <div style="font-size: 3em; text-align: center; margin-bottom: 1rem;">⚱️</div>
-                        <h4 style="color: #8b6f47; text-align: center; margin-bottom: 1rem; font-size: 1.3em;">Momification</h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem; text-align: center;">
-                            Les 70 jours du processus, vases canopes, voyage dans l'au-delà, pesée du cœur
-                        </p>
-                        <a href="hieroglyphes-momification.html" style="display: block; background: linear-gradient(135deg, #1a1a2e, #8b6f47); color: white; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: bold; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            Découvrir le Rituel →
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="maya" class="section-category">
-            <h2>𓁹 Les Glyphes Mayas</h2>
-            <p class="intro">Les Mayas ont développé l'un des systèmes d'écriture les plus sophistiqués d'Amérique précolombienne. Explorez leur calendrier sacré, leur système de numération en base 20, et leurs connaissances astronomiques avancées.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3>🌱 Niveau Débutant</h3>
-                        <span class="badge">Fondations</span>
-                    </div>
-                    <ul>
-                        <li>Système de numération base 20 (0-19)</li>
-                        <li>Les 3 symboles de base (point, barre, coquille)</li>
-                        <li>Introduction au calendrier Tzolk'in (260 jours)</li>
-                        <li>Concept du zéro maya</li>
-                        <li>Nombres de 0 à 400</li>
-                    </ul>
-                    <a href="glyphes-mayas-intro.html" class="btn btn-beginner">Découvrir l'Histoire →</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3>🌿 Niveau Intermédiaire</h3>
-                        <span class="badge">Approfondissement</span>
-                    </div>
-                    <ul>
-                        <li>Calendrier Haab (365 jours solaire)</li>
-                        <li>Cycle de Vénus (584 jours)</li>
-                        <li>Synchronisation calendriers</li>
-                        <li>Notation positionnelle avancée</li>
-                        <li>Calculs astronomiques</li>
-                    </ul>
-                    <a href="maya-intermediaire.html" class="btn btn-intermediate">Explorer →</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3>🌳 Niveau Expert</h3>
-                        <span class="badge">Maîtrise</span>
-                    </div>
-                    <ul>
-                        <li>Compte Long (5 125 ans)</li>
-                        <li>Cycle du Baktun (144 000 jours)</li>
-                        <li>Synchronisation Vénus-Soleil (2 920 jours)</li>
-                        <li>Codex Dresden (astronomie avancée)</li>
-                        <li>Prédictions éclipses et conjonctions</li>
-                    </ul>
-                    <a href="maya-expert.html" class="btn btn-expert">Maîtriser →</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="logique" class="section-category">
-            <h2>🧠 Les Logiques & Raisonnement</h2>
-            <p class="intro">La logique est l'art du raisonnement correct. Maîtrisez les principes fondamentaux de la pensée rationnelle, des tables de vérité aux systèmes formels.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3>🌱 Niveau Débutant</h3>
-                        <span class="badge">Fondations</span>
-                    </div>
-                    <ul>
-                        <li>Propositions et connecteurs logiques</li>
-                        <li>Tables de vérité</li>
-                        <li>Lois fondamentales (identité, non-contradiction)</li>
-                        <li>Négation, conjonction, disjonction</li>
-                        <li>Introduction à l'implication</li>
-                    </ul>
-                    <a href="logique-debutant.html" class="btn btn-beginner">Commencer →</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3>🌿 Niveau Intermédiaire</h3>
-                        <span class="badge">Approfondissement</span>
-                    </div>
-                    <ul>
-                        <li>Raisonnement déductif et inductif</li>
-                        <li>Syllogismes et arguments valides</li>
-                        <li>Logique des prédicats</li>
-                        <li>Quantificateurs (∀ ∃)</li>
-                        <li>Démonstrations par l'absurde</li>
-                    </ul>
-                    <a href="logique-intermediaire.html" class="btn btn-intermediate">Continuer →</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3>🌳 Niveau Expert</h3>
-                        <span class="badge">Maîtrise</span>
-                    </div>
-                    <ul>
-                        <li>Logique formelle et axiomatique</li>
-                        <li>Théorèmes de complétude et cohérence</li>
-                        <li>Logique modale et temporelle</li>
-                        <li>Paradoxes logiques</li>
-                        <li>Applications en IA et mathématiques</li>
-                    </ul>
-                    <a href="logique-expert.html" class="btn btn-expert">Maîtriser →</a>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(103, 58, 183, 0.2)); border: 2px solid rgba(156, 39, 176, 0.5); border-radius: 15px; padding: 2rem; margin-top: 3rem; text-align: center;">
-                <h3 style="color: #ba68c8; margin-bottom: 1rem;">🌳 Approfondissement : Types de Raisonnement</h3>
-                <p style="margin-bottom: 1.5rem; opacity: 0.9;">Découvrez 8 types majeurs de raisonnement : pensée en arborescence, linéaire, latérale, systémique, divergente/convergente, analogique, critique et abstraite. Apprenez à choisir le bon outil mental pour chaque situation.</p>
-                <a href="types-raisonnement.html" style="display: inline-block; background: linear-gradient(135deg, #9c27b0, #7b1fa2); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    🧠 Explorer les Types de Raisonnement →
-                </a>
-            </div>
-        </section>
-
-        <section id="mandala" class="section-category">
-            <h2 data-i18n="mandala_title">🕉️ Mandalas Sacrés</h2>
-            <p class="intro" data-i18n="mandala_intro">Les mandalas sont des représentations géométriques de l'univers, utilisés depuis des millénaires dans les traditions bouddhistes et hindoues. La contemplation profonde d'un mandala, sans mots ni pensées, permet d'accéder au silence intérieur et à la paix de l'esprit.</p>
-
-            <div class="level-cards">
-                <div class="card beginner">
-                    <div class="card-header">
-                        <h3 data-i18n="mandala_contemplation">🧘 Contemplation Profonde</h3>
-                        <span class="badge" data-i18n="badge_meditation">Méditation</span>
-                    </div>
-                    <ul data-section="mandala-practice">
-                        <li data-i18n="mandala_1">Galerie plein écran immersive</li>
-                        <li data-i18n="mandala_2">Sans mots, sans pensées</li>
-                        <li data-i18n="mandala_3">Silence intérieur et concentration</li>
-                        <li data-i18n="mandala_4">Navigation intuitive (flèches ‹ ›)</li>
-                        <li data-i18n="mandala_5">Uploadez vos mandalas personnels</li>
-                    </ul>
-                    <a href="mandala.html" class="btn btn-beginner" data-i18n="btn_contemplate">Contempler →</a>
-                </div>
-
-                <div class="card intermediate">
-                    <div class="card-header">
-                        <h3 data-i18n="mandala_creation">🎨 Création de Mandalas</h3>
-                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
-                    </div>
-                    <ul data-section="mandala-creation">
-                        <li data-i18n="mandala_create_1">Comprendre la géométrie sacrée</li>
-                        <li data-i18n="mandala_create_2">Symbolisme des formes et couleurs</li>
-                        <li data-i18n="mandala_create_3">Mandalas tibétains traditionnels</li>
-                        <li data-i18n="mandala_create_4">Techniques de dessin circulaire</li>
-                        <li data-i18n="mandala_create_5">Méditation créative guidée</li>
-                    </ul>
-                    <a href="mandala.html" class="btn btn-intermediate" data-i18n="btn_create">Créer →</a>
-                </div>
-
-                <div class="card expert">
-                    <div class="card-header">
-                        <h3 data-i18n="mandala_mastery">🌺 Maîtrise des Mandalas</h3>
-                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
-                    </div>
-                    <ul data-section="mandala-expert">
-                        <li data-i18n="mandala_master_1">Mandalas tantriques avancés</li>
-                        <li data-i18n="mandala_master_2">Yantras et diagrammes cosmiques</li>
-                        <li data-i18n="mandala_master_3">Méditation profonde prolongée</li>
-                        <li data-i18n="mandala_master_4">Rituel de création et destruction</li>
-                        <li data-i18n="mandala_master_5">Transmission spirituelle par le mandala</li>
-                    </ul>
-                    <a href="mandala.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(233, 30, 99, 0.2)); border: 2px solid rgba(156, 39, 176, 0.5); border-radius: 15px; padding: 2rem; margin-top: 3rem; text-align: center;">
-                <h3 style="color: #ba68c8; margin-bottom: 1rem;">✨ Expérience Immersive : Mandalas Animés Vivants</h3>
-                <p style="margin-bottom: 1.5rem; opacity: 0.9;">Plongez dans une méditation hypnotique avec des mandalas animés qui respirent, tournent et pulsent en harmonie avec votre conscience.</p>
-                <a href="mandala_anime.html" style="display: inline-block; background: linear-gradient(135deg, #9b59b6, #e91e63); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    🌀 Contempler les Mandalas Animés →
-                </a>
-            </div>
-        </section>
-
-        <section class="tools">
-            <h2>🛠️ Outils Pratiques</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3>Alphabet Hébreu</h3>
-                    <p>Apprenez les 22 lettres de l'Aleph-Bet</p>
-                    <a href="alphabet-hebreu.html" class="btn-small">Apprendre</a>
-                </div>
-                <div class="tool-card">
-                    <h3>Alphabet Runique</h3>
-                    <p>Maîtrisez les 24 runes du Futhark</p>
-                    <a href="alphabet-runes.html" class="btn-small">Apprendre</a>
-                </div>
-                <div class="tool-card">
-                    <h3>Calculateur de Gematria</h3>
-                    <p>Calculez la valeur numérique de mots hébreux</p>
-                    <a href="calculateur-gematria.html" class="btn-small">Utiliser</a>
-                </div>
-                <div class="tool-card">
-                    <h3>Tirages de Runes</h3>
-                    <p>Pratiquez la divination runique</p>
-                    <a href="tirage-runes.html" class="btn-small">Tirer</a>
-                </div>
-                <div class="tool-card">
-                    <h3>Exercices de Logique</h3>
-                    <p>Entraînez votre raisonnement logique</p>
-                    <a href="exercices-logique.html" class="btn-small">Pratiquer</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Académie des Sagesses Anciennes - Savoir ancestral, apprentissage progressif</p>
-    </footer>
+    </div>
 
     <script>
-        // Mode Nuit
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-
-            // Mettre à jour le texte et attributs ARIA du bouton
-            const btn = document.querySelector('.cosmic-btn-dark');
-            if (btn) {
-                btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-                btn.setAttribute('aria-label', isDark ? 'Basculer en mode jour' : 'Basculer en mode nuit');
-                const btnText = btn.querySelector('.btn-text');
-                if (btnText) btnText.textContent = isDark ? 'Mode Jour' : 'Mode Nuit';
-                const btnIcon = btn.querySelector('.btn-icon');
-                if (btnIcon) btnIcon.textContent = isDark ? '☀️' : '🌙';
-            }
-        }
-
-        // Charger la préférence au démarrage (mode nuit par défaut)
-        window.addEventListener('DOMContentLoaded', () => {
-            const darkModePref = localStorage.getItem('darkMode');
-            // Si aucune préférence, ou si darkMode === 'true', activer le mode nuit
-            const isDark = darkModePref === null || darkModePref === 'true';
-            if (isDark) {
-                document.body.classList.add('dark-mode');
-                const btn = document.querySelector('.cosmic-btn-dark');
-                if (btn) {
-                    btn.setAttribute('aria-pressed', 'true');
-                    btn.setAttribute('aria-label', 'Basculer en mode jour');
-                    const btnText = btn.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = 'Mode Jour';
-                    const btnIcon = btn.querySelector('.btn-icon');
-                    if (btnIcon) btnIcon.textContent = '☀️';
-                }
-                // Enregistrer la préférence par défaut
-                if (darkModePref === null) {
-                    localStorage.setItem('darkMode', 'true');
-                }
-            }
-        });
-
-        // Smooth scrolling pour les ancres
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+        // Animation au survol des cartes
+        document.querySelectorAll('.portal-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02) rotate(0.5deg)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
             });
         });
 
-        // Système de traduction
-        const translations = {
-            fr: {
-                title: "🔮 Académie des Sagesses Anciennes",
-                subtitle: "Runes, Gematria, Hiéroglyphes & Glyphes Mayas - Voyage initiatique de la connaissance ésotérique",
-                nav_home: "Accueil",
-                nav_runes: "Runes",
-                nav_gematria: "Gematria",
-                nav_logic: "Logique",
-                hero_title: "Bienvenue dans votre parcours initiatique",
-                hero_text: "Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.",
-                runes_title: "📿 Les Runes Nordiques",
-                runes_intro: "Les runes sont un ancien système d'écriture utilisé par les peuples germaniques et scandinaves. Chaque rune porte une signification symbolique profonde.",
-                gematria_title: "✡️ La Gematria Hébraïque",
-                gematria_intro: "La gematria est un système numérologique basé sur les lettres hébraïques. Chaque lettre possède une valeur numérique révélant des correspondances mystiques.",
-                logic_title: "🧠 Les Logiques & Raisonnement",
-                logic_intro: "La logique est l'art du raisonnement correct. Maîtrisez les principes fondamentaux de la pensée rationnelle, des tables de vérité aux systèmes formels.",
-                level_beginner: "🌱 Niveau Débutant",
-                level_intermediate: "🌿 Niveau Intermédiaire",
-                level_expert: "🌳 Niveau Expert",
-                badge_foundations: "Fondations",
-                badge_deepening: "Approfondissement",
-                badge_mastery: "Maîtrise",
-                btn_start: "Commencer →",
-                btn_continue: "Continuer →",
-                btn_master: "Maîtriser →",
-                tools_title: "🛠️ Outils Pratiques",
-                tool_hebrew_title: "Alphabet Hébreu",
-                tool_hebrew_desc: "Apprenez les 22 lettres de l'Aleph-Bet",
-                tool_runes_title: "Alphabet Runique",
-                tool_runes_desc: "Maîtrisez les 24 runes du Futhark",
-                tool_calc_title: "Calculateur de Gematria",
-                tool_calc_desc: "Calculez la valeur numérique de mots hébreux",
-                tool_divination_title: "Tirages de Runes",
-                tool_divination_desc: "Pratiquez la divination runique",
-                tool_logic_title: "Exercices de Logique",
-                tool_logic_desc: "Entraînez votre raisonnement logique",
-                btn_learn: "Apprendre",
-                btn_use: "Utiliser",
-                btn_draw: "Tirer",
-                btn_practice: "Pratiquer",
-                footer: "© 2025 Académie des Sagesses Anciennes - Savoir ancestral, apprentissage progressif"
-            },
-            en: {
-                title: "🔮 Academy of Ancient Wisdom",
-                subtitle: "Runes, Gematria, Hieroglyphs & Mayan Glyphs - Initiatory journey of esoteric knowledge",
-                nav_home: "Home",
-                nav_runes: "Runes",
-                nav_gematria: "Gematria",
-                nav_logic: "Logic",
-                hero_title: "Welcome to your initiatory path",
-                hero_text: "Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.",
-                runes_title: "📿 Nordic Runes",
-                runes_intro: "Runes are an ancient writing system used by Germanic and Scandinavian peoples. Each rune carries deep symbolic meaning.",
-                gematria_title: "✡️ Hebrew Gematria",
-                gematria_intro: "Gematria is a numerological system based on Hebrew letters. Each letter has a numerical value revealing mystical correspondences.",
-                logic_title: "🧠 Logic & Reasoning",
-                logic_intro: "Logic is the art of correct reasoning. Master the fundamental principles of rational thought, from truth tables to formal systems.",
-                level_beginner: "🌱 Beginner Level",
-                level_intermediate: "🌿 Intermediate Level",
-                level_expert: "🌳 Expert Level",
-                badge_foundations: "Foundations",
-                badge_deepening: "Deepening",
-                badge_mastery: "Mastery",
-                btn_start: "Start →",
-                btn_continue: "Continue →",
-                btn_master: "Master →",
-                tools_title: "🛠️ Practical Tools",
-                tool_hebrew_title: "Hebrew Alphabet",
-                tool_hebrew_desc: "Learn the 22 letters of the Aleph-Bet",
-                tool_runes_title: "Runic Alphabet",
-                tool_runes_desc: "Master the 24 runes of the Futhark",
-                tool_calc_title: "Gematria Calculator",
-                tool_calc_desc: "Calculate the numerical value of Hebrew words",
-                tool_divination_title: "Rune Casting",
-                tool_divination_desc: "Practice runic divination",
-                tool_logic_title: "Logic Exercises",
-                tool_logic_desc: "Train your logical reasoning",
-                btn_learn: "Learn",
-                btn_use: "Use",
-                btn_draw: "Cast",
-                btn_practice: "Practice",
-                footer: "© 2025 Academy of Runes & Gematria - Ancient knowledge, progressive learning"
-            }
-        };
-
-        let currentLang = 'fr';
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            localStorage.setItem('language', currentLang);
-            applyTranslations();
-
-            // Mettre à jour le bouton avec attributs ARIA
-            const btn = document.querySelector('.cosmic-btn-lang');
-            if (btn) {
-                btn.setAttribute('aria-pressed', currentLang === 'en' ? 'true' : 'false');
-                btn.setAttribute('aria-label', currentLang === 'fr' ? 'Changer la langue en anglais' : 'Switch language to French');
-                const btnText = btn.querySelector('.btn-text');
-                if (btnText) btnText.textContent = currentLang === 'fr' ? 'EN' : 'FR';
-            }
-        }
-
-        function applyTranslations() {
-            const t = translations[currentLang];
-
-            // Header
-            document.querySelector('[data-i18n="title"]').textContent = t.title;
-            document.querySelector('[data-i18n="subtitle"]').textContent = t.subtitle;
-        }
-
-        // Charger la langue au démarrage
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('language');
-            if (savedLang) {
-                currentLang = savedLang;
-                applyTranslations();
-                const btn = document.querySelector('.cosmic-btn-lang');
-                if (btn) {
-                    btn.setAttribute('aria-pressed', currentLang === 'en' ? 'true' : 'false');
-                    btn.setAttribute('aria-label', currentLang === 'fr' ? 'Changer la langue en anglais' : 'Switch language to French');
-                    const btnText = btn.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = currentLang === 'fr' ? 'EN' : 'FR';
-                }
-            }
-        });
-    </script>
-
-    <script>
-        // Gérer l'affichage des boutons login/profil selon l'état d'authentification
-        window.addEventListener('authStateChanged', (e) => {
-            const loginBtn = document.getElementById('login-button');
-            const profileBtn = document.getElementById('profile-button');
-            const userName = document.getElementById('user-name');
-
-            if (e.detail.user) {
-                // Utilisateur connecté
-                loginBtn.style.display = 'none';
-                profileBtn.style.display = 'flex'; // Changed to flex pour l'alignement
-                userName.textContent = e.detail.user.displayName || 'Mon Profil';
-            } else {
-                // Utilisateur non connecté
-                loginBtn.style.display = 'flex'; // Changed to flex pour l'alignement
-                profileBtn.style.display = 'none';
-            }
-        });
-
-        // Au chargement initial, vérifier s'il y a un utilisateur connecté
-        window.addEventListener('DOMContentLoaded', () => {
-            // Le bouton login sera affiché par défaut une fois que Firebase sera initialisé
-            setTimeout(() => {
-                if (!window.currentUser) {
-                    document.getElementById('login-button').style.display = 'flex';
-                }
-            }, 1000);
-        });
+        console.log('🔮 Gematria Academy - Portail Principal');
+        console.log('🌞 Glyphes Mayas | ᚠ Runes Nordiques | 𓂀 Hiéroglyphes Égyptiens');
     </script>
 </body>
 </html>
