@@ -1,0 +1,8 @@
+/* Effets cosmiques bleus */
+.section-category:nth-child(even) {
+    box-shadow: 0 0 30px rgba(33, 150, 243, 0.2);
+}
+
+.section-category:nth-child(odd) {
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+}

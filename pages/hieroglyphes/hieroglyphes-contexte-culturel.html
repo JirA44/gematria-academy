@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexte Culturel de l'Égypte Ancienne | 3000 ans d'Histoire</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #d4af37 0%, #cd7f32 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: #d4af37;
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .period-title {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pharaoh-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pharaoh-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+        }
+
+        .pharaoh-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .cartouche-display {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #ffd700;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .gods-pantheon {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .god-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .god-card:hover {
+            transform: scale(1.05);
+            border-color: #d4af37;
+        }
+
+        .god-hieroglyph {
+            font-size: 3rem;
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 5rem 0 3rem 0;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            border-top: 3px solid #d4af37;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .section-divider h2 {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .daily-life-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .life-aspect {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #d4af37;
+        }
+
+        .life-aspect h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .life-aspect ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .life-aspect ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .life-aspect ul li:before {
+            content: "𓋹";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+        }
+
+        .achievement-timeline {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+        }
+
+        .achievement-content {
+            flex: 1;
+        }
+
+        .achievement-year {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 40px;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">𓋹 Académie des Sagesses Anciennes</a>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="hieroglyphes-parcours-complet.html">Parcours</a></li>
+                <li><a href="immersion-inscriptions-index.html">Inscriptions</a></li>
+                <li><a href="#culture">Culture</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>𓊹𓅱𓊪𓅱𓇋𓏏 Contexte Culturel de l'Égypte Ancienne</h1>
+            <p class="subtitle">3000 ans d'histoire : de la 1ère dynastie (3100 av. J.-C.) à la conquête romaine (30 av. J.-C.)</p>
+        </section>
+
+        <!-- CHRONOLOGIE HISTORIQUE -->
+        <div class="section-divider">
+            <h2>⏳ Chronologie des Grandes Périodes</h2>
+            <p>De l'unification de l'Égypte à l'ère ptolémaïque</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">3100 - 2686 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">𓋹 Époque Thinite (Dynasties I-II)</h3>
+                    <div class="cartouche-display">𓌉𓆓𓋴</div>
+                    <p><strong>Unification de l'Égypte</strong> par Narmer (Ménès). Capitale : Thinis puis Memphis.</p>
+                    <ul>
+                        <li>🏛️ Invention de l'écriture hiéroglyphique</li>
+                        <li>👑 Première administration centralisée</li>
+                        <li>⚱️ Mastabas à Saqqarah et Abydos</li>
+                        <li>📜 Palette de Narmer : scène d'unification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2686 - 2181 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">𓉐 Ancien Empire (Dynasties III-VI)</h3>
+                    <div class="cartouche-display">𓐍𓅱𓆑𓅱</div>
+                    <p><strong>L'Âge des Pyramides.</strong> Apogée de la civilisation égyptienne.</p>
+                    <ul>
+                        <li>🔺 Grande Pyramide de Khéops (Gizeh) - Seule merveille subsistante</li>
+                        <li>🗿 Sphinx de Gizeh attribué à Khéphren</li>
+                        <li>📖 Textes des Pyramides (plus anciens textes religieux au monde)</li>
+                        <li>👷 Imhotep : premier architecte, médecin et sage de l'histoire</li>
+                        <li>⚖️ Développement du culte solaire de Rê</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2181 - 2055 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">⚔️ Première Période Intermédiaire</h3>
+                    <p><strong>Période de troubles.</strong> Division politique et décentralisation.</p>
+                    <ul>
+                        <li>💥 Fragmentation du pouvoir central</li>
+                        <li>🏛️ Nomarques (gouverneurs provinciaux) autonomes</li>
+                        <li>📚 Développement de la littérature pessimiste</li>
+                        <li>🌾 Famines et conflits régionaux</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2055 - 1650 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">📜 Moyen Empire (Dynasties XI-XII)</h3>
+                    <div class="cartouche-display">𓋴𓈖𓅱𓋴𓂋𓏏</div>
+                    <p><strong>Renaissance culturelle.</strong> Âge d'or de la littérature égyptienne.</p>
+                    <ul>
+                        <li>📖 Conte de Sinouhé, L'Enseignement d'Aménémopé</li>
+                        <li>🏛️ Temple de Karnak : premières constructions</li>
+                        <li>⛏️ Expansion en Nubie : fortifications</li>
+                        <li>💧 Grands travaux d'irrigation au Fayoum</li>
+                        <li>📚 Textes des Sarcophages (démocratisation funéraire)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">1650 - 1550 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">🐎 Deuxième Période Intermédiaire</h3>
+                    <p><strong>Domination Hyksôs.</strong> Introduction du char de guerre et du bronze.</p>
+                    <ul>
+                        <li>🏹 Hyksôs : "souverains étrangers" d'origine asiatique</li>
+                        <li>🛡️ Adoption de nouvelles technologies militaires</li>
+                        <li>👑 Dynastie thébaine résistante au sud</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">1550 - 1069 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">👑 Nouvel Empire (Dynasties XVIII-XX)</h3>
+                    <div class="cartouche-display">𓇋𓏠𓈖𓏏𓅱𓏏𓈖𓇳</div>
+                    <p><strong>Apogée impériale.</strong> Égypte superpuissance régionale.</p>
+                    <ul>
+                        <li>🏛️ Vallée des Rois : nécropole royale (63 tombes)</li>
+                        <li>👸 Hatchepsout : pharaon femme, grande bâtisseuse (Deir el-Bahari)</li>
+                        <li>⚔️ Thoutmosis III : "Napoléon égyptien", 17 campagnes militaires</li>
+                        <li>☀️ Akhenaton : révolution religieuse monothéiste (culte d'Aton)</li>
+                        <li>💎 Toutânkhamon : tombe intacte découverte en 1922</li>
+                        <li>🏛️ Ramsès II : plus grand bâtisseur (Abou Simbel, Ramesseum, Louxor)</li>
+                        <li>⚔️ Bataille de Qadesh (1274 av. J.-C.) contre les Hittites</li>
+                        <li>📖 Livre des Morts : compilation des textes funéraires</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">1069 - 664 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">⚡ Troisième Période Intermédiaire</h3>
+                    <p><strong>Déclin et morcellement.</strong> Domination libyenne puis nubienne.</p>
+                    <ul>
+                        <li>👥 Division entre Haute et Basse-Égypte</li>
+                        <li>🦁 XXIIe dynastie libyenne (Sheshonq I)</li>
+                        <li>⚫ XXVe dynastie nubienne/kouchite</li>
+                        <li>🗿 Renaissance artistique archaïsante</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">664 - 332 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">🦅 Basse Époque</h3>
+                    <p><strong>Renaissance saïte puis domination perse.</strong></p>
+                    <ul>
+                        <li>🏛️ XXVIe dynastie saïte : renaissance culturelle</li>
+                        <li>🔱 Conquête perse (525 av. J.-C.) - XXVIIe dynastie achéménide</li>
+                        <li>💰 Développement du commerce méditerranéen</li>
+                        <li>🗿 Dernières grandes constructions (temples de Philae, Edfou)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">332 - 30 av. J.-C.</div>
+                <div class="timeline-content">
+                    <h3 class="period-title">🏛️ Époque Ptolémaïque</h3>
+                    <div class="cartouche-display">𓊪𓏏𓍯𓃭𓅓𓇌𓋴</div>
+                    <p><strong>Dynastie grecque.</strong> Fusion des cultures grecque et égyptienne.</p>
+                    <ul>
+                        <li>👑 Alexandre le Grand libère l'Égypte (332 av. J.-C.)</li>
+                        <li>📚 Fondation d'Alexandrie : phare, bibliothèque (700 000 rouleaux)</li>
+                        <li>🏛️ Temple de Dendérah, Kom Ombo, Edfou (architecture gréco-égyptienne)</li>
+                        <li>📜 Pierre de Rosette (196 av. J.-C.) : trilingue hiéroglyphes/démotique/grec</li>
+                        <li>👸 Cléopâtre VII : dernière pharaon (51-30 av. J.-C.)</li>
+                        <li>🏛️ 30 av. J.-C. : suicide de Cléopâtre, annexion romaine</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANTHÉON DES DIEUX -->
+        <div class="section-divider">
+            <h2>𓊹𓊹𓊹 Panthéon des Dieux Égyptiens</h2>
+            <p>Plus de 1500 divinités : dieux cosmiques, locaux et fonctionnels</p>
+        </div>
+
+        <div class="gods-pantheon">
+            <div class="god-card">
+                <div class="god-hieroglyph">𓇳𓏤</div>
+                <h3>Rê / Rā</h3>
+                <p><strong>Dieu solaire suprême</strong></p>
+                <p>Créateur du monde, traverse le ciel le jour et la Douât la nuit. Centre du culte à Héliopolis.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓊨𓁹𓀭</div>
+                <h3>Osiris</h3>
+                <p><strong>Dieu de la résurrection</strong></p>
+                <p>Roi des morts, juge suprême de l'au-delà. Assassiné par Set, ressuscité par Isis. Peau verte = renaissance végétale.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓊨𓏏𓁐</div>
+                <h3>Isis</h3>
+                <p><strong>Grande déesse magicienne</strong></p>
+                <p>Épouse d'Osiris, mère d'Horus. Protectrice des enfants et des défunts. Culte répandu jusqu'à Rome.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓅃𓀭</div>
+                <h3>Horus</h3>
+                <p><strong>Dieu faucon royal</strong></p>
+                <p>Fils d'Osiris et Isis, vengeur de son père. Chaque pharaon est Horus vivant. Œil oudjat = protection.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓃩𓀭</div>
+                <h3>Set</h3>
+                <p><strong>Dieu du chaos et du désert</strong></p>
+                <p>Meurtrier d'Osiris, rival d'Horus. Dieu des tempêtes, du désert, de la force brute. Ambivalent : protecteur de Rê contre Apophis.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓇋𓈖𓊪𓅱𓃣</div>
+                <h3>Anubis</h3>
+                <p><strong>Dieu de la momification</strong></p>
+                <p>Chacal noir, gardien des nécropoles. Préside à la pesée du cœur. Patron des embaumeurs.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓏏𓎛𓅱𓏏𓁐</div>
+                <h3>Thot</h3>
+                <p><strong>Dieu de la sagesse</strong></p>
+                <p>Ibis ou babouin, scribe des dieux. Inventeur de l'écriture, des sciences, de la magie. Mesure le temps et les saisons.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓐙𓄿𓂓𓏏𓁦</div>
+                <h3>Maât</h3>
+                <p><strong>Déesse de la vérité</strong></p>
+                <p>Plume d'autruche sur la tête. Incarnation de la justice, l'ordre cosmique, la vérité. Son cœur est pesé après la mort.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓎛𓄿𓏏𓇯𓏏𓁐</div>
+                <h3>Hathor</h3>
+                <p><strong>Déesse de l'amour</strong></p>
+                <p>Vache sacrée ou femme à oreilles de vache. Déesse de la joie, de la musique, de la maternité, de l'ivresse.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓊪𓏏𓇯</div>
+                <h3>Ptah</h3>
+                <p><strong>Dieu créateur</strong></p>
+                <p>Patron de Memphis. Créateur par la parole et la pensée. Dieu des artisans, architectes, orfèvres.</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓋴𓎛𓅓𓏏𓁐</div>
+                <h3>Sekhmet</h3>
+                <p><strong>Déesse lionne guerrière</strong></p>
+                <p>Forme colérique d'Hathor. Déesse de la guerre, des épidémies, mais aussi de la guérison. "La Puissante".</p>
+            </div>
+
+            <div class="god-card">
+                <div class="god-hieroglyph">𓃀𓋴𓏏𓁐</div>
+                <h3>Bastet</h3>
+                <p><strong>Déesse chatte</strong></p>
+                <p>Protectrice du foyer, de la fertilité, de la joie. Centre de culte à Bubastis avec des millions de chats momifiés.</p>
+            </div>
+        </div>
+
+        <!-- VIE QUOTIDIENNE -->
+        <div class="section-divider">
+            <h2>🏛️ Vie Quotidienne dans l'Égypte Ancienne</h2>
+            <p>De la naissance à la mort : société, famille, travail et loisirs</p>
+        </div>
+
+        <div class="daily-life-grid">
+            <div class="life-aspect">
+                <h3>👨‍👩‍👧‍👦 Structure Sociale</h3>
+                <ul>
+                    <li><strong>Pharaon :</strong> dieu vivant, intermédiaire entre dieux et hommes</li>
+                    <li><strong>Vizir (Tjaty) :</strong> premier ministre, chef de l'administration</li>
+                    <li><strong>Prêtres :</strong> ritualistes, astronomes, médecins</li>
+                    <li><strong>Scribes :</strong> élite lettrée (1% de la population)</li>
+                    <li><strong>Artisans :</strong> orfèvres, sculpteurs, peintres</li>
+                    <li><strong>Paysans (fellahs) :</strong> 90% de la population</li>
+                    <li><strong>Esclaves :</strong> prisonniers de guerre, main-d'œuvre</li>
+                </ul>
+            </div>
+
+            <div class="life-aspect">
+                <h3>🏠 Famille et Mariage</h3>
+                <ul>
+                    <li><strong>Mariage :</strong> contrat civil, dot importante</li>
+                    <li><strong>Polygamie :</strong> autorisée pour l'élite</li>
+                    <li><strong>Divorce :</strong> possible pour hommes et femmes</li>
+                    <li><strong>Enfants :</strong> nombreux (mortalité infantile élevée)</li>
+                    <li><strong>Femmes :</strong> droits de propriété, d'héritage, de commerce</li>
+                    <li><strong>Éducation :</strong> apprentissage familial, écoles de scribes</li>
+                </ul>
+            </div>
+
+            <div class="life-aspect">
+                <h3>🌾 Agriculture et Alimentation</h3>
+                <ul>
+                    <li><strong>Céréales :</strong> blé, orge (pain et bière)</li>
+                    <li><strong>Légumes :</strong> oignons, ail, lentilles, fèves</li>
+                    <li><strong>Fruits :</strong> dattes, figues, grenades, raisins</li>
+                    <li><strong>Viande :</strong> bœuf, volaille (réservée à l'élite)</li>
+                    <li><strong>Poisson :</strong> du Nil, séché ou salé</li>
+                    <li><strong>Boissons :</strong> bière (salairecommun), vin (luxe)</li>
+                    <li><strong>Crue du Nil :</strong> rythme annuel (juillet-octobre)</li>
+                </ul>
+            </div>
+
+            <div class="life-aspect">
+                <h3>👗 Vêtements et Apparence</h3>
+                <ul>
+                    <li><strong>Lin blanc :</strong> tissu de base, respirant</li>
+                    <li><strong>Hommes :</strong> pagne court (shendyt)</li>
+                    <li><strong>Femmes :</strong> robe fourreau moulante</li>
+                    <li><strong>Perruques :</strong> portées par l'élite (protection solaire)</li>
+                    <li><strong>Maquillage :</strong> khôl noir (yeux), ocre rouge (joues)</li>
+                    <li><strong>Bijoux :</strong> or, lapis-lazuli, turquoise, cornaline</li>
+                    <li><strong>Parfums :</strong> encens, myrrhe, huiles parfumées</li>
+                </ul>
+            </div>
+
+            <div class="life-aspect">
+                <h3>🏗️ Métiers et Artisanat</h3>
+                <ul>
+                    <li><strong>Scribes :</strong> administration, comptabilité, correspondance</li>
+                    <li><strong>Médecins :</strong> spécialistes (yeux, dents, ventre)</li>
+                    <li><strong>Architectes :</strong> temples, pyramides, tombes</li>
+                    <li><strong>Sculpteurs :</strong> statues, reliefs, sarcophages</li>
+                    <li><strong>Orfèvres :</strong> bijoux, objets rituels</li>
+                    <li><strong>Potiers :</strong> vaisselle, amphores, figurines</li>
+                    <li><strong>Tisserands :</strong> lin, vêtements, voiles de bateaux</li>
+                </ul>
+            </div>
+
+            <div class="life-aspect">
+                <h3>🎭 Loisirs et Divertissements</h3>
+                <ul>
+                    <li><strong>Musique :</strong> harpes, flûtes, tambours, sistres</li>
+                    <li><strong>Danse :</strong> acrobaties, danses rituelles</li>
+                    <li><strong>Jeux :</strong> Senet (jeu de plateau), chiens et chacals</li>
+                    <li><strong>Chasse :</strong> hippopotames, crocodiles (sport royal)</li>
+                    <li><strong>Pêche :</strong> loisir et subsistance</li>
+                    <li><strong>Fêtes :</strong> religieuses (Opet, Sed), familiales</li>
+                    <li><strong>Banquets :</strong> nourriture, vin, musique, parfums</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GRANDES RÉALISATIONS -->
+        <div class="section-divider">
+            <h2>🏆 Grandes Réalisations et Innovations</h2>
+            <p>Contributions majeures de l'Égypte ancienne à la civilisation humaine</p>
+        </div>
+
+        <div class="achievement-timeline">
+            <div class="achievement-item">
+                <div class="achievement-icon">📝</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~3200 av. J.-C.</div>
+                    <h4>Invention de l'Écriture Hiéroglyphique</h4>
+                    <p>Un des 4 systèmes d'écriture indépendants au monde (avec sumériens, chinois, mayas). 700+ signes : phonogrammes, idéogrammes, déterminatifs.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">📅</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~3000 av. J.-C.</div>
+                    <h4>Calendrier Solaire de 365 Jours</h4>
+                    <p>12 mois de 30 jours + 5 jours épagomènes. Base du calendrier julien puis grégorien moderne.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">🔺</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~2560 av. J.-C.</div>
+                    <h4>Grande Pyramide de Khéops</h4>
+                    <p>146m de haut, 2,3 millions de blocs (2,5 tonnes chacun). Seule merveille du monde antique subsistante. Précision architecturale inégalée.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">⚕️</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~1600 av. J.-C.</div>
+                    <h4>Médecine Avancée</h4>
+                    <p>Papyrus Ebers : 700 remèdes. Chirurgie (trépanation), dentisterie, ophtalmologie. Anatomie via momification.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">📐</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~1650 av. J.-C.</div>
+                    <h4>Mathématiques et Géométrie</h4>
+                    <p>Papyrus Rhind : problèmes d'arithmétique, géométrie. Calcul des surfaces, volumes. Approximation de π = 3,16.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">⚖️</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">Toutes périodes</div>
+                    <h4>Concept de Maât (Justice/Ordre)</h4>
+                    <p>Premier code moral universel : vérité, justice, équilibre cosmique. Influence sur la philosophie grecque et le droit romain.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">⚱️</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~1550 av. J.-C.</div>
+                    <h4>Techniques de Momification</h4>
+                    <p>Préservation des corps pour l'éternité : extraction des organes, dessication au natron (70 jours), résines, bandelettes. Certaines momies ont 3000+ ans.</p>
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-icon">🏛️</div>
+                <div class="achievement-content">
+                    <div class="achievement-year">~1200 av. J.-C.</div>
+                    <h4>Architecture Monumentale</h4>
+                    <p>Temple de Karnak (plus grand complexe religieux au monde), Abou Simbel, Louxor. Colonnes, pylônes, hypostyles, obélisques.</p>
+                </div>
+            </div>
+        </div>
+
+        <section style="text-align: center; margin: 4rem 0; padding: 3rem; background: rgba(212, 175, 55, 0.1); border-radius: 15px;">
+            <h2>📚 Approfondissez vos Connaissances</h2>
+            <p style="margin: 2rem 0;">Explorez tous les aspects de la civilisation égyptienne</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="hieroglyphes-parcours-complet.html" style="background: linear-gradient(135deg, #d4af37, #cd7f32); color: #1a1a2e; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: bold;">Parcours Hiéroglyphes</a>
+                <a href="hieroglyphes-momification.html" style="background: linear-gradient(135deg, #d4af37, #cd7f32); color: #1a1a2e; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: bold;">Rites Funéraires</a>
+                <a href="immersion-inscriptions-index.html" style="background: linear-gradient(135deg, #d4af37, #cd7f32); color: #1a1a2e; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: bold;">46 Inscriptions</a>
+                <a href="hieroglyphes-jeux-interactifs.html" style="background: linear-gradient(135deg, #d4af37, #cd7f32); color: #1a1a2e; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: bold;">Jeux Éducatifs</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Académie des Sagesses Anciennes - Préservation et transmission du patrimoine égyptien</p>
+    </footer>
+
+    <script>
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.timeline-content, .god-card, .life-aspect, .achievement-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

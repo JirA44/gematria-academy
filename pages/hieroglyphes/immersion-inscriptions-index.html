@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>46 Inscriptions Authentiques | Hiéroglyphes Égyptiens</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(205, 127, 50, 0.2));
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .navigation-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .tab-button:hover, .tab-button.active {
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .inscription-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .inscription-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .inscription-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .inscription-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hieroglyphs-display {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            color: #ffd700;
+            line-height: 1.6;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .cartouche {
+            display: inline-block;
+            border: 3px solid #d4af37;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            margin: 0.5rem;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .translation {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #d4af37;
+        }
+
+        .context {
+            font-size: 0.95rem;
+            color: #c0c0c0;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        .difficulty-debutant {
+            background: rgba(39, 174, 96, 0.3);
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+
+        .difficulty-intermediaire {
+            background: rgba(243, 156, 18, 0.3);
+            color: #f39c12;
+            border: 2px solid #f39c12;
+        }
+
+        .difficulty-expert {
+            background: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 2rem 0;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+        }
+
+        .section-header h2 {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">𓋹 Académie des Sagesses Anciennes</a>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="hieroglyphes-parcours-complet.html">Parcours</a></li>
+                <li><a href="#inscriptions">Inscriptions</a></li>
+                <li><a href="hieroglyphes-jeux-interactifs.html">Jeux</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>𓊹𓊹𓊹 46 Inscriptions Authentiques</h1>
+            <p class="subtitle">Immersion totale dans l'Égypte ancienne : cartouches royaux, formules sacrées, textes funéraires et décrets historiques</p>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">27</div>
+                    <div>Débutant</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div>Intermédiaire</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div>Expert</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigation-tabs">
+            <button class="tab-button active" onclick="scrollToSection('debutant')">𓀀 Débutant</button>
+            <button class="tab-button" onclick="scrollToSection('intermediaire')">𓊪 Intermédiaire</button>
+            <button class="tab-button" onclick="scrollToSection('expert')">𓏙 Expert</button>
+        </div>
+
+        <!-- SECTION DÉBUTANT -->
+        <section id="debutant" class="section-header">
+            <h2>𓀀 Niveau Débutant</h2>
+            <p>27 inscriptions fondamentales : cartouches royaux, formules simples et mots courants</p>
+        </section>
+
+        <div class="inscription-grid">
+            <!-- Inscription 1 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°1</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Cartouche de Toutânkhamon</h3>
+                <div class="hieroglyphs-display">
+                    <div class="cartouche">𓇋𓏠𓈖𓏏𓅱𓏏𓈖𓇳</div>
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> twt-ˁnḫ-jmn ḥq3-jwnw-šmˁ<br>
+                    <strong>Traduction :</strong> "Toutânkhamon, souverain d'Héliopolis du Sud"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Tombe KV62, Vallée des Rois (découverte en 1922)<br>
+                    📅 <strong>Époque :</strong> XVIIIe dynastie, ~1332-1323 av. J.-C.<br>
+                    💡 <strong>Signification :</strong> "Image vivante d'Amon", pharaon célèbre pour sa tombe intacte
+                </div>
+            </div>
+
+            <!-- Inscription 2 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°2</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Cartouche de Ramsès II</h3>
+                <div class="hieroglyphs-display">
+                    <div class="cartouche">𓇳𓄊𓁧𓇳𓍉𓊨𓁙</div>
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> wsr-m3ˁt-rˁ stp-n-rˁ<br>
+                    <strong>Traduction :</strong> "Ousermaâtrê Setepenrê - Puissante est la Maât de Rê, Élu de Rê"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple d'Abou Simbel<br>
+                    📅 <strong>Époque :</strong> XIXe dynastie, 1279-1213 av. J.-C.<br>
+                    💡 <strong>Signification :</strong> Le plus grand bâtisseur de l'Égypte ancienne, 67 ans de règne
+                </div>
+            </div>
+
+            <!-- Inscription 3 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°3</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Cartouche de Cléopâtre VII</h3>
+                <div class="hieroglyphs-display">
+                    <div class="cartouche">𓈎𓃭𓇌𓇌𓊪𓄿𓇿𓏏𓁐</div>
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> qlwp3drt<br>
+                    <strong>Traduction :</strong> "Cléopâtre"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple de Dendérah<br>
+                    📅 <strong>Époque :</strong> Période ptolémaïque, 51-30 av. J.-C.<br>
+                    💡 <strong>Signification :</strong> Dernière pharaon d'Égypte, adaptation grecque en hiéroglyphes
+                </div>
+            </div>
+
+            <!-- Inscription 4 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°4</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Cartouche de Khéops</h3>
+                <div class="hieroglyphs-display">
+                    <div class="cartouche">𓐍𓅱𓆑𓅱</div>
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḫwfw<br>
+                    <strong>Traduction :</strong> "Khoufou (Khéops)"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Grande Pyramide de Gizeh<br>
+                    📅 <strong>Époque :</strong> IVe dynastie, ~2589-2566 av. J.-C.<br>
+                    💡 <strong>Signification :</strong> Constructeur de la plus grande pyramide
+                </div>
+            </div>
+
+            <!-- Inscription 5 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°5</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Nom du dieu Rê</h3>
+                <div class="hieroglyphs-display">
+                    𓇳𓏤
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> rˁ<br>
+                    <strong>Traduction :</strong> "Rê / Le soleil"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple de Karnak<br>
+                    📅 <strong>Contexte :</strong> Dieu solaire suprême<br>
+                    💡 <strong>Signification :</strong> Disque solaire = idéogramme + complément phonétique
+                </div>
+            </div>
+
+            <!-- Inscription 6 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°6</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Nom du dieu Osiris</h3>
+                <div class="hieroglyphs-display">
+                    𓊨𓁹𓀭
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> wsjr<br>
+                    <strong>Traduction :</strong> "Osiris"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple d'Abydos<br>
+                    📅 <strong>Contexte :</strong> Dieu de la résurrection et de l'au-delà<br>
+                    💡 <strong>Signification :</strong> Trône + œil + déterminatif divin
+                </div>
+            </div>
+
+            <!-- Inscription 7 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°7</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Nom de la déesse Isis</h3>
+                <div class="hieroglyphs-display">
+                    𓊨𓏏𓁐
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> 3st<br>
+                    <strong>Traduction :</strong> "Isis"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple de Philae<br>
+                    📅 <strong>Contexte :</strong> Grande déesse magicienne, épouse d'Osiris<br>
+                    💡 <strong>Signification :</strong> Trône + pain (t) + déterminatif féminin
+                </div>
+            </div>
+
+            <!-- Inscription 8 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°8</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Nom du dieu Horus</h3>
+                <div class="hieroglyphs-display">
+                    𓅃𓀭
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḥr<br>
+                    <strong>Traduction :</strong> "Horus"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple d'Edfou<br>
+                    📅 <strong>Contexte :</strong> Dieu faucon, protecteur du pharaon<br>
+                    💡 <strong>Signification :</strong> Faucon = idéogramme + déterminatif divin
+                </div>
+            </div>
+
+            <!-- Inscription 9 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°9</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Nom du dieu Anubis</h3>
+                <div class="hieroglyphs-display">
+                    𓇋𓈖𓊪𓅱𓃣
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> jnpw<br>
+                    <strong>Traduction :</strong> "Anubis"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Tombes de la Vallée des Rois<br>
+                    📅 <strong>Contexte :</strong> Dieu de la momification et gardien des nécropoles<br>
+                    💡 <strong>Signification :</strong> Chacal couché sur une chapelle
+                </div>
+            </div>
+
+            <!-- Inscription 10 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°10</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Ankh - Vie</h3>
+                <div class="hieroglyphs-display">
+                    𓋹
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ˁnḫ<br>
+                    <strong>Traduction :</strong> "Vie"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Symbole universel égyptien<br>
+                    📅 <strong>Usage :</strong> Porté par tous les dieux, offert aux pharaons<br>
+                    💡 <strong>Signification :</strong> Symbole de vie éternelle, clé du Nil
+                </div>
+            </div>
+
+            <!-- Inscription 11 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°11</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Djed - Stabilité</h3>
+                <div class="hieroglyphs-display">
+                    𓊽
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḏd<br>
+                    <strong>Traduction :</strong> "Stabilité / Durabilité"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Pilier osirien, amulettes funéraires<br>
+                    📅 <strong>Usage :</strong> Symbole de la colonne vertébrale d'Osiris<br>
+                    💡 <strong>Signification :</strong> Représente la permanence et la résurrection
+                </div>
+            </div>
+
+            <!-- Inscription 12 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°12</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Was - Pouvoir</h3>
+                <div class="hieroglyphs-display">
+                    𓌀
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> w3s<br>
+                    <strong>Traduction :</strong> "Pouvoir / Domination"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Sceptre divin et royal<br>
+                    📅 <strong>Usage :</strong> Attribut des dieux et du pharaon<br>
+                    💡 <strong>Signification :</strong> Sceptre à tête de Set, symbole de puissance
+                </div>
+            </div>
+
+            <!-- Inscription 13 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°13</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Nefer - Bon/Beau</h3>
+                <div class="hieroglyphs-display">
+                    𓄤𓆑𓂋
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> nfr<br>
+                    <strong>Traduction :</strong> "Bon / Beau / Parfait"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Textes royaux et religieux<br>
+                    📅 <strong>Usage :</strong> Adjectif très fréquent<br>
+                    💡 <strong>Signification :</strong> Cœur et trachée = symbole de perfection
+                </div>
+            </div>
+
+            <!-- Inscription 14 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°14</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Hotep - Paix/Offrande</h3>
+                <div class="hieroglyphs-display">
+                    𓊵𓏏𓊪
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḥtp<br>
+                    <strong>Traduction :</strong> "Paix / Offrande / Satisfaction"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Formules funéraires et temples<br>
+                    📅 <strong>Usage :</strong> "Paix à toi", "offrande que donne le roi"<br>
+                    💡 <strong>Signification :</strong> Table d'offrande avec pains
+                </div>
+            </div>
+
+            <!-- Inscription 15 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°15</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Seneb - Santé</h3>
+                <div class="hieroglyphs-display">
+                    𓋴𓈖𓃀
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> snb<br>
+                    <strong>Traduction :</strong> "Santé"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Formules de souhait<br>
+                    📅 <strong>Usage :</strong> "Vie, force, santé" (ˁnḫ wḏ3 snb)<br>
+                    💡 <strong>Signification :</strong> Formule récurrente après les noms royaux
+                </div>
+            </div>
+
+            <!-- Inscriptions 16-27 : Formules simples -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°16</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Ren - Nom</h3>
+                <div class="hieroglyphs-display">
+                    𓂋𓈖
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> rn<br>
+                    <strong>Traduction :</strong> "Nom"
+                </div>
+                <div class="context">
+                    💡 L'un des 5 composants de l'âme égyptienne
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°17</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Ba - Âme-oiseau</h3>
+                <div class="hieroglyphs-display">
+                    𓅡
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> b3<br>
+                    <strong>Traduction :</strong> "Âme (ba)"
+                </div>
+                <div class="context">
+                    💡 Représentée comme un oiseau à tête humaine
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°18</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Ka - Force vitale</h3>
+                <div class="hieroglyphs-display">
+                    𓂓
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> k3<br>
+                    <strong>Traduction :</strong> "Ka (double spirituel)"
+                </div>
+                <div class="context">
+                    💡 Deux bras levés symbolisant la force vitale
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°19</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Ib - Cœur</h3>
+                <div class="hieroglyphs-display">
+                    𓄣
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> jb<br>
+                    <strong>Traduction :</strong> "Cœur"
+                </div>
+                <div class="context">
+                    💡 Siège de la conscience et de la mémoire, pesé lors du jugement
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°20</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Neter - Dieu</h3>
+                <div class="hieroglyphs-display">
+                    𓊹
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> nṯr<br>
+                    <strong>Traduction :</strong> "Dieu / Divin"
+                </div>
+                <div class="context">
+                    💡 Étendard sacré, déterminatif de tous les noms divins
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°21</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Heb - Fête</h3>
+                <div class="hieroglyphs-display">
+                    𓎛𓃀𓇳
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḥb<br>
+                    <strong>Traduction :</strong> "Fête / Célébration"
+                </div>
+                <div class="context">
+                    💡 Fête Sed : jubilé royal célébré après 30 ans de règne
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°22</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Per - Maison</h3>
+                <div class="hieroglyphs-display">
+                    𓉐
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> pr<br>
+                    <strong>Traduction :</strong> "Maison / Domaine"
+                </div>
+                <div class="context">
+                    💡 "Per-aa" (𓉐𓉻) = Grande Maison = Pharaon
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°23</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Kemet - Terre Noire</h3>
+                <div class="hieroglyphs-display">
+                    𓆎𓅓𓏏
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> kmt<br>
+                    <strong>Traduction :</strong> "Kemet (Égypte - Terre Noire)"
+                </div>
+                <div class="context">
+                    💡 Nom égyptien de l'Égypte, opposé à Deshret (terre rouge/désert)
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°24</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Mer - Pyramide</h3>
+                <div class="hieroglyphs-display">
+                    𓍋𓃀𓈋𓊖
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> mr<br>
+                    <strong>Traduction :</strong> "Pyramide"
+                </div>
+                <div class="context">
+                    💡 Littéralement "lieu d'ascension" vers le ciel
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°25</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Duat - Monde souterrain</h3>
+                <div class="hieroglyphs-display">
+                    𓇼𓄿𓏏
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> dw3t<br>
+                    <strong>Traduction :</strong> "Douât (au-delà)"
+                </div>
+                <div class="context">
+                    💡 Royaume souterrain où voyage Rê la nuit, étoile dans un cercle
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°26</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Maat - Vérité/Justice</h3>
+                <div class="hieroglyphs-display">
+                    𓐙𓄿𓂓𓏏𓁦
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> m3ˁt<br>
+                    <strong>Traduction :</strong> "Maât (Vérité, Justice, Ordre)"
+                </div>
+                <div class="context">
+                    💡 Déesse et concept fondamental : plume d'autruche pesée contre le cœur
+                </div>
+            </div>
+
+            <div class="inscription-card">
+                <span class="inscription-number">N°27</span>
+                <span class="difficulty-badge difficulty-debutant">Débutant</span>
+                <h3>Sekhem - Puissance</h3>
+                <div class="hieroglyphs-display">
+                    𓋴𓐍𓏏𓀜
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> sḫm<br>
+                    <strong>Traduction :</strong> "Puissance / Pouvoir"
+                </div>
+                <div class="context">
+                    💡 L'une des composantes de l'âme, représentant la force spirituelle
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION INTERMÉDIAIRE -->
+        <section id="intermediaire" class="section-header">
+            <h2>𓊪 Niveau Intermédiaire</h2>
+            <p>10 inscriptions avancées : formules religieuses, titres royaux et textes littéraires</p>
+        </section>
+
+        <div class="inscription-grid">
+            <!-- Inscription 28 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°28</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Formule Hotep-di-Nesout</h3>
+                <div class="hieroglyphs-display">
+                    𓇓𓏏𓊵𓏙𓊨𓁹𓀭
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḥtp dj nsw wsjr<br>
+                    <strong>Traduction :</strong> "Offrande que donne le roi à Osiris"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Formule universelle des stèles funéraires<br>
+                    💡 Début de toute formule d'offrande pour les défunts, trouvée sur des milliers de monuments
+                </div>
+            </div>
+
+            <!-- Inscription 29 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°29</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Titulature complète du pharaon</h3>
+                <div class="hieroglyphs-display">
+                    𓅃𓏤 𓆑𓏏𓇿𓎟 𓅭𓇳 𓇳𓏠𓈖 𓆄𓏏𓏤
+                </div>
+                <div class="translation">
+                    <strong>Les 5 noms :</strong><br>
+                    1. Nom d'Horus (𓅃)<br>
+                    2. Nom de Nebty / Deux Dames (𓆑𓏏𓇿)<br>
+                    3. Nom d'Horus d'Or (𓅭𓇳)<br>
+                    4. Nom de couronnement (𓇳)<br>
+                    5. Nom de naissance (𓄤)
+                </div>
+                <div class="context">
+                    💡 Système complet d'identification royale utilisé depuis la Ire dynastie
+                </div>
+            </div>
+
+            <!-- Inscription 30 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°30</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Livre des Morts - Chapitre 1</h3>
+                <div class="hieroglyphs-display">
+                    𓂋𓏤𓅱𓀁𓊪𓏏𓇯𓁷𓂋𓎛𓁷𓏥
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> rw n prt m hrw<br>
+                    <strong>Traduction :</strong> "Formule pour sortir au jour"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Papyrus funéraires du Nouvel Empire<br>
+                    💡 Titre du Livre des Morts : permettre au défunt de se déplacer librement dans l'au-delà
+                </div>
+            </div>
+
+            <!-- Inscription 31 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°31</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Pesée du Cœur</h3>
+                <div class="hieroglyphs-display">
+                    𓐍𓂝𓊃𓄣𓐙𓄿𓂓𓏏𓁦
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ḳ3s jb r m3ˁt<br>
+                    <strong>Traduction :</strong> "Peser le cœur contre la Maât"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Vignettes du Livre des Morts<br>
+                    💡 Jugement de l'âme : le cœur doit être aussi léger que la plume de Maât
+                </div>
+            </div>
+
+            <!-- Inscription 32 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°32</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Champ des Roseaux</h3>
+                <div class="hieroglyphs-display">
+                    𓇏𓏏𓈇𓇌𓄿𓂋𓅱
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> s3ḫt-j3rw<br>
+                    <strong>Traduction :</strong> "Champ des Roseaux (paradis égyptien)"
+                </div>
+                <div class="context">
+                    💡 Paradis égyptien où les défunts justifiés cultivent éternellement des champs fertiles
+                </div>
+            </div>
+
+            <!-- Inscription 33 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°33</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Barque Solaire de Rê</h3>
+                <div class="hieroglyphs-display">
+                    𓊝𓊹𓏤𓇳𓏤𓂧𓈗
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> wj3 n rˁ<br>
+                    <strong>Traduction :</strong> "Barque de Rê"
+                </div>
+                <div class="context">
+                    💡 Embarcation divine traversant le ciel le jour et la Douât la nuit
+                </div>
+            </div>
+
+            <!-- Inscription 34 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°34</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Vases Canopes</h3>
+                <div class="hieroglyphs-display">
+                    𓇋𓅓𓋴𓏏𓇌 𓎛𓊪𓇌 𓂧𓅱𓄿𓅓𓅱𓏏𓆑 𓏘𓃀𓎛𓋴𓏏𓅱𓆑
+                </div>
+                <div class="translation">
+                    <strong>Les 4 fils d'Horus :</strong><br>
+                    Amset (foie), Hâpy (poumons), Douamoutef (estomac), Qébehsénouf (intestins)
+                </div>
+                <div class="context">
+                    💡 Protecteurs des organes momifiés, chacun sous la garde d'une déesse
+                </div>
+            </div>
+
+            <!-- Inscription 35 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°35</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Ennéade d'Héliopolis</h3>
+                <div class="hieroglyphs-display">
+                    𓊹𓊹𓊹𓏏𓏏𓏏𓅆𓏥
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> psd.t<br>
+                    <strong>Traduction :</strong> "Ennéade (9 dieux primordiaux)"
+                </div>
+                <div class="context">
+                    💡 Atoum, Shou, Tefnout, Geb, Nout, Osiris, Isis, Set, Nephtys
+                </div>
+            </div>
+
+            <!-- Inscription 36 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°36</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Hymne au Soleil Levant</h3>
+                <div class="hieroglyphs-display">
+                    𓇋𓄿𓅱𓎛𓊪𓁷𓂋𓇳𓎛𓏏𓊪
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> j3w-nfr ḫpr-rˁ ḥtp<br>
+                    <strong>Traduction :</strong> "Salut à toi, Khépri au lever, Rê quand tu te couches"
+                </div>
+                <div class="context">
+                    📍 Hymnes récités quotidiennement dans les temples
+                </div>
+            </div>
+
+            <!-- Inscription 37 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°37</span>
+                <span class="difficulty-badge difficulty-intermediaire">Intermédiaire</span>
+                <h3>Serment du Vizir</h3>
+                <div class="hieroglyphs-display">
+                    𓋴𓌢𓂝𓎷𓄿𓎢𓁷𓂋𓅓𓂝𓏏𓁦
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> s-qr.w ḫr m3ˁt<br>
+                    <strong>Traduction :</strong> "Juger selon la Maât"
+                </div>
+                <div class="context">
+                    💡 Installation du Tjaty (vizir), plus haute fonction après le pharaon
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION EXPERT -->
+        <section id="expert" class="section-header">
+            <h2>𓏙 Niveau Expert</h2>
+            <p>9 inscriptions exceptionnelles : textes des pyramides, décrets royaux et littérature classique</p>
+        </section>
+
+        <div class="inscription-grid">
+            <!-- Inscription 38 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°38</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Pierre de Rosette - Extrait</h3>
+                <div class="hieroglyphs-display">
+                    𓊪𓏏𓍯𓃭𓅓𓇌𓋴𓊨𓏏𓊪
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ptwlmys swtp-n-ptḥ<br>
+                    <strong>Traduction :</strong> "Ptolémée, élu de Ptah"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Rosette (196 av. J.-C.)<br>
+                    💡 Clé du déchiffrement par Champollion (1822) - même texte en hiéroglyphes, démotique et grec
+                </div>
+            </div>
+
+            <!-- Inscription 39 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°39</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Texte des Pyramides - Formule 213</h3>
+                <div class="hieroglyphs-display">
+                    𓊪𓇳𓎛𓂋𓈋𓅱𓊹𓁷𓂋𓊪𓏏
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> pr.k r ḥr.w nṯr.w r pt<br>
+                    <strong>Traduction :</strong> "Tu sortiras vers Horus des dieux, vers le ciel"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Pyramide d'Ounas, Saqqarah (2375-2345 av. J.-C.)<br>
+                    💡 Plus ancien corpus religieux au monde, destiné à la résurrection royale
+                </div>
+            </div>
+
+            <!-- Inscription 40 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°40</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Conte de Sinouhé - Incipit</h3>
+                <div class="hieroglyphs-display">
+                    𓇋𓂋𓊪𓁷𓏤𓊢𓂝𓏏𓁐𓅓𓂋𓏭𓇯
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> jrj-pˁt ḥ3tj-ˁ n mr.w<br>
+                    <strong>Traduction :</strong> "Le prince héréditaire, le gouverneur des provinces de l'amour du souverain..."
+                </div>
+                <div class="context">
+                    📍 <strong>Époque :</strong> Moyen Empire (1875 av. J.-C.)<br>
+                    💡 Chef-d'œuvre littéraire : exil et retour d'un noble égyptien
+                </div>
+            </div>
+
+            <!-- Inscription 41 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°41</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Bataille de Qadesh - Ramsès II</h3>
+                <div class="hieroglyphs-display">
+                    𓎡𓂧𓇌𓏤𓎗𓏏𓁷𓏭𓆑𓅱𓈖𓊨𓏏𓆑
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> qd(š) ḫˁ.t.w nfr n ḥm.f<br>
+                    <strong>Traduction :</strong> "Qadesh - L'apparition glorieuse de Sa Majesté"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Temple de Karnak, Louxor, Abou Simbel<br>
+                    💡 Poème épique de la bataille contre les Hittites (1274 av. J.-C.)
+                </div>
+            </div>
+
+            <!-- Inscription 42 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°42</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Enseignement de Ptahhotep</h3>
+                <div class="hieroglyphs-display">
+                    𓋴𓃀𓇋𓏏𓊪𓏏𓊵𓏙𓊪
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> sb3yt ptḥ-ḥtp<br>
+                    <strong>Traduction :</strong> "Enseignement de Ptahhotep"
+                </div>
+                <div class="context">
+                    📍 <strong>Époque :</strong> Ve dynastie (~2400 av. J.-C.)<br>
+                    💡 Plus anciens préceptes de sagesse : humilité, justice, famille
+                </div>
+            </div>
+
+            <!-- Inscription 43 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°43</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Stèle de la Famine - Ptolémaïque</h3>
+                <div class="hieroglyphs-display">
+                    𓊹𓀭𓈖𓆑𓂋𓎛𓎛𓎛𓏏𓊃𓊃𓊃𓏥
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> nṯr nfr ḥḳr.w<br>
+                    <strong>Traduction :</strong> "Le dieu parfait (pharaon) contre la famine..."
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Île de Séhel, Assouan<br>
+                    💡 Récit pseudo-historique attribué à Djéser : 7 ans de famine du Nil
+                </div>
+            </div>
+
+            <!-- Inscription 44 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°44</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Hymne à Aton - Akhenaton</h3>
+                <div class="hieroglyphs-display">
+                    𓇋𓏏𓈖𓇳𓎛𓂋𓇳𓄣𓏏𓋴𓏭
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> jtn jr.n ḥr.k<br>
+                    <strong>Traduction :</strong> "Aton, ta beauté est magnifique..."
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Tombe d'Ay, Tell el-Amarna<br>
+                    💡 Révolution religieuse d'Akhenaton : monothéisme solaire (1350 av. J.-C.)
+                </div>
+            </div>
+
+            <!-- Inscription 45 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°45</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Papyrus médical d'Ebers</h3>
+                <div class="hieroglyphs-display">
+                    𓊪𓊃𓊃𓏏𓁷𓏥𓎛𓂧𓂧𓂧𓏏𓏥
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> pḫr.t(w) ḫr ḥḏt<br>
+                    <strong>Traduction :</strong> "Remède pour soigner les maux de tête"
+                </div>
+                <div class="context">
+                    📍 <strong>Époque :</strong> XVIIIe dynastie (~1550 av. J.-C.)<br>
+                    💡 Traité médical de 110 pages : 700 formules et remèdes
+                </div>
+            </div>
+
+            <!-- Inscription 46 -->
+            <div class="inscription-card">
+                <span class="inscription-number">N°46</span>
+                <span class="difficulty-badge difficulty-expert">Expert</span>
+                <h3>Décret de Canope - Ptolémée III</h3>
+                <div class="hieroglyphs-display">
+                    𓊪𓏏𓍯𓃭𓅓𓇌𓋴𓊨𓇳𓏇𓋹𓂧𓏏
+                </div>
+                <div class="translation">
+                    <strong>Translittération :</strong> ptwlmys swtp ptḥ ˁnḫ-ḏt<br>
+                    <strong>Traduction :</strong> "Ptolémée, élu de Ptah, vivant éternellement"
+                </div>
+                <div class="context">
+                    📍 <strong>Provenance :</strong> Canope (237 av. J.-C.)<br>
+                    💡 Décret trilingue : réforme du calendrier égyptien
+                </div>
+            </div>
+        </div>
+
+        <section style="text-align: center; margin: 3rem 0; padding: 2rem; background: rgba(212, 175, 55, 0.1); border-radius: 15px;">
+            <h2>🎓 Certification de Maîtrise</h2>
+            <p>Maîtrisez les 46 inscriptions pour obtenir votre certificat d'égyptologue</p>
+            <div style="margin-top: 2rem;">
+                <div style="font-size: 1.5rem; color: #d4af37;">Progression : <span id="total-progress">0/46</span></div>
+                <div style="width: 100%; background: rgba(255,255,255,0.1); height: 30px; border-radius: 15px; margin: 1rem auto; max-width: 600px;">
+                    <div id="global-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #d4af37, #ffd700); border-radius: 15px; transition: width 0.5s;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Académie des Sagesses Anciennes - Collection authentique d'inscriptions égyptiennes</p>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Mettre à jour les boutons actifs
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Système de progression
+        function updateGlobalProgress() {
+            const totalInscriptions = 46;
+            const completedInscriptions = parseInt(localStorage.getItem('hieroglyphes-completed') || 0);
+
+            document.getElementById('total-progress').textContent = `${completedInscriptions}/${totalInscriptions}`;
+            const percentage = (completedInscriptions / totalInscriptions) * 100;
+            document.getElementById('global-progress-bar').style.width = percentage + '%';
+        }
+
+        // Animation d'apparition
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.inscription-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        updateGlobalProgress();
+
+        // Gestion des ancres dans l'URL
+        if (window.location.hash) {
+            const targetId = window.location.hash.substring(1);
+            setTimeout(() => {
+                const target = document.getElementById(targetId);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>

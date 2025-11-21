@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur Gematria - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .calculator-container {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.8), rgba(30, 136, 229, 0.2));
+            border: 3px solid rgba(100, 181, 246, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        #textInput {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.5rem;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        #textInput:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .method-selector {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .method-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 10px;
+            background: rgba(100, 181, 246, 0.2);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .method-btn:hover {
+            background: rgba(100, 181, 246, 0.4);
+            transform: scale(1.05);
+        }
+
+        .method-btn.active {
+            background: #64b5f6;
+            border-color: #64b5f6;
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+        }
+
+        .calculate-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .result-container {
+            background: rgba(139, 92, 246, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .result-container.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-value {
+            font-size: 4rem;
+            color: #8b5cf6;
+            text-align: center;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .result-label {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .letter-breakdown {
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .letter-breakdown h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .letter-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .letter-char {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .letter-value {
+            font-size: 1.2rem;
+            color: #64b5f6;
+        }
+
+        .info-section {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .info-section h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Clavier virtuel hébreu */
+        .virtual-keyboard {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .key-btn {
+            padding: 1rem;
+            font-size: 1.5rem;
+            background: rgba(100, 181, 246, 0.2);
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .key-btn:hover {
+            background: rgba(100, 181, 246, 0.4);
+            transform: scale(1.1);
+        }
+
+        .key-btn:active {
+            transform: scale(0.95);
+        }
+
+        .matches-section {
+            margin-top: 2rem;
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .matches-section h3 {
+            color: #66bb6a;
+            margin-bottom: 1rem;
+        }
+
+        .match-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-word {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+
+        .match-meaning {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .virtual-keyboard {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔢 Calculateur Gematria</h1>
+        <p class="subtitle">Découvrez la valeur numérique des mots hébraïques</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="alphabet-hebreu.html">🔯 Alphabet Hébreu</a>
+        <a href="calculateur-gematria.html">🔢 Calculateur Gematria</a>
+        <a href="alphabet-runes.html">ᚠ Runes</a>
+        <a href="tirage-runes.html">🎲 Tirage Runes</a>
+    </nav>
+
+    <main>
+        <div class="calculator-container">
+            <div class="input-section">
+                <label for="textInput">Entrez du texte en hébreu :</label>
+                <input type="text" id="textInput" placeholder="שלום" dir="rtl" aria-label="Champ de saisie pour texte hébreu">
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 0.5rem;">
+                    💡 Conseil : Copiez-collez du texte hébreu ou utilisez le clavier virtuel ci-dessous
+                </p>
+
+                <!-- Clavier virtuel hébreu -->
+                <div class="virtual-keyboard" role="group" aria-label="Clavier virtuel hébreu">
+                    <!-- Lettres ajoutées dynamiquement par JavaScript -->
+                </div>
+            </div>
+
+            <div class="method-selector">
+                <button class="method-btn active" data-method="standard">Standard</button>
+                <button class="method-btn" data-method="mispar-gadol">Mispar Gadol</button>
+                <button class="method-btn" data-method="mispar-katan">Mispar Katan</button>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateGematria()">🔮 Calculer la Gematria</button>
+        </div>
+
+        <div class="result-container" id="resultContainer" role="region" aria-label="Résultats du calcul">
+            <div class="result-label">Valeur Gematria :</div>
+            <div class="result-value" id="resultValue" aria-live="polite">0</div>
+            <div class="letter-breakdown" id="letterBreakdown"></div>
+
+            <!-- Section des correspondances -->
+            <div class="matches-section" id="matchesSection" style="display: none;">
+                <h3>✨ Mots ayant la même valeur :</h3>
+                <div id="matchesList"></div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>📚 Qu'est-ce que la Gematria ?</h3>
+            <p>La <strong>Gematria</strong> est un système de numérologie hébraïque où chaque lettre possède une valeur numérique. Cette pratique kabbalistique permet de découvrir des connexions mystiques entre les mots ayant la même valeur.</p>
+
+            <h3 style="margin-top: 1.5rem;">🔢 Méthodes de Calcul :</h3>
+            <ul style="line-height: 1.8; margin-top: 0.5rem;">
+                <li><strong>Standard (Mispar Hechrachi) :</strong> Valeurs de base (א=1, ב=2, ..., ת=400)</li>
+                <li><strong>Mispar Gadol :</strong> Inclut les formes finales (ך=500, ם=600, ן=700, ף=800, ץ=900)</li>
+                <li><strong>Mispar Katan :</strong> Réduction digitale (toutes les valeurs entre 1-9)</li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">✨ Exemples célèbres :</h3>
+            <ul style="line-height: 1.8; margin-top: 0.5rem;">
+                <li><strong>אהבה (Ahava - Amour) = 13</strong></li>
+                <li><strong>אחד (Echad - Un/Unité) = 13</strong></li>
+                <li><strong>חי (Chai - Vie) = 18</strong></li>
+                <li><strong>שלום (Shalom - Paix) = 376</strong></li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        // Table des valeurs gematria
+        const gematriaValues = {
+            'א': 1, 'ב': 2, 'ג': 3, 'ד': 4, 'ה': 5, 'ו': 6, 'ז': 7, 'ח': 8, 'ט': 9,
+            'י': 10, 'כ': 20, 'ך': 20, 'ל': 30, 'מ': 40, 'ם': 40, 'נ': 50, 'ן': 50,
+            'ס': 60, 'ע': 70, 'פ': 80, 'ף': 80, 'צ': 90, 'ץ': 90, 'ק': 100,
+            'ר': 200, 'ש': 300, 'ת': 400
+        };
+
+        const gematriaGadol = {
+            ...gematriaValues,
+            'ך': 500, 'ם': 600, 'ן': 700, 'ף': 800, 'ץ': 900
+        };
+
+        // Base de données de mots célèbres avec leurs significations
+        const famousWords = {
+            1: [{ word: 'א', meaning: 'Aleph - Première lettre' }],
+            13: [
+                { word: 'אהבה', meaning: 'Ahava - Amour' },
+                { word: 'אחד', meaning: 'Echad - Un, Unité' }
+            ],
+            18: [{ word: 'חי', meaning: 'Chai - Vie' }],
+            26: [{ word: 'יהוה', meaning: 'YHVH - Nom divin (Tétragramme)' }],
+            72: [{ word: 'חסד', meaning: 'Chesed - Bonté, Miséricorde' }],
+            86: [{ word: 'אלהים', meaning: 'Elohim - Dieu' }],
+            207: [{ word: 'אור', meaning: 'Or - Lumière' }],
+            376: [{ word: 'שלום', meaning: 'Shalom - Paix' }],
+            440: [{ word: 'שמים', meaning: 'Shamayim - Cieux' }],
+            541: [{ word: 'ישראל', meaning: 'Israel - Israël' }]
+        };
+
+        let currentMethod = 'standard';
+
+        // Sélection de méthode
+        document.querySelectorAll('.method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentMethod = this.dataset.method;
+            });
+        });
+
+        // Calculer sur Enter
+        document.getElementById('textInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateGematria();
+            }
+        });
+
+        function calculateGematria() {
+            const text = document.getElementById('textInput').value;
+            if (!text.trim()) {
+                alert('Veuillez entrer du texte hébreu');
+                return;
+            }
+
+            let total = 0;
+            let breakdown = [];
+            const valueTable = currentMethod === 'mispar-gadol' ? gematriaGadol : gematriaValues;
+
+            for (let char of text) {
+                if (valueTable[char]) {
+                    let value = valueTable[char];
+
+                    // Mispar Katan : réduction digitale
+                    if (currentMethod === 'mispar-katan') {
+                        while (value > 9) {
+                            value = value.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+                        }
+                    }
+
+                    total += value;
+                    breakdown.push({ char, value });
+                }
+            }
+
+            // Afficher le résultat
+            document.getElementById('resultValue').textContent = total;
+
+            // Afficher la décomposition
+            let breakdownHTML = '<h3>Décomposition par lettre :</h3>';
+            breakdown.forEach(item => {
+                breakdownHTML += `
+                    <div class="letter-row">
+                        <span class="letter-char">${item.char}</span>
+                        <span class="letter-value">${item.value}</span>
+                    </div>
+                `;
+            });
+
+            document.getElementById('letterBreakdown').innerHTML = breakdownHTML;
+            document.getElementById('resultContainer').classList.add('show');
+
+            // Afficher les correspondances si disponibles
+            if (famousWords[total]) {
+                const matchesSection = document.getElementById('matchesSection');
+                const matchesList = document.getElementById('matchesList');
+
+                let matchesHTML = '';
+                famousWords[total].forEach(item => {
+                    matchesHTML += `
+                        <div class="match-item">
+                            <span class="match-word">${item.word}</span>
+                            <span class="match-meaning">${item.meaning}</span>
+                        </div>
+                    `;
+                });
+
+                matchesList.innerHTML = matchesHTML;
+                matchesSection.style.display = 'block';
+            } else {
+                document.getElementById('matchesSection').style.display = 'none';
+            }
+
+            // Scroll vers le résultat
+            document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Exemples pré-définis
+        function setExample(text) {
+            document.getElementById('textInput').value = text;
+            calculateGematria();
+        }
+
+        // Créer le clavier virtuel
+        function createVirtualKeyboard() {
+            const keyboard = document.querySelector('.virtual-keyboard');
+            const hebrewLetters = [
+                'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז',
+                'ח', 'ט', 'י', 'כ', 'ך', 'ל', 'מ',
+                'ם', 'נ', 'ן', 'ס', 'ע', 'פ', 'ף',
+                'צ', 'ץ', 'ק', 'ר', 'ש', 'ת'
+            ];
+
+            hebrewLetters.forEach(letter => {
+                const btn = document.createElement('button');
+                btn.className = 'key-btn';
+                btn.textContent = letter;
+                btn.setAttribute('aria-label', `Insérer la lettre ${letter}`);
+                btn.onclick = () => {
+                    const input = document.getElementById('textInput');
+                    input.value += letter;
+                    input.focus();
+                };
+                keyboard.appendChild(btn);
+            });
+
+            // Bouton effacer
+            const clearBtn = document.createElement('button');
+            clearBtn.className = 'key-btn';
+            clearBtn.textContent = '⌫';
+            clearBtn.setAttribute('aria-label', 'Effacer le dernier caractère');
+            clearBtn.style.background = 'rgba(244, 67, 54, 0.3)';
+            clearBtn.style.borderColor = 'rgba(244, 67, 54, 0.5)';
+            clearBtn.onclick = () => {
+                const input = document.getElementById('textInput');
+                input.value = input.value.slice(0, -1);
+                input.focus();
+            };
+            keyboard.appendChild(clearBtn);
+
+            // Bouton tout effacer
+            const clearAllBtn = document.createElement('button');
+            clearAllBtn.className = 'key-btn';
+            clearAllBtn.textContent = '🗑️';
+            clearAllBtn.setAttribute('aria-label', 'Tout effacer');
+            clearAllBtn.style.background = 'rgba(244, 67, 54, 0.3)';
+            clearAllBtn.style.borderColor = 'rgba(244, 67, 54, 0.5)';
+            clearAllBtn.onclick = () => {
+                document.getElementById('textInput').value = '';
+                document.getElementById('textInput').focus();
+            };
+            keyboard.appendChild(clearAllBtn);
+        }
+
+        // Ajouter des boutons d'exemples
+        window.addEventListener('DOMContentLoaded', () => {
+            // Créer le clavier virtuel
+            createVirtualKeyboard();
+
+            const examplesDiv = document.createElement('div');
+            examplesDiv.style.cssText = 'margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;';
+            examplesDiv.innerHTML = `
+                <p style="width: 100%; color: #64b5f6; font-weight: bold; margin-bottom: 0.5rem;">📝 Exemples célèbres :</p>
+                <button onclick="setExample('אהבה')" style="padding: 0.5rem 1rem; background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); border-radius: 5px; color: #fff; cursor: pointer;" aria-label="Exemple: Amour (Ahava)">אהבה (Amour)</button>
+                <button onclick="setExample('חי')" style="padding: 0.5rem 1rem; background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); border-radius: 5px; color: #fff; cursor: pointer;" aria-label="Exemple: Vie (Chai)">חי (Vie)</button>
+                <button onclick="setExample('שלום')" style="padding: 0.5rem 1rem; background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); border-radius: 5px; color: #fff; cursor: pointer;" aria-label="Exemple: Paix (Shalom)">שלום (Paix)</button>
+                <button onclick="setExample('אחד')" style="padding: 0.5rem 1rem; background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); border-radius: 5px; color: #fff; cursor: pointer;" aria-label="Exemple: Un (Echad)">אחד (Un)</button>
+                <button onclick="setExample('יהוה')" style="padding: 0.5rem 1rem; background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); border-radius: 5px; color: #fff; cursor: pointer;" aria-label="Exemple: Tétragramme (YHVH)">יהוה (YHVH)</button>
+                <button onclick="setExample('אלהים')" style="padding: 0.5rem 1rem; background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); border-radius: 5px; color: #fff; cursor: pointer;" aria-label="Exemple: Dieu (Elohim)">אלהים (Dieu)</button>
+            `;
+            document.querySelector('.input-section').appendChild(examplesDiv);
+        });
+    </script>
+</body>
+</html>

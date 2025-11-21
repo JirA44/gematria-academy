@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours Complet des Runes | Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pathway-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .pathway-step {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            border-left: 8px solid;
+            transition: all 0.3s;
+        }
+
+        .pathway-step.step-1 { border-color: #27ae60; }
+        .pathway-step.step-2 { border-color: #f39c12; }
+        .pathway-step.step-3 { border-color: #8e44ad; }
+        .pathway-step.step-4 { border-color: #e74c3c; }
+
+        .pathway-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .step-number {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 3px solid #667eea;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .step-duration {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-objectives {
+            margin: 1.5rem 0;
+        }
+
+        .step-objectives ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-objectives li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .step-objectives li:before {
+            content: "✦";
+            position: absolute;
+            left: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .step-1 .step-objectives li:before { color: #27ae60; }
+        .step-2 .step-objectives li:before { color: #f39c12; }
+        .step-3 .step-objectives li:before { color: #8e44ad; }
+        .step-4 .step-objectives li:before { color: #e74c3c; }
+
+        .step-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .progress-tracker {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .progress-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #27ae60 0deg,
+                #27ae60 90deg,
+                #f39c12 90deg,
+                #f39c12 180deg,
+                #8e44ad 180deg,
+                #8e44ad 270deg,
+                #e74c3c 270deg,
+                #e74c3c 360deg
+            );
+            position: relative;
+            margin: 1rem auto;
+        }
+
+        .progress-inner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .milestone {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="header-buttons-cosmic">
+            <button class="cosmic-btn cosmic-btn-dark" onclick="toggleDarkMode()">
+                <span class="btn-icon">🌙</span>
+                <span class="btn-text">Mode Nuit</span>
+            </button>
+            <button class="cosmic-btn cosmic-btn-lang" onclick="window.location.href='index.html'">
+                <span class="btn-icon">🏠</span>
+                <span class="btn-text">Accueil</span>
+            </button>
+        </div>
+        <h1>🛤️ Parcours Complet d'Apprentissage des Runes</h1>
+        <p class="subtitle">Du Novice au Maître Runique en 4 Étapes</p>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">Accueil</a> » <a href="index.html#runes">Runes</a> » Parcours Complet
+        </div>
+
+        <div class="content-page">
+            <section class="hero">
+                <h2>Votre Voyage Initiatique dans le Monde des Runes</h2>
+                <p>Ce parcours progressif vous guidera à travers les 4 niveaux de maîtrise runique, des premiers pas jusqu'à l'expertise complète. Chaque étape construit sur les fondations de la précédente, vous permettant d'intégrer profondément la sagesse ancestrale du Futhark ancien.</p>
+            </section>
+
+            <div class="progress-tracker">
+                <h3>🎯 Votre Progression</h3>
+                <div class="progress-circle">
+                    <div class="progress-inner">
+                        <div style="font-size: 2rem; font-weight: bold;">0%</div>
+                        <div style="font-size: 0.9rem; opacity: 0.7;">Commencez!</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;">4 Étapes • Durée totale estimée: 3-6 mois</p>
+            </div>
+
+            <div class="pathway-container">
+                <!-- ÉTAPE 1 -->
+                <div class="pathway-step step-1">
+                    <div class="step-number">1</div>
+                    <div class="step-title">🌱 Fondations - L'Éveil Runique</div>
+                    <div class="step-duration">⏱️ Durée: 2-4 semaines</div>
+
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">
+                        Découvrez les premiers mystères du Futhark ancien. Cette étape vous familiarise avec les 8 premières runes et établit les fondations de votre pratique.
+                    </p>
+
+                    <div class="step-objectives">
+                        <h4>📋 Objectifs de cette étape:</h4>
+                        <ul>
+                            <li>Maîtriser les 8 runes du Frey's Aett (Fehu à Wunjo)</li>
+                            <li>Comprendre l'origine historique et mythologique des runes</li>
+                            <li>Apprendre à tracer correctement chaque rune</li>
+                            <li>Mémoriser les significations de base</li>
+                            <li>Pratiquer la méditation runique quotidienne (5-10 min)</li>
+                            <li>Créer votre premier journal runique</li>
+                        </ul>
+                    </div>
+
+                    <div class="milestone">
+                        <strong>🏆 Jalon de réussite:</strong> Vous pouvez reconnaître et tracer les 8 premières runes de mémoire et expliquer leur signification basique.
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Conseil du Maître Runique:</strong> Commencez chaque journée en tirant une rune. Méditez sur sa signification pendant 5 minutes. Observez comment son énergie se manifeste dans votre journée.
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="runes-debutant.html" class="btn btn-beginner">📖 Commencer l'Étape 1</a>
+                        <a href="runes-flashcards.html" class="btn btn-beginner">🎴 Pratiquer avec les Flashcards</a>
+                    </div>
+                </div>
+
+                <!-- ÉTAPE 2 -->
+                <div class="pathway-step step-2">
+                    <div class="step-number">2</div>
+                    <div class="step-title">🔥 Approfondissement - L'Expansion de la Connaissance</div>
+                    <div class="step-duration">⏱️ Durée: 4-6 semaines</div>
+
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">
+                        Élargissez vos horizons en explorant les 16 runes restantes. Approfondissez votre compréhension de la mythologie nordique et commencez à établir des connexions entre les symboles.
+                    </p>
+
+                    <div class="step-objectives">
+                        <h4>📋 Objectifs de cette étape:</h4>
+                        <ul>
+                            <li>Maîtriser les 16 runes restantes (Hagalaz à Othala)</li>
+                            <li>Comprendre les trois Aettir et leurs énergies distinctes</li>
+                            <li>Étudier les correspondances mythologiques de chaque rune</li>
+                            <li>Pratiquer les tirages de base (Rune du Jour, Les Trois Nornes)</li>
+                            <li>Explorer les liens entre runes et éléments naturels</li>
+                            <li>Créer votre propre jeu de runes (pierres, bois ou cartes)</li>
+                        </ul>
+                    </div>
+
+                    <div class="milestone">
+                        <strong>🏆 Jalon de réussite:</strong> Vous connaissez les 24 runes par cœur et pouvez effectuer un tirage des Trois Nornes en interprétant correctement chaque position.
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Conseil du Maître Runique:</strong> Créez des associations personnelles avec chaque rune. Par exemple, Fehu pourrait vous rappeler un moment où vous avez ressenti l'abondance dans votre vie. Ces connexions rendent l'apprentissage plus profond et durable.
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="runes-intermediaire.html" class="btn btn-intermediate">📖 Commencer l'Étape 2</a>
+                        <a href="runes-divination.html" class="btn btn-intermediate">🔮 Pratiquer la Divination</a>
+                        <a href="runes-mythologie-nordique.html" class="btn btn-intermediate">⚡ Explorer la Mythologie</a>
+                    </div>
+                </div>
+
+                <!-- ÉTAPE 3 -->
+                <div class="pathway-step step-3">
+                    <div class="step-number">3</div>
+                    <div class="step-title">⚡ Maîtrise - La Sagesse Profonde</div>
+                    <div class="step-duration">⏱️ Durée: 6-8 semaines</div>
+
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">
+                        Plongez dans les aspects ésotériques et magiques des runes. Apprenez les techniques avancées de divination, la magie runique et les galdr (chants runiques).
+                    </p>
+
+                    <div class="step-objectives">
+                        <h4>📋 Objectifs de cette étape:</h4>
+                        <ul>
+                            <li>Maîtriser les significations inversées et nuancées de chaque rune</li>
+                            <li>Pratiquer les tirages complexes (Croix de Thor, Étoile du Destin)</li>
+                            <li>Étudier les combinaisons runiques (bind-runes)</li>
+                            <li>Apprendre les galdr (formules sonores) de chaque rune</li>
+                            <li>Explorer la magie runique et les rituels nordiques</li>
+                            <li>Comprendre les cycles cosmiques et Yggdrasil</li>
+                            <li>Créer vos propres bind-runes pour des intentions spécifiques</li>
+                        </ul>
+                    </div>
+
+                    <div class="milestone">
+                        <strong>🏆 Jalon de réussite:</strong> Vous pouvez effectuer une lecture complète de 9 runes, interpréter les nuances subtiles et créer des bind-runes efficaces pour vos intentions personnelles.
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Conseil du Maître Runique:</strong> La vraie maîtrise vient de la pratique régulière. Effectuez un tirage quotidien et tenez un journal détaillé de vos interprétations et des événements qui suivent. Avec le temps, vous développerez votre propre système intuitif.
+                    </div>
+
+                    <div class="exercise">
+                        <h4>🎯 Exercice Pratique - Création de Bind-Rune</h4>
+                        <ol>
+                            <li>Choisissez une intention claire (protection, prospérité, amour, etc.)</li>
+                            <li>Sélectionnez 2-4 runes qui représentent cette intention</li>
+                            <li>Dessinez-les en superposition pour créer un symbole unique</li>
+                            <li>Activez votre bind-rune par la méditation et le galdr</li>
+                            <li>Observez ses effets pendant 9 jours</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="runes-expert.html" class="btn btn-expert">📖 Commencer l'Étape 3</a>
+                        <a href="runes-divination.html" class="btn btn-expert">🔮 Tirages Avancés</a>
+                    </div>
+                </div>
+
+                <!-- ÉTAPE 4 -->
+                <div class="pathway-step step-4">
+                    <div class="step-number">4</div>
+                    <div class="step-title">🌟 Intégration - Le Maître Runique</div>
+                    <div class="step-duration">⏱️ Durée: Pratique continue (2-3 mois minimum)</div>
+
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">
+                        L'étape finale consiste à intégrer pleinement la sagesse runique dans votre vie quotidienne. Devenez un canal pour la sagesse ancestrale et développez votre propre style de pratique.
+                    </p>
+
+                    <div class="step-objectives">
+                        <h4>📋 Objectifs de cette étape:</h4>
+                        <ul>
+                            <li>Effectuer des lectures pour d'autres personnes avec éthique</li>
+                            <li>Développer votre intuition runique avancée</li>
+                            <li>Créer des rituels personnalisés basés sur les cycles lunaires et saisonniers</li>
+                            <li>Étudier les textes historiques (Hávamál, Eddas)</li>
+                            <li>Approfondir la connexion avec les archétypes nordiques</li>
+                            <li>Enseigner les bases à d'autres chercheurs spirituels</li>
+                            <li>Intégrer les runes dans votre pratique spirituelle quotidienne</li>
+                        </ul>
+                    </div>
+
+                    <div class="milestone">
+                        <strong>🏆 Jalon de réussite:</strong> Vous êtes capable de donner des lectures précises et nuancées, de créer des rituels runiques personnalisés et de guider d'autres personnes dans leur apprentissage du Futhark ancien.
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Conseil du Maître Runique:</strong> À ce stade, vous n'apprenez plus des livres mais de votre expérience directe. Faites confiance à votre intuition. Les runes vous parleront de manière unique. Honorez cette relation sacrée par une pratique quotidienne respectueuse.
+                    </div>
+
+                    <div class="exercise">
+                        <h4>🎯 Projet Final - Votre Grimoire Runique</h4>
+                        <p>Créez votre propre grimoire runique personnel contenant:</p>
+                        <ul style="margin-top: 1rem;">
+                            <li>Vos interprétations uniques de chaque rune</li>
+                            <li>Journal de vos tirages et leurs résultats</li>
+                            <li>Vos bind-runes créées et leurs effets</li>
+                            <li>Rituels et méditations qui fonctionnent pour vous</li>
+                            <li>Connexions entre runes et votre vie personnelle</li>
+                            <li>Enseignements reçus dans vos méditations runiques</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; padding: 1rem; margin: 1rem 0; border-radius: 5px;">
+                        <strong>⚠️ Éthique du Praticien Runique:</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>Ne faites jamais de lectures sans le consentement de la personne</li>
+                            <li>Respectez le libre arbitre - les runes guident, elles ne dictent pas</li>
+                            <li>N'utilisez jamais les runes pour manipuler ou nuire</li>
+                            <li>Honorez la tradition et les ancêtres qui nous ont légué ce savoir</li>
+                            <li>Continuez toujours à apprendre et à vous perfectionner</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="runes-expert.html" class="btn btn-expert">📖 Approfondir l'Expertise</a>
+                        <a href="runes-mythologie-nordique.html" class="btn btn-expert">⚡ Mythologie Complète</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>🎓 Ressources Complémentaires</h3>
+                <p>Pour enrichir votre parcours, nous recommandons:</p>
+                <ul>
+                    <li><strong>Lectures recommandées:</strong> "Futhark: A Handbook of Rune Magic" de Edred Thorsson, "The Runes Workbook" de Leon D. Wild</li>
+                    <li><strong>Pratique quotidienne:</strong> Utilisez nos <a href="runes-flashcards.html" style="color: #64b5f6; font-weight: bold;">Flashcards Interactives</a> pour maintenir vos connaissances fraîches</li>
+                    <li><strong>Divination:</strong> Pratiquez régulièrement avec nos <a href="runes-divination.html" style="color: #ba68c8; font-weight: bold;">Tirages Interactifs</a></li>
+                    <li><strong>Contexte mythologique:</strong> Explorez la <a href="runes-mythologie-nordique.html" style="color: #f39c12; font-weight: bold;">Mythologie Nordique</a> pour comprendre le contexte culturel</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                <strong>🌟 Note Finale:</strong> Ce parcours est une suggestion. Chacun avance à son propre rythme. Certains compléteront le parcours en 3 mois, d'autres prendront un an ou plus. L'important n'est pas la vitesse, mais la profondeur de votre connexion avec les runes. Respectez votre propre cheminement.
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="index.html#runes" class="btn btn-beginner">← Retour aux Runes</a>
+                <a href="runes-debutant.html" class="btn btn-beginner">Commencer le Parcours →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Sagesses Anciennes - Votre voyage initiatique commence ici</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

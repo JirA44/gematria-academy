@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(244, 67, 54, 0.3);
+            border: 2px solid #f44336;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(244, 67, 54, 0.5);
+            transform: scale(1.05);
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            border: 3px solid rgba(139, 92, 246, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 4px solid #8b5cf6;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: #aaa;
+            margin: 0.3rem 0;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(15, 52, 96, 0.6);
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .progress-section {
+            background: rgba(15, 52, 96, 0.6);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-section h3 {
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .badges-section {
+            background: rgba(15, 52, 96, 0.6);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badges-section h3 {
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .badge {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .badge:hover {
+            transform: scale(1.05);
+        }
+
+        .badge-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-name {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .badge.locked {
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+
+        .history-section {
+            background: rgba(15, 52, 96, 0.6);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .history-section h3 {
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .history-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #64b5f6;
+        }
+
+        .history-date {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .history-action {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="logout-btn" onclick="logout()">🚪 Déconnexion</button>
+        <h1>👤 Mon Profil</h1>
+        <p class="subtitle">Votre parcours initiatique</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="profile.html">👤 Profil</a>
+        <a href="#progress">📊 Progression</a>
+        <a href="#badges">🏆 Badges</a>
+    </nav>
+
+    <main>
+        <div class="profile-header">
+            <div class="avatar">👤</div>
+            <div class="profile-info">
+                <h2 id="userName">Chargement...</h2>
+                <p id="userEmail">email@example.com</p>
+                <p>Membre depuis : <span id="memberSince">---</span></p>
+                <div class="level-badge" id="userLevel">Niveau Débutant</div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>⭐ Points Total</h3>
+                <div class="stat-value" id="totalPoints">0</div>
+                <div class="stat-label">Points d'expérience</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>📚 Leçons Complétées</h3>
+                <div class="stat-value" id="completedLessons">0</div>
+                <div class="stat-label">Sur 150+ disponibles</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>🏆 Badges Obtenus</h3>
+                <div class="stat-value" id="badgesCount">0</div>
+                <div class="stat-label">Récompenses débloquées</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>🔥 Série Actuelle</h3>
+                <div class="stat-value" id="currentStreak">0</div>
+                <div class="stat-label">Jours consécutifs</div>
+            </div>
+        </div>
+
+        <div class="progress-section" id="progress">
+            <h3>📊 Progression par Domaine</h3>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>ᚠ Runes Nordiques</span>
+                    <span id="runesPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="runesProgress" style="width: 0%">0%</div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>🔯 Gematria Hébraïque</span>
+                    <span id="gematriaPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="gematriaProgress" style="width: 0%">0%</div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>𓂀 Hiéroglyphes Égyptiens</span>
+                    <span id="hieroglyphesPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="hieroglyphesProgress" style="width: 0%">0%</div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>🌞 Glyphes Mayas</span>
+                    <span id="mayaPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="mayaProgress" style="width: 0%">0%</div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>🧠 Logique & Raisonnement</span>
+                    <span id="logiquePercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="logiqueProgress" style="width: 0%">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="badges-section" id="badges">
+            <h3>🏆 Badges & Récompenses</h3>
+            <div class="badges-grid" id="badgesGrid"></div>
+        </div>
+
+        <div class="history-section">
+            <h3>📜 Historique Récent</h3>
+            <div id="historyList"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        const allBadges = [
+            { icon: '🎓', name: 'Premier pas', condition: 'default' },
+            { icon: 'ᚠ', name: 'Apprenti Runique', condition: 'runes >= 20' },
+            { icon: '🔯', name: 'Initié Kabbalistique', condition: 'gematria >= 20' },
+            { icon: '𓂀', name: 'Scribe Égyptien', condition: 'hieroglyphes >= 20' },
+            { icon: '🌞', name: 'Sage Maya', condition: 'maya >= 20' },
+            { icon: '🧠', name: 'Logicien', condition: 'logique >= 20' },
+            { icon: '⚔️', name: 'Maître des Runes', condition: 'runes >= 80' },
+            { icon: '✨', name: 'Kabbaliste Expert', condition: 'gematria >= 80' },
+            { icon: '🏛️', name: 'Grand Prêtre', condition: 'hieroglyphes >= 80' },
+            { icon: '🔮', name: 'Oracle Maya', condition: 'maya >= 80' },
+            { icon: '🎯', name: 'Philosophe', condition: 'logique >= 80' },
+            { icon: '🔥', name: 'Série de 7 jours', condition: 'streak >= 7' },
+            { icon: '💎', name: 'Série de 30 jours', condition: 'streak >= 30' },
+            { icon: '👑', name: 'Maître Absolu', condition: 'total >= 400' }
+        ];
+
+        function loadProfile() {
+            const userString = localStorage.getItem('currentUser');
+
+            if (!userString) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(userString);
+
+            // Initialiser les données de progression si elles n'existent pas
+            if (!user.progress) {
+                user.progress = {
+                    runes: Math.floor(Math.random() * 60),
+                    gematria: Math.floor(Math.random() * 40),
+                    hieroglyphes: Math.floor(Math.random() * 30),
+                    maya: Math.floor(Math.random() * 25),
+                    logique: Math.floor(Math.random() * 50)
+                };
+            }
+
+            if (!user.badges) {
+                user.badges = ['🎓 Premier pas'];
+            }
+
+            if (!user.streak) {
+                user.streak = Math.floor(Math.random() * 10);
+            }
+
+            // Afficher les infos de base
+            document.getElementById('userName').textContent = user.name || 'Utilisateur';
+            document.getElementById('userEmail').textContent = user.email || '';
+
+            const signupDate = user.signupDate || user.loginDate;
+            if (signupDate) {
+                const date = new Date(signupDate);
+                document.getElementById('memberSince').textContent = date.toLocaleDateString('fr-FR');
+            }
+
+            // Calculer le niveau
+            const totalProgress = Object.values(user.progress).reduce((a, b) => a + b, 0);
+            let level = 'Débutant';
+            if (totalProgress >= 300) level = 'Expert';
+            else if (totalProgress >= 150) level = 'Intermédiaire';
+
+            document.getElementById('userLevel').textContent = `Niveau ${level}`;
+
+            // Afficher les stats
+            document.getElementById('totalPoints').textContent = totalProgress * 10;
+            document.getElementById('completedLessons').textContent = Math.floor(totalProgress / 5);
+            document.getElementById('currentStreak').textContent = user.streak;
+
+            // Afficher la progression
+            updateProgress('runes', user.progress.runes);
+            updateProgress('gematria', user.progress.gematria);
+            updateProgress('hieroglyphes', user.progress.hieroglyphes);
+            updateProgress('maya', user.progress.maya);
+            updateProgress('logique', user.progress.logique);
+
+            // Calculer et afficher les badges
+            const earnedBadges = calculateBadges(user);
+            displayBadges(earnedBadges);
+
+            // Afficher l'historique
+            displayHistory(user);
+
+            // Sauvegarder les modifications
+            localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+
+        function updateProgress(domain, value) {
+            const progress = Math.min(value, 100);
+            document.getElementById(`${domain}Progress`).style.width = `${progress}%`;
+            document.getElementById(`${domain}Progress`).textContent = `${progress}%`;
+            document.getElementById(`${domain}Percent`).textContent = `${progress}%`;
+        }
+
+        function calculateBadges(user) {
+            const earned = [];
+
+            allBadges.forEach(badge => {
+                let hasEarned = false;
+
+                if (badge.condition === 'default') {
+                    hasEarned = true;
+                } else {
+                    const [field, operator, value] = badge.condition.split(' ');
+                    const userValue = field === 'total'
+                        ? Object.values(user.progress).reduce((a, b) => a + b, 0)
+                        : field === 'streak'
+                        ? user.streak
+                        : user.progress[field];
+
+                    hasEarned = eval(`${userValue} ${operator} ${value}`);
+                }
+
+                earned.push({ ...badge, earned: hasEarned });
+            });
+
+            return earned;
+        }
+
+        function displayBadges(badges) {
+            const grid = document.getElementById('badgesGrid');
+            const earnedCount = badges.filter(b => b.earned).length;
+
+            document.getElementById('badgesCount').textContent = earnedCount;
+
+            grid.innerHTML = badges.map(badge => `
+                <div class="badge ${badge.earned ? '' : 'locked'}">
+                    <div class="badge-icon">${badge.icon}</div>
+                    <div class="badge-name">${badge.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function displayHistory(user) {
+            const historyList = document.getElementById('historyList');
+            const history = [
+                { date: new Date(), action: 'Connexion au profil' },
+                { date: new Date(Date.now() - 86400000), action: 'Complété: Runes Débutant' },
+                { date: new Date(Date.now() - 172800000), action: 'Badge obtenu: Apprenti Runique' },
+                { date: new Date(Date.now() - 259200000), action: 'Exercices de logique terminés' },
+                { date: new Date(Date.now() - 345600000), action: 'Inscription à l\'Académie' }
+            ];
+
+            historyList.innerHTML = history.map(item => `
+                <div class="history-item">
+                    <div class="history-date">${item.date.toLocaleDateString('fr-FR')} à ${item.date.toLocaleTimeString('fr-FR')}</div>
+                    <div class="history-action">${item.action}</div>
+                </div>
+            `).join('');
+        }
+
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Charger le profil au chargement de la page
+        window.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+</html>

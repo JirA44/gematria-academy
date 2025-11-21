@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glyphes Mayas - Introduction | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            line-height: 1.8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(15, 15, 35, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            font-family: 'Palatino', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #87ceeb;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(25, 25, 45, 0.6);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+        }
+
+        h2 {
+            color: #ffd700;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #87ceeb;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .glyph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .glyph-card {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid rgba(135, 206, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .glyph-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .glyph-symbol {
+            font-size: 4em;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .glyph-name {
+            color: #87ceeb;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .glyph-value {
+            color: #e8e8e8;
+            font-size: 0.9em;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            position: relative;
+        }
+
+        .timeline-date {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .calendar-visual {
+            background: linear-gradient(135deg, #2d2d44 0%, #3a3a55 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #ffd700;
+        }
+
+        .tzolkin-grid {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 5px;
+            margin: 20px 0;
+        }
+
+        .tzolkin-day {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+        }
+
+        .tzolkin-day:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(1.1);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #87ceeb;
+        }
+
+        .info-box h3 {
+            color: #ffd700;
+            margin-top: 0;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .base20-example {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .number-system {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .number-card {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 100px;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .maya-number {
+            font-size: 2em;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .decimal-equiv {
+            color: #87ceeb;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ Les Glyphes Mayas - Introduction</h1>
+        <p class="subtitle">Découvrez l'une des civilisations les plus avancées de l'Amérique précolombienne</p>
+
+        <div class="section">
+            <h2>🌎 Histoire et Culture Maya</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2000 av. J.-C. - Période Préclassique</div>
+                    <p>Émergence de la civilisation maya dans les basses terres de Mésoamérique (actuel Mexique, Guatemala, Belize, Honduras). Développement de l'agriculture du maïs, des premières cités et de la poterie.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">250-900 apr. J.-C. - Période Classique</div>
+                    <p>Âge d'or de la civilisation maya : construction de pyramides monumentales (Tikal, Palenque, Copán), perfectionnement de l'écriture glyphique, astronomie avancée, mathématiques sophistiquées avec le concept du zéro.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">900-1500 apr. J.-C. - Période Postclassique</div>
+                    <p>Déclin des grandes cités classiques, montée de Chichén Itzá et Mayapán. Influence toltèque, continuation des traditions astronomiques et calendériques. Codex Dresden, Paris et Madrid préservés.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">1519-1697 - Conquête espagnole</div>
+                    <p>Arrivée de Hernán Cortés, destruction massive de codex par Diego de Landa (1562), résistance maya prolongée jusqu'à la chute de Tayasal en 1697. Préservation orale des traditions.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>🎭 Contributions majeures de la civilisation maya</h3>
+                <ul>
+                    <li><span class="highlight">Mathématiques :</span> Invention indépendante du concept du zéro (représenté par une coquille 🐚), système vigésimal (base 20)</li>
+                    <li><span class="highlight">Astronomie :</span> Observations précises de Vénus, Mars, Jupiter, éclipses lunaires et solaires sans télescope</li>
+                    <li><span class="highlight">Calendrier :</span> Système calendérique le plus sophistiqué de Mésoamérique avec 3 calendriers synchronisés</li>
+                    <li><span class="highlight">Architecture :</span> Pyramides alignées sur les solstices et équinoxes (Chichén Itzá, Uxmal)</li>
+                    <li><span class="highlight">Écriture :</span> Seul système d'écriture complet d'Amérique précolombienne avec plus de 800 glyphes</li>
+                    <li><span class="highlight">Agriculture :</span> Technique de milpa (culture associée maïs-haricot-courge), terrasses agricoles</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔢 Système Numérique Maya (Base 20)</h2>
+
+            <p>Les Mayas ont développé un système numérique révolutionnaire basé sur <span class="highlight">la base 20 (vigésimale)</span>, probablement en comptant sur les doigts et les orteils. Ce système utilise seulement trois symboles :</p>
+
+            <div class="glyph-grid">
+                <div class="glyph-card">
+                    <div class="glyph-symbol">●</div>
+                    <div class="glyph-name">Point</div>
+                    <div class="glyph-value">Valeur : 1</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">—</div>
+                    <div class="glyph-name">Barre</div>
+                    <div class="glyph-value">Valeur : 5</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🐚</div>
+                    <div class="glyph-name">Coquille</div>
+                    <div class="glyph-value">Valeur : 0 (zéro)</div>
+                </div>
+            </div>
+
+            <h3>📊 Exemples de nombres mayas</h3>
+
+            <div class="number-system">
+                <div class="number-card">
+                    <div class="maya-number">●</div>
+                    <div class="decimal-equiv">1 (un point)</div>
+                </div>
+
+                <div class="number-card">
+                    <div class="maya-number">●●●</div>
+                    <div class="decimal-equiv">3 (trois points)</div>
+                </div>
+
+                <div class="number-card">
+                    <div class="maya-number">—</div>
+                    <div class="decimal-equiv">5 (une barre)</div>
+                </div>
+
+                <div class="number-card">
+                    <div class="maya-number">—<br>●●</div>
+                    <div class="decimal-equiv">7 (5 + 2)</div>
+                </div>
+
+                <div class="number-card">
+                    <div class="maya-number">—<br>—<br>●●●●</div>
+                    <div class="decimal-equiv">14 (5 + 5 + 4)</div>
+                </div>
+
+                <div class="number-card">
+                    <div class="maya-number">—<br>—<br>—<br>—</div>
+                    <div class="decimal-equiv">20 (quatre barres)</div>
+                </div>
+
+                <div class="number-card">
+                    <div class="maya-number">🐚</div>
+                    <div class="decimal-equiv">0 (zéro)</div>
+                </div>
+            </div>
+
+            <div class="base20-example">
+                <h3 style="color: #ffd700;">🧮 Système positionnel vertical</h3>
+                <p>Les Mayas écrivaient les nombres <span class="highlight">de bas en haut</span>, chaque niveau représentant une puissance de 20 :</p>
+                <pre style="color: #87ceeb; font-size: 1.1em;">
+Position 3 (haut)    : × 8000    (20³)
+Position 2          : × 400     (20²)
+Position 1          : × 20      (20¹)
+Position 0 (bas)    : × 1       (20⁰)
+                </pre>
+                <p><span class="highlight">Exemple :</span> Le nombre 425 en maya :</p>
+                <pre style="color: #ffd700; font-size: 1.2em;">
+    ●           (1 × 400 = 400)
+    ●           (1 × 20  = 20)
+    —           (5 × 1   = 5)
+    ____________
+    Total = 425
+                </pre>
+            </div>
+
+            <div class="info-box">
+                <h3>💡 L'invention du zéro</h3>
+                <p>Les Mayas ont inventé le concept du zéro <span class="highlight">indépendamment des autres civilisations</span>, plusieurs siècles avant l'introduction du zéro arabo-indien en Europe (vers 1200 apr. J.-C.). Le glyphe du zéro (coquille ou tête de jaguar) était utilisé comme <span class="highlight">marque positionnelle</span> et comme <span class="highlight">valeur numérique à part entière</span>.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📅 Le Calendrier Tzolk'in (260 jours)</h2>
+
+            <p>Le <span class="highlight">Tzolk'in</span> (ou "compte des jours") est le calendrier sacré maya de <span class="highlight">260 jours</span>, utilisé pour la divination, les cérémonies religieuses et la détermination des jours propices pour les événements importants.</p>
+
+            <div class="calendar-visual">
+                <h3 style="color: #ffd700; margin-top: 0;">🔄 Structure du Tzolk'in</h3>
+                <p>Le Tzolk'in est formé par l'interaction de deux cycles :</p>
+                <ul>
+                    <li><span class="highlight">13 nombres</span> (1 à 13) représentant les 13 niveaux du ciel maya</li>
+                    <li><span class="highlight">20 noms de jours</span> (nawales) représentant des divinités et forces naturelles</li>
+                </ul>
+                <p style="color: #87ceeb; margin-top: 15px;">13 × 20 = 260 combinaisons uniques avant que le cycle ne se répète</p>
+            </div>
+
+            <h3>🌟 Les 20 Nawales (Jours Sacrés)</h3>
+
+            <div class="glyph-grid">
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🐊</div>
+                    <div class="glyph-name">Imix</div>
+                    <div class="glyph-value">Crocodile, origine</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌬️</div>
+                    <div class="glyph-name">Ik'</div>
+                    <div class="glyph-value">Vent, esprit</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌙</div>
+                    <div class="glyph-name">Ak'b'al</div>
+                    <div class="glyph-value">Nuit, obscurité</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌾</div>
+                    <div class="glyph-name">K'an</div>
+                    <div class="glyph-value">Maïs, maturité</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🐍</div>
+                    <div class="glyph-name">Chikchan</div>
+                    <div class="glyph-value">Serpent, force vitale</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">💀</div>
+                    <div class="glyph-name">Kimi</div>
+                    <div class="glyph-value">Mort, transformation</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🦌</div>
+                    <div class="glyph-name">Manik</div>
+                    <div class="glyph-value">Cerf, main</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌟</div>
+                    <div class="glyph-name">Lamat</div>
+                    <div class="glyph-value">Étoile, Vénus</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">💧</div>
+                    <div class="glyph-name">Muluk</div>
+                    <div class="glyph-value">Eau, offrande</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🐕</div>
+                    <div class="glyph-name">Ok</div>
+                    <div class="glyph-value">Chien, guide</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🐵</div>
+                    <div class="glyph-name">Chuwen</div>
+                    <div class="glyph-value">Singe, artisan</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌿</div>
+                    <div class="glyph-name">Eb</div>
+                    <div class="glyph-value">Herbe, chemin</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🦷</div>
+                    <div class="glyph-name">B'en</div>
+                    <div class="glyph-value">Roseau, croissance</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🐆</div>
+                    <div class="glyph-name">Ix</div>
+                    <div class="glyph-value">Jaguar, magie</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🦅</div>
+                    <div class="glyph-name">Men</div>
+                    <div class="glyph-value">Aigle, vision</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🦉</div>
+                    <div class="glyph-name">Kib</div>
+                    <div class="glyph-value">Chouette, sagesse</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🕊️</div>
+                    <div class="glyph-name">Kab'an</div>
+                    <div class="glyph-value">Terre, mouvement</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌩️</div>
+                    <div class="glyph-name">Etz'nab</div>
+                    <div class="glyph-value">Silex, miroir</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">⛈️</div>
+                    <div class="glyph-name">Kawak</div>
+                    <div class="glyph-value">Tempête, purification</div>
+                </div>
+
+                <div class="glyph-card">
+                    <div class="glyph-symbol">🌸</div>
+                    <div class="glyph-name">Ajaw</div>
+                    <div class="glyph-value">Seigneur, soleil</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 Utilisation du Tzolk'in</h3>
+                <ul>
+                    <li><span class="highlight">Divination :</span> Chaque jour possède une énergie spécifique influençant les événements</li>
+                    <li><span class="highlight">Cérémonies :</span> Rituels calendériques tous les 13, 20, 52 et 260 jours</li>
+                    <li><span class="highlight">Naissance :</span> Le jour de naissance détermine le destin et le caractère de l'individu</li>
+                    <li><span class="highlight">Agriculture :</span> Jours propices pour planter, récolter, ou laisser la terre en jachère</li>
+                    <li><span class="highlight">Mariage :</span> Consultation des prêtres pour choisir un jour harmonieux</li>
+                    <li><span class="highlight">Guerre :</span> Les seigneurs mayas choisissaient des jours favorables pour les batailles</li>
+                </ul>
+                <p style="margin-top: 15px; color: #ffd700;">💫 <strong>Mystère du 260 :</strong> Le nombre 260 correspond approximativement à la durée de gestation humaine (9 mois), au cycle de croissance du maïs en Mésoamérique, et aux apparitions de Vénus entre ses phases comme étoile du matin.</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="btn btn-secondary">🏠 Retour Accueil</a>
+            <a href="maya-intermediaire.html" class="btn">Suivant : Calendrier Haab & Vénus →</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation des cartes glyphes au survol
+        document.querySelectorAll('.glyph-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) rotate(2deg)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotate(0deg)';
+            });
+        });
+
+        // Simulation du cycle Tzolk'in
+        let tzolkinDay = 0;
+        const tzolkinNumbers = Array.from({length: 13}, (_, i) => i + 1);
+        const tzolkinNames = ['Imix', "Ik'", "Ak'b'al", "K'an", 'Chikchan', 'Kimi', 'Manik', 'Lamat', 'Muluk', 'Ok', 'Chuwen', 'Eb', "B'en", 'Ix', 'Men', 'Kib', "Kab'an", "Etz'nab", 'Kawak', 'Ajaw'];
+
+        function showTzolkinDay() {
+            const numberIndex = tzolkinDay % 13;
+            const nameIndex = tzolkinDay % 20;
+            console.log(`Jour Tzolk'in : ${tzolkinNumbers[numberIndex]} ${tzolkinNames[nameIndex]}`);
+        }
+
+        // Affichage du jour Tzolk'in actuel (calculé depuis une date de référence)
+        const correlationConstant = 584283; // Constante de corrélation GMT
+        const today = new Date();
+        const julianDay = Math.floor(today.getTime() / 86400000) + 2440588;
+        const daysSinceCreation = julianDay - correlationConstant;
+        tzolkinDay = ((daysSinceCreation % 260) + 260) % 260;
+
+        window.addEventListener('load', () => {
+            showTzolkinDay();
+        });
+    </script>
+</body>
+</html>

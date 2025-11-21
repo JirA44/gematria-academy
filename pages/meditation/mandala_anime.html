@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandalas Animés - Méditation Hypnotique | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #000000;
+            color: #e8e8e8;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .meditation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mandala-display {
+            width: 90vmin;
+            height: 90vmin;
+            position: relative;
+        }
+
+        /* Mandala 1: Rotation Spirale */
+        .mandala-spiral {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        .mandala-spiral.active {
+            display: block;
+        }
+
+        .spiral-layer {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid;
+            animation: rotate-spiral 20s linear infinite;
+        }
+
+        .spiral-layer:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            border-color: rgba(255, 215, 0, 0.8);
+            animation-duration: 30s;
+        }
+
+        .spiral-layer:nth-child(2) {
+            width: 85%;
+            height: 85%;
+            top: 7.5%;
+            left: 7.5%;
+            border-color: rgba(135, 206, 235, 0.7);
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .spiral-layer:nth-child(3) {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-color: rgba(255, 105, 180, 0.6);
+            animation-duration: 20s;
+        }
+
+        .spiral-layer:nth-child(4) {
+            width: 55%;
+            height: 55%;
+            top: 22.5%;
+            left: 22.5%;
+            border-color: rgba(147, 112, 219, 0.5);
+            animation-duration: 15s;
+            animation-direction: reverse;
+        }
+
+        .spiral-layer:nth-child(5) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            border-color: rgba(50, 205, 50, 0.4);
+            animation-duration: 10s;
+        }
+
+        @keyframes rotate-spiral {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mandala 2: Pulsation */
+        .mandala-pulse {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        .mandala-pulse.active {
+            display: block;
+        }
+
+        .pulse-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: pulse-wave 4s ease-in-out infinite;
+        }
+
+        .pulse-circle:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            animation-delay: 0s;
+        }
+
+        .pulse-circle:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(135, 206, 235, 0.3) 0%, transparent 70%);
+            animation-delay: 0.5s;
+        }
+
+        .pulse-circle:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.3) 0%, transparent 70%);
+            animation-delay: 1s;
+        }
+
+        .pulse-circle:nth-child(4) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            background: radial-gradient(circle, rgba(147, 112, 219, 0.3) 0%, transparent 70%);
+            animation-delay: 1.5s;
+        }
+
+        .pulse-circle:nth-child(5) {
+            width: 20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse-wave {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+        }
+
+        /* Mandala 3: Respiration */
+        .mandala-breathe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        .mandala-breathe.active {
+            display: block;
+        }
+
+        .breathe-petal {
+            position: absolute;
+            width: 30%;
+            height: 30%;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.6), transparent);
+            border-radius: 50%;
+            animation: breathe-motion 6s ease-in-out infinite;
+        }
+
+        .breathe-petal:nth-child(1) {
+            top: 0;
+            left: 35%;
+            animation-delay: 0s;
+        }
+
+        .breathe-petal:nth-child(2) {
+            top: 15%;
+            right: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .breathe-petal:nth-child(3) {
+            top: 35%;
+            right: 0;
+            animation-delay: 1s;
+        }
+
+        .breathe-petal:nth-child(4) {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        .breathe-petal:nth-child(5) {
+            bottom: 0;
+            left: 35%;
+            animation-delay: 2s;
+        }
+
+        .breathe-petal:nth-child(6) {
+            bottom: 15%;
+            left: 10%;
+            animation-delay: 2.5s;
+        }
+
+        .breathe-petal:nth-child(7) {
+            top: 35%;
+            left: 0;
+            animation-delay: 3s;
+        }
+
+        .breathe-petal:nth-child(8) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes breathe-motion {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.3) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Mandala 4: Kaléidoscope */
+        .mandala-kaleidoscope {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        .mandala-kaleidoscope.active {
+            display: block;
+        }
+
+        .kaleidoscope-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            transform-origin: center;
+            animation: kaleidoscope-rotate 15s linear infinite;
+        }
+
+        .kaleidoscope-segment:nth-child(1) {
+            background: linear-gradient(45deg, rgba(255, 0, 0, 0.5), transparent);
+            animation-delay: 0s;
+        }
+
+        .kaleidoscope-segment:nth-child(2) {
+            background: linear-gradient(90deg, rgba(255, 165, 0, 0.5), transparent);
+            animation-delay: 0.5s;
+        }
+
+        .kaleidoscope-segment:nth-child(3) {
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.5), transparent);
+            animation-delay: 1s;
+        }
+
+        .kaleidoscope-segment:nth-child(4) {
+            background: linear-gradient(180deg, rgba(0, 255, 0, 0.5), transparent);
+            animation-delay: 1.5s;
+        }
+
+        .kaleidoscope-segment:nth-child(5) {
+            background: linear-gradient(225deg, rgba(0, 0, 255, 0.5), transparent);
+            animation-delay: 2s;
+        }
+
+        .kaleidoscope-segment:nth-child(6) {
+            background: linear-gradient(270deg, rgba(75, 0, 130, 0.5), transparent);
+            animation-delay: 2.5s;
+        }
+
+        .kaleidoscope-segment:nth-child(7) {
+            background: linear-gradient(315deg, rgba(238, 130, 238, 0.5), transparent);
+            animation-delay: 3s;
+        }
+
+        .kaleidoscope-segment:nth-child(8) {
+            background: linear-gradient(360deg, rgba(255, 20, 147, 0.5), transparent);
+            animation-delay: 3.5s;
+        }
+
+        @keyframes kaleidoscope-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mandala 5: Flux Énergétique */
+        .mandala-energy {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+
+        .mandala-energy.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .energy-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 5px solid;
+            animation: energy-flow 8s ease-in-out infinite;
+        }
+
+        .energy-ring:nth-child(1) {
+            width: 90%;
+            height: 90%;
+            border-color: rgba(255, 215, 0, 0.8);
+            animation-delay: 0s;
+        }
+
+        .energy-ring:nth-child(2) {
+            width: 70%;
+            height: 70%;
+            border-color: rgba(135, 206, 235, 0.7);
+            animation-delay: 1s;
+        }
+
+        .energy-ring:nth-child(3) {
+            width: 50%;
+            height: 50%;
+            border-color: rgba(255, 105, 180, 0.6);
+            animation-delay: 2s;
+        }
+
+        .energy-ring:nth-child(4) {
+            width: 30%;
+            height: 30%;
+            border-color: rgba(147, 112, 219, 0.5);
+            animation-delay: 3s;
+        }
+
+        @keyframes energy-flow {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+                border-width: 5px;
+            }
+            25% {
+                transform: scale(1.1) rotate(90deg);
+                opacity: 0.7;
+                border-width: 10px;
+            }
+            50% {
+                transform: scale(0.9) rotate(180deg);
+                opacity: 0.5;
+                border-width: 3px;
+            }
+            75% {
+                transform: scale(1.05) rotate(270deg);
+                opacity: 0.8;
+                border-width: 8px;
+            }
+        }
+
+        /* Controls */
+        .control-panel {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(20, 20, 40, 0.95);
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .control-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.5);
+        }
+
+        .control-btn.active {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+
+        .title-overlay {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .title {
+            color: #ffd700;
+            font-size: 2.5em;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #87ceeb;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .breathing-guide {
+            position: fixed;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 40, 0.9);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            text-align: center;
+            font-size: 1.3em;
+            color: #87ceeb;
+            backdrop-filter: blur(10px);
+            display: none;
+            z-index: 100;
+        }
+
+        .breathing-guide.show {
+            display: block;
+        }
+
+        .breath-text {
+            font-size: 1.8em;
+            color: #ffd700;
+            font-weight: bold;
+            animation: breath-fade 6s ease-in-out infinite;
+        }
+
+        @keyframes breath-fade {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .control-panel {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 15px 20px;
+            }
+
+            .control-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .breathing-guide {
+                top: 100px;
+                padding: 15px 25px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title-overlay">
+        <div class="title">🧘 Mandalas Animés</div>
+        <div class="subtitle">Méditation Hypnotique & Relaxation Profonde</div>
+    </div>
+
+    <div class="breathing-guide" id="breathingGuide">
+        <div class="breath-text" id="breathText">Inspirez profondément...</div>
+        <div style="margin-top: 10px; font-size: 0.9em;">Suivez le rythme du mandala</div>
+    </div>
+
+    <div class="meditation-container">
+        <div class="mandala-display">
+            <!-- Mandala 1: Spirale -->
+            <div class="mandala-spiral active" id="mandala1">
+                <div class="spiral-layer"></div>
+                <div class="spiral-layer"></div>
+                <div class="spiral-layer"></div>
+                <div class="spiral-layer"></div>
+                <div class="spiral-layer"></div>
+            </div>
+
+            <!-- Mandala 2: Pulsation -->
+            <div class="mandala-pulse" id="mandala2">
+                <div class="pulse-circle"></div>
+                <div class="pulse-circle"></div>
+                <div class="pulse-circle"></div>
+                <div class="pulse-circle"></div>
+                <div class="pulse-circle"></div>
+            </div>
+
+            <!-- Mandala 3: Respiration -->
+            <div class="mandala-breathe" id="mandala3">
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+                <div class="breathe-petal"></div>
+            </div>
+
+            <!-- Mandala 4: Kaléidoscope -->
+            <div class="mandala-kaleidoscope" id="mandala4">
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+                <div class="kaleidoscope-segment"></div>
+            </div>
+
+            <!-- Mandala 5: Flux Énergétique -->
+            <div class="mandala-energy" id="mandala5">
+                <div class="energy-ring"></div>
+                <div class="energy-ring"></div>
+                <div class="energy-ring"></div>
+                <div class="energy-ring"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <button class="control-btn active" id="btn1">🌀 Spirale</button>
+        <button class="control-btn" id="btn2">💓 Pulsation</button>
+        <button class="control-btn" id="btn3">🌸 Respiration</button>
+        <button class="control-btn" id="btn4">🎨 Kaléidoscope</button>
+        <button class="control-btn" id="btn5">⚡ Énergie</button>
+        <button class="control-btn" id="breathBtn">🫁 Guide Respiration</button>
+        <button class="control-btn" onclick="window.location.href='index.html'" style="background: linear-gradient(135deg, #9370db 0%, #663399 100%);">🏠 Accueil</button>
+    </div>
+
+    <script>
+        let currentMandala = 1;
+        const mandalas = [
+            document.getElementById('mandala1'),
+            document.getElementById('mandala2'),
+            document.getElementById('mandala3'),
+            document.getElementById('mandala4'),
+            document.getElementById('mandala5')
+        ];
+
+        const buttons = [
+            document.getElementById('btn1'),
+            document.getElementById('btn2'),
+            document.getElementById('btn3'),
+            document.getElementById('btn4'),
+            document.getElementById('btn5')
+        ];
+
+        const breathingGuide = document.getElementById('breathingGuide');
+        const breathText = document.getElementById('breathText');
+        const breathBtn = document.getElementById('breathBtn');
+        let breathingActive = false;
+        let breathingInterval;
+
+        function switchMandala(index) {
+            mandalas.forEach((m, i) => {
+                m.classList.remove('active');
+                buttons[i].classList.remove('active');
+            });
+
+            mandalas[index].classList.add('active');
+            buttons[index].classList.add('active');
+            currentMandala = index + 1;
+        }
+
+        function toggleBreathingGuide() {
+            breathingActive = !breathingActive;
+
+            if (breathingActive) {
+                breathingGuide.classList.add('show');
+                breathBtn.classList.add('active');
+                startBreathingCycle();
+            } else {
+                breathingGuide.classList.remove('show');
+                breathBtn.classList.remove('active');
+                clearInterval(breathingInterval);
+            }
+        }
+
+        function startBreathingCycle() {
+            let phase = 0;
+            const phases = [
+                { text: "Inspirez profondément...", duration: 4000 },
+                { text: "Retenez votre souffle...", duration: 4000 },
+                { text: "Expirez lentement...", duration: 6000 },
+                { text: "Pause...", duration: 2000 }
+            ];
+
+            function nextPhase() {
+                breathText.textContent = phases[phase].text;
+                setTimeout(() => {
+                    phase = (phase + 1) % phases.length;
+                    nextPhase();
+                }, phases[phase].duration);
+            }
+
+            nextPhase();
+        }
+
+        // Event listeners pour les boutons
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', () => switchMandala(index));
+        });
+
+        breathBtn.addEventListener('click', toggleBreathingGuide);
+
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '1' && e.key <= '5') {
+                switchMandala(parseInt(e.key) - 1);
+            }
+            if (e.key === 'b' || e.key === 'B') {
+                toggleBreathingGuide();
+            }
+            if (e.key === 'ArrowRight') {
+                switchMandala((currentMandala) % 5);
+            }
+            if (e.key === 'ArrowLeft') {
+                switchMandala((currentMandala - 2 + 5) % 5);
+            }
+        });
+
+        // Auto-rotation (optionnel, décommenter si souhaité)
+        /*
+        let autoRotate = setInterval(() => {
+            switchMandala((currentMandala) % 5);
+        }, 15000);
+        */
+    </script>
+</body>
+</html>

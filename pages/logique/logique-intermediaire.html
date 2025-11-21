@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique Intermédiaire - Syllogismes & Quantificateurs | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #e8e8e8;
+            line-height: 1.8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(15, 15, 35, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(135, 206, 235, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #87ceeb;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 25px rgba(135, 206, 235, 0.6);
+            font-family: 'Palatino', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ffd700;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(25, 25, 45, 0.8);
+            padding: 35px;
+            margin: 35px 0;
+            border-radius: 15px;
+            border-left: 5px solid #87ceeb;
+        }
+
+        h2 {
+            color: #87ceeb;
+            font-size: 2.1em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(135, 206, 235, 0.3);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .syllogism-box {
+            background: linear-gradient(135deg, #2d2d44 0%, #3a3a55 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 3px solid #87ceeb;
+        }
+
+        .premise {
+            background: rgba(135, 206, 235, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #87ceeb;
+            font-size: 1.1em;
+        }
+
+        .conclusion {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            margin: 15px 0 10px 0;
+            border-left: 4px solid #ffd700;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .reasoning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .reasoning-card {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .reasoning-card:hover {
+            transform: translateY(-5px);
+            border-color: #87ceeb;
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.4);
+        }
+
+        .reasoning-title {
+            color: #ffd700;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .quantifier-box {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #9370db;
+        }
+
+        .quantifier-symbol {
+            font-size: 3em;
+            color: #9370db;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .formula {
+            background: rgba(30, 30, 50, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            color: #87ceeb;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid rgba(135, 206, 235, 0.4);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #87ceeb;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #daa520;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .venn-diagram {
+            background: rgba(20, 20, 40, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #87ceeb;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .circle-a {
+            background: rgba(135, 206, 235, 0.2);
+            left: 30%;
+        }
+
+        .circle-b {
+            background: rgba(255, 215, 0, 0.2);
+            right: 30%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background: rgba(135, 206, 235, 0.2);
+            color: #87ceeb;
+            padding: 15px;
+            border: 2px solid #87ceeb;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+        }
+
+        .example-box {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .reasoning-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .circle-container {
+                flex-direction: column;
+                min-height: 450px;
+            }
+
+            .circle-a, .circle-b {
+                position: relative;
+                left: 0;
+                right: 0;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧩 Logique Intermédiaire</h1>
+        <p class="subtitle">Syllogismes, Raisonnement & Quantificateurs Logiques</p>
+
+        <div class="section">
+            <h2>📜 Les Syllogismes</h2>
+
+            <p>Un <span class="highlight">syllogisme</span> est un raisonnement logique qui comporte <span class="highlight">deux prémisses</span> (propositions admises comme vraies) et une <span class="highlight">conclusion</span> qui en découle nécessairement. Inventé par Aristote (384-322 av. J.-C.), c'est le fondement de la logique classique.</p>
+
+            <h3>🏛️ Structure d'un Syllogisme Catégorique</h3>
+
+            <div class="syllogism-box">
+                <h3 style="color: #87ceeb; margin-top: 0;">Exemple Classique (Barbara)</h3>
+                <div class="premise">
+                    <strong>Prémisse Majeure :</strong> Tous les hommes sont mortels
+                </div>
+                <div class="premise">
+                    <strong>Prémisse Mineure :</strong> Socrate est un homme
+                </div>
+                <div style="text-align: center; font-size: 2em; color: #87ceeb; margin: 15px 0;">∴</div>
+                <div class="conclusion">
+                    <strong>Conclusion :</strong> Donc, Socrate est mortel
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3 style="color: #87ceeb; margin-top: 0;">💡 Les 3 Termes d'un Syllogisme</h3>
+                <ul>
+                    <li><span class="highlight">Grand terme (P) :</span> Prédicat de la conclusion ("mortels")</li>
+                    <li><span class="highlight">Petit terme (S) :</span> Sujet de la conclusion ("Socrate")</li>
+                    <li><span class="highlight">Moyen terme (M) :</span> Présent dans les deux prémisses mais absent de la conclusion ("hommes")</li>
+                </ul>
+            </div>
+
+            <h3>🔤 Les 4 Figures du Syllogisme</h3>
+
+            <div class="example-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Figure</th>
+                            <th>Prémisse Majeure</th>
+                            <th>Prémisse Mineure</th>
+                            <th>Position du Moyen Terme</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1ère Figure</strong></td>
+                            <td>M → P</td>
+                            <td>S → M</td>
+                            <td>Sujet puis prédicat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2e Figure</strong></td>
+                            <td>P → M</td>
+                            <td>S → M</td>
+                            <td>Prédicat dans les deux</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3e Figure</strong></td>
+                            <td>M → P</td>
+                            <td>M → S</td>
+                            <td>Sujet dans les deux</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4e Figure</strong></td>
+                            <td>P → M</td>
+                            <td>M → S</td>
+                            <td>Prédicat puis sujet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>✅ Syllogismes Valides Célèbres</h3>
+
+            <div class="syllogism-box">
+                <h3 style="color: #ffd700; margin-top: 0;">Celarent</h3>
+                <div class="premise">Aucun reptile n'est un mammifère</div>
+                <div class="premise">Tous les serpents sont des reptiles</div>
+                <div class="conclusion">∴ Aucun serpent n'est un mammifère</div>
+            </div>
+
+            <div class="syllogism-box">
+                <h3 style="color: #ffd700; margin-top: 0;">Darii</h3>
+                <div class="premise">Tous les chats sont des félins</div>
+                <div class="premise">Certains animaux domestiques sont des chats</div>
+                <div class="conclusion">∴ Certains animaux domestiques sont des félins</div>
+            </div>
+
+            <div class="syllogism-box">
+                <h3 style="color: #ffd700; margin-top: 0;">Ferio</h3>
+                <div class="premise">Aucun poisson n'est un oiseau</div>
+                <div class="premise">Certains animaux aquatiques sont des poissons</div>
+                <div class="conclusion">∴ Certains animaux aquatiques ne sont pas des oiseaux</div>
+            </div>
+
+            <div class="warning-box">
+                <h3 style="color: #daa520; margin-top: 0;">⚠️ Sophismes : Syllogismes Invalides</h3>
+                <p>Un <span class="highlight">sophisme</span> est un raisonnement qui semble valide mais contient une erreur logique.</p>
+
+                <div class="syllogism-box" style="border-color: #ff4444; margin-top: 15px;">
+                    <h4 style="color: #ff4444;">❌ Affirmation du Conséquent</h4>
+                    <div class="premise">Si il pleut, alors le sol est mouillé</div>
+                    <div class="premise">Le sol est mouillé</div>
+                    <div class="conclusion" style="border-color: #ff4444; background: rgba(255, 68, 68, 0.1);">∴ Donc il pleut <em>(FAUX ! Quelqu'un a pu arroser)</em></div>
+                </div>
+
+                <div class="syllogism-box" style="border-color: #ff4444; margin-top: 15px;">
+                    <h4 style="color: #ff4444;">❌ Négation de l'Antécédent</h4>
+                    <div class="premise">Si je suis à Paris, alors je suis en France</div>
+                    <div class="premise">Je ne suis pas à Paris</div>
+                    <div class="conclusion" style="border-color: #ff4444; background: rgba(255, 68, 68, 0.1);">∴ Donc je ne suis pas en France <em>(FAUX ! Je peux être à Lyon)</em></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔍 Types de Raisonnement</h2>
+
+            <div class="reasoning-grid">
+                <div class="reasoning-card">
+                    <div class="reasoning-title">🔼 Raisonnement Déductif</div>
+                    <p><strong>Principe :</strong> Du général au particulier. Si les prémisses sont vraies, la conclusion est <span class="highlight">nécessairement</span> vraie.</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <p><strong>Exemple :</strong></p>
+                        <p>• Tous les métaux conduisent l'électricité</p>
+                        <p>• Le cuivre est un métal</p>
+                        <p>• <span class="highlight">∴ Le cuivre conduit l'électricité</span></p>
+                    </div>
+                    <p style="margin-top: 15px; color: #87ceeb;"><strong>Usage :</strong> Mathématiques, logique formelle, démonstrations</p>
+                </div>
+
+                <div class="reasoning-card">
+                    <div class="reasoning-title">🔽 Raisonnement Inductif</div>
+                    <p><strong>Principe :</strong> Du particulier au général. Les prémisses rendent la conclusion <span class="highlight">probable</span>, mais pas certaine.</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <p><strong>Exemple :</strong></p>
+                        <p>• Le soleil s'est levé tous les jours depuis des millénaires</p>
+                        <p>• <span class="highlight">∴ Le soleil se lèvera demain</span></p>
+                    </div>
+                    <p style="margin-top: 15px; color: #87ceeb;"><strong>Usage :</strong> Sciences expérimentales, statistiques, vie quotidienne</p>
+                </div>
+
+                <div class="reasoning-card">
+                    <div class="reasoning-title">↔️ Raisonnement Abductif</div>
+                    <p><strong>Principe :</strong> Inférence à la meilleure explication. On cherche l'hypothèse la plus plausible pour expliquer des observations.</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <p><strong>Exemple :</strong></p>
+                        <p>• L'herbe est mouillée ce matin</p>
+                        <p>• <span class="highlight">∴ Il a probablement plu cette nuit</span></p>
+                        <p><em>(Mais d'autres explications sont possibles : rosée, arrosage...)</em></p>
+                    </div>
+                    <p style="margin-top: 15px; color: #87ceeb;"><strong>Usage :</strong> Diagnostic médical, enquêtes policières, recherche scientifique</p>
+                </div>
+
+                <div class="reasoning-card">
+                    <div class="reasoning-title">↩️ Raisonnement par l'Absurde</div>
+                    <p><strong>Principe :</strong> On suppose le contraire de ce qu'on veut prouver, et on montre que cela mène à une contradiction.</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <p><strong>Exemple (√2 est irrationnel) :</strong></p>
+                        <p>1. Supposons √2 = p/q (rationnel)</p>
+                        <p>2. Alors 2q² = p² → p est pair</p>
+                        <p>3. Donc q doit être impair</p>
+                        <p>4. Mais cela implique que q est aussi pair</p>
+                        <p><span class="highlight">∴ Contradiction ! Donc √2 est irrationnel</span></p>
+                    </div>
+                    <p style="margin-top: 15px; color: #87ceeb;"><strong>Usage :</strong> Mathématiques pures, logique formelle</p>
+                </div>
+
+                <div class="reasoning-card">
+                    <div class="reasoning-title">🔁 Raisonnement par Récurrence</div>
+                    <p><strong>Principe :</strong> Prouve qu'une propriété est vraie pour tous les entiers en montrant : (1) cas de base, (2) hérédité.</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <p><strong>Exemple (1+2+...+n = n(n+1)/2) :</strong></p>
+                        <p>1. <strong>Base :</strong> Pour n=1, 1 = 1(2)/2 ✓</p>
+                        <p>2. <strong>Hérédité :</strong> Si vrai pour n, alors pour n+1 :</p>
+                        <p>   1+2+...+n+(n+1) = n(n+1)/2 + (n+1) = (n+1)(n+2)/2 ✓</p>
+                    </div>
+                    <p style="margin-top: 15px; color: #87ceeb;"><strong>Usage :</strong> Mathématiques, informatique (algorithmes)</p>
+                </div>
+
+                <div class="reasoning-card">
+                    <div class="reasoning-title">🔀 Raisonnement Analogique</div>
+                    <p><strong>Principe :</strong> Si deux objets sont similaires sur certains points, ils le sont probablement sur d'autres.</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <p><strong>Exemple :</strong></p>
+                        <p>• La Terre et Mars ont des atmosphères</p>
+                        <p>• La Terre a de l'eau et de la vie</p>
+                        <p>• Mars a de l'eau</p>
+                        <p><span class="highlight">∴ Mars pourrait avoir de la vie</span></p>
+                    </div>
+                    <p style="margin-top: 15px; color: #87ceeb;"><strong>Usage :</strong> Droit (jurisprudence), philosophie, heuristiques</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>∀∃ Les Quantificateurs Logiques</h2>
+
+            <p>Les <span class="highlight">quantificateurs</span> permettent d'exprimer des énoncés sur "tous" ou "certains" éléments d'un ensemble. Ils sont fondamentaux en logique des prédicats.</p>
+
+            <div class="quantifier-box">
+                <h3 style="color: #9370db; margin-top: 0; text-align: center;">∀ Quantificateur Universel (Pour tout)</h3>
+                <div class="quantifier-symbol">∀</div>
+                <div class="formula">∀x P(x)</div>
+                <p style="text-align: center; margin-top: 15px; font-size: 1.1em;">"Pour tout x, P(x) est vrai"</p>
+
+                <div class="example-box" style="margin-top: 25px;">
+                    <h4 style="color: #ffd700;">Exemples :</h4>
+                    <ul>
+                        <li><span class="highlight">∀x (x ∈ ℕ → x ≥ 0)</span> : Tous les nombres naturels sont positifs ou nuls</li>
+                        <li><span class="highlight">∀x (Humain(x) → Mortel(x))</span> : Tous les humains sont mortels</li>
+                        <li><span class="highlight">∀x ∀y (x + y = y + x)</span> : L'addition est commutative</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quantifier-box">
+                <h3 style="color: #9370db; margin-top: 0; text-align: center;">∃ Quantificateur Existentiel (Il existe)</h3>
+                <div class="quantifier-symbol">∃</div>
+                <div class="formula">∃x P(x)</div>
+                <p style="text-align: center; margin-top: 15px; font-size: 1.1em;">"Il existe au moins un x tel que P(x) est vrai"</p>
+
+                <div class="example-box" style="margin-top: 25px;">
+                    <h4 style="color: #ffd700;">Exemples :</h4>
+                    <ul>
+                        <li><span class="highlight">∃x (x² = 4)</span> : Il existe un nombre dont le carré vaut 4 (x = 2 ou -2)</li>
+                        <li><span class="highlight">∃x (Premier(x) ∧ Pair(x))</span> : Il existe un nombre premier pair (2)</li>
+                        <li><span class="highlight">∃x ∀y (x ≤ y)</span> : Il existe un élément plus petit que tous les autres</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🔄 Négation des Quantificateurs</h3>
+
+            <div class="formula">¬(∀x P(x)) ≡ ∃x ¬P(x)</div>
+            <p style="text-align: center; margin-top: 10px;">"Pas tous" = "Il existe au moins un contre-exemple"</p>
+
+            <div class="formula" style="margin-top: 20px;">¬(∃x P(x)) ≡ ∀x ¬P(x)</div>
+            <p style="text-align: center; margin-top: 10px;">"Aucun" = "Tous ne vérifient pas"</p>
+
+            <div class="example-box" style="margin-top: 25px;">
+                <h4 style="color: #ffd700;">Exemple pratique :</h4>
+                <p><strong>Énoncé :</strong> "Tous les étudiants ont réussi l'examen"</p>
+                <p style="color: #87ceeb;">Formule : ∀x (Étudiant(x) → Réussi(x))</p>
+                <p style="margin-top: 15px;"><strong>Négation :</strong> "Il existe au moins un étudiant qui n'a pas réussi"</p>
+                <p style="color: #87ceeb;">Formule : ∃x (Étudiant(x) ∧ ¬Réussi(x))</p>
+            </div>
+
+            <div class="info-box">
+                <h3 style="color: #87ceeb; margin-top: 0;">⚡ Ordre des Quantificateurs (CRUCIAL !)</h3>
+                <p>L'ordre des quantificateurs change complètement le sens d'un énoncé :</p>
+                <div class="formula" style="margin-top: 15px;">∀x ∃y (x < y)</div>
+                <p style="text-align: center; color: #ffd700;">"Pour tout x, il existe un y plus grand que x"<br><em>(Vrai pour les entiers : il y a toujours un nombre plus grand)</em></p>
+
+                <div class="formula" style="margin-top: 25px;">∃y ∀x (x < y)</div>
+                <p style="text-align: center; color: #ffd700;">"Il existe un y plus grand que tous les x"<br><em>(Faux pour les entiers : pas de plus grand nombre)</em></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Diagrammes de Venn</h2>
+
+            <p>Les <span class="highlight">diagrammes de Venn</span> permettent de visualiser les relations entre ensembles et de vérifier la validité des syllogismes.</p>
+
+            <div class="venn-diagram">
+                <h3 style="color: #87ceeb;">Tous les A sont des B</h3>
+                <div class="circle-container">
+                    <div class="circle circle-b" style="width: 300px; height: 300px;">
+                        Ensemble B
+                        <div class="circle circle-a" style="width: 150px; height: 150px; position: absolute; left: 50%; transform: translateX(-50%); background: rgba(135, 206, 235, 0.4);">
+                            A
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #e8e8e8; margin-top: 20px;">A ⊂ B : L'ensemble A est entièrement contenu dans l'ensemble B</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="logique-debutant.html" class="btn btn-secondary">← Retour : Logique Débutant</a>
+            <a href="logique-expert.html" class="btn">Suivant : Logique Formelle & Paradoxes →</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation des cartes de raisonnement
+        document.querySelectorAll('.reasoning-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    </script>
+</body>
+</html>

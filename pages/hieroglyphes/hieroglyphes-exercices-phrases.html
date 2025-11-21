@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices Phrases Hiéroglyphiques | Quiz Interactifs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+
+        .exercise-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .exercise-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hieroglyphs-question {
+            font-size: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            color: #ffd700;
+            line-height: 1.8;
+            border: 3px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(39, 174, 96, 0.3);
+            border-color: #27ae60;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(231, 76, 60, 0.3);
+            border-color: #e74c3c;
+        }
+
+        .quiz-option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .explanation {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hint-button {
+            background: rgba(52, 152, 219, 0.3);
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .hint-button:hover {
+            background: rgba(52, 152, 219, 0.5);
+            transform: scale(1.05);
+        }
+
+        .hint-content {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .hint-content.show {
+            display: block;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 2rem;
+            color: #d4af37;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+        }
+
+        .transliteration {
+            font-style: italic;
+            color: #c0c0c0;
+            margin-top: 0.5rem;
+        }
+
+        .word-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .word-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .word-hieroglyph {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-exercise-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto;
+            transition: all 0.3s;
+        }
+
+        .next-exercise-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">𓋹 Académie des Sagesses Anciennes</a>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="hieroglyphes-parcours-complet.html">Parcours</a></li>
+                <li><a href="immersion-inscriptions-index.html">Inscriptions</a></li>
+                <li><a href="hieroglyphes-jeux-interactifs.html">Jeux</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>𓏙 Exercices de Traduction</h1>
+            <p class="subtitle">7 phrases complètes à déchiffrer avec quiz interactifs</p>
+            <div class="score-display">
+                <div>Score : <span id="score">0</span> / 7</div>
+                <div style="font-size: 1rem; margin-top: 0.5rem;">Réussite : <span id="percentage">0%</span></div>
+            </div>
+        </section>
+
+        <div class="exercise-container">
+            <!-- EXERCICE 1 -->
+            <div class="exercise-card" data-exercise="1">
+                <span class="exercise-number">Exercice 1/7</span>
+                <h2>Salutation Royale</h2>
+
+                <div class="hieroglyphs-question">
+                    𓋹𓅱𓏏𓈖𓀀𓊪𓏏𓇯
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> Que signifie cette phrase ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Mort au pharaon
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        B) Vie au pharaon
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        C) Paix au pharaon
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Force au pharaon
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(1)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-1">
+                    <strong>Indice :</strong> Le premier symbole 𓋹 est l'ankh, symbole de vie. Le dernier 𓊪𓏏𓇯 représente le ciel (pt).
+                </div>
+
+                <div class="explanation" id="explanation-1">
+                    <h3>✅ Réponse correcte : B) Vie au pharaon</h3>
+                    <div class="transliteration">Translittération : ˁnḫ wḏ3 snb n pr-ˁ3</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓋹</div>
+                            <div>ˁnḫ</div>
+                            <div>vie</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓅱𓏏</div>
+                            <div>wḏ3</div>
+                            <div>force</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓈖</div>
+                            <div>n</div>
+                            <div>à / pour</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊪𓏏𓇯</div>
+                            <div>pr-ˁ3</div>
+                            <div>pharaon</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Formule de souhait universelle "Vie, Force, Santé" (ˁnḫ wḏ3 snb) récitée quotidiennement pour le pharaon. Équivalent de "Longue vie au roi !"</p>
+                </div>
+            </div>
+
+            <!-- EXERCICE 2 -->
+            <div class="exercise-card" data-exercise="2">
+                <span class="exercise-number">Exercice 2/7</span>
+                <h2>Formule Funéraire</h2>
+
+                <div class="hieroglyphs-question">
+                    𓊵𓏏𓊪𓂧𓇋𓈖𓋴𓅱𓊨𓁹𓀭
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> Quelle est la traduction de cette formule ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Le roi commande à Osiris
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        B) Offrande que donne le roi à Osiris
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        C) Osiris protège le roi
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Le roi adore Osiris
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(2)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-2">
+                    <strong>Indice :</strong> 𓊵𓏏𓊪 = ḥtp (offrande/paix), 𓂧𓇋 = dj (donner), 𓊨𓁹𓀭 = Osiris. Formule "Hotep-di-Nesout".
+                </div>
+
+                <div class="explanation" id="explanation-2">
+                    <h3>✅ Réponse correcte : B) Offrande que donne le roi à Osiris</h3>
+                    <div class="transliteration">Translittération : ḥtp dj nsw(t) wsjr</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊵𓏏𓊪</div>
+                            <div>ḥtp</div>
+                            <div>offrande</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓂧𓇋</div>
+                            <div>dj</div>
+                            <div>donner</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓈖𓋴𓅱</div>
+                            <div>nswt</div>
+                            <div>roi</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊨𓁹𓀭</div>
+                            <div>wsjr</div>
+                            <div>Osiris</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Formule d'ouverture de TOUTES les stèles funéraires égyptiennes. Le roi est l'intermédiaire entre les dieux et les hommes, il offre aux dieux qui redistribuent aux défunts.</p>
+                </div>
+            </div>
+
+            <!-- EXERCICE 3 -->
+            <div class="exercise-card" data-exercise="3">
+                <span class="exercise-number">Exercice 3/7</span>
+                <h2>Déclaration Divine</h2>
+
+                <div class="hieroglyphs-question">
+                    𓇋𓈖𓎡𓊹𓀭𓄤𓆑𓂋
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> Traduction de cette phrase ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Les dieux sont mauvais
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        C) Tu es un homme bon
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        B) Je suis un dieu parfait
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Le dieu t'aime
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(3)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-3">
+                    <strong>Indice :</strong> 𓇋𓈖𓎡 = jnk (je suis), 𓊹 = nṯr (dieu), 𓄤𓆑𓂋 = nfr (bon/parfait)
+                </div>
+
+                <div class="explanation" id="explanation-3">
+                    <h3>✅ Réponse correcte : B) Je suis un dieu parfait</h3>
+                    <div class="transliteration">Translittération : jnk nṯr nfr</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓇋𓈖𓎡</div>
+                            <div>jnk</div>
+                            <div>je suis</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊹</div>
+                            <div>nṯr</div>
+                            <div>dieu</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓄤𓆑𓂋</div>
+                            <div>nfr</div>
+                            <div>parfait/bon</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Formule d'auto-proclamation divine. "Nṯr nfr" (dieu parfait) est un titre fréquent du pharaon, divinité vivante sur terre.</p>
+                </div>
+            </div>
+
+            <!-- EXERCICE 4 -->
+            <div class="exercise-card" data-exercise="4">
+                <span class="exercise-number">Exercice 4/7</span>
+                <h2>Voyage dans l'Au-delà</h2>
+
+                <div class="hieroglyphs-question">
+                    𓊪𓂋𓏏𓅓𓊵𓂋𓅱
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> Que signifie cette expression ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Descendre dans la nuit
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        B) Sortir au jour
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        C) Entrer dans la tombe
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Dormir éternellement
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(4)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-4">
+                    <strong>Indice :</strong> 𓊪𓂋𓏏 = prt (sortir), 𓅓 = m (dans/à), 𓊵𓂋𓅱 = ḥrw (jour). C'est le titre du Livre des Morts !
+                </div>
+
+                <div class="explanation" id="explanation-4">
+                    <h3>✅ Réponse correcte : B) Sortir au jour</h3>
+                    <div class="transliteration">Translittération : prt m ḥrw</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊪𓂋𓏏</div>
+                            <div>prt</div>
+                            <div>sortir</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓅓</div>
+                            <div>m</div>
+                            <div>dans/vers</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊵𓂋𓅱</div>
+                            <div>ḥrw</div>
+                            <div>jour</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Titre égyptien du "Livre des Morts" : recueil de formules magiques permettant au défunt de voyager librement entre le monde souterrain (Douât) et le monde des vivants.</p>
+                </div>
+            </div>
+
+            <!-- EXERCICE 5 -->
+            <div class="exercise-card" data-exercise="5">
+                <span class="exercise-number">Exercice 5/7</span>
+                <h2>Hommage au Soleil</h2>
+
+                <div class="hieroglyphs-question">
+                    𓇋𓈖𓂧𓊵𓂋𓇳𓏤𓎛𓊪𓂋
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> Traduction de cet hymne ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Le soleil se couche à l'ouest
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        B) Louange à la lune brillante
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        C) Salut à toi, Rê qui apparais
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Le dieu soleil dort
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(5)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-5">
+                    <strong>Indice :</strong> 𓇋𓈖𓂧 = jnd (salut), 𓊵𓂋 = ḥr (sur/à), 𓇳 = Rê, 𓎛𓊪𓂋 = ḫpr (apparaître/devenir)
+                </div>
+
+                <div class="explanation" id="explanation-5">
+                    <h3>✅ Réponse correcte : C) Salut à toi, Rê qui apparais</h3>
+                    <div class="transliteration">Translittération : jnd ḥr.k rˁ ḫpr</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓇋𓈖𓂧</div>
+                            <div>jnd</div>
+                            <div>salut</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓊵𓂋</div>
+                            <div>ḥr.k</div>
+                            <div>à toi</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓇳</div>
+                            <div>rˁ</div>
+                            <div>Rê</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓎛𓊪𓂋</div>
+                            <div>ḫpr</div>
+                            <div>apparaître</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Hymne quotidien au lever du soleil dans les temples égyptiens. Rê-Horakhty (Rê-Horus de l'horizon) est salué chaque matin. Khépri = scarabée = dieu du soleil levant.</p>
+                </div>
+            </div>
+
+            <!-- EXERCICE 6 -->
+            <div class="exercise-card" data-exercise="6">
+                <span class="exercise-number">Exercice 6/7</span>
+                <h2>Jugement de l'Âme</h2>
+
+                <div class="hieroglyphs-question">
+                    𓄣𓏤𓇋𓐙𓄿𓂓𓏏𓁦
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> Que décrit cette phrase du Livre des Morts ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Le cœur bat vite
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        B) Le cœur est juste/vrai (selon Maât)
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        C) Le cœur est lourd de péchés
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Le cœur est offert aux dieux
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(6)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-6">
+                    <strong>Indice :</strong> 𓄣 = jb (cœur), 𓇋 = j (de/en), 𓐙𓄿𓂓𓏏 = m3ˁt (vérité/justice). Pesée du cœur contre la plume de Maât.
+                </div>
+
+                <div class="explanation" id="explanation-6">
+                    <h3>✅ Réponse correcte : B) Le cœur est juste/vrai (selon Maât)</h3>
+                    <div class="transliteration">Translittération : jb j m3ˁt</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓄣</div>
+                            <div>jb</div>
+                            <div>cœur</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓇋</div>
+                            <div>j</div>
+                            <div>de/en</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓐙𓄿𓂓𓏏</div>
+                            <div>m3ˁt</div>
+                            <div>vérité/justice</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Verdict du jugement dans la salle des Deux Maât. Si le cœur est plus léger que la plume de Maât, le défunt accède à l'éternité. Sinon, le démon Ammit dévore le cœur.</p>
+                </div>
+            </div>
+
+            <!-- EXERCICE 7 -->
+            <div class="exercise-card" data-exercise="7">
+                <span class="exercise-number">Exercice 7/7</span>
+                <h2>Nom de Trône Royal</h2>
+
+                <div class="hieroglyphs-question">
+                    𓇳𓄊𓁧𓇳𓍉𓂝𓏏𓏭𓊨𓁙
+                </div>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <strong>Question :</strong> De quel pharaon s'agit-il ?
+                </p>
+
+                <div class="quiz-options">
+                    <div class="quiz-option" data-answer="wrong">
+                        A) Toutânkhamon
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        B) Khéops
+                    </div>
+                    <div class="quiz-option" data-answer="correct">
+                        C) Ramsès II
+                    </div>
+                    <div class="quiz-option" data-answer="wrong">
+                        D) Cléopâtre
+                    </div>
+                </div>
+
+                <button class="hint-button" onclick="toggleHint(7)">💡 Afficher un indice</button>
+                <div class="hint-content" id="hint-7">
+                    <strong>Indice :</strong> 𓇳 = Rê, 𓄊𓁧 = wsr (puissant), 𓐙𓄿𓂓𓏏 = m3ˁt (vérité), 𓂝𓏏𓊨 = stp-n (élu de). "Puissante est la Maât de Rê, Élu de Rê"
+                </div>
+
+                <div class="explanation" id="explanation-7">
+                    <h3>✅ Réponse correcte : C) Ramsès II</h3>
+                    <div class="transliteration">Translittération : wsr-m3ˁt-rˁ stp-n-rˁ</div>
+
+                    <div class="word-breakdown">
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓇳𓄊𓁧</div>
+                            <div>wsr-m3ˁt-rˁ</div>
+                            <div>Puissante est la Maât de Rê</div>
+                        </div>
+                        <div class="word-item">
+                            <div class="word-hieroglyph">𓇳𓍉𓂝𓏏𓊨</div>
+                            <div>stp-n-rˁ</div>
+                            <div>Élu de Rê</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Contexte :</strong> Nom de couronnement (prenomen) de Ramsès II, le plus grand pharaon-bâtisseur. Règne de 67 ans (1279-1213 av. J.-C.). Abou Simbel, Ramesseum, extensions à Karnak et Louxor.</p>
+                </div>
+            </div>
+
+            <button class="next-exercise-btn" onclick="window.location.href='hieroglyphes-jeux-interactifs.html'">
+                Continuer vers les Jeux Interactifs 🎮
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Académie des Sagesses Anciennes - Maîtrisez les hiéroglyphes phrase par phrase</p>
+    </footer>
+
+    <script>
+        let score = 0;
+        const totalExercises = 7;
+
+        function toggleHint(exerciseNum) {
+            const hint = document.getElementById(`hint-${exerciseNum}`);
+            hint.classList.toggle('show');
+        }
+
+        // Gestion des réponses
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.classList.contains('disabled')) return;
+
+                const exerciseCard = this.closest('.exercise-card');
+                const exerciseNum = exerciseCard.dataset.exercise;
+                const allOptions = exerciseCard.querySelectorAll('.quiz-option');
+                const explanation = exerciseCard.querySelector('.explanation');
+
+                // Désactiver toutes les options
+                allOptions.forEach(opt => opt.classList.add('disabled'));
+
+                // Marquer la réponse
+                if (this.dataset.answer === 'correct') {
+                    this.classList.add('correct');
+                    score++;
+                    updateScore();
+
+                    // Animation de succès
+                    this.innerHTML += ' ✅';
+                } else {
+                    this.classList.add('incorrect');
+                    this.innerHTML += ' ❌';
+
+                    // Montrer la bonne réponse
+                    allOptions.forEach(opt => {
+                        if (opt.dataset.answer === 'correct') {
+                            opt.classList.add('correct');
+                            opt.innerHTML += ' ✅ (Bonne réponse)';
+                        }
+                    });
+                }
+
+                // Afficher l'explication
+                explanation.classList.add('show');
+
+                // Sauvegarder la progression
+                localStorage.setItem(`hieroglyphes-exercise-${exerciseNum}`, 'completed');
+            });
+        });
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            const percentage = Math.round((score / totalExercises) * 100);
+            document.getElementById('percentage').textContent = percentage + '%';
+
+            // Sauvegarder dans localStorage
+            localStorage.setItem('hieroglyphes-exercises-score', score);
+        }
+
+        // Charger le score précédent
+        window.addEventListener('load', () => {
+            const savedScore = parseInt(localStorage.getItem('hieroglyphes-exercises-score')) || 0;
+            score = savedScore;
+            updateScore();
+
+            // Restaurer les exercices complétés
+            for (let i = 1; i <= totalExercises; i++) {
+                if (localStorage.getItem(`hieroglyphes-exercise-${i}`) === 'completed') {
+                    const card = document.querySelector(`[data-exercise="${i}"]`);
+                    const explanation = card.querySelector('.explanation');
+                    explanation.classList.add('show');
+                }
+            }
+        });
+
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.exercise-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

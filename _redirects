@@ -1,0 +1,37 @@
+# Cloudflare Pages Redirects Configuration
+
+# Redirection de la racine vers index_production.html si nécessaire
+# (optionnel - Cloudflare sert automatiquement index.html)
+
+# Redirections des anciennes URLs vers les nouvelles
+/index_enrichi.html /pages/versions/index_enrichi.html 301
+/index_mega_enriched.html /pages/versions/index_mega_enriched.html 301
+
+# Redirection des pages de runes
+/runes-*.html /pages/runes/:splat 301
+
+# Redirection des pages de gématrie
+/gematria-*.html /pages/gematria/:splat 301
+
+# Redirection des pages d'hiéroglyphes
+/hieroglyphes-*.html /pages/hieroglyphes/:splat 301
+
+# Redirection des pages mayas
+/maya-*.html /pages/maya/:splat 301
+
+# Redirection des pages de logique
+/logique-*.html /pages/logique/:splat 301
+
+# Redirection des pages de méditation
+/mandala*.html /pages/meditation/:splat 301
+/chakras.html /pages/meditation/chakras.html 301
+
+# Redirection des pages utilisateur
+/login.html /pages/user/login.html 301
+/profile.html /pages/user/profile.html 301
+
+# Page 404 personnalisée
+/404.html /404.html 200
+
+# Forcer HTTPS (si pas déjà géré par Cloudflare)
+http://:domain/* https://:domain/:splat 301!

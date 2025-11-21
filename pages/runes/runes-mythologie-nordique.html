@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythologie Nordique Complète | Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .mythology-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-top: 5px solid;
+        }
+
+        .mythology-section.yggdrasil { border-color: #27ae60; }
+        .mythology-section.worlds { border-color: #3498db; }
+        .mythology-section.gods { border-color: #f39c12; }
+        .mythology-section.ragnarok { border-color: #e74c3c; }
+
+        .world-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .world-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .world-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            border-left: 5px solid;
+        }
+
+        .world-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .world-card.asgard { border-color: #f1c40f; }
+        .world-card.midgard { border-color: #27ae60; }
+        .world-card.jotunheim { border-color: #3498db; }
+        .world-card.vanaheim { border-color: #9b59b6; }
+        .world-card.alfheim { border-color: #1abc9c; }
+        .world-card.svartalfheim { border-color: #34495e; }
+        .world-card.helheim { border-color: #7f8c8d; }
+        .world-card.niflheim { border-color: #95a5a6; }
+        .world-card.muspelheim { border-color: #e74c3c; }
+
+        .god-card {
+            display: flex;
+            gap: 1.5rem;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .god-icon {
+            font-size: 4rem;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .god-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tree-visual {
+            text-align: center;
+            font-size: 0.9rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            font-family: monospace;
+            line-height: 1.4;
+        }
+
+        .rune-connection {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #27ae60, #f39c12, #e74c3c);
+        }
+
+        .timeline-event {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline-event:before {
+            content: '⚡';
+            position: absolute;
+            left: -2.2rem;
+            background: var(--card-bg);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #f39c12;
+        }
+
+        .accordion {
+            background: var(--bg-light);
+            margin: 1rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: var(--secondary);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="header-buttons-cosmic">
+            <button class="cosmic-btn cosmic-btn-dark" onclick="toggleDarkMode()">
+                <span class="btn-icon">🌙</span>
+                <span class="btn-text">Mode Nuit</span>
+            </button>
+            <button class="cosmic-btn cosmic-btn-lang" onclick="window.location.href='index.html'">
+                <span class="btn-icon">🏠</span>
+                <span class="btn-text">Accueil</span>
+            </button>
+        </div>
+        <h1>⚡ Mythologie Nordique Complète</h1>
+        <p class="subtitle">Yggdrasil, les 9 Mondes, le Panthéon des Dieux et le Ragnarök</p>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">Accueil</a> » <a href="index.html#runes">Runes</a> » Mythologie Nordique
+        </div>
+
+        <div class="content-page">
+            <section class="hero">
+                <h2>Le Cosmos Nordique - Une Vision du Monde</h2>
+                <p>La mythologie nordique offre une cosmologie riche et complexe où les runes trouvent leur origine et leur signification. Comprendre ces mythes ancestraux permet d'approfondir considérablement votre pratique runique et votre connexion avec les archétypes nordiques.</p>
+            </section>
+
+            <!-- YGGDRASIL -->
+            <div class="mythology-section yggdrasil">
+                <h2>🌳 Yggdrasil - L'Arbre-Monde</h2>
+
+                <p style="font-size: 1.1rem; margin: 1rem 0;">
+                    Au cœur de la cosmologie nordique se trouve <strong>Yggdrasil</strong>, le frêne cosmique qui relie les 9 mondes. Cet arbre immense est le pilier de l'univers, ses racines plongent dans les profondeurs les plus sombres tandis que ses branches touchent les cieux les plus élevés.
+                </p>
+
+                <div class="tree-visual">
+                    <div style="color: #f1c40f; font-weight: bold;">ASGARD (Couronne)</div>
+                    <div>🌟 Royaume des Ases 🌟</div>
+                    <br>
+                    <div style="color: #9b59b6;">VANAHEIM | ALFHEIM | MUSPELHEIM</div>
+                    <div>🔮 Branches Supérieures 🔮</div>
+                    <br>
+                    <div style="font-size: 2rem; color: #27ae60;">🌳 YGGDRASIL 🌳</div>
+                    <br>
+                    <div style="color: #3498db;">MIDGARD (Tronc Central)</div>
+                    <div>🌍 Monde des Humains 🌍</div>
+                    <br>
+                    <div style="color: #34495e;">JOTUNHEIM | SVARTALFHEIM</div>
+                    <div>⛰️ Branches Inférieures ⛰️</div>
+                    <br>
+                    <div style="color: #7f8c8d;">NIFLHEIM | HELHEIM (Racines)</div>
+                    <div>💀 Royaumes des Morts 💀</div>
+                </div>
+
+                <div class="lesson">
+                    <h3>🌿 Les Trois Racines Sacrées</h3>
+                    <ul>
+                        <li><strong>Première Racine:</strong> Plonge dans le puits d'Urd (Urðarbrunnr) où les Nornes tissent le destin</li>
+                        <li><strong>Deuxième Racine:</strong> Atteint le puits de Mímir, source de sagesse infinie où Odin sacrifia son œil</li>
+                        <li><strong>Troisième Racine:</strong> Descend vers Niflheim, où le dragon Níðhöggr ronge éternellement</li>
+                    </ul>
+                </div>
+
+                <div class="rune-connection">
+                    <strong>🔗 Connexion Runique:</strong> Yggdrasil est intimement lié à la découverte des runes. Selon le Hávamál (poème eddique), Odin s'est pendu à ses branches pendant 9 jours et 9 nuits, sacrifiant "lui-même à lui-même", pour obtenir la connaissance des runes.
+                    <br><br>
+                    <em>"Je sais que je pendis à l'arbre battu des vents neuf nuits pleines, navré d'une lance et donné à Odin, moi-même à moi-même donné..."</em> - Hávamál, strophe 138
+                </div>
+
+                <div class="tip">
+                    <strong>🌟 Symbolisme:</strong> Yggdrasil représente l'interconnexion de toute chose, le cycle éternel de vie-mort-renaissance, et la structure verticale de la conscience (des profondeurs inconscientes aux hauteurs spirituelles).
+                </div>
+            </div>
+
+            <!-- LES 9 MONDES -->
+            <div class="mythology-section worlds">
+                <h2>🌍 Les Neuf Mondes (Níu Heimar)</h2>
+
+                <p style="font-size: 1.1rem; margin: 1rem 0;">
+                    Selon la cosmologie nordique, neuf mondes sont organisés autour d'Yggdrasil, chacun habité par des êtres différents et possédant ses propres caractéristiques.
+                </p>
+
+                <div class="world-grid">
+                    <div class="world-card asgard">
+                        <h4>⚡ ASGARD</h4>
+                        <p><strong>Habitants:</strong> Les Ases (dieux guerriers)</p>
+                        <p><strong>Caractéristiques:</strong> Royaume céleste fortifié, accessible par le pont arc-en-ciel Bifröst</p>
+                        <p><strong>Lieux importants:</strong> Valhalla (palais d'Odin), Sessrúmnir (palais de Freyja)</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᚨ Ansuz (Odin)
+                        </div>
+                    </div>
+
+                    <div class="world-card midgard">
+                        <h4>🌍 MIDGARD</h4>
+                        <p><strong>Habitants:</strong> Les humains</p>
+                        <p><strong>Caractéristiques:</strong> Monde du milieu, créé à partir du corps du géant Ymir, entouré par l'océan où se terre Jörmungandr (le serpent-monde)</p>
+                        <p><strong>Protection:</strong> Protégé des géants par une palissade faite des cils d'Ymir</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᛗ Mannaz (Humanité)
+                        </div>
+                    </div>
+
+                    <div class="world-card jotunheim">
+                        <h4>⛰️ JOTUNHEIM</h4>
+                        <p><strong>Habitants:</strong> Les Jötnar (géants)</p>
+                        <p><strong>Caractéristiques:</strong> Terre de montagnes sauvages, de glace et de chaos primordial</p>
+                        <p><strong>Note:</strong> Royaume ennemi d'Asgard, mais lien par mariages (Odin épouse Jörð, déesse géante)</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᚦ Thurisaz (Géant)
+                        </div>
+                    </div>
+
+                    <div class="world-card vanaheim">
+                        <h4>🌾 VANAHEIM</h4>
+                        <p><strong>Habitants:</strong> Les Vanes (dieux de la fertilité)</p>
+                        <p><strong>Caractéristiques:</strong> Royaume de la nature, de la fertilité et de la magie seiðr</p>
+                        <p><strong>Divinités célèbres:</strong> Njörðr, Freyr, Freyja (après la guerre Ases-Vanes, intégrés à Asgard)</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᛜ Ingwaz (Freyr)
+                        </div>
+                    </div>
+
+                    <div class="world-card alfheim">
+                        <h4>✨ ALFHEIM</h4>
+                        <p><strong>Habitants:</strong> Les Alfes clairs (elfes lumineux)</p>
+                        <p><strong>Caractéristiques:</strong> Royaume de lumière et de beauté éthérée</p>
+                        <p><strong>Gouvernant:</strong> Offert à Freyr comme cadeau de dentition par les dieux</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᛞ Dagaz (Lumière du jour)
+                        </div>
+                    </div>
+
+                    <div class="world-card svartalfheim">
+                        <h4>⚒️ SVARTALFHEIM</h4>
+                        <p><strong>Habitants:</strong> Les Alfes sombres et les Nains (Dvergar)</p>
+                        <p><strong>Caractéristiques:</strong> Monde souterrain de forges et de mines</p>
+                        <p><strong>Artisanat:</strong> Les nains ont forgé Mjölnir (marteau de Thor), Gungnir (lance d'Odin) et Draupnir (anneau d'Odin)</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᛟ Othala (Héritage ancestral)
+                        </div>
+                    </div>
+
+                    <div class="world-card helheim">
+                        <h4>💀 HELHEIM</h4>
+                        <p><strong>Habitants:</strong> Les morts de maladie et de vieillesse</p>
+                        <p><strong>Gouvernante:</strong> Hel, fille de Loki, mi-vivante mi-morte</p>
+                        <p><strong>Caractéristiques:</strong> Royaume sombre mais pas nécessairement un lieu de punition</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᚺ Hagalaz (Destruction)
+                        </div>
+                    </div>
+
+                    <div class="world-card niflheim">
+                        <h4>❄️ NIFLHEIM</h4>
+                        <p><strong>Nature:</strong> Monde primordial de glace et de brume</p>
+                        <p><strong>Caractéristiques:</strong> Existait avant la création, source du froid cosmique</p>
+                        <p><strong>Source:</strong> Le puits Hvergelmir d'où jaillissent les rivières glacées</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᛁ Isa (Glace)
+                        </div>
+                    </div>
+
+                    <div class="world-card muspelheim">
+                        <h4>🔥 MUSPELHEIM</h4>
+                        <p><strong>Nature:</strong> Monde primordial de feu et de flammes</p>
+                        <p><strong>Gouvernant:</strong> Surtr, géant de feu qui déclenchera le Ragnarök</p>
+                        <p><strong>Caractéristiques:</strong> Opposé de Niflheim, source de la chaleur cosmique</p>
+                        <div class="rune-connection" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>Rune associée:</strong> ᚲ Kenaz (Feu)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Interconnexion:</strong> Ces neuf mondes ne sont pas isolés mais constamment interconnectés. Les dieux voyagent entre eux, les rivières coulent de l'un à l'autre, et les événements dans un monde affectent tous les autres. Cette vision holistique est fondamentale pour comprendre la pensée nordique.
+                </div>
+            </div>
+
+            <!-- PANTHÉON DES DIEUX -->
+            <div class="mythology-section gods">
+                <h2>👑 Le Panthéon Nordique</h2>
+
+                <p style="font-size: 1.1rem; margin: 1rem 0;">
+                    Les dieux nordiques sont organisés en deux familles principales : les <strong>Ases</strong> (dieux guerriers) et les <strong>Vanes</strong> (dieux de la fertilité). Après une guerre destructrice, ils ont fait la paix et échangé des otages.
+                </p>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>⚡ ODIN</strong> - Le Père de Tout (Allföðr)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="god-card">
+                            <div class="god-icon">👁️</div>
+                            <div class="god-info">
+                                <h4>Odin (Óðinn)</h4>
+                                <p><strong>Domaines:</strong> Sagesse, guerre, mort, poésie, magie, runes</p>
+                                <p><strong>Symboles:</strong> Lance Gungnir, corbeaux Hugin et Munin, loups Geri et Freki, cheval à huit jambes Sleipnir</p>
+                                <p><strong>Caractéristiques:</strong> Borgne (sacrifia son œil pour boire du puits de Mímir), errant déguisé parmi les humains</p>
+                                <p><strong>Épouses:</strong> Frigg (principale), Jörð (mère de Thor), plusieurs autres</p>
+                                <div class="rune-connection" style="margin-top: 1rem;">
+                                    <strong>Runes associées:</strong> ᚨ Ansuz (sa rune primaire), ᚹ Wunjo, ᚷ Gebo
+                                </div>
+                                <div class="tip" style="margin-top: 1rem;">
+                                    <strong>Mythe clé:</strong> Odin obtint les runes en se pendant à Yggdrasil pendant 9 nuits, transpercé par sa propre lance. Ce sacrifice de "soi à soi-même" représente la quête ultime de connaissance par l'expérience directe de la mort initiatique.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>🔨 THOR</strong> - Le Protecteur de Midgard</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="god-card">
+                            <div class="god-icon">⚡</div>
+                            <div class="god-info">
+                                <h4>Thor (Þórr)</h4>
+                                <p><strong>Domaines:</strong> Tonnerre, force, protection, fertilité</p>
+                                <p><strong>Symboles:</strong> Marteau Mjölnir, ceinture de force Megingjörð, gants de fer Járngreipr</p>
+                                <p><strong>Parents:</strong> Odin et Jörð (Terre personnifiée)</p>
+                                <p><strong>Épouse:</strong> Sif (déesse aux cheveux d'or)</p>
+                                <p><strong>Popularité:</strong> Plus adoré que Odin par le peuple commun, protecteur contre les géants</p>
+                                <div class="rune-connection" style="margin-top: 1rem;">
+                                    <strong>Runes associées:</strong> ᚦ Thurisaz (protection contre géants), ᛏ Tiwaz, ᛉ Algiz (protection)
+                                </div>
+                                <div class="tip" style="margin-top: 1rem;">
+                                    <strong>Mythe clé:</strong> Thor voyage constamment à Jötunheim pour combattre les géants. Son destin final est de combattre le serpent-monde Jörmungandr au Ragnarök - il le tuera mais succombera à son venin après neuf pas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>💖 FREYJA</strong> - Déesse de l'Amour et de la Magie</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="god-card">
+                            <div class="god-icon">💎</div>
+                            <div class="god-info">
+                                <h4>Freyja</h4>
+                                <p><strong>Domaines:</strong> Amour, beauté, fertilité, guerre, seiðr (magie), mort</p>
+                                <p><strong>Symboles:</strong> Collier Brísingamen, manteau de plumes de faucon, char tiré par des chats</p>
+                                <p><strong>Famille:</strong> Sœur jumelle de Freyr, fille de Njörðr</p>
+                                <p><strong>Rôle guerrier:</strong> Reçoit la moitié des morts au combat dans son palais Sessrúmnir (l'autre moitié va au Valhalla d'Odin)</p>
+                                <div class="rune-connection" style="margin-top: 1rem;">
+                                    <strong>Runes associées:</strong> ᚠ Fehu (richesse, fertilité), ᛒ Berkano (bouleau, féminité), ᛈ Perthro (mystères féminins)
+                                </div>
+                                <div class="tip" style="margin-top: 1rem;">
+                                    <strong>Pouvoir unique:</strong> Freyja enseigna le seiðr (magie chamanique nordique) à Odin lui-même. Cette magie, traditionnellement féminine, permettait de voir et d'influencer le destin.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>🌾 FREYR</strong> - Dieu de la Prospérité</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="god-card">
+                            <div class="god-icon">🌞</div>
+                            <div class="god-info">
+                                <h4>Freyr (Frey)</h4>
+                                <p><strong>Domaines:</strong> Fertilité, prospérité, paix, récoltes, beau temps</p>
+                                <p><strong>Symboles:</strong> Épée magique (combat seule), bateau Skíðblaðnir (pliable), sanglier d'or Gullinbursti</p>
+                                <p><strong>Épouse:</strong> Gerðr (géante), qu'il épousa par amour en sacrifiant son épée magique</p>
+                                <p><strong>Royaume:</strong> Alfheim lui fut donné en cadeau</p>
+                                <div class="rune-connection" style="margin-top: 1rem;">
+                                    <strong>Runes associées:</strong> ᛜ Ingwaz (son nom ancestral Ing), ᛃ Jera (récolte), ᚠ Fehu (prospérité)
+                                </div>
+                                <div class="tip" style="margin-top: 1rem;">
+                                    <strong>Sacrifice d'amour:</strong> En donnant son épée magique pour épouser Gerðr, Freyr se condamne au Ragnarök où il combattra Surtr sans arme adéquate et périra. C'est le sacrifice ultime par amour.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>⚖️ TYR</strong> - Dieu de la Justice et du Courage</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="god-card">
+                            <div class="god-icon">⚔️</div>
+                            <div class="god-info">
+                                <h4>Týr</h4>
+                                <p><strong>Domaines:</strong> Justice, loi, bravoure, assemblées juridiques (thing)</p>
+                                <p><strong>Caractéristique:</strong> Manchot (perdit sa main droite dans la gueule du loup Fenrir)</p>
+                                <p><strong>Origine:</strong> Possiblement le dieu de guerre original avant Odin</p>
+                                <p><strong>Symbolisme:</strong> Représente le sacrifice personnel pour le bien commun</p>
+                                <div class="rune-connection" style="margin-top: 1rem;">
+                                    <strong>Rune associée:</strong> ᛏ Tiwaz (porte son nom, symbolise justice et victoire honorable)
+                                </div>
+                                <div class="tip" style="margin-top: 1rem;">
+                                    <strong>Mythe du sacrifice:</strong> Pour enchaîner Fenrir qui menaçait les dieux, Týr plaça sa main dans la gueule du loup en gage de bonne foi. Quand Fenrir réalisa la tromperie, il trancha la main de Týr. Ce sacrifice sauva les dieux... temporairement.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>🔥 LOKI</strong> - Le Trickster</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="god-card">
+                            <div class="god-icon">🎭</div>
+                            <div class="god-info">
+                                <h4>Loki</h4>
+                                <p><strong>Nature:</strong> Jötunn (géant), frère de sang d'Odin</p>
+                                <p><strong>Domaines:</strong> Ruse, tromperie, métamorphose, chaos</p>
+                                <p><strong>Enfants:</strong> Hel (déesse des morts), Fenrir (loup géant), Jörmungandr (serpent-monde), Sleipnir (cheval à 8 jambes d'Odin)</p>
+                                <p><strong>Rôle:</strong> Aide ET menace les dieux, créant et résolvant des problèmes</p>
+                                <p><strong>Destin:</strong> Enchaîné avec les entrailles de son fils, un serpent verse du venin sur son visage (sa femme Sigyn recueille le venin dans un bol)</p>
+                                <div class="rune-connection" style="margin-top: 1rem;">
+                                    <strong>Rune associée:</strong> ᛞ Dagaz (transformation), ᛈ Perthro (hasard, mystère)
+                                </div>
+                                <div class="tip" style="margin-top: 1rem;">
+                                    <strong>Dualité essentielle:</strong> Loki représente le chaos nécessaire à l'évolution. Il causa la mort de Baldr (déclencheur du Ragnarök) mais offrit aussi aux dieux leurs plus grands trésors (Mjölnir, Gungnir, etc.). Il incarne l'ambiguïté morale de l'univers.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson">
+                    <h3>🌟 Autres Divinités Importantes</h3>
+                    <ul>
+                        <li><strong>Frigg:</strong> Épouse d'Odin, déesse du mariage et de la maternité, connaît tous les destins mais ne les révèle pas</li>
+                        <li><strong>Baldr:</strong> Fils d'Odin et Frigg, dieu de la lumière et de la beauté, tué par ruse de Loki (événement déclencheur du Ragnarök)</li>
+                        <li><strong>Heimdall:</strong> Gardien de Bifröst, possède une ouïe et une vue exceptionnelles, sonnera le cor Gjallarhorn au Ragnarök</li>
+                        <li><strong>Njörðr:</strong> Dieu Vane de la mer et de la navigation, père de Freyr et Freyja</li>
+                        <li><strong>Sif:</strong> Épouse de Thor, déesse aux cheveux d'or (symbole des champs de blé)</li>
+                        <li><strong>Iðunn:</strong> Gardienne des pommes d'immortalité qui maintiennent les dieux jeunes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RAGNARÖK -->
+            <div class="mythology-section ragnarok">
+                <h2>🔥 Ragnarök - Le Crépuscule des Dieux</h2>
+
+                <p style="font-size: 1.1rem; margin: 1rem 0;">
+                    Le <strong>Ragnarök</strong> ("Destin des Puissances") est la fin prophétisée du monde actuel et la renaissance d'un nouveau cosmos. Contrairement à une apocalypse définitive, c'est un cycle de destruction et de renouveau.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-event">
+                        <h4>1. Les Présages</h4>
+                        <p>Trois hivers sans été (Fimbulvetr), guerres fratricides, effondrement des valeurs morales, le loup Sköll dévore le soleil, Hati la lune.</p>
+                    </div>
+
+                    <div class="timeline-event">
+                        <h4>2. Libération des Monstres</h4>
+                        <p>Les chaînes de Fenrir se brisent. Jörmungandr émerge de l'océan, provoquant des raz-de-marée. Loki se libère de ses entrailles. Le navire Naglfar (fait d'ongles de morts) prend la mer avec les géants.</p>
+                    </div>
+
+                    <div class="timeline-event">
+                        <h4>3. L'Assaut Final</h4>
+                        <p>Heimdall sonne le Gjallarhorn. Les dieux et les Einherjar (guerriers du Valhalla) se rassemblent. Surtr et les fils de Muspell franchissent Bifröst qui s'effondre. Les armées convergent vers la plaine de Vígríðr.</p>
+                    </div>
+
+                    <div class="timeline-event">
+                        <h4>4. Les Combats Fatidiques</h4>
+                        <ul style="margin-top: 0.5rem;">
+                            <li><strong>Odin vs Fenrir:</strong> Odin est dévoré par Fenrir. Víðarr (fils d'Odin) venge son père en déchirant la gueule du loup.</li>
+                            <li><strong>Thor vs Jörmungandr:</strong> Thor tue le serpent mais meurt empoisonné après neuf pas.</li>
+                            <li><strong>Freyr vs Surtr:</strong> Freyr combat vaillamment mais tombe sans son épée magique.</li>
+                            <li><strong>Týr vs Garmr:</strong> Le chien de Helheim et le dieu manchot s'entre-tuent.</li>
+                            <li><strong>Heimdall vs Loki:</strong> Les deux ennemis ancestraux périssent dans leur duel.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-event">
+                        <h4>5. Destruction et Purification</h4>
+                        <p>Surtr embrase les neuf mondes avec son épée de feu. Yggdrasil tremble mais ne tombe pas. La terre s'enfonce dans la mer.</p>
+                    </div>
+
+                    <div class="timeline-event">
+                        <h4>6. Renaissance</h4>
+                        <p>La terre émerge à nouveau, verte et fertile. Deux humains, Líf et Lífþrasir, survivent cachés dans Yggdrasil et repeuplent le monde. Les fils des dieux survivants (Víðarr, Váli, Móði, Magni) héritent des attributs de leurs pères. Baldr et Höðr reviennent de Helheim, réconciliés.</p>
+                    </div>
+                </div>
+
+                <div class="rune-connection">
+                    <strong>🔗 Signification Runique du Ragnarök:</strong>
+                    <br><br>
+                    Le Ragnarök n'est pas une fin absolue mais une transformation nécessaire. Il représente le cycle cosmique de mort-renaissance présent dans de nombreuses runes:
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>ᛞ Dagaz:</strong> L'aube après la nuit, transformation radicale</li>
+                        <li><strong>ᛇ Eihwaz:</strong> Mort initiatique et renaissance</li>
+                        <li><strong>ᛈ Perthro:</strong> Les mystères du destin et du renouveau</li>
+                        <li><strong>ᚺ Hagalaz:</strong> Destruction nécessaire pour la transformation</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>🌟 Leçon Philosophique:</strong> Le Ragnarök enseigne que même les dieux ne sont pas immortels et que tout cycle doit se terminer pour qu'un nouveau commence. C'est une acceptation du changement inévitable et une célébration du renouveau éternel. Les Nordiques affrontaient ce destin avec courage, sachant que de la destruction naît toujours une nouvelle création.
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>📚 Sources Historiques</h3>
+                <p>Notre connaissance de la mythologie nordique provient principalement de:</p>
+                <ul>
+                    <li><strong>L'Edda Poétique (Edda de Sæmund):</strong> Collection de poèmes mythologiques islandais du XIIIe siècle</li>
+                    <li><strong>L'Edda en Prose (Edda de Snorri):</strong> Manuel de mythologie écrit par Snorri Sturluson vers 1220</li>
+                    <li><strong>Les Sagas:</strong> Récits historiques et légendaires islandais</li>
+                    <li><strong>Les Pierres Runiques:</strong> Inscriptions gravées en Scandinavie (VIe-XIIe siècles)</li>
+                    <li><strong>Les Chroniques Médiévales:</strong> Récits de Saxo Grammaticus et autres</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h3>🎯 Méditation Mythologique</h3>
+                <p>Choisissez un dieu ou une déesse du panthéon nordique. Pendant 10 minutes:</p>
+                <ol>
+                    <li>Visualisez cette divinité et ses attributs</li>
+                    <li>Réfléchissez à ce qu'elle représente dans votre vie actuelle</li>
+                    <li>Quelles qualités de cette divinité pourriez-vous invoquer?</li>
+                    <li>Tracez la rune associée et méditez sur la connexion</li>
+                    <li>Notez vos insights dans votre journal runique</li>
+                </ol>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="index.html#runes" class="btn btn-beginner">← Retour aux Runes</a>
+                <a href="runes-parcours-complet.html" class="btn btn-intermediate">Parcours Complet →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Sagesses Anciennes - Explorez les mythes ancestraux du Nord</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

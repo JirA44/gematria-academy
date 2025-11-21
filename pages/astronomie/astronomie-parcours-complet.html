@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours Complet - Astronomie | Académie des Sagesses Ésotériques</title>
+    <link rel="stylesheet" href="../../assets/css/main/style.css">
+    <link rel="stylesheet" href="../../assets/css/main/fix-contrast.css">
+    <link rel="stylesheet" href="../../assets/css/main/cosmic-header-styles.css">
+    <link rel="stylesheet" href="../../assets/css/animations/animated-background.css">
+    <link rel="stylesheet" href="../../assets/css/animations/bleus-cosmiques.css">
+    <style>
+        .parcours-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.5), rgba(106, 27, 154, 0.4));
+            border-radius: 25px;
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            box-shadow: 0 15px 50px rgba(138, 43, 226, 0.5);
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #4ecdc4, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.5), rgba(26, 26, 46, 0.7));
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .level-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.6);
+            border-color: rgba(138, 43, 226, 0.8);
+        }
+
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .level-icon {
+            font-size: 4rem;
+        }
+
+        .level-title {
+            flex: 1;
+        }
+
+        .level-title h2 {
+            color: #ffd700;
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #8a2be2, #6a1b9a);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .module-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #8a2be2;
+        }
+
+        .module-item h4 {
+            color: #4ecdc4;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .module-item ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #8a2be2, #6a1b9a);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+            background: linear-gradient(135deg, #9a3bf0, #7a2baa);
+        }
+
+        .action-button.primary {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #000;
+        }
+
+        .action-button.primary:hover {
+            background: linear-gradient(135deg, #ffe44d, #ffa033);
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(138, 43, 226, 0.2));
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(78, 205, 196, 0.4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+
+        .roadmap-section {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 3rem;
+            width: 2px;
+            height: calc(100% + 3rem);
+            background: linear-gradient(to bottom, rgba(138, 43, 226, 0.5), transparent);
+        }
+
+        .roadmap-item:last-child::before {
+            display: none;
+        }
+
+        .roadmap-number {
+            flex-shrink: 0;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8a2be2, #6a1b9a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .roadmap-content {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #8a2be2;
+        }
+
+        .roadmap-content h3 {
+            color: #ffd700;
+            margin-top: 0;
+        }
+
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .nav-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.6), rgba(138, 43, 226, 0.4));
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.8), rgba(138, 43, 226, 0.6));
+        }
+
+        .nav-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-card-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .level-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .roadmap-item::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-background"></div>
+
+    <header class="cosmic-header">
+        <div class="header-content">
+            <h1 class="site-title">🔮 Académie des Sagesses Ésotériques</h1>
+            <nav class="main-nav">
+                <a href="../../index.html">🏠 Accueil</a>
+                <a href="astronomie-debutant.html">🌙 Débutant</a>
+                <a href="astronomie-intermediaire.html">🌟 Intermédiaire</a>
+                <a href="astronomie-expert.html">🌌 Expert</a>
+                <a href="astronomie-parcours-complet.html" class="active">📚 Parcours</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="parcours-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>🌌 Parcours Complet d'Astronomie</h1>
+            <p>Un voyage progressif de la Terre aux confins de l'univers</p>
+            <p style="font-size: 1.1rem; margin-top: 1rem;">
+                De débutant à expert, explorez le cosmos à travers un parcours structuré
+                couvrant le système solaire, l'espace profond, la cosmologie et les frontières de la connaissance.
+            </p>
+        </div>
+
+        <!-- Statistiques du parcours -->
+        <div class="stats-section">
+            <h2 style="text-align: center; color: #ffd700; margin-top: 0;">📊 Vue d'ensemble du parcours</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Niveaux progressifs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Modules complets</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Concepts détaillés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Questions de validation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Heures de contenu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="roadmap-section">
+            <h2 style="text-align: center; color: #ffd700; margin-top: 0;">🗺️ Feuille de Route d'Apprentissage</h2>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <div class="roadmap-number">1</div>
+                    <div class="roadmap-content">
+                        <h3>🌙 Commencez par le niveau Débutant</h3>
+                        <p>Explorez le système solaire, apprenez les bases des planètes, de la Lune et des constellations visibles à l'œil nu.</p>
+                        <p><strong>Durée estimée</strong> : 10-15 heures</p>
+                        <p><strong>Prérequis</strong> : Aucun</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-number">2</div>
+                    <div class="roadmap-content">
+                        <h3>🪐 Progressez vers le niveau Intermédiaire</h3>
+                        <p>Découvrez les géantes gazeuses, les phénomènes célestes avancés (éclipses, marées) et l'espace profond.</p>
+                        <p><strong>Durée estimée</strong> : 20-30 heures</p>
+                        <p><strong>Prérequis</strong> : Validation du niveau Débutant (80%+)</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-number">3</div>
+                    <div class="roadmap-content">
+                        <h3>🌌 Maîtrisez le niveau Expert</h3>
+                        <p>Plongez dans la cosmologie, la relativité générale, les trous noirs et les frontières de la connaissance.</p>
+                        <p><strong>Durée estimée</strong> : 40-60 heures</p>
+                        <p><strong>Prérequis</strong> : Validation du niveau Intermédiaire (80%+)</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-number">4</div>
+                    <div class="roadmap-content">
+                        <h3>🏆 Obtenez votre Certificat de Maîtrise</h3>
+                        <p>Validez les trois niveaux et devenez un expert reconnu en astronomie.</p>
+                        <p><strong>Certification</strong> : Disponible après validation complète</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Niveau Débutant -->
+        <div class="level-card" id="debutant">
+            <div class="level-header">
+                <div class="level-icon">🌙</div>
+                <div class="level-title">
+                    <div class="level-badge">NIVEAU 1</div>
+                    <h2>Astronomie Débutant</h2>
+                    <p class="level-description">Les fondamentaux du système solaire et du ciel nocturne</p>
+                </div>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-item">
+                    <h4>☀️ Module 1 : Le Système Solaire</h4>
+                    <ul>
+                        <li>Le Soleil (étoile naine jaune)</li>
+                        <li>Mercure (la plus proche)</li>
+                        <li>Vénus (l'étoile du berger)</li>
+                        <li>Terre (notre planète bleue)</li>
+                        <li>Mars (la planète rouge)</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🌕 Module 2 : La Lune</h4>
+                    <ul>
+                        <li>8 phases lunaires</li>
+                        <li>Cycle de 29,5 jours</li>
+                        <li>Nouvelle Lune à Pleine Lune</li>
+                        <li>Influence sur les marées</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>⭐ Module 3 : Constellations</h4>
+                    <ul>
+                        <li>Grande Ourse et Petite Ourse</li>
+                        <li>Orion (le chasseur)</li>
+                        <li>Cassiopée (la reine)</li>
+                        <li>Cygne (la croix du nord)</li>
+                        <li>Scorpion et Lion</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="astronomie-debutant.html" class="action-button primary">
+                    🚀 Commencer le niveau Débutant
+                </a>
+            </div>
+        </div>
+
+        <!-- Niveau Intermédiaire -->
+        <div class="level-card" id="intermediaire">
+            <div class="level-header">
+                <div class="level-icon">🪐</div>
+                <div class="level-title">
+                    <div class="level-badge">NIVEAU 2</div>
+                    <h2>Astronomie Intermédiaire</h2>
+                    <p class="level-description">Géantes gazeuses, phénomènes célestes et espace profond</p>
+                </div>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-item">
+                    <h4>🪐 Module 1 : Géantes Gazeuses</h4>
+                    <ul>
+                        <li>Jupiter (le géant du système solaire)</li>
+                        <li>Saturne (ses anneaux spectaculaires)</li>
+                        <li>Uranus (la planète couchée)</li>
+                        <li>Neptune (les vents les plus rapides)</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🌓 Module 2 : Phénomènes Célestes</h4>
+                    <ul>
+                        <li>Éclipses solaires et lunaires</li>
+                        <li>Saisons (inclinaison de l'axe)</li>
+                        <li>Marées (forces gravitationnelles)</li>
+                        <li>Équinoxes et solstices</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🌌 Module 3 : Espace Profond</h4>
+                    <ul>
+                        <li>Galaxies (spirales, elliptiques)</li>
+                        <li>Nébuleuses (pouponnières d'étoiles)</li>
+                        <li>Trous noirs (introduction)</li>
+                        <li>Exoplanètes et vie extraterrestre</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>⭐ Module 4 : Navigation Céleste</h4>
+                    <ul>
+                        <li>Triangle d'été (Véga, Deneb, Altaïr)</li>
+                        <li>Constellations zodiacales</li>
+                        <li>Utilisation de l'étoile Polaire</li>
+                        <li>Repérage dans le ciel nocturne</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="astronomie-intermediaire.html" class="action-button primary">
+                    🌟 Continuer au niveau Intermédiaire
+                </a>
+            </div>
+        </div>
+
+        <!-- Niveau Expert -->
+        <div class="level-card" id="expert">
+            <div class="level-header">
+                <div class="level-icon">🌌</div>
+                <div class="level-title">
+                    <div class="level-badge">NIVEAU 3</div>
+                    <h2>Astronomie Expert</h2>
+                    <p class="level-description">Cosmologie, relativité et frontières de la connaissance</p>
+                </div>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-item">
+                    <h4>💥 Module 1 : Cosmologie</h4>
+                    <ul>
+                        <li>Big Bang et chronologie de l'univers</li>
+                        <li>Expansion et loi de Hubble-Lemaître</li>
+                        <li>Fond diffus cosmologique (CMB)</li>
+                        <li>Matière noire (27%) et énergie sombre (68%)</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>⚛️ Module 2 : Relativité Générale</h4>
+                    <ul>
+                        <li>Équations d'Einstein</li>
+                        <li>Courbure de l'espace-temps</li>
+                        <li>Ondes gravitationnelles (LIGO)</li>
+                        <li>Dilatation du temps</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>⚫ Module 3 : Trous Noirs Avancés</h4>
+                    <ul>
+                        <li>Métrique de Schwarzschild</li>
+                        <li>Trous noirs de Kerr (rotation)</li>
+                        <li>Disques d'accrétion et jets</li>
+                        <li>Rayonnement de Hawking</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>⭐ Module 4 : Vie et Mort des Étoiles</h4>
+                    <ul>
+                        <li>Équilibre hydrostatique</li>
+                        <li>Séquence principale → Géante</li>
+                        <li>Supernovae et hypernovae</li>
+                        <li>Étoiles à neutrons, pulsars, magnétars</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🧬 Module 5 : Astrobiologie</h4>
+                    <ul>
+                        <li>Zone habitable</li>
+                        <li>Biosignatures atmosphériques</li>
+                        <li>Équation de Drake</li>
+                        <li>Paradoxe de Fermi</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🌌 Module 6 : Destin de l'Univers</h4>
+                    <ul>
+                        <li>Big Freeze (expansion éternelle)</li>
+                        <li>Big Crunch (contraction)</li>
+                        <li>Big Rip (déchirement)</li>
+                        <li>Big Bounce (univers cyclique)</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🧠 Module 7 : Théories Avancées</h4>
+                    <ul>
+                        <li>Théorie des cordes (10-11 dimensions)</li>
+                        <li>Gravité quantique à boucles</li>
+                        <li>Principe holographique</li>
+                        <li>Hypothèse de simulation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="astronomie-expert.html" class="action-button primary">
+                    🏆 Maîtriser le niveau Expert
+                </a>
+            </div>
+        </div>
+
+        <!-- Conseils d'Apprentissage -->
+        <div class="stats-section">
+            <h2 style="text-align: center; color: #ffd700; margin-top: 0;">💡 Conseils pour Réussir</h2>
+            <div class="modules-grid">
+                <div class="module-item" style="border-left-color: #4ecdc4;">
+                    <h4 style="color: #4ecdc4;">📚 Suivez l'ordre</h4>
+                    <p>Respectez la progression Débutant → Intermédiaire → Expert pour une compréhension optimale.</p>
+                </div>
+
+                <div class="module-item" style="border-left-color: #ff6b6b;">
+                    <h4 style="color: #ff6b6b;">🧪 Validez chaque niveau</h4>
+                    <p>Obtenez au moins 80% au quiz de chaque niveau avant de passer au suivant.</p>
+                </div>
+
+                <div class="module-item" style="border-left-color: #ffd700;">
+                    <h4 style="color: #ffd700;">🔭 Pratiquez l'observation</h4>
+                    <p>Sortez observer le ciel nocturne pour mettre en pratique vos connaissances théoriques.</p>
+                </div>
+
+                <div class="module-item" style="border-left-color: #8a2be2;">
+                    <h4 style="color: #8a2be2;">📖 Approfondissez</h4>
+                    <p>Consultez des ressources complémentaires (NASA, ESA, documentaires) pour enrichir votre apprentissage.</p>
+                </div>
+
+                <div class="module-item" style="border-left-color: #4ecdc4;">
+                    <h4 style="color: #4ecdc4;">⏱️ Prenez votre temps</h4>
+                    <p>L'astronomie est vaste. Ne vous précipitez pas, assimilez bien chaque concept.</p>
+                </div>
+
+                <div class="module-item" style="border-left-color: #ff6b6b;">
+                    <h4 style="color: #ff6b6b;">🤔 Posez des questions</h4>
+                    <p>L'astronomie soulève de grandes questions. Cultivez votre curiosité et votre esprit critique.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ressources Complémentaires -->
+        <div class="roadmap-section">
+            <h2 style="text-align: center; color: #ffd700; margin-top: 0;">🔗 Ressources Complémentaires</h2>
+            <div class="modules-grid">
+                <div class="module-item">
+                    <h4>🛰️ Agences Spatiales</h4>
+                    <ul>
+                        <li><strong>NASA</strong> : Images, missions, découvertes</li>
+                        <li><strong>ESA</strong> : Agence spatiale européenne</li>
+                        <li><strong>SpaceX</strong> : Innovations spatiales</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🔭 Télescopes en Ligne</h4>
+                    <ul>
+                        <li><strong>Hubble</strong> : Images spectaculaires</li>
+                        <li><strong>James Webb</strong> : Infrarouge, premières galaxies</li>
+                        <li><strong>Chandra</strong> : Rayons X</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>📱 Applications Mobiles</h4>
+                    <ul>
+                        <li><strong>Stellarium</strong> : Planétarium virtuel</li>
+                        <li><strong>SkySafari</strong> : Carte du ciel interactive</li>
+                        <li><strong>NASA</strong> : Photos du jour</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>📺 Documentaires</h4>
+                    <ul>
+                        <li><strong>Cosmos</strong> : Carl Sagan / Neil deGrasse Tyson</li>
+                        <li><strong>L'Univers</strong> : Série History Channel</li>
+                        <li><strong>Into the Universe</strong> : Stephen Hawking</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>📚 Livres Recommandés</h4>
+                    <ul>
+                        <li><strong>Cosmos</strong> - Carl Sagan</li>
+                        <li><strong>Une brève histoire du temps</strong> - Stephen Hawking</li>
+                        <li><strong>Astrophysique pour les pressés</strong> - Neil deGrasse Tyson</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <h4>🎓 Cours en Ligne</h4>
+                    <ul>
+                        <li><strong>Coursera</strong> : Astrophysics, Cosmology</li>
+                        <li><strong>edX</strong> : MIT, Harvard courses</li>
+                        <li><strong>Khan Academy</strong> : Astronomy basics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation vers les niveaux -->
+        <h2 style="text-align: center; color: #ffd700; margin: 3rem 0 2rem 0;">🚀 Choisissez votre niveau</h2>
+        <div class="navigation-grid">
+            <a href="astronomie-debutant.html" class="nav-card">
+                <div class="nav-card-icon">🌙</div>
+                <div class="nav-card-title">Niveau Débutant</div>
+                <div class="nav-card-desc">Système solaire, Lune, constellations de base</div>
+            </a>
+
+            <a href="astronomie-intermediaire.html" class="nav-card">
+                <div class="nav-card-icon">🪐</div>
+                <div class="nav-card-title">Niveau Intermédiaire</div>
+                <div class="nav-card-desc">Géantes gazeuses, phénomènes célestes, espace profond</div>
+            </a>
+
+            <a href="astronomie-expert.html" class="nav-card">
+                <div class="nav-card-icon">🌌</div>
+                <div class="nav-card-title">Niveau Expert</div>
+                <div class="nav-card-desc">Cosmologie, relativité, frontières de la connaissance</div>
+            </a>
+
+            <a href="../../index.html" class="nav-card">
+                <div class="nav-card-icon">🏠</div>
+                <div class="nav-card-title">Page d'Accueil</div>
+                <div class="nav-card-desc">Retour à l'Académie des Sagesses Ésotériques</div>
+            </a>
+        </div>
+    </main>
+
+    <script src="../../assets/js/animations/animated-background.js"></script>
+</body>
+</html>

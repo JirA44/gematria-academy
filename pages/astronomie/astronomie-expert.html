@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomie Expert | Académie des Sagesses Ésotériques</title>
+    <link rel="stylesheet" href="../../assets/css/main/style.css">
+    <link rel="stylesheet" href="../../assets/css/main/fix-contrast.css">
+    <link rel="stylesheet" href="../../assets/css/main/cosmic-header-styles.css">
+    <link rel="stylesheet" href="../../assets/css/animations/animated-background.css">
+    <link rel="stylesheet" href="../../assets/css/animations/bleus-cosmiques.css">
+    <link rel="stylesheet" href="../../assets/css/features/knowledge-validation.css">
+    <style>
+        .astronomie-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .level-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(106, 27, 154, 0.3));
+            border-radius: 20px;
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        .level-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #ffd700, #4ecdc4);
+            color: #000;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .module {
+            margin-bottom: 3rem;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .module-icon {
+            font-size: 3.5rem;
+        }
+
+        .module-title h2 {
+            color: #ffd700;
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        .module-title p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.4), rgba(138, 43, 226, 0.2));
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+        }
+
+        .concept-card h3 {
+            color: #ffd700;
+            margin-top: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .formula-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula {
+            font-size: 1.2rem;
+            color: #4ecdc4;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            left: -2.5rem;
+            color: #ffd700;
+            font-size: 1.5rem;
+        }
+
+        .timeline-date {
+            color: #4ecdc4;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .advanced-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.5), rgba(0, 0, 0, 0.7));
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .advanced-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.6);
+            border-color: rgba(138, 43, 226, 0.9);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 107, 0.2));
+            border-left: 5px solid #ffd700;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .data-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid #8a2be2;
+        }
+
+        .data-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cosmic-law {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(78, 205, 196, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid rgba(78, 205, 196, 0.4);
+        }
+
+        .navigation-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.6), rgba(138, 43, 226, 0.4));
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.8), rgba(138, 43, 226, 0.6));
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.5), rgba(138, 43, 226, 0.3));
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border: 3px solid rgba(138, 43, 226, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .advanced-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-background"></div>
+
+    <header class="cosmic-header">
+        <div class="header-content">
+            <h1 class="site-title">🔮 Académie des Sagesses Ésotériques</h1>
+            <nav class="main-nav">
+                <a href="../../index.html">🏠 Accueil</a>
+                <a href="astronomie-debutant.html">🌙 Débutant</a>
+                <a href="astronomie-intermediaire.html">🌟 Intermédiaire</a>
+                <a href="astronomie-expert.html" class="active">🌌 Expert</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="astronomie-container">
+        <div class="level-header">
+            <div class="level-badge">🏆 NIVEAU EXPERT</div>
+            <h1>🌌 Astronomie Expert</h1>
+            <p>Cosmologie, relativité, physique des astres et frontières de la connaissance</p>
+        </div>
+
+        <!-- Module 1: Cosmologie et Origine de l'Univers -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">💥</div>
+                <div class="module-title">
+                    <h2>Module 1 : Cosmologie et Origine de l'Univers</h2>
+                    <p>Du Big Bang à l'expansion de l'univers</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">💥</span> Le Big Bang</h3>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 0 (Singularité initiale)</div>
+                        <p>Densité et température infinies. Les lois de la physique ne s'appliquent pas encore.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 10⁻⁴³ s (Temps de Planck)</div>
+                        <p><strong>Époque de Planck</strong> : Plus petit intervalle de temps mesurable. Gravité quantique inconnue.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 10⁻³⁵ s (Inflation cosmique)</div>
+                        <p><strong>Expansion fulgurante</strong> : L'univers grossit de 10²⁶ fois en une fraction de seconde. Résout le problème de l'horizon et de la platitude.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 10⁻⁶ s</div>
+                        <p><strong>Formation des quarks et gluons</strong> : Soupe de plasma quark-gluon ultra-dense.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 1 seconde</div>
+                        <p><strong>Nucléosynthèse primordiale commence</strong> : T ≈ 10¹⁰ K. Formation des premiers noyaux atomiques.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 3 minutes</div>
+                        <p><strong>Nucléosynthèse du Big Bang</strong> : Formation H (75%), He (25%), traces de Li et Be.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 380 000 ans</div>
+                        <p><strong>Recombinaison</strong> : T ≈ 3000 K. Les électrons se lient aux noyaux. L'univers devient transparent. Émission du fond diffus cosmologique (CMB).</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 100-200 millions d'années</div>
+                        <p><strong>Âge des ténèbres se termine</strong> : Formation des premières étoiles (Population III).</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 1 milliard d'années</div>
+                        <p><strong>Premières galaxies</strong> : Structures à grande échelle commencent à se former.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 9,2 milliards d'années</div>
+                        <p><strong>Formation du Système Solaire</strong> : À partir d'un nuage de gaz et poussières.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">T = 13,8 milliards d'années</div>
+                        <p><strong>Aujourd'hui</strong> : L'univers observable a un rayon de 46,5 milliards d'années-lumière.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">🌐</span> L'Expansion de l'Univers</h3>
+
+                <div class="highlight-box">
+                    <h4 style="color: #ffd700; margin-top: 0;">🔭 Découverte d'Edwin Hubble (1929)</h4>
+                    <p>Les galaxies s'éloignent de nous, et leur vitesse est proportionnelle à leur distance.</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4 style="color: #4ecdc4; margin-top: 0;">Loi de Hubble-Lemaître</h4>
+                    <div class="formula">v = H₀ × d</div>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>v</strong> = vitesse de récession (km/s)</li>
+                        <li><strong>d</strong> = distance (Mpc = megaparsec)</li>
+                        <li><strong>H₀</strong> = constante de Hubble ≈ 70 km/s/Mpc</li>
+                    </ul>
+                </div>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">📏 Décalage vers le rouge (Redshift)</h4>
+                        <p><strong>Principe</strong> : La lumière des galaxies lointaines est étirée vers le rouge</p>
+                        <div class="formula-box">
+                            <div class="formula">z = (λ_obs - λ_emit) / λ_emit</div>
+                        </div>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>z = 0</strong> : Objet immobile</li>
+                            <li><strong>z = 1</strong> : Univers 2× plus petit</li>
+                            <li><strong>z = 1089</strong> : Fond diffus cosmologique (CMB)</li>
+                            <li><strong>z > 11</strong> : Galaxies les plus lointaines détectées</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🌌 Fond Diffus Cosmologique (CMB)</h4>
+                        <p><strong>Découverte</strong> : 1964 par Penzias et Wilson (prix Nobel 1978)</p>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Température</strong> : 2,725 K (-270,425°C)</li>
+                            <li><strong>Âge</strong> : Émis 380 000 ans après le Big Bang</li>
+                            <li><strong>Homogénéité</strong> : Variations de 1/100 000</li>
+                            <li><strong>Satellite Planck</strong> : Carte ultra-précise (2009-2013)</li>
+                            <li><strong>Information</strong> : Confirme l'âge, la géométrie et la composition de l'univers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">🌑</span> Matière Noire et Énergie Sombre</h3>
+
+                <div class="data-grid">
+                    <div class="data-item" style="border-left-color: #ff6b6b;">
+                        <div class="data-label">Matière ordinaire (baryonique)</div>
+                        <div class="data-value" style="color: #ff6b6b;">5%</div>
+                    </div>
+                    <div class="data-item" style="border-left-color: #4ecdc4;">
+                        <div class="data-label">Matière noire</div>
+                        <div class="data-value" style="color: #4ecdc4;">27%</div>
+                    </div>
+                    <div class="data-item" style="border-left-color: #ffd700;">
+                        <div class="data-label">Énergie sombre</div>
+                        <div class="data-value" style="color: #ffd700;">68%</div>
+                    </div>
+                </div>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h4 style="color: #4ecdc4;">🌑 Matière Noire</h4>
+                        <p><strong>Nature</strong> : Matière invisible qui n'interagit pas avec la lumière</p>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Découverte</strong> : Fritz Zwicky (1933), courbes de rotation galactiques</li>
+                            <li><strong>Effet</strong> : Détectable uniquement par gravité</li>
+                            <li><strong>Halo galactique</strong> : Entoure les galaxies, masse 5-10× visible</li>
+                            <li><strong>Candidats</strong> : WIMPs, axions, MACHOS (non confirmés)</li>
+                            <li><strong>Détection</strong> : Expériences souterraines (LUX, XENON, etc.)</li>
+                            <li><strong>Rôle</strong> : Structure de l'univers, formation des galaxies</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">⚡ Énergie Sombre</h4>
+                        <p><strong>Nature</strong> : Force mystérieuse accélérant l'expansion de l'univers</p>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Découverte</strong> : 1998, observations de supernovae Ia (prix Nobel 2011)</li>
+                            <li><strong>Effet</strong> : Repousse l'espace, contrebalance la gravité</li>
+                            <li><strong>Constante cosmologique Λ</strong> : Introduite par Einstein, puis rejetée, puis confirmée</li>
+                            <li><strong>Hypothèses</strong> : Énergie du vide quantique, quintessence</li>
+                            <li><strong>Destin de l'univers</strong> : Big Freeze (expansion éternelle)</li>
+                            <li><strong>Mystère</strong> : Nature fondamentale totalement inconnue</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: Relativité Générale et Astrophysique Avancée -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">⚛️</div>
+                <div class="module-title">
+                    <h2>Module 2 : Relativité et Astrophysique Avancée</h2>
+                    <p>Einstein, courbure de l'espace-temps et phénomènes extrêmes</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">🌀</span> Relativité Générale</h3>
+
+                <div class="highlight-box">
+                    <h4 style="color: #ffd700; margin-top: 0;">💡 Principe Fondamental</h4>
+                    <p style="font-size: 1.2rem;"><em>"La matière dit à l'espace-temps comment se courber, et l'espace-temps dit à la matière comment se déplacer."</em> - John Wheeler</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4 style="color: #4ecdc4; margin-top: 0;">Équations de champ d'Einstein</h4>
+                    <div class="formula">G_μν + Λg_μν = (8πG/c⁴) T_μν</div>
+                    <p style="text-align: center; margin-top: 1rem; color: rgba(255, 255, 255, 0.8);">
+                        Géométrie de l'espace-temps = Distribution de matière-énergie
+                    </p>
+                </div>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">⏱️ Dilatation du Temps</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Gravitationnelle</strong> : Le temps ralentit près d'objets massifs</li>
+                            <li><strong>GPS</strong> : Correction de 38 μs/jour nécessaire</li>
+                            <li><strong>Trou noir</strong> : Temps s'arrête à l'horizon</li>
+                            <li><strong>Paradoxe des jumeaux</strong> : Voyage à haute vitesse</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">📐 Courbure de l'Espace-Temps</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Déviation de la lumière</strong> : Confirmée lors de l'éclipse de 1919</li>
+                            <li><strong>Lentille gravitationnelle</strong> : Amplification d'objets lointains</li>
+                            <li><strong>Géodésiques</strong> : Trajectoires "droites" dans espace courbe</li>
+                            <li><strong>Précession du périhélie</strong> : Mercure (43"/siècle)</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">〰️ Ondes Gravitationnelles</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Nature</strong> : Rides dans l'espace-temps</li>
+                            <li><strong>Découverte</strong> : LIGO 2015 (prix Nobel 2017)</li>
+                            <li><strong>Source</strong> : Fusion de trous noirs/étoiles à neutrons</li>
+                            <li><strong>Vitesse</strong> : c (vitesse de la lumière)</li>
+                            <li><strong>GW150914</strong> : 1ère détection, 2 trous noirs → 62 M☉</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">⚫ Singularités</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Définition</strong> : Points de courbure infinie</li>
+                            <li><strong>Trous noirs</strong> : Singularité centrale</li>
+                            <li><strong>Big Bang</strong> : Singularité initiale</li>
+                            <li><strong>Théorèmes</strong> : Penrose-Hawking (1970)</li>
+                            <li><strong>Problème</strong> : Physique actuelle inapplicable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">⚫</span> Trous Noirs Avancés</h3>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">📏 Métrique de Schwarzschild</h4>
+                        <div class="formula-box">
+                            <div class="formula">r_s = 2GM/c²</div>
+                            <p style="text-align: center; color: rgba(255, 255, 255, 0.8);">Rayon de Schwarzschild (horizon des événements)</p>
+                        </div>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Soleil</strong> : r_s ≈ 3 km</li>
+                            <li><strong>Terre</strong> : r_s ≈ 9 mm</li>
+                            <li><strong>Sgr A*</strong> : r_s ≈ 12 millions km</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🌀 Trou Noir de Kerr (en rotation)</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Ergosphère</strong> : Région où espace est entraîné</li>
+                            <li><strong>Frame dragging</strong> : Rotation entraîne espace-temps</li>
+                            <li><strong>Limite statique</strong> : Impossible de rester immobile</li>
+                            <li><strong>Processus de Penrose</strong> : Extraction d'énergie possible</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🔥 Disque d'Accrétion</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Formation</strong> : Matière en spirale vers le trou noir</li>
+                            <li><strong>Température</strong> : Millions de kelvins</li>
+                            <li><strong>Émission X</strong> : Rayons X et gamma</li>
+                            <li><strong>Jets relativistes</strong> : Plasma à 99,9% de c</li>
+                            <li><strong>Luminosité</strong> : Plus brillant que galaxies entières</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">💨 Rayonnement de Hawking</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Théorie</strong> : Stephen Hawking (1974)</li>
+                            <li><strong>Mécanisme</strong> : Paires particule-antiparticule à l'horizon</li>
+                            <li><strong>Température</strong> : T = ħc³/(8πGMk_B)</li>
+                            <li><strong>Évaporation</strong> : Trous noirs perdent masse lentement</li>
+                            <li><strong>Temps</strong> : 10⁶⁷ ans pour 1 M☉</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">⭐</span> Vie et Mort des Étoiles</h3>
+
+                <div class="cosmic-law">
+                    <h4 style="color: #ffd700; margin-top: 0;">⚖️ Équilibre Hydrostatique</h4>
+                    <p>Une étoile est un équilibre entre gravité (compression) et pression de radiation (expansion)</p>
+                    <div class="formula-box">
+                        <div class="formula">dP/dr = -GMρ/r²</div>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">M < 0,08 M☉</div>
+                        <p><strong>Naine brune</strong> : Pas de fusion H. Refroidit lentement sur des trillions d'années.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">0,08 M☉ < M < 0,5 M☉</div>
+                        <p><strong>Naine rouge</strong> : Fusion H très lente. Durée de vie > 1 trillion d'années. Aucune n'est morte encore.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">0,5 M☉ < M < 8 M☉</div>
+                        <p><strong>Séquence principale → Géante rouge → Nébuleuse planétaire → Naine blanche</strong></p>
+                        <ul>
+                            <li>Fusion H → He (séquence principale)</li>
+                            <li>Expansion en géante (fusion He → C, O)</li>
+                            <li>Éjection des couches externes (nébuleuse)</li>
+                            <li>Cœur reste : naine blanche (densité 10⁶ g/cm³)</li>
+                            <li>Refroidissement en naine noire (théorique, univers trop jeune)</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">8 M☉ < M < 25 M☉</div>
+                        <p><strong>Supergéante → Supernova → Étoile à neutrons</strong></p>
+                        <ul>
+                            <li>Fusion jusqu'au Fe (cœur en oignon)</li>
+                            <li>Effondrement du cœur → Supernova type II</li>
+                            <li>Reste : étoile à neutrons (10-20 km, 1,4-2 M☉)</li>
+                            <li>Pulsar : rotation rapide + champ magnétique</li>
+                            <li>Magnétar : champ magnétique extrême (10¹⁵ G)</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">M > 25 M☉</div>
+                        <p><strong>Hypergéante → Hypernova → Trou noir</strong></p>
+                        <ul>
+                            <li>Vie très courte (quelques millions d'années)</li>
+                            <li>Fusion ultra-rapide jusqu'au Fe</li>
+                            <li>Supernova hypergéante (10⁵³ ergs, hypernova)</li>
+                            <li>Effondrement total → Trou noir stellaire</li>
+                            <li>Possibilité de sursaut gamma (GRB)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3: Frontières de la Connaissance -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">🔬</div>
+                <div class="module-title">
+                    <h2>Module 3 : Frontières de la Connaissance</h2>
+                    <p>Questions ouvertes, théories avancées et l'avenir de l'astronomie</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">🧬</span> Astrobiologie</h3>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🌍 Zone Habitable</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Définition</strong> : Région où l'eau liquide peut exister</li>
+                            <li><strong>Système Solaire</strong> : 0,95 - 1,37 UA du Soleil</li>
+                            <li><strong>Facteurs</strong> : Type d'étoile, atmosphère, effet de serre</li>
+                            <li><strong>Extension</strong> : Océans sous-glaciaires (Europe, Encelade)</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🔬 Biosignatures</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>O₂ + CH₄</strong> : Combinaison instable, suggère vie</li>
+                            <li><strong>Spectrométrie</strong> : Analyse des atmosphères exoplanétaires</li>
+                            <li><strong>James Webb</strong> : Capable de détecter biosignatures</li>
+                            <li><strong>Technosignatures</strong> : Signaux artificiels (SETI)</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">📡 Équation de Drake</h4>
+                        <div class="formula-box">
+                            <div class="formula" style="font-size: 1rem;">N = R* × f_p × n_e × f_l × f_i × f_c × L</div>
+                        </div>
+                        <p><strong>Estimation</strong> : Nombre de civilisations communicantes dans la Voie Lactée</p>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>R*</strong> : Taux de formation d'étoiles (≈ 7/an)</li>
+                            <li><strong>f_p</strong> : Fraction avec planètes (≈ 1)</li>
+                            <li><strong>n_e</strong> : Planètes habitables par système (≈ 0,4)</li>
+                            <li><strong>f_l, f_i, f_c</strong> : Fractions vie/intelligence/communication (?)</li>
+                            <li><strong>L</strong> : Durée de vie d'une civilisation (?)</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🛸 Paradoxe de Fermi</h4>
+                        <p><em>"Où sont-ils tous ?"</em> - Enrico Fermi</p>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Question</strong> : Pourquoi aucun contact avec aliens ?</li>
+                            <li><strong>Hypothèse 1</strong> : Vie rare (rare Earth)</li>
+                            <li><strong>Hypothèse 2</strong> : Grand Filtre (extinction)</li>
+                            <li><strong>Hypothèse 3</strong> : Zoo hypothesis (observation passive)</li>
+                            <li><strong>Hypothèse 4</strong> : Distances trop grandes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">🌌</span> Destin de l'Univers</h3>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card" style="border-left: 4px solid #4ecdc4;">
+                        <h4 style="color: #4ecdc4;">🧊 Big Freeze (Scénario actuel)</h4>
+                        <p><strong>Expansion éternelle accélérée</strong></p>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Dans 10¹² ans</strong> : Dernières étoiles s'éteignent</li>
+                            <li><strong>Dans 10¹⁴ ans</strong> : Seules naines brunes restent</li>
+                            <li><strong>Dans 10⁴⁰ ans</strong> : Trous noirs dominent</li>
+                            <li><strong>Dans 10¹⁰⁰ ans</strong> : Évaporation des trous noirs</li>
+                            <li><strong>Résultat</strong> : Univers froid, vide, sombre (mort thermique)</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card" style="border-left: 4px solid #ff6b6b;">
+                        <h4 style="color: #ff6b6b;">💥 Big Crunch (si Λ < 0)</h4>
+                        <p><strong>Contraction et effondrement</strong></p>
+                        <ul style="line-height: 1.8;">
+                            <li>Gravité ralentit puis inverse l'expansion</li>
+                            <li>Galaxies se rapprochent</li>
+                            <li>Température augmente</li>
+                            <li>Retour à la singularité</li>
+                            <li>Possible Big Bounce (rebond cyclique)</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card" style="border-left: 4px solid #ffd700;">
+                        <h4 style="color: #ffd700;">⚡ Big Rip (si énergie sombre augmente)</h4>
+                        <p><strong>Déchirement de tout</strong></p>
+                        <ul style="line-height: 1.8;">
+                            <li>Accélération de l'expansion devient infinie</li>
+                            <li>Galaxies se désintègrent</li>
+                            <li>Étoiles arrachées</li>
+                            <li>Planètes explosent</li>
+                            <li>Atomes eux-mêmes déchirés</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card" style="border-left: 4px solid #8a2be2;">
+                        <h4 style="color: #8a2be2;">🎯 Big Bounce (Univers cyclique)</h4>
+                        <p><strong>Cycles de big bang</strong></p>
+                        <ul style="line-height: 1.8;">
+                            <li>Univers oscille expansion/contraction</li>
+                            <li>Chaque cycle redémarre le suivant</li>
+                            <li>Possiblement infini dans le passé</li>
+                            <li>Gravité quantique à boucles</li>
+                            <li>Pas de singularité initiale</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span style="font-size: 2rem;">🧠</span> Théories Avancées</h3>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🧵 Théorie des Cordes</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Principe</strong> : Particules = cordes vibrantes 1D</li>
+                            <li><strong>Dimensions</strong> : 10 ou 11 dimensions (dont 6-7 compactifiées)</li>
+                            <li><strong>Gravité quantique</strong> : Unifie relativité + mécanique quantique</li>
+                            <li><strong>Multivers</strong> : 10⁵⁰⁰ univers possibles (landscape)</li>
+                            <li><strong>Problème</strong> : Aucune prédiction testable pour l'instant</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">➰ Gravité Quantique à Boucles</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Principe</strong> : Espace-temps est quantifié (granulaire)</li>
+                            <li><strong>Échelle de Planck</strong> : 10⁻³⁵ m (grain d'espace)</li>
+                            <li><strong>Pas de singularité</strong> : Big Bounce au lieu de Big Bang</li>
+                            <li><strong>Spin networks</strong> : Structure quantique de l'espace</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🌐 Principe Holographique</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Idée</strong> : Univers 3D = projection d'info 2D</li>
+                            <li><strong>Entropie de Bekenstein</strong> : Info proportionnelle à surface, pas volume</li>
+                            <li><strong>AdS/CFT</strong> : Correspondance théorique</li>
+                            <li><strong>Implications</strong> : Nature fondamentale de la réalité</li>
+                        </ul>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h4 style="color: #ffd700;">🎭 Hypothèse de Simulation</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Argument</strong> : Probabilité > 0 que nous soyons simulés</li>
+                            <li><strong>Nick Bostrom</strong> : Trilemme philosophique</li>
+                            <li><strong>Glitches cosmiques</strong> : Anomalies quantiques</li>
+                            <li><strong>Testabilité</strong> : Recherche de patterns computationnels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4 style="color: #ffd700; margin-top: 0;">🔭 Missions et Instruments Futurs</h4>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">🛰️ Nancy Grace Roman Space Telescope</div>
+                        <div class="data-value">Lancement 2027 - Champ 100× plus large que Hubble</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">🔭 Extremely Large Telescope (ELT)</div>
+                        <div class="data-value">2028 - Miroir de 39 m, Chili</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">🌌 LISA (Laser Interferometer Space Antenna)</div>
+                        <div class="data-value">2030s - Détecteur d'ondes gravitationnelles spatial</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">🚀 Europa Clipper</div>
+                        <div class="data-value">Arrivée 2030 - Étude de l'océan d'Europe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Expert -->
+        <div class="quiz-section">
+            <h2 style="text-align: center; color: #ffd700; margin-bottom: 2rem;">🏆 Quiz de Validation - Niveau Expert</h2>
+
+            <div id="quiz-container">
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 1 : Cosmologie</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quelle est la composition actuelle de l'univers selon les observations ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="a"> 95% matière ordinaire, 5% matière noire
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="b"> 5% matière ordinaire, 27% matière noire, 68% énergie sombre ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="c"> 50% matière, 50% énergie
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="d"> 100% matière ordinaire
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 2 : Relativité Générale</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quelle observation a confirmé pour la première fois la relativité générale d'Einstein ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="a"> Les ondes gravitationnelles (LIGO 2015)
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="b"> La déviation de la lumière lors de l'éclipse de 1919 ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="c"> L'expansion de l'univers (Hubble)
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="d"> La photo du trou noir M87*
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 3 : Trous Noirs</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Qu'est-ce que le rayonnement de Hawking ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="a"> Rayons X émis par le disque d'accrétion
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="b"> Radiation thermique causant l'évaporation lente des trous noirs ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="c"> Jets relativistes aux pôles
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="d"> Lumière capturée à l'horizon
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 4 : Vie des Étoiles</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Que devient une étoile de 30 masses solaires à la fin de sa vie ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="a"> Naine blanche
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="b"> Étoile à neutrons
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="c"> Trou noir stellaire ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="d"> Supergéante rouge
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.4); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 5 : Destin de l'Univers</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quel est le scénario le plus probable pour le destin de l'univers selon les observations actuelles ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="a"> Big Crunch (contraction)
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="b"> Big Freeze (expansion éternelle) ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="c"> Big Rip (déchirement)
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="d"> État stationnaire (univers stable)
+                        </label>
+                    </div>
+                </div>
+
+                <button onclick="validateQuiz()" style="width: 100%; padding: 1.5rem; background: linear-gradient(135deg, #8a2be2, #6a1b9a); border: none; border-radius: 15px; color: white; font-size: 1.3rem; font-weight: bold; cursor: pointer; margin-top: 2rem;">
+                    ✅ Valider mes réponses
+                </button>
+
+                <div id="quiz-result" style="margin-top: 2rem; padding: 2rem; border-radius: 15px; display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation-section">
+            <a href="astronomie-intermediaire.html" class="nav-button">
+                ⬅️ Niveau Intermédiaire
+            </a>
+            <a href="astronomie-parcours-complet.html" class="nav-button">
+                📚 Parcours Complet
+            </a>
+        </div>
+    </main>
+
+    <script src="../../assets/js/animations/animated-background.js"></script>
+    <script>
+        function validateQuiz() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'c',
+                q5: 'b'
+            };
+
+            let score = 0;
+            let total = Object.keys(answers).length;
+
+            for (let question in answers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === answers[question]) {
+                    score++;
+                }
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultDiv = document.getElementById('quiz-result');
+
+            let resultHTML = `
+                <h3 style="color: #ffd700; text-align: center; font-size: 1.8rem;">Résultat : ${score}/${total} (${percentage}%)</h3>
+            `;
+
+            if (percentage >= 80) {
+                resultHTML += `
+                    <div style="background: linear-gradient(135deg, rgba(0, 255, 0, 0.3), rgba(0, 200, 0, 0.2)); padding: 2.5rem; border-radius: 15px; border: 3px solid rgba(0, 255, 0, 0.6); text-align: center;">
+                        <h2 style="color: #00ff00; margin: 0; font-size: 2rem;">🏆 FÉLICITATIONS, MAÎTRE DE L'ASTRONOMIE !</h2>
+                        <p style="font-size: 1.3rem; margin-top: 1rem;">Vous avez validé le niveau Expert !</p>
+                        <p style="font-size: 1.1rem;">Vous maîtrisez maintenant la cosmologie, la relativité générale et les frontières de la connaissance astronomique.</p>
+                        <a href="astronomie-parcours-complet.html" style="display: inline-block; margin-top: 1.5rem; padding: 1.5rem 2.5rem; background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem;">
+                            📜 Voir le Parcours Complet
+                        </a>
+                    </div>
+                `;
+            } else {
+                resultHTML += `
+                    <div style="background: linear-gradient(135deg, rgba(255, 165, 0, 0.3), rgba(255, 100, 0, 0.2)); padding: 2.5rem; border-radius: 15px; border: 3px solid rgba(255, 165, 0, 0.6); text-align: center;">
+                        <h2 style="color: #ffa500; margin: 0; font-size: 2rem;">📚 Continuez vos efforts !</h2>
+                        <p style="font-size: 1.2rem; margin-top: 1rem;">Score minimum requis : 80%</p>
+                        <p>Le niveau Expert est exigeant. Révisez les concepts avancés et réessayez.</p>
+                        <button onclick="location.reload()" style="margin-top: 1.5rem; padding: 1.5rem 2.5rem; background: linear-gradient(135deg, #ffa500, #ff8c00); color: #000; border: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem; cursor: pointer;">
+                            🔄 Réessayer
+                        </button>
+                    </div>
+                `;
+            }
+
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>

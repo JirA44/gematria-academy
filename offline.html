@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mode Hors Ligne - Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .offline-container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .offline-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.3em;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .retry-btn {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .cached-content {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .cached-content h2 {
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+
+        .cached-links {
+            display: grid;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .cached-links a {
+            color: #ec4899;
+            text-decoration: none;
+            padding: 10px 15px;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .cached-links a:hover {
+            background: rgba(236, 72, 153, 0.2);
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+
+        <h1>Mode Hors Ligne</h1>
+
+        <p>
+            Vous êtes actuellement hors ligne. Certaines fonctionnalités peuvent ne pas être disponibles.
+        </p>
+
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Réessayer
+        </button>
+
+        <div class="cached-content">
+            <h2>📚 Contenu disponible hors ligne</h2>
+            <p style="font-size: 1em; margin-bottom: 20px;">
+                Les pages que vous avez visitées sont accessibles hors ligne :
+            </p>
+            <div class="cached-links" id="cached-pages">
+                <a href="/">🏠 Accueil</a>
+                <a href="/index_production.html">📖 Page principale</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vérifier périodiquement la connexion
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 5000);
+
+        // Afficher les pages en cache
+        if ('caches' in window) {
+            caches.keys().then(cacheNames => {
+                return Promise.all(
+                    cacheNames.map(cacheName => {
+                        return caches.open(cacheName).then(cache => {
+                            return cache.keys();
+                        });
+                    })
+                );
+            }).then(allRequests => {
+                const cachedPagesDiv = document.getElementById('cached-pages');
+                const uniqueUrls = new Set();
+
+                allRequests.forEach(requests => {
+                    requests.forEach(request => {
+                        if (request.url.includes('.html')) {
+                            uniqueUrls.add(request.url);
+                        }
+                    });
+                });
+
+                uniqueUrls.forEach(url => {
+                    const urlObj = new URL(url);
+                    if (urlObj.pathname !== '/' && urlObj.pathname !== '/offline.html') {
+                        const link = document.createElement('a');
+                        link.href = urlObj.pathname;
+                        link.textContent = `📄 ${urlObj.pathname.split('/').pop().replace('.html', '')}`;
+                        cachedPagesDiv.appendChild(link);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

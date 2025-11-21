@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Interactives des Runes | Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .flashcard-container {
+            perspective: 1000px;
+            margin: 3rem auto;
+            max-width: 600px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .flashcard-back {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        body.dark-mode .flashcard-front {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 3px solid #667eea;
+        }
+
+        body.dark-mode .flashcard-back {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            border: 3px solid #f5576c;
+        }
+
+        .rune-symbol-large {
+            font-size: 8rem;
+            margin: 2rem 0;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .rune-name-large {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .control-btn.primary {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .progress-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .mode-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .mode-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .mode-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .mode-card.active {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .quiz-container {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        .quiz-option.correct {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-light);
+            color: var(--card-text);
+            border: 2px solid var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hint-text {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .flashcard {
+                height: 350px;
+            }
+
+            .rune-symbol-large {
+                font-size: 5rem;
+            }
+
+            .rune-name-large {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="header-buttons-cosmic">
+            <button class="cosmic-btn cosmic-btn-dark" onclick="toggleDarkMode()">
+                <span class="btn-icon">🌙</span>
+                <span class="btn-text">Mode Nuit</span>
+            </button>
+            <button class="cosmic-btn cosmic-btn-lang" onclick="window.location.href='index.html'">
+                <span class="btn-icon">🏠</span>
+                <span class="btn-text">Accueil</span>
+            </button>
+        </div>
+        <h1>🎴 Flashcards Interactives des Runes</h1>
+        <p class="subtitle">Apprenez et Maîtrisez les 24 Runes du Futhark Ancien</p>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">Accueil</a> » <a href="index.html#runes">Runes</a> » Flashcards Interactives
+        </div>
+
+        <div class="content-page">
+            <section class="hero">
+                <h2>Système d'Apprentissage Interactif</h2>
+                <p>Maîtrisez les 24 runes du Futhark ancien grâce à des flashcards interactives, des quiz et un système de suivi de progression. Cliquez sur une carte pour la retourner et découvrir sa signification!</p>
+            </section>
+
+            <!-- MODE SELECTOR -->
+            <div class="lesson">
+                <h3>📚 Choisissez votre mode d'apprentissage</h3>
+                <div class="mode-selector">
+                    <div class="mode-card active" onclick="setMode('flashcard')">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎴</div>
+                        <h4>Flashcards</h4>
+                        <p>Apprentissage classique par cartes</p>
+                    </div>
+                    <div class="mode-card" onclick="setMode('quiz')">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">❓</div>
+                        <h4>Mode Quiz</h4>
+                        <p>Testez vos connaissances</p>
+                    </div>
+                    <div class="mode-card" onclick="setMode('practice')">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">✍️</div>
+                        <h4>Pratique Libre</h4>
+                        <p>Parcourez toutes les runes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTER BUTTONS -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterByAett('all')">Toutes les Runes (24)</button>
+                <button class="filter-btn" onclick="filterByAett('frey')">Frey's Aett (1-8)</button>
+                <button class="filter-btn" onclick="filterByAett('hagal')">Hagal's Aett (9-16)</button>
+                <button class="filter-btn" onclick="filterByAett('tyr')">Tyr's Aett (17-24)</button>
+            </div>
+
+            <!-- PROGRESS SECTION -->
+            <div class="progress-section">
+                <h3>📊 Votre Progression</h3>
+                <div class="progress-stats">
+                    <div class="stat-box">
+                        <div class="stat-number" id="current-card">1</div>
+                        <div class="stat-label">Carte Actuelle</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="total-cards">24</div>
+                        <div class="stat-label">Cartes Totales</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="cards-studied">0</div>
+                        <div class="stat-label">Cartes Étudiées</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="quiz-score">0%</div>
+                        <div class="stat-label">Score Quiz</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- FLASHCARD MODE -->
+            <div id="flashcard-mode">
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard" onclick="flipCard()">
+                        <div class="flashcard-face flashcard-front">
+                            <div class="rune-symbol-large" id="rune-symbol">ᚠ</div>
+                            <div class="hint-text">Cliquez pour révéler la signification</div>
+                        </div>
+                        <div class="flashcard-face flashcard-back">
+                            <div class="rune-name-large" id="rune-name">FEHU</div>
+                            <div style="font-size: 1.2rem; margin: 1rem 0;" id="rune-keywords">Richesse • Nouveau Départ • Abondance</div>
+                            <div style="font-size: 1rem; max-width: 400px; text-align: center;" id="rune-meaning">
+                                Richesse, abondance, nouveau départ. Énergie de prospérité matérielle et spirituelle.
+                            </div>
+                            <div class="hint-text" style="margin-top: 2rem;">Cliquez pour retourner</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard-controls">
+                    <button class="control-btn secondary" onclick="previousCard()">⬅️ Précédente</button>
+                    <button class="control-btn primary" onclick="shuffleCards()">🔀 Mélanger</button>
+                    <button class="control-btn secondary" onclick="nextCard()">Suivante ➡️</button>
+                </div>
+
+                <div class="flashcard-controls">
+                    <button class="control-btn" onclick="markAsKnown()">✅ Je connais cette rune</button>
+                    <button class="control-btn" onclick="markAsLearning()">📚 À réviser</button>
+                </div>
+            </div>
+
+            <!-- QUIZ MODE -->
+            <div id="quiz-mode" style="display: none;">
+                <div class="quiz-container">
+                    <h3 style="text-align: center; margin-bottom: 2rem;" id="quiz-question">Quelle est la signification de cette rune?</h3>
+
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 8rem; color: var(--primary);" id="quiz-rune-symbol">ᚠ</div>
+                    </div>
+
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- Options générées dynamiquement -->
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="control-btn primary" onclick="nextQuizQuestion()">Question Suivante ➡️</button>
+                    </div>
+
+                    <div id="quiz-feedback" style="margin-top: 2rem; text-align: center; font-size: 1.2rem; font-weight: bold;"></div>
+                </div>
+            </div>
+
+            <!-- PRACTICE MODE -->
+            <div id="practice-mode" style="display: none;">
+                <div class="lesson">
+                    <h3 style="text-align: center;">📖 Toutes les Runes - Vue d'ensemble</h3>
+                    <p style="text-align: center;">Parcourez toutes les 24 runes pour une révision rapide</p>
+                </div>
+
+                <div class="rune-grid" id="practice-grid">
+                    <!-- Généré dynamiquement -->
+                </div>
+            </div>
+
+            <div class="tip">
+                <strong>💡 Conseils d'apprentissage efficace:</strong>
+                <ul style="margin-top: 1rem;">
+                    <li><strong>Répétition espacée:</strong> Révisez les runes difficiles plus fréquemment</li>
+                    <li><strong>Associations personnelles:</strong> Créez des connexions avec votre vie personnelle</li>
+                    <li><strong>Pratique active:</strong> Tracez les runes en mémorisant leur forme</li>
+                    <li><strong>Méditation:</strong> Passez quelques minutes à méditer sur chaque symbole</li>
+                    <li><strong>Sessions courtes:</strong> 10-15 minutes par jour est plus efficace que de longues sessions occasionnelles</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h3>🎯 Défi Quotidien</h3>
+                <p>Essayez ces exercices pour renforcer votre apprentissage:</p>
+                <ol>
+                    <li><strong>Matin:</strong> Tirez une flashcard au hasard et méditez 5 minutes sur sa signification</li>
+                    <li><strong>Midi:</strong> Complétez un quiz de 10 questions en mode aléatoire</li>
+                    <li><strong>Soir:</strong> Tracez les 8 runes d'un Aett de mémoire</li>
+                    <li><strong>Hebdomadaire:</strong> Créez des phrases mnémotechniques pour les runes difficiles</li>
+                    <li><strong>Mensuel:</strong> Enseignez les runes à quelqu'un d'autre (la meilleure façon d'apprendre!)</li>
+                </ol>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="index.html#runes" class="btn btn-beginner">← Retour aux Runes</a>
+                <a href="runes-divination.html" class="btn btn-intermediate">Pratiquer la Divination →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Sagesses Anciennes - Maîtrisez les runes par la pratique</p>
+    </footer>
+
+    <script>
+        // Base de données des runes
+        const runes = [
+            { symbol: 'ᚠ', name: 'Fehu', meaning: 'Richesse, abondance, nouveau départ. Énergie de prospérité matérielle et spirituelle.', keywords: 'Richesse • Nouveau Départ • Abondance', aett: 'frey' },
+            { symbol: 'ᚢ', name: 'Uruz', meaning: 'Force vitale brute, santé, endurance. Pouvoir de manifestation et de guérison.', keywords: 'Force • Santé • Vitalité', aett: 'frey' },
+            { symbol: 'ᚦ', name: 'Thurisaz', meaning: 'Protection, épine, géant. Force de Thor, défense contre les adversités.', keywords: 'Protection • Défense • Marteau de Thor', aett: 'frey' },
+            { symbol: 'ᚨ', name: 'Ansuz', meaning: 'Communication divine, inspiration, sagesse d\'Odin. Parole et enseignement.', keywords: 'Sagesse • Communication • Inspiration', aett: 'frey' },
+            { symbol: 'ᚱ', name: 'Raidho', meaning: 'Voyage, chemin, progression. Mouvement physique ou spirituel vers un but.', keywords: 'Voyage • Chemin • Progression', aett: 'frey' },
+            { symbol: 'ᚲ', name: 'Kenaz', meaning: 'Torche, illumination, connaissance. Lumière qui dissipe l\'obscurité de l\'ignorance.', keywords: 'Connaissance • Illumination • Créativité', aett: 'frey' },
+            { symbol: 'ᚷ', name: 'Gebo', meaning: 'Don, échange équilibré, partenariat. Générosité et réciprocité harmonieuse.', keywords: 'Don • Échange • Partenariat', aett: 'frey' },
+            { symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joie, harmonie, réalisation. État de bonheur parfait et de satisfaction.', keywords: 'Joie • Harmonie • Bonheur', aett: 'frey' },
+            { symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Grêle, destruction nécessaire, crise. Transformation par l\'épreuve.', keywords: 'Transformation • Épreuve • Changement Brutal', aett: 'hagal' },
+            { symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Nécessité, contrainte, besoin. Leçons difficiles mais essentielles.', keywords: 'Besoin • Contrainte • Leçon', aett: 'hagal' },
+            { symbol: 'ᛁ', name: 'Isa', meaning: 'Glace, stagnation, concentration. Pause nécessaire avant le mouvement.', keywords: 'Pause • Concentration • Patience', aett: 'hagal' },
+            { symbol: 'ᛃ', name: 'Jera', meaning: 'Récolte, cycle naturel, patience récompensée. Fruits de vos efforts.', keywords: 'Récolte • Cycles • Fruits', aett: 'hagal' },
+            { symbol: 'ᛇ', name: 'Eihwaz', meaning: 'If, endurance, connexion entre mondes. Mort initiatique et renaissance.', keywords: 'Endurance • Transformation • Connexion', aett: 'hagal' },
+            { symbol: 'ᛈ', name: 'Perthro', meaning: 'Mystère, destin, hasard. Secrets révélés, synchronicités.', keywords: 'Mystère • Destin • Révélation', aett: 'hagal' },
+            { symbol: 'ᛉ', name: 'Algiz', meaning: 'Protection divine, connexion au sacré. L\'élan qui atteint les cieux.', keywords: 'Protection Divine • Connexion Sacrée • Éveil', aett: 'hagal' },
+            { symbol: 'ᛊ', name: 'Sowilo', meaning: 'Soleil, victoire, énergie vitale. Succès et illumination spirituelle.', keywords: 'Victoire • Succès • Énergie Solaire', aett: 'hagal' },
+            { symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Justice, honneur, sacrifice. Victoire par courage et intégrité.', keywords: 'Justice • Courage • Honneur', aett: 'tyr' },
+            { symbol: 'ᛒ', name: 'Berkano', meaning: 'Bouleau, croissance, féminité. Nouveaux commencements et fertilité.', keywords: 'Croissance • Nouveau Départ • Fertilité', aett: 'tyr' },
+            { symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Cheval, partenariat, mouvement harmonieux. Progrès par collaboration.', keywords: 'Partenariat • Mouvement • Harmonie', aett: 'tyr' },
+            { symbol: 'ᛗ', name: 'Mannaz', meaning: 'Humanité, soi, communauté. L\'humain dans sa dimension sociale et spirituelle.', keywords: 'Humanité • Communauté • Soi', aett: 'tyr' },
+            { symbol: 'ᛚ', name: 'Laguz', meaning: 'Eau, intuition, flux. Connexion à l\'inconscient et aux émotions.', keywords: 'Intuition • Flux • Émotions', aett: 'tyr' },
+            { symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Fertilité, gestation, achèvement. Énergie de Freyr, potentiel en développement.', keywords: 'Fertilité • Gestation • Potentiel', aett: 'tyr' },
+            { symbol: 'ᛞ', name: 'Dagaz', meaning: 'Aube, transformation radicale, percée. Le jour après la nuit.', keywords: 'Transformation • Aube • Percée', aett: 'tyr' },
+            { symbol: 'ᛟ', name: 'Othala', meaning: 'Héritage ancestral, racines, propriété. Connexion aux ancêtres et traditions.', keywords: 'Héritage • Racines • Traditions', aett: 'tyr' }
+        ];
+
+        let currentIndex = 0;
+        let filteredRunes = [...runes];
+        let studiedCards = new Set();
+        let currentMode = 'flashcard';
+        let quizCorrect = 0;
+        let quizTotal = 0;
+
+        function updateCard() {
+            const rune = filteredRunes[currentIndex];
+            document.getElementById('rune-symbol').textContent = rune.symbol;
+            document.getElementById('rune-name').textContent = rune.name;
+            document.getElementById('rune-keywords').textContent = rune.keywords;
+            document.getElementById('rune-meaning').textContent = rune.meaning;
+            document.getElementById('current-card').textContent = currentIndex + 1;
+            document.getElementById('total-cards').textContent = filteredRunes.length;
+            updateProgress();
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+            if (!studiedCards.has(currentIndex)) {
+                studiedCards.add(currentIndex);
+                updateProgress();
+            }
+        }
+
+        function nextCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.remove('flipped');
+            currentIndex = (currentIndex + 1) % filteredRunes.length;
+            updateCard();
+        }
+
+        function previousCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.remove('flipped');
+            currentIndex = (currentIndex - 1 + filteredRunes.length) % filteredRunes.length;
+            updateCard();
+        }
+
+        function shuffleCards() {
+            filteredRunes = [...filteredRunes].sort(() => Math.random() - 0.5);
+            currentIndex = 0;
+            updateCard();
+        }
+
+        function markAsKnown() {
+            studiedCards.add(currentIndex);
+            updateProgress();
+            nextCard();
+        }
+
+        function markAsLearning() {
+            nextCard();
+        }
+
+        function filterByAett(aett) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (aett === 'all') {
+                filteredRunes = [...runes];
+            } else {
+                filteredRunes = runes.filter(r => r.aett === aett);
+            }
+            currentIndex = 0;
+            studiedCards.clear();
+            updateCard();
+            if (currentMode === 'practice') {
+                generatePracticeGrid();
+            }
+        }
+
+        function updateProgress() {
+            const studied = studiedCards.size;
+            const total = filteredRunes.length;
+            const percentage = (studied / total) * 100;
+
+            document.getElementById('cards-studied').textContent = studied;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+
+            if (quizTotal > 0) {
+                const score = Math.round((quizCorrect / quizTotal) * 100);
+                document.getElementById('quiz-score').textContent = score + '%';
+            }
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+
+            // Update active mode card
+            document.querySelectorAll('.mode-card').forEach(card => card.classList.remove('active'));
+            event.target.closest('.mode-card').classList.add('active');
+
+            // Show/hide appropriate sections
+            document.getElementById('flashcard-mode').style.display = mode === 'flashcard' ? 'block' : 'none';
+            document.getElementById('quiz-mode').style.display = mode === 'quiz' ? 'block' : 'none';
+            document.getElementById('practice-mode').style.display = mode === 'practice' ? 'block' : 'none';
+
+            if (mode === 'quiz') {
+                generateQuizQuestion();
+            } else if (mode === 'practice') {
+                generatePracticeGrid();
+            }
+        }
+
+        function generateQuizQuestion() {
+            const rune = filteredRunes[Math.floor(Math.random() * filteredRunes.length)];
+            const correctAnswer = rune.name;
+
+            // Generate 3 wrong answers
+            let wrongAnswers = [];
+            while (wrongAnswers.length < 3) {
+                const randomRune = runes[Math.floor(Math.random() * runes.length)];
+                if (randomRune.name !== correctAnswer && !wrongAnswers.includes(randomRune.name)) {
+                    wrongAnswers.push(randomRune.name);
+                }
+            }
+
+            // Combine and shuffle answers
+            const allAnswers = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
+
+            document.getElementById('quiz-rune-symbol').textContent = rune.symbol;
+            document.getElementById('quiz-options').innerHTML = allAnswers.map(answer => `
+                <div class="quiz-option" onclick="checkQuizAnswer('${answer}', '${correctAnswer}')">
+                    <h4>${answer}</h4>
+                </div>
+            `).join('');
+
+            document.getElementById('quiz-feedback').textContent = '';
+        }
+
+        function checkQuizAnswer(selected, correct) {
+            quizTotal++;
+            const options = document.querySelectorAll('.quiz-option');
+
+            options.forEach(option => {
+                const optionName = option.querySelector('h4').textContent;
+                if (optionName === correct) {
+                    option.classList.add('correct');
+                }
+                if (optionName === selected && selected !== correct) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === correct) {
+                quizCorrect++;
+                document.getElementById('quiz-feedback').innerHTML = '✅ <span style="color: #27ae60;">Correct!</span>';
+            } else {
+                document.getElementById('quiz-feedback').innerHTML = '❌ <span style="color: #e74c3c;">Incorrect. La bonne réponse est ' + correct + '</span>';
+            }
+
+            updateProgress();
+        }
+
+        function nextQuizQuestion() {
+            generateQuizQuestion();
+        }
+
+        function generatePracticeGrid() {
+            const grid = document.getElementById('practice-grid');
+            grid.innerHTML = filteredRunes.map(rune => `
+                <div class="rune-card">
+                    <div class="rune-symbol">${rune.symbol}</div>
+                    <div class="rune-name">${rune.name}</div>
+                    <div class="rune-meaning">${rune.keywords}</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">${rune.meaning}</p>
+                </div>
+            `).join('');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+            updateCard();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (currentMode === 'flashcard') {
+                if (e.key === 'ArrowRight') nextCard();
+                if (e.key === 'ArrowLeft') previousCard();
+                if (e.key === ' ') {
+                    e.preventDefault();
+                    flipCard();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

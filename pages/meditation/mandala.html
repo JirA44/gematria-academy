@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Mandalas - Contemplation Immersive | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #e8e8e8;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .gallery-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mandala-canvas {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        canvas {
+            max-width: 90vmin;
+            max-height: 90vmin;
+            filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.3));
+        }
+
+        .nav-controls {
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            pointer-events: none;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(135, 206, 235, 0.2);
+            border: 3px solid rgba(135, 206, 235, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(135, 206, 235, 0.4);
+            border-color: #87ceeb;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(135, 206, 235, 0.6);
+        }
+
+        .nav-btn svg {
+            width: 40px;
+            height: 40px;
+            fill: #87ceeb;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 40px;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .mandala-title {
+            color: #ffd700;
+            font-size: 2em;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .counter {
+            color: #87ceeb;
+            font-size: 1.3em;
+        }
+
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 40px;
+            background: linear-gradient(0deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0) 100%);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            z-index: 100;
+        }
+
+        .action-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.5);
+        }
+
+        .upload-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #9370db 0%, #663399 100%);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .mandala-info {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 40, 0.9);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .mandala-info.show {
+            opacity: 1;
+        }
+
+        .help-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 10, 30, 0.98);
+            padding: 50px;
+            border-radius: 20px;
+            border: 3px solid #87ceeb;
+            max-width: 600px;
+            z-index: 200;
+            display: none;
+        }
+
+        .help-overlay.show {
+            display: block;
+        }
+
+        .help-title {
+            color: #ffd700;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .help-content {
+            color: #e8e8e8;
+            line-height: 2;
+            font-size: 1.1em;
+        }
+
+        .close-help {
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .nav-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .nav-controls {
+                padding: 0 20px;
+            }
+
+            .mandala-title {
+                font-size: 1.5em;
+            }
+
+            .bottom-bar {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .action-btn {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="top-bar">
+            <div class="mandala-title">Contemplation Silencieuse</div>
+            <div class="counter" id="counter">1 / 10</div>
+        </div>
+
+        <div class="mandala-canvas">
+            <canvas id="mandalaCanvas"></canvas>
+        </div>
+
+        <div class="nav-controls">
+            <div class="nav-btn" id="prevBtn" title="Mandala précédent (←)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </div>
+            <div class="nav-btn" id="nextBtn" title="Mandala suivant (→)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="mandala-info" id="mandalaInfo">
+            <div id="infoText"></div>
+        </div>
+
+        <div class="bottom-bar">
+            <button class="action-btn" id="helpBtn">📖 Aide</button>
+            <button class="action-btn upload-btn" id="uploadBtn">📤 Ajouter un Mandala</button>
+            <input type="file" id="fileInput" accept="image/*">
+            <button class="action-btn" id="randomBtn">🎲 Aléatoire</button>
+            <button class="action-btn" id="fullscreenBtn">🖼️ Plein Écran</button>
+            <button class="action-btn home-btn" onclick="window.location.href='index.html'">🏠 Accueil</button>
+        </div>
+    </div>
+
+    <div class="help-overlay" id="helpOverlay">
+        <div class="help-title">🙏 Guide de Contemplation</div>
+        <div class="help-content">
+            <p><strong>Navigation :</strong></p>
+            <ul style="margin: 15px 0; padding-left: 25px;">
+                <li>Flèches ← → : Changer de mandala</li>
+                <li>Espace : Mandala aléatoire</li>
+                <li>F : Mode plein écran</li>
+            </ul>
+
+            <p style="margin-top: 25px;"><strong>Méditation avec les Mandalas :</strong></p>
+            <ul style="margin: 15px 0; padding-left: 25px;">
+                <li>Fixez le centre du mandala</li>
+                <li>Respirez profondément et lentement</li>
+                <li>Laissez votre regard suivre les motifs</li>
+                <li>Observez sans juger, contemplez sans penser</li>
+                <li>Ressentez la symétrie et l'harmonie</li>
+            </ul>
+
+            <p style="margin-top: 25px; color: #ffd700;"><em>"Le mandala est un miroir de l'âme" - Carl Jung</em></p>
+        </div>
+        <button class="close-help" id="closeHelp">Fermer</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('mandalaCanvas');
+        const ctx = canvas.getContext('2d');
+        const counter = document.getElementById('counter');
+        const mandalaInfo = document.getElementById('mandalaInfo');
+        const infoText = document.getElementById('infoText');
+        const helpOverlay = document.getElementById('helpOverlay');
+
+        let currentIndex = 0;
+        let customMandalas = [];
+
+        // Mandalas prédéfinis avec informations
+        const mandalas = [
+            { name: "Mandala de la Sagesse", type: "tibétain", colors: ['#ffd700', '#ff8c00', '#ff4500'] },
+            { name: "Mandala de la Sérénité", type: "bouddhiste", colors: ['#87ceeb', '#4169e1', '#000080'] },
+            { name: "Mandala de l'Éveil", type: "hindou", colors: ['#ff69b4', '#9370db', '#4b0082'] },
+            { name: "Mandala de l'Harmonie", type: "zen", colors: ['#00ff00', '#32cd32', '#006400'] },
+            { name: "Mandala de la Compassion", type: "tibétain", colors: ['#ff1493', '#ff69b4', '#ffb6c1'] },
+            { name: "Mandala de la Lumière", type: "védique", colors: ['#ffff00', '#ffd700', '#ffa500'] },
+            { name: "Mandala de la Paix", type: "zen", colors: ['#e0ffff', '#afeeee', '#5f9ea0'] },
+            { name: "Mandala de la Force", type: "tantrique", colors: ['#ff0000', '#8b0000', '#4b0000'] },
+            { name: "Mandala de l'Équilibre", type: "taoïste", colors: ['#ffffff', '#c0c0c0', '#000000'] },
+            { name: "Mandala de la Transcendance", type: "mystique", colors: ['#9400d3', '#8b008b', '#4b0082'] }
+        ];
+
+        function resizeCanvas() {
+            const size = Math.min(window.innerWidth, window.innerHeight) * 0.9;
+            canvas.width = size;
+            canvas.height = size;
+            drawMandala(currentIndex);
+        }
+
+        function drawMandala(index) {
+            const mandala = mandalas[index];
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const maxRadius = Math.min(centerX, centerY) * 0.9;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Fond gradiant
+            const bgGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius);
+            bgGradient.addColorStop(0, 'rgba(255, 255, 255, 0.05)');
+            bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0.3)');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Nombre de pétales et de couches
+            const layers = 8;
+            const petalsPerLayer = 12;
+
+            for (let layer = layers; layer > 0; layer--) {
+                const radius = (maxRadius / layers) * layer;
+                const layerColor = mandala.colors[layer % mandala.colors.length];
+
+                // Cercle de base
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = layerColor;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Pétales
+                for (let i = 0; i < petalsPerLayer; i++) {
+                    const angle = (Math.PI * 2 * i) / petalsPerLayer;
+                    const petalLength = radius * 0.3;
+
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(angle);
+
+                    // Pétale stylisé
+                    ctx.beginPath();
+                    ctx.moveTo(radius - petalLength, 0);
+                    ctx.bezierCurveTo(
+                        radius - petalLength * 0.5, -petalLength * 0.3,
+                        radius + petalLength * 0.5, -petalLength * 0.3,
+                        radius + petalLength, 0
+                    );
+                    ctx.bezierCurveTo(
+                        radius + petalLength * 0.5, petalLength * 0.3,
+                        radius - petalLength * 0.5, petalLength * 0.3,
+                        radius - petalLength, 0
+                    );
+
+                    const gradient = ctx.createLinearGradient(radius - petalLength, 0, radius + petalLength, 0);
+                    gradient.addColorStop(0, layerColor + '80');
+                    gradient.addColorStop(0.5, layerColor);
+                    gradient.addColorStop(1, layerColor + '80');
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                    ctx.strokeStyle = layerColor;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.restore();
+                }
+
+                // Motifs géométriques intérieurs
+                const innerPetals = petalsPerLayer * 2;
+                for (let i = 0; i < innerPetals; i++) {
+                    const angle = (Math.PI * 2 * i) / innerPetals + Math.PI / innerPetals;
+                    const x1 = centerX + Math.cos(angle) * radius * 0.7;
+                    const y1 = centerY + Math.sin(angle) * radius * 0.7;
+                    const x2 = centerX + Math.cos(angle) * radius * 0.9;
+                    const y2 = centerY + Math.sin(angle) * radius * 0.9;
+
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.strokeStyle = layerColor + '60';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+
+            // Centre sacré
+            const centerRadius = maxRadius * 0.08;
+            const centerGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, centerRadius);
+            centerGradient.addColorStop(0, '#ffffff');
+            centerGradient.addColorStop(0.5, mandala.colors[0]);
+            centerGradient.addColorStop(1, mandala.colors[1]);
+            ctx.fillStyle = centerGradient;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, centerRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Point central (bindu)
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, centerRadius * 0.2, 0, Math.PI * 2);
+            ctx.fill();
+
+            updateInfo(index);
+        }
+
+        function updateInfo(index) {
+            const mandala = mandalas[index];
+            counter.textContent = `${index + 1} / ${mandalas.length}`;
+            infoText.innerHTML = `
+                <div style="color: #ffd700; font-size: 1.3em; margin-bottom: 10px;">${mandala.name}</div>
+                <div style="color: #87ceeb;">Style : ${mandala.type}</div>
+            `;
+            mandalaInfo.classList.add('show');
+            setTimeout(() => {
+                mandalaInfo.classList.remove('show');
+            }, 3000);
+        }
+
+        function nextMandala() {
+            currentIndex = (currentIndex + 1) % mandalas.length;
+            drawMandala(currentIndex);
+        }
+
+        function prevMandala() {
+            currentIndex = (currentIndex - 1 + mandalas.length) % mandalas.length;
+            drawMandala(currentIndex);
+        }
+
+        function randomMandala() {
+            currentIndex = Math.floor(Math.random() * mandalas.length);
+            drawMandala(currentIndex);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('nextBtn').addEventListener('click', nextMandala);
+        document.getElementById('prevBtn').addEventListener('click', prevMandala);
+        document.getElementById('randomBtn').addEventListener('click', randomMandala);
+        document.getElementById('fullscreenBtn').addEventListener('click', toggleFullscreen);
+        document.getElementById('helpBtn').addEventListener('click', () => {
+            helpOverlay.classList.add('show');
+        });
+        document.getElementById('closeHelp').addEventListener('click', () => {
+            helpOverlay.classList.remove('show');
+        });
+
+        document.getElementById('uploadBtn').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+                        const x = (canvas.width - img.width * scale) / 2;
+                        const y = (canvas.height - img.height * scale) / 2;
+                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                        infoText.innerHTML = `
+                            <div style="color: #ffd700; font-size: 1.3em;">Votre Mandala Personnel</div>
+                            <div style="color: #87ceeb;">Ajouté avec succès</div>
+                        `;
+                        mandalaInfo.classList.add('show');
+                        setTimeout(() => {
+                            mandalaInfo.classList.remove('show');
+                        }, 3000);
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextMandala();
+            if (e.key === 'ArrowLeft') prevMandala();
+            if (e.key === ' ') { e.preventDefault(); randomMandala(); }
+            if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        });
+
+        window.addEventListener('resize', resizeCanvas);
+
+        // Initialize
+        resizeCanvas();
+    </script>
+</body>
+</html>

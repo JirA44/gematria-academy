@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours Complet des Hiéroglyphes | Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+
+        .pathway-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .pathway-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            border-left: 8px solid;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .pathway-step.step-1 { border-color: #d4af37; }
+        .pathway-step.step-2 { border-color: #cd7f32; }
+        .pathway-step.step-3 { border-color: #c0c0c0; }
+        .pathway-step.step-4 { border-color: #ffd700; }
+
+        .pathway-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .step-duration {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .step-objectives {
+            margin: 1.5rem 0;
+        }
+
+        .step-objectives ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-objectives li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .step-objectives li:before {
+            content: "𓋹";
+            position: absolute;
+            left: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .step-1 .step-objectives li:before { color: #d4af37; }
+        .step-2 .step-objectives li:before { color: #cd7f32; }
+        .step-3 .step-objectives li:before { color: #c0c0c0; }
+        .step-4 .step-objectives li:before { color: #ffd700; }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .lesson-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+        }
+
+        .lesson-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .lesson-card h4 {
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+
+        .hieroglyph-example {
+            font-size: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #ffd700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #ffd700 100%);
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a2e;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.5rem;
+            border: 2px solid #ffd700;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">𓋹 Académie des Sagesses Anciennes</a>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="immersion-inscriptions-index.html">Inscriptions</a></li>
+                <li><a href="hieroglyphes-jeux-interactifs.html">Jeux</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>𓇋𓏠𓈖𓏏𓅱 Parcours Complet des Hiéroglyphes</h1>
+            <p class="subtitle">De l'initiation à la maîtrise : un voyage de 4 étapes à travers l'écriture sacrée de l'Égypte ancienne</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;">0%</div>
+            </div>
+        </section>
+
+        <section id="parcours" class="pathway-container">
+            <!-- ÉTAPE 1 : LES FONDATIONS -->
+            <div class="pathway-step step-1" data-step="1">
+                <div class="step-number">1</div>
+                <h2 class="step-title">𓀀 Les Fondations du Scribe</h2>
+                <span class="step-duration">⏱ Durée estimée : 4-6 semaines</span>
+
+                <div class="step-objectives">
+                    <h3>Objectifs d'apprentissage</h3>
+                    <ul>
+                        <li>Maîtriser les 24 signes unilitères (alphabet hiéroglyphique)</li>
+                        <li>Comprendre les 3 types de signes : phonétiques, idéogrammes, déterminatifs</li>
+                        <li>Lire et écrire votre nom en hiéroglyphes</li>
+                        <li>Reconnaître les cartouches royaux de 10 pharaons célèbres</li>
+                        <li>Comprendre le sens de lecture (gauche-droite, droite-gauche, vertical)</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓄿</div>
+                        <h4>Leçon 1 : Alphabet A-G</h4>
+                        <p>𓄿 (vautour) = A, 𓃀 (jambe) = B, 𓍿 (corbeille) = K, etc.</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓎛</div>
+                        <h4>Leçon 2 : Alphabet H-N</h4>
+                        <p>𓎛 (mèche) = H, 𓇋 (roseau) = I/Y, 𓅓 (chouette) = M, etc.</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓂋</div>
+                        <h4>Leçon 3 : Alphabet O-Z</h4>
+                        <p>𓂋 (bouche) = R, 𓋴 (verrou) = S, 𓏏 (pain) = T, etc.</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓁹</div>
+                        <h4>Leçon 4 : Idéogrammes</h4>
+                        <p>𓁹 (œil) = voir, 𓂋𓏤 (soleil) = jour/Rê, 𓇳 = Rê</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓊖</div>
+                        <h4>Leçon 5 : Déterminatifs</h4>
+                        <p>𓊖 (ville), 𓀀 (homme), 𓁐 (femme), 𓆓 (serpent-danger)</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓇋𓏠𓈖</div>
+                        <h4>Leçon 6 : Cartouches Royaux</h4>
+                        <p>Toutânkhamon, Ramsès II, Cléopâtre, Khéops</p>
+                    </div>
+                </div>
+
+                <div class="achievement-badge">🏆 Badge débloqué : Apprenti Scribe</div>
+                <a href="immersion-inscriptions-index.html#debutant" class="cta-button">Commencer l'Étape 1</a>
+            </div>
+
+            <!-- ÉTAPE 2 : APPROFONDISSEMENT -->
+            <div class="pathway-step step-2" data-step="2">
+                <div class="step-number">2</div>
+                <h2 class="step-title">𓊪 L'Art du Déchiffrement</h2>
+                <span class="step-duration">⏱ Durée estimée : 6-8 semaines</span>
+
+                <div class="step-objectives">
+                    <h3>Objectifs d'apprentissage</h3>
+                    <ul>
+                        <li>Maîtriser 50 signes bilitères (2 consonnes) : 𓈖𓃀 (nb), 𓊪𓏏 (pt), etc.</li>
+                        <li>Déchiffrer des inscriptions funéraires simples</li>
+                        <li>Comprendre la grammaire égyptienne : verbes, noms, adjectifs</li>
+                        <li>Lire 20 formules courantes des temples et tombeaux</li>
+                        <li>Traduire des titres royaux et nobiliaires</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓈖𓃀</div>
+                        <h4>Leçon 7 : Bilitères Fréquents</h4>
+                        <p>𓈖𓃀 (nb) = tout/seigneur, 𓊪𓏏 (pt) = ciel, 𓂋𓏤 (ra) = soleil</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓋹𓍑𓋴</div>
+                        <h4>Leçon 8 : Formules Religieuses</h4>
+                        <p>"Offrande que donne le roi" - formule Htp-di-nsw</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓊹𓀭</div>
+                        <h4>Leçon 9 : Panthéon Divin</h4>
+                        <p>𓊹 (ntr) = dieu, Rê, Osiris, Isis, Horus, Anubis</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓎟𓇿𓇿</div>
+                        <h4>Leçon 10 : Titres Royaux</h4>
+                        <p>"Roi de Haute et Basse-Égypte, Seigneur des Deux Terres"</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓅓𓂝𓏏</div>
+                        <h4>Leçon 11 : Grammaire de Base</h4>
+                        <p>Structure des phrases : sujet-verbe-objet, adjectifs</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓇓𓏏𓊵</div>
+                        <h4>Leçon 12 : Inscriptions Funéraires</h4>
+                        <p>"Puisse-t-il vivre éternellement dans le champ des roseaux"</p>
+                    </div>
+                </div>
+
+                <div class="achievement-badge">🏆 Badge débloqué : Scribe du Temple</div>
+                <a href="immersion-inscriptions-index.html#intermediaire" class="cta-button">Continuer vers l'Étape 2</a>
+            </div>
+
+            <!-- ÉTAPE 3 : MAÎTRISE -->
+            <div class="pathway-step step-3" data-step="3">
+                <div class="step-number">3</div>
+                <h2 class="step-title">𓏙 Maîtrise des Textes Sacrés</h2>
+                <span class="step-duration">⏱ Durée estimée : 8-12 semaines</span>
+
+                <div class="step-objectives">
+                    <h3>Objectifs d'apprentissage</h3>
+                    <ul>
+                        <li>Maîtriser 100 signes trilitères (3 consonnes) et signes complexes</li>
+                        <li>Traduire des extraits du Livre des Morts</li>
+                        <li>Comprendre les textes des pyramides et des sarcophages</li>
+                        <li>Analyser les variations régionales et temporelles (hiératique)</li>
+                        <li>Déchiffrer des stèles royales et autobiographies nobles</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓊽𓊽𓊽</div>
+                        <h4>Leçon 13 : Trilitères Avancés</h4>
+                        <p>𓈖𓆑𓂋 (nfr) = beau/bon, 𓎛𓏏𓊪 (htp) = paix/offrande</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓆣𓏏</div>
+                        <h4>Leçon 14 : Livre des Morts</h4>
+                        <p>Chapitre 125 : Pesée du cœur et confession négative</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓉐𓂋𓅱</div>
+                        <h4>Leçon 15 : Textes des Pyramides</h4>
+                        <p>Formules de résurrection du pharaon Ounas (5e dynastie)</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓏛𓏥</div>
+                        <h4>Leçon 16 : Hiératique</h4>
+                        <p>Écriture cursive des scribes : papyrus administratifs</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓎗𓊃𓐍</div>
+                        <h4>Leçon 17 : Stèles Royales</h4>
+                        <p>Décrets de Ramsès II, Thoutmosis III, Aménophis III</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓅱𓊪𓅱𓏏</div>
+                        <h4>Leçon 18 : Autobiographies</h4>
+                        <p>Récits des hauts fonctionnaires et généraux</p>
+                    </div>
+                </div>
+
+                <div class="achievement-badge">🏆 Badge débloqué : Grand Scribe Royal</div>
+                <a href="immersion-inscriptions-index.html#expert" class="cta-button">Accéder à l'Étape 3</a>
+            </div>
+
+            <!-- ÉTAPE 4 : EXPERTISE -->
+            <div class="pathway-step step-4" data-step="4">
+                <div class="step-number">4</div>
+                <h2 class="step-title">𓏛 Expertise et Recherche</h2>
+                <span class="step-duration">⏱ Durée estimée : 12+ semaines</span>
+
+                <div class="step-objectives">
+                    <h3>Objectifs d'apprentissage</h3>
+                    <ul>
+                        <li>Traduire des textes littéraires complets (Sinouhé, Naufragé)</li>
+                        <li>Analyser les cryptographies et jeux de signes</li>
+                        <li>Comprendre l'évolution de la langue (Ancien, Moyen, Néo-égyptien)</li>
+                        <li>Déchiffrer des inscriptions endommagées et fragmentaires</li>
+                        <li>Contribuer à la recherche égyptologique moderne</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓋴𓈖𓏏𓏭</div>
+                        <h4>Leçon 19 : Littérature</h4>
+                        <p>Conte de Sinouhé : chef-d'œuvre du Moyen Empire</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓅱𓅓𓏏𓉐</div>
+                        <h4>Leçon 20 : Cryptographie</h4>
+                        <p>Écritures énigmatiques des temples ptolémaïques</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓂋𓏤𓅱</div>
+                        <h4>Leçon 21 : Évolution Linguistique</h4>
+                        <p>De l'Ancien Égyptien (2700 av. J.-C.) au Copte</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓊪𓏏𓇯</div>
+                        <h4>Leçon 22 : Paléographie</h4>
+                        <p>Reconstitution de textes fragmentaires et érodés</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓍿𓈖𓂝</div>
+                        <h4>Leçon 23 : Recherche Moderne</h4>
+                        <p>Outils numériques : bases de données, IA, photogrammétrie</p>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="hieroglyph-example">𓋴𓃀𓏏𓐎</div>
+                        <h4>Leçon 24 : Projet Final</h4>
+                        <p>Traduction complète d'une inscription de votre choix</p>
+                    </div>
+                </div>
+
+                <div class="achievement-badge">🏆 Badge débloqué : Maître Égyptologue</div>
+                <a href="hieroglyphes-exercices-phrases.html" class="cta-button">Tester vos compétences</a>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin: 3rem 0; padding: 2rem; background: rgba(212, 175, 55, 0.1); border-radius: 15px;">
+            <h2>🎯 Votre Progression Globale</h2>
+            <p>Complétez les 4 étapes pour devenir un expert en hiéroglyphes</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">𓀀</div>
+                    <div>Étape 1</div>
+                    <div id="progress-1" style="color: #666;">0%</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">𓊪</div>
+                    <div>Étape 2</div>
+                    <div id="progress-2" style="color: #666;">0%</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">𓏙</div>
+                    <div>Étape 3</div>
+                    <div id="progress-3" style="color: #666;">0%</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">𓏛</div>
+                    <div>Étape 4</div>
+                    <div id="progress-4" style="color: #666;">0%</div>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin: 3rem 0;">
+            <h2>📚 Ressources Complémentaires</h2>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+                <a href="immersion-inscriptions-index.html" class="cta-button">46 Inscriptions Authentiques</a>
+                <a href="hieroglyphes-exercices-phrases.html" class="cta-button">Exercices Interactifs</a>
+                <a href="hieroglyphes-contexte-culturel.html" class="cta-button">Histoire & Culture</a>
+                <a href="hieroglyphes-jeux-interactifs.html" class="cta-button">Jeux Éducatifs</a>
+                <a href="hieroglyphes-momification.html" class="cta-button">Rites Funéraires</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Académie des Sagesses Anciennes - Préservation du savoir égyptien depuis 3000 ans</p>
+    </footer>
+
+    <script>
+        // Système de progression
+        function updateProgress() {
+            const steps = document.querySelectorAll('.pathway-step');
+            let completedSteps = 0;
+
+            steps.forEach((step, index) => {
+                const stepNum = index + 1;
+                const progressKey = `hieroglyphes-step-${stepNum}`;
+                const progress = localStorage.getItem(progressKey) || 0;
+
+                const progressElement = document.getElementById(`progress-${stepNum}`);
+                if (progressElement) {
+                    progressElement.textContent = `${progress}%`;
+                    progressElement.style.color = progress > 0 ? '#d4af37' : '#666';
+                }
+
+                if (progress >= 100) completedSteps++;
+            });
+
+            // Progression globale
+            const globalProgress = (completedSteps / steps.length) * 100;
+            const progressBar = document.querySelector('.progress-fill');
+            progressBar.style.width = globalProgress + '%';
+            progressBar.textContent = Math.round(globalProgress) + '%';
+        }
+
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.pathway-step').forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateX(-50px)';
+            step.style.transition = 'all 0.6s ease-out';
+            observer.observe(step);
+        });
+
+        // Initialisation
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices de Logique - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .score-panel {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 2px solid rgba(139, 92, 246, 0.5);
+        }
+
+        .score-panel h3 {
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-display {
+            font-size: 2rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .exercise-container {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .exercise-container h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .option {
+            background: rgba(100, 181, 246, 0.2);
+            padding: 1rem;
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background: rgba(100, 181, 246, 0.3);
+            border-color: #64b5f6;
+        }
+
+        .option.selected {
+            background: rgba(100, 181, 246, 0.5);
+            border-color: #64b5f6;
+        }
+
+        .option.correct {
+            background: rgba(76, 175, 80, 0.5);
+            border-color: #4caf50;
+        }
+
+        .option.incorrect {
+            background: rgba(244, 67, 54, 0.5);
+            border-color: #f44336;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.3);
+            border: 2px solid #f44336;
+            color: #f44336;
+        }
+
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .truth-table th,
+        .truth-table td {
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .truth-table th {
+            background: rgba(100, 181, 246, 0.3);
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        .truth-table td {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .syllogism-box {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .syllogism-box p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 1rem;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧠 Exercices de Logique</h1>
+        <p class="subtitle">Entraînez votre esprit analytique</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="exercices-logique.html">🧠 Exercices Logique</a>
+        <a href="types-raisonnement.html">📚 Types de Raisonnements</a>
+    </nav>
+
+    <main>
+        <div class="score-panel">
+            <h3>Score</h3>
+            <div class="score-display" id="scoreDisplay">0 / 0</div>
+        </div>
+
+        <div class="exercise-container">
+            <h3 id="exerciseTitle">Chargement...</h3>
+            <div id="exerciseContent"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        let currentExercise = 0;
+        let score = 0;
+        let totalQuestions = 0;
+
+        const exercises = [
+            {
+                type: 'quiz',
+                title: '📊 Question 1 : Logique Propositionnelle',
+                question: 'Si "Tous les philosophes aiment la sagesse" et "Socrate est un philosophe", quelle conclusion est logiquement valide ?',
+                options: [
+                    'Socrate aime peut-être la sagesse',
+                    'Socrate aime la sagesse',
+                    'La sagesse aime Socrate',
+                    'Tous ceux qui aiment la sagesse sont philosophes'
+                ],
+                correct: 1,
+                explanation: 'C\'est un syllogisme valide : Prémisse majeure (tous les philosophes aiment la sagesse) + Prémisse mineure (Socrate est philosophe) = Conclusion (Socrate aime la sagesse).'
+            },
+            {
+                type: 'truth-table',
+                title: '🔢 Question 2 : Table de Vérité',
+                question: 'Complétez la table de vérité pour l\'opération logique ET (∧)',
+                table: [
+                    ['P', 'Q', 'P ∧ Q'],
+                    ['V', 'V', '?'],
+                    ['V', 'F', '?'],
+                    ['F', 'V', '?'],
+                    ['F', 'F', '?']
+                ],
+                answers: ['V', 'F', 'F', 'F'],
+                explanation: 'L\'opération ET (∧) est vraie seulement si les deux propositions sont vraies. Dans tous les autres cas, elle est fausse.'
+            },
+            {
+                type: 'quiz',
+                title: '🎯 Question 3 : Sophisme',
+                question: 'Quel est le sophisme dans cet argument : "On doit interdire les téléphones portables car si on ne le fait pas, bientôt tout le monde sera esclave de la technologie" ?',
+                options: [
+                    'Pente glissante (slippery slope)',
+                    'Ad hominem',
+                    'Faux dilemme',
+                    'Appel à l\'autorité'
+                ],
+                correct: 0,
+                explanation: 'C\'est une pente glissante : on présume qu\'une action entraînera inévitablement des conséquences extrêmes sans justification.'
+            },
+            {
+                type: 'syllogism',
+                title: '📜 Question 4 : Syllogisme',
+                question: 'Ce syllogisme est-il valide ?',
+                premises: [
+                    'Tous les êtres humains sont mortels',
+                    'Tous les mortels finissent par mourir',
+                    'Donc tous les êtres humains finissent par mourir'
+                ],
+                options: ['Valide', 'Invalide'],
+                correct: 0,
+                explanation: 'Ce syllogisme est valide. La conclusion découle logiquement des deux prémisses.'
+            },
+            {
+                type: 'quiz',
+                title: '💡 Question 5 : Induction vs Déduction',
+                question: 'Quel type de raisonnement est utilisé ici : "Le soleil s\'est levé tous les jours depuis des millénaires, donc il se lèvera demain" ?',
+                options: [
+                    'Déduction',
+                    'Induction',
+                    'Abduction',
+                    'Analogie'
+                ],
+                correct: 1,
+                explanation: 'C\'est un raisonnement inductif : on généralise à partir d\'observations répétées pour prédire un événement futur.'
+            },
+            {
+                type: 'quiz',
+                title: '🔍 Question 6 : Paradoxe',
+                question: 'Quel est le nom de ce paradoxe : "Cette phrase est fausse" ?',
+                options: [
+                    'Paradoxe du menteur',
+                    'Paradoxe de Zénon',
+                    'Paradoxe de Russell',
+                    'Paradoxe de Sorite'
+                ],
+                correct: 0,
+                explanation: 'C\'est le paradoxe du menteur : si la phrase est vraie, alors elle est fausse ; si elle est fausse, alors elle est vraie.'
+            },
+            {
+                type: 'quiz',
+                title: '⚖️ Question 7 : Logique Modale',
+                question: 'Quelle proposition exprime une nécessité ?',
+                options: [
+                    'Il pleut peut-être',
+                    '2 + 2 = 4',
+                    'Je vais probablement sortir',
+                    'Il est possible qu\'il vienne'
+                ],
+                correct: 1,
+                explanation: 'La proposition "2 + 2 = 4" exprime une nécessité logique : elle est vraie dans tous les mondes possibles.'
+            },
+            {
+                type: 'quiz',
+                title: '🎲 Question 8 : Modus Ponens',
+                question: 'Si P implique Q, et que P est vrai, que peut-on conclure ?',
+                options: [
+                    'Q est vrai',
+                    'Q est faux',
+                    'P et Q sont faux',
+                    'On ne peut rien conclure'
+                ],
+                correct: 0,
+                explanation: 'C\'est le Modus Ponens, une règle d\'inférence fondamentale : (P → Q) ∧ P ⇒ Q'
+            }
+        ];
+
+        function loadExercise() {
+            if (currentExercise >= exercises.length) {
+                showFinalScore();
+                return;
+            }
+
+            const exercise = exercises[currentExercise];
+            document.getElementById('exerciseTitle').textContent = exercise.title;
+
+            if (exercise.type === 'quiz') {
+                loadQuiz(exercise);
+            } else if (exercise.type === 'truth-table') {
+                loadTruthTable(exercise);
+            } else if (exercise.type === 'syllogism') {
+                loadSyllogism(exercise);
+            }
+        }
+
+        function loadQuiz(exercise) {
+            let html = `
+                <div class="question">
+                    <div class="question-text">${exercise.question}</div>
+                    <div class="options">
+            `;
+
+            exercise.options.forEach((option, index) => {
+                html += `
+                    <div class="option" onclick="selectOption(${index})">
+                        ${String.fromCharCode(65 + index)}. ${option}
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <button class="submit-btn" onclick="submitAnswer()">Valider la réponse</button>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            `;
+
+            document.getElementById('exerciseContent').innerHTML = html;
+        }
+
+        function loadTruthTable(exercise) {
+            let html = `
+                <div class="question">
+                    <div class="question-text">${exercise.question}</div>
+                    <table class="truth-table">
+            `;
+
+            exercise.table.forEach((row, rowIndex) => {
+                html += '<tr>';
+                row.forEach((cell, cellIndex) => {
+                    if (rowIndex === 0) {
+                        html += `<th>${cell}</th>`;
+                    } else if (cell === '?') {
+                        html += `<td><select id="answer-${rowIndex}">
+                            <option value="">?</option>
+                            <option value="V">V</option>
+                            <option value="F">F</option>
+                        </select></td>`;
+                    } else {
+                        html += `<td>${cell}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+
+            html += `
+                    </table>
+                    <button class="submit-btn" onclick="submitTruthTable()">Valider la table</button>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            `;
+
+            document.getElementById('exerciseContent').innerHTML = html;
+        }
+
+        function loadSyllogism(exercise) {
+            let html = `
+                <div class="question">
+                    <div class="question-text">${exercise.question}</div>
+                    <div class="syllogism-box">
+            `;
+
+            exercise.premises.forEach((premise, index) => {
+                html += `<p><strong>${index < exercise.premises.length - 1 ? 'Prémisse ' + (index + 1) : 'Conclusion'} :</strong> ${premise}</p>`;
+            });
+
+            html += `
+                    </div>
+                    <div class="options">
+            `;
+
+            exercise.options.forEach((option, index) => {
+                html += `
+                    <div class="option" onclick="selectOption(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <button class="submit-btn" onclick="submitAnswer()">Valider la réponse</button>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            `;
+
+            document.getElementById('exerciseContent').innerHTML = html;
+        }
+
+        let selectedOptionIndex = null;
+
+        function selectOption(index) {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedOptionIndex = index;
+        }
+
+        function submitAnswer() {
+            if (selectedOptionIndex === null) {
+                alert('Veuillez sélectionner une réponse');
+                return;
+            }
+
+            const exercise = exercises[currentExercise];
+            const feedback = document.getElementById('feedback');
+            const options = document.querySelectorAll('.option');
+
+            totalQuestions++;
+
+            if (selectedOptionIndex === exercise.correct) {
+                score++;
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = `✅ Correct ! ${exercise.explanation}`;
+                options[selectedOptionIndex].classList.add('correct');
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `❌ Incorrect. ${exercise.explanation}`;
+                options[selectedOptionIndex].classList.add('incorrect');
+                options[exercise.correct].classList.add('correct');
+            }
+
+            updateScore();
+            document.querySelector('.submit-btn').disabled = true;
+
+            // Bouton suivant
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'next-btn';
+            nextBtn.textContent = currentExercise < exercises.length - 1 ? 'Question suivante →' : 'Voir le score final';
+            nextBtn.onclick = nextExercise;
+            feedback.after(nextBtn);
+        }
+
+        function submitTruthTable() {
+            const exercise = exercises[currentExercise];
+            const feedback = document.getElementById('feedback');
+            let allCorrect = true;
+            totalQuestions++;
+
+            for (let i = 1; i <= exercise.answers.length; i++) {
+                const select = document.getElementById(`answer-${i}`);
+                if (select.value !== exercise.answers[i - 1]) {
+                    allCorrect = false;
+                }
+            }
+
+            if (allCorrect) {
+                score++;
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = `✅ Correct ! ${exercise.explanation}`;
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `❌ Incorrect. ${exercise.explanation}`;
+            }
+
+            updateScore();
+            document.querySelector('.submit-btn').disabled = true;
+
+            // Bouton suivant
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'next-btn';
+            nextBtn.textContent = currentExercise < exercises.length - 1 ? 'Question suivante →' : 'Voir le score final';
+            nextBtn.onclick = nextExercise;
+            feedback.after(nextBtn);
+        }
+
+        function nextExercise() {
+            currentExercise++;
+            selectedOptionIndex = null;
+            loadExercise();
+        }
+
+        function updateScore() {
+            document.getElementById('scoreDisplay').textContent = `${score} / ${totalQuestions}`;
+        }
+
+        function showFinalScore() {
+            const percentage = (score / totalQuestions) * 100;
+            let message = '';
+
+            if (percentage >= 80) {
+                message = '🏆 Excellent ! Vous avez une excellente maîtrise de la logique !';
+            } else if (percentage >= 60) {
+                message = '👍 Bien ! Vous avez de bonnes bases en logique.';
+            } else {
+                message = '📚 Continuez à pratiquer pour améliorer votre logique.';
+            }
+
+            document.getElementById('exerciseContent').innerHTML = `
+                <div style="text-align: center; padding: 3rem;">
+                    <h2 style="color: #8b5cf6; font-size: 2.5rem; margin-bottom: 1rem;">Score Final</h2>
+                    <div style="font-size: 4rem; color: #64b5f6; margin: 2rem 0;">${score} / ${totalQuestions}</div>
+                    <div style="font-size: 2rem; color: #fff; margin-bottom: 2rem;">${percentage.toFixed(0)}%</div>
+                    <p style="font-size: 1.3rem; color: #aaa;">${message}</p>
+                    <button class="next-btn" onclick="location.reload()" style="max-width: 400px; margin: 2rem auto;">🔄 Recommencer</button>
+                </div>
+            `;
+        }
+
+        // Charger le premier exercice
+        loadExercise();
+    </script>
+</body>
+</html>

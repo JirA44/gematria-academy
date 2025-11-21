@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Runique - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro-section {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .rune-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .rune-card {
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.3), rgba(100, 181, 246, 0.2));
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .rune-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
+        }
+
+        .rune-display {
+            font-size: 5rem;
+            text-align: center;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
+        }
+
+        .rune-name {
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .rune-pronunciation {
+            color: #aaa;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .rune-meaning {
+            color: #e8e8e8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .rune-keywords {
+            background: rgba(100, 181, 246, 0.2);
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        .aett-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            margin: 3rem 0 1.5rem 0;
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .aett-section h2 {
+            color: #fff;
+            margin: 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ᚠ Alphabet Runique</h1>
+        <p class="subtitle">Les 24 Runes du Futhark Elder</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="alphabet-hebreu.html">🔯 Alphabet Hébreu</a>
+        <a href="calculateur-gematria.html">🔢 Calculateur Gematria</a>
+        <a href="alphabet-runes.html">ᚠ Runes</a>
+        <a href="tirage-runes.html">🎲 Tirage Runes</a>
+    </nav>
+
+    <main>
+        <div class="intro-section">
+            <h2>📜 Introduction au Futhark Elder</h2>
+            <p>Le <strong>Futhark Elder</strong> (Elder Futhark) est le plus ancien alphabet runique, utilisé par les peuples germaniques du 2e au 8e siècle. Composé de 24 runes, il tire son nom des six premières lettres : <strong>F-U-Þ-A-R-K</strong>.</p>
+            <p>Les runes ne sont pas de simples lettres : chacune porte une signification symbolique, magique et divinatoire profonde. Elles sont divisées en trois <strong>Aettir</strong> (familles) de 8 runes, chacune associée à une divinité nordique.</p>
+        </div>
+
+        <div class="aett-section">
+            <h2>⚔️ Premier Aett - Aett de Freyr (Fertilité & Création)</h2>
+            <p>Les huit premières runes, gouvernées par Freyr, dieu de la fertilité et de la prospérité.</p>
+        </div>
+
+        <div class="rune-grid">
+            <div class="rune-card">
+                <div class="rune-display">ᚠ</div>
+                <div class="rune-name">Fehu</div>
+                <div class="rune-pronunciation">Prononciation : "F"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Bétail, Richesse mobile. Symbolise la prospérité, l'abondance, le succès matériel et l'énergie créatrice primordiale.
+                </div>
+                <div class="rune-keywords">💰 Abondance • Succès • Énergie</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚢ</div>
+                <div class="rune-name">Uruz</div>
+                <div class="rune-pronunciation">Prononciation : "U"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Aurochs (bœuf sauvage). Représente la force brute, la santé, l'endurance et le courage. Énergie vitale non domptée.
+                </div>
+                <div class="rune-keywords">💪 Force • Santé • Vitalité</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚦ</div>
+                <div class="rune-name">Thurisaz</div>
+                <div class="rune-pronunciation">Prononciation : "TH"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Géant, Épine. Symbolise la protection, les obstacles, le conflit et la puissance défensive. Le marteau de Thor.
+                </div>
+                <div class="rune-keywords">🛡️ Protection • Conflit • Défense</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚨ</div>
+                <div class="rune-name">Ansuz</div>
+                <div class="rune-pronunciation">Prononciation : "A"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Dieu, Bouche. Représente la communication, la sagesse divine, l'inspiration et les signes. Associée à Odin.
+                </div>
+                <div class="rune-keywords">📢 Communication • Sagesse • Inspiration</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚱ</div>
+                <div class="rune-name">Raidho</div>
+                <div class="rune-pronunciation">Prononciation : "R"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Voyage, Roue. Symbolise le mouvement, les voyages, le rythme de la vie et l'ordre cosmique.
+                </div>
+                <div class="rune-keywords">🚶 Voyage • Mouvement • Progrès</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚲ</div>
+                <div class="rune-name">Kenaz</div>
+                <div class="rune-pronunciation">Prononciation : "K"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Torche. Représente la connaissance, l'illumination, la créativité et la transformation par le feu.
+                </div>
+                <div class="rune-keywords">🔥 Connaissance • Illumination • Créativité</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚷ</div>
+                <div class="rune-name">Gebo</div>
+                <div class="rune-pronunciation">Prononciation : "G"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Don, Cadeau. Symbolise la générosité, les partenariats, l'équilibre et l'échange harmonieux.
+                </div>
+                <div class="rune-keywords">🎁 Don • Partenariat • Équilibre</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚹ</div>
+                <div class="rune-name">Wunjo</div>
+                <div class="rune-pronunciation">Prononciation : "W"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Joie. Représente le bonheur, l'harmonie, la satisfaction et l'accomplissement des désirs.
+                </div>
+                <div class="rune-keywords">😊 Joie • Harmonie • Bonheur</div>
+            </div>
+        </div>
+
+        <div class="aett-section">
+            <h2>⚡ Deuxième Aett - Aett de Heimdall (Ordre & Chaos)</h2>
+            <p>Les huit runes suivantes, gouvernées par Heimdall, gardien du Bifrost et veilleur des dieux.</p>
+        </div>
+
+        <div class="rune-grid">
+            <div class="rune-card">
+                <div class="rune-display">ᚺ</div>
+                <div class="rune-name">Hagalaz</div>
+                <div class="rune-pronunciation">Prononciation : "H"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Grêle. Symbolise les forces destructrices de la nature, les événements imprévus et la transformation radicale.
+                </div>
+                <div class="rune-keywords">🌨️ Changement • Destruction • Renouveau</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᚾ</div>
+                <div class="rune-name">Nauthiz</div>
+                <div class="rune-pronunciation">Prononciation : "N"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Besoin, Nécessité. Représente les contraintes, les leçons difficiles, la résilience et la croissance par l'adversité.
+                </div>
+                <div class="rune-keywords">🔒 Besoin • Contrainte • Résilience</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛁ</div>
+                <div class="rune-name">Isa</div>
+                <div class="rune-pronunciation">Prononciation : "I"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Glace. Symbolise la stagnation, l'immobilité, la patience et la concentration intérieure.
+                </div>
+                <div class="rune-keywords">❄️ Stagnation • Patience • Clarté</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛃ</div>
+                <div class="rune-name">Jera</div>
+                <div class="rune-pronunciation">Prononciation : "J/Y"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Année, Récolte. Représente les cycles naturels, la patience, les récompenses et l'abondance méritée.
+                </div>
+                <div class="rune-keywords">🌾 Récolte • Cycle • Patience</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛇ</div>
+                <div class="rune-name">Eihwaz</div>
+                <div class="rune-pronunciation">Prononciation : "EI"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> If (arbre). Symbolise la mort et la renaissance, la transformation, la connexion entre les mondes.
+                </div>
+                <div class="rune-keywords">🌲 Transformation • Renaissance • Endurance</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛈ</div>
+                <div class="rune-name">Perthro</div>
+                <div class="rune-pronunciation">Prononciation : "P"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Mystère, Destinée. Représente le destin, les secrets cachés, la divination et les potentialités.
+                </div>
+                <div class="rune-keywords">🎲 Destin • Mystère • Chance</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛉ</div>
+                <div class="rune-name">Algiz</div>
+                <div class="rune-pronunciation">Prononciation : "Z"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Élan, Protection. Symbolise la défense spirituelle, la connexion divine et la protection supérieure.
+                </div>
+                <div class="rune-keywords">🦌 Protection • Connexion • Défense</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛊ</div>
+                <div class="rune-name">Sowilo</div>
+                <div class="rune-pronunciation">Prononciation : "S"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Soleil. Représente la victoire, le succès, l'énergie vitale et l'illumination.
+                </div>
+                <div class="rune-keywords">☀️ Victoire • Succès • Énergie</div>
+            </div>
+        </div>
+
+        <div class="aett-section">
+            <h2>🌙 Troisième Aett - Aett de Tyr (Spiritualité & Divin)</h2>
+            <p>Les huit dernières runes, gouvernées par Tyr, dieu de la justice et de la guerre.</p>
+        </div>
+
+        <div class="rune-grid">
+            <div class="rune-card">
+                <div class="rune-display">ᛏ</div>
+                <div class="rune-name">Tiwaz</div>
+                <div class="rune-pronunciation">Prononciation : "T"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Tyr (dieu). Symbolise le courage, la justice, le sacrifice et l'honneur guerrier.
+                </div>
+                <div class="rune-keywords">⚔️ Courage • Justice • Honneur</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛒ</div>
+                <div class="rune-name">Berkano</div>
+                <div class="rune-pronunciation">Prononciation : "B"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Bouleau. Représente la croissance, la fertilité, le renouveau et l'énergie féminine.
+                </div>
+                <div class="rune-keywords">🌿 Croissance • Fertilité • Renouveau</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛖ</div>
+                <div class="rune-name">Ehwaz</div>
+                <div class="rune-pronunciation">Prononciation : "E"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Cheval. Symbolise le mouvement, le partenariat, la confiance et le progrès harmonieux.
+                </div>
+                <div class="rune-keywords">🐴 Mouvement • Partenariat • Confiance</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛗ</div>
+                <div class="rune-name">Mannaz</div>
+                <div class="rune-pronunciation">Prononciation : "M"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Humain. Représente l'humanité, la conscience de soi, la communauté et l'intelligence.
+                </div>
+                <div class="rune-keywords">👤 Humanité • Conscience • Communauté</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛚ</div>
+                <div class="rune-name">Laguz</div>
+                <div class="rune-pronunciation">Prononciation : "L"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Eau, Lac. Symbolise l'intuition, l'inconscient, les émotions et le flux de la vie.
+                </div>
+                <div class="rune-keywords">💧 Intuition • Émotions • Flux</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛜ</div>
+                <div class="rune-name">Ingwaz</div>
+                <div class="rune-pronunciation">Prononciation : "NG"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Ing (dieu de la fertilité). Représente la gestation, le potentiel latent et la croissance intérieure.
+                </div>
+                <div class="rune-keywords">🌱 Potentiel • Gestation • Croissance</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛞ</div>
+                <div class="rune-name">Dagaz</div>
+                <div class="rune-pronunciation">Prononciation : "D"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Jour. Symbolise l'éveil, la percée, la transformation et la clarté soudaine.
+                </div>
+                <div class="rune-keywords">🌅 Éveil • Percée • Clarté</div>
+            </div>
+
+            <div class="rune-card">
+                <div class="rune-display">ᛟ</div>
+                <div class="rune-name">Othala</div>
+                <div class="rune-pronunciation">Prononciation : "O"</div>
+                <div class="rune-meaning">
+                    <strong>Signification :</strong> Héritage. Représente la propriété ancestrale, les racines, l'héritage spirituel et matériel.
+                </div>
+                <div class="rune-keywords">🏡 Héritage • Racines • Propriété</div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        // Animation d'apparition au scroll
+        const cards = document.querySelectorAll('.rune-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.5s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Académie Complète des Sagesses Ésotériques - MEGA ENRICHED</title>
+    <link rel="stylesheet" href="../../assets/css/main/style.css">
+    <link rel="stylesheet" href="../../assets/css/main/fix-contrast.css">
+    <link rel="stylesheet" href="../../assets/css/animations/animated-background.css">
+    <link rel="stylesheet" href="../../assets/css/animations/bleus-cosmiques.css">
+    <link rel="stylesheet" href="../../assets/css/main/cosmic-header-styles.css">
+    <link rel="stylesheet" href="../../assets/css/features/knowledge-validation.css">
+    <link rel="stylesheet" href="../../assets/css/features/student-dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/features/spaced-repetition.css">
+    <script src="../../assets/js/animations/animated-background.js" defer></script>
+    <script type="module" src="../../assets/js/auth/firebase-config.js"></script>
+    <script src="../../assets/js/auth/auth-system.js" defer></script>
+    <script src="../../assets/js/progression/progression-system.js" defer></script>
+    <script src="../../assets/js/progression/user-progression-cloud.js" defer></script>
+    <script src="../../assets/js/learning/knowledge-validation.js" defer></script>
+    <script src="../../assets/js/learning/student-dashboard.js" defer></script>
+    <script src="../../assets/js/learning/spaced-repetition.js" defer></script>
+    <style>
+        /* Styles supplémentaires pour la version MEGA */
+        .mega-hero {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3);
+        }
+
+        .mega-hero h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #8a2be2, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+            border-color: rgba(138, 43, 226, 0.8);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            color: #8a2be2;
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-new {
+            background: linear-gradient(135deg, #ff0080, #ff8c00);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .cosmic-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+            margin: 4rem 0;
+        }
+
+        .tools-mega-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tool-mega-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tool-mega-card:hover {
+            background: rgba(138, 43, 226, 0.1);
+            border-color: rgba(138, 43, 226, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+    <header>
+        <div class="header-buttons-cosmic">
+            <button class="cosmic-btn cosmic-btn-dark" onclick="toggleDarkMode()">
+                <span class="btn-icon">🌙</span>
+                <span class="btn-text">Mode Nuit</span>
+            </button>
+            <button class="cosmic-btn cosmic-btn-lang" onclick="toggleLanguage()">
+                <span class="btn-icon">🌐</span>
+                <span class="btn-text">EN</span>
+            </button>
+            <button id="login-button" class="cosmic-btn cosmic-btn-login" onclick="window.location.href='login.html'" style="display: none;">
+                <span class="btn-icon">🔐</span>
+                <span class="btn-text">Connexion</span>
+            </button>
+            <button id="profile-button" class="cosmic-btn cosmic-btn-profile" onclick="window.location.href='profile.html'" style="display: none;">
+                <span class="btn-icon">👤</span>
+                <span class="btn-text" id="user-name">Mon Profil</span>
+            </button>
+        </div>
+
+        <h1>🔮 Académie Complète des Sagesses Ésotériques</h1>
+        <p class="subtitle">Version MEGA ENRICHED - 12 Systèmes Sacrés Complets • 500+ Leçons Interactives</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#accueil" class="active">Accueil</a>
+            <a href="#runes">Runes</a>
+            <a href="#gematria">Gematria</a>
+            <a href="#hieroglyphes">Hiéroglyphes</a>
+            <a href="#maya">Mayas</a>
+            <a href="#tarot">Tarot</a>
+            <a href="#astrologie">Astrologie</a>
+            <a href="#alchimie">Alchimie</a>
+            <a href="#iching">I-Ching</a>
+            <a href="#numerologie">Numérologie</a>
+            <a href="#chakras">Chakras</a>
+            <a href="#mandala">Mandalas</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="fullscreen-hint" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(33, 150, 243, 0.2)); border: 2px solid rgba(76, 175, 80, 0.5); border-radius: 15px; padding: 1rem 2rem; margin-bottom: 2rem; text-align: center; font-size: 1.1rem;">
+            💡 <strong>Astuce :</strong> Appuyez sur <kbd style="background: rgba(255, 255, 255, 0.1); padding: 0.3rem 0.6rem; border-radius: 5px; border: 1px solid rgba(255, 255, 255, 0.3); font-family: monospace;">F11</kbd> pour profiter du site en plein écran !
+        </div>
+
+        <section class="mega-hero" id="accueil">
+            <span class="badge-new">✨ NOUVELLE VERSION MEGA ENRICHIE ✨</span>
+            <h2>Bienvenue dans la Plus Grande Académie Ésotérique Interactive du Web</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
+                Découvrez <strong>12 systèmes sacrés complets</strong> avec plus de <strong>500 leçons interactives</strong>,
+                des outils de divination avancés, des méditations guidées, et une progression personnalisée par IA.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem 2rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.4);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #8a2be2;">500+</div>
+                    <div>Leçons Interactives</div>
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem 2rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.4);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #8a2be2;">12</div>
+                    <div>Systèmes Sacrés</div>
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem 2rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.4);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #8a2be2;">50+</div>
+                    <div>Outils de Divination</div>
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem 2rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.4);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #8a2be2;">100+</div>
+                    <div>Méditations Guidées</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cosmic-divider"></div>
+
+        <!-- SECTION NOUVEAUTÉS MEGA -->
+        <section style="margin: 4rem 0;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; background: linear-gradient(135deg, #8a2be2, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                🌟 Nouvelles Sections Exclusives
+            </h2>
+
+            <div class="feature-grid">
+                <!-- TAROT -->
+                <div class="feature-card" id="tarot">
+                    <div class="feature-icon">🃏</div>
+                    <div class="feature-title">Le Tarot de Marseille</div>
+                    <span class="badge-new">NOUVEAU</span>
+                    <p class="feature-desc">
+                        Maîtrisez les 78 lames du Tarot : 22 Arcanes Majeurs et 56 Arcanes Mineurs.
+                        Tirages interactifs, symbolisme profond, méthodes de lecture avancées.
+                    </p>
+                    <div class="level-cards" style="grid-template-columns: 1fr;">
+                        <div class="card beginner" style="margin: 0.5rem 0;">
+                            <h4>🌱 Débutant</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Les 22 Arcanes Majeurs</li>
+                                <li>Symbolisme des couleurs et nombres</li>
+                                <li>Tirage à 3 cartes (Passé-Présent-Futur)</li>
+                                <li>Introduction aux Arcanes Mineurs</li>
+                            </ul>
+                            <a href="tarot-debutant.html" class="btn btn-beginner">Découvrir →</a>
+                        </div>
+                        <div class="card intermediate" style="margin: 0.5rem 0;">
+                            <h4>🌿 Intermédiaire</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Les 4 Couleurs complètes (Coupes, Épées, Bâtons, Deniers)</li>
+                                <li>Croix Celtique et tirages avancés</li>
+                                <li>Interprétation des combinaisons</li>
+                                <li>Lecture intuitive et inversée</li>
+                            </ul>
+                            <a href="tarot-intermediaire.html" class="btn btn-intermediate">Explorer →</a>
+                        </div>
+                        <div class="card expert" style="margin: 0.5rem 0;">
+                            <h4>🌳 Expert</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Kabbale et Arbre de Vie dans le Tarot</li>
+                                <li>Astrologie et correspondances planétaires</li>
+                                <li>Tirages personnalisés créatifs</li>
+                                <li>Méditation et voyage chamanique avec les lames</li>
+                            </ul>
+                            <a href="tarot-expert.html" class="btn btn-expert">Maîtriser →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ASTROLOGIE -->
+                <div class="feature-card" id="astrologie">
+                    <div class="feature-icon">♈</div>
+                    <div class="feature-title">Astrologie Sacrée</div>
+                    <span class="badge-new">NOUVEAU</span>
+                    <p class="feature-desc">
+                        Thème astral complet, transit des planètes, maisons astrologiques,
+                        aspects planétaires, prévisions personnalisées.
+                    </p>
+                    <div class="level-cards" style="grid-template-columns: 1fr;">
+                        <div class="card beginner" style="margin: 0.5rem 0;">
+                            <h4>🌱 Débutant</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Les 12 signes du zodiaque</li>
+                                <li>Soleil, Lune et Ascendant</li>
+                                <li>Les 4 Éléments (Feu, Terre, Air, Eau)</li>
+                                <li>Calcul de votre thème natal simplifié</li>
+                            </ul>
+                            <a href="astrologie-debutant.html" class="btn btn-beginner">Découvrir →</a>
+                        </div>
+                        <div class="card intermediate" style="margin: 0.5rem 0;">
+                            <h4>🌿 Intermédiaire</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Les 10 planètes et leurs significations</li>
+                                <li>Les 12 Maisons astrologiques</li>
+                                <li>Aspects majeurs (conjonction, opposition, trigone, carré)</li>
+                                <li>Transits planétaires et prévisions</li>
+                            </ul>
+                            <a href="astrologie-intermediaire.html" class="btn btn-intermediate">Explorer →</a>
+                        </div>
+                        <div class="card expert" style="margin: 0.5rem 0;">
+                            <h4>🌳 Expert</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Astrologie karmique et Nœuds Lunaires</li>
+                                <li>Révolutions solaires et progressions</li>
+                                <li>Synastrie et compatibilité amoureuse</li>
+                                <li>Astrocartographie et lignes de destinée</li>
+                            </ul>
+                            <a href="astrologie-expert.html" class="btn btn-expert">Maîtriser →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALCHIMIE -->
+                <div class="feature-card" id="alchimie">
+                    <div class="feature-icon">⚗️</div>
+                    <div class="feature-title">Alchimie Hermétique</div>
+                    <span class="badge-new">NOUVEAU</span>
+                    <p class="feature-desc">
+                        Symbolisme alchimique, Table d'Émeraude, Grand Œuvre,
+                        transmutation intérieure, philosophie hermétique.
+                    </p>
+                    <div class="level-cards" style="grid-template-columns: 1fr;">
+                        <div class="card beginner" style="margin: 0.5rem 0;">
+                            <h4>🌱 Débutant</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Histoire de l'alchimie (Égypte, Grèce, Moyen Âge)</li>
+                                <li>Les 4 Éléments alchimiques</li>
+                                <li>Symboles de base (☿ ♀ ♂ ♃ ♄)</li>
+                                <li>Table d'Émeraude d'Hermès Trismégiste</li>
+                            </ul>
+                            <a href="alchimie-debutant.html" class="btn btn-beginner">Découvrir →</a>
+                        </div>
+                        <div class="card intermediate" style="margin: 0.5rem 0;">
+                            <h4>🌿 Intermédiaire</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Les 7 métaux planétaires</li>
+                                <li>Les 3 Principes (Soufre, Mercure, Sel)</li>
+                                <li>Nigredo, Albedo, Rubedo (phases du Grand Œuvre)</li>
+                                <li>Symbolisme dans les textes alchimiques</li>
+                            </ul>
+                            <a href="alchimie-intermediaire.html" class="btn btn-intermediate">Explorer →</a>
+                        </div>
+                        <div class="card expert" style="margin: 0.5rem 0;">
+                            <h4>🌳 Expert</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Alchimie spirituelle et transmutation de l'âme</li>
+                                <li>Pierre Philosophale et Élixir de Longue Vie</li>
+                                <li>Interprétation des gravures alchimiques</li>
+                                <li>Pratiques méditatives alchimiques</li>
+                            </ul>
+                            <a href="alchimie-expert.html" class="btn btn-expert">Maîtriser →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- I-CHING -->
+                <div class="feature-card" id="iching">
+                    <div class="feature-icon">☯️</div>
+                    <div class="feature-title">Yi-King (I-Ching)</div>
+                    <span class="badge-new">NOUVEAU</span>
+                    <p class="feature-desc">
+                        Livre des Mutations chinois, 64 hexagrammes, divination par les pièces ou baguettes,
+                        philosophie taoïste, Yin-Yang.
+                    </p>
+                    <div class="level-cards" style="grid-template-columns: 1fr;">
+                        <div class="card beginner" style="margin: 0.5rem 0;">
+                            <h4>🌱 Débutant</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Yin-Yang et les 5 Éléments chinois</li>
+                                <li>Construction des trigrammes (☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷)</li>
+                                <li>Introduction aux 64 hexagrammes</li>
+                                <li>Méthode de tirage avec 3 pièces</li>
+                            </ul>
+                            <a href="iching-debutant.html" class="btn btn-beginner">Découvrir →</a>
+                        </div>
+                        <div class="card intermediate" style="margin: 0.5rem 0;">
+                            <h4>🌿 Intermédiaire</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Les 64 hexagrammes complets</li>
+                                <li>Traits mutants et hexagrammes dérivés</li>
+                                <li>Interprétation des textes classiques</li>
+                                <li>Méthode traditionnelle aux 50 baguettes</li>
+                            </ul>
+                            <a href="iching-intermediaire.html" class="btn btn-intermediate">Explorer →</a>
+                        </div>
+                        <div class="card expert" style="margin: 0.5rem 0;">
+                            <h4>🌳 Expert</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Commentaires de Confucius et philosophie</li>
+                                <li>Applications décisionnelles et stratégiques</li>
+                                <li>Correspondances avec le Feng Shui</li>
+                                <li>Méditation sur les hexagrammes</li>
+                            </ul>
+                            <a href="iching-expert.html" class="btn btn-expert">Maîtriser →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NUMÉROLOGIE -->
+                <div class="feature-card" id="numerologie">
+                    <div class="feature-icon">🔢</div>
+                    <div class="feature-title">Numérologie Sacrée</div>
+                    <span class="badge-new">NOUVEAU</span>
+                    <p class="feature-desc">
+                        Chemin de vie, nombre d'expression, cycles personnels,
+                        numérologie pythagoricienne et kabbalistique.
+                    </p>
+                    <div class="level-cards" style="grid-template-columns: 1fr;">
+                        <div class="card beginner" style="margin: 0.5rem 0;">
+                            <h4>🌱 Débutant</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Signification des nombres de 1 à 9</li>
+                                <li>Calcul du Chemin de Vie</li>
+                                <li>Nombre d'Expression (prénom et nom)</li>
+                                <li>Les Maîtres-Nombres (11, 22, 33)</li>
+                            </ul>
+                            <a href="numerologie-debutant.html" class="btn btn-beginner">Découvrir →</a>
+                        </div>
+                        <div class="card intermediate" style="margin: 0.5rem 0;">
+                            <h4>🌿 Intermédiaire</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Année Personnelle et cycles de 9 ans</li>
+                                <li>Nombre Intime et nombre de Réalisation</li>
+                                <li>Grille d'Inclusion (Pythagore)</li>
+                                <li>Compatibilité numérologique</li>
+                            </ul>
+                            <a href="numerologie-intermediaire.html" class="btn btn-intermediate">Explorer →</a>
+                        </div>
+                        <div class="card expert" style="margin: 0.5rem 0;">
+                            <h4>🌳 Expert</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>Numérologie kabbalistique avancée</li>
+                                <li>Cycles de vie et tournants majeurs</li>
+                                <li>Prévisions annuelles détaillées</li>
+                                <li>Harmonisation vibratoire et choix de noms</li>
+                            </ul>
+                            <a href="numerologie-expert.html" class="btn btn-expert">Maîtriser →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHAKRAS ENRICHI -->
+                <div class="feature-card" id="chakras">
+                    <div class="feature-icon">🌈</div>
+                    <div class="feature-title">Les 7 Chakras + Système Complet</div>
+                    <span class="badge-new">VERSION ENRICHIE</span>
+                    <p class="feature-desc">
+                        Système complet des 12 chakras (7 principaux + 5 supérieurs),
+                        méditations guidées, mudras, mantras, cristaux associés.
+                    </p>
+                    <a href="chakras.html" class="btn" style="background: linear-gradient(135deg, #8a2be2, #ff00ff); color: white; padding: 0.8rem 2rem; border-radius: 10px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 1rem;">
+                        Explorer le Système Complet →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="cosmic-divider"></div>
+
+        <!-- SECTIONS DÉJÀ EXISTANTES (résumé) -->
+        <section id="runes" class="section-category">
+            <h2>📿 Les Runes Nordiques</h2>
+            <p class="intro">Système runique complet avec 8+ leçons enrichies, mythologie nordique, divination interactive.</p>
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="index.html#runes" class="btn" style="background: linear-gradient(135deg, #64b5f6, #1e88e5); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    🔱 Accéder aux Runes →
+                </a>
+            </div>
+        </section>
+
+        <section id="gematria" class="section-category">
+            <h2>✡️ La Gematria Hébraïque</h2>
+            <p class="intro">Système complet de gematria avec calculateur avancé, Kabbale, Arbre de Vie, 72 Noms de Dieu.</p>
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="index.html#gematria" class="btn" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #1a1a2e; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    ✡️ Accéder à la Gematria →
+                </a>
+            </div>
+        </section>
+
+        <section id="hieroglyphes" class="section-category">
+            <h2>𓂀 Les Hiéroglyphes Égyptiens</h2>
+            <p class="intro">40+ leçons complètes, 46 inscriptions authentiques, jeux interactifs, contexte culturel approfondi.</p>
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="index.html#hieroglyphes" class="btn" style="background: linear-gradient(135deg, #c49c62, #8b6f47); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    𓂀 Accéder aux Hiéroglyphes →
+                </a>
+            </div>
+        </section>
+
+        <section id="maya" class="section-category">
+            <h2>𓁹 Les Glyphes Mayas</h2>
+            <p class="intro">35+ leçons détaillées, calendriers Tzolk'in et Haab, astronomie maya, compte long.</p>
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="index.html#maya" class="btn" style="background: linear-gradient(135deg, #f4a460, #d2691e); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    🌞 Accéder aux Glyphes Mayas →
+                </a>
+            </div>
+        </section>
+
+        <section id="mandala" class="section-category">
+            <h2>🕉️ Mandalas Sacrés</h2>
+            <p class="intro">Galerie immersive de mandalas animés, méditation profonde, création de mandalas personnalisés.</p>
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="mandala_anime.html" class="btn" style="background: linear-gradient(135deg, #9b59b6, #e91e63); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    🌀 Contempler les Mandalas →
+                </a>
+            </div>
+        </section>
+
+        <div class="cosmic-divider"></div>
+
+        <!-- SECTION OUTILS MEGA -->
+        <section class="tools">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">🛠️ Outils Interactifs Avancés</h2>
+
+            <div class="tools-mega-grid">
+                <!-- Outils existants -->
+                <div class="tool-mega-card">
+                    <h3>📿 Alphabet Runique Complet</h3>
+                    <p>Elder Futhark (24) + Younger Futhark (16)</p>
+                    <a href="alphabet-runes.html" class="btn-small">Apprendre</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <h3>✡️ Calculateur Gematria</h3>
+                    <p>Tous les systèmes : Simple, Pleine, Ordinale</p>
+                    <a href="calculateur-gematria.html" class="btn-small">Calculer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <h3>🔮 Tirage de Runes Interactif</h3>
+                    <p>Rune du Jour, 3 Nornes, Croix de Thor</p>
+                    <a href="runes-divination.html" class="btn-small">Tirer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <h3>𓂀 Traducteur Hiéroglyphes</h3>
+                    <p>Français ↔ Hiéroglyphes phonétiques</p>
+                    <a href="hieroglyphes-parcours-complet.html" class="btn-small">Traduire</a>
+                </div>
+
+                <!-- Nouveaux outils MEGA -->
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>🃏 Tirage de Tarot Complet</h3>
+                    <p>Croix Celtique, Fer à Cheval, Pyramide</p>
+                    <a href="tarot-tirage.html" class="btn-small">Tirer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>♈ Thème Astral Personnel</h3>
+                    <p>Calcul complet de votre carte du ciel</p>
+                    <a href="astrologie-theme.html" class="btn-small">Calculer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>☯️ Consultation I-Ching</h3>
+                    <p>Tirage des 64 hexagrammes</p>
+                    <a href="iching-tirage.html" class="btn-small">Consulter</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>🔢 Profil Numérologique</h3>
+                    <p>Chemin de vie, année personnelle, cycles</p>
+                    <a href="numerologie-profil.html" class="btn-small">Calculer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>⚗️ Tableau Alchimique Interactif</h3>
+                    <p>Symboles, métaux, planètes, correspondances</p>
+                    <a href="alchimie-tableau.html" class="btn-small">Explorer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>🌈 Test d'Équilibre des Chakras</h3>
+                    <p>Évaluation énergétique personnalisée</p>
+                    <a href="chakras-test.html" class="btn-small">Tester</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>🧘 Méditations Guidées</h3>
+                    <p>100+ méditations audio/vidéo</p>
+                    <a href="meditations.html" class="btn-small">Méditer</a>
+                </div>
+
+                <div class="tool-mega-card">
+                    <span class="badge-new" style="font-size: 0.8rem;">NOUVEAU</span>
+                    <h3>🎨 Générateur de Sigils Magiques</h3>
+                    <p>Créez vos propres sceaux personnalisés</p>
+                    <a href="sigils-generator.html" class="btn-small">Créer</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="cosmic-divider"></div>
+
+        <!-- SECTION PARCOURS PERSONNALISÉ -->
+        <section style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2)); border: 3px solid rgba(138, 43, 226, 0.5); border-radius: 25px; padding: 3rem; margin: 4rem 0; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem; background: linear-gradient(135deg, #8a2be2, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                🎯 Votre Parcours Personnalisé par IA
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
+                Notre système d'intelligence artificielle analyse votre progression et vous recommande
+                les prochaines leçons optimales selon votre niveau et vos intérêts.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div style="background: rgba(138, 43, 226, 0.15); padding: 1.5rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
+                    <h4>Suivi de Progression</h4>
+                    <p style="opacity: 0.9; font-size: 0.95rem;">Visualisez vos progrès dans chaque système sacré</p>
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.15); padding: 1.5rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏆</div>
+                    <h4>Badges et Récompenses</h4>
+                    <p style="opacity: 0.9; font-size: 0.95rem;">Débloquez des achievements en progressant</p>
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.15); padding: 1.5rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎓</div>
+                    <h4>Certifications</h4>
+                    <p style="opacity: 0.9; font-size: 0.95rem;">Obtenez des diplômes pour chaque niveau maîtrisé</p>
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.15); padding: 1.5rem; border-radius: 15px; border: 2px solid rgba(138, 43, 226, 0.3);">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤝</div>
+                    <h4>Communauté</h4>
+                    <p style="opacity: 0.9; font-size: 0.95rem;">Échangez avec d'autres apprenants passionnés</p>
+                </div>
+            </div>
+            <a href="profile.html" style="display: inline-block; background: linear-gradient(135deg, #8a2be2, #ff00ff); color: white; padding: 1.2rem 3rem; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 20px rgba(138, 43, 226, 0.5); margin-top: 2rem; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                👤 Accéder à Mon Profil →
+            </a>
+        </section>
+
+    </main>
+
+    <footer style="background: rgba(138, 43, 226, 0.1); padding: 3rem 2rem; margin-top: 4rem; border-top: 2px solid rgba(138, 43, 226, 0.3);">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h3 style="color: #8a2be2; margin-bottom: 1.5rem;">🔮 Académie Complète des Sagesses Ésotériques</h3>
+            <p style="opacity: 0.9; margin-bottom: 1rem;">Version MEGA ENRICHED - 12 Systèmes Sacrés • 500+ Leçons • 50+ Outils Interactifs</p>
+            <p style="opacity: 0.7; font-size: 0.9rem;">© 2025 - Savoir ancestral, apprentissage progressif, technologie moderne</p>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" style="color: #8a2be2; text-decoration: none;">Version Classique</a>
+                <a href="index_enrichi.html" style="color: #8a2be2; text-decoration: none;">Version Enrichie</a>
+                <a href="profile.html" style="color: #8a2be2; text-decoration: none;">Mon Profil</a>
+                <a href="login.html" style="color: #8a2be2; text-decoration: none;">Connexion</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Charger la préférence au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Langue (simple toggle)
+        let currentLang = 'fr';
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('language', currentLang);
+            // TODO: Implémenter les traductions complètes
+        }
+
+        // Gestion auth
+        window.addEventListener('authStateChanged', (e) => {
+            const loginBtn = document.getElementById('login-button');
+            const profileBtn = document.getElementById('profile-button');
+            const userName = document.getElementById('user-name');
+
+            if (e.detail.user) {
+                loginBtn.style.display = 'none';
+                profileBtn.style.display = 'flex';
+                userName.textContent = e.detail.user.displayName || 'Mon Profil';
+            } else {
+                loginBtn.style.display = 'flex';
+                profileBtn.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (!window.currentUser) {
+                    document.getElementById('login-button').style.display = 'flex';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

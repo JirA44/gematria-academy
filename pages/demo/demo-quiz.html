@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Démo - Système de Validation des Connaissances</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <link rel="stylesheet" href="animated-background.css">
+    <link rel="stylesheet" href="bleus-cosmiques.css">
+    <link rel="stylesheet" href="knowledge-validation.css">
+    <link rel="stylesheet" href="student-dashboard.css">
+    <script src="animated-background.js" defer></script>
+    <script src="knowledge-validation.js" defer></script>
+    <script src="student-dashboard.js" defer></script>
+    <style>
+        body {
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(26, 26, 62, 0.9), rgba(45, 45, 95, 0.9));
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #8a2be2, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.1));
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+            border-color: rgba(138, 43, 226, 0.8);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #8a2be2;
+        }
+
+        .feature-desc {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .lesson-card {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(75, 0, 130, 0.15));
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            border-color: rgba(138, 43, 226, 0.7);
+        }
+
+        .lesson-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-category {
+            color: #8a2be2;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .lesson-desc {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #8a2be2, #6a1b9a);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-quiz:hover {
+            background: linear-gradient(135deg, #6a1b9a, #8a2be2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+        }
+
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🎓 Système de Validation des Connaissances</h1>
+
+        <p class="intro">
+            Bienvenue dans le système de validation de l'Académie des Sagesses Ésotériques !<br>
+            Chaque leçon est accompagnée d'un quiz pour vérifier que vous avez bien intégré les connaissances.
+        </p>
+
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">✅</div>
+                <div class="feature-title">Quiz Interactifs</div>
+                <p class="feature-desc">
+                    Questions à choix multiples avec feedback immédiat et explications détaillées.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Progression Verrouillée</div>
+                <p class="feature-desc">
+                    Validez chaque leçon avec 80% minimum pour débloquer la suivante.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Tableau de Bord</div>
+                <p class="feature-desc">
+                    Suivez votre progression, vos scores et débloquez des badges de réussite.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-title">Certifications</div>
+                <p class="feature-desc">
+                    Obtenez des certificats officiels en validant tous les niveaux d'un système.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">
+            🎯 Essayez les Quiz
+        </h2>
+
+        <div class="lessons-grid">
+            <!-- Rune Fehu -->
+            <div class="lesson-card" data-lesson-id="rune-fehu">
+                <div class="lesson-icon">ᚠ</div>
+                <div class="lesson-title">Rune Fehu</div>
+                <div class="lesson-category">📿 Runes Nordiques • Niveau Débutant</div>
+                <p class="lesson-desc">
+                    Maîtrisez la première rune du Futhark : symbole de richesse, prospérité et énergie créatrice.
+                </p>
+                <button class="btn-quiz" onclick="validator.startQuiz('rune-fehu')">
+                    🎓 Valider mes connaissances
+                </button>
+            </div>
+
+            <!-- Rune Uruz -->
+            <div class="lesson-card" data-lesson-id="rune-uruz">
+                <div class="lesson-icon">ᚢ</div>
+                <div class="lesson-title">Rune Uruz</div>
+                <div class="lesson-category">📿 Runes Nordiques • Niveau Débutant</div>
+                <p class="lesson-desc">
+                    Découvrez la force vitale de l'aurochs : santé, vitalité et puissance primordiale.
+                </p>
+                <button class="btn-quiz" onclick="validator.startQuiz('rune-uruz')">
+                    🎓 Valider mes connaissances
+                </button>
+            </div>
+
+            <!-- Astrologie Bélier -->
+            <div class="lesson-card" data-lesson-id="astro-belier">
+                <div class="lesson-icon">♈</div>
+                <div class="lesson-title">Le Bélier</div>
+                <div class="lesson-category">⭐ Astrologie • Niveau Débutant</div>
+                <p class="lesson-desc">
+                    Premier signe du zodiaque : courage, leadership et énergie ardente de Mars.
+                </p>
+                <button class="btn-quiz" onclick="validator.startQuiz('astro-belier')">
+                    🎓 Valider mes connaissances
+                </button>
+            </div>
+
+            <!-- Gématrie -->
+            <div class="lesson-card" data-lesson-id="gematrie-bases">
+                <div class="lesson-icon">🔢</div>
+                <div class="lesson-title">Bases de la Gématrie</div>
+                <div class="lesson-category">✡️ Gématrie Hébraïque • Niveau Débutant</div>
+                <p class="lesson-desc">
+                    Introduction aux valeurs numériques des lettres hébraïques et leur signification mystique.
+                </p>
+                <button class="btn-quiz" onclick="validator.startQuiz('gematrie-bases')">
+                    🎓 Valider mes connaissances
+                </button>
+            </div>
+
+            <!-- Tarot -->
+            <div class="lesson-card" data-lesson-id="tarot-bateleur">
+                <div class="lesson-icon">🃏</div>
+                <div class="lesson-title">Le Bateleur (I)</div>
+                <div class="lesson-category">🎴 Tarot de Marseille • Niveau Débutant</div>
+                <p class="lesson-desc">
+                    Premier Arcane Majeur : le potentiel infini, la créativité et le commencement.
+                </p>
+                <button class="btn-quiz" onclick="validator.startQuiz('tarot-bateleur')">
+                    🎓 Valider mes connaissances
+                </button>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div style="text-align: center; margin: 3rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">
+                📊 Consultez Votre Progression
+            </h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">
+                Un bouton flottant en bas à droite vous permet d'accéder à votre tableau de bord complet.<br>
+                Vous y trouverez vos statistiques, badges, certificats et historique d'activité.
+            </p>
+        </div>
+
+        <div style="text-align: center; padding: 2rem; background: rgba(138, 43, 226, 0.1); border-radius: 20px; border: 2px solid rgba(138, 43, 226, 0.3);">
+            <h3 style="margin-bottom: 1rem;">💡 Comment ça fonctionne ?</h3>
+            <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                <p style="margin: 1rem 0;">
+                    <strong>1️⃣ Étudiez la leçon</strong><br>
+                    Lisez attentivement le contenu et les exemples fournis.
+                </p>
+                <p style="margin: 1rem 0;">
+                    <strong>2️⃣ Passez le quiz</strong><br>
+                    Répondez aux 4 questions avec feedback immédiat après chaque réponse.
+                </p>
+                <p style="margin: 1rem 0;">
+                    <strong>3️⃣ Validez avec 80%+</strong><br>
+                    Obtenez au minimum 80% pour valider la leçon et débloquer la suivante.
+                </p>
+                <p style="margin: 1rem 0;">
+                    <strong>4️⃣ Gagnez des badges</strong><br>
+                    Accumulez des points XP, des badges et débloquez des certificats !
+                </p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="index_mega_enriched.html" style="display: inline-block; padding: 1.2rem 3rem; background: linear-gradient(135deg, #8a2be2, #6a1b9a); color: white; text-decoration: none; border-radius: 30px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5); transition: all 0.3s ease;">
+                ← Retour à l'Académie
+            </a>
+        </div>
+    </div>
+</body>
+</html>

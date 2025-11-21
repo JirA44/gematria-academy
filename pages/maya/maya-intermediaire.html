@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendriers Mayas Avancés | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #e8e8e8;
+            line-height: 1.8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(15, 15, 35, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            font-family: 'Palatino', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #87ceeb;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(25, 25, 45, 0.7);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+        }
+
+        h2 {
+            color: #ffd700;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #87ceeb;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .calendar-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .calendar-box {
+            background: linear-gradient(135deg, #2d2d44 0%, #3a3a55 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #ffd700;
+        }
+
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .month-card {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid rgba(135, 206, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .month-card:hover {
+            transform: scale(1.05);
+            border-color: #ffd700;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .month-name {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .month-days {
+            color: #87ceeb;
+            font-size: 0.9em;
+        }
+
+        .venus-cycle {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #ff69b4;
+        }
+
+        .phase-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .phase-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff69b4, #ffd700, #87ceeb, #ff69b4);
+        }
+
+        .phase-item {
+            background: rgba(40, 40, 60, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid #ff69b4;
+            z-index: 1;
+            position: relative;
+            min-width: 150px;
+        }
+
+        .phase-symbol {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .phase-name {
+            color: #ff69b4;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .phase-duration {
+            color: #87ceeb;
+            font-size: 0.9em;
+        }
+
+        .sync-wheel {
+            background: radial-gradient(circle, #2d2d44 0%, #1a1a2e 100%);
+            padding: 40px;
+            border-radius: 50%;
+            margin: 30px auto;
+            max-width: 600px;
+            border: 5px solid #ffd700;
+            position: relative;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wheel-center {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 30px;
+            border-radius: 50%;
+            text-align: center;
+            border: 3px solid #ffd700;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #87ceeb;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .calculation-box {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #ff69b4;
+        }
+
+        .wayeb-warning {
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #ff4444;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .calendar-round {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #87ceeb;
+        }
+
+        .round-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .gear {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.05) 100%);
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        .gear-reverse {
+            animation: rotate-reverse 13s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        .gear-label {
+            font-size: 1.2em;
+            color: #ffd700;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-timeline {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .phase-timeline::before {
+                display: none;
+            }
+
+            .round-visual {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌞 Calendriers Mayas Intermédiaires</h1>
+        <p class="subtitle">Haab, Cycle de Vénus et la Roue Calendérique Sacrée</p>
+
+        <div class="section">
+            <h2>📆 Le Calendrier Haab (365 jours)</h2>
+
+            <p>Le <span class="highlight">Haab</span> est le calendrier solaire maya de <span class="highlight">365 jours</span>, utilisé pour l'agriculture, la taxation et les événements civils. Il se compose de <span class="highlight">18 mois de 20 jours</span> plus une période finale de <span class="highlight">5 jours néfastes</span> appelée Wayeb.</p>
+
+            <div class="calendar-box">
+                <h3 style="color: #ffd700; margin-top: 0;">🗓️ Structure du Haab : 18 mois × 20 jours + 5 jours = 365 jours</h3>
+
+                <div class="month-grid">
+                    <div class="month-card">
+                        <div class="month-name">Pop</div>
+                        <div class="month-days">1er mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Wo</div>
+                        <div class="month-days">2e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Zip</div>
+                        <div class="month-days">3e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Zotz'</div>
+                        <div class="month-days">4e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Tzek</div>
+                        <div class="month-days">5e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Xul</div>
+                        <div class="month-days">6e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Yaxk'in</div>
+                        <div class="month-days">7e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Mol</div>
+                        <div class="month-days">8e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Ch'en</div>
+                        <div class="month-days">9e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Yax</div>
+                        <div class="month-days">10e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Sak</div>
+                        <div class="month-days">11e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Keh</div>
+                        <div class="month-days">12e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Mak</div>
+                        <div class="month-days">13e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">K'ank'in</div>
+                        <div class="month-days">14e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Muwan</div>
+                        <div class="month-days">15e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Pax</div>
+                        <div class="month-days">16e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">K'ayab</div>
+                        <div class="month-days">17e mois (20 jours)</div>
+                    </div>
+                    <div class="month-card">
+                        <div class="month-name">Kumk'u</div>
+                        <div class="month-days">18e mois (20 jours)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wayeb-warning">
+                <h3 style="color: #ff4444; margin-top: 0;">⚠️ Wayeb - Les 5 Jours Néfastes</h3>
+                <p>Le <span class="highlight">Wayeb</span> désigne les 5 derniers jours de l'année Haab (numérotés de 0 à 4), considérés comme extrêmement dangereux et de mauvais augure. Pendant cette période :</p>
+                <ul>
+                    <li>🚫 Les Mayas restaient chez eux et évitaient toute activité importante</li>
+                    <li>🔥 Les feux sacrés étaient éteints puis rallumés au début de la nouvelle année</li>
+                    <li>🙏 Jeûne, prières et offrandes pour apaiser les dieux</li>
+                    <li>👹 La frontière entre le monde des vivants et de Xibalba (enfers) s'amincit</li>
+                    <li>🌑 Aucun mariage, voyage, ou décision importante n'était prise</li>
+                </ul>
+                <p style="margin-top: 15px; color: #ffd700;">💡 <strong>Symbolisme :</strong> Le Wayeb représente le chaos primordial entre deux cycles de création, un moment où l'ordre cosmique est suspendu.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>🌾 Utilisation agricole du Haab</h3>
+                <ul>
+                    <li><span class="highlight">Pop (Nappe) :</span> Début de l'année, préparation des champs</li>
+                    <li><span class="highlight">Zip (Cerf rouge) :</span> Chasse et offrandes aux dieux de la chasse</li>
+                    <li><span class="highlight">Yaxk'in (Nouveau soleil) :</span> Solstice d'été, saison des pluies</li>
+                    <li><span class="highlight">Mol (Rassembler) :</span> Préparation des récoltes</li>
+                    <li><span class="highlight">Kumk'u (Grenier) :</span> Fin de l'année, stockage des récoltes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌟 Le Cycle de Vénus (584 jours)</h2>
+
+            <p>Les Mayas étaient des observateurs exceptionnels de <span class="highlight">Vénus</span> (appelée Noh Ek, la "Grande Étoile" ou Chak Ek, l'"Étoile Rouge"). Le cycle synodique de Vénus, d'une durée de <span class="highlight">584 jours</span>, était considéré comme de mauvais augure et utilisé pour planifier les guerres.</p>
+
+            <div class="venus-cycle">
+                <h3 style="color: #ff69b4; margin-top: 0;">✨ Les 4 Phases de Vénus</h3>
+
+                <div class="phase-timeline">
+                    <div class="phase-item">
+                        <div class="phase-symbol">🌅</div>
+                        <div class="phase-name">Étoile du Matin</div>
+                        <div class="phase-duration">236 jours</div>
+                        <p style="margin-top: 10px; font-size: 0.85em; color: #e8e8e8;">Vénus visible à l'est avant le lever du soleil</p>
+                    </div>
+
+                    <div class="phase-item">
+                        <div class="phase-symbol">☀️</div>
+                        <div class="phase-name">Conjonction Supérieure</div>
+                        <div class="phase-duration">90 jours</div>
+                        <p style="margin-top: 10px; font-size: 0.85em; color: #e8e8e8;">Vénus derrière le soleil, invisible</p>
+                    </div>
+
+                    <div class="phase-item">
+                        <div class="phase-symbol">🌇</div>
+                        <div class="phase-name">Étoile du Soir</div>
+                        <div class="phase-duration">250 jours</div>
+                        <p style="margin-top: 10px; font-size: 0.85em; color: #e8e8e8;">Vénus visible à l'ouest après le coucher du soleil</p>
+                    </div>
+
+                    <div class="phase-item">
+                        <div class="phase-symbol">🌑</div>
+                        <div class="phase-name">Conjonction Inférieure</div>
+                        <div class="phase-duration">8 jours</div>
+                        <p style="margin-top: 10px; font-size: 0.85em; color: #e8e8e8;">Vénus entre la Terre et le Soleil, invisible</p>
+                    </div>
+                </div>
+
+                <div class="calculation-box">
+                    <h3 style="color: #ff69b4;">🧮 Mathématiques vénusiennes</h3>
+                    <pre style="color: #87ceeb; font-size: 1.1em;">
+Cycle synodique de Vénus : 584 jours
+Phase 1 : Étoile du matin     = 236 jours
+Phase 2 : Conjonction supérieure = 90 jours
+Phase 3 : Étoile du soir      = 250 jours
+Phase 4 : Conjonction inférieure = 8 jours
+                          ___________
+Total                     = 584 jours
+                    </pre>
+                    <p style="margin-top: 15px; color: #ffd700;"><strong>Synchronisation :</strong></p>
+                    <pre style="color: #87ceeb; font-size: 1.1em;">
+5 cycles de Vénus    = 5 × 584 = 2920 jours
+8 années Haab        = 8 × 365 = 2920 jours
+2 Katuns (Compte Long) = 2 × 7200 = 14400 jours = 5 × 2920
+
+→ Tous les 2920 jours, Vénus, le Tzolk'in et le Haab
+  se réalignent parfaitement !
+                    </pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>⚔️ Vénus et la Guerre</h3>
+                <ul>
+                    <li><span class="highlight">Première apparition comme étoile du matin :</span> Moment le plus dangereux et propice pour lancer des attaques militaires</li>
+                    <li><span class="highlight">Tables de Vénus (Codex Dresden) :</span> Prédictions sur 104 ans (65 cycles de Vénus) avec avertissements sur les victimes possibles</li>
+                    <li><span class="highlight">Dieu Tlaloc/Chaac :</span> Associé à Vénus, apportant destruction et renouveau</li>
+                    <li><span class="highlight">Sacrifices :</span> Captifs de guerre sacrifiés lors de l'apparition de Vénus pour apaiser sa colère</li>
+                    <li><span class="highlight">Architecture :</span> Certains temples mayas sont alignés sur les positions extrêmes de Vénus</li>
+                </ul>
+                <p style="margin-top: 15px; color: #ffd700;">💫 <strong>Précision stupéfiante :</strong> Les Mayas calculaient le cycle de Vénus avec une précision de 584 jours, alors que la valeur moderne est de 583,92 jours. Leur erreur était de seulement 2 heures sur 500 ans !</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔄 La Roue Calendérique (Calendar Round) - 52 ans</h2>
+
+            <p>La <span class="highlight">Roue Calendérique</span> résulte de la synchronisation du <span class="highlight">Tzolk'in (260 jours)</span> et du <span class="highlight">Haab (365 jours)</span>. Ces deux calendriers ne se réalignent parfaitement que tous les <span class="highlight">18 980 jours</span>, soit environ <span class="highlight">52 années Haab</span>.</p>
+
+            <div class="calendar-round">
+                <div class="round-visual">
+                    <div class="gear">
+                        <div class="gear-label">Tzolk'in<br>260 jours<br>13 × 20</div>
+                    </div>
+                    <div style="font-size: 3em; color: #ffd700;">⚙️</div>
+                    <div class="gear gear-reverse">
+                        <div class="gear-label">Haab<br>365 jours<br>18 × 20 + 5</div>
+                    </div>
+                </div>
+
+                <div class="calculation-box">
+                    <h3 style="color: #87ceeb;">🔢 Calcul de la Roue Calendérique</h3>
+                    <pre style="color: #ffd700; font-size: 1.1em;">
+PPCM (Plus Petit Commun Multiple) :
+
+Tzolk'in = 260 jours = 4 × 5 × 13
+Haab    = 365 jours = 5 × 73
+
+PPCM(260, 365) = 4 × 5 × 13 × 73 = 18 980 jours
+
+18 980 jours ÷ 365 jours/an = 52 années Haab
+18 980 jours ÷ 260 jours   = 73 cycles Tzolk'in
+
+→ Chaque combinaison Tzolk'in + Haab est unique pendant 52 ans !
+                    </pre>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎭 Signification culturelle du cycle de 52 ans</h3>
+                    <ul>
+                        <li><span class="highlight">Nouveau Feu :</span> Tous les 52 ans, cérémonie du Feu Nouveau où tous les feux étaient éteints puis rallumés</li>
+                        <li><span class="highlight">Rénovation :</span> Reconstruction de temples, renouvellement des idoles, destruction de poteries anciennes</li>
+                        <li><span class="highlight">Anxiété cosmique :</span> Crainte que le soleil ne se lève plus à la fin du cycle</li>
+                        <li><span class="highlight">Âge de vie :</span> Vivre un cycle complet de 52 ans était considéré comme une vie accomplie</li>
+                        <li><span class="highlight">Double calendrier :</span> Notation des dates par combinaison Tzolk'in + Haab (ex: "4 Ajaw 8 Kumk'u")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>📅 Exemple de date en Roue Calendérique</h3>
+            <div class="calculation-box">
+                <pre style="color: #87ceeb; font-size: 1.1em;">
+Date maya : <span style="color: #ffd700;">4 Ajaw 8 Kumk'u</span>
+
+Décomposition :
+├─ Tzolk'in : <span style="color: #ff69b4;">4 Ajaw</span>
+│  ├─ Nombre : 4 (entre 1 et 13)
+│  └─ Nawal  : Ajaw (20e jour sacré - Seigneur/Soleil)
+│
+└─ Haab    : <span style="color: #87ceeb;">8 Kumk'u</span>
+   ├─ Jour   : 8 (entre 0 et 19)
+   └─ Mois   : Kumk'u (18e mois - Grenier)
+
+Cette date correspond au <span style="color: #ffd700;">11 août 3114 av. J.-C.</span>
+(début de l'ère actuelle selon le Compte Long)
+                </pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔮 Synchronisations Cosmiques Avancées</h2>
+
+            <div class="sync-wheel">
+                <div class="wheel-center">
+                    <h3 style="color: #ffd700; margin: 0;">Harmonie Céleste</h3>
+                    <p style="margin-top: 15px; color: #e8e8e8;">Tous les cycles se réalignent</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>🌌 Cycles synchronisés majeurs</h3>
+                <ul>
+                    <li><span class="highlight">Cycle de 104 ans :</span> 2 Roues Calendériques = 146 cycles Tzolk'in = 65 cycles de Vénus</li>
+                    <li><span class="highlight">Cycle de 780 ans :</span> 15 Roues Calendériques = 1095 cycles Tzolk'in = 3 Katuns</li>
+                    <li><span class="highlight">Cycle de 260 ans :</span> 5 Roues Calendériques = 100 cycles Tzolk'in</li>
+                    <li><span class="highlight">Cycle lunaire :</span> 405 lunaisons ≈ 11 960 jours ≈ 33 années Haab</li>
+                    <li><span class="highlight">Cycle de Mars :</span> 780 jours (cycle synodique) × 73 = 56 940 jours ≈ 3 Roues Calendériques</li>
+                    <li><span class="highlight">Cycle d'éclipses :</span> 11 960 jours (eclipse warning table du Codex Dresden)</li>
+                </ul>
+            </div>
+
+            <div class="calculation-box">
+                <h3 style="color: #ffd700;">🎯 La Grande Convergence (tous les 52 ans)</h3>
+                <pre style="color: #87ceeb; font-size: 1.05em;">
+Événement : Réalignement complet Tzolk'in + Haab
+
+Conditions :
+✓ Même combinaison jour Tzolk'in + jour Haab
+✓ Cérémonie du Feu Nouveau
+✓ Crainte de la fin du monde
+✓ Renouvellement cosmique
+
+Prochains réalignements depuis la création (3114 av. J.-C.) :
+• 3062 av. J.-C. (52 ans après)
+• 3010 av. J.-C. (104 ans après)
+• 2958 av. J.-C. (156 ans après)
+...
+• 2012 apr. J.-C. (fin du 13e Baktun)
+• 2064 apr. J.-C. (prochain cycle)
+                </pre>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="glyphes-mayas-intro.html" class="btn btn-secondary">← Retour : Introduction Maya</a>
+            <a href="maya-expert.html" class="btn">Suivant : Compte Long & Codex Dresden →</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation des engrenages de la roue calendérique
+        const gears = document.querySelectorAll('.gear');
+        let rotation = 0;
+
+        function animateGears() {
+            rotation += 0.5;
+            gears.forEach((gear, index) => {
+                if (index === 0) {
+                    gear.style.transform = `rotate(${rotation}deg)`;
+                } else {
+                    gear.style.transform = `rotate(${-rotation * 1.4}deg)`; // Ratio 260/365
+                }
+            });
+            requestAnimationFrame(animateGears);
+        }
+
+        // Calculateur de date en Roue Calendérique
+        function calculateCalendarRound(daysSinceCreation) {
+            const tzolkinNumber = ((daysSinceCreation % 13) + 13) % 13 || 13;
+            const tzolkinNameIndex = ((daysSinceCreation % 20) + 20) % 20;
+            const haabDay = ((daysSinceCreation % 365) + 365) % 365;
+            const haabMonth = Math.floor(haabDay / 20);
+            const haabDayOfMonth = haabDay % 20;
+
+            const tzolkinNames = ['Imix', "Ik'", "Ak'b'al", "K'an", 'Chikchan', 'Kimi', 'Manik', 'Lamat', 'Muluk', 'Ok', 'Chuwen', 'Eb', "B'en", 'Ix', 'Men', 'Kib', "Kab'an", "Etz'nab", 'Kawak', 'Ajaw'];
+            const haabMonths = ['Pop', 'Wo', 'Zip', "Zotz'", 'Tzek', 'Xul', "Yaxk'in", 'Mol', "Ch'en", 'Yax', 'Sak', 'Keh', 'Mak', "K'ank'in", 'Muwan', 'Pax', "K'ayab", "Kumk'u", 'Wayeb'];
+
+            return {
+                tzolkin: `${tzolkinNumber} ${tzolkinNames[tzolkinNameIndex]}`,
+                haab: haabMonth < 18 ? `${haabDayOfMonth} ${haabMonths[haabMonth]}` : `${haabDayOfMonth} Wayeb`
+            };
+        }
+
+        // Calcul de la date actuelle en calendrier maya
+        const correlationConstant = 584283; // Constante GMT
+        const today = new Date();
+        const julianDay = Math.floor(today.getTime() / 86400000) + 2440588;
+        const daysSinceCreation = julianDay - correlationConstant;
+        const currentDate = calculateCalendarRound(daysSinceCreation);
+
+        console.log(`Date maya actuelle : ${currentDate.tzolkin}, ${currentDate.haab}`);
+
+        window.addEventListener('load', () => {
+            animateGears();
+        });
+    </script>
+</body>
+</html>

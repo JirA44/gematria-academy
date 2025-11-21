@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique Expert - Logique Formelle & Paradoxes | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0f0f2e 100%);
+            color: #e8e8e8;
+            line-height: 1.8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(10, 10, 25, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 80px rgba(135, 206, 235, 0.3);
+            border: 3px solid rgba(135, 206, 235, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #87ceeb;
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(135, 206, 235, 0.8);
+            font-family: 'Palatino', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ffd700;
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .section {
+            background: rgba(25, 25, 50, 0.85);
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 15px;
+            border-left: 5px solid #87ceeb;
+            border-right: 2px solid rgba(135, 206, 235, 0.2);
+        }
+
+        h2 {
+            color: #87ceeb;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid rgba(135, 206, 235, 0.4);
+            padding-bottom: 12px;
+        }
+
+        h3 {
+            color: #ffd700;
+            font-size: 1.6em;
+            margin: 30px 0 18px 0;
+        }
+
+        .theorem-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #87ceeb;
+        }
+
+        .theorem-title {
+            color: #ffd700;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .formula {
+            background: rgba(30, 30, 50, 0.95);
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3em;
+            color: #87ceeb;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid rgba(135, 206, 235, 0.5);
+            line-height: 1.8;
+        }
+
+        .paradox-card {
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 3px solid #ff4444;
+        }
+
+        .paradox-title {
+            color: #ff4444;
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .modal-logic-box {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #9370db;
+        }
+
+        .modal-symbol {
+            font-size: 3.5em;
+            color: #9370db;
+            text-align: center;
+            margin: 25px 0;
+            text-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 3px solid #87ceeb;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 3px solid #daa520;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .proof-steps {
+            background: rgba(40, 40, 60, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #87ceeb;
+        }
+
+        .proof-step {
+            padding: 12px;
+            margin: 10px 0;
+            border-bottom: 1px solid rgba(135, 206, 235, 0.2);
+        }
+
+        .step-number {
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+            min-width: 40px;
+        }
+
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .logic-card {
+            background: rgba(40, 40, 70, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .logic-card:hover {
+            transform: translateY(-8px);
+            border-color: #87ceeb;
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.4);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+
+        ul {
+            margin: 18px 0;
+            padding-left: 35px;
+        }
+
+        li {
+            margin: 12px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        th {
+            background: rgba(135, 206, 235, 0.2);
+            color: #87ceeb;
+            padding: 15px;
+            border: 2px solid #87ceeb;
+            font-size: 1.1em;
+        }
+
+        td {
+            padding: 12px 15px;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .logic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚛️ Logique Expert</h1>
+        <p class="subtitle">Logique Formelle, Théorèmes Fondamentaux & Paradoxes Célèbres</p>
+
+        <div class="section">
+            <h2>🎓 Logique Formelle (Calcul des Propositions)</h2>
+
+            <p>La <span class="highlight">logique formelle</span> est un système axiomatique permettant de démontrer des théorèmes à partir d'axiomes et de règles d'inférence, sans recourir au sens intuitif des énoncés.</p>
+
+            <h3>📋 Axiomes de la Logique Propositionnelle</h3>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Axiome 1 : Affirmation du Conséquent</div>
+                <div class="formula">P → (Q → P)</div>
+                <p style="text-align: center; margin-top: 15px; color: #e8e8e8;">"Si P est vrai, alors (si Q alors P)"</p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Axiome 2 : Distribution</div>
+                <div class="formula">(P → (Q → R)) → ((P → Q) → (P → R))</div>
+            </div>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Axiome 3 : Contraposition</div>
+                <div class="formula">(¬Q → ¬P) → (P → Q)</div>
+            </div>
+
+            <h3>⚡ Règles d'Inférence Fondamentales</h3>
+
+            <div class="logic-grid">
+                <div class="logic-card">
+                    <h4 style="color: #ffd700; margin-bottom: 15px;">Modus Ponens (MP)</h4>
+                    <div class="formula" style="font-size: 1.1em;">
+                        P → Q<br>
+                        P<br>
+                        ______<br>
+                        ∴ Q
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;">"Si P implique Q et P est vrai, alors Q est vrai"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700; margin-bottom: 15px;">Modus Tollens (MT)</h4>
+                    <div class="formula" style="font-size: 1.1em;">
+                        P → Q<br>
+                        ¬Q<br>
+                        ______<br>
+                        ∴ ¬P
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;">"Si P implique Q et Q est faux, alors P est faux"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700; margin-bottom: 15px;">Syllogisme Hypothétique</h4>
+                    <div class="formula" style="font-size: 1.1em;">
+                        P → Q<br>
+                        Q → R<br>
+                        ______<br>
+                        ∴ P → R
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;">"Transitivité de l'implication"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700; margin-bottom: 15px;">Disjonction Syllogisme</h4>
+                    <div class="formula" style="font-size: 1.1em;">
+                        P ∨ Q<br>
+                        ¬P<br>
+                        ______<br>
+                        ∴ Q
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;">"Si P ou Q, et non P, alors Q"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700; margin-bottom: 15px;">Addition</h4>
+                    <div class="formula" style="font-size: 1.1em;">
+                        P<br>
+                        ______<br>
+                        ∴ P ∨ Q
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;">"Si P est vrai, alors (P ou Q) est vrai"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700; margin-bottom: 15px;">Simplification</h4>
+                    <div class="formula" style="font-size: 1.1em;">
+                        P ∧ Q<br>
+                        ______<br>
+                        ∴ P
+                    </div>
+                    <p style="margin-top: 15px; text-align: center;">"Si (P et Q) est vrai, alors P est vrai"</p>
+                </div>
+            </div>
+
+            <h3>🔬 Théorèmes Importants</h3>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Loi de De Morgan</div>
+                <div class="formula">
+                    ¬(P ∧ Q) ≡ (¬P ∨ ¬Q)<br><br>
+                    ¬(P ∨ Q) ≡ (¬P ∧ ¬Q)
+                </div>
+                <p style="margin-top: 20px; color: #e8e8e8; text-align: center;">"La négation d'une conjonction est la disjonction des négations, et vice versa"</p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Loi d'Exportation</div>
+                <div class="formula">
+                    ((P ∧ Q) → R) ≡ (P → (Q → R))
+                </div>
+            </div>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Tiers Exclu (Principe du Tiers Exclu)</div>
+                <div class="formula">
+                    P ∨ ¬P ≡ Vrai (Tautologie)
+                </div>
+                <p style="margin-top: 20px; color: #e8e8e8; text-align: center;">"Toute proposition est soit vraie, soit fausse"</p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="theorem-title">Non-Contradiction</div>
+                <div class="formula">
+                    ¬(P ∧ ¬P) ≡ Vrai (Tautologie)
+                </div>
+                <p style="margin-top: 20px; color: #e8e8e8; text-align: center;">"Une proposition ne peut pas être vraie et fausse en même temps"</p>
+            </div>
+
+            <h3>📝 Exemple de Démonstration Formelle</h3>
+
+            <div class="proof-steps">
+                <h4 style="color: #ffd700; margin-bottom: 20px;">Démontrer : ((P → Q) ∧ (Q → R)) → (P → R)</h4>
+                <div class="proof-step">
+                    <span class="step-number">1.</span> (P → Q) ∧ (Q → R) — <em>Hypothèse</em>
+                </div>
+                <div class="proof-step">
+                    <span class="step-number">2.</span> P → Q — <em>Simplification de 1</em>
+                </div>
+                <div class="proof-step">
+                    <span class="step-number">3.</span> Q → R — <em>Simplification de 1</em>
+                </div>
+                <div class="proof-step">
+                    <span class="step-number">4.</span> P — <em>Hypothèse additionnelle</em>
+                </div>
+                <div class="proof-step">
+                    <span class="step-number">5.</span> Q — <em>Modus Ponens : 2, 4</em>
+                </div>
+                <div class="proof-step">
+                    <span class="step-number">6.</span> R — <em>Modus Ponens : 3, 5</em>
+                </div>
+                <div class="proof-step" style="border-top: 2px solid #ffd700; margin-top: 15px; padding-top: 15px;">
+                    <span class="step-number">∴</span> P → R — <em>Déduction : 4-6</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌀 Logique Modale</h2>
+
+            <p>La <span class="highlight">logique modale</span> étend la logique classique en introduisant les notions de <span class="highlight">nécessité (□)</span> et de <span class="highlight">possibilité (◇)</span>.</p>
+
+            <div class="modal-logic-box">
+                <h3 style="color: #9370db; margin-top: 0; text-align: center;">□ Opérateur de Nécessité</h3>
+                <div class="modal-symbol">□P</div>
+                <p style="text-align: center; font-size: 1.2em;">"Il est nécessaire que P"</p>
+                <p style="text-align: center; margin-top: 15px; color: #e8e8e8;">"P est vrai dans tous les mondes possibles"</p>
+
+                <div class="formula" style="margin-top: 25px;">
+                    Exemple : □(2 + 2 = 4)
+                </div>
+                <p style="text-align: center; color: #87ceeb;">"Il est nécessairement vrai que 2 + 2 = 4"</p>
+            </div>
+
+            <div class="modal-logic-box">
+                <h3 style="color: #9370db; margin-top: 0; text-align: center;">◇ Opérateur de Possibilité</h3>
+                <div class="modal-symbol">◇P</div>
+                <p style="text-align: center; font-size: 1.2em;">"Il est possible que P"</p>
+                <p style="text-align: center; margin-top: 15px; color: #e8e8e8;">"P est vrai dans au moins un monde possible"</p>
+
+                <div class="formula" style="margin-top: 25px;">
+                    Exemple : ◇(Il pleut demain)
+                </div>
+                <p style="text-align: center; color: #87ceeb;">"Il est possible qu'il pleuve demain"</p>
+            </div>
+
+            <div class="info-box">
+                <h3 style="color: #87ceeb; margin-top: 0;">🔗 Relations entre □ et ◇</h3>
+                <div class="formula">
+                    ◇P ≡ ¬□¬P
+                </div>
+                <p style="text-align: center; margin-top: 15px;">"P est possible" = "Il n'est pas nécessaire que P soit faux"</p>
+
+                <div class="formula" style="margin-top: 25px;">
+                    □P ≡ ¬◇¬P
+                </div>
+                <p style="text-align: center; margin-top: 15px;">"P est nécessaire" = "Il n'est pas possible que P soit faux"</p>
+            </div>
+
+            <h3>🎯 Systèmes de Logique Modale</h3>
+
+            <div class="logic-grid">
+                <div class="logic-card">
+                    <h4 style="color: #ffd700;">Système K (Kripke)</h4>
+                    <p style="margin: 15px 0;">Système minimal de logique modale</p>
+                    <div class="formula" style="font-size: 1em;">
+                        □(P → Q) → (□P → □Q)
+                    </div>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700;">Système T</h4>
+                    <p style="margin: 15px 0;">Ajoute l'axiome de réflexivité</p>
+                    <div class="formula" style="font-size: 1em;">
+                        □P → P
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">"Ce qui est nécessaire est vrai"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700;">Système S4</h4>
+                    <p style="margin: 15px 0;">Ajoute la transitivité</p>
+                    <div class="formula" style="font-size: 1em;">
+                        □P → □□P
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">"Ce qui est nécessaire est nécessairement nécessaire"</p>
+                </div>
+
+                <div class="logic-card">
+                    <h4 style="color: #ffd700;">Système S5</h4>
+                    <p style="margin: 15px 0;">Ajoute l'euclidianité</p>
+                    <div class="formula" style="font-size: 1em;">
+                        ◇P → □◇P
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">"Ce qui est possible est nécessairement possible"</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3 style="color: #87ceeb; margin-top: 0;">🌍 Applications de la Logique Modale</h3>
+                <ul>
+                    <li><span class="highlight">Logique déontique :</span> Obligations et permissions (□ = "Il est obligatoire que", ◇ = "Il est permis que")</li>
+                    <li><span class="highlight">Logique épistémique :</span> Connaissance et croyance (□ = "Je sais que", ◇ = "Il est possible que je sache")</li>
+                    <li><span class="highlight">Logique temporelle :</span> Passé, présent, futur (□ = "Il sera toujours vrai que", ◇ = "Il sera vrai à un moment que")</li>
+                    <li><span class="highlight">Métaphysique :</span> Essence vs accident, nécessité causale</li>
+                    <li><span class="highlight">Informatique :</span> Vérification de programmes, systèmes distribués</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌀 Paradoxes Logiques Célèbres</h2>
+
+            <p>Un <span class="highlight">paradoxe</span> est un raisonnement apparemment valide qui aboutit à une conclusion contradictoire ou absurde. Les paradoxes révèlent les limites de nos systèmes logiques.</p>
+
+            <div class="paradox-card">
+                <div class="paradox-title">🗣️ Paradoxe du Menteur (Épiménide, 6e s. av. J.-C.)</div>
+                <div class="formula" style="background: rgba(0, 0, 0, 0.3);">
+                    "Cette phrase est fausse"
+                </div>
+                <p style="margin-top: 20px;"><strong>Analyse :</strong></p>
+                <ul style="margin-top: 10px;">
+                    <li>Si la phrase est <span class="highlight">vraie</span>, alors son contenu est vrai, donc elle est <span class="highlight">fausse</span></li>
+                    <li>Si la phrase est <span class="highlight">fausse</span>, alors son contenu est faux, donc elle est <span class="highlight">vraie</span></li>
+                    <li><span class="highlight">Contradiction !</span> La phrase ne peut être ni vraie ni fausse</li>
+                </ul>
+                <p style="margin-top: 15px; color: #87ceeb;"><strong>Solution :</strong> Hiérarchie des langages (Tarski) : une phrase ne peut parler d'elle-même</p>
+            </div>
+
+            <div class="paradox-card">
+                <div class="paradox-title">💈 Paradoxe du Barbier (Bertrand Russell, 1901)</div>
+                <p style="margin-bottom: 15px;"><em>"Dans un village, le barbier rase tous les hommes qui ne se rasent pas eux-mêmes, et seulement ceux-là."</em></p>
+                <div class="formula" style="background: rgba(0, 0, 0, 0.3);">
+                    Qui rase le barbier ?
+                </div>
+                <p style="margin-top: 20px;"><strong>Analyse :</strong></p>
+                <ul style="margin-top: 10px;">
+                    <li>Si le barbier <span class="highlight">se rase lui-même</span>, alors il appartient à l'ensemble des hommes qui se rasent eux-mêmes, donc il <span class="highlight">ne doit pas se raser</span></li>
+                    <li>Si le barbier <span class="highlight">ne se rase pas lui-même</span>, alors il appartient à l'ensemble des hommes qui ne se rasent pas eux-mêmes, donc il <span class="highlight">doit se raser</span></li>
+                </ul>
+                <p style="margin-top: 15px; color: #87ceeb;"><strong>Solution :</strong> Un tel barbier ne peut pas exister (contradiction logique)</p>
+            </div>
+
+            <div class="paradox-card">
+                <div class="paradox-title">📚 Paradoxe de Russell (Théorie des Ensembles, 1901)</div>
+                <div class="formula" style="background: rgba(0, 0, 0, 0.3);">
+                    R = {x | x ∉ x}
+                </div>
+                <p style="text-align: center; margin-top: 10px; color: #e8e8e8;">"R est l'ensemble de tous les ensembles qui ne se contiennent pas eux-mêmes"</p>
+                <p style="margin-top: 20px;"><strong>Question :</strong> R ∈ R ?</p>
+                <ul style="margin-top: 10px;">
+                    <li>Si <span class="highlight">R ∈ R</span>, alors R se contient lui-même, donc R ∉ R par définition</li>
+                    <li>Si <span class="highlight">R ∉ R</span>, alors R ne se contient pas, donc R ∈ R par définition</li>
+                </ul>
+                <p style="margin-top: 15px; color: #87ceeb;"><strong>Impact :</strong> A conduit à la création de la théorie axiomatique des ensembles (ZFC)</p>
+            </div>
+
+            <div class="paradox-card">
+                <div class="paradox-title">🐢 Paradoxes de Zénon d'Élée (5e s. av. J.-C.)</div>
+                <p style="margin-bottom: 15px;"><strong>Achille et la Tortue :</strong></p>
+                <p>Achille court 10 fois plus vite qu'une tortue qui a 100m d'avance. Pour rattraper la tortue :</p>
+                <ul style="margin-top: 10px;">
+                    <li>Achille doit d'abord parcourir 100m → la tortue avance de 10m</li>
+                    <li>Achille parcourt ces 10m → la tortue avance de 1m</li>
+                    <li>Achille parcourt ce 1m → la tortue avance de 0,1m</li>
+                    <li>Et ainsi de suite à l'infini...</li>
+                </ul>
+                <p style="margin-top: 15px;"><span class="highlight">Conclusion :</span> Achille ne rattrapera jamais la tortue !</p>
+                <p style="margin-top: 15px; color: #87ceeb;"><strong>Solution :</strong> Série géométrique convergente : 100 + 10 + 1 + 0,1 + ... = 111,11m (calcul infinitésimal)</p>
+            </div>
+
+            <div class="paradox-card">
+                <div class="paradox-title">🎭 Paradoxe de l'Examen Surprise</div>
+                <p>Un professeur annonce : "Vous aurez un examen surprise la semaine prochaine"</p>
+                <p style="margin-top: 15px;"><strong>Raisonnement de l'élève :</strong></p>
+                <ul style="margin-top: 10px;">
+                    <li>L'examen ne peut pas être <span class="highlight">vendredi</span> (dernier jour), sinon ce ne serait pas une surprise</li>
+                    <li>Donc l'examen est entre lundi et jeudi</li>
+                    <li>Mais alors, il ne peut pas être <span class="highlight">jeudi</span> non plus (ce serait le dernier jour restant)</li>
+                    <li>Par le même raisonnement : pas mercredi, pas mardi, pas lundi</li>
+                    <li><span class="highlight">Conclusion :</span> L'examen surprise est impossible !</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Paradoxe :</strong> Pourtant, si le professeur fait l'examen mercredi, ce sera bien une surprise pour l'élève !</p>
+            </div>
+
+            <div class="paradox-card">
+                <div class="paradox-title">🌓 Paradoxe Sorite (Paradoxe du Tas)</div>
+                <div class="formula" style="background: rgba(0, 0, 0, 0.3);">
+                    1 grain de sable ne fait pas un tas<br>
+                    Ajouter 1 grain à un non-tas ne fait pas un tas<br>
+                    ∴ 1 000 000 de grains ne font pas un tas
+                </div>
+                <p style="margin-top: 15px; color: #87ceeb;"><strong>Problème :</strong> Prédicats vagues ("tas", "chauve", "grand") défient la logique binaire</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="logique-intermediaire.html" class="btn btn-secondary">← Retour : Logique Intermédiaire</a>
+            <a href="types-raisonnement.html" class="btn">Suivant : Types de Raisonnement →</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation des cartes logiques
+        document.querySelectorAll('.logic-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.8s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+
+        // Animation des paradoxes
+        document.querySelectorAll('.paradox-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            setTimeout(() => {
+                card.style.transition = 'opacity 1s ease';
+                card.style.opacity = '1';
+            }, index * 200);
+        });
+    </script>
+</body>
+</html>

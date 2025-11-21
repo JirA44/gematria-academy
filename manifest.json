@@ -1,0 +1,141 @@
+{
+  "name": "Académie des Sagesses Ésotériques - Gematria Academy",
+  "short_name": "Gematria Academy",
+  "description": "Plateforme d'apprentissage complète des sagesses anciennes : Runes Nordiques, Gématrie Hébraïque, Hiéroglyphes, Glyphes Mayas",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f1e",
+  "theme_color": "#8a2be2",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "books", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/desktop-home.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Page d'accueil Gematria Academy"
+    },
+    {
+      "src": "/assets/screenshots/mobile-runes.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Apprentissage des Runes Nordiques"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Runes Nordiques",
+      "short_name": "Runes",
+      "description": "Accéder aux cours de Runes",
+      "url": "/pages/runes/runes-parcours-complet.html",
+      "icons": [
+        {
+          "src": "/assets/icons/runes-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Gématrie Hébraïque",
+      "short_name": "Gématrie",
+      "description": "Accéder aux cours de Gématrie",
+      "url": "/pages/gematria/gematria-debutant.html",
+      "icons": [
+        {
+          "src": "/assets/icons/gematria-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Hiéroglyphes",
+      "short_name": "Hiéroglyphes",
+      "description": "Accéder aux cours d'Hiéroglyphes",
+      "url": "/pages/hieroglyphes/hieroglyphes-parcours-complet.html",
+      "icons": [
+        {
+          "src": "/assets/icons/hieroglyphes-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Mon Profil",
+      "short_name": "Profil",
+      "description": "Voir ma progression",
+      "url": "/pages/user/profile.html",
+      "icons": [
+        {
+          "src": "/assets/icons/profile-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "prefer_related_applications": false
+}

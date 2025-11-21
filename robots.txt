@@ -1,0 +1,39 @@
+# Gematria Academy - Robots.txt
+# Optimisation pour les moteurs de recherche
+
+User-agent: *
+Allow: /
+Allow: /pages/
+Allow: /assets/
+
+# Pages à ne pas indexer
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /pages/user/
+Disallow: /404.html
+
+# Crawl delay (optionnel)
+Crawl-delay: 1
+
+# Sitemap (à créer)
+Sitemap: https://master.gematria-academy.pages.dev/sitemap.xml
+
+# Spécifique à Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Spécifique à Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Bloquer les bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

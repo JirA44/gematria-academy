@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les 7 Chakras - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro-section {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .chakra-visualization {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 3rem 0;
+            gap: 2rem;
+        }
+
+        .chakra-orb {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 0 40px currentColor;
+            animation: pulse 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chakra-orb:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .chakra-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chakra-card {
+            background: rgba(15, 52, 96, 0.6);
+            border: 3px solid;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .chakra-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px currentColor;
+        }
+
+        .chakra-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chakra-icon {
+            font-size: 4rem;
+        }
+
+        .chakra-title {
+            flex: 1;
+        }
+
+        .chakra-title h3 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .chakra-sanskrit {
+            color: #aaa;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .chakra-properties {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .property {
+            margin: 0.8rem 0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .property-label {
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .mantra-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .mantra {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: inherit;
+            margin: 0.5rem 0;
+        }
+
+        .meditation-guide {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            border: 3px solid rgba(139, 92, 246, 0.5);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .meditation-guide h3 {
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+
+        .meditation-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .meditation-step {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .meditation-step h4 {
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Couleurs spécifiques aux chakras */
+        .root { color: #e74c3c; border-color: #e74c3c; }
+        .sacral { color: #e67e22; border-color: #e67e22; }
+        .solar { color: #f1c40f; border-color: #f1c40f; }
+        .heart { color: #2ecc71; border-color: #2ecc71; }
+        .throat { color: #3498db; border-color: #3498db; }
+        .third-eye { color: #9b59b6; border-color: #9b59b6; }
+        .crown { color: #ecf0f1; border-color: #ecf0f1; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧘 Les 7 Chakras</h1>
+        <p class="subtitle">Centres énergétiques du corps humain</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="chakras.html">🧘 Chakras</a>
+        <a href="#meditation">🕉️ Méditation</a>
+    </nav>
+
+    <main>
+        <div class="intro-section">
+            <h2>🌈 Introduction aux Chakras</h2>
+            <p>Les <strong>chakras</strong> sont des centres énergétiques situés le long de la colonne vertébrale dans les traditions yogiques et tantriques. Le mot "chakra" vient du sanskrit et signifie "roue" ou "disque".</p>
+            <p>Ces sept centres principaux régulent le flux d'énergie vitale (prana) dans le corps. Chaque chakra correspond à des aspects physiques, émotionnels et spirituels spécifiques de notre être.</p>
+        </div>
+
+        <h2 style="text-align: center; color: #64b5f6; margin: 2rem 0;">🌟 Visualisation des 7 Chakras</h2>
+
+        <div class="chakra-visualization">
+            <div class="chakra-orb crown" style="background: radial-gradient(circle, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.4));">⚪</div>
+            <div class="chakra-orb third-eye" style="background: radial-gradient(circle, rgba(155, 89, 182, 0.8), rgba(142, 68, 173, 0.4));">💜</div>
+            <div class="chakra-orb throat" style="background: radial-gradient(circle, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.4));">🔵</div>
+            <div class="chakra-orb heart" style="background: radial-gradient(circle, rgba(46, 204, 113, 0.8), rgba(39, 174, 96, 0.4));">💚</div>
+            <div class="chakra-orb solar" style="background: radial-gradient(circle, rgba(241, 196, 15, 0.8), rgba(243, 156, 18, 0.4));">🟡</div>
+            <div class="chakra-orb sacral" style="background: radial-gradient(circle, rgba(230, 126, 34, 0.8), rgba(211, 84, 0, 0.4));">🟠</div>
+            <div class="chakra-orb root" style="background: radial-gradient(circle, rgba(231, 76, 60, 0.8), rgba(192, 57, 43, 0.4));">🔴</div>
+        </div>
+
+        <h2 style="text-align: center; color: #64b5f6; margin: 3rem 0 2rem 0;">📖 Description Détaillée des Chakras</h2>
+
+        <div class="chakra-cards">
+            <!-- 7. Chakra Couronne -->
+            <div class="chakra-card crown">
+                <div class="chakra-header">
+                    <div class="chakra-icon">⚪</div>
+                    <div class="chakra-title">
+                        <h3>7. Sahasrara</h3>
+                        <div class="chakra-sanskrit">Chakra Couronne</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Sommet du crâne</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Blanc / Violet</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Conscience cosmique</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Spiritualité, illumination, connexion divine</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Sagesse, unité, transcendance</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">OM / AH</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Silence ou son primordial</p>
+                </div>
+            </div>
+
+            <!-- 6. Chakra du Troisième Œil -->
+            <div class="chakra-card third-eye">
+                <div class="chakra-header">
+                    <div class="chakra-icon">💜</div>
+                    <div class="chakra-title">
+                        <h3>6. Ajna</h3>
+                        <div class="chakra-sanskrit">Chakra du Troisième Œil</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Entre les sourcils</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Indigo / Violet</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Lumière</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Intuition, clairvoyance, imagination</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Vision intérieure, sagesse, perception</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">OM</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Son de la conscience universelle</p>
+                </div>
+            </div>
+
+            <!-- 5. Chakra de la Gorge -->
+            <div class="chakra-card throat">
+                <div class="chakra-header">
+                    <div class="chakra-icon">🔵</div>
+                    <div class="chakra-title">
+                        <h3>5. Vishuddha</h3>
+                        <div class="chakra-sanskrit">Chakra de la Gorge</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Gorge / Thyroïde</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Bleu clair</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Éther / Espace</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Communication, expression, vérité</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Authenticité, créativité verbale, écoute</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">HAM</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Prononcé "Hum"</p>
+                </div>
+            </div>
+
+            <!-- 4. Chakra du Cœur -->
+            <div class="chakra-card heart">
+                <div class="chakra-header">
+                    <div class="chakra-icon">💚</div>
+                    <div class="chakra-title">
+                        <h3>4. Anahata</h3>
+                        <div class="chakra-sanskrit">Chakra du Cœur</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Centre de la poitrine</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Vert / Rose</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Air</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Amour, compassion, guérison</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Empathie, pardon, joie, paix</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">YAM</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Prononcé "Yum"</p>
+                </div>
+            </div>
+
+            <!-- 3. Chakra du Plexus Solaire -->
+            <div class="chakra-card solar">
+                <div class="chakra-header">
+                    <div class="chakra-icon">🟡</div>
+                    <div class="chakra-title">
+                        <h3>3. Manipura</h3>
+                        <div class="chakra-sanskrit">Chakra du Plexus Solaire</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Nombril / Estomac</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Jaune</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Feu</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Pouvoir personnel, volonté, transformation</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Confiance, courage, détermination</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">RAM</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Prononcé "Rum"</p>
+                </div>
+            </div>
+
+            <!-- 2. Chakra Sacré -->
+            <div class="chakra-card sacral">
+                <div class="chakra-header">
+                    <div class="chakra-icon">🟠</div>
+                    <div class="chakra-title">
+                        <h3>2. Svadhisthana</h3>
+                        <div class="chakra-sanskrit">Chakra Sacré</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Sous le nombril</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Orange</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Eau</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Créativité, sexualité, émotions</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Plaisir, passion, fluidité</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">VAM</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Prononcé "Vum"</p>
+                </div>
+            </div>
+
+            <!-- 1. Chakra Racine -->
+            <div class="chakra-card root">
+                <div class="chakra-header">
+                    <div class="chakra-icon">🔴</div>
+                    <div class="chakra-title">
+                        <h3>1. Muladhara</h3>
+                        <div class="chakra-sanskrit">Chakra Racine</div>
+                    </div>
+                </div>
+                <div class="chakra-properties">
+                    <div class="property">
+                        <span class="property-label">📍 Position:</span>
+                        <span>Base de la colonne vertébrale</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🎨 Couleur:</span>
+                        <span>Rouge</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🔮 Élément:</span>
+                        <span>Terre</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">✨ Fonction:</span>
+                        <span>Survie, sécurité, ancrage</span>
+                    </div>
+                    <div class="property">
+                        <span class="property-label">🌟 Qualités:</span>
+                        <span>Stabilité, force, connexion à la terre</span>
+                    </div>
+                </div>
+                <div class="mantra-section">
+                    <p style="color: #aaa; margin: 0;">Mantra:</p>
+                    <div class="mantra">LAM</div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">Prononcé "Lum"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="meditation-guide" id="meditation">
+            <h3>🕉️ Guide de Méditation des Chakras</h3>
+            <p>Voici une méthode simple pour équilibrer vos chakras par la méditation et la visualisation :</p>
+
+            <div class="meditation-steps">
+                <div class="meditation-step">
+                    <h4>1. Préparation</h4>
+                    <p>Asseyez-vous confortablement, dos droit. Fermez les yeux et respirez profondément pendant 2-3 minutes.</p>
+                </div>
+
+                <div class="meditation-step">
+                    <h4>2. Visualisation</h4>
+                    <p>Visualisez chaque chakra comme une sphère lumineuse de sa couleur correspondante, en commençant par la racine.</p>
+                </div>
+
+                <div class="meditation-step">
+                    <h4>3. Mantras</h4>
+                    <p>Pour chaque chakra, répétez son mantra (LAM, VAM, RAM, YAM, HAM, OM, AH) 7 à 21 fois.</p>
+                </div>
+
+                <div class="meditation-step">
+                    <h4>4. Respiration</h4>
+                    <p>Inspirez en visualisant l'énergie entrant dans le chakra, expirez en libérant les blocages.</p>
+                </div>
+
+                <div class="meditation-step">
+                    <h4>5. Progression</h4>
+                    <p>Montez progressivement de chakra en chakra, du bas vers le haut, en prenant 2-3 minutes par centre.</p>
+                </div>
+
+                <div class="meditation-step">
+                    <h4>6. Intégration</h4>
+                    <p>Terminez en visualisant tous les chakras alignés et brillants, connectés par un flux d'énergie dorée.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem; color: #aaa; font-style: italic;">
+                💡 Pratiquez cette méditation quotidiennement pendant 15-20 minutes pour maintenir l'équilibre énergétique de vos chakras.
+            </p>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        // Animation au scroll
+        const cards = document.querySelectorAll('.chakra-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        });
+
+        cards.forEach(card => observer.observe(card));
+
+        // Clic sur les orbes pour scroller vers la carte correspondante
+        document.querySelectorAll('.chakra-orb').forEach((orb, index) => {
+            orb.addEventListener('click', () => {
+                const targetCard = document.querySelectorAll('.chakra-card')[index];
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                targetCard.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    targetCard.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divination Runique Interactive | Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .divination-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .divination-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-top: 5px solid;
+        }
+
+        .divination-card.simple { border-color: #27ae60; }
+        .divination-card.nornes { border-color: #3498db; }
+        .divination-card.thor { border-color: #f39c12; }
+        .divination-card.cast { border-color: #8e44ad; }
+
+        .divination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .divination-interface {
+            display: none;
+            margin: 2rem 0;
+        }
+
+        .divination-interface.active {
+            display: block;
+        }
+
+        .rune-draw-area {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .rune-display {
+            display: inline-block;
+            background: var(--bg-light);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .rune-display:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .rune-display.revealed {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .rune-display.hidden {
+            background: #34495e;
+            cursor: pointer;
+        }
+
+        .rune-display.hidden:before {
+            content: '?';
+            color: rgba(255,255,255,0.3);
+            font-size: 5rem;
+        }
+
+        .rune-position-label {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .interpretation {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .draw-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .draw-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .draw-button:active {
+            transform: scale(0.98);
+        }
+
+        .spread-layout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .spread-layout.nornes {
+            justify-content: space-around;
+        }
+
+        .spread-layout.thor {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .spread-layout.thor .rune-display:nth-child(1) { grid-column: 2; grid-row: 1; }
+        .spread-layout.thor .rune-display:nth-child(2) { grid-column: 1; grid-row: 2; }
+        .spread-layout.thor .rune-display:nth-child(3) { grid-column: 2; grid-row: 2; }
+        .spread-layout.thor .rune-display:nth-child(4) { grid-column: 3; grid-row: 2; }
+        .spread-layout.thor .rune-display:nth-child(5) { grid-column: 2; grid-row: 3; }
+
+        .rune-bag {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+        }
+
+        .rune-stone {
+            background: #95a5a6;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .rune-stone:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .rune-stone.selected {
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            transform: scale(1.2);
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid var(--primary);
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            background: var(--bg-light);
+            color: var(--card-text);
+        }
+
+        .back-button {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 1rem;
+        }
+
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .rune-display {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .spread-layout.thor {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .spread-layout.thor .rune-display {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="header-buttons-cosmic">
+            <button class="cosmic-btn cosmic-btn-dark" onclick="toggleDarkMode()">
+                <span class="btn-icon">🌙</span>
+                <span class="btn-text">Mode Nuit</span>
+            </button>
+            <button class="cosmic-btn cosmic-btn-lang" onclick="window.location.href='index.html'">
+                <span class="btn-icon">🏠</span>
+                <span class="btn-text">Accueil</span>
+            </button>
+        </div>
+        <h1>🔮 Divination Runique Interactive</h1>
+        <p class="subtitle">Consultez la Sagesse Ancestrale des Runes</p>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">Accueil</a> » <a href="index.html#runes">Runes</a> » Divination Interactive
+        </div>
+
+        <div class="content-page">
+            <!-- MENU PRINCIPAL -->
+            <div id="main-menu">
+                <section class="hero">
+                    <h2>Choisissez votre méthode de tirage</h2>
+                    <p>Chaque méthode de divination répond à des questions différentes. Écoutez votre intuition pour choisir le tirage qui résonne avec votre situation actuelle.</p>
+                </section>
+
+                <div class="divination-menu">
+                    <div class="divination-card simple" onclick="selectSpread('simple')">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🌟</div>
+                        <h3>Rune du Jour</h3>
+                        <p>Guidance simple et directe pour votre journée</p>
+                        <p style="margin-top: 1rem; font-weight: bold;">Difficulté: Débutant</p>
+                    </div>
+
+                    <div class="divination-card nornes" onclick="selectSpread('nornes')">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
+                        <h3>Les Trois Nornes</h3>
+                        <p>Passé, Présent, Futur - Vision temporelle complète</p>
+                        <p style="margin-top: 1rem; font-weight: bold;">Difficulté: Intermédiaire</p>
+                    </div>
+
+                    <div class="divination-card thor" onclick="selectSpread('thor')">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                        <h3>Croix de Thor</h3>
+                        <p>Analyse en profondeur d'une situation complexe</p>
+                        <p style="margin-top: 1rem; font-weight: bold;">Difficulté: Avancé</p>
+                    </div>
+
+                    <div class="divination-card cast" onclick="selectSpread('cast')">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎲</div>
+                        <h3>Lancer de Runes</h3>
+                        <p>Méthode traditionnelle - Tirage libre et intuitif</p>
+                        <p style="margin-top: 1rem; font-weight: bold;">Difficulté: Expert</p>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Conseil avant de tirer:</strong> Prenez quelques instants pour vous centrer. Respirez profondément. Formulez clairement votre question dans votre esprit. Les runes répondent mieux aux questions ouvertes ("Comment puis-je...?", "Que dois-je savoir sur...?") qu'aux questions fermées ("Oui/Non").
+                </div>
+            </div>
+
+            <!-- RUNE DU JOUR -->
+            <div id="simple-spread" class="divination-interface">
+                <button class="back-button" onclick="backToMenu()">← Retour au menu</button>
+                <h2 style="text-align: center; margin: 2rem 0;">🌟 Rune du Jour</h2>
+
+                <div class="lesson">
+                    <h3>À propos de ce tirage</h3>
+                    <p>Le tirage d'une seule rune est la méthode la plus simple et la plus directe. Elle offre une guidance claire pour votre journée ou une réponse concise à une question spécifique.</p>
+                    <p><strong>Quand l'utiliser:</strong> Guidance quotidienne, question simple, méditation matinale</p>
+                </div>
+
+                <input type="text" class="question-input" id="simple-question" placeholder="Quelle est votre question ou intention? (optionnel)">
+
+                <div class="rune-draw-area">
+                    <button class="draw-button" onclick="drawSimple()">Tirer une Rune</button>
+                    <div id="simple-result" class="spread-layout" style="margin-top: 3rem;"></div>
+                </div>
+
+                <div id="simple-interpretation" class="interpretation" style="display: none;"></div>
+            </div>
+
+            <!-- LES TROIS NORNES -->
+            <div id="nornes-spread" class="divination-interface">
+                <button class="back-button" onclick="backToMenu()">← Retour au menu</button>
+                <h2 style="text-align: center; margin: 2rem 0;">⏳ Les Trois Nornes</h2>
+
+                <div class="lesson">
+                    <h3>À propos de ce tirage</h3>
+                    <p>Les Nornes sont les trois déesses du destin dans la mythologie nordique: Urd (le passé), Verdandi (le présent) et Skuld (le futur). Ce tirage offre une vision temporelle complète de votre situation.</p>
+                    <p><strong>Positions:</strong></p>
+                    <ul>
+                        <li><strong>Position 1 (Urd):</strong> Le passé - Ce qui influence la situation actuelle</li>
+                        <li><strong>Position 2 (Verdandi):</strong> Le présent - Votre situation actuelle</li>
+                        <li><strong>Position 3 (Skuld):</strong> Le futur - Le résultat probable si vous suivez le chemin actuel</li>
+                    </ul>
+                </div>
+
+                <input type="text" class="question-input" id="nornes-question" placeholder="Quelle situation souhaitez-vous examiner?">
+
+                <div class="rune-draw-area">
+                    <button class="draw-button" onclick="drawNornes()">Tirer les Trois Runes</button>
+                    <div id="nornes-result" class="spread-layout nornes" style="margin-top: 3rem;"></div>
+                </div>
+
+                <div id="nornes-interpretation" class="interpretation" style="display: none;"></div>
+            </div>
+
+            <!-- CROIX DE THOR -->
+            <div id="thor-spread" class="divination-interface">
+                <button class="back-button" onclick="backToMenu()">← Retour au menu</button>
+                <h2 style="text-align: center; margin: 2rem 0;">⚡ Croix de Thor</h2>
+
+                <div class="lesson">
+                    <h3>À propos de ce tirage</h3>
+                    <p>La Croix de Thor (ou Marteau de Thor) est un tirage en cinq positions qui offre une analyse complète d'une situation complexe. Il explore tous les aspects: interne, externe, obstacles et résolution.</p>
+                    <p><strong>Positions:</strong></p>
+                    <ul>
+                        <li><strong>Position 1 (Centre):</strong> Vous - Votre position actuelle, votre état d'esprit</li>
+                        <li><strong>Position 2 (Gauche):</strong> Obstacles - Ce qui vous bloque ou vous défie</li>
+                        <li><strong>Position 3 (Haut):</strong> Aide - Énergies favorables, ressources disponibles</li>
+                        <li><strong>Position 4 (Droite):</strong> Futur immédiat - Résultat si vous continuez sur cette voie</li>
+                        <li><strong>Position 5 (Bas):</strong> Fondation - Racine profonde de la situation, vérité cachée</li>
+                    </ul>
+                </div>
+
+                <input type="text" class="question-input" id="thor-question" placeholder="Quelle situation complexe souhaitez-vous analyser?">
+
+                <div class="rune-draw-area">
+                    <button class="draw-button" onclick="drawThor()">Tirer les Cinq Runes</button>
+                    <div id="thor-result" class="spread-layout thor" style="margin-top: 3rem;"></div>
+                </div>
+
+                <div id="thor-interpretation" class="interpretation" style="display: none;"></div>
+            </div>
+
+            <!-- LANCER DE RUNES -->
+            <div id="cast-spread" class="divination-interface">
+                <button class="back-button" onclick="backToMenu()">← Retour au menu</button>
+                <h2 style="text-align: center; margin: 2rem 0;">🎲 Lancer de Runes Libre</h2>
+
+                <div class="lesson">
+                    <h3>À propos de cette méthode</h3>
+                    <p>Le lancer de runes est la méthode traditionnelle la plus ancienne. Vous choisissez intuitivement plusieurs runes (3 à 9) et les interprétez en fonction de leur proximité et de leurs interactions.</p>
+                    <p><strong>Comment interpréter:</strong></p>
+                    <ul>
+                        <li>Les runes au centre sont plus importantes que celles sur les bords</li>
+                        <li>Les runes proches interagissent et modifient leurs significations</li>
+                        <li>Faites confiance à votre intuition pour voir les patterns</li>
+                    </ul>
+                </div>
+
+                <input type="text" class="question-input" id="cast-question" placeholder="Quelle question profonde portez-vous?">
+
+                <div class="rune-draw-area">
+                    <p style="margin-bottom: 1rem;">Cliquez sur 3 à 9 runes pour les sélectionner, puis lancez-les:</p>
+                    <div id="rune-bag" class="rune-bag"></div>
+                    <button class="draw-button" onclick="castRunes()" style="margin-top: 2rem;">Lancer les Runes Sélectionnées</button>
+                    <div id="cast-result" style="margin-top: 3rem;"></div>
+                </div>
+
+                <div id="cast-interpretation" class="interpretation" style="display: none;"></div>
+            </div>
+
+            <div class="exercise">
+                <h3>📝 Journal de Divination</h3>
+                <p>Pour développer votre compétence divinatoire, nous vous recommandons de:</p>
+                <ol>
+                    <li>Noter vos tirages avec la date et votre question</li>
+                    <li>Écrire votre interprétation immédiate</li>
+                    <li>Revenir quelques jours plus tard pour voir comment les événements ont confirmé ou nuancé votre lecture</li>
+                    <li>Observer quelles runes reviennent fréquemment (messages importants)</li>
+                    <li>Développer vos propres associations et significations personnelles</li>
+                </ol>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="index.html#runes" class="btn btn-beginner">← Retour aux Runes</a>
+                <a href="runes-mythologie-nordique.html" class="btn btn-intermediate">Mythologie Nordique →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Sagesses Anciennes - Les runes vous guident, vous choisissez</p>
+    </footer>
+
+    <script>
+        // Base de données des runes
+        const runes = [
+            { symbol: 'ᚠ', name: 'Fehu', meaning: 'Richesse, abondance, nouveau départ. Énergie de prospérité matérielle et spirituelle.', keywords: 'Richesse • Nouveau Départ • Abondance' },
+            { symbol: 'ᚢ', name: 'Uruz', meaning: 'Force vitale brute, santé, endurance. Pouvoir de manifestation et de guérison.', keywords: 'Force • Santé • Vitalité' },
+            { symbol: 'ᚦ', name: 'Thurisaz', meaning: 'Protection, épine, géant. Force de Thor, défense contre les adversités.', keywords: 'Protection • Défense • Marteau de Thor' },
+            { symbol: 'ᚨ', name: 'Ansuz', meaning: 'Communication divine, inspiration, sagesse d\'Odin. Parole et enseignement.', keywords: 'Sagesse • Communication • Inspiration' },
+            { symbol: 'ᚱ', name: 'Raidho', meaning: 'Voyage, chemin, progression. Mouvement physique ou spirituel vers un but.', keywords: 'Voyage • Chemin • Progression' },
+            { symbol: 'ᚲ', name: 'Kenaz', meaning: 'Torche, illumination, connaissance. Lumière qui dissipe l\'obscurité de l\'ignorance.', keywords: 'Connaissance • Illumination • Créativité' },
+            { symbol: 'ᚷ', name: 'Gebo', meaning: 'Don, échange équilibré, partenariat. Générosité et réciprocité harmonieuse.', keywords: 'Don • Échange • Partenariat' },
+            { symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joie, harmonie, réalisation. État de bonheur parfait et de satisfaction.', keywords: 'Joie • Harmonie • Bonheur' },
+            { symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Grêle, destruction nécessaire, crise. Transformation par l\'épreuve.', keywords: 'Transformation • Épreuve • Changement Brutal' },
+            { symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Nécessité, contrainte, besoin. Leçons difficiles mais essentielles.', keywords: 'Besoin • Contrainte • Leçon' },
+            { symbol: 'ᛁ', name: 'Isa', meaning: 'Glace, stagnation, concentration. Pause nécessaire avant le mouvement.', keywords: 'Pause • Concentration • Patience' },
+            { symbol: 'ᛃ', name: 'Jera', meaning: 'Récolte, cycle naturel, patience récompensée. Fruits de vos efforts.', keywords: 'Récolte • Cycles • Fruits' },
+            { symbol: 'ᛇ', name: 'Eihwaz', meaning: 'If, endurance, connexion entre mondes. Mort initiatique et renaissance.', keywords: 'Endurance • Transformation • Connexion' },
+            { symbol: 'ᛈ', name: 'Perthro', meaning: 'Mystère, destin, hasard. Secrets révélés, synchronicités.', keywords: 'Mystère • Destin • Révélation' },
+            { symbol: 'ᛉ', name: 'Algiz', meaning: 'Protection divine, connexion au sacré. L\'élan qui atteint les cieux.', keywords: 'Protection Divine • Connexion Sacrée • Éveil' },
+            { symbol: 'ᛊ', name: 'Sowilo', meaning: 'Soleil, victoire, énergie vitale. Succès et illumination spirituelle.', keywords: 'Victoire • Succès • Énergie Solaire' },
+            { symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Justice, honneur, sacrifice. Victoire par courage et intégrité.', keywords: 'Justice • Courage • Honneur' },
+            { symbol: 'ᛒ', name: 'Berkano', meaning: 'Bouleau, croissance, féminité. Nouveaux commencements et fertilité.', keywords: 'Croissance • Nouveau Départ • Fertilité' },
+            { symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Cheval, partenariat, mouvement harmonieux. Progrès par collaboration.', keywords: 'Partenariat • Mouvement • Harmonie' },
+            { symbol: 'ᛗ', name: 'Mannaz', meaning: 'Humanité, soi, communauté. L\'humain dans sa dimension sociale et spirituelle.', keywords: 'Humanité • Communauté • Soi' },
+            { symbol: 'ᛚ', name: 'Laguz', meaning: 'Eau, intuition, flux. Connexion à l\'inconscient et aux émotions.', keywords: 'Intuition • Flux • Émotions' },
+            { symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Fertilité, gestation, achèvement. Énergie de Freyr, potentiel en développement.', keywords: 'Fertilité • Gestation • Potentiel' },
+            { symbol: 'ᛞ', name: 'Dagaz', meaning: 'Aube, transformation radicale, percée. Le jour après la nuit.', keywords: 'Transformation • Aube • Percée' },
+            { symbol: 'ᛟ', name: 'Othala', meaning: 'Héritage ancestral, racines, propriété. Connexion aux ancêtres et traditions.', keywords: 'Héritage • Racines • Traditions' }
+        ];
+
+        let selectedRunes = [];
+
+        function selectSpread(spread) {
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('simple-spread').style.display = 'none';
+            document.getElementById('nornes-spread').style.display = 'none';
+            document.getElementById('thor-spread').style.display = 'none';
+            document.getElementById('cast-spread').style.display = 'none';
+
+            document.getElementById(spread + '-spread').classList.add('active');
+            document.getElementById(spread + '-spread').style.display = 'block';
+
+            if (spread === 'cast') {
+                initializeRuneBag();
+            }
+        }
+
+        function backToMenu() {
+            document.querySelectorAll('.divination-interface').forEach(el => {
+                el.style.display = 'none';
+                el.classList.remove('active');
+            });
+            document.getElementById('main-menu').style.display = 'block';
+
+            // Reset results
+            document.querySelectorAll('[id$="-result"]').forEach(el => el.innerHTML = '');
+            document.querySelectorAll('[id$="-interpretation"]').forEach(el => {
+                el.style.display = 'none';
+                el.innerHTML = '';
+            });
+            selectedRunes = [];
+        }
+
+        function getRandomRune() {
+            return runes[Math.floor(Math.random() * runes.length)];
+        }
+
+        function drawSimple() {
+            const rune = getRandomRune();
+            const question = document.getElementById('simple-question').value;
+
+            const result = document.getElementById('simple-result');
+            result.innerHTML = `
+                <div class="rune-display revealed" style="animation: fadeIn 0.5s;">
+                    ${rune.symbol}
+                </div>
+            `;
+
+            const interpretation = document.getElementById('simple-interpretation');
+            interpretation.style.display = 'block';
+            interpretation.innerHTML = `
+                <h3>🔮 Votre Rune: ${rune.name} ${rune.symbol}</h3>
+                ${question ? `<p><strong>Votre question:</strong> ${question}</p>` : ''}
+                <p><strong>Signification clé:</strong> ${rune.keywords}</p>
+                <p>${rune.meaning}</p>
+                <div class="tip" style="margin-top: 1.5rem;">
+                    <strong>💡 Réflexion:</strong> Comment cette énergie se manifeste-t-elle dans votre vie actuelle? Que vous invite-t-elle à reconnaître ou à changer?
+                </div>
+            `;
+
+            interpretation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function drawNornes() {
+            const rune1 = getRandomRune();
+            const rune2 = getRandomRune();
+            const rune3 = getRandomRune();
+            const question = document.getElementById('nornes-question').value;
+
+            const result = document.getElementById('nornes-result');
+            result.innerHTML = `
+                <div style="text-align: center;">
+                    <div class="rune-display revealed" style="animation: fadeIn 0.5s;">
+                        <div class="rune-position-label">PASSÉ (Urd)</div>
+                        ${rune1.symbol}
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="rune-display revealed" style="animation: fadeIn 0.5s 0.3s; animation-fill-mode: both;">
+                        <div class="rune-position-label">PRÉSENT (Verdandi)</div>
+                        ${rune2.symbol}
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="rune-display revealed" style="animation: fadeIn 0.5s 0.6s; animation-fill-mode: both;">
+                        <div class="rune-position-label">FUTUR (Skuld)</div>
+                        ${rune3.symbol}
+                    </div>
+                </div>
+            `;
+
+            const interpretation = document.getElementById('nornes-interpretation');
+            interpretation.style.display = 'block';
+            interpretation.innerHTML = `
+                <h3>⏳ Votre Lecture des Trois Nornes</h3>
+                ${question ? `<p><strong>Votre situation:</strong> ${question}</p>` : ''}
+
+                <div style="margin: 2rem 0;">
+                    <h4>1️⃣ PASSÉ - ${rune1.name} ${rune1.symbol}</h4>
+                    <p><strong>${rune1.keywords}</strong></p>
+                    <p>${rune1.meaning}</p>
+                    <p style="margin-top: 0.5rem; font-style: italic;">Cette énergie a influencé votre chemin et contribué à votre situation actuelle.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4>2️⃣ PRÉSENT - ${rune2.name} ${rune2.symbol}</h4>
+                    <p><strong>${rune2.keywords}</strong></p>
+                    <p>${rune2.meaning}</p>
+                    <p style="margin-top: 0.5rem; font-style: italic;">Voici où vous vous trouvez maintenant, l'énergie qui définit votre moment présent.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4>3️⃣ FUTUR - ${rune3.name} ${rune3.symbol}</h4>
+                    <p><strong>${rune3.keywords}</strong></p>
+                    <p>${rune3.meaning}</p>
+                    <p style="margin-top: 0.5rem; font-style: italic;">Si vous continuez sur votre chemin actuel, cette énergie se manifestera.</p>
+                </div>
+
+                <div class="tip" style="margin-top: 2rem;">
+                    <strong>💡 Synthèse:</strong> Voyez ces trois runes comme un récit cohérent. Comment le passé a-t-il créé le présent? Comment le présent mène-t-il vers le futur? Rappelez-vous: le futur n'est pas fixe. Cette lecture vous montre une possibilité, pas une certitude absolue.
+                </div>
+            `;
+
+            interpretation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function drawThor() {
+            const positions = [
+                { name: 'CENTRE (Vous)', rune: getRandomRune() },
+                { name: 'GAUCHE (Obstacles)', rune: getRandomRune() },
+                { name: 'HAUT (Aide)', rune: getRandomRune() },
+                { name: 'DROITE (Futur)', rune: getRandomRune() },
+                { name: 'BAS (Fondation)', rune: getRandomRune() }
+            ];
+            const question = document.getElementById('thor-question').value;
+
+            const result = document.getElementById('thor-result');
+            result.innerHTML = positions.map((pos, i) => `
+                <div style="text-align: center;">
+                    <div class="rune-display revealed" style="animation: fadeIn 0.5s ${i * 0.2}s; animation-fill-mode: both;">
+                        <div class="rune-position-label">${pos.name}</div>
+                        ${pos.rune.symbol}
+                    </div>
+                </div>
+            `).join('');
+
+            const interpretation = document.getElementById('thor-interpretation');
+            interpretation.style.display = 'block';
+            interpretation.innerHTML = `
+                <h3>⚡ Votre Croix de Thor</h3>
+                ${question ? `<p><strong>Votre situation:</strong> ${question}</p>` : ''}
+
+                ${positions.map((pos, i) => `
+                    <div style="margin: 2rem 0;">
+                        <h4>${i + 1}️⃣ ${pos.name.toUpperCase()} - ${pos.rune.name} ${pos.rune.symbol}</h4>
+                        <p><strong>${pos.rune.keywords}</strong></p>
+                        <p>${pos.rune.meaning}</p>
+                    </div>
+                `).join('')}
+
+                <div class="tip" style="margin-top: 2rem;">
+                    <strong>💡 Vision d'ensemble:</strong> La Croix de Thor vous montre votre position complète dans cette situation. Le centre (vous) est influencé par les obstacles (gauche) et soutenu par l'aide (haut). Le futur (droite) émerge de tout cela, tandis que la fondation (bas) révèle la vérité cachée au cœur de la situation. Méditez sur comment ces cinq énergies interagissent.
+                </div>
+            `;
+
+            interpretation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function initializeRuneBag() {
+            const bag = document.getElementById('rune-bag');
+            selectedRunes = [];
+            bag.innerHTML = runes.map((rune, i) => `
+                <div class="rune-stone" onclick="toggleRuneSelection(${i})" data-index="${i}" title="${rune.name}">
+                    ${rune.symbol}
+                </div>
+            `).join('');
+        }
+
+        function toggleRuneSelection(index) {
+            const stone = document.querySelector(`.rune-stone[data-index="${index}"]`);
+            const runeIndex = selectedRunes.indexOf(index);
+
+            if (runeIndex > -1) {
+                selectedRunes.splice(runeIndex, 1);
+                stone.classList.remove('selected');
+            } else {
+                if (selectedRunes.length < 9) {
+                    selectedRunes.push(index);
+                    stone.classList.add('selected');
+                } else {
+                    alert('Maximum 9 runes pour un lancer!');
+                }
+            }
+        }
+
+        function castRunes() {
+            if (selectedRunes.length < 3) {
+                alert('Veuillez sélectionner au moins 3 runes!');
+                return;
+            }
+
+            const question = document.getElementById('cast-question').value;
+            const chosenRunes = selectedRunes.map(i => runes[i]);
+
+            const result = document.getElementById('cast-result');
+            result.innerHTML = `
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 2rem 0;">
+                    ${chosenRunes.map((rune, i) => `
+                        <div class="rune-display revealed" style="animation: fadeIn 0.5s ${i * 0.15}s; animation-fill-mode: both;">
+                            ${rune.symbol}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            const interpretation = document.getElementById('cast-interpretation');
+            interpretation.style.display = 'block';
+            interpretation.innerHTML = `
+                <h3>🎲 Votre Lancer de Runes (${chosenRunes.length} runes)</h3>
+                ${question ? `<p><strong>Votre question:</strong> ${question}</p>` : ''}
+
+                <div style="margin: 2rem 0;">
+                    <h4>Runes Tirées:</h4>
+                    ${chosenRunes.map((rune, i) => `
+                        <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 10px;">
+                            <h4>${rune.symbol} ${rune.name}</h4>
+                            <p><strong>${rune.keywords}</strong></p>
+                            <p>${rune.meaning}</p>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="tip" style="margin-top: 2rem;">
+                    <strong>💡 Interprétation Intuitive:</strong> Dans un lancer libre, cherchez les patterns et les thèmes récurrents. Si plusieurs runes pointent vers la même énergie (protection, transformation, communication), c'est un message fort. Laissez votre intuition créer le récit qui relie ces symboles. Il n'y a pas de "bonne" ou "mauvaise" interprétation - seulement celle qui résonne avec votre vérité.
+                </div>
+            `;
+
+            interpretation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: scale(0.5) rotate(-180deg); }
+                to { opacity: 1; transform: scale(1) rotate(0deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

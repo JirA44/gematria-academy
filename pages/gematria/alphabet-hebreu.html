@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Hébraïque - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro-section {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .letter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .letter-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.8), rgba(30, 136, 229, 0.2));
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .letter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .letter-display {
+            font-size: 4rem;
+            text-align: center;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .letter-name {
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .letter-pronunciation {
+            color: #aaa;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .letter-value {
+            background: rgba(100, 181, 246, 0.2);
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        .letter-meaning {
+            color: #e8e8e8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: 2rem 0 1rem 0;
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .category-header h2 {
+            color: #fff;
+            margin: 0;
+        }
+
+        .final-letters-note {
+            background: rgba(236, 72, 153, 0.2);
+            border: 2px solid rgba(236, 72, 153, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔯 Alphabet Hébraïque</h1>
+        <p class="subtitle">Les 22 lettres sacrées de l'Aleph-Bet</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="alphabet-hebreu.html">🔯 Alphabet Hébreu</a>
+        <a href="calculateur-gematria.html">🔢 Calculateur Gematria</a>
+        <a href="alphabet-runes.html">ᚠ Runes</a>
+        <a href="tirage-runes.html">🎲 Tirage Runes</a>
+    </nav>
+
+    <main>
+        <div class="intro-section">
+            <h2>📜 Introduction à l'Aleph-Bet</h2>
+            <p>L'alphabet hébraïque, appelé <strong>Aleph-Bet</strong>, est composé de 22 lettres consonantiques. Chaque lettre possède une valeur numérique utilisée dans la <strong>Gematria</strong>, une pratique kabbalistique qui révèle des connexions mystiques entre les mots.</p>
+            <p>L'hébreu s'écrit de <strong>droite à gauche</strong> et chaque lettre porte une signification symbolique profonde liée à la création, aux forces cosmiques et à la spiritualité.</p>
+        </div>
+
+        <div class="category-header">
+            <h2>🔤 Les 22 Lettres de l'Aleph-Bet</h2>
+        </div>
+
+        <div class="letter-grid">
+            <div class="letter-card">
+                <div class="letter-display">א</div>
+                <div class="letter-name">Aleph</div>
+                <div class="letter-pronunciation">Prononciation : "A" (muet)</div>
+                <div class="letter-value">Valeur Gematria : 1</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Bœuf, Chef, Unité divine. Symbolise le commencement, l'énergie primordiale et la connexion entre le ciel et la terre.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ב</div>
+                <div class="letter-name">Bet</div>
+                <div class="letter-pronunciation">Prononciation : "B" ou "V"</div>
+                <div class="letter-value">Valeur Gematria : 2</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Maison. Représente le foyer, la bénédiction et la dualité. Première lettre de la Torah (Bereshit - Genèse).
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ג</div>
+                <div class="letter-name">Gimel</div>
+                <div class="letter-pronunciation">Prononciation : "G"</div>
+                <div class="letter-value">Valeur Gematria : 3</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Chameau. Symbolise le voyage, la générosité et le mouvement. Représente l'acte de donner.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ד</div>
+                <div class="letter-name">Dalet</div>
+                <div class="letter-pronunciation">Prononciation : "D"</div>
+                <div class="letter-value">Valeur Gematria : 4</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Porte. Représente l'ouverture, l'humilité et la réception. Les quatre directions cardinales.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ה</div>
+                <div class="letter-name">Hei</div>
+                <div class="letter-pronunciation">Prononciation : "H"</div>
+                <div class="letter-value">Valeur Gematria : 5</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Fenêtre, Souffle. Symbolise la révélation divine et l'inspiration. Présent dans le nom divin YHVH.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ו</div>
+                <div class="letter-name">Vav</div>
+                <div class="letter-pronunciation">Prononciation : "V" ou "O/U"</div>
+                <div class="letter-value">Valeur Gematria : 6</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Crochet, Connexion. Représente l'union, la liaison et la conjonction "et". Les six directions de l'espace.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ז</div>
+                <div class="letter-name">Zayin</div>
+                <div class="letter-pronunciation">Prononciation : "Z"</div>
+                <div class="letter-value">Valeur Gematria : 7</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Arme, Épée. Symbolise la lutte spirituelle, la victoire et le repos (Shabbat, 7e jour).
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ח</div>
+                <div class="letter-name">Chet</div>
+                <div class="letter-pronunciation">Prononciation : "KH" (guttural)</div>
+                <div class="letter-value">Valeur Gematria : 8</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Barrière, Vie. Représente la transcendance et la nouvelle dimension (au-delà des 7 jours).
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ט</div>
+                <div class="letter-name">Tet</div>
+                <div class="letter-pronunciation">Prononciation : "T"</div>
+                <div class="letter-value">Valeur Gematria : 9</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Serpent, Bien caché. Symbolise l'intériorité, la gestation et la bonté cachée.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">י</div>
+                <div class="letter-name">Yod</div>
+                <div class="letter-pronunciation">Prononciation : "Y"</div>
+                <div class="letter-value">Valeur Gematria : 10</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Main, Point divin. La plus petite lettre, symbolise la créativité divine et la présence de Dieu.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">כ</div>
+                <div class="letter-name">Kaf</div>
+                <div class="letter-pronunciation">Prononciation : "K" ou "KH"</div>
+                <div class="letter-value">Valeur Gematria : 20</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Paume, Couronne. Représente la réceptivité, l'accomplissement et la royauté spirituelle.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ל</div>
+                <div class="letter-name">Lamed</div>
+                <div class="letter-pronunciation">Prononciation : "L"</div>
+                <div class="letter-value">Valeur Gematria : 30</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Aiguillon, Étude. La lettre la plus haute, symbolise l'apprentissage et l'aspiration vers le ciel.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">מ</div>
+                <div class="letter-name">Mem</div>
+                <div class="letter-pronunciation">Prononciation : "M"</div>
+                <div class="letter-value">Valeur Gematria : 40</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Eau. Symbolise la sagesse révélée et cachée, la transformation et la purification.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">נ</div>
+                <div class="letter-name">Nun</div>
+                <div class="letter-pronunciation">Prononciation : "N"</div>
+                <div class="letter-value">Valeur Gematria : 50</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Poisson. Représente la fertilité, la multiplication et la vie sous la surface.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ס</div>
+                <div class="letter-name">Samekh</div>
+                <div class="letter-pronunciation">Prononciation : "S"</div>
+                <div class="letter-value">Valeur Gematria : 60</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Support, Soutien. Symbolise la protection divine, le cercle fermé et la providence.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ע</div>
+                <div class="letter-name">Ayin</div>
+                <div class="letter-pronunciation">Prononciation : "'" (coup de glotte)</div>
+                <div class="letter-value">Valeur Gematria : 70</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Œil. Représente la perception spirituelle, la vision intérieure et l'insight.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">פ</div>
+                <div class="letter-name">Pei</div>
+                <div class="letter-pronunciation">Prononciation : "P" ou "F"</div>
+                <div class="letter-value">Valeur Gematria : 80</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Bouche. Symbolise la parole créatrice, l'expression et la communication divine.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">צ</div>
+                <div class="letter-name">Tsadi</div>
+                <div class="letter-pronunciation">Prononciation : "TS"</div>
+                <div class="letter-value">Valeur Gematria : 90</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Hameçon, Juste. Représente la justice, la rectitude et la connexion au divin.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ק</div>
+                <div class="letter-name">Qof</div>
+                <div class="letter-pronunciation">Prononciation : "K" (guttural)</div>
+                <div class="letter-value">Valeur Gematria : 100</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Œil de l'aiguille, Sainteté. Symbolise la transcendance et la perfection spirituelle.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ר</div>
+                <div class="letter-name">Resh</div>
+                <div class="letter-pronunciation">Prononciation : "R"</div>
+                <div class="letter-value">Valeur Gematria : 200</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Tête. Représente le commencement, l'autorité et la conscience supérieure.
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ש</div>
+                <div class="letter-name">Shin</div>
+                <div class="letter-pronunciation">Prononciation : "SH" ou "S"</div>
+                <div class="letter-value">Valeur Gematria : 300</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Dent, Feu. Symbolise le feu divin, la transformation et l'esprit saint (Shekhinah).
+                </div>
+            </div>
+
+            <div class="letter-card">
+                <div class="letter-display">ת</div>
+                <div class="letter-name">Tav</div>
+                <div class="letter-pronunciation">Prononciation : "T"</div>
+                <div class="letter-value">Valeur Gematria : 400</div>
+                <div class="letter-meaning">
+                    <strong>Signification :</strong> Marque, Signe. Dernière lettre, représente la vérité (Emet), la perfection et l'accomplissement.
+                </div>
+            </div>
+        </div>
+
+        <div class="final-letters-note">
+            <h3>📝 Les 5 Lettres Finales (Sofit)</h3>
+            <p>Cinq lettres hébraïques possèdent une forme différente lorsqu'elles apparaissent en fin de mot :</p>
+            <ul style="margin-top: 1rem; line-height: 1.8;">
+                <li><strong>ך (Kaf Sofit)</strong> - Valeur : 500</li>
+                <li><strong>ם (Mem Sofit)</strong> - Valeur : 600</li>
+                <li><strong>ן (Nun Sofit)</strong> - Valeur : 700</li>
+                <li><strong>ף (Pei Sofit)</strong> - Valeur : 800</li>
+                <li><strong>ץ (Tsadi Sofit)</strong> - Valeur : 900</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        // Animation d'apparition au scroll
+        const cards = document.querySelectorAll('.letter-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.5s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.8), rgba(30, 136, 229, 0.2));
+            border: 3px solid rgba(100, 181, 246, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            color: #aaa;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #64b5f6;
+            border-bottom-color: #64b5f6;
+        }
+
+        .tab:hover {
+            color: #fff;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #64b5f6;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .social-login {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .social-login h4 {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .social-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 10px;
+            background: rgba(100, 181, 246, 0.2);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .social-btn:hover {
+            background: rgba(100, 181, 246, 0.4);
+            transform: scale(1.05);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password a {
+            color: #64b5f6;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(100, 181, 246, 0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem auto;
+            text-align: center;
+            display: block;
+            max-width: 200px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(100, 181, 246, 0.4);
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .message.error {
+            background: rgba(244, 67, 54, 0.3);
+            border: 2px solid #f44336;
+            color: #f44336;
+        }
+
+        .message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔐 Connexion</h1>
+        <p class="subtitle">Accédez à votre parcours initiatique</p>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('login')">Connexion</div>
+                <div class="tab" onclick="switchTab('signup')">Inscription</div>
+            </div>
+
+            <div class="message" id="message"></div>
+
+            <!-- Formulaire de connexion -->
+            <div class="form-section active" id="loginForm">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="votre@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Mot de passe</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">🔓 Se connecter</button>
+                </form>
+
+                <div class="forgot-password">
+                    <a href="#" onclick="alert('Fonctionnalité à venir : réinitialisation par email')">Mot de passe oublié ?</a>
+                </div>
+
+                <div class="social-login">
+                    <h4>Ou se connecter avec :</h4>
+                    <div class="social-btns">
+                        <div class="social-btn" onclick="socialLogin('google')">🔵</div>
+                        <div class="social-btn" onclick="socialLogin('facebook')">🔷</div>
+                        <div class="social-btn" onclick="socialLogin('github')">⚫</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire d'inscription -->
+            <div class="form-section" id="signupForm">
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signupName">Nom complet</label>
+                        <input type="text" id="signupName" placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="votre@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupPassword">Mot de passe</label>
+                        <input type="password" id="signupPassword" placeholder="••••••••" minlength="6" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupConfirm">Confirmer le mot de passe</label>
+                        <input type="password" id="signupConfirm" placeholder="••••••••" minlength="6" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">✨ S'inscrire</button>
+                </form>
+
+                <div class="social-login">
+                    <h4>Ou s'inscrire avec :</h4>
+                    <div class="social-btns">
+                        <div class="social-btn" onclick="socialLogin('google')">🔵</div>
+                        <div class="social-btn" onclick="socialLogin('facebook')">🔷</div>
+                        <div class="social-btn" onclick="socialLogin('github')">⚫</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-btn">← Retour</a>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            // Changer l'onglet actif
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Afficher le bon formulaire
+            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+
+            if (tab === 'login') {
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.getElementById('signupForm').classList.add('active');
+            }
+
+            // Masquer le message
+            document.getElementById('message').classList.remove('show');
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type} show`;
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Simulation d'une connexion (pas de backend réel)
+            if (email && password) {
+                // Stocker l'utilisateur dans localStorage
+                const user = {
+                    email: email,
+                    name: email.split('@')[0],
+                    loginDate: new Date().toISOString()
+                };
+
+                localStorage.setItem('currentUser', JSON.stringify(user));
+
+                showMessage('✅ Connexion réussie ! Redirection...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1500);
+            } else {
+                showMessage('❌ Email ou mot de passe incorrect', 'error');
+            }
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+
+            if (password !== confirm) {
+                showMessage('❌ Les mots de passe ne correspondent pas', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('❌ Le mot de passe doit contenir au moins 6 caractères', 'error');
+                return;
+            }
+
+            // Créer un nouvel utilisateur
+            const user = {
+                name: name,
+                email: email,
+                signupDate: new Date().toISOString(),
+                level: 'Débutant',
+                badges: ['🎓 Premier pas'],
+                progress: {
+                    runes: 0,
+                    gematria: 0,
+                    hieroglyphes: 0,
+                    maya: 0,
+                    logique: 0
+                }
+            };
+
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            showMessage('✅ Inscription réussie ! Bienvenue dans l\'Académie !', 'success');
+
+            setTimeout(() => {
+                window.location.href = 'profile.html';
+            }, 1500);
+        }
+
+        function socialLogin(provider) {
+            showMessage(`🔄 Connexion avec ${provider} en cours...`, 'success');
+
+            // Simulation de connexion sociale
+            setTimeout(() => {
+                const user = {
+                    name: `Utilisateur ${provider}`,
+                    email: `user@${provider}.com`,
+                    loginDate: new Date().toISOString(),
+                    provider: provider
+                };
+
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'profile.html';
+            }, 1500);
+        }
+
+        // Vérifier si l'utilisateur est déjà connecté
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                showMessage('ℹ️ Vous êtes déjà connecté. Redirection...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>

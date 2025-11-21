@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page non trouvée | Gematria Academy</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Étoiles scintillantes en arrière-plan */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .error-container {
+            text-align: center;
+            max-width: 700px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .error-code {
+            font-size: 150px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+            line-height: 1;
+        }
+
+        .error-symbol {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.3em;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            color: #eee;
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .navigation-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            color: #eee;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .nav-btn-icon {
+            font-size: 2.5em;
+        }
+
+        .nav-btn-text {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 100px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            p {
+                font-size: 1.1em;
+            }
+
+            .navigation-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Étoiles scintillantes -->
+    <div class="stars" id="stars"></div>
+
+    <div class="error-container">
+        <div class="error-symbol">🔮</div>
+        <div class="error-code">404</div>
+
+        <h1>Page Introuvable dans l'Éther Cosmique</h1>
+
+        <p>
+            Cette page semble s'être perdue dans les méandres de l'univers ésotérique...
+            Peut-être a-t-elle été emportée par un portail runique ou cachée par un hiéroglyphe mystérieux ?
+        </p>
+
+        <input type="text" class="search-box" placeholder="🔍 Rechercher dans l'académie..." id="searchBox">
+
+        <div class="navigation-links">
+            <a href="/" class="nav-btn">
+                <div class="nav-btn-icon">🏠</div>
+                <div class="nav-btn-text">Accueil</div>
+            </a>
+
+            <a href="/pages/runes/runes-parcours-complet.html" class="nav-btn">
+                <div class="nav-btn-icon">📿</div>
+                <div class="nav-btn-text">Runes</div>
+            </a>
+
+            <a href="/pages/gematria/gematria-debutant.html" class="nav-btn">
+                <div class="nav-btn-icon">✡️</div>
+                <div class="nav-btn-text">Gématrie</div>
+            </a>
+
+            <a href="/pages/hieroglyphes/hieroglyphes-parcours-complet.html" class="nav-btn">
+                <div class="nav-btn-icon">𓂀</div>
+                <div class="nav-btn-text">Hiéroglyphes</div>
+            </a>
+        </div>
+
+        <a href="/" class="home-btn">🌟 Retour à l'Académie</a>
+    </div>
+
+    <script>
+        // Générer des étoiles scintillantes
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Recherche simple
+        const searchBox = document.getElementById('searchBox');
+        searchBox.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = searchBox.value.toLowerCase();
+
+                // Redirection basée sur les mots-clés
+                if (query.includes('rune')) {
+                    window.location.href = '/pages/runes/runes-parcours-complet.html';
+                } else if (query.includes('gematri') || query.includes('hébreu')) {
+                    window.location.href = '/pages/gematria/gematria-debutant.html';
+                } else if (query.includes('hiéroglyphe') || query.includes('égypt')) {
+                    window.location.href = '/pages/hieroglyphes/hieroglyphes-parcours-complet.html';
+                } else if (query.includes('maya')) {
+                    window.location.href = '/pages/maya/glyphes-mayas-intro.html';
+                } else if (query.includes('mandala') || query.includes('méditation')) {
+                    window.location.href = '/pages/meditation/mandala.html';
+                } else if (query.includes('logique')) {
+                    window.location.href = '/pages/logique/logique-debutant.html';
+                } else {
+                    // Par défaut, retourner à l'accueil
+                    window.location.href = '/';
+                }
+            }
+        });
+
+        // Historique du navigateur
+        if (document.referrer && document.referrer.includes(window.location.host)) {
+            const backBtn = document.createElement('button');
+            backBtn.className = 'home-btn';
+            backBtn.textContent = '⬅️ Page précédente';
+            backBtn.style.marginTop = '20px';
+            backBtn.onclick = () => window.history.back();
+            document.querySelector('.error-container').appendChild(backBtn);
+        }
+    </script>
+</body>
+</html>

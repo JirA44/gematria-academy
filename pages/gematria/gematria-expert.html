@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gematria - Niveau Expert | Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sephirah-card {
+            background: var(--card-bg);
+            color: var(--card-text);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            margin: 1rem 0;
+            border-left: 5px solid var(--accent-expert);
+            transition: transform 0.3s;
+        }
+        .sephirah-card:hover {
+            transform: translateX(5px);
+        }
+        .sephirah-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-expert);
+            display: inline-block;
+            width: 50px;
+        }
+        .tree-diagram {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .path-line {
+            border-top: 2px solid var(--accent-expert);
+            margin: 0.5rem 0;
+            opacity: 0.3;
+        }
+        .god-name-card {
+            background: linear-gradient(135deg, rgba(142, 68, 173, 0.2), rgba(142, 68, 173, 0.05));
+            border: 2px solid var(--accent-expert);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="header-buttons-cosmic">
+            <button class="cosmic-btn cosmic-btn-dark" onclick="toggleDarkMode()">
+                <span class="btn-icon">🌙</span>
+                <span class="btn-text">Mode Nuit</span>
+            </button>
+            <button class="cosmic-btn cosmic-btn-lang" onclick="window.location.href='index.html'">
+                <span class="btn-icon">🏠</span>
+                <span class="btn-text">Accueil</span>
+            </button>
+        </div>
+        <h1>🔯 Gematria - Niveau Expert</h1>
+        <p class="subtitle">Kabbale, Arbre de Vie, 72 Noms de Dieu et Applications Mystiques</p>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">Accueil</a> » <a href="index.html#gematria">Gematria</a> » Niveau Expert
+        </div>
+
+        <div class="content-page">
+            <section class="hero">
+                <h2>La Dimension Kabbalistique de la Gematria</h2>
+                <p>Au niveau expert, nous pénétrons dans les mystères profonds de la Kabbale : l'Arbre de Vie (Etz Haïm), les 10 Sephiroth, les 72 Noms de Dieu, et les correspondances cosmiques qui relient les lettres hébraïques à l'univers tout entier.</p>
+            </section>
+
+            <div class="lesson">
+                <h3>🌳 L'Arbre de Vie - Etz Haïm (עץ חיים)</h3>
+                <p>L'Arbre de Vie est le diagramme central de la Kabbale. Il représente les 10 émanations divines (Sephiroth) à travers lesquelles Dieu se révèle et crée l'univers. Ces Sephiroth sont connectées par 22 sentiers, correspondant aux 22 lettres hébraïques.</p>
+
+                <div class="tip">
+                    <strong>💫 Structure Fondamentale :</strong><br>
+                    • <strong>10 Sephiroth</strong> - Les émanations divines<br>
+                    • <strong>22 Sentiers</strong> - Les chemins entre les Sephiroth (les 22 lettres)<br>
+                    • <strong>3 Piliers</strong> - Rigueur (gauche), Miséricorde (droite), Équilibre (centre)<br>
+                    • <strong>4 Mondes</strong> - Atsilouth, Briah, Yetsirah, Assiah
+                </div>
+            </div>
+
+            <div class="tree-diagram">
+                <h4 style="color: var(--primary); margin-bottom: 1.5rem;">Diagramme de l'Arbre de Vie</h4>
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem 2rem; background: var(--accent-expert); color: white; border-radius: 50%; font-weight: bold;">
+                            1. KETER<br>כתר<br>Couronne
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="display: flex; justify-content: space-around; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem; background: #3498db; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            3. BINAH<br>בינה<br>Intelligence
+                        </div>
+                        <div style="display: inline-block; padding: 1rem; background: #e74c3c; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            2. HOKHMAH<br>חכמה<br>Sagesse
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem; background: #9b59b6; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            DA'AT<br>דעת<br>(Connaissance)
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="display: flex; justify-content: space-around; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem; background: #e67e22; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            5. GEVURAH<br>גבורה<br>Rigueur
+                        </div>
+                        <div style="display: inline-block; padding: 1rem; background: #f39c12; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            4. HESED<br>חסד<br>Bonté
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem; background: #f1c40f; color: #333; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            6. TIFERET<br>תפארת<br>Beauté
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="display: flex; justify-content: space-around; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem; background: #16a085; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            8. HOD<br>הוד<br>Gloire
+                        </div>
+                        <div style="display: inline-block; padding: 1rem; background: #27ae60; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            7. NETSAH<br>נצח<br>Victoire
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem; background: #2c3e50; color: white; border-radius: 50%; font-weight: bold; font-size: 0.9rem;">
+                            9. YESOD<br>יסוד<br>Fondement
+                        </div>
+                    </div>
+                    <div class="path-line"></div>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <div style="display: inline-block; padding: 1rem 2rem; background: #8b4513; color: white; border-radius: 50%; font-weight: bold;">
+                            10. MALKHOUT<br>מלכות<br>Royaume
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>🔟 Les 10 Sephiroth - Détails Complets</h3>
+                <p>Chaque Sephirah possède des attributs, correspondances et valeurs gematriques spécifiques :</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">1</span>
+                <strong style="font-size: 1.3rem;">KETER (כתר) - La Couronne</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 620 (כתר)</p>
+                <p><strong>Attribut :</strong> Le point de contact entre le Divin infini (Ein Sof) et la création</p>
+                <p><strong>Nom Divin :</strong> אהיה (Ehyeh - Je Suis) = 21</p>
+                <p><strong>Correspondance :</strong> Le crâne, la volonté primordiale, le néant créateur</p>
+                <p><strong>Planète :</strong> Neptune (transcendance)</p>
+                <p style="font-style: italic; opacity: 0.9;">Keter représente la source ultime, le point où l'infini commence à se manifester. C'est la couronne qui domine toutes les autres Sephiroth.</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">2</span>
+                <strong style="font-size: 1.3rem;">HOKHMAH (חכמה) - La Sagesse</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 73 (חכמה)</p>
+                <p><strong>Attribut :</strong> La sagesse primordiale, l'éclair de l'intuition, le principe masculin</p>
+                <p><strong>Nom Divin :</strong> יה (Yah) - partie de YHVH</p>
+                <p><strong>Correspondance :</strong> Le cerveau droit, l'inspiration, le point (Yod)</p>
+                <p><strong>Planète :</strong> Uranus, les étoiles fixes</p>
+                <p><strong>Remarque :</strong> 73 est le 21ème nombre premier. 21 = אהיה (Ehyeh)</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">3</span>
+                <strong style="font-size: 1.3rem;">BINAH (בינה) - L'Intelligence</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 67 (בינה)</p>
+                <p><strong>Attribut :</strong> La compréhension, la structure, le principe féminin, la Mère supérieure</p>
+                <p><strong>Nom Divin :</strong> אלהים (Elohim) = 86</p>
+                <p><strong>Correspondance :</strong> Le cerveau gauche, la matrice, l'utérus cosmique</p>
+                <p><strong>Planète :</strong> Saturne (structure, temps, limitation)</p>
+                <p style="font-style: italic; opacity: 0.9;">Binah reçoit l'éclair de Hokhmah et le développe en une structure compréhensible. C'est le palais où la sagesse prend forme.</p>
+            </div>
+
+            <div class="sephirah-card" style="border-left-color: #9b59b6;">
+                <span class="sephirah-number" style="color: #9b59b6;">-</span>
+                <strong style="font-size: 1.3rem;">DA'AT (דעת) - La Connaissance</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 474 (דעת)</p>
+                <p><strong>Statut :</strong> Sephirah cachée, non comptée dans les 10</p>
+                <p><strong>Attribut :</strong> L'union de Hokhmah et Binah, la conscience de soi</p>
+                <p><strong>Correspondance :</strong> L'Arbre de la Connaissance du Bien et du Mal</p>
+                <p style="font-style: italic; opacity: 0.9;">Da'at est le pont entre les Sephiroth supérieures et inférieures. Elle représente le savoir qui naît de l'union de la sagesse et de l'intelligence.</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">4</span>
+                <strong style="font-size: 1.3rem;">HESED (חסד) - La Bonté</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 72 (חסד)</p>
+                <p><strong>Attribut :</strong> L'amour inconditionnel, la grâce, l'expansion, la miséricorde</p>
+                <p><strong>Nom Divin :</strong> אל (El - Dieu)</p>
+                <p><strong>Correspondance :</strong> Le bras droit, Jupiter, l'expansion</p>
+                <p><strong>Planète :</strong> Jupiter (croissance, abondance, générosité)</p>
+                <p><strong>Connexion :</strong> 72 = nombre des Noms de Dieu (voir ci-dessous)</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">5</span>
+                <strong style="font-size: 1.3rem;">GEVURAH (גבורה) - La Rigueur</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 216 (גבורה) = 6³</p>
+                <p><strong>Attribut :</strong> La force, la justice, le jugement, la restriction, la discipline</p>
+                <p><strong>Nom Divin :</strong> אלהים (Elohim - aspect de jugement)</p>
+                <p><strong>Correspondance :</strong> Le bras gauche, Mars, la contraction</p>
+                <p><strong>Planète :</strong> Mars (force, guerre, justice)</p>
+                <p><strong>Remarque :</strong> 216 = 6×6×6, et aussi la valeur de אריה (Aryeh - Lion) et גבר (Gever - Homme fort)</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">6</span>
+                <strong style="font-size: 1.3rem;">TIFERET (תפארת) - La Beauté</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 1081 (תפארת)</p>
+                <p><strong>Attribut :</strong> L'harmonie, l'équilibre parfait, le cœur de l'Arbre, le Fils</p>
+                <p><strong>Nom Divin :</strong> יהוה (YHVH) = 26</p>
+                <p><strong>Correspondance :</strong> Le cœur, le Soleil, Jacob, le Christ cosmique</p>
+                <p><strong>Planète :</strong> Le Soleil (centre, équilibre, lumière)</p>
+                <p style="font-style: italic; opacity: 0.9;">Tiferet est le centre de l'Arbre, harmonisant toutes les forces. C'est la Sephirah de la compassion et de la beauté qui naît de l'équilibre.</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">7</span>
+                <strong style="font-size: 1.3rem;">NETSAH (נצח) - La Victoire/Éternité</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 148 (נצח)</p>
+                <p><strong>Attribut :</strong> L'endurance, la victoire, l'instinct, les émotions, l'amour passionné</p>
+                <p><strong>Nom Divin :</strong> יהוה צבאות (YHVH Tzevaot - YHVH des Armées)</p>
+                <p><strong>Correspondance :</strong> La jambe droite, Vénus, Moïse</p>
+                <p><strong>Planète :</strong> Vénus (amour, désir, art)</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">8</span>
+                <strong style="font-size: 1.3rem;">HOD (הוד) - La Gloire/Splendeur</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 15 (הוד) = יה (Yah)</p>
+                <p><strong>Attribut :</strong> L'intellect, la communication, la logique, la magie, la gloire</p>
+                <p><strong>Nom Divin :</strong> אלהים צבאות (Elohim Tzevaot)</p>
+                <p><strong>Correspondance :</strong> La jambe gauche, Mercure, Aaron</p>
+                <p><strong>Planète :</strong> Mercure (communication, intellect, magie)</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">9</span>
+                <strong style="font-size: 1.3rem;">YESOD (יסוד) - Le Fondement</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 80 (יסוד)</p>
+                <p><strong>Attribut :</strong> La fondation, le subconscient collectif, le pont entre spirituel et matériel</p>
+                <p><strong>Nom Divin :</strong> שדי אל חי (Shaddai El Hai - Dieu Vivant Tout-Puissant)</p>
+                <p><strong>Correspondance :</strong> Les organes génitaux, la Lune, Joseph</p>
+                <p><strong>Planète :</strong> La Lune (subconscient, rêves, cycles)</p>
+                <p style="font-style: italic; opacity: 0.9;">Yesod collecte toutes les énergies des Sephiroth supérieures et les transmet à Malkhout. C'est le fondement sur lequel repose la manifestation.</p>
+            </div>
+
+            <div class="sephirah-card">
+                <span class="sephirah-number">10</span>
+                <strong style="font-size: 1.3rem;">MALKHOUT (מלכות) - Le Royaume</strong>
+                <p style="margin-top: 0.5rem;"><strong>Gematria :</strong> 496 (מלכות)</p>
+                <p><strong>Attribut :</strong> Le monde physique, la manifestation finale, la Shekinah (Présence Divine)</p>
+                <p><strong>Nom Divin :</strong> אדני (Adonaï) = 65</p>
+                <p><strong>Correspondance :</strong> Les pieds, la Terre, David, la Vierge Marie</p>
+                <p><strong>Planète :</strong> La Terre (manifestation matérielle)</p>
+                <p><strong>Remarque :</strong> 496 est un nombre parfait (somme de ses diviseurs propres)</p>
+            </div>
+
+            <div class="lesson">
+                <h3>✨ Les 72 Noms de Dieu (שם בן ע״ב)</h3>
+                <p>Les 72 Noms de Dieu sont extraits de trois versets consécutifs du Livre de l'Exode (14:19-21), chacun contenant exactement 72 lettres hébraïques. En combinant ces versets selon une méthode kabbalistique précise, on obtient 72 combinaisons de 3 lettres, chacune représentant un aspect du pouvoir divin.</p>
+
+                <div class="tip">
+                    <strong>🔮 Méthode d'Extraction :</strong><br>
+                    • <strong>Verset 19</strong> - Lu de gauche à droite (sens normal)<br>
+                    • <strong>Verset 20</strong> - Lu de droite à gauche (inversé)<br>
+                    • <strong>Verset 21</strong> - Lu de gauche à droite (sens normal)<br>
+                    <br>
+                    La première lettre du verset 19 + la première du verset 20 + la première du verset 21 = Premier Nom<br>
+                    La deuxième de 19 + la deuxième de 20 + la deuxième de 21 = Deuxième Nom<br>
+                    Et ainsi de suite...
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4 style="color: var(--accent-expert);">Les 72 Noms et leurs Attributs (sélection)</h4>
+
+                <div class="god-name-card">
+                    <strong>1. והו (VaV-HÉ-VAV) - Vehuiah</strong>
+                    <p>Attribut : Volonté divine, nouveaux commencements</p>
+                    <p>Utilisation : Pour commencer de nouveaux projets avec la bénédiction divine</p>
+                </div>
+
+                <div class="god-name-card">
+                    <strong>2. ילי (YOD-LAMED-YOD) - Yeliel</strong>
+                    <p>Attribut : Réponse rapide, victoire sur l'adversité</p>
+                    <p>Utilisation : Pour obtenir aide et soutien en cas de conflit</p>
+                </div>
+
+                <div class="god-name-card">
+                    <strong>3. סיט (SAMEKH-YOD-TET) - Sitael</strong>
+                    <p>Attribut : Construction, expansion, manifestation</p>
+                    <p>Utilisation : Pour bâtir et matérialiser des projets</p>
+                </div>
+
+                <div class="god-name-card">
+                    <strong>14. מבה (MEM-BET-HÉ) - Mebahel</strong>
+                    <p>Attribut : Vérité, justice, libération</p>
+                    <p>Utilisation : Pour révéler la vérité et obtenir justice</p>
+                </div>
+
+                <div class="god-name-card">
+                    <strong>15. הרי (HÉ-RESH-YOD) - Hariel</strong>
+                    <p>Attribut : Purification, arts, sciences</p>
+                    <p>Utilisation : Pour l'inspiration créative et intellectuelle</p>
+                </div>
+
+                <div class="god-name-card">
+                    <strong>42. מיכ (MEM-YOD-KAF) - Mikael</strong>
+                    <p>Attribut : Organisation politique et sociale, voyages sûrs</p>
+                    <p>Utilisation : Pour la protection en voyage et l'harmonie sociale</p>
+                </div>
+
+                <div class="god-name-card">
+                    <strong>72. מום (MEM-VAV-MEM) - Mumiah</strong>
+                    <p>Attribut : Fin et renouveau, médecine, chimie</p>
+                    <p>Utilisation : Pour les guérisons et les transformations finales</p>
+                </div>
+
+                <p style="margin-top: 1.5rem; text-align: center; font-style: italic; opacity: 0.8;">
+                    Chaque Nom de 3 lettres peut être médité, visualisé ou chanté pour invoquer son pouvoir spécifique. Dans la tradition kabbalistique, on ajoute souvent אל (El) ou יה (Yah) pour former des noms d'anges.
+                </p>
+            </div>
+
+            <div class="lesson">
+                <h3>🔮 Correspondances Astrologiques des Lettres</h3>
+                <p>Chaque lettre hébraïque correspond à des forces cosmiques spécifiques :</p>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 2rem 0;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2);">Lettre</th>
+                        <th style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2);">Nom</th>
+                        <th style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2);">Planète/Signe</th>
+                        <th style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2);">Élément</th>
+                        <th style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2);">Correspondance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">א</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Aleph</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Air (élément)</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Air</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Souffle, esprit, unité</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ב</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Bet</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Lune</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Eau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Réceptivité, maison intérieure</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ג</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Gimel</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Jupiter</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Expansion, générosité</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ד</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Dalet</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Vénus</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Amour, beauté, humilité</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ה</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Hé</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Bélier</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Révélation, fenêtre divine</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ו</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Vav</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Taureau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Connexion, crochet cosmique</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ז</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Zayin</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Gémeaux</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Air</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Dualité, épée de vérité</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ח</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Het</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Cancer</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Eau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Vie, barrière protectrice</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ט</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Tet</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Lion</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Bien caché, gestation</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">י</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Yod</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Vierge</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Main divine, point créateur</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">כ</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Kaf</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Balance</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Air</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Équilibre, paume réceptrice</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ל</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Lamed</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Scorpion</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Eau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Transformation, apprentissage</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">מ</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Mem</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Eau (élément)</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Eau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Matrice, eaux primordiales</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">נ</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Nun</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Sagittaire</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Âme, continuité</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ס</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Samekh</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Capricorne</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Support, cercle éternel</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ע</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Ayin</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Verseau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Air</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Vision, œil divin</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">פ</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Pé</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Poissons</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Eau</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Parole créatrice</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">צ</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Tsadé</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Mars</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Justice, rectitude</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ק</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Qof</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Saturne</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Sainteté, cycle complet</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ר</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Resh</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Soleil</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Tête, conscience</td>
+                    </tr>
+                    <tr style="background: var(--bg-light);">
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ש</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Shin</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu (élément)</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Feu</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Transformation divine</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; font-size: 1.3rem;">ת</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Tav</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre (élément)</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Terre</td>
+                        <td style="padding: 0.8rem; border: 1px solid rgba(0,0,0,0.1);">Sceau, achèvement</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="lesson">
+                <h3>🧘 Applications Mystiques et Méditatives</h3>
+                <p>La Gematria au niveau expert est utilisée pour :</p>
+            </div>
+
+            <div class="letter-grid">
+                <div class="letter-card">
+                    <div class="letter-name">MÉDITATION SUR LES LETTRES</div>
+                    <p style="margin-top: 1rem;">Visualiser la forme d'une lettre hébraïque en méditation pour absorber son énergie spirituelle et ses qualités divines.</p>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-name">TALISMANS KABBALISTIQUES</div>
+                    <p style="margin-top: 1rem;">Création de carrés magiques et de kameas (amulettes numériques) basés sur les valeurs gematriques pour la protection et la bénédiction.</p>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-name">PRIÈRE ET INVOCATION</div>
+                    <p style="margin-top: 1rem;">Utilisation des 72 Noms de Dieu dans les prières pour invoquer des aspects spécifiques du pouvoir divin.</p>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-name">INTERPRÉTATION DE LA TORAH</div>
+                    <p style="margin-top: 1rem;">Découverte de sens cachés dans les textes sacrés par l'analyse gematrique, révélant des enseignements profonds.</p>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-name">VOYAGES SPIRITUELS</div>
+                    <p style="margin-top: 1rem;">Navigation sur les sentiers de l'Arbre de Vie en méditant sur les lettres qui les relient.</p>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-name">GUÉRISON PAR LES LETTRES</div>
+                    <p style="margin-top: 1rem;">Utilisation de combinaisons spécifiques de lettres pour harmoniser les énergies corporelles et spirituelles.</p>
+                </div>
+            </div>
+
+            <div class="tip" style="margin-top: 2rem;">
+                <strong>⚡ Pratique Avancée : Le Nom de 42 Lettres</strong><br>
+                Au-delà des 72 Noms, il existe le Nom de 42 lettres (Ana BeKoach), une prière kabbalistique puissante de 7 lignes de 6 mots, créant une matrice de 42 mots. Ce nom est utilisé dans les rituels de haute magie kabbalistique pour la création et la transformation. Chaque ligne correspond à un jour de la Création et à une Sephirah.
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="gematria-intermediaire.html" class="btn btn-intermediate">← Niveau Intermédiaire</a>
+                <a href="index.html#gematria" class="btn btn-expert">Retour à Gematria</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Sagesses Anciennes - Maîtrisez la Science de la Gematria</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

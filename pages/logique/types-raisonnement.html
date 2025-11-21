@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types de Raisonnement - Complet | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f2e 100%);
+            color: #e8e8e8;
+            line-height: 1.8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            background: rgba(15, 15, 35, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(135, 206, 235, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #87ceeb;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(135, 206, 235, 0.7);
+            font-family: 'Palatino', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ffd700;
+            font-size: 1.4em;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .reasoning-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .reasoning-card {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 35px;
+            border-radius: 15px;
+            border: 3px solid rgba(135, 206, 235, 0.4);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reasoning-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #87ceeb, #ffd700, #ff69b4, #87ceeb);
+            background-size: 200% 100%;
+            animation: gradient-shift 3s linear infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .reasoning-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #87ceeb;
+            box-shadow: 0 20px 50px rgba(135, 206, 235, 0.5);
+        }
+
+        .reasoning-icon {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .reasoning-title {
+            color: #ffd700;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .reasoning-description {
+            color: #e8e8e8;
+            font-size: 1.05em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .characteristics {
+            background: rgba(20, 20, 40, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .characteristic-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(135, 206, 235, 0.2);
+        }
+
+        .characteristic-item:last-child {
+            border-bottom: none;
+        }
+
+        .example-section {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffd700;
+        }
+
+        .example-title {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .applications {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #9370db;
+        }
+
+        .section-header {
+            background: rgba(25, 25, 45, 0.8);
+            padding: 30px;
+            margin: 40px 0 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #87ceeb;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            color: #87ceeb;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 1200px) {
+            .reasoning-matrix {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reasoning-matrix {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Types de Raisonnement</h1>
+        <p class="subtitle">Exploration Complète des 9 Modes de Pensée Humaine</p>
+
+        <div class="section-header">
+            <h2>Les 9 Types de Raisonnement Fondamentaux</h2>
+            <p>Chaque type de raisonnement offre une approche unique pour résoudre des problèmes et comprendre le monde</p>
+        </div>
+
+        <div class="reasoning-matrix">
+            <!-- 1. Raisonnement Arborescent -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🌳</div>
+                <div class="reasoning-title">1. Raisonnement Arborescent</div>
+                <div class="reasoning-description">
+                    Explore de <span class="highlight">multiples branches de possibilités</span> simultanément, créant une structure ramifiée de solutions potentielles. Chaque décision ouvre de nouvelles voies d'exploration.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Exploration exhaustive des options</div>
+                    <div class="characteristic-item">✓ Structure hiérarchique (racine → branches → feuilles)</div>
+                    <div class="characteristic-item">✓ Évaluation comparative des chemins</div>
+                    <div class="characteristic-item">✓ Flexibilité dans le choix des directions</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Échecs :</strong> Un joueur anticipe tous les coups possibles (3-5 coups en avance), évalue chaque branche, et choisit la meilleure séquence.</p>
+                    <p style="margin-top: 10px;"><strong>Structure :</strong></p>
+                    <pre style="color: #87ceeb; font-size: 0.9em; margin-top: 10px;">
+Coup 1 (moi)
+  ├─ Option A
+  │   ├─ Réponse adversaire A1
+  │   └─ Réponse adversaire A2
+  ├─ Option B
+  │   └─ Réponse adversaire B1
+  └─ Option C
+                    </pre>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Intelligence artificielle (algorithmes de recherche)</li>
+                        <li>Arbres de décision en machine learning</li>
+                        <li>Planification stratégique d'entreprise</li>
+                        <li>Diagnostic médical différentiel</li>
+                        <li>Jeux de stratégie (échecs, go)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Raisonnement Linéaire -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">➡️</div>
+                <div class="reasoning-title">2. Raisonnement Linéaire</div>
+                <div class="reasoning-description">
+                    Suit une <span class="highlight">séquence logique étape par étape</span>, où chaque conclusion devient la prémisse de l'étape suivante. Progression ordonnée et méthodique.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Progression séquentielle A → B → C → D</div>
+                    <div class="characteristic-item">✓ Causalité directe entre les étapes</div>
+                    <div class="characteristic-item">✓ Prévisibilité et reproductibilité</div>
+                    <div class="characteristic-item">✓ Clarté et simplicité</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Recette de cuisine :</strong></p>
+                    <ol style="margin-top: 10px; padding-left: 20px;">
+                        <li>Préchauffer le four à 180°C</li>
+                        <li>Mélanger la farine, le sucre et les œufs</li>
+                        <li>Verser dans un moule</li>
+                        <li>Cuire pendant 30 minutes</li>
+                        <li>Laisser refroidir avant de démouler</li>
+                    </ol>
+                    <p style="margin-top: 10px; color: #87ceeb;">Chaque étape doit être complétée avant de passer à la suivante.</p>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Programmation informatique (algorithmes séquentiels)</li>
+                        <li>Procédures médicales standardisées</li>
+                        <li>Processus de fabrication industrielle</li>
+                        <li>Résolution d'équations mathématiques</li>
+                        <li>Instructions d'assemblage (IKEA, Lego)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Raisonnement Latéral -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🔄</div>
+                <div class="reasoning-title">3. Raisonnement Latéral</div>
+                <div class="reasoning-description">
+                    Pense <span class="highlight">"hors des sentiers battus"</span> en faisant des connexions non conventionnelles. Rompt les schémas habituels pour trouver des solutions créatives.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Approches non conventionnelles</div>
+                    <div class="characteristic-item">✓ Remise en question des hypothèses</div>
+                    <div class="characteristic-item">✓ Associations surprenantes</div>
+                    <div class="characteristic-item">✓ Innovation et créativité</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Énigme classique :</strong> "Un homme entre dans un bar et demande un verre d'eau. Le barman sort un pistolet et le pointe vers lui. L'homme dit 'merci' et s'en va. Pourquoi ?"</p>
+                    <p style="margin-top: 10px; color: #ffd700;"><strong>Solution :</strong> L'homme avait le hoquet. Le barman l'a fait passer en lui faisant peur.</p>
+                    <p style="margin-top: 10px; color: #87ceeb;">Le raisonnement latéral cherche des explications non évidentes.</p>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Brainstorming et génération d'idées</li>
+                        <li>Design thinking et UX design</li>
+                        <li>Publicité et marketing créatif</li>
+                        <li>Résolution de problèmes complexes</li>
+                        <li>Innovation disruptive (Steve Jobs, Elon Musk)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Raisonnement Systémique -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🌐</div>
+                <div class="reasoning-title">4. Raisonnement Systémique</div>
+                <div class="reasoning-description">
+                    Considère les <span class="highlight">interactions et interdépendances</span> entre les éléments d'un système complexe. Vision holistique plutôt que réductionniste.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Vue d'ensemble (big picture)</div>
+                    <div class="characteristic-item">✓ Boucles de rétroaction (feedback loops)</div>
+                    <div class="characteristic-item">✓ Émergence de propriétés globales</div>
+                    <div class="characteristic-item">✓ Interdépendances multiples</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Écosystème forestier :</strong></p>
+                    <ul style="margin-top: 10px;">
+                        <li>Arbres produisent O₂ → animaux respirent</li>
+                        <li>Animaux produisent CO₂ → arbres photosynthétisent</li>
+                        <li>Feuilles tombent → décomposeurs enrichissent le sol</li>
+                        <li>Sol enrichi → arbres poussent mieux</li>
+                        <li>Prédateurs régulent herbivores → équilibre végétal</li>
+                    </ul>
+                    <p style="margin-top: 10px; color: #87ceeb;">Chaque élément affecte tous les autres dans un réseau d'interactions.</p>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Écologie et gestion environnementale</li>
+                        <li>Économie (macro et microéconomie)</li>
+                        <li>Sciences sociales et politiques publiques</li>
+                        <li>Gestion de projet complexe</li>
+                        <li>Biologie des systèmes et médecine intégrative</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Raisonnement Divergent -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">💥</div>
+                <div class="reasoning-title">5. Raisonnement Divergent</div>
+                <div class="reasoning-description">
+                    Génère <span class="highlight">de nombreuses solutions variées</span> à partir d'un point de départ unique. Favorise la quantité et la diversité des idées.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Génération massive d'idées</div>
+                    <div class="characteristic-item">✓ Originalité et diversité</div>
+                    <div class="characteristic-item">✓ Pas de censure initiale</div>
+                    <div class="characteristic-item">✓ Exploration tous azimuts</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Question :</strong> "Trouvez 20 utilisations différentes pour une brique"</p>
+                    <ul style="margin-top: 10px;">
+                        <li>1. Construire un mur</li>
+                        <li>2. Cale-porte</li>
+                        <li>3. Presse-papier</li>
+                        <li>4. Marteau improvisé</li>
+                        <li>5. Support pour plantes</li>
+                        <li>6. Arme de défense</li>
+                        <li>7. Chauffage (brique chauffée)</li>
+                        <li>8. Sculpture/art</li>
+                        <li>9-20. ...</li>
+                    </ul>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Brainstorming et idéation créative</li>
+                        <li>Tests de créativité (Torrance Tests)</li>
+                        <li>Recherche scientifique exploratoire</li>
+                        <li>Innovation produit et R&D</li>
+                        <li>Résolution de problèmes mal définis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 6. Raisonnement Convergent -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🎯</div>
+                <div class="reasoning-title">6. Raisonnement Convergent</div>
+                <div class="reasoning-description">
+                    Filtre et <span class="highlight">synthétise de multiples informations</span> vers une solution unique et optimale. Processus de sélection et d'évaluation.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Analyse critique des options</div>
+                    <div class="characteristic-item">✓ Élimination des alternatives faibles</div>
+                    <div class="characteristic-item">✓ Synthèse vers une solution</div>
+                    <div class="characteristic-item">✓ Logique déductive</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Problème mathématique :</strong> 2x + 5 = 13</p>
+                    <p style="margin-top: 10px;"><strong>Démarche convergente :</strong></p>
+                    <ol style="margin-top: 10px; padding-left: 20px;">
+                        <li>2x + 5 = 13</li>
+                        <li>2x = 13 - 5</li>
+                        <li>2x = 8</li>
+                        <li>x = 4</li>
+                    </ol>
+                    <p style="margin-top: 10px; color: #ffd700;">Une seule réponse correcte, trouvée par élimination logique.</p>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Tests standardisés (QCM)</li>
+                        <li>Résolution de problèmes fermés</li>
+                        <li>Prise de décision finale</li>
+                        <li>Optimisation algorithmique</li>
+                        <li>Diagnostic médical (élimination différentielle)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 7. Raisonnement Analogique -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🔗</div>
+                <div class="reasoning-title">7. Raisonnement Analogique</div>
+                <div class="reasoning-description">
+                    Établit des <span class="highlight">parallèles et similitudes</span> entre situations différentes pour transférer des connaissances et résoudre de nouveaux problèmes.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Reconnaissance de patterns</div>
+                    <div class="characteristic-item">✓ Transfert de connaissances</div>
+                    <div class="characteristic-item">✓ Comparaisons structurelles</div>
+                    <div class="characteristic-item">✓ Inférences par similarité</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Analogie célèbre :</strong></p>
+                    <p style="margin-top: 10px;">"Le cerveau est comme un ordinateur :"</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Neurones ≈ Processeurs</li>
+                        <li>Synapses ≈ Connexions électriques</li>
+                        <li>Mémoire à long terme ≈ Disque dur</li>
+                        <li>Mémoire de travail ≈ RAM</li>
+                        <li>Perception ≈ Input</li>
+                        <li>Action ≈ Output</li>
+                    </ul>
+                    <p style="margin-top: 10px; color: #87ceeb;">Cette analogie aide à comprendre le fonctionnement cérébral.</p>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Enseignement et pédagogie (métaphores)</li>
+                        <li>Biomimétisme (velcro ← bardane)</li>
+                        <li>Résolution de problèmes par cas similaires</li>
+                        <li>Droit (jurisprudence)</li>
+                        <li>Intelligence artificielle (case-based reasoning)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 8. Raisonnement Critique -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🔍</div>
+                <div class="reasoning-title">8. Raisonnement Critique</div>
+                <div class="reasoning-description">
+                    Évalue de manière <span class="highlight">objective et rigoureuse</span> les arguments, les preuves et les affirmations. Détecte les biais, sophismes et failles logiques.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Scepticisme constructif</div>
+                    <div class="characteristic-item">✓ Analyse des sources</div>
+                    <div class="characteristic-item">✓ Détection de biais cognitifs</div>
+                    <div class="characteristic-item">✓ Exigence de preuves</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Affirmation :</strong> "90% des dentistes recommandent cette marque de dentifrice"</p>
+                    <p style="margin-top: 10px;"><strong>Questions critiques :</strong></p>
+                    <ul style="margin-top: 10px;">
+                        <li>Combien de dentistes ont été interrogés ? (taille d'échantillon)</li>
+                        <li>Comment ont-ils été sélectionnés ? (biais de sélection)</li>
+                        <li>Quelle était la question exacte ? (formulation biaisée ?)</li>
+                        <li>Qui a financé l'étude ? (conflits d'intérêts)</li>
+                        <li>Recommandent-ils aussi d'autres marques ? (exclusivité)</li>
+                    </ul>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Fact-checking et vérification d'informations</li>
+                        <li>Évaluation de recherches scientifiques</li>
+                        <li>Détection de fake news</li>
+                        <li>Analyse philosophique</li>
+                        <li>Prise de décision éclairée</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 9. Raisonnement Abstrait -->
+            <div class="reasoning-card">
+                <div class="reasoning-icon">🌌</div>
+                <div class="reasoning-title">9. Raisonnement Abstrait</div>
+                <div class="reasoning-description">
+                    Manipule des <span class="highlight">concepts, symboles et principes généraux</span> détachés du concret. Capacité à penser en termes théoriques et hypothétiques.
+                </div>
+
+                <div class="characteristics">
+                    <h4 style="color: #87ceeb; margin-bottom: 15px;">Caractéristiques :</h4>
+                    <div class="characteristic-item">✓ Généralisation à partir du spécifique</div>
+                    <div class="characteristic-item">✓ Manipulation de symboles</div>
+                    <div class="characteristic-item">✓ Pensée hypothétique ("et si...")</div>
+                    <div class="characteristic-item">✓ Indépendance du contexte concret</div>
+                </div>
+
+                <div class="example-section">
+                    <div class="example-title">📌 Exemple :</div>
+                    <p><strong>Séquence abstraite :</strong></p>
+                    <p style="margin-top: 10px; font-size: 1.5em; text-align: center;">2, 4, 8, 16, 32, <span style="color: #ffd700;">?</span></p>
+                    <p style="margin-top: 10px; color: #ffd700;"><strong>Règle abstraite :</strong> Chaque terme = 2 × terme précédent</p>
+                    <p style="color: #87ceeb;"><strong>Réponse :</strong> 64</p>
+                    <p style="margin-top: 15px;"><strong>Formule générale :</strong> aₙ = 2ⁿ (où n commence à 1)</p>
+                </div>
+
+                <div class="applications">
+                    <h4 style="color: #9370db; margin-bottom: 10px;">🎯 Applications :</h4>
+                    <ul>
+                        <li>Mathématiques pures (théorie des nombres, topologie)</li>
+                        <li>Physique théorique (mécanique quantique)</li>
+                        <li>Programmation orientée objet</li>
+                        <li>Philosophie et métaphysique</li>
+                        <li>Tests de QI (matrices de Raven)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="logique-expert.html" class="btn btn-secondary">← Retour : Logique Expert</a>
+            <a href="index.html" class="btn">🏠 Retour Accueil</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation d'apparition progressive des cartes
+        const cards = document.querySelectorAll('.reasoning-card');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

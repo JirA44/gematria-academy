@@ -1,0 +1,158 @@
+/* ========================================
+   CORRECTIONS D'ACCESSIBILITÉ WCAG 2.1 AA
+   ======================================== */
+
+/* Skip Link pour navigation clavier */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 10000;
+    border-radius: 0 0 5px 0;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* Focus visible amélioré pour navigation clavier */
+*:focus-visible {
+    outline: 3px solid #4a90e2;
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #ffd700;
+    outline-offset: 3px;
+}
+
+/* Amélioration des contrastes de texte */
+.card-text,
+.section-category h2,
+.hero h2 {
+    color: inherit !important;
+}
+
+body.dark-mode .hero h2,
+body.dark-mode .section-category h2 {
+    color: #a78bfa !important;
+}
+
+/* Contraste minimum pour textes sur fonds clairs */
+body:not(.dark-mode) .card {
+    color: #2c3e50 !important;
+}
+
+body:not(.dark-mode) .card h3 {
+    color: #1a252f !important;
+}
+
+/* Badges avec meilleur contraste */
+.badge {
+    background: #2c3e50 !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+/* Liens avec contraste suffisant */
+a {
+    text-decoration-skip-ink: auto;
+}
+
+nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Boutons tactiles minimum 44x44px */
+.btn, .btn-small, button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Amélioration du contraste des cartes en mode sombre */
+body.dark-mode .card {
+    background: #1e2a3a !important;
+    color: #e8e8e8 !important;
+}
+
+body.dark-mode .card h3 {
+    color: #64b5f6 !important;
+}
+
+body.dark-mode .card ul li {
+    color: #b0bec5 !important;
+}
+
+/* Texte sur fond gradient - assurer lisibilité */
+.hero p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .intro {
+    color: #e0e0e0 !important;
+    opacity: 1 !important;
+}
+
+/* Focus trap pour modales (préparation) */
+.modal:focus {
+    outline: none;
+}
+
+.modal [tabindex="-1"]:focus {
+    outline: none;
+}
+
+/* Amélioration des états hover avec indicateurs visuels clairs */
+.btn:hover,
+.btn-small:hover {
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+    transform: scale(1.02);
+}
+
+/* Animation de focus réduite pour utilisateurs sensibles au mouvement */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .skip-link:focus {
+        transition: none;
+    }
+}
+
+/* Augmentation du contraste pour textes importants */
+body.dark-mode .subtitle {
+    color: #e0e0e0 !important;
+    opacity: 1 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Séparateur visuel pour les sections avec meilleur contraste */
+.section-category {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+body:not(.dark-mode) .section-category {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}

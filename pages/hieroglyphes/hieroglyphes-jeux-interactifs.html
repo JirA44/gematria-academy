@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux Interactifs Hiéroglyphes | Quiz, Memory, Constructeur</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .game-title {
+            color: #d4af37;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .start-game-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #cd7f32 100%);
+            color: #1a1a2e;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .start-game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .game-arena {
+            display: none;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+        }
+
+        .game-arena.active {
+            display: block;
+        }
+
+        /* Memory Game */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .memory-card.flipped {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+        }
+
+        .memory-card.matched {
+            background: rgba(39, 174, 96, 0.3);
+            border-color: #27ae60;
+            cursor: default;
+        }
+
+        .memory-card .back {
+            display: block;
+        }
+
+        .memory-card .front {
+            display: none;
+        }
+
+        .memory-card.flipped .back {
+            display: none;
+        }
+
+        .memory-card.flipped .front {
+            display: block;
+        }
+
+        /* Quiz Éclair */
+        .quiz-question-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 3px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .quiz-hieroglyph {
+            font-size: 5rem;
+            text-align: center;
+            color: #ffd700;
+            margin: 2rem 0;
+        }
+
+        .quiz-answers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-answer-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-answer-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+        }
+
+        .quiz-answer-btn.correct {
+            background: rgba(39, 174, 96, 0.3);
+            border-color: #27ae60;
+        }
+
+        .quiz-answer-btn.incorrect {
+            background: rgba(231, 76, 60, 0.3);
+            border-color: #e74c3c;
+        }
+
+        /* Constructeur de Mots */
+        .word-builder {
+            text-align: center;
+        }
+
+        .hieroglyph-palette {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .hieroglyph-tile {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hieroglyph-tile:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            transform: scale(1.1);
+        }
+
+        .hieroglyph-tile small {
+            display: block;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .word-construction {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            min-height: 150px;
+            border: 3px dashed rgba(212, 175, 55, 0.5);
+        }
+
+        .constructed-word {
+            font-size: 4rem;
+            color: #ffd700;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Associations */
+        .association-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .association-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .association-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .association-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+        }
+
+        .association-item.selected {
+            border-color: #3498db;
+            background: rgba(52, 152, 219, 0.3);
+        }
+
+        .association-item.matched {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.3);
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .back-to-menu {
+            background: rgba(231, 76, 60, 0.3);
+            border: 2px solid #e74c3c;
+            color: #e0e0e0;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .back-to-menu:hover {
+            background: rgba(231, 76, 60, 0.5);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <nav>
+            <a href="index.html" class="logo">𓋹 Académie des Sagesses Anciennes</a>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="hieroglyphes-parcours-complet.html">Parcours</a></li>
+                <li><a href="immersion-inscriptions-index.html">Inscriptions</a></li>
+                <li><a href="#jeux">Jeux</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>🎮 Jeux Interactifs Hiéroglyphiques</h1>
+            <p class="subtitle">Apprenez en vous amusant : 5 jeux éducatifs pour maîtriser les hiéroglyphes</p>
+        </section>
+
+        <!-- MENU DES JEUX -->
+        <section id="game-menu" class="game-grid" style="max-width: 1200px; margin: 2rem auto; padding: 0 2rem;">
+            <div class="game-card" onclick="startGame('memory')">
+                <div class="game-icon">🃏</div>
+                <h2 class="game-title">Memory Hiéroglyphique</h2>
+                <p>Retrouvez les paires de hiéroglyphes et leurs significations. 16 cartes, entraînez votre mémoire visuelle !</p>
+                <button class="start-game-btn">Jouer au Memory</button>
+            </div>
+
+            <div class="game-card" onclick="startGame('quiz')">
+                <div class="game-icon">⚡</div>
+                <h2 class="game-title">Quiz Éclair</h2>
+                <p>20 questions rapides sur les hiéroglyphes. Testez vos connaissances en un temps limité !</p>
+                <button class="start-game-btn">Lancer le Quiz</button>
+            </div>
+
+            <div class="game-card" onclick="startGame('builder')">
+                <div class="game-icon">🏗️</div>
+                <h2 class="game-title">Constructeur de Mots</h2>
+                <p>Composez des mots égyptiens en assemblant les hiéroglyphes. 24 signes unilitères à disposition.</p>
+                <button class="start-game-btn">Construire des Mots</button>
+            </div>
+
+            <div class="game-card" onclick="startGame('associations')">
+                <div class="game-icon">🔗</div>
+                <h2 class="game-title">Associations Divines</h2>
+                <p>Associez chaque dieu égyptien à son symbole et son domaine. 12 paires à découvrir.</p>
+                <button class="start-game-btn">Faire les Associations</button>
+            </div>
+        </section>
+
+        <!-- JEU 1 : MEMORY -->
+        <section id="memory-game" class="game-arena">
+            <h2 style="text-align: center; color: #d4af37;">🃏 Memory Hiéroglyphique</h2>
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="memory-moves">0</div>
+                    <div class="stat-label">Coups</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="memory-pairs">0/8</div>
+                    <div class="stat-label">Paires</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="memory-time">0:00</div>
+                    <div class="stat-label">Temps</div>
+                </div>
+            </div>
+            <div class="memory-grid" id="memory-grid"></div>
+            <button class="back-to-menu" onclick="backToMenu()">Retour au Menu</button>
+        </section>
+
+        <!-- JEU 2 : QUIZ ÉCLAIR -->
+        <section id="quiz-game" class="game-arena">
+            <h2 style="text-align: center; color: #d4af37;">⚡ Quiz Éclair</h2>
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="quiz-score">0/20</div>
+                    <div class="stat-label">Score</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="quiz-question-num">1/20</div>
+                    <div class="stat-label">Question</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="quiz-time">30</div>
+                    <div class="stat-label">Secondes</div>
+                </div>
+            </div>
+            <div id="quiz-container"></div>
+            <button class="back-to-menu" onclick="backToMenu()">Retour au Menu</button>
+        </section>
+
+        <!-- JEU 3 : CONSTRUCTEUR DE MOTS -->
+        <section id="builder-game" class="game-arena">
+            <h2 style="text-align: center; color: #d4af37;">🏗️ Constructeur de Mots</h2>
+            <div class="word-builder">
+                <p>Cliquez sur les hiéroglyphes pour composer un mot égyptien</p>
+                <div class="word-construction">
+                    <div class="constructed-word" id="constructed-word"></div>
+                    <div id="word-translation" style="text-align: center; color: #c0c0c0; margin-top: 1rem;"></div>
+                </div>
+                <div class="hieroglyph-palette" id="hieroglyph-palette"></div>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="start-game-btn" style="width: auto; display: inline-block; margin: 0.5rem;" onclick="clearWord()">Effacer</button>
+                    <button class="start-game-btn" style="width: auto; display: inline-block; margin: 0.5rem;" onclick="checkWord()">Vérifier le Mot</button>
+                </div>
+                <div id="builder-feedback" style="margin-top: 1rem; text-align: center; font-size: 1.2rem;"></div>
+            </div>
+            <button class="back-to-menu" onclick="backToMenu()">Retour au Menu</button>
+        </section>
+
+        <!-- JEU 4 : ASSOCIATIONS -->
+        <section id="associations-game" class="game-arena">
+            <h2 style="text-align: center; color: #d4af37;">🔗 Associations Divines</h2>
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="assoc-matches">0/10</div>
+                    <div class="stat-label">Associations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="assoc-errors">0</div>
+                    <div class="stat-label">Erreurs</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin: 1rem 0;">Associez chaque dieu (gauche) à son domaine (droite)</p>
+            <div class="association-grid" id="association-grid"></div>
+            <button class="back-to-menu" onclick="backToMenu()">Retour au Menu</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Académie des Sagesses Anciennes - Apprenez les hiéroglyphes en jouant</p>
+    </footer>
+
+    <script>
+        // DONNÉES DES JEUX
+        const memoryPairs = [
+            { hieroglyph: '𓋹', meaning: 'Vie (ankh)' },
+            { hieroglyph: '𓇳', meaning: 'Soleil (Rê)' },
+            { hieroglyph: '𓊹', meaning: 'Dieu (neter)' },
+            { hieroglyph: '𓄤𓆑𓂋', meaning: 'Bon (nefer)' },
+            { hieroglyph: '𓊵𓏏𓊪', meaning: 'Paix (hotep)' },
+            { hieroglyph: '𓄣', meaning: 'Cœur (ib)' },
+            { hieroglyph: '𓂓', meaning: 'Ka (force vitale)' },
+            { hieroglyph: '𓅡', meaning: 'Ba (âme)' }
+        ];
+
+        const quizQuestions = [
+            { hieroglyph: '𓋹', answers: ['Vie', 'Mort', 'Force', 'Paix'], correct: 0 },
+            { hieroglyph: '𓇳', answers: ['Lune', 'Soleil', 'Étoile', 'Eau'], correct: 1 },
+            { hieroglyph: '𓊹', answers: ['Homme', 'Femme', 'Dieu', 'Roi'], correct: 2 },
+            { hieroglyph: '𓄤𓆑𓂋', answers: ['Mauvais', 'Bon', 'Grand', 'Petit'], correct: 1 },
+            { hieroglyph: '𓊵𓏏𓊪', answers: ['Guerre', 'Paix', 'Famine', 'Joie'], correct: 1 },
+            { hieroglyph: '𓄣', answers: ['Tête', 'Cœur', 'Main', 'Pied'], correct: 1 },
+            { hieroglyph: '𓂓', answers: ['Ba', 'Ka', 'Ib', 'Ren'], correct: 1 },
+            { hieroglyph: '𓅡', answers: ['Ka', 'Ba', 'Maât', 'Ankh'], correct: 1 },
+            { hieroglyph: '𓊨𓁹𓀭', answers: ['Rê', 'Horus', 'Osiris', 'Set'], correct: 2 },
+            { hieroglyph: '𓊨𓏏𓁐', answers: ['Isis', 'Hathor', 'Maât', 'Bastet'], correct: 0 },
+            { hieroglyph: '𓅃𓀭', answers: ['Anubis', 'Thot', 'Horus', 'Ptah'], correct: 2 },
+            { hieroglyph: '𓇋𓈖𓊪𓅱𓃣', answers: ['Osiris', 'Set', 'Anubis', 'Rê'], correct: 2 },
+            { hieroglyph: '𓐙𓄿𓂓𓏏𓁦', answers: ['Isis', 'Maât', 'Hathor', 'Nut'], correct: 1 },
+            { hieroglyph: '𓊽', answers: ['Ankh', 'Was', 'Djed', 'Shen'], correct: 2 },
+            { hieroglyph: '𓌀', answers: ['Djed', 'Was', 'Ankh', 'Tyet'], correct: 1 },
+            { hieroglyph: '𓉐', answers: ['Temple', 'Maison', 'Pyramide', 'Tombeau'], correct: 1 },
+            { hieroglyph: '𓆎𓅓𓏏', answers: ['Désert', 'Égypte', 'Nil', 'Memphis'], correct: 1 },
+            { hieroglyph: '𓇼𓄿𓏏', answers: ['Ciel', 'Terre', 'Douât', 'Mer'], correct: 2 },
+            { hieroglyph: '𓂋𓈖', answers: ['Ka', 'Ba', 'Nom', 'Ombre'], correct: 2 },
+            { hieroglyph: '𓎛𓃀𓇳', answers: ['Guerre', 'Fête', 'Travail', 'Repos'], correct: 1 }
+        ];
+
+        const hieroglyphAlphabet = [
+            { sign: '𓄿', sound: 'A', name: 'vautour' },
+            { sign: '𓇋', sound: 'I/Y', name: 'roseau' },
+            { sign: '𓅱', sound: 'W/U', name: 'poussin' },
+            { sign: '𓃀', sound: 'B', name: 'jambe' },
+            { sign: '𓊪', sound: 'P', name: 'siège' },
+            { sign: '𓆑', sound: 'F', name: 'vipère' },
+            { sign: '𓅓', sound: 'M', name: 'chouette' },
+            { sign: '𓈖', sound: 'N', name: 'eau' },
+            { sign: '𓂋', sound: 'R', name: 'bouche' },
+            { sign: '𓎛', sound: 'H', name: 'mèche' },
+            { sign: '𓐍', sound: 'KH', name: 'placenta' },
+            { sign: '𓋴', sound: 'S', name: 'verrou' },
+            { sign: '𓆓', sound: 'SH', name: 'serpent' },
+            { sign: '𓏘', sound: 'Q', name: 'colline' },
+            { sign: '𓍿', sound: 'K', name: 'corbeille' },
+            { sign: '𓎼', sound: 'G', name: 'support' },
+            { sign: '𓏏', sound: 'T', name: 'pain' },
+            { sign: '𓍞', sound: 'TJ', name: 'corde' },
+            { sign: '𓂧', sound: 'D', name: 'main' },
+            { sign: '𓆓', sound: 'DJ', name: 'cobra' },
+            { sign: '𓋹', sound: 'ˁNKH', name: 'vie' },
+            { sign: '𓊹', sound: 'NTR', name: 'dieu' },
+            { sign: '𓇳', sound: 'Rˁ', name: 'soleil' },
+            { sign: '𓊪𓏏', sound: 'PT', name: 'ciel' }
+        ];
+
+        const validWords = [
+            { word: '𓋹𓈖𓐍', translation: 'ankh = vie' },
+            { word: '𓇳𓏤', translation: 'rê = soleil' },
+            { word: '𓊹𓀭', translation: 'neter = dieu' },
+            { word: '𓊵𓏏𓊪', translation: 'hotep = paix/offrande' },
+            { word: '𓄤𓆑𓂋', translation: 'nefer = bon/beau' },
+            { word: '𓂋𓈖', translation: 'ren = nom' }
+        ];
+
+        const associations = [
+            { god: '𓇳𓏤 Rê', domain: 'Soleil et création' },
+            { god: '𓊨𓁹𓀭 Osiris', domain: 'Résurrection et au-delà' },
+            { god: '𓊨𓏏𓁐 Isis', domain: 'Magie et maternité' },
+            { god: '𓅃𓀭 Horus', domain: 'Royauté et ciel' },
+            { god: '𓇋𓈖𓊪𓅱𓃣 Anubis', domain: 'Momification et nécropoles' },
+            { god: '𓐙𓄿𓂓𓏏𓁦 Maât', domain: 'Vérité et justice' },
+            { god: '𓏏𓎛𓅱𓏏𓁐 Thot', domain: 'Sagesse et écriture' },
+            { god: '𓎛𓄿𓏏𓇯𓏏𓁐 Hathor', domain: 'Amour et joie' },
+            { god: '𓃩𓀭 Set', domain: 'Chaos et désert' },
+            { god: '𓊪𓏏𓇯 Ptah', domain: 'Artisanat et création' }
+        ];
+
+        let currentGame = null;
+        let gameState = {};
+
+        // NAVIGATION
+        function startGame(game) {
+            document.getElementById('game-menu').style.display = 'none';
+            document.querySelectorAll('.game-arena').forEach(arena => {
+                arena.classList.remove('active');
+            });
+            document.getElementById(game + '-game').classList.add('active');
+            currentGame = game;
+
+            if (game === 'memory') initMemoryGame();
+            else if (game === 'quiz') initQuizGame();
+            else if (game === 'builder') initBuilderGame();
+            else if (game === 'associations') initAssociationsGame();
+        }
+
+        function backToMenu() {
+            document.getElementById('game-menu').style.display = 'grid';
+            document.querySelectorAll('.game-arena').forEach(arena => {
+                arena.classList.remove('active');
+            });
+            currentGame = null;
+            gameState = {};
+        }
+
+        // JEU 1 : MEMORY
+        function initMemoryGame() {
+            gameState = { moves: 0, pairs: 0, firstCard: null, secondCard: null, canFlip: true, startTime: Date.now() };
+
+            const cards = [...memoryPairs, ...memoryPairs].sort(() => Math.random() - 0.5);
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+
+            cards.forEach((card, index) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'memory-card';
+                cardEl.dataset.index = index;
+                cardEl.dataset.pair = card.hieroglyph;
+                cardEl.innerHTML = `
+                    <div class="back">𓊹</div>
+                    <div class="front">${index % 2 === 0 ? card.hieroglyph : card.meaning}</div>
+                `;
+                cardEl.onclick = () => flipCard(cardEl);
+                grid.appendChild(cardEl);
+            });
+
+            updateMemoryStats();
+            startMemoryTimer();
+        }
+
+        function flipCard(card) {
+            if (!gameState.canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+            card.classList.add('flipped');
+
+            if (!gameState.firstCard) {
+                gameState.firstCard = card;
+            } else {
+                gameState.secondCard = card;
+                gameState.canFlip = false;
+                gameState.moves++;
+                updateMemoryStats();
+
+                setTimeout(checkMatch, 800);
+            }
+        }
+
+        function checkMatch() {
+            const pair1 = gameState.firstCard.dataset.pair;
+            const pair2 = gameState.secondCard.dataset.pair;
+
+            if (pair1 === pair2) {
+                gameState.firstCard.classList.add('matched');
+                gameState.secondCard.classList.add('matched');
+                gameState.pairs++;
+                updateMemoryStats();
+
+                if (gameState.pairs === 8) {
+                    setTimeout(() => alert('🎉 Félicitations ! Toutes les paires trouvées en ' + gameState.moves + ' coups !'), 500);
+                }
+            } else {
+                gameState.firstCard.classList.remove('flipped');
+                gameState.secondCard.classList.remove('flipped');
+            }
+
+            gameState.firstCard = null;
+            gameState.secondCard = null;
+            gameState.canFlip = true;
+        }
+
+        function updateMemoryStats() {
+            document.getElementById('memory-moves').textContent = gameState.moves;
+            document.getElementById('memory-pairs').textContent = gameState.pairs + '/8';
+        }
+
+        function startMemoryTimer() {
+            setInterval(() => {
+                if (currentGame === 'memory' && gameState.pairs < 8) {
+                    const elapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
+                    const minutes = Math.floor(elapsed / 60);
+                    const seconds = elapsed % 60;
+                    document.getElementById('memory-time').textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+                }
+            }, 1000);
+        }
+
+        // JEU 2 : QUIZ
+        function initQuizGame() {
+            gameState = { score: 0, currentQuestion: 0, questions: [...quizQuestions].sort(() => Math.random() - 0.5) };
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            if (gameState.currentQuestion >= 20) {
+                document.getElementById('quiz-container').innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <h2 style="color: #d4af37; font-size: 2.5rem;">Quiz Terminé !</h2>
+                        <p style="font-size: 2rem; margin: 2rem 0;">Score final : ${gameState.score}/20</p>
+                        <p style="font-size: 1.5rem;">${gameState.score >= 16 ? '🏆 Expert !' : gameState.score >= 12 ? '👍 Très bien !' : gameState.score >= 8 ? '📚 Continuez à apprendre' : '💪 Recommencez !'}</p>
+                        <button class="start-game-btn" style="width: auto; display: inline-block; margin-top: 2rem;" onclick="initQuizGame()">Recommencer</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = gameState.questions[gameState.currentQuestion];
+            document.getElementById('quiz-question-num').textContent = (gameState.currentQuestion + 1) + '/20';
+
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <div class="quiz-question-box">
+                    <div class="quiz-hieroglyph">${q.hieroglyph}</div>
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Que signifie ce hiéroglyphe ?</h3>
+                    <div class="quiz-answers">
+                        ${q.answers.map((ans, i) => `
+                            <button class="quiz-answer-btn" onclick="answerQuiz(${i})">${ans}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function answerQuiz(answerIndex) {
+            const q = gameState.questions[gameState.currentQuestion];
+            const buttons = document.querySelectorAll('.quiz-answer-btn');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (answerIndex === q.correct) {
+                buttons[answerIndex].classList.add('correct');
+                gameState.score++;
+            } else {
+                buttons[answerIndex].classList.add('incorrect');
+                buttons[q.correct].classList.add('correct');
+            }
+
+            document.getElementById('quiz-score').textContent = gameState.score + '/20';
+
+            setTimeout(() => {
+                gameState.currentQuestion++;
+                showQuizQuestion();
+            }, 1500);
+        }
+
+        // JEU 3 : CONSTRUCTEUR
+        function initBuilderGame() {
+            gameState = { word: [] };
+            const palette = document.getElementById('hieroglyph-palette');
+            palette.innerHTML = hieroglyphAlphabet.map(h => `
+                <div class="hieroglyph-tile" onclick="addHieroglyph('${h.sign}')">
+                    ${h.sign}
+                    <small>${h.sound}</small>
+                </div>
+            `).join('');
+            updateConstructedWord();
+        }
+
+        function addHieroglyph(sign) {
+            gameState.word.push(sign);
+            updateConstructedWord();
+        }
+
+        function clearWord() {
+            gameState.word = [];
+            updateConstructedWord();
+            document.getElementById('builder-feedback').innerHTML = '';
+        }
+
+        function updateConstructedWord() {
+            document.getElementById('constructed-word').textContent = gameState.word.join('') || '(Cliquez sur les hiéroglyphes)';
+        }
+
+        function checkWord() {
+            const constructed = gameState.word.join('');
+            const match = validWords.find(w => w.word === constructed);
+            const feedback = document.getElementById('builder-feedback');
+
+            if (match) {
+                feedback.innerHTML = `<span style="color: #27ae60;">✅ Correct ! ${match.translation}</span>`;
+            } else if (constructed.length === 0) {
+                feedback.innerHTML = `<span style="color: #e74c3c;">❌ Construisez d'abord un mot</span>`;
+            } else {
+                feedback.innerHTML = `<span style="color: #e74c3c;">❌ Ce n'est pas un mot égyptien valide. Essayez : ${validWords.map(w => w.word).join(' ')}</span>`;
+            }
+        }
+
+        // JEU 4 : ASSOCIATIONS
+        function initAssociationsGame() {
+            gameState = { matches: 0, errors: 0, selected: null, matched: [] };
+
+            const shuffledDomains = [...associations].sort(() => Math.random() - 0.5);
+            const grid = document.getElementById('association-grid');
+
+            grid.innerHTML = `
+                <div class="association-column">
+                    ${associations.map((a, i) => `
+                        <div class="association-item" data-index="${i}" data-type="god" onclick="selectAssociation(this, ${i}, 'god')">
+                            ${a.god}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="association-column">
+                    ${shuffledDomains.map((a, i) => `
+                        <div class="association-item" data-index="${associations.indexOf(a)}" data-type="domain" onclick="selectAssociation(this, ${associations.indexOf(a)}, 'domain')">
+                            ${a.domain}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function selectAssociation(element, index, type) {
+            if (gameState.matched.includes(index)) return;
+
+            if (!gameState.selected) {
+                gameState.selected = { element, index, type };
+                element.classList.add('selected');
+            } else {
+                if (gameState.selected.type === type) {
+                    gameState.selected.element.classList.remove('selected');
+                    gameState.selected = { element, index, type };
+                    element.classList.add('selected');
+                } else {
+                    if (gameState.selected.index === index) {
+                        gameState.selected.element.classList.add('matched');
+                        element.classList.add('matched');
+                        gameState.matches++;
+                        gameState.matched.push(index);
+                        document.getElementById('assoc-matches').textContent = gameState.matches + '/10';
+
+                        if (gameState.matches === 10) {
+                            setTimeout(() => alert('🎉 Parfait ! Toutes les associations trouvées avec ' + gameState.errors + ' erreur(s) !'), 500);
+                        }
+                    } else {
+                        gameState.errors++;
+                        document.getElementById('assoc-errors').textContent = gameState.errors;
+                        gameState.selected.element.style.animation = 'shake 0.5s';
+                        element.style.animation = 'shake 0.5s';
+                        setTimeout(() => {
+                            gameState.selected.element.style.animation = '';
+                            element.style.animation = '';
+                        }, 500);
+                    }
+
+                    gameState.selected.element.classList.remove('selected');
+                    gameState.selected = null;
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</body>
+</html>

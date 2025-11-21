@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirage de Runes - Académie des Sagesses Anciennes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: rgba(15, 52, 96, 0.8);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .spread-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .spread-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.8), rgba(30, 136, 229, 0.2));
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .spread-card:hover {
+            transform: translateY(-5px);
+            border-color: #64b5f6;
+            box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
+        }
+
+        .spread-card h3 {
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .spread-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .question-input {
+            background: rgba(15, 52, 96, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .question-input label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #64b5f6;
+        }
+
+        .question-input input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid rgba(100, 181, 246, 0.5);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        .draw-btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+            margin: 2rem 0;
+        }
+
+        .draw-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .runes-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .rune-stone {
+            width: 150px;
+            height: 200px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border: 3px solid #64b5f6;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #64b5f6;
+            cursor: pointer;
+            transition: all 0.5s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .rune-stone.reversed {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            border-color: #9b59b6;
+        }
+
+        .rune-stone.reversed .rune-symbol {
+            transform: rotate(180deg);
+        }
+
+        .rune-stone.flipped {
+            animation: flip 0.6s ease;
+        }
+
+        @keyframes flip {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(90deg); }
+            100% { transform: rotateY(0deg); }
+        }
+
+        .rune-stone:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 12px 30px rgba(100, 181, 246, 0.5);
+        }
+
+        .rune-label {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .reversed-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(155, 89, 182, 0.8);
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .interpretation {
+            background: rgba(139, 92, 246, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .interpretation.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .interpretation h3 {
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+
+        .rune-meaning {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .rune-meaning h4 {
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎲 Tirage de Runes</h1>
+        <p class="subtitle">Consultez les anciennes sagesses nordiques</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 Accueil</a>
+        <a href="alphabet-hebreu.html">🔯 Alphabet Hébreu</a>
+        <a href="calculateur-gematria.html">🔢 Calculateur Gematria</a>
+        <a href="alphabet-runes.html">ᚠ Runes</a>
+        <a href="tirage-runes.html">🎲 Tirage Runes</a>
+    </nav>
+
+    <main>
+        <div class="question-input">
+            <label for="questionInput">Posez votre question aux runes :</label>
+            <input type="text" id="questionInput" placeholder="Quelle est ma voie à suivre ?">
+        </div>
+
+        <h2 style="text-align: center; color: #64b5f6; margin: 2rem 0;">Choisissez votre type de tirage :</h2>
+
+        <div class="spread-selector">
+            <div class="spread-card" onclick="selectSpread('single')">
+                <h3>🔮 Tirage à 1 Rune</h3>
+                <p>Réponse directe et simple. Parfait pour une question précise ou un conseil du jour.</p>
+            </div>
+
+            <div class="spread-card" onclick="selectSpread('three')">
+                <h3>⚡ Tirage à 3 Runes</h3>
+                <p>Passé, Présent, Futur. Pour comprendre l'évolution d'une situation.</p>
+            </div>
+
+            <div class="spread-card" onclick="selectSpread('thor')">
+                <h3>⚔️ Croix de Thor (5 runes)</h3>
+                <p>Problème, Passé, Présent, Futur, Solution. Tirage complet pour des situations complexes.</p>
+            </div>
+
+            <div class="spread-card" onclick="selectSpread('celtic')">
+                <h3>🌙 Croix Celtique (7 runes)</h3>
+                <p>Analyse approfondie : situation actuelle, obstacles, influences, résultat probable et conseils.</p>
+            </div>
+        </div>
+
+        <div id="drawArea" style="display: none;">
+            <button class="draw-btn" onclick="drawRunes()">🔮 Tirer les Runes</button>
+            <div class="runes-container" id="runesContainer"></div>
+            <div class="interpretation" id="interpretation"></div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </main>
+
+    <script>
+        const runes = [
+            {
+                symbol: 'ᚠ', name: 'Fehu',
+                meaning: 'Richesse, prospérité, nouveau départ. Énergie créatrice.',
+                reversed: 'Perte financière, manque, énergie dispersée. Prudence matérielle requise.',
+                keywords: 'Abondance, Succès'
+            },
+            {
+                symbol: 'ᚢ', name: 'Uruz',
+                meaning: 'Force vitale, santé, courage. Puissance non domptée.',
+                reversed: 'Faiblesse, maladie, occasions manquées. Manque de vitalité.',
+                keywords: 'Force, Vitalité'
+            },
+            {
+                symbol: 'ᚦ', name: 'Thurisaz',
+                meaning: 'Protection, défense, obstacles. Pouvoir de Thor.',
+                reversed: 'Vulnérabilité, conflits, danger non perçu. Défenses affaiblies.',
+                keywords: 'Protection, Conflit'
+            },
+            {
+                symbol: 'ᚨ', name: 'Ansuz',
+                meaning: 'Communication, sagesse divine, inspiration. Message important.',
+                reversed: 'Malentendus, blocages, conseils ignorés. Communication perturbée.',
+                keywords: 'Sagesse, Communication'
+            },
+            {
+                symbol: 'ᚱ', name: 'Raidho',
+                meaning: 'Voyage, mouvement, progression. Suivez votre chemin.',
+                reversed: 'Voyages retardés, stagnation, chemin bloqué. Attente nécessaire.',
+                keywords: 'Voyage, Progrès'
+            },
+            {
+                symbol: 'ᚲ', name: 'Kenaz',
+                meaning: 'Illumination, connaissance, créativité. Lumière intérieure.',
+                reversed: 'Ignorance, créativité bloquée, ténèbres. Perte de clarté.',
+                keywords: 'Connaissance, Créativité'
+            },
+            {
+                symbol: 'ᚷ', name: 'Gebo',
+                meaning: 'Don, partenariat, équilibre. Relations harmonieuses.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Don, Partenariat'
+            },
+            {
+                symbol: 'ᚹ', name: 'Wunjo',
+                meaning: 'Joie, bonheur, satisfaction. Harmonie et plaisir.',
+                reversed: 'Tristesse, déception, discorde. Bonheur retardé.',
+                keywords: 'Joie, Harmonie'
+            },
+            {
+                symbol: 'ᚺ', name: 'Hagalaz',
+                meaning: 'Changement radical, transformation. Destruction créatrice.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Changement, Crise'
+            },
+            {
+                symbol: 'ᚾ', name: 'Nauthiz',
+                meaning: 'Nécessité, contrainte, leçon. Croissance par l\'adversité.',
+                reversed: 'Souffrance inutile, résistance, leçons non apprises.',
+                keywords: 'Besoin, Résilience'
+            },
+            {
+                symbol: 'ᛁ', name: 'Isa',
+                meaning: 'Glace, stagnation, patience. Temps d\'attente.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Pause, Clarté'
+            },
+            {
+                symbol: 'ᛃ', name: 'Jera',
+                meaning: 'Récolte, cycle, patience récompensée. Fruits du travail.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Récolte, Cycle'
+            },
+            {
+                symbol: 'ᛇ', name: 'Eihwaz',
+                meaning: 'Transformation, renaissance, endurance. Passage difficile.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Transformation, Endurance'
+            },
+            {
+                symbol: 'ᛈ', name: 'Perthro',
+                meaning: 'Mystère, destin, révélation. Potentiel caché.',
+                reversed: 'Secrets négatifs, illusions, vérités cachées douloureuses.',
+                keywords: 'Destin, Mystère'
+            },
+            {
+                symbol: 'ᛉ', name: 'Algiz',
+                meaning: 'Protection spirituelle, connexion divine. Défense supérieure.',
+                reversed: 'Protection affaiblie, déconnexion, vulnérabilité spirituelle.',
+                keywords: 'Protection, Connexion'
+            },
+            {
+                symbol: 'ᛊ', name: 'Sowilo',
+                meaning: 'Soleil, victoire, succès. Énergie positive.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Victoire, Succès'
+            },
+            {
+                symbol: 'ᛏ', name: 'Tiwaz',
+                meaning: 'Courage, justice, honneur. Sacrifice noble.',
+                reversed: 'Injustice, lâcheté, perte de motivation. Honneur compromis.',
+                keywords: 'Courage, Justice'
+            },
+            {
+                symbol: 'ᛒ', name: 'Berkano',
+                meaning: 'Croissance, fertilité, nouveau départ. Énergie nourricière.',
+                reversed: 'Stagnation, infertilité, négligence. Croissance entravée.',
+                keywords: 'Croissance, Fertilité'
+            },
+            {
+                symbol: 'ᛖ', name: 'Ehwaz',
+                meaning: 'Mouvement, partenariat, confiance. Progression harmonieuse.',
+                reversed: 'Désaccords, confiance rompue, partenariat instable.',
+                keywords: 'Mouvement, Partenariat'
+            },
+            {
+                symbol: 'ᛗ', name: 'Mannaz',
+                meaning: 'Humanité, conscience, communauté. Soi supérieur.',
+                reversed: 'Isolement, égoïsme, déconnexion de la communauté.',
+                keywords: 'Humanité, Conscience'
+            },
+            {
+                symbol: 'ᛚ', name: 'Laguz',
+                meaning: 'Eau, intuition, émotions. Flux de la vie.',
+                reversed: 'Émotions débordantes, intuition bloquée, flux perturbé.',
+                keywords: 'Intuition, Flux'
+            },
+            {
+                symbol: 'ᛜ', name: 'Ingwaz',
+                meaning: 'Gestation, potentiel, croissance intérieure. Nouveau cycle.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Potentiel, Gestation'
+            },
+            {
+                symbol: 'ᛞ', name: 'Dagaz',
+                meaning: 'Jour, éveil, percée. Transformation lumineuse.',
+                reversed: 'Cette rune ne peut pas être inversée - elle est symétrique.',
+                keywords: 'Éveil, Percée'
+            },
+            {
+                symbol: 'ᛟ', name: 'Othala',
+                meaning: 'Héritage, racines, propriété. Patrimoine spirituel.',
+                reversed: 'Perte d\'héritage, déracinement, rupture familiale.',
+                keywords: 'Héritage, Racines'
+            }
+        ];
+
+        let selectedSpread = '';
+        let drawnRunes = [];
+
+        function selectSpread(spreadType) {
+            selectedSpread = spreadType;
+            document.getElementById('drawArea').style.display = 'block';
+            document.getElementById('runesContainer').innerHTML = '';
+            document.getElementById('interpretation').classList.remove('show');
+
+            // Scroll vers la zone de tirage
+            document.getElementById('drawArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function drawRunes() {
+            const question = document.getElementById('questionInput').value;
+            if (!question.trim()) {
+                alert('Veuillez poser une question avant de tirer les runes.');
+                return;
+            }
+
+            // Déterminer le nombre de runes
+            let count = 1;
+            let positions = ['Réponse'];
+
+            if (selectedSpread === 'three') {
+                count = 3;
+                positions = ['Passé', 'Présent', 'Futur'];
+            } else if (selectedSpread === 'thor') {
+                count = 5;
+                positions = ['Problème', 'Passé', 'Présent', 'Futur', 'Solution'];
+            } else if (selectedSpread === 'celtic') {
+                count = 7;
+                positions = ['Situation', 'Obstacle', 'Passé', 'Futur', 'Au-dessus', 'En-dessous', 'Résultat'];
+            }
+
+            // Tirer des runes aléatoires avec possibilité d'inversion
+            drawnRunes = [];
+            const shuffled = [...runes].sort(() => Math.random() - 0.5);
+            for (let i = 0; i < count; i++) {
+                const isReversed = Math.random() < 0.3; // 30% de chance d'être inversée
+                drawnRunes.push({
+                    ...shuffled[i],
+                    position: positions[i],
+                    reversed: isReversed
+                });
+            }
+
+            // Afficher les runes
+            const container = document.getElementById('runesContainer');
+            container.innerHTML = '';
+
+            drawnRunes.forEach((rune, index) => {
+                setTimeout(() => {
+                    const stone = document.createElement('div');
+                    stone.className = `rune-stone flipped ${rune.reversed ? 'reversed' : ''}`;
+                    stone.innerHTML = `
+                        <div class="rune-symbol">${rune.symbol}</div>
+                        ${rune.reversed ? '<div class="reversed-indicator">↓ Inversée</div>' : ''}
+                        <div class="rune-label">${rune.position}</div>
+                    `;
+                    container.appendChild(stone);
+
+                    // Effet sonore visuel sur apparition
+                    setTimeout(() => {
+                        stone.style.boxShadow = '0 12px 40px rgba(100, 181, 246, 0.8)';
+                        setTimeout(() => {
+                            stone.style.boxShadow = '0 8px 20px rgba(0,0,0,0.5)';
+                        }, 200);
+                    }, 300);
+                }, index * 300);
+            });
+
+            // Afficher l'interprétation
+            setTimeout(() => {
+                showInterpretation(question);
+            }, count * 300 + 500);
+        }
+
+        function showInterpretation(question) {
+            const interpretationDiv = document.getElementById('interpretation');
+            let html = `<h3>🔮 Interprétation de votre tirage</h3>`;
+            html += `<p style="color: #aaa; margin-bottom: 1.5rem;"><strong>Question :</strong> ${question}</p>`;
+
+            drawnRunes.forEach(rune => {
+                const displayMeaning = rune.reversed ? rune.reversed : rune.meaning;
+                const reversedNote = rune.reversed ? ' <span style="color: #9b59b6;">↓ (Inversée)</span>' : '';
+                html += `
+                    <div class="rune-meaning" style="border-left: 4px solid ${rune.reversed ? '#9b59b6' : '#64b5f6'};">
+                        <h4>${rune.symbol} ${rune.name}${reversedNote} - ${rune.position}</h4>
+                        <p>${displayMeaning}</p>
+                        <p style="color: ${rune.reversed ? '#9b59b6' : '#64b5f6'}; margin-top: 0.5rem;"><strong>Mots-clés :</strong> ${rune.keywords}</p>
+                    </div>
+                `;
+            });
+
+            html += `<p style="margin-top: 1.5rem; color: #aaa; font-style: italic;">
+                💡 Les runes offrent des conseils et des perspectives. Méditez sur leur message et faites confiance à votre intuition.
+            </p>`;
+
+            // Bouton pour sauvegarder le tirage
+            html += `
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button onclick="saveReading()" style="background: linear-gradient(135deg, #66bb6a, #43a047); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);">
+                        💾 Sauvegarder ce tirage
+                    </button>
+                    <button onclick="drawRunes()" style="background: linear-gradient(135deg, #64b5f6, #1e88e5); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-left: 1rem; box-shadow: 0 4px 10px rgba(100, 181, 246, 0.3);">
+                        🔄 Nouveau tirage
+                    </button>
+                </div>
+            `;
+
+            interpretationDiv.innerHTML = html;
+            interpretationDiv.classList.add('show');
+
+            // Scroll vers l'interprétation
+            interpretationDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function saveReading() {
+            const question = document.getElementById('questionInput').value;
+            const timestamp = new Date().toLocaleString('fr-FR');
+            const reading = {
+                question,
+                timestamp,
+                spread: selectedSpread,
+                runes: drawnRunes.map(r => ({
+                    name: r.name,
+                    symbol: r.symbol,
+                    position: r.position,
+                    reversed: r.reversed
+                }))
+            };
+
+            // Sauvegarder dans localStorage
+            let savedReadings = JSON.parse(localStorage.getItem('runeReadings') || '[]');
+            savedReadings.unshift(reading);
+            savedReadings = savedReadings.slice(0, 10); // Garder seulement les 10 derniers
+            localStorage.setItem('runeReadings', JSON.stringify(savedReadings));
+
+            alert('✅ Tirage sauvegardé avec succès !');
+        }
+
+        // Charger et afficher les tirages sauvegardés au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedReadings = JSON.parse(localStorage.getItem('runeReadings') || '[]');
+            if (savedReadings.length > 0) {
+                const historyDiv = document.createElement('div');
+                historyDiv.style.cssText = 'background: rgba(76, 175, 80, 0.2); border: 2px solid rgba(76, 175, 80, 0.5); border-radius: 15px; padding: 1.5rem; margin: 2rem 0;';
+                let historyHTML = '<h3 style="color: #66bb6a; margin-bottom: 1rem;">📚 Historique de vos tirages</h3>';
+
+                savedReadings.slice(0, 5).forEach((reading, index) => {
+                    historyHTML += `
+                        <div style="background: rgba(0, 0, 0, 0.3); padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">
+                            <p style="color: #aaa; font-size: 0.9rem;">${reading.timestamp}</p>
+                            <p style="color: #fff;"><strong>Question :</strong> ${reading.question}</p>
+                            <p style="color: #66bb6a; font-size: 0.9rem;">${reading.runes.map(r => r.symbol + (r.reversed ? '↓' : '')).join(' ')}</p>
+                        </div>
+                    `;
+                });
+
+                historyDiv.innerHTML = historyHTML;
+                document.querySelector('main').insertBefore(historyDiv, document.querySelector('.spread-selector'));
+            }
+        });
+    </script>
+</body>
+</html>
