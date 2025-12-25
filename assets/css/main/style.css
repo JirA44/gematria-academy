@@ -5,35 +5,35 @@
 }
 
 :root {
-    --primary: #2c3e50;
-    --secondary: #34495e;
+    --primary: #3d5a80;
+    --secondary: #98c1d9;
     --accent-beginner: #27ae60;
     --accent-intermediate: #f39c12;
     --accent-expert: #8e44ad;
-    --bg-light: #ecf0f1;
+    --bg-light: #293241;
     --bg-dark: #1a1a2e;
-    --text-light: #333;
+    --text-light: #e8e8e8;
     --text-dark: #fff;
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow: 0 4px 6px rgba(0,0,0,0.5);
 
-    /* Mode clair (par défaut) */
-    --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --card-bg: #ffffff;
-    --card-text: #333;
-    --header-bg: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-}
-
-/* Mode Nuit */
-body.dark-mode {
+    /* Mode Nuit (par défaut) */
     --body-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     --card-bg: #0f3460;
     --card-text: #e8e8e8;
     --header-bg: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
-    --primary: #3d5a80;
-    --secondary: #98c1d9;
-    --bg-light: #293241;
-    --text-light: #e8e8e8;
-    --shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+/* Mode Clair (optionnel) */
+body.light-mode {
+    --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: #ffffff;
+    --card-text: #333;
+    --header-bg: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+    --primary: #2c3e50;
+    --secondary: #34495e;
+    --bg-light: #ecf0f1;
+    --text-light: #333;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 body {
