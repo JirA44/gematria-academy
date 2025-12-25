@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Gematria Academy - Portail Principal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            opacity: 0.7;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .portals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .portal-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .portal-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .portal-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f59e0b;
+        }
+
+        .portal-description {
+            font-size: 1.1em;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .portal-stats {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .stat-badge {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+
+        .portal-card.main {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 2px solid #8b5cf6;
+        }
+
+        .portal-card.main:hover {
+            box-shadow: 0 30px 80px rgba(139, 92, 246, 0.6);
+        }
+
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(245, 158, 11, 0.4) 0%, transparent 50%);
+        }
+
+        .version-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .portals {
+                grid-template-columns: 1fr;
+            }
+            .portal-card.main {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg"></div>
+
+    <div class="container">
+        <header>
+            <h1>🔮 GEMATRIA ACADEMY</h1>
+            <div class="subtitle">Portail d'Accès aux Systèmes d'Écriture Sacrés</div>
+            <p class="description">
+                Explorez les trois principaux systèmes d'écriture sacrés de l'humanité :
+                les glyphes mayas de Mésoamérique, les runes nordiques des peuples germaniques,
+                et les hiéroglyphes de l'Égypte ancienne.
+            </p>
+
+            <!-- Sélecteur de Versions -->
+            <div style="margin-top: 30px; display: flex; justify-content: center; align-items: center; gap: 15px;">
+                <span style="color: #8b5cf6; font-size: 1.5em;">📚</span>
+                <select id="version-select" onchange="if(this.value) window.location.href=this.value" style="background: rgba(139,92,246,0.2); border: 2px solid rgba(139,92,246,0.5); color: #fff; padding: 12px 20px; border-radius: 12px; font-size: 1em; cursor: pointer; min-width: 320px;">
+                    <optgroup label="━━━ 📊 VERSIONS DISPONIBLES ━━━">
+                    </optgroup>
+                    <optgroup label="🟢 STANDARD">
+                        <option value="index.html" selected>🏠 Portail Principal (cette page)</option>
+                        <option value="index_standard.html">🏛️ Académie Standard (8 modules)</option>
+                    </optgroup>
+                    <optgroup label="🟡 ENRICHI">
+                        <option value="pages/versions/index_enrichi.html">📖 Version Enrichie (100+ leçons)</option>
+                        <option value="index_production.html">🚀 Version Production</option>
+                    </optgroup>
+                    <optgroup label="🔴 ULTRA">
+                        <option value="index_mega_enriched.html">✨ Ultra-Enrichie (150+ leçons)</option>
+                        <option value="pages/versions/index_mega_enriched.html">💎 Mega Enriched (archive)</option>
+                    </optgroup>
+                </select>
+                <span style="background: linear-gradient(135deg, #22c55e, #16a34a); padding: 8px 15px; border-radius: 20px; font-size: 0.85em; font-weight: bold;">v3.0</span>
+            </div>
+        </header>
+
+        <div class="portals">
+            <!-- Portail Académie Principale -->
+            <a href="index_standard.html" class="portal-card main">
+                <span class="portal-icon">🏛️</span>
+                <div class="portal-title">Académie Principale</div>
+                <div class="portal-description">
+                    Accédez à l'académie principale avec TOUS les systèmes : Runes, Gematria, Hiéroglyphes, Glyphes Mayas, Chakras, Mandalas, Logique et Raisonnements.
+                    Parcours progressifs et outils interactifs.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">📿 Runes Nordiques</span>
+                    <span class="stat-badge">🔯 Gematria Hébraïque</span>
+                    <span class="stat-badge">𓂀 Hiéroglyphes</span>
+                    <span class="stat-badge">🌞 Glyphes Mayas</span>
+                    <span class="stat-badge">🧘 Chakras</span>
+                    <span class="stat-badge">🎨 Mandalas</span>
+                    <span class="stat-badge">🧠 Logique</span>
+                    <span class="stat-badge">💭 Raisonnements</span>
+                </div>
+            </a>
+
+            <!-- Version Ultra-Enrichie -->
+            <a href="index_mega_enriched.html" class="portal-card" style="border-color: #8b5cf6; grid-column: 1 / -1; background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));">
+                <span class="portal-icon">✨</span>
+                <div class="portal-title">Version Ultra-Enrichie (150+ Leçons)</div>
+                <div class="portal-description">
+                    Académie ultra-enrichie dédiée aux 3 systèmes d'écriture sacrés avec contenu massif :
+                    35 leçons Mayas (800+ glyphes), 8 leçons Runes (30+ inscriptions), 40 leçons Hiéroglyphes (1000+ signes).
+                    Textes des Pyramides, Livre des Morts, Codex Mayas, Poèmes Runiques et bien plus !
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">🌞 35 Leçons Mayas</span>
+                    <span class="stat-badge">ᚠ 8 Leçons Runes</span>
+                    <span class="stat-badge">𓂀 40 Leçons Hiéroglyphes</span>
+                    <span class="stat-badge">📚 150+ Leçons Totales</span>
+                    <span class="stat-badge">⏱️ 100+ Heures</span>
+                    <span class="stat-badge">✅ Version 3.0</span>
+                </div>
+            </a>
+
+            <!-- Glyphes Mayas -->
+            <a href="index_mega_enriched.html#maya" class="portal-card" style="border-color: #d97706;">
+                <span class="portal-icon">🌞</span>
+                <div class="portal-title">Glyphes Mayas</div>
+                <div class="portal-description">
+                    Système d'écriture sophistiqué de la civilisation maya.
+                    Maîtrisez 800+ glyphes à travers 35 leçons couvrant les 4 codex,
+                    l'escalier de Copán (2200 glyphes), et la mythologie du Popol Vuh.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">📖 4 Codex Complets</span>
+                    <span class="stat-badge">🗿 2200 Glyphes Copán</span>
+                    <span class="stat-badge">📅 Calendriers Tzolk'in/Haab</span>
+                </div>
+            </a>
+
+            <!-- Runes Nordiques -->
+            <a href="index_mega_enriched.html#runes" class="portal-card" style="border-color: #3b82f6;">
+                <span class="portal-icon">ᚠ</span>
+                <div class="portal-title">Runes Nordiques</div>
+                <div class="portal-description">
+                    Écriture sacrée des peuples germaniques et vikings.
+                    Apprenez les 24 runes de l'Elder Futhark à travers 8 leçons incluant
+                    30+ inscriptions authentiques et la mythologie d'Odin.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">⚡ 3 Aettir Sacrés</span>
+                    <span class="stat-badge">🏺 30+ Inscriptions</span>
+                    <span class="stat-badge">📜 3 Poèmes Runiques</span>
+                </div>
+            </a>
+
+            <!-- Hiéroglyphes Égyptiens -->
+            <a href="index_mega_enriched.html#hieroglyphs" class="portal-card" style="border-color: #dc2626;">
+                <span class="portal-icon">𓂀</span>
+                <div class="portal-title">Hiéroglyphes Égyptiens</div>
+                <div class="portal-description">
+                    3500 ans d'écriture sacrée égyptienne.
+                    Maîtrisez 1000+ signes avec 40 leçons couvrant les Textes des Pyramides,
+                    le Livre des Morts complet, l'hiératique, le démotique et le copte.
+                </div>
+                <div class="portal-stats">
+                    <span class="stat-badge">📜 Textes Pyramides</span>
+                    <span class="stat-badge">⚱️ Livre des Morts (190 ch.)</span>
+                    <span class="stat-badge">🗿 Pierre de Rosette</span>
+                    <span class="stat-badge">ⲁ Hiératique/Démotique/Copte</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="version-info">
+            <p style="font-size: 1.1em; margin-bottom: 10px;">
+                <strong>📅 Dernière mise à jour :</strong> 13 novembre 2025
+            </p>
+            <p style="font-size: 0.9em; opacity: 0.8;">
+                Version 3.0 - Ultra Enrichie | 500+ Symboles | 200+ Exercices | Interface Interactive
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Animation au survol des cartes
+        document.querySelectorAll('.portal-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02) rotate(0.5deg)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+            });
+        });
+
+        console.log('🔮 Gematria Academy - Portail Principal');
+        console.log('🌞 Glyphes Mayas | ᚠ Runes Nordiques | 𓂀 Hiéroglyphes Égyptiens');
+    </script>
+</body>
+</html>
