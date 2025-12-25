@@ -333,61 +333,42 @@
         </div>
     </main>
 
+        <!-- Charger le système d'auth -->
+    <script src="../../assets/js/auth/firebase-config.js"></script>
+    <script src="../../assets/js/auth/auth-system.js"></script>
+
     <script>
         function switchTab(tab) {
-            // Changer l'onglet actif
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
-
-            // Afficher le bon formulaire
             document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
-
-            if (tab === 'login') {
-                document.getElementById('loginForm').classList.add('active');
-            } else {
-                document.getElementById('signupForm').classList.add('active');
-            }
-
-            // Masquer le message
+            document.getElementById(tab === 'login' ? 'loginForm' : 'signupForm').classList.add('active');
             document.getElementById('message').classList.remove('show');
         }
 
         function showMessage(text, type) {
             const message = document.getElementById('message');
             message.textContent = text;
-            message.className = `message ${type} show`;
+            message.className = 'message ' + type + ' show';
         }
 
-        function handleLogin(event) {
+        async function handleLogin(event) {
             event.preventDefault();
-
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
-            // Simulation d'une connexion (pas de backend réel)
-            if (email && password) {
-                // Stocker l'utilisateur dans localStorage
-                const user = {
-                    email: email,
-                    name: email.split('@')[0],
-                    loginDate: new Date().toISOString()
-                };
-
-                localStorage.setItem('currentUser', JSON.stringify(user));
-
+            try {
+                showMessage('🔄 Connexion en cours...', 'success');
+                await window.gematriaAuth.signIn(email, password);
                 showMessage('✅ Connexion réussie ! Redirection...', 'success');
-
-                setTimeout(() => {
-                    window.location.href = 'profile.html';
-                }, 1500);
-            } else {
-                showMessage('❌ Email ou mot de passe incorrect', 'error');
+                setTimeout(() => window.location.href = 'profile.html', 1500);
+            } catch (error) {
+                showMessage('❌ ' + (error.message || 'Email ou mot de passe incorrect'), 'error');
             }
         }
 
-        function handleSignup(event) {
+        async function handleSignup(event) {
             event.preventDefault();
-
             const name = document.getElementById('signupName').value;
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
@@ -397,63 +378,46 @@
                 showMessage('❌ Les mots de passe ne correspondent pas', 'error');
                 return;
             }
-
             if (password.length < 6) {
                 showMessage('❌ Le mot de passe doit contenir au moins 6 caractères', 'error');
                 return;
             }
 
-            // Créer un nouvel utilisateur
-            const user = {
-                name: name,
-                email: email,
-                signupDate: new Date().toISOString(),
-                level: 'Débutant',
-                badges: ['🎓 Premier pas'],
-                progress: {
-                    runes: 0,
-                    gematria: 0,
-                    hieroglyphes: 0,
-                    maya: 0,
-                    logique: 0
-                }
-            };
-
-            localStorage.setItem('currentUser', JSON.stringify(user));
-
-            showMessage('✅ Inscription réussie ! Bienvenue dans l\'Académie !', 'success');
-
-            setTimeout(() => {
-                window.location.href = 'profile.html';
-            }, 1500);
-        }
-
-        function socialLogin(provider) {
-            showMessage(`🔄 Connexion avec ${provider} en cours...`, 'success');
-
-            // Simulation de connexion sociale
-            setTimeout(() => {
-                const user = {
-                    name: `Utilisateur ${provider}`,
-                    email: `user@${provider}.com`,
-                    loginDate: new Date().toISOString(),
-                    provider: provider
-                };
-
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                window.location.href = 'profile.html';
-            }, 1500);
-        }
-
-        // Vérifier si l'utilisateur est déjà connecté
-        window.addEventListener('DOMContentLoaded', () => {
-            const currentUser = localStorage.getItem('currentUser');
-            if (currentUser) {
-                showMessage('ℹ️ Vous êtes déjà connecté. Redirection...', 'success');
-                setTimeout(() => {
-                    window.location.href = 'profile.html';
-                }, 1500);
+            try {
+                showMessage('🔄 Inscription en cours...', 'success');
+                await window.gematriaAuth.signUp(email, password, name);
+                showMessage('✅ Inscription réussie ! Bienvenue !', 'success');
+                setTimeout(() => window.location.href = 'profile.html', 1500);
+            } catch (error) {
+                showMessage('❌ ' + (error.message || 'Erreur inscription'), 'error');
             }
+        }
+
+        async function socialLogin(provider) {
+            if (provider === 'google') {
+                try {
+                    showMessage('🔄 Connexion Google...', 'success');
+                    const user = await window.gematriaAuth.signInWithGoogle();
+                    if (user) {
+                        showMessage('✅ Connexion réussie !', 'success');
+                        setTimeout(() => window.location.href = 'profile.html', 1500);
+                    }
+                } catch (error) {
+                    showMessage('❌ ' + (error.message || 'Erreur Google'), 'error');
+                }
+            } else {
+                showMessage('🔧 ' + provider + ' : bientôt disponible !', 'error');
+            }
+        }
+
+        // Vérifier si déjà connecté
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (window.gematriaAuth && window.gematriaAuth.isLoggedIn) {
+                    showMessage('ℹ️ Déjà connecté. Redirection...', 'success');
+                    setTimeout(() => window.location.href = 'profile.html', 1500);
+                }
+            }, 500);
         });
     </script>
 </body>

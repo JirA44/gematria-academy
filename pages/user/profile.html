@@ -413,6 +413,10 @@
         <a href="index.html" class="back-btn">← Retour à l'accueil</a>
     </main>
 
+    <!-- Charger le système d'auth -->
+    <script src="../../assets/js/auth/firebase-config.js"></script>
+    <script src="../../assets/js/auth/auth-system.js"></script>
+
     <script>
         const allBadges = [
             { icon: '🎓', name: 'Premier pas', condition: 'default' },
@@ -461,7 +465,7 @@
             }
 
             // Afficher les infos de base
-            document.getElementById('userName').textContent = user.name || 'Utilisateur';
+            document.getElementById('userName').textContent = user.displayName || user.name || 'Utilisateur';
             document.getElementById('userEmail').textContent = user.email || '';
 
             const signupDate = user.signupDate || user.loginDate;
@@ -498,7 +502,7 @@
             displayHistory(user);
 
             // Sauvegarder les modifications
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('gematria_progress_' + (user.uid || 'local'), JSON.stringify({ progress: user.progress, badges: user.badges, streak: user.streak }));
         }
 
         function updateProgress(domain, value) {
