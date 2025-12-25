@@ -91,24 +91,72 @@ const GamificationSystem = {
     },
 
     // Initialisation
-    init() {
-        this.loadUserData();
+    async init() {
+        await this.loadUserData();
         this.checkDailyStreak();
         this.checkTimeBasedBadges();
         this.updateUI();
+
+        // Écouter les changements d'auth pour sync
+        if (window.gematriaAuth) {
+            window.gematriaAuth.onAuthStateChanged((user) => {
+                if (user) {
+                    this.syncFromCloud();
+                }
+            });
+        }
     },
 
-    // Charger les données
-    loadUserData() {
+    // Charger les données (Firestore si connecté, sinon localStorage)
+    async loadUserData() {
+        // Toujours charger localStorage d'abord (cache local)
         const saved = localStorage.getItem('gematria_academy_user');
         if (saved) {
             this.userData = { ...this.userData, ...JSON.parse(saved) };
         }
+
+        // Si utilisateur connecté, charger depuis Firestore
+        if (window.gematriaAuth && window.gematriaAuth.isLoggedIn) {
+            await this.syncFromCloud();
+        }
     },
 
-    // Sauvegarder les données
-    saveUserData() {
+    // Synchroniser depuis Firestore
+    async syncFromCloud() {
+        try {
+            if (!window.gematriaAuth || !window.gematriaAuth.currentUser) return;
+
+            const uid = window.gematriaAuth.currentUser.uid;
+            const cloudData = await window.gematriaAuth.loadUserData(uid);
+
+            if (cloudData && cloudData.gamification) {
+                // Fusionner les données cloud avec les locales (cloud prioritaire)
+                this.userData = { ...this.userData, ...cloudData.gamification };
+                // Mettre à jour le cache local
+                localStorage.setItem('gematria_academy_user', JSON.stringify(this.userData));
+                this.updateUI();
+            }
+        } catch (error) {
+            console.warn('Erreur sync cloud gamification:', error);
+        }
+    },
+
+    // Sauvegarder les données (Firestore si connecté + localStorage)
+    async saveUserData() {
+        // Toujours sauvegarder en localStorage (cache)
         localStorage.setItem('gematria_academy_user', JSON.stringify(this.userData));
+
+        // Si utilisateur connecté, sauvegarder aussi dans Firestore
+        if (window.gematriaAuth && window.gematriaAuth.isLoggedIn && window.gematriaAuth.currentUser) {
+            try {
+                const uid = window.gematriaAuth.currentUser.uid;
+                await window.gematriaAuth.saveUserData(uid, {
+                    gamification: this.userData
+                });
+            } catch (error) {
+                console.warn('Erreur sauvegarde cloud gamification:', error);
+            }
+        }
     },
 
     // Gagner de l'XP

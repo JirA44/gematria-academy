@@ -1,25 +1,20 @@
 // Configuration Firebase pour Gematria Academy
 // ============================================
-// Pour configurer votre propre Firebase:
-// 1. Aller sur console.firebase.google.com
-// 2. Créer un projet "gematria-academy"
-// 3. Activer Authentication > Email/Password + Google
-// 4. Remplacer les credentials ci-dessous
 
 const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyD_VOTRE_CLE_API",
-    authDomain: "gematria-academy.firebaseapp.com",
-    projectId: "gematria-academy",
-    storageBucket: "gematria-academy.appspot.com",
-    messagingSenderId: "VOTRE_SENDER_ID",
-    appId: "VOTRE_APP_ID"
+    apiKey: 'AIzaSyCQLs54rYN06SjYBov9_m5tKMs8n6g59lE',
+    authDomain: 'gematria-academy-ed04c.firebaseapp.com',
+    projectId: 'gematria-academy-ed04c',
+    storageBucket: 'gematria-academy-ed04c.firebasestorage.app',
+    messagingSenderId: '501573363898',
+    appId: '1:501573363898:web:d557c2ce973e0fcdcefa83',
+    measurementId: 'G-T655YX66NQ'
 };
 
-// Vérifier si Firebase est configuré
 function isFirebaseConfigured() {
-    return FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.includes('VOTRE_CLE');
+    return FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey.startsWith('AIza');
 }
 
 window.FIREBASE_CONFIG = FIREBASE_CONFIG;
 window.isFirebaseConfigured = isFirebaseConfigured;
-console.log('🔥 Firebase config chargé');
+console.log('🔥 Firebase configuré: gematria-academy-ed04c');
