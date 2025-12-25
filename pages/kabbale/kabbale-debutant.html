@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabbale - Niveau Débutant | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0a2e 50%, #0f0f23 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .nav-btn.active {
+            background: rgba(139, 92, 246, 0.6);
+            border-color: #a855f7;
+        }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #a855f7;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-section h3 {
+            color: #c084fc;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .sephiroth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .sephira-card {
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.15), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sephira-card:hover {
+            transform: translateY(-5px);
+            border-color: #a855f7;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .sephira-card .number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2em;
+            opacity: 0.3;
+            font-weight: bold;
+        }
+
+        .sephira-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sephira-card .hebrew {
+            font-size: 1.8em;
+            color: #d4af37;
+        }
+
+        .sephira-card .meaning {
+            color: #c084fc;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .sephira-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .sephira-card li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .sephira-card li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+        }
+
+        .pillar {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px 0;
+        }
+
+        .pillar-severity { background: rgba(220, 38, 38, 0.2); border: 2px solid rgba(220, 38, 38, 0.4); }
+        .pillar-mercy { background: rgba(59, 130, 246, 0.2); border: 2px solid rgba(59, 130, 246, 0.4); }
+        .pillar-middle { background: rgba(139, 92, 246, 0.2); border: 2px solid rgba(139, 92, 246, 0.4); }
+
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1));
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: #a855f7;
+        }
+
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.4);
+            border-color: #10b981;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.4);
+            border-color: #ef4444;
+        }
+
+        .tree-diagram {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .tree-diagram svg {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .practice-exercise {
+            background: rgba(245, 158, 11, 0.15);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .btn-next {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .worlds-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .worlds-table th, .worlds-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .worlds-table th {
+            background: rgba(139, 92, 246, 0.3);
+            color: #fff;
+        }
+
+        .worlds-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #8b5cf6, #a855f7);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌳 Kabbale - Niveau Débutant</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Les Fondements de la Sagesse Mystique Hébraïque</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;" id="progress"></div>
+            </div>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="arbre-de-vie.html" class="nav-btn">🌳 Arbre de Vie</a>
+            <a href="kabbale-debutant.html" class="nav-btn active">📖 Débutant</a>
+            <a href="kabbale-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="kabbale-expert.html" class="nav-btn">🎓 Expert</a>
+        </nav>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>📜 Qu'est-ce que la Kabbale ?</h2>
+
+            <p>La <strong>Kabbale</strong> (קַבָּלָה - "réception" ou "tradition") est la tradition mystique et ésotérique du judaïsme. Elle propose une interprétation profonde de la Torah et explore les mystères de la création, la nature de Dieu, l'âme humaine et le cosmos.</p>
+
+            <div class="highlight-box">
+                <h3>🔑 Les Concepts Clés</h3>
+                <ul style="list-style: none; margin-top: 15px;">
+                    <li style="padding: 8px 0;">✦ <strong>Ein Sof</strong> (אין סוף) - L'Infini, la nature illimitée de Dieu avant toute création</li>
+                    <li style="padding: 8px 0;">✦ <strong>Sephiroth</strong> (ספירות) - Les 10 émanations divines</li>
+                    <li style="padding: 8px 0;">✦ <strong>Otz Chiim</strong> (עץ חיים) - L'Arbre de Vie, carte de la création</li>
+                    <li style="padding: 8px 0;">✦ <strong>Netivot</strong> (נתיבות) - Les 22 Sentiers reliant les Sephiroth</li>
+                </ul>
+            </div>
+
+            <h3>📚 Les Textes Fondateurs</h3>
+            <p>La Kabbale s'appuie sur plusieurs textes majeurs :</p>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Sefer Yetzirah</strong> (Livre de la Formation) - IIIe-VIe siècle</li>
+                <li><strong>Sefer HaBahir</strong> (Livre de la Clarté) - XIIe siècle</li>
+                <li><strong>Sefer HaZohar</strong> (Livre de la Splendeur) - XIIIe siècle</li>
+                <li><strong>Etz Chaim</strong> (Arbre de Vie) - XVIe siècle, Rabbi Isaac Louria</li>
+            </ul>
+        </section>
+
+        <!-- Les 10 Sephiroth -->
+        <section class="lesson-section">
+            <h2>🔮 Les 10 Sephiroth (Émanations Divines)</h2>
+
+            <p>Les Sephiroth sont les 10 attributs ou émanations par lesquels l'Ein Sof (l'Infini) se révèle et crée continuellement les mondes physiques et spirituels. Elles forment l'<strong>Arbre de Vie</strong> (Etz Chaim).</p>
+
+            <div class="tree-diagram">
+                <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Lignes de connexion -->
+                    <g stroke="rgba(139,92,246,0.4)" stroke-width="2" fill="none">
+                        <!-- Pilier du milieu -->
+                        <line x1="150" y1="40" x2="150" y2="100"/>
+                        <line x1="150" y1="130" x2="150" y2="190"/>
+                        <line x1="150" y1="220" x2="150" y2="280"/>
+                        <line x1="150" y1="310" x2="150" y2="370"/>
+                        <!-- Connexions horizontales -->
+                        <line x1="70" y1="115" x2="230" y2="115"/>
+                        <line x1="70" y1="205" x2="230" y2="205"/>
+                        <line x1="70" y1="295" x2="230" y2="295"/>
+                        <!-- Diagonales -->
+                        <line x1="150" y1="40" x2="70" y2="115"/>
+                        <line x1="150" y1="40" x2="230" y2="115"/>
+                        <line x1="70" y1="115" x2="150" y2="205"/>
+                        <line x1="230" y1="115" x2="150" y2="205"/>
+                    </g>
+                    <!-- Sephiroth -->
+                    <g>
+                        <!-- 1. Kether -->
+                        <circle cx="150" cy="30" r="25" fill="#ffffff" stroke="#d4af37" stroke-width="3"/>
+                        <text x="150" y="35" text-anchor="middle" fill="#1a1a2e" font-size="10" font-weight="bold">1</text>
+                        <!-- 2. Chokmah -->
+                        <circle cx="230" cy="80" r="22" fill="#808080" stroke="#3b82f6" stroke-width="3"/>
+                        <text x="230" y="85" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">2</text>
+                        <!-- 3. Binah -->
+                        <circle cx="70" cy="80" r="22" fill="#000000" stroke="#dc2626" stroke-width="3"/>
+                        <text x="70" y="85" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">3</text>
+                        <!-- Daath (invisible) -->
+                        <circle cx="150" cy="115" r="15" fill="none" stroke="rgba(139,92,246,0.3)" stroke-width="2" stroke-dasharray="5,5"/>
+                        <!-- 4. Chesed -->
+                        <circle cx="230" cy="150" r="22" fill="#3b82f6" stroke="#60a5fa" stroke-width="3"/>
+                        <text x="230" y="155" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">4</text>
+                        <!-- 5. Geburah -->
+                        <circle cx="70" cy="150" r="22" fill="#dc2626" stroke="#f87171" stroke-width="3"/>
+                        <text x="70" y="155" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">5</text>
+                        <!-- 6. Tiphereth -->
+                        <circle cx="150" cy="205" r="25" fill="#f59e0b" stroke="#fbbf24" stroke-width="3"/>
+                        <text x="150" y="210" text-anchor="middle" fill="#1a1a2e" font-size="10" font-weight="bold">6</text>
+                        <!-- 7. Netzach -->
+                        <circle cx="230" cy="260" r="22" fill="#22c55e" stroke="#4ade80" stroke-width="3"/>
+                        <text x="230" y="265" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">7</text>
+                        <!-- 8. Hod -->
+                        <circle cx="70" cy="260" r="22" fill="#f97316" stroke="#fb923c" stroke-width="3"/>
+                        <text x="70" y="265" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">8</text>
+                        <!-- 9. Yesod -->
+                        <circle cx="150" cy="310" r="22" fill="#8b5cf6" stroke="#a78bfa" stroke-width="3"/>
+                        <text x="150" y="315" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">9</text>
+                        <!-- 10. Malkuth -->
+                        <circle cx="150" cy="375" r="25" fill="#78350f" stroke="#a16207" stroke-width="3"/>
+                        <text x="150" y="380" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">10</text>
+                    </g>
+                </svg>
+                <p style="margin-top: 20px; opacity: 0.7;">L'Arbre de Vie avec les 10 Sephiroth numérotées</p>
+            </div>
+
+            <div class="sephiroth-grid">
+                <!-- 1. Kether -->
+                <div class="sephira-card" style="border-color: #d4af37;">
+                    <span class="number">1</span>
+                    <h4><span class="hebrew">כֶּתֶר</span> Kether</h4>
+                    <p class="meaning">"La Couronne"</p>
+                    <p>La plus haute émanation, le point de contact avec l'Ein Sof. Représente la volonté divine pure, au-delà de la pensée.</p>
+                    <ul>
+                        <li>Couleur : Blanc brillant</li>
+                        <li>Planète : Primum Mobile</li>
+                        <li>Archange : Metatron</li>
+                        <li>Expérience : Union avec Dieu</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Chokmah -->
+                <div class="sephira-card" style="border-color: #3b82f6;">
+                    <span class="number">2</span>
+                    <h4><span class="hebrew">חָכְמָה</span> Chokmah</h4>
+                    <p class="meaning">"La Sagesse"</p>
+                    <p>L'énergie masculine primordiale, le "Père Supérieur". C'est l'éclair de l'inspiration divine, l'idée avant qu'elle ne prenne forme.</p>
+                    <ul>
+                        <li>Couleur : Gris</li>
+                        <li>Planète : Zodiaque</li>
+                        <li>Archange : Raziel</li>
+                        <li>Expérience : Vision de Dieu face à face</li>
+                    </ul>
+                </div>
+
+                <!-- 3. Binah -->
+                <div class="sephira-card" style="border-color: #dc2626;">
+                    <span class="number">3</span>
+                    <h4><span class="hebrew">בִּינָה</span> Binah</h4>
+                    <p class="meaning">"L'Intelligence/Compréhension"</p>
+                    <p>L'énergie féminine primordiale, la "Mère Supérieure". Elle reçoit l'étincelle de Chokmah et lui donne forme et structure.</p>
+                    <ul>
+                        <li>Couleur : Noir</li>
+                        <li>Planète : Saturne</li>
+                        <li>Archange : Tzaphkiel</li>
+                        <li>Expérience : Vision de la Douleur</li>
+                    </ul>
+                </div>
+
+                <!-- 4. Chesed -->
+                <div class="sephira-card" style="border-color: #3b82f6;">
+                    <span class="number">4</span>
+                    <h4><span class="hebrew">חֶסֶד</span> Chesed</h4>
+                    <p class="meaning">"La Miséricorde/Bonté"</p>
+                    <p>L'amour inconditionnel et l'expansion. Représente la générosité divine qui donne sans limite ni condition.</p>
+                    <ul>
+                        <li>Couleur : Bleu</li>
+                        <li>Planète : Jupiter</li>
+                        <li>Archange : Tzadkiel</li>
+                        <li>Expérience : Vision de l'Amour</li>
+                    </ul>
+                </div>
+
+                <!-- 5. Geburah -->
+                <div class="sephira-card" style="border-color: #dc2626;">
+                    <span class="number">5</span>
+                    <h4><span class="hebrew">גְּבוּרָה</span> Geburah</h4>
+                    <p class="meaning">"La Force/Rigueur"</p>
+                    <p>La force qui limite et discipline. Représente le jugement divin, la justice et la capacité de dire "non".</p>
+                    <ul>
+                        <li>Couleur : Rouge</li>
+                        <li>Planète : Mars</li>
+                        <li>Archange : Kamael</li>
+                        <li>Expérience : Vision du Pouvoir</li>
+                    </ul>
+                </div>
+
+                <!-- 6. Tiphereth -->
+                <div class="sephira-card" style="border-color: #f59e0b;">
+                    <span class="number">6</span>
+                    <h4><span class="hebrew">תִּפְאֶרֶת</span> Tiphereth</h4>
+                    <p class="meaning">"La Beauté"</p>
+                    <p>Le centre de l'Arbre, l'équilibre parfait. Représente le Soi supérieur, le Christ intérieur, le point d'harmonie.</p>
+                    <ul>
+                        <li>Couleur : Or/Jaune</li>
+                        <li>Planète : Soleil</li>
+                        <li>Archange : Raphaël</li>
+                        <li>Expérience : Vision de l'Harmonie</li>
+                    </ul>
+                </div>
+
+                <!-- 7. Netzach -->
+                <div class="sephira-card" style="border-color: #22c55e;">
+                    <span class="number">7</span>
+                    <h4><span class="hebrew">נֶצַח</span> Netzach</h4>
+                    <p class="meaning">"La Victoire/Éternité"</p>
+                    <p>Les émotions, l'art et la créativité. Représente les forces instinctives de la nature, la passion et l'endurance.</p>
+                    <ul>
+                        <li>Couleur : Vert</li>
+                        <li>Planète : Vénus</li>
+                        <li>Archange : Haniel</li>
+                        <li>Expérience : Vision de la Beauté</li>
+                    </ul>
+                </div>
+
+                <!-- 8. Hod -->
+                <div class="sephira-card" style="border-color: #f97316;">
+                    <span class="number">8</span>
+                    <h4><span class="hebrew">הוֹד</span> Hod</h4>
+                    <p class="meaning">"La Gloire/Splendeur"</p>
+                    <p>L'intellect, la communication et la magie. Représente la pensée logique, le langage et les formes.</p>
+                    <ul>
+                        <li>Couleur : Orange</li>
+                        <li>Planète : Mercure</li>
+                        <li>Archange : Michaël</li>
+                        <li>Expérience : Vision de la Splendeur</li>
+                    </ul>
+                </div>
+
+                <!-- 9. Yesod -->
+                <div class="sephira-card" style="border-color: #8b5cf6;">
+                    <span class="number">9</span>
+                    <h4><span class="hebrew">יְסוֹד</span> Yesod</h4>
+                    <p class="meaning">"Le Fondement"</p>
+                    <p>La fondation, le monde astral. Point de connexion entre le spirituel et le physique. Siège de l'inconscient et des rêves.</p>
+                    <ul>
+                        <li>Couleur : Violet</li>
+                        <li>Planète : Lune</li>
+                        <li>Archange : Gabriel</li>
+                        <li>Expérience : Vision du Mécanisme</li>
+                    </ul>
+                </div>
+
+                <!-- 10. Malkuth -->
+                <div class="sephira-card" style="border-color: #a16207;">
+                    <span class="number">10</span>
+                    <h4><span class="hebrew">מַלְכוּת</span> Malkuth</h4>
+                    <p class="meaning">"Le Royaume"</p>
+                    <p>Le monde physique manifesté, la Terre. C'est ici que toutes les énergies des Sephiroth supérieures se manifestent dans la matière.</p>
+                    <ul>
+                        <li>Couleur : Brun/Citrine/Olive/Noir</li>
+                        <li>Planète : Terre</li>
+                        <li>Archange : Sandalphon</li>
+                        <li>Expérience : Conscience du Corps</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les Trois Piliers -->
+        <section class="lesson-section">
+            <h2>⚖️ Les Trois Piliers de l'Arbre</h2>
+
+            <p>L'Arbre de Vie est structuré en trois piliers verticaux qui représentent différentes qualités d'énergie :</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div class="pillar pillar-severity">
+                    <h3 style="color: #f87171;">⚔️ Pilier de la Rigueur</h3>
+                    <p style="margin-top: 10px;">(Gauche - Féminin)</p>
+                    <p><strong>Binah → Geburah → Hod</strong></p>
+                    <p style="margin-top: 10px;">Force restrictive, forme, structure, discipline, jugement</p>
+                </div>
+
+                <div class="pillar pillar-middle">
+                    <h3 style="color: #a78bfa;">☯️ Pilier de l'Équilibre</h3>
+                    <p style="margin-top: 10px;">(Centre)</p>
+                    <p><strong>Kether → Tiphereth → Yesod → Malkuth</strong></p>
+                    <p style="margin-top: 10px;">Conscience, harmonie, équilibre entre les opposés</p>
+                </div>
+
+                <div class="pillar pillar-mercy">
+                    <h3 style="color: #60a5fa;">💙 Pilier de la Miséricorde</h3>
+                    <p style="margin-top: 10px;">(Droite - Masculin)</p>
+                    <p><strong>Chokmah → Chesed → Netzach</strong></p>
+                    <p style="margin-top: 10px;">Force expansive, énergie, grâce, compassion</p>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h3>💡 À Retenir</h3>
+                <p>L'équilibre entre les piliers est essentiel. Trop de Rigueur sans Miséricorde devient cruauté. Trop de Miséricorde sans Rigueur devient faiblesse. Le Pilier du Milieu représente la voie de l'équilibre parfait.</p>
+            </div>
+        </section>
+
+        <!-- Les Quatre Mondes -->
+        <section class="lesson-section">
+            <h2>🌍 Les Quatre Mondes (Olamot)</h2>
+
+            <p>La Kabbale enseigne que la création s'est déployée à travers quatre niveaux ou "mondes", du plus spirituel au plus matériel :</p>
+
+            <table class="worlds-table">
+                <tr>
+                    <th>Monde</th>
+                    <th>Nom Hébreu</th>
+                    <th>Signification</th>
+                    <th>Sephiroth</th>
+                    <th>Élément</th>
+                </tr>
+                <tr>
+                    <td><strong>1. Atziluth</strong></td>
+                    <td>אֲצִילוּת</td>
+                    <td>Émanation / Proximité</td>
+                    <td>Kether</td>
+                    <td>🔥 Feu</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Briah</strong></td>
+                    <td>בְּרִיאָה</td>
+                    <td>Création</td>
+                    <td>Chokmah, Binah</td>
+                    <td>💨 Air</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Yetzirah</strong></td>
+                    <td>יְצִירָה</td>
+                    <td>Formation</td>
+                    <td>Chesed → Yesod</td>
+                    <td>💧 Eau</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Assiah</strong></td>
+                    <td>עֲשִׂיָּה</td>
+                    <td>Action / Matière</td>
+                    <td>Malkuth</td>
+                    <td>🌍 Terre</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Exercice Pratique -->
+        <section class="lesson-section">
+            <h2>✍️ Exercice Pratique</h2>
+
+            <div class="practice-exercise">
+                <h3>🧘 Méditation sur Malkuth</h3>
+                <p>Commencez votre pratique kabbalistique par la Sephira la plus proche de nous : Malkuth.</p>
+                <ol style="margin: 20px 0; line-height: 2;">
+                    <li>Asseyez-vous confortablement, les pieds bien à plat sur le sol</li>
+                    <li>Fermez les yeux et respirez profondément 3 fois</li>
+                    <li>Visualisez une sphère aux couleurs de la Terre (brun, olive, citrine, noir) à vos pieds</li>
+                    <li>Ressentez votre connexion avec la Terre, le monde physique</li>
+                    <li>Prononcez mentalement : <strong>"ADONAI HA-ARETZ"</strong> (Seigneur de la Terre)</li>
+                    <li>Restez 5-10 minutes dans cette méditation</li>
+                    <li>Ouvrez doucement les yeux</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="quiz-section">
+            <h2>📝 Quiz de Compréhension</h2>
+            <p>Testez vos connaissances sur les bases de la Kabbale !</p>
+
+            <div class="quiz-question" data-correct="2">
+                <p><strong>1. Combien y a-t-il de Sephiroth dans l'Arbre de Vie ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">7</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">10</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">12</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">22</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Quel est le nom de la Sephira située au sommet de l'Arbre ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Malkuth</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Tiphereth</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Kether</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Chokmah</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Que signifie "Ein Sof" en Kabbale ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">L'Arbre de Vie</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">L'Infini (Dieu avant la création)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Le Monde Physique</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Les 22 Sentiers</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Quel pilier représente la force de restriction et de discipline ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Pilier de la Rigueur (Gauche)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Pilier de la Miséricorde (Droite)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Pilier de l'Équilibre (Centre)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Il n'y a pas de piliers</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. Quelle Sephira représente le monde physique manifesté ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Kether</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Yesod</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Tiphereth</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Malkuth</div>
+                </div>
+            </div>
+
+            <div id="quiz-result" style="text-align: center; margin-top: 20px; font-size: 1.2em;"></div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="kabbale-intermediaire.html" class="btn-next">
+                Continuer vers le Niveau Intermédiaire →
+            </a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(139, 92, 246, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Kabbale Niveau Débutant</p>
+            <p style="margin-top: 10px;">
+                <a href="../../index.html" style="color: #a855f7; text-decoration: none;">← Retour au Portail</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+        let totalQuestions = 5;
+        let answeredQuestions = 0;
+
+        function checkAnswer(element, isCorrect) {
+            if (element.classList.contains('correct') || element.classList.contains('incorrect')) {
+                return; // Déjà répondu
+            }
+
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                correctAnswers++;
+            } else {
+                element.classList.add('incorrect');
+                // Montrer la bonne réponse
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+
+            answeredQuestions++;
+            updateProgress();
+
+            if (answeredQuestions === totalQuestions) {
+                showResult();
+            }
+        }
+
+        function updateProgress() {
+            const progress = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function showResult() {
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+
+            if (percentage >= 80) {
+                resultDiv.innerHTML = `🎉 Excellent ! ${correctAnswers}/${totalQuestions} (${percentage}%) - Vous maîtrisez les bases de la Kabbale !`;
+                resultDiv.style.color = '#10b981';
+            } else if (percentage >= 60) {
+                resultDiv.innerHTML = `👍 Bien ! ${correctAnswers}/${totalQuestions} (${percentage}%) - Continuez votre apprentissage !`;
+                resultDiv.style.color = '#f59e0b';
+            } else {
+                resultDiv.innerHTML = `📚 ${correctAnswers}/${totalQuestions} (${percentage}%) - Relisez la leçon et réessayez !`;
+                resultDiv.style.color = '#ef4444';
+            }
+        }
+    </script>
+</body>
+</html>

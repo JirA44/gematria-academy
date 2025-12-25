@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Hiéroglyphes Égyptiens - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 69, 19, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+        }
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #d4af37, #f4d03f, #c9a227);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        .subtitle { font-size: 1.3em; opacity: 0.9; margin-bottom: 10px; }
+        .intro { max-width: 800px; margin: 0 auto; line-height: 1.6; opacity: 0.85; }
+
+        .nav-buttons {
+            display: flex; justify-content: center; gap: 15px;
+            flex-wrap: wrap; margin-bottom: 30px;
+        }
+        .nav-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #fff; padding: 12px 24px;
+            border-radius: 25px; text-decoration: none;
+            font-weight: 600; transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        .nav-btn.active { background: rgba(212, 175, 55, 0.5); border-color: #d4af37; }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #d4af37;
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 15px;
+        }
+
+        /* Alphabet Grid */
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .hiero-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .hiero-card:hover {
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        .hiero-char {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 8px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hiero-trans { font-size: 1.2em; color: #d4af37; font-weight: bold; }
+        .hiero-name { font-size: 0.85em; opacity: 0.8; margin-top: 5px; }
+
+        /* Phrases */
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .phrase-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 69, 19, 0.1));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .phrase-card:hover {
+            transform: translateY(-3px);
+            border-color: #d4af37;
+        }
+        .phrase-hiero {
+            font-size: 1.8em;
+            color: #d4af37;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        .phrase-trans {
+            font-size: 1.1em;
+            color: #f4d03f;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .phrase-meaning {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        .phrase-context {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Category tabs */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .cat-tab {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cat-tab:hover, .cat-tab.active {
+            background: rgba(212, 175, 55, 0.4);
+            border-color: #d4af37;
+        }
+
+        /* Politeness section */
+        .politeness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .politeness-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid;
+        }
+        .politeness-card.royal { border-color: #d4af37; }
+        .politeness-card.formal { border-color: #64b5f6; }
+        .politeness-card.common { border-color: #81c784; }
+
+        .politeness-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .politeness-examples {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .example-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .example-item:last-child { border-bottom: none; }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.1), rgba(100, 181, 246, 0.05));
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 {
+            color: #64b5f6;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d4af37;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .alphabet-grid { grid-template-columns: repeat(4, 1fr); }
+            .phrases-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+
+        <header>
+            <h1>𓂀 Hiéroglyphes Égyptiens</h1>
+            <div class="subtitle">L'Écriture Sacrée des Dieux</div>
+            <p class="intro">
+                Découvrez l'écriture millénaire de l'Égypte ancienne. Apprenez l'alphabet unilitère,
+                les formules de politesse adressées aux dieux et aux pharaons, ainsi que les phrases
+                rituelles gravées sur les temples et tombeaux.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="#alphabet" class="nav-btn active">𓀀 Alphabet</a>
+            <a href="#politesse" class="nav-btn">𓁷 Formules de Politesse</a>
+            <a href="#phrases" class="nav-btn">𓏛 Phrases Rituelles</a>
+            <a href="#salutations" class="nav-btn">𓇳 Salutations</a>
+        </div>
+
+        <!-- Alphabet Section -->
+        <section class="section" id="alphabet">
+            <h2 class="section-title">𓀀 Alphabet Unilitère (24 signes)</h2>
+            <p style="margin-bottom: 20px; opacity: 0.9;">
+                L'alphabet égyptien compte 24 signes unilitères (un son = un signe). Ces signes sont la base
+                pour écrire tous les mots égyptiens. Direction de lecture : généralement de droite à gauche.
+            </p>
+
+            <div class="alphabet-grid">
+                <div class="hiero-card">
+                    <span class="hiero-char">𓄿</span>
+                    <span class="hiero-trans">A</span>
+                    <span class="hiero-name">Vautour</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓇋</span>
+                    <span class="hiero-trans">i / y</span>
+                    <span class="hiero-name">Roseau</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓏭</span>
+                    <span class="hiero-trans">y</span>
+                    <span class="hiero-name">2 Roseaux</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓂝</span>
+                    <span class="hiero-trans">a</span>
+                    <span class="hiero-name">Bras</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓅱</span>
+                    <span class="hiero-trans">w / u</span>
+                    <span class="hiero-name">Caille</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓃀</span>
+                    <span class="hiero-trans">b</span>
+                    <span class="hiero-name">Pied</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓊪</span>
+                    <span class="hiero-trans">p</span>
+                    <span class="hiero-name">Tabouret</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓆑</span>
+                    <span class="hiero-trans">f</span>
+                    <span class="hiero-name">Vipère</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓅓</span>
+                    <span class="hiero-trans">m</span>
+                    <span class="hiero-name">Chouette</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓈖</span>
+                    <span class="hiero-trans">n</span>
+                    <span class="hiero-name">Eau</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓂋</span>
+                    <span class="hiero-trans">r</span>
+                    <span class="hiero-name">Bouche</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓉔</span>
+                    <span class="hiero-trans">h</span>
+                    <span class="hiero-name">Maison</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓎛</span>
+                    <span class="hiero-trans">ḥ</span>
+                    <span class="hiero-name">Corde</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓐍</span>
+                    <span class="hiero-trans">ḫ</span>
+                    <span class="hiero-name">Placenta</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓄡</span>
+                    <span class="hiero-trans">ẖ</span>
+                    <span class="hiero-name">Ventre</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓊃</span>
+                    <span class="hiero-trans">s</span>
+                    <span class="hiero-name">Verrou</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓈙</span>
+                    <span class="hiero-trans">š</span>
+                    <span class="hiero-name">Étang</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓈎</span>
+                    <span class="hiero-trans">q</span>
+                    <span class="hiero-name">Colline</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓎡</span>
+                    <span class="hiero-trans">k</span>
+                    <span class="hiero-name">Panier</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓎼</span>
+                    <span class="hiero-trans">g</span>
+                    <span class="hiero-name">Jarre</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓏏</span>
+                    <span class="hiero-trans">t</span>
+                    <span class="hiero-name">Pain</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓍿</span>
+                    <span class="hiero-trans">ṯ</span>
+                    <span class="hiero-name">Entrave</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓂧</span>
+                    <span class="hiero-trans">d</span>
+                    <span class="hiero-name">Main</span>
+                </div>
+                <div class="hiero-card">
+                    <span class="hiero-char">𓆓</span>
+                    <span class="hiero-trans">ḏ</span>
+                    <span class="hiero-name">Cobra</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>📜 Sens de Lecture</h4>
+                <p>Les hiéroglyphes se lisent dans la direction où regardent les figures (animaux, personnes).
+                Si les figures regardent vers la gauche, on lit de gauche à droite. Les textes sacrés des temples
+                se lisent généralement de droite à gauche.</p>
+            </div>
+        </section>
+
+        <!-- Politeness Section -->
+        <section class="section" id="politesse">
+            <h2 class="section-title">𓁷 Formules de Politesse</h2>
+            <p style="margin-bottom: 25px; opacity: 0.9;">
+                Dans l'Égypte ancienne, les formules de politesse variaient selon le rang social.
+                S'adresser au Pharaon, aux dieux ou aux nobles nécessitait des formules spécifiques.
+            </p>
+
+            <div class="politeness-grid">
+                <div class="politeness-card royal">
+                    <div class="politeness-title">
+                        <span style="font-size: 1.5em;">👑</span>
+                        <span style="color: #d4af37;">Langage Royal (au Pharaon)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Le Pharaon étant un dieu vivant, on ne s'adressait jamais directement à lui.
+                        On parlait de sa "Majesté" ou de sa "Perfection".
+                    </p>
+                    <div class="politeness-examples">
+                        <div class="example-item">
+                            <div style="color: #d4af37; font-size: 1.3em;">𓇳 𓅆 𓋹 𓍑 𓏏</div>
+                            <div style="font-style: italic; margin: 5px 0;">ḥm=f ꜥnḫ wḏꜣ snb</div>
+                            <div>"Sa Majesté, vie, prospérité, santé"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #d4af37; font-size: 1.3em;">𓊵 𓏏 𓊪 𓅱 𓀭</div>
+                            <div style="font-style: italic; margin: 5px 0;">nṯr nfr nb tꜣwy</div>
+                            <div>"Le dieu parfait, seigneur des Deux Terres"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #d4af37; font-size: 1.3em;">𓇋 𓈖 𓂧 𓇳</div>
+                            <div style="font-style: italic; margin: 5px 0;">ỉnd-ḥr=k</div>
+                            <div>"Salut à toi" (forme très respectueuse)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="politeness-card formal">
+                    <div class="politeness-title">
+                        <span style="font-size: 1.5em;">🏛️</span>
+                        <span style="color: #64b5f6;">Langage Formel (aux nobles/prêtres)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Pour s'adresser aux hauts fonctionnaires, prêtres et nobles, on utilisait
+                        des titres honorifiques et des formules de respect.
+                    </p>
+                    <div class="politeness-examples">
+                        <div class="example-item">
+                            <div style="color: #64b5f6; font-size: 1.3em;">𓇋 𓀁 𓏤 𓎡</div>
+                            <div style="font-style: italic; margin: 5px 0;">ỉꜣw n=k</div>
+                            <div>"Honneur à toi"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #64b5f6; font-size: 1.3em;">𓇋 𓅓 𓄿 𓎡 𓅱</div>
+                            <div style="font-style: italic; margin: 5px 0;">ỉmꜣḫw</div>
+                            <div>"Le vénérable / le bienheureux"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #64b5f6; font-size: 1.3em;">𓊹 𓄿 𓂝</div>
+                            <div style="font-style: italic; margin: 5px 0;">nṯr-ꜥꜣ</div>
+                            <div>"Grand dieu" (titre de respect)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="politeness-card common">
+                    <div class="politeness-title">
+                        <span style="font-size: 1.5em;">🧑‍🤝‍🧑</span>
+                        <span style="color: #81c784;">Langage Courant (entre égaux)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Entre personnes de même rang, les formules étaient plus simples
+                        mais toujours empreintes de respect mutuel.
+                    </p>
+                    <div class="politeness-examples">
+                        <div class="example-item">
+                            <div style="color: #81c784; font-size: 1.3em;">𓇋 𓇋 𓏏 𓏭</div>
+                            <div style="font-style: italic; margin: 5px 0;">ỉỉ.ty</div>
+                            <div>"Bienvenue"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #81c784; font-size: 1.3em;">𓈖 𓆑 𓂋 𓏏</div>
+                            <div style="font-style: italic; margin: 5px 0;">nfr.t</div>
+                            <div>"C'est bon / c'est bien"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #81c784; font-size: 1.3em;">𓅓 𓂋 𓅱 𓏏</div>
+                            <div style="font-style: italic; margin: 5px 0;">mrwt</div>
+                            <div>"Avec amour / amicalement"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ritual Phrases Section -->
+        <section class="section" id="phrases">
+            <h2 class="section-title">𓏛 Phrases Rituelles et Inscriptions</h2>
+
+            <div class="category-tabs">
+                <button class="cat-tab active" onclick="filterPhrases('all')">Toutes</button>
+                <button class="cat-tab" onclick="filterPhrases('offrande')">Offrandes</button>
+                <button class="cat-tab" onclick="filterPhrases('protection')">Protection</button>
+                <button class="cat-tab" onclick="filterPhrases('funeraire')">Funéraire</button>
+                <button class="cat-tab" onclick="filterPhrases('benediction')">Bénédictions</button>
+            </div>
+
+            <div class="phrases-grid" id="phrasesContainer">
+                <!-- Offrandes -->
+                <div class="phrase-card" data-category="offrande">
+                    <div class="phrase-hiero">𓇓 𓏏 𓊵 𓏙 𓊪 𓏏 𓎛</div>
+                    <div class="phrase-trans">ḥtp-dỉ-nsw</div>
+                    <div class="phrase-meaning">"Une offrande que donne le roi"</div>
+                    <div class="phrase-context">Formule d'offrande la plus courante, gravée sur les stèles funéraires</div>
+                </div>
+
+                <div class="phrase-card" data-category="offrande">
+                    <div class="phrase-hiero">𓏙 𓅓 𓏏 𓈖 𓊹</div>
+                    <div class="phrase-trans">dỉ=ỉ n=k</div>
+                    <div class="phrase-meaning">"Je te donne" / "Je t'offre"</div>
+                    <div class="phrase-context">Formule d'offrande aux dieux dans les rituels du temple</div>
+                </div>
+
+                <div class="phrase-card" data-category="offrande">
+                    <div class="phrase-hiero">𓏏 𓎛 𓂝 𓏤 𓎛 𓈎 𓏏</div>
+                    <div class="phrase-trans">t ḥnqt kꜣw ꜣpdw</div>
+                    <div class="phrase-meaning">"Pain, bière, bœufs et volailles"</div>
+                    <div class="phrase-context">Liste d'offrandes standard pour les défunts</div>
+                </div>
+
+                <!-- Protection -->
+                <div class="phrase-card" data-category="protection">
+                    <div class="phrase-hiero">𓊨 𓏏 𓅱 𓅆 𓏏 𓅱</div>
+                    <div class="phrase-trans">sꜣ ꜥnḫ</div>
+                    <div class="phrase-meaning">"Protection de vie"</div>
+                    <div class="phrase-context">Amulette et formule de protection magique</div>
+                </div>
+
+                <div class="phrase-card" data-category="protection">
+                    <div class="phrase-hiero">𓅓 𓎡 𓏏 𓂋 𓇋 𓅓</div>
+                    <div class="phrase-trans">mk wỉ ḥr sꜣ=k</div>
+                    <div class="phrase-meaning">"Protège-moi, je suis sous ta garde"</div>
+                    <div class="phrase-context">Prière de protection adressée aux dieux</div>
+                </div>
+
+                <div class="phrase-card" data-category="protection">
+                    <div class="phrase-hiero">𓂀 𓅱 𓆓 𓂝 𓏏</div>
+                    <div class="phrase-trans">wḏꜣ</div>
+                    <div class="phrase-meaning">"Sois sain et sauf"</div>
+                    <div class="phrase-context">Souhait de bonne santé et de protection</div>
+                </div>
+
+                <!-- Funéraire -->
+                <div class="phrase-card" data-category="funeraire">
+                    <div class="phrase-hiero">𓇋 𓅓 𓄿 𓎡 𓏭 𓀭</div>
+                    <div class="phrase-trans">ỉmꜣḫy ḫr nṯr ꜥꜣ</div>
+                    <div class="phrase-meaning">"Le bienheureux auprès du grand dieu"</div>
+                    <div class="phrase-context">Épitaphe courante sur les tombes</div>
+                </div>
+
+                <div class="phrase-card" data-category="funeraire">
+                    <div class="phrase-hiero">𓊪 𓂋 𓏏 𓐍 𓂋 𓅱</div>
+                    <div class="phrase-trans">prt-ḫrw</div>
+                    <div class="phrase-meaning">"Sortie à la voix" (offrande invoquée)</div>
+                    <div class="phrase-context">Rituel où prononcer les offrandes les fait apparaître</div>
+                </div>
+
+                <div class="phrase-card" data-category="funeraire">
+                    <div class="phrase-hiero">𓅱 𓈖 𓆑 𓂋 𓏏 𓀀</div>
+                    <div class="phrase-trans">wnf=k m ḥtp</div>
+                    <div class="phrase-meaning">"Puisses-tu reposer en paix"</div>
+                    <div class="phrase-context">Souhait funéraire pour le défunt</div>
+                </div>
+
+                <!-- Bénédictions -->
+                <div class="phrase-card" data-category="benediction">
+                    <div class="phrase-hiero">𓋹 𓍑 𓋴</div>
+                    <div class="phrase-trans">ꜥnḫ wḏꜣ snb</div>
+                    <div class="phrase-meaning">"Vie, Prospérité, Santé"</div>
+                    <div class="phrase-context">Bénédiction universelle, souvent abrégée V.P.S.</div>
+                </div>
+
+                <div class="phrase-card" data-category="benediction">
+                    <div class="phrase-hiero">𓏙 𓊹 𓋹 𓈖 𓎡</div>
+                    <div class="phrase-trans">dỉ nṯr ꜥnḫ n=k</div>
+                    <div class="phrase-meaning">"Que le dieu te donne la vie"</div>
+                    <div class="phrase-context">Bénédiction divine pour les vivants</div>
+                </div>
+
+                <div class="phrase-card" data-category="benediction">
+                    <div class="phrase-hiero">𓇋 𓇋 𓈖 𓆑 𓂋 𓏏</div>
+                    <div class="phrase-trans">ỉỉ=k nfr</div>
+                    <div class="phrase-meaning">"Que tu viennes en beauté"</div>
+                    <div class="phrase-context">Souhait de bienvenue bienveillant</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Salutations Section -->
+        <section class="section" id="salutations">
+            <h2 class="section-title">𓇳 Salutations Quotidiennes</h2>
+
+            <div class="phrases-grid">
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓇋 𓇋 𓏏 𓏭 𓀁</div>
+                    <div class="phrase-trans">ỉỉ.ty</div>
+                    <div class="phrase-meaning">"Bienvenue" / "Te voilà venu"</div>
+                    <div class="phrase-context">Salutation d'accueil</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓈖 𓆑 𓂋 𓊪 𓅱</div>
+                    <div class="phrase-trans">nfr pw</div>
+                    <div class="phrase-meaning">"C'est bien" / "C'est bon"</div>
+                    <div class="phrase-context">Approbation, accord</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓇋 𓈖 𓂧 𓎛 𓂋 𓎡</div>
+                    <div class="phrase-trans">ỉnd-ḥr=k</div>
+                    <div class="phrase-meaning">"Salut à toi"</div>
+                    <div class="phrase-context">Salutation respectueuse</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓅓 𓇋 𓇋 𓅓 𓎛 𓏏 𓊪</div>
+                    <div class="phrase-trans">m ḥtp</div>
+                    <div class="phrase-meaning">"En paix" / "Va en paix"</div>
+                    <div class="phrase-context">Au revoir, salutation de départ</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓂋 𓅱 𓏏 𓈖 𓇳</div>
+                    <div class="phrase-trans">dwꜣ nṯr</div>
+                    <div class="phrase-meaning">"Loué soit le dieu" / "Bonjour"</div>
+                    <div class="phrase-context">Salutation matinale, louange</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓊹 𓏭 𓈖 𓎡</div>
+                    <div class="phrase-trans">nṯry n=k</div>
+                    <div class="phrase-meaning">"Que les dieux soient avec toi"</div>
+                    <div class="phrase-context">Bénédiction quotidienne</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓅓 𓂋 𓅱 𓏏 𓏭</div>
+                    <div class="phrase-trans">mrwt</div>
+                    <div class="phrase-meaning">"Amour" / "Avec affection"</div>
+                    <div class="phrase-context">Expression d'amitié ou d'amour</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-hiero">𓂧 𓅱 𓄿 𓈖 𓇳</div>
+                    <div class="phrase-trans">dwꜣ Rꜥ</div>
+                    <div class="phrase-meaning">"Loué soit Rê"</div>
+                    <div class="phrase-context">Salutation au lever du soleil</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="info-box">
+            <h4>🏺 Note Historique</h4>
+            <p>L'égyptien ancien était une langue vivante pendant plus de 3500 ans. Les formules de politesse
+            et les expressions ont évolué du Moyen Empire (-2050) au Nouvel Empire (-1550). Les phrases
+            présentées ici sont principalement du Moyen Égyptien, considéré comme la forme "classique"
+            de la langue, utilisée dans les textes religieux et littéraires.</p>
+        </div>
+    </div>
+
+    <script>
+        function filterPhrases(category) {
+            const cards = document.querySelectorAll('.phrase-card');
+            const tabs = document.querySelectorAll('.cat-tab');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

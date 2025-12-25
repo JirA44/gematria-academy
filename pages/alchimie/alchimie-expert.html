@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alchimie - Niveau Expert | Le Magnum Opus & Hermétisme | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a0a 0%, #2d2a1a 50%, #1a1a0a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #c9a227, #d4af37, #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(201, 162, 39, 0.2);
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(201, 162, 39, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(201, 162, 39, 0.6); border-color: #d4af37; }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .lesson-section h3 {
+            color: #f4d03f;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .emerald-tablet {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
+            border: 3px solid rgba(16, 185, 129, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .emerald-tablet::before {
+            content: '📜';
+            font-size: 3em;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .emerald-tablet blockquote {
+            font-size: 1.1em;
+            line-height: 2;
+            font-style: italic;
+            color: #a7f3d0;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .principle-card {
+            background: linear-gradient(145deg, rgba(201, 162, 39, 0.15), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .principle-card h4 {
+            color: #d4af37;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .marriage-section {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.15), rgba(59, 130, 246, 0.15));
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .marriage-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .marriage-figure {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .marriage-figure .symbol {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        .stone-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(220, 20, 60, 0.15));
+            border: 3px solid #d4af37;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .stone-section .stone-symbol {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #d4af37); }
+            to { filter: drop-shadow(0 0 30px #ffd700); }
+        }
+
+        .texts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .text-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .text-card h5 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(212, 175, 55, 0.1));
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .btn-complete {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-complete:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Alchimie - Niveau Expert</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Le Magnum Opus, l'Hermétisme et la Pierre Philosophale</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="alchimie-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="alchimie-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="alchimie-expert.html" class="nav-btn active">🎓 Expert</a>
+        </nav>
+
+        <!-- La Table d'Émeraude -->
+        <section class="lesson-section">
+            <h2>📜 La Table d'Émeraude (Tabula Smaragdina)</h2>
+
+            <p>La <strong>Table d'Émeraude</strong> est le texte fondateur de l'hermétisme et de l'alchimie, attribué à Hermès Trismégiste. Ce court texte cryptique contient, selon la tradition, tous les secrets de l'Art Royal.</p>
+
+            <div class="emerald-tablet">
+                <blockquote>
+                    "Verum, sine mendacio, certum et verissimum:<br><br>
+                    Quod est inferius est sicut quod est superius,<br>
+                    et quod est superius est sicut quod est inferius,<br>
+                    ad perpetranda miracula rei unius.<br><br>
+                    Et sicut res omnes fuerunt ab uno, meditatione unius,<br>
+                    sic omnes res natae ab hac una re, adaptatione.<br><br>
+                    Pater eius est Sol. Mater eius est Luna.<br>
+                    Portavit illud Ventus in ventre suo.<br>
+                    Nutrix eius Terra est.<br><br>
+                    Separabis terram ab igne, subtile ab spisso,<br>
+                    suaviter, magno cum ingenio.<br><br>
+                    Ascendit a terra in coelum, iterumque descendit in terram,<br>
+                    et recipit vim superiorum et inferiorum."
+                </blockquote>
+                <p style="margin-top: 20px; color: #d4af37;">— Hermès Trismégiste</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🔑 "Ce qui est en bas est comme ce qui est en haut"</h3>
+                <p>Cette maxime fondamentale établit le principe de correspondance entre le microcosme (l'homme) et le macrocosme (l'univers). L'alchimiste travaille sur la matière pour transformer sa propre âme.</p>
+            </div>
+        </section>
+
+        <!-- Les 7 Principes Hermétiques -->
+        <section class="lesson-section">
+            <h2>⚡ Les Sept Principes Hermétiques</h2>
+
+            <p>Le <strong>Kybalion</strong> (1908) codifie sept principes hermétiques qui régissent l'univers :</p>
+
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>1️⃣ Le Mentalisme</h4>
+                    <p>"Le Tout est Esprit; l'Univers est Mental."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Tout ce qui existe est une manifestation de l'Esprit Universel.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>2️⃣ La Correspondance</h4>
+                    <p>"Ce qui est en haut est comme ce qui est en bas."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Il y a analogie entre tous les plans de l'existence.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>3️⃣ La Vibration</h4>
+                    <p>"Rien ne repose; tout remue; tout vibre."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Tout est en mouvement constant, à différentes fréquences.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>4️⃣ La Polarité</h4>
+                    <p>"Tout est double; tout a deux pôles."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Les opposés sont identiques en nature, différents en degré.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>5️⃣ Le Rythme</h4>
+                    <p>"Tout s'écoule; tout a ses marées."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Le pendule oscille dans tout; la mesure du mouvement vers la droite est la mesure du mouvement vers la gauche.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>6️⃣ Cause et Effet</h4>
+                    <p>"Toute cause a son effet; tout effet a sa cause."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Rien n'arrive par hasard. La chance n'est qu'un nom pour une loi non reconnue.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>7️⃣ Le Genre</h4>
+                    <p>"Le Genre est en tout; tout a ses Principes Masculin et Féminin."</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Le genre se manifeste sur tous les plans.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Le Mariage Alchimique -->
+        <section class="marriage-section">
+            <h2 style="color: #a78bfa; text-align: center;">💒 Le Mariage Alchimique (Coniunctio)</h2>
+
+            <p style="text-align: center;">L'union des opposés est le cœur du Grand Œuvre. Le Roi Rouge (Soufre/Soleil/Masculin) s'unit à la Reine Blanche (Mercure/Lune/Féminin) pour engendrer l'Enfant Philosophique.</p>
+
+            <div class="marriage-diagram">
+                <div class="marriage-figure">
+                    <div class="symbol" style="color: #dc143c;">♔</div>
+                    <h4 style="color: #dc143c;">Le Roi Rouge</h4>
+                    <p>☉ Soleil | 🜍 Soufre | Actif</p>
+                </div>
+
+                <div class="marriage-figure">
+                    <div class="symbol" style="color: #d4af37;">💍</div>
+                    <h4 style="color: #d4af37;">Coniunctio</h4>
+                    <p>L'Union Sacrée</p>
+                </div>
+
+                <div class="marriage-figure">
+                    <div class="symbol" style="color: #e0e0e0;">♕</div>
+                    <h4 style="color: #e0e0e0;">La Reine Blanche</h4>
+                    <p>☽ Lune | ☿ Mercure | Passif</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <div style="font-size: 3em;">👶</div>
+                <h4 style="color: #d4af37;">L'Enfant Philosophique (Rebis)</h4>
+                <p>L'être androgyne parfait, union des deux natures</p>
+            </div>
+        </section>
+
+        <!-- La Pierre Philosophale -->
+        <section class="stone-section">
+            <div class="stone-symbol">💎</div>
+            <h2 style="color: #d4af37;">La Pierre Philosophale (Lapis Philosophorum)</h2>
+
+            <p style="max-width: 800px; margin: 20px auto;">La Pierre Philosophale est le but ultime du Grand Œuvre. Elle possède trois pouvoirs :</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; text-align: left;">
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px;">
+                    <h4 style="color: #d4af37;">🥇 Chrysopée</h4>
+                    <p>Transmutation des métaux vils en or</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px;">
+                    <h4 style="color: #d4af37;">💊 Panacée</h4>
+                    <p>Guérison de toutes les maladies</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px;">
+                    <h4 style="color: #d4af37;">♾️ Élixir de Vie</h4>
+                    <p>Prolongation de la vie, immortalité</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px; font-style: italic; color: #f4d03f;">"La Pierre n'est pas une pierre. Elle est à la fois minérale, végétale et animale. Elle est partout et nulle part. Elle est ce que vous cherchez et ce qui vous cherche."</p>
+        </section>
+
+        <!-- Textes Classiques -->
+        <section class="lesson-section">
+            <h2>📚 Textes Classiques de l'Alchimie</h2>
+
+            <div class="texts-grid">
+                <div class="text-card">
+                    <h5>📜 La Table d'Émeraude</h5>
+                    <p><strong>Attribué à :</strong> Hermès Trismégiste</p>
+                    <p><strong>Époque :</strong> VIe-VIIIe siècle</p>
+                    <p>Le texte fondateur de l'hermétisme occidental.</p>
+                </div>
+
+                <div class="text-card">
+                    <h5>📜 Le Corpus Hermeticum</h5>
+                    <p><strong>Attribué à :</strong> Hermès Trismégiste</p>
+                    <p><strong>Époque :</strong> IIe-IIIe siècle</p>
+                    <p>Collection de textes philosophiques et mystiques.</p>
+                </div>
+
+                <div class="text-card">
+                    <h5>📜 Turba Philosophorum</h5>
+                    <p><strong>Origine :</strong> Arabe, traduit en latin</p>
+                    <p><strong>Époque :</strong> XIIe siècle</p>
+                    <p>L'un des plus anciens textes alchimiques latins.</p>
+                </div>
+
+                <div class="text-card">
+                    <h5>📜 Rosarium Philosophorum</h5>
+                    <p><strong>Auteur :</strong> Anonyme</p>
+                    <p><strong>Époque :</strong> XIVe siècle</p>
+                    <p>Célèbre pour ses 20 gravures symboliques.</p>
+                </div>
+
+                <div class="text-card">
+                    <h5>📜 Mutus Liber</h5>
+                    <p><strong>Auteur :</strong> Altus</p>
+                    <p><strong>Époque :</strong> 1677</p>
+                    <p>"Le Livre Muet" - 15 planches sans texte.</p>
+                </div>
+
+                <div class="text-card">
+                    <h5>📜 Le Kybalion</h5>
+                    <p><strong>Auteur :</strong> Les Trois Initiés</p>
+                    <p><strong>Époque :</strong> 1908</p>
+                    <p>Les sept principes hermétiques.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grands Alchimistes -->
+        <section class="lesson-section">
+            <h2>👤 Grands Alchimistes de l'Histoire</h2>
+
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>🏛️ Hermès Trismégiste</h4>
+                    <p>Figure légendaire, fusion du dieu égyptien Thot et du grec Hermès. Père de l'alchimie occidentale.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔬 Jabir ibn Hayyan (Geber)</h4>
+                    <p>VIIIe siècle. Père de la chimie arabe. Introduit la théorie soufre-mercure.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>📚 Albertus Magnus</h4>
+                    <p>1200-1280. Philosophe scolastique et alchimiste. Maître de Thomas d'Aquin.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔥 Paracelse</h4>
+                    <p>1493-1541. Révolutionnaire de la médecine. Introduit les trois principes (Sel, Soufre, Mercure).</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🌹 Nicolas Flamel</h4>
+                    <p>1330-1418. Écrivain et libraire parisien. Légende de la transmutation réussie.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>⚗️ Fulcanelli</h4>
+                    <p>XXe siècle. Auteur mystérieux du "Mystère des Cathédrales". Identité inconnue.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="lesson-section">
+            <h2>🌟 L'Alchimie Aujourd'hui</h2>
+
+            <p>L'alchimie n'est pas morte. Elle continue sous différentes formes :</p>
+
+            <ul style="margin: 20px 0; line-height: 2;">
+                <li><strong>La Psychologie Jungienne</strong> - Carl Jung a interprété l'alchimie comme une projection du processus d'individuation</li>
+                <li><strong>La Spagyrie</strong> - L'alchimie végétale pour créer des remèdes</li>
+                <li><strong>L'Alchimie Spirituelle</strong> - La transformation intérieure comme véritable Grand Œuvre</li>
+                <li><strong>L'Hermétisme Moderne</strong> - Les ordres initiatiques perpétuent la tradition</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>💡 La Vraie Pierre Philosophale</h3>
+                <p>"La Pierre Philosophale, c'est toi-même transformé. L'or véritable, c'est la conscience éveillée. Le Grand Œuvre, c'est ta propre réalisation."</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="alchimie-intermediaire.html" class="nav-btn" style="margin-right: 20px;">
+                ← Niveau Intermédiaire
+            </a>
+            <a href="../../index.html" class="btn-complete">
+                ✨ Parcours Alchimie Complété !
+            </a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(201, 162, 39, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Alchimie Niveau Expert</p>
+            <p style="margin-top: 10px;">
+                <a href="../../index.html" style="color: #d4af37; text-decoration: none;">← Retour au Portail</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

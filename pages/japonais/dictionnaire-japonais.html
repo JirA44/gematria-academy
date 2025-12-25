@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語 Dictionnaire Japonais - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1f1f 50%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(239, 68, 68, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(220, 38, 38, 0.4);
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #dc2626, #ef4444, #f87171);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .nav-tab {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid rgba(220, 38, 38, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            display: none;
+        }
+        .section.active { display: block; }
+        .section-title {
+            font-size: 1.8em;
+            color: #f87171;
+            margin-bottom: 20px;
+        }
+
+        /* Search */
+        .search-box {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 1em;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.5); }
+        .filter-select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+        }
+
+        /* Dictionary entries */
+        .dict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .dict-entry {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        .dict-entry:hover {
+            transform: translateY(-3px);
+            border-color: #dc2626;
+            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.2);
+        }
+        .entry-kanji {
+            font-size: 1.8em;
+            color: #f87171;
+            margin-bottom: 3px;
+        }
+        .entry-kana {
+            font-size: 1.1em;
+            color: #ef4444;
+            margin-bottom: 3px;
+        }
+        .entry-romaji {
+            font-size: 0.9em;
+            color: #fca5a5;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .entry-meaning {
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+        .entry-category {
+            display: inline-block;
+            background: rgba(220, 38, 38, 0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            color: #f87171;
+        }
+
+        /* Grammar tables */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background: rgba(220, 38, 38, 0.2);
+            color: #f87171;
+        }
+        .grammar-table tr:hover {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        /* Grammar rules */
+        .grammar-rule {
+            background: rgba(220, 38, 38, 0.1);
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .rule-title {
+            font-size: 1.2em;
+            color: #f87171;
+            margin-bottom: 10px;
+        }
+        .rule-example {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        /* Vocabulary themes */
+        .vocab-theme {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .theme-title {
+            font-size: 1.4em;
+            color: #ef4444;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background: rgba(220, 38, 38, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        .vocab-jp { font-size: 1.2em; color: #f87171; }
+        .vocab-kana { font-size: 0.9em; color: #ef4444; }
+        .vocab-fr { font-size: 0.9em; opacity: 0.9; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f87171;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 { color: #ef4444; margin-bottom: 10px; }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .container { padding: 0 15px; }
+            .dict-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .grammar-table { font-size: 0.95em; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.6em; }
+            header { padding: 20px 15px; }
+            .section { padding: 20px 15px; }
+            .section-title { font-size: 1.4em; }
+            .dict-grid { grid-template-columns: 1fr; }
+            .nav-tabs { gap: 8px; }
+            .nav-tab { padding: 10px 16px; font-size: 0.9em; }
+            .search-box { flex-direction: column; padding: 12px; }
+            .search-input, .filter-select { width: 100%; }
+            .grammar-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .grammar-rule { padding: 15px; }
+            .vocab-grid { grid-template-columns: 1fr !important; }
+            .vocab-theme { padding: 15px; }
+            .back-link { font-size: 0.9em; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4em; }
+            .entry-kanji { font-size: 1.5em; }
+            .nav-tab { padding: 8px 12px; font-size: 0.85em; }
+            .dict-entry { padding: 12px; }
+        }
+
+        /* Touch-friendly */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-tab, .dict-entry, .portal-link {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .search-input, .filter-select {
+                min-height: 48px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header { padding: 15px; margin-bottom: 20px; }
+            h1 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="japonais-debutant.html" class="back-link">← Retour au Japonais</a>
+
+        <header>
+            <h1>日本語 Dictionnaire Japonais</h1>
+            <p style="opacity: 0.9;">Dictionnaire, Grammaire et Vocabulaire de la langue japonaise</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('dictionnaire')">📖 Dictionnaire</button>
+            <button class="nav-tab" onclick="showSection('grammaire')">📐 Grammaire</button>
+            <button class="nav-tab" onclick="showSection('vocabulaire')">📚 Vocabulaire</button>
+        </div>
+
+        <!-- DICTIONNAIRE -->
+        <section class="section active" id="dictionnaire">
+            <h2 class="section-title">📖 Dictionnaire Japonais-Français</h2>
+
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchDict" placeholder="Rechercher un mot..." onkeyup="filterDict()">
+                <select class="filter-select" id="categoryFilter" onchange="filterDict()">
+                    <option value="all">Toutes catégories</option>
+                    <option value="salutations">Salutations</option>
+                    <option value="famille">Famille</option>
+                    <option value="nourriture">Nourriture</option>
+                    <option value="nombres">Nombres</option>
+                    <option value="temps">Temps</option>
+                    <option value="verbes">Verbes</option>
+                    <option value="adjectifs">Adjectifs</option>
+                </select>
+            </div>
+
+            <div class="dict-grid" id="dictContainer">
+                <!-- Salutations -->
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">今日は</div>
+                    <div class="entry-kana">こんにちは</div>
+                    <div class="entry-romaji">konnichiwa</div>
+                    <div class="entry-meaning">Bonjour (journée)</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">お早うございます</div>
+                    <div class="entry-kana">おはようございます</div>
+                    <div class="entry-romaji">ohayou gozaimasu</div>
+                    <div class="entry-meaning">Bonjour (matin, poli)</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">今晩は</div>
+                    <div class="entry-kana">こんばんは</div>
+                    <div class="entry-romaji">konbanwa</div>
+                    <div class="entry-meaning">Bonsoir</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">有難うございます</div>
+                    <div class="entry-kana">ありがとうございます</div>
+                    <div class="entry-romaji">arigatou gozaimasu</div>
+                    <div class="entry-meaning">Merci beaucoup (poli)</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">御免なさい</div>
+                    <div class="entry-kana">ごめんなさい</div>
+                    <div class="entry-romaji">gomen nasai</div>
+                    <div class="entry-meaning">Pardon, excusez-moi</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">さようなら</div>
+                    <div class="entry-kana">さようなら</div>
+                    <div class="entry-romaji">sayounara</div>
+                    <div class="entry-meaning">Au revoir</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+                <div class="dict-entry" data-category="salutations">
+                    <div class="entry-kanji">初めまして</div>
+                    <div class="entry-kana">はじめまして</div>
+                    <div class="entry-romaji">hajimemashite</div>
+                    <div class="entry-meaning">Enchanté(e)</div>
+                    <span class="entry-category">Salutations</span>
+                </div>
+
+                <!-- Famille -->
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">父</div>
+                    <div class="entry-kana">ちち</div>
+                    <div class="entry-romaji">chichi</div>
+                    <div class="entry-meaning">Père (mon père)</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">お父さん</div>
+                    <div class="entry-kana">おとうさん</div>
+                    <div class="entry-romaji">otousan</div>
+                    <div class="entry-meaning">Père (poli/autre)</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">母</div>
+                    <div class="entry-kana">はは</div>
+                    <div class="entry-romaji">haha</div>
+                    <div class="entry-meaning">Mère (ma mère)</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">お母さん</div>
+                    <div class="entry-kana">おかあさん</div>
+                    <div class="entry-romaji">okaasan</div>
+                    <div class="entry-meaning">Mère (poli/autre)</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">兄</div>
+                    <div class="entry-kana">あに</div>
+                    <div class="entry-romaji">ani</div>
+                    <div class="entry-meaning">Grand frère (mon)</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">姉</div>
+                    <div class="entry-kana">あね</div>
+                    <div class="entry-romaji">ane</div>
+                    <div class="entry-meaning">Grande sœur (ma)</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">弟</div>
+                    <div class="entry-kana">おとうと</div>
+                    <div class="entry-romaji">otouto</div>
+                    <div class="entry-meaning">Petit frère</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-kanji">妹</div>
+                    <div class="entry-kana">いもうと</div>
+                    <div class="entry-romaji">imouto</div>
+                    <div class="entry-meaning">Petite sœur</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+
+                <!-- Nourriture -->
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-kanji">御飯</div>
+                    <div class="entry-kana">ごはん</div>
+                    <div class="entry-romaji">gohan</div>
+                    <div class="entry-meaning">Riz cuit, repas</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-kanji">寿司</div>
+                    <div class="entry-kana">すし</div>
+                    <div class="entry-romaji">sushi</div>
+                    <div class="entry-meaning">Sushi</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-kanji">水</div>
+                    <div class="entry-kana">みず</div>
+                    <div class="entry-romaji">mizu</div>
+                    <div class="entry-meaning">Eau</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-kanji">お茶</div>
+                    <div class="entry-kana">おちゃ</div>
+                    <div class="entry-romaji">ocha</div>
+                    <div class="entry-meaning">Thé</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-kanji">肉</div>
+                    <div class="entry-kana">にく</div>
+                    <div class="entry-romaji">niku</div>
+                    <div class="entry-meaning">Viande</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-kanji">魚</div>
+                    <div class="entry-kana">さかな</div>
+                    <div class="entry-romaji">sakana</div>
+                    <div class="entry-meaning">Poisson</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+
+                <!-- Nombres -->
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-kanji">一</div>
+                    <div class="entry-kana">いち</div>
+                    <div class="entry-romaji">ichi</div>
+                    <div class="entry-meaning">Un (1)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-kanji">二</div>
+                    <div class="entry-kana">に</div>
+                    <div class="entry-romaji">ni</div>
+                    <div class="entry-meaning">Deux (2)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-kanji">三</div>
+                    <div class="entry-kana">さん</div>
+                    <div class="entry-romaji">san</div>
+                    <div class="entry-meaning">Trois (3)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-kanji">四</div>
+                    <div class="entry-kana">し / よん</div>
+                    <div class="entry-romaji">shi / yon</div>
+                    <div class="entry-meaning">Quatre (4)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-kanji">五</div>
+                    <div class="entry-kana">ご</div>
+                    <div class="entry-romaji">go</div>
+                    <div class="entry-meaning">Cinq (5)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+
+                <!-- Verbes -->
+                <div class="dict-entry" data-category="verbes">
+                    <div class="entry-kanji">行く</div>
+                    <div class="entry-kana">いく</div>
+                    <div class="entry-romaji">iku</div>
+                    <div class="entry-meaning">Aller</div>
+                    <span class="entry-category">Verbes</span>
+                </div>
+                <div class="dict-entry" data-category="verbes">
+                    <div class="entry-kanji">来る</div>
+                    <div class="entry-kana">くる</div>
+                    <div class="entry-romaji">kuru</div>
+                    <div class="entry-meaning">Venir</div>
+                    <span class="entry-category">Verbes</span>
+                </div>
+                <div class="dict-entry" data-category="verbes">
+                    <div class="entry-kanji">食べる</div>
+                    <div class="entry-kana">たべる</div>
+                    <div class="entry-romaji">taberu</div>
+                    <div class="entry-meaning">Manger</div>
+                    <span class="entry-category">Verbes</span>
+                </div>
+                <div class="dict-entry" data-category="verbes">
+                    <div class="entry-kanji">飲む</div>
+                    <div class="entry-kana">のむ</div>
+                    <div class="entry-romaji">nomu</div>
+                    <div class="entry-meaning">Boire</div>
+                    <span class="entry-category">Verbes</span>
+                </div>
+                <div class="dict-entry" data-category="verbes">
+                    <div class="entry-kanji">見る</div>
+                    <div class="entry-kana">みる</div>
+                    <div class="entry-romaji">miru</div>
+                    <div class="entry-meaning">Voir, regarder</div>
+                    <span class="entry-category">Verbes</span>
+                </div>
+                <div class="dict-entry" data-category="verbes">
+                    <div class="entry-kanji">する</div>
+                    <div class="entry-kana">する</div>
+                    <div class="entry-romaji">suru</div>
+                    <div class="entry-meaning">Faire</div>
+                    <span class="entry-category">Verbes</span>
+                </div>
+
+                <!-- Adjectifs -->
+                <div class="dict-entry" data-category="adjectifs">
+                    <div class="entry-kanji">良い</div>
+                    <div class="entry-kana">いい / よい</div>
+                    <div class="entry-romaji">ii / yoi</div>
+                    <div class="entry-meaning">Bon, bien</div>
+                    <span class="entry-category">Adjectifs</span>
+                </div>
+                <div class="dict-entry" data-category="adjectifs">
+                    <div class="entry-kanji">大きい</div>
+                    <div class="entry-kana">おおきい</div>
+                    <div class="entry-romaji">ookii</div>
+                    <div class="entry-meaning">Grand</div>
+                    <span class="entry-category">Adjectifs</span>
+                </div>
+                <div class="dict-entry" data-category="adjectifs">
+                    <div class="entry-kanji">小さい</div>
+                    <div class="entry-kana">ちいさい</div>
+                    <div class="entry-romaji">chiisai</div>
+                    <div class="entry-meaning">Petit</div>
+                    <span class="entry-category">Adjectifs</span>
+                </div>
+                <div class="dict-entry" data-category="adjectifs">
+                    <div class="entry-kanji">美味しい</div>
+                    <div class="entry-kana">おいしい</div>
+                    <div class="entry-romaji">oishii</div>
+                    <div class="entry-meaning">Délicieux</div>
+                    <span class="entry-category">Adjectifs</span>
+                </div>
+                <div class="dict-entry" data-category="adjectifs">
+                    <div class="entry-kanji">綺麗</div>
+                    <div class="entry-kana">きれい</div>
+                    <div class="entry-romaji">kirei</div>
+                    <div class="entry-meaning">Beau, propre</div>
+                    <span class="entry-category">Adjectifs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRAMMAIRE -->
+        <section class="section" id="grammaire">
+            <h2 class="section-title">📐 Grammaire Japonaise</h2>
+
+            <div class="grammar-rule">
+                <div class="rule-title">1. Structure de la Phrase</div>
+                <p>Le japonais suit l'ordre <strong>Sujet - Objet - Verbe (SOV)</strong>. Le verbe est toujours à la fin.</p>
+                <div class="rule-example">
+                    <strong>私は寿司を食べます</strong><br>
+                    watashi wa sushi wo tabemasu<br>
+                    Je + (thème) + sushi + (objet) + mange<br>
+                    = "Je mange des sushis"
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">2. Les Particules</div>
+                <p>Les particules indiquent la fonction grammaticale des mots.</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Particule</th>
+                        <th>Fonction</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td>は (wa)</td>
+                        <td>Thème de la phrase</td>
+                        <td>私は (watashi wa) = Moi, je...</td>
+                    </tr>
+                    <tr>
+                        <td>が (ga)</td>
+                        <td>Sujet (nouveau/emphase)</td>
+                        <td>猫がいます (neko ga imasu) = Il y a un chat</td>
+                    </tr>
+                    <tr>
+                        <td>を (wo)</td>
+                        <td>Objet direct</td>
+                        <td>本を読む (hon wo yomu) = lire un livre</td>
+                    </tr>
+                    <tr>
+                        <td>に (ni)</td>
+                        <td>Direction, temps, cible</td>
+                        <td>学校に行く (gakkou ni iku) = aller à l'école</td>
+                    </tr>
+                    <tr>
+                        <td>で (de)</td>
+                        <td>Lieu d'action, moyen</td>
+                        <td>車で行く (kuruma de iku) = aller en voiture</td>
+                    </tr>
+                    <tr>
+                        <td>の (no)</td>
+                        <td>Possession</td>
+                        <td>私の本 (watashi no hon) = mon livre</td>
+                    </tr>
+                    <tr>
+                        <td>と (to)</td>
+                        <td>Et, avec</td>
+                        <td>友達と (tomodachi to) = avec un ami</td>
+                    </tr>
+                    <tr>
+                        <td>か (ka)</td>
+                        <td>Question</td>
+                        <td>食べますか (tabemasu ka) = Mangez-vous?</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">3. Les Niveaux de Politesse (敬語 Keigo)</div>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Style</th>
+                        <th>Exemple (食べる = manger)</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td>Très poli (尊敬語)</td>
+                        <td>Honorifique</td>
+                        <td>召し上がる (meshiagaru)</td>
+                        <td>Client, supérieur</td>
+                    </tr>
+                    <tr>
+                        <td>Poli (丁寧語)</td>
+                        <td>-ます/-です</td>
+                        <td>食べます (tabemasu)</td>
+                        <td>Standard, inconnus</td>
+                    </tr>
+                    <tr>
+                        <td>Informel</td>
+                        <td>Forme dictionnaire</td>
+                        <td>食べる (taberu)</td>
+                        <td>Amis, famille</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">4. Conjugaison des Verbes</div>
+                <p>Il existe 3 groupes de verbes en japonais :</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Groupe</th>
+                        <th>Caractéristique</th>
+                        <th>Exemple</th>
+                        <th>Forme -ます</th>
+                    </tr>
+                    <tr>
+                        <td>Groupe 1 (五段)</td>
+                        <td>Terminaison en -u</td>
+                        <td>書く (kaku) - écrire</td>
+                        <td>書きます (kakimasu)</td>
+                    </tr>
+                    <tr>
+                        <td>Groupe 2 (一段)</td>
+                        <td>Terminaison -iru/-eru</td>
+                        <td>食べる (taberu) - manger</td>
+                        <td>食べます (tabemasu)</td>
+                    </tr>
+                    <tr>
+                        <td>Groupe 3 (不規則)</td>
+                        <td>Irréguliers</td>
+                        <td>する (suru), 来る (kuru)</td>
+                        <td>します, 来ます</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">5. Les Temps</div>
+                <div class="rule-example">
+                    <strong>Présent/Futur :</strong><br>
+                    食べます (tabemasu) = Je mange / Je mangerai<br><br>
+                    <strong>Passé :</strong><br>
+                    食べました (tabemashita) = J'ai mangé<br><br>
+                    <strong>Progressif :</strong><br>
+                    食べています (tabete imasu) = Je suis en train de manger
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">6. La Négation</div>
+                <div class="rule-example">
+                    <strong>Présent négatif poli :</strong><br>
+                    食べます → 食べません (tabemasen) = Je ne mange pas<br><br>
+                    <strong>Passé négatif poli :</strong><br>
+                    食べました → 食べませんでした (tabemasen deshita) = Je n'ai pas mangé<br><br>
+                    <strong>Forme informelle :</strong><br>
+                    食べる → 食べない (tabenai) = Ne pas manger
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">7. Les Adjectifs</div>
+                <p>Deux types d'adjectifs en japonais :</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Forme</th>
+                        <th>Exemple</th>
+                        <th>Avec nom</th>
+                    </tr>
+                    <tr>
+                        <td>い-adjectifs</td>
+                        <td>Terminent en い</td>
+                        <td>大きい (ookii) - grand</td>
+                        <td>大きい本 (ookii hon)</td>
+                    </tr>
+                    <tr>
+                        <td>な-adjectifs</td>
+                        <td>Prennent な devant nom</td>
+                        <td>静か (shizuka) - calme</td>
+                        <td>静かな部屋 (shizuka na heya)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <h4>Les Trois Systèmes d'Écriture</h4>
+                <p>Le japonais utilise trois systèmes d'écriture simultanément :<br>
+                <strong>Hiragana (ひらがな)</strong> : pour les mots japonais, grammaire<br>
+                <strong>Katakana (カタカナ)</strong> : pour les mots étrangers, onomatopées<br>
+                <strong>Kanji (漢字)</strong> : caractères chinois pour les concepts</p>
+            </div>
+        </section>
+
+        <!-- VOCABULAIRE -->
+        <section class="section" id="vocabulaire">
+            <h2 class="section-title">📚 Vocabulaire Thématique</h2>
+
+            <div class="vocab-theme">
+                <div class="theme-title">👨‍👩‍👧‍👦 La Famille</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <div class="vocab-jp">家族</div>
+                        <div class="vocab-kana">かぞく (kazoku)</div>
+                        <div class="vocab-fr">famille</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">お父さん</div>
+                        <div class="vocab-kana">おとうさん (otousan)</div>
+                        <div class="vocab-fr">père (poli)</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">お母さん</div>
+                        <div class="vocab-kana">おかあさん (okaasan)</div>
+                        <div class="vocab-fr">mère (poli)</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">お兄さん</div>
+                        <div class="vocab-kana">おにいさん (oniisan)</div>
+                        <div class="vocab-fr">grand frère</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">お姉さん</div>
+                        <div class="vocab-kana">おねえさん (oneesan)</div>
+                        <div class="vocab-fr">grande sœur</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">弟</div>
+                        <div class="vocab-kana">おとうと (otouto)</div>
+                        <div class="vocab-fr">petit frère</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">妹</div>
+                        <div class="vocab-kana">いもうと (imouto)</div>
+                        <div class="vocab-fr">petite sœur</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">子供</div>
+                        <div class="vocab-kana">こども (kodomo)</div>
+                        <div class="vocab-fr">enfant</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🍣 Nourriture Japonaise</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <div class="vocab-jp">寿司</div>
+                        <div class="vocab-kana">すし (sushi)</div>
+                        <div class="vocab-fr">sushi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">ラーメン</div>
+                        <div class="vocab-kana">らーめん (raamen)</div>
+                        <div class="vocab-fr">ramen</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">天ぷら</div>
+                        <div class="vocab-kana">てんぷら (tempura)</div>
+                        <div class="vocab-fr">tempura</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">うどん</div>
+                        <div class="vocab-kana">うどん (udon)</div>
+                        <div class="vocab-fr">udon</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">味噌汁</div>
+                        <div class="vocab-kana">みそしる (misoshiru)</div>
+                        <div class="vocab-fr">soupe miso</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">お茶</div>
+                        <div class="vocab-kana">おちゃ (ocha)</div>
+                        <div class="vocab-fr">thé vert</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">酒</div>
+                        <div class="vocab-kana">さけ (sake)</div>
+                        <div class="vocab-fr">saké</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">弁当</div>
+                        <div class="vocab-kana">べんとう (bentou)</div>
+                        <div class="vocab-fr">bento</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🔢 Les Nombres</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <div class="vocab-jp">一</div>
+                        <div class="vocab-kana">いち (ichi)</div>
+                        <div class="vocab-fr">1</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">二</div>
+                        <div class="vocab-kana">に (ni)</div>
+                        <div class="vocab-fr">2</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">三</div>
+                        <div class="vocab-kana">さん (san)</div>
+                        <div class="vocab-fr">3</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">四</div>
+                        <div class="vocab-kana">よん/し (yon/shi)</div>
+                        <div class="vocab-fr">4</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">五</div>
+                        <div class="vocab-kana">ご (go)</div>
+                        <div class="vocab-fr">5</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">六</div>
+                        <div class="vocab-kana">ろく (roku)</div>
+                        <div class="vocab-fr">6</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">七</div>
+                        <div class="vocab-kana">なな/しち (nana/shichi)</div>
+                        <div class="vocab-fr">7</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">八</div>
+                        <div class="vocab-kana">はち (hachi)</div>
+                        <div class="vocab-fr">8</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">九</div>
+                        <div class="vocab-kana">きゅう/く (kyuu/ku)</div>
+                        <div class="vocab-fr">9</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">十</div>
+                        <div class="vocab-kana">じゅう (juu)</div>
+                        <div class="vocab-fr">10</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">百</div>
+                        <div class="vocab-kana">ひゃく (hyaku)</div>
+                        <div class="vocab-fr">100</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">千</div>
+                        <div class="vocab-kana">せん (sen)</div>
+                        <div class="vocab-fr">1000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">📅 Jours de la Semaine</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <div class="vocab-jp">月曜日</div>
+                        <div class="vocab-kana">げつようび (getsuyoubi)</div>
+                        <div class="vocab-fr">lundi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">火曜日</div>
+                        <div class="vocab-kana">かようび (kayoubi)</div>
+                        <div class="vocab-fr">mardi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">水曜日</div>
+                        <div class="vocab-kana">すいようび (suiyoubi)</div>
+                        <div class="vocab-fr">mercredi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">木曜日</div>
+                        <div class="vocab-kana">もくようび (mokuyoubi)</div>
+                        <div class="vocab-fr">jeudi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">金曜日</div>
+                        <div class="vocab-kana">きんようび (kinyoubi)</div>
+                        <div class="vocab-fr">vendredi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">土曜日</div>
+                        <div class="vocab-kana">どようび (doyoubi)</div>
+                        <div class="vocab-fr">samedi</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">日曜日</div>
+                        <div class="vocab-kana">にちようび (nichiyoubi)</div>
+                        <div class="vocab-fr">dimanche</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">今日</div>
+                        <div class="vocab-kana">きょう (kyou)</div>
+                        <div class="vocab-fr">aujourd'hui</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">明日</div>
+                        <div class="vocab-kana">あした (ashita)</div>
+                        <div class="vocab-fr">demain</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">昨日</div>
+                        <div class="vocab-kana">きのう (kinou)</div>
+                        <div class="vocab-fr">hier</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🏠 Lieux</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <div class="vocab-jp">家</div>
+                        <div class="vocab-kana">いえ/うち (ie/uchi)</div>
+                        <div class="vocab-fr">maison</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">学校</div>
+                        <div class="vocab-kana">がっこう (gakkou)</div>
+                        <div class="vocab-fr">école</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">駅</div>
+                        <div class="vocab-kana">えき (eki)</div>
+                        <div class="vocab-fr">gare</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">店</div>
+                        <div class="vocab-kana">みせ (mise)</div>
+                        <div class="vocab-fr">magasin</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">会社</div>
+                        <div class="vocab-kana">かいしゃ (kaisha)</div>
+                        <div class="vocab-fr">entreprise</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">病院</div>
+                        <div class="vocab-kana">びょういん (byouin)</div>
+                        <div class="vocab-fr">hôpital</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">公園</div>
+                        <div class="vocab-kana">こうえん (kouen)</div>
+                        <div class="vocab-fr">parc</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="vocab-jp">神社</div>
+                        <div class="vocab-kana">じんじゃ (jinja)</div>
+                        <div class="vocab-fr">sanctuaire shinto</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function filterDict() {
+            const search = document.getElementById('searchDict').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const entries = document.querySelectorAll('.dict-entry');
+
+            entries.forEach(entry => {
+                const text = entry.textContent.toLowerCase();
+                const entryCategory = entry.dataset.category;
+                const matchSearch = text.includes(search);
+                const matchCategory = category === 'all' || entryCategory === category;
+
+                entry.style.display = matchSearch && matchCategory ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot - Les 22 Arcanes Majeurs | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 50%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #d4af37, #f4d03f, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .intro-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .intro-section h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tarot-card {
+            background: linear-gradient(145deg, rgba(45, 27, 78, 0.8), rgba(26, 26, 46, 0.9));
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tarot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tarot-card:hover::before {
+            left: 100%;
+        }
+
+        .tarot-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            border-color: #d4af37;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #1a1a2e;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .card-symbol {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        .card-name {
+            font-size: 1.5em;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-subtitle {
+            text-align: center;
+            font-style: italic;
+            opacity: 0.7;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .card-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .keyword {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .keyword.reversed {
+            background: rgba(139, 69, 69, 0.3);
+            border-color: rgba(139, 69, 69, 0.5);
+        }
+
+        .card-meaning {
+            font-size: 0.95em;
+            line-height: 1.6;
+            opacity: 0.85;
+            text-align: center;
+        }
+
+        .card-details {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .tarot-card.expanded .card-details {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+        }
+
+        .detail-section h4 {
+            color: #f4d03f;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .detail-section p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .correspondences {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .correspondence {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85em;
+        }
+
+        .correspondence .label {
+            opacity: 0.6;
+            font-size: 0.8em;
+        }
+
+        .correspondence .value {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .journey-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 208, 63, 0.05));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .journey-section h2 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .journey-timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .journey-step {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .journey-step:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+        }
+
+        .journey-step .num {
+            font-size: 1.5em;
+            color: #d4af37;
+        }
+
+        .journey-step .name {
+            font-size: 0.7em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .correspondences { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎴 Les 22 Arcanes Majeurs</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">Le voyage initiatique du Fou à travers les mystères de l'existence</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="tarot-arcanes-mineurs.html" class="nav-btn">🃏 Arcanes Mineurs</a>
+            <a href="tirage-tarot.html" class="nav-btn">🔮 Tirage</a>
+            <a href="tarot-spreads.html" class="nav-btn">📐 Méthodes</a>
+        </nav>
+
+        <!-- Introduction -->
+        <div class="intro-section">
+            <h2>📜 Introduction aux Arcanes Majeurs</h2>
+            <p>Les <strong>22 Arcanes Majeurs</strong> représentent le cœur ésotérique du Tarot. Ils racontent l'histoire du <strong>Voyage du Fou</strong> - une métaphore puissante de l'évolution spirituelle de l'âme humaine, depuis l'innocence originelle jusqu'à l'accomplissement final.</p>
+            <p>Chaque arcane est une porte vers une leçon de vie fondamentale. Ensemble, ils forment un chemin initiatique complet, reliant la Kabbale (l'Arbre de Vie), l'astrologie, la numérologie et l'alchimie dans un système symbolique d'une richesse infinie.</p>
+            <p><strong>Cliquez sur une carte pour découvrir ses significations approfondies.</strong></p>
+        </div>
+
+        <!-- Le Voyage du Fou -->
+        <div class="journey-section">
+            <h2>🚶 Le Voyage du Fou</h2>
+            <div class="journey-timeline" id="journeyTimeline">
+                <!-- Généré par JS -->
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterCards('all')">Tous</button>
+            <button class="filter-btn" onclick="filterCards('spirit')">Spirituel</button>
+            <button class="filter-btn" onclick="filterCards('material')">Matériel</button>
+            <button class="filter-btn" onclick="filterCards('challenge')">Défis</button>
+        </div>
+
+        <!-- Grille des cartes -->
+        <div class="cards-grid" id="cardsGrid">
+            <!-- Généré par JS -->
+        </div>
+    </div>
+
+    <script>
+        const arcanesMajeurs = [
+            {
+                number: 0,
+                name: "Le Mat",
+                subtitle: "Le Fou - L'Innocent",
+                symbol: "🃏",
+                keywords: ["Liberté", "Spontanéité", "Foi", "Aventure"],
+                keywordsReversed: ["Imprudence", "Naïveté", "Folie"],
+                meaning: "Le commencement de tout voyage. Innocence, potentiel illimité, le saut dans l'inconnu avec foi.",
+                upright: "Nouveau départ, liberté, originalité, spontanéité, un voyage spirituel commence.",
+                reversed: "Imprudence, risque inconsidéré, négligence, peur de l'inconnu.",
+                advice: "Faites confiance à la vie et osez sauter dans l'inconnu. L'univers vous soutient.",
+                planet: "Uranus",
+                element: "Air",
+                hebrew: "Aleph (א)",
+                path: "1 → 2",
+                category: "spirit"
+            },
+            {
+                number: 1,
+                name: "Le Bateleur",
+                subtitle: "Le Magicien",
+                symbol: "🎩",
+                keywords: ["Volonté", "Action", "Création", "Habileté"],
+                keywordsReversed: ["Manipulation", "Tromperie", "Blocage"],
+                meaning: "La maîtrise des éléments, le pouvoir de manifester. 'Comme en haut, ainsi en bas.'",
+                upright: "Pouvoir créateur, compétence, concentration, initiative, nouvelles opportunités.",
+                reversed: "Manipulation, talents mal utilisés, manque de concentration, tromperie.",
+                advice: "Vous avez tous les outils nécessaires. Concentrez votre volonté et agissez.",
+                planet: "Mercure",
+                element: "Air",
+                hebrew: "Beth (ב)",
+                path: "1 → 3",
+                category: "spirit"
+            },
+            {
+                number: 2,
+                name: "La Papesse",
+                subtitle: "La Grande Prêtresse",
+                symbol: "🌙",
+                keywords: ["Intuition", "Mystère", "Sagesse", "Secrets"],
+                keywordsReversed: ["Secrets cachés", "Superficialité", "Déconnexion"],
+                meaning: "La gardienne des mystères, l'intuition profonde, la connaissance ésotérique.",
+                upright: "Intuition, subconscient, sagesse intérieure, mystère, potentiel non révélé.",
+                reversed: "Secrets, connaissance cachée, déconnexion de l'intuition, superficialité.",
+                advice: "Écoutez votre voix intérieure. Les réponses sont en vous, pas à l'extérieur.",
+                planet: "Lune",
+                element: "Eau",
+                hebrew: "Gimel (ג)",
+                path: "1 → 6",
+                category: "spirit"
+            },
+            {
+                number: 3,
+                name: "L'Impératrice",
+                subtitle: "La Mère",
+                symbol: "👑",
+                keywords: ["Fertilité", "Abondance", "Nature", "Créativité"],
+                keywordsReversed: ["Blocage créatif", "Dépendance", "Stagnation"],
+                meaning: "L'archétype maternel, la créativité florissante, l'abondance de la nature.",
+                upright: "Fertilité, abondance, nature, beauté, créativité artistique, maternité.",
+                reversed: "Blocage créatif, dépendance, négligence, problèmes domestiques.",
+                advice: "Nourrissez vos projets avec amour. La patience et le soin mènent à l'abondance.",
+                planet: "Vénus",
+                element: "Terre",
+                hebrew: "Daleth (ד)",
+                path: "2 → 3",
+                category: "material"
+            },
+            {
+                number: 4,
+                name: "L'Empereur",
+                subtitle: "Le Père",
+                symbol: "🦅",
+                keywords: ["Autorité", "Structure", "Pouvoir", "Stabilité"],
+                keywordsReversed: ["Tyrannie", "Rigidité", "Domination"],
+                meaning: "L'archétype paternel, l'ordre, la structure, le pouvoir terrestre maîtrisé.",
+                upright: "Autorité, structure, contrôle, père, leader, stabilité, protection.",
+                reversed: "Domination, rigidité excessive, tyrannie, manque de discipline.",
+                advice: "Prenez le contrôle avec sagesse. Le vrai pouvoir sert et protège.",
+                planet: "Bélier",
+                element: "Feu",
+                hebrew: "Hé (ה)",
+                path: "2 → 6",
+                category: "material"
+            },
+            {
+                number: 5,
+                name: "Le Pape",
+                subtitle: "L'Hiérophante",
+                symbol: "⛪",
+                keywords: ["Tradition", "Enseignement", "Spiritualité", "Conformité"],
+                keywordsReversed: ["Dogmatisme", "Rébellion", "Restriction"],
+                meaning: "Le pont entre le divin et l'humain, la tradition spirituelle, l'enseignement sacré.",
+                upright: "Tradition, conformité, moralité, éthique, enseignement spirituel, mariage.",
+                reversed: "Rébellion, non-conformisme, nouvelles approches, restriction excessive.",
+                advice: "Cherchez la sagesse dans les traditions, mais gardez votre discernement.",
+                planet: "Taureau",
+                element: "Terre",
+                hebrew: "Vav (ו)",
+                path: "2 → 4",
+                category: "spirit"
+            },
+            {
+                number: 6,
+                name: "L'Amoureux",
+                subtitle: "Les Amants",
+                symbol: "💕",
+                keywords: ["Amour", "Choix", "Harmonie", "Union"],
+                keywordsReversed: ["Indécision", "Disharmonie", "Mauvais choix"],
+                meaning: "Le choix crucial, l'union des opposés, l'amour qui élève et transforme.",
+                upright: "Amour, harmonie, relations, valeurs, choix importants, alignement.",
+                reversed: "Déséquilibre, mauvais choix, disharmonie relationnelle, conflits de valeurs.",
+                advice: "Choisissez avec le cœur ET la raison. L'amour vrai unit les opposés.",
+                planet: "Gémeaux",
+                element: "Air",
+                hebrew: "Zayin (ז)",
+                path: "3 → 6",
+                category: "spirit"
+            },
+            {
+                number: 7,
+                name: "Le Chariot",
+                subtitle: "La Victoire",
+                symbol: "🏆",
+                keywords: ["Victoire", "Volonté", "Détermination", "Contrôle"],
+                keywordsReversed: ["Échec", "Manque de contrôle", "Agressivité"],
+                meaning: "La maîtrise des forces opposées, la victoire par la volonté, le triomphe personnel.",
+                upright: "Succès, ambition, détermination, volonté, contrôle, voyage, triomphe.",
+                reversed: "Manque de direction, agressivité, échec, obstacles insurmontables.",
+                advice: "Gardez le cap avec détermination. La victoire vient à ceux qui persévèrent.",
+                planet: "Cancer",
+                element: "Eau",
+                hebrew: "Cheth (ח)",
+                path: "3 → 5",
+                category: "material"
+            },
+            {
+                number: 8,
+                name: "La Justice",
+                subtitle: "L'Équilibre",
+                symbol: "⚖️",
+                keywords: ["Justice", "Équilibre", "Vérité", "Karma"],
+                keywordsReversed: ["Injustice", "Déséquilibre", "Malhonnêteté"],
+                meaning: "La loi de cause à effet, l'équilibre cosmique, la vérité qui libère.",
+                upright: "Justice, équité, vérité, cause et effet, clarté, responsabilité.",
+                reversed: "Injustice, malhonnêteté, déséquilibre, évitement des conséquences.",
+                advice: "Soyez honnête avec vous-même. La vérité finit toujours par émerger.",
+                planet: "Balance",
+                element: "Air",
+                hebrew: "Lamed (ל)",
+                path: "5 → 6",
+                category: "challenge"
+            },
+            {
+                number: 9,
+                name: "L'Hermite",
+                subtitle: "Le Sage",
+                symbol: "🏔️",
+                keywords: ["Sagesse", "Solitude", "Introspection", "Guidance"],
+                keywordsReversed: ["Isolement", "Refus d'aide", "Solitude excessive"],
+                meaning: "La quête intérieure, la sagesse acquise par l'expérience, le guide intérieur.",
+                upright: "Introspection, recherche de vérité, solitude productive, guidance intérieure.",
+                reversed: "Isolement excessif, refus de conseil, paranoïa, repli sur soi.",
+                advice: "Prenez du recul pour voir clair. La sagesse vient du silence intérieur.",
+                planet: "Vierge",
+                element: "Terre",
+                hebrew: "Yod (י)",
+                path: "4 → 6",
+                category: "spirit"
+            },
+            {
+                number: 10,
+                name: "La Roue de Fortune",
+                subtitle: "Le Destin",
+                symbol: "🎡",
+                keywords: ["Destin", "Cycles", "Changement", "Chance"],
+                keywordsReversed: ["Malchance", "Résistance", "Stagnation"],
+                meaning: "Les cycles du destin, le changement perpétuel, la fortune qui tourne.",
+                upright: "Bonne fortune, karma, cycles de vie, tournant décisif, changement positif.",
+                reversed: "Malchance, résistance au changement, rupture de cycle, retards.",
+                advice: "Acceptez les cycles de la vie. Ce qui monte descend, ce qui descend remonte.",
+                planet: "Jupiter",
+                element: "Feu",
+                hebrew: "Kaph (כ)",
+                path: "4 → 7",
+                category: "challenge"
+            },
+            {
+                number: 11,
+                name: "La Force",
+                subtitle: "Le Courage",
+                symbol: "🦁",
+                keywords: ["Courage", "Force intérieure", "Patience", "Compassion"],
+                keywordsReversed: ["Faiblesse", "Doute", "Brutalité"],
+                meaning: "La maîtrise de soi, la force douce qui apprivoise les instincts.",
+                upright: "Force intérieure, courage, patience, compassion, maîtrise de soi.",
+                reversed: "Doute de soi, faiblesse, manque de courage, brutalité.",
+                advice: "La vraie force est douce. Apprivoisez vos peurs avec patience et amour.",
+                planet: "Lion",
+                element: "Feu",
+                hebrew: "Teth (ט)",
+                path: "4 → 5",
+                category: "spirit"
+            },
+            {
+                number: 12,
+                name: "Le Pendu",
+                subtitle: "Le Sacrifice",
+                symbol: "🙃",
+                keywords: ["Sacrifice", "Lâcher-prise", "Suspension", "Nouvelle perspective"],
+                keywordsReversed: ["Martyr", "Résistance", "Stagnation"],
+                meaning: "Le sacrifice volontaire, voir le monde différemment, la pause nécessaire.",
+                upright: "Pause, lâcher-prise, nouvelle perspective, sacrifice, patience, méditation.",
+                reversed: "Résistance, martyr inutile, stagnation, refus de changer de perspective.",
+                advice: "Parfois, il faut s'arrêter pour avancer. Changez votre point de vue.",
+                planet: "Neptune",
+                element: "Eau",
+                hebrew: "Mem (מ)",
+                path: "5 → 8",
+                category: "challenge"
+            },
+            {
+                number: 13,
+                name: "La Mort",
+                subtitle: "La Transformation",
+                symbol: "💀",
+                keywords: ["Transformation", "Fin", "Renaissance", "Changement"],
+                keywordsReversed: ["Résistance au changement", "Stagnation", "Peur"],
+                meaning: "La fin qui permet un nouveau commencement, la transformation profonde.",
+                upright: "Fin, transformation, transition, lâcher prise du passé, renaissance.",
+                reversed: "Résistance au changement, stagnation, peur de la fin, dépendance au passé.",
+                advice: "N'ayez pas peur des fins. Chaque mort est une renaissance en puissance.",
+                planet: "Scorpion",
+                element: "Eau",
+                hebrew: "Nun (נ)",
+                path: "6 → 7",
+                category: "challenge"
+            },
+            {
+                number: 14,
+                name: "Tempérance",
+                subtitle: "L'Équilibre Alchimique",
+                symbol: "⚗️",
+                keywords: ["Équilibre", "Patience", "Modération", "Guérison"],
+                keywordsReversed: ["Excès", "Déséquilibre", "Impatience"],
+                meaning: "L'art de la mesure, la fusion harmonieuse des opposés, la guérison.",
+                upright: "Équilibre, modération, patience, but, alchimie intérieure, guérison.",
+                reversed: "Déséquilibre, excès, impatience, manque d'harmonie.",
+                advice: "La modération en toute chose. Trouvez le juste milieu entre les extrêmes.",
+                planet: "Sagittaire",
+                element: "Feu",
+                hebrew: "Samekh (ס)",
+                path: "6 → 9",
+                category: "spirit"
+            },
+            {
+                number: 15,
+                name: "Le Diable",
+                subtitle: "L'Ombre",
+                symbol: "😈",
+                keywords: ["Ombre", "Attachement", "Matérialisme", "Tentation"],
+                keywordsReversed: ["Libération", "Révélation", "Détachement"],
+                meaning: "Les chaînes que nous nous imposons, l'ombre à intégrer, les illusions.",
+                upright: "Attachement, addiction, matérialisme, sexualité, ombre, esclavage volontaire.",
+                reversed: "Libération, détachement, révélation de l'ombre, fin d'une dépendance.",
+                advice: "Reconnaissez vos chaînes - elles ne tiennent que par votre consentement.",
+                planet: "Capricorne",
+                element: "Terre",
+                hebrew: "Ayin (ע)",
+                path: "6 → 8",
+                category: "challenge"
+            },
+            {
+                number: 16,
+                name: "La Maison Dieu",
+                subtitle: "La Tour",
+                symbol: "⚡",
+                keywords: ["Destruction", "Révélation", "Libération", "Éveil brutal"],
+                keywordsReversed: ["Évitement", "Désastre prolongé", "Peur du changement"],
+                meaning: "L'effondrement des fausses structures, la révélation soudaine, la libération.",
+                upright: "Changement soudain, chaos, révélation, éveil, libération, vérité.",
+                reversed: "Évitement du désastre, peur du changement, transformation retardée.",
+                advice: "Les structures qui s'effondrent devaient tomber. Reconstruisez sur du vrai.",
+                planet: "Mars",
+                element: "Feu",
+                hebrew: "Pé (פ)",
+                path: "7 → 8",
+                category: "challenge"
+            },
+            {
+                number: 17,
+                name: "L'Étoile",
+                subtitle: "L'Espérance",
+                symbol: "⭐",
+                keywords: ["Espoir", "Inspiration", "Sérénité", "Renouveau"],
+                keywordsReversed: ["Désespoir", "Déconnexion", "Manque de foi"],
+                meaning: "L'espoir après la tempête, l'inspiration divine, la guérison spirituelle.",
+                upright: "Espoir, foi, inspiration, sérénité, renouveau, guidance spirituelle.",
+                reversed: "Désespoir, manque de foi, déconnexion, perte d'inspiration.",
+                advice: "Gardez espoir. Après la tempête vient toujours le calme étoilé.",
+                planet: "Verseau",
+                element: "Air",
+                hebrew: "Tsadé (צ)",
+                path: "7 → 9",
+                category: "spirit"
+            },
+            {
+                number: 18,
+                name: "La Lune",
+                subtitle: "L'Illusion",
+                symbol: "🌕",
+                keywords: ["Illusion", "Inconscient", "Peurs", "Intuition"],
+                keywordsReversed: ["Confusion libérée", "Clarté", "Dévoilement"],
+                meaning: "Le royaume de l'inconscient, les illusions à traverser, les peurs à affronter.",
+                upright: "Illusion, peur, anxiété, subconscient, intuition, confusion.",
+                reversed: "Libération des peurs, clarté, vérité révélée, fin des illusions.",
+                advice: "Traversez la nuit de l'âme. Les illusions se dissipent à l'aube.",
+                planet: "Poissons",
+                element: "Eau",
+                hebrew: "Qoph (ק)",
+                path: "7 → 10",
+                category: "challenge"
+            },
+            {
+                number: 19,
+                name: "Le Soleil",
+                subtitle: "La Joie",
+                symbol: "☀️",
+                keywords: ["Joie", "Succès", "Vitalité", "Clarté"],
+                keywordsReversed: ["Ego excessif", "Optimisme irréaliste"],
+                meaning: "La lumière qui illumine tout, la joie de vivre, le succès radieux.",
+                upright: "Joie, succès, célébration, vitalité, clarté, positivité, enfant intérieur.",
+                reversed: "Ego excessif, optimisme irréaliste, retard temporaire du succès.",
+                advice: "Rayonnez votre lumière. Le bonheur vient de l'intérieur.",
+                planet: "Soleil",
+                element: "Feu",
+                hebrew: "Resh (ר)",
+                path: "8 → 9",
+                category: "spirit"
+            },
+            {
+                number: 20,
+                name: "Le Jugement",
+                subtitle: "La Renaissance",
+                symbol: "📯",
+                keywords: ["Renaissance", "Jugement", "Appel", "Rédemption"],
+                keywordsReversed: ["Auto-critique", "Refus de changer", "Doute"],
+                meaning: "L'appel de l'âme, le jugement intérieur, la renaissance spirituelle.",
+                upright: "Jugement, renaissance, réflexion intérieure, appel spirituel, rédemption.",
+                reversed: "Auto-critique excessive, doute de soi, refus de l'appel intérieur.",
+                advice: "Répondez à l'appel de votre âme. C'est l'heure du renouveau.",
+                planet: "Pluton",
+                element: "Feu",
+                hebrew: "Shin (ש)",
+                path: "8 → 10",
+                category: "spirit"
+            },
+            {
+                number: 21,
+                name: "Le Monde",
+                subtitle: "L'Accomplissement",
+                symbol: "🌍",
+                keywords: ["Accomplissement", "Complétude", "Intégration", "Succès"],
+                keywordsReversed: ["Inachèvement", "Stagnation", "Manque de clôture"],
+                meaning: "L'accomplissement total, la danse cosmique, l'intégration de toutes les leçons.",
+                upright: "Accomplissement, intégration, voyage, succès, complétude, illumination.",
+                reversed: "Projet inachevé, manque de clôture, leçon non apprise.",
+                advice: "Vous avez complété un cycle majeur. Célébrez avant d'en commencer un nouveau.",
+                planet: "Saturne",
+                element: "Terre",
+                hebrew: "Tav (ת)",
+                path: "9 → 10",
+                category: "spirit"
+            }
+        ];
+
+        // Générer la timeline du voyage
+        function generateJourney() {
+            const timeline = document.getElementById('journeyTimeline');
+            timeline.innerHTML = arcanesMajeurs.map(card => `
+                <div class="journey-step" onclick="scrollToCard(${card.number})">
+                    <div class="num">${card.number}</div>
+                    <div class="name">${card.name.replace('Le ', '').replace('La ', '').replace("L'", '')}</div>
+                </div>
+            `).join('');
+        }
+
+        // Générer les cartes
+        function generateCards(filter = 'all') {
+            const grid = document.getElementById('cardsGrid');
+            const filtered = filter === 'all'
+                ? arcanesMajeurs
+                : arcanesMajeurs.filter(c => c.category === filter);
+
+            grid.innerHTML = filtered.map(card => `
+                <div class="tarot-card" id="card-${card.number}" data-category="${card.category}" onclick="toggleCard(this)">
+                    <div class="card-number">${card.number}</div>
+                    <div class="card-symbol">${card.symbol}</div>
+                    <div class="card-name">${card.name}</div>
+                    <div class="card-subtitle">${card.subtitle}</div>
+                    <div class="card-keywords">
+                        ${card.keywords.map(k => `<span class="keyword">${k}</span>`).join('')}
+                    </div>
+                    <div class="card-meaning">${card.meaning}</div>
+
+                    <div class="card-details">
+                        <div class="detail-section">
+                            <h4>🔼 Signification à l'endroit</h4>
+                            <p>${card.upright}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>🔽 Signification renversée</h4>
+                            <p>${card.reversed}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>💡 Conseil</h4>
+                            <p>${card.advice}</p>
+                        </div>
+                        <div class="correspondences">
+                            <div class="correspondence">
+                                <div class="label">Planète/Signe</div>
+                                <div class="value">${card.planet}</div>
+                            </div>
+                            <div class="correspondence">
+                                <div class="label">Élément</div>
+                                <div class="value">${card.element}</div>
+                            </div>
+                            <div class="correspondence">
+                                <div class="label">Lettre Hébraïque</div>
+                                <div class="value">${card.hebrew}</div>
+                            </div>
+                            <div class="correspondence">
+                                <div class="label">Sentier Kabbale</div>
+                                <div class="value">${card.path}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCard(element) {
+            element.classList.toggle('expanded');
+        }
+
+        function scrollToCard(number) {
+            const card = document.getElementById(`card-${number}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.add('expanded');
+            }
+        }
+
+        function filterCards(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            generateCards(category);
+        }
+
+        // Initialisation
+        generateJourney();
+        generateCards();
+    </script>
+</body>
+</html>

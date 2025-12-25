@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alchimie - Niveau Débutant | Les Fondements | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a0a 0%, #2d2a1a 50%, #1a1a0a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #c9a227, #d4af37, #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(201, 162, 39, 0.2);
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(201, 162, 39, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(201, 162, 39, 0.6); border-color: #d4af37; }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .lesson-section h3 {
+            color: #f4d03f;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .element-card {
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .element-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .element-fire { background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(185, 28, 28, 0.2)); border: 2px solid #ef4444; }
+        .element-water { background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(29, 78, 216, 0.2)); border: 2px solid #3b82f6; }
+        .element-air { background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.2)); border: 2px solid #fbbf24; }
+        .element-earth { background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(21, 128, 61, 0.2)); border: 2px solid #22c55e; }
+
+        .element-card .symbol {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .metals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metal-card {
+            background: linear-gradient(145deg, rgba(201, 162, 39, 0.1), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .metal-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .metal-card .metal-symbol {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5em;
+        }
+
+        .metal-card h4 {
+            color: #d4af37;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .metal-card .planet {
+            color: #f4d03f;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .principles-grid { grid-template-columns: 1fr; }
+        }
+
+        .principle-card {
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .principle-sulfur { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(0,0,0,0.3)); border: 2px solid #ef4444; }
+        .principle-mercury { background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(0,0,0,0.3)); border: 2px solid #c0c0c0; }
+        .principle-salt { background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0,0,0,0.3)); border: 2px solid #ffffff; }
+
+        .principle-card .symbol {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(212, 175, 55, 0.1));
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1));
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: rgba(201, 162, 39, 0.3);
+            border-color: #d4af37;
+        }
+
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.4);
+            border-color: #10b981;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.4);
+            border-color: #ef4444;
+        }
+
+        .btn-next {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a227, #d4af37);
+            color: #1a1a0a;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+        }
+
+        .maxim {
+            text-align: center;
+            font-size: 1.3em;
+            font-style: italic;
+            color: #d4af37;
+            padding: 30px;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+            border-radius: 15px;
+            margin: 30px 0;
+            background: rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚗️ Alchimie - Niveau Débutant</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Les Fondements de l'Art Royal</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="alchimie-introduction.html" class="nav-btn">📜 Introduction</a>
+            <a href="alchimie-debutant.html" class="nav-btn active">📖 Débutant</a>
+            <a href="alchimie-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="alchimie-expert.html" class="nav-btn">🎓 Expert</a>
+        </nav>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>📜 Qu'est-ce que l'Alchimie ?</h2>
+
+            <p>L'<strong>Alchimie</strong> est l'art sacré de la transformation. Bien plus qu'une simple proto-chimie cherchant à transmuter le plomb en or, elle représente une voie spirituelle complète visant la transformation de l'être humain lui-même.</p>
+
+            <div class="maxim">
+                "Visita Interiora Terrae Rectificando Invenies Occultum Lapidem"<br>
+                <small>Visite l'intérieur de la Terre et en rectifiant tu trouveras la Pierre cachée</small><br>
+                <small style="color: #f4d03f;">— V.I.T.R.I.O.L.</small>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🔑 Les Trois Buts de l'Alchimie</h3>
+                <ul style="margin: 15px 0; line-height: 2;">
+                    <li><strong>La Pierre Philosophale</strong> - Transmutation des métaux vils en or</li>
+                    <li><strong>L'Élixir de Longue Vie</strong> - Guérison et immortalité</li>
+                    <li><strong>Le Grand Œuvre</strong> - Transformation spirituelle de l'adepte</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Les 4 Éléments -->
+        <section class="lesson-section">
+            <h2>🔥💧💨🌍 Les Quatre Éléments</h2>
+
+            <p>Les quatre éléments sont les principes fondamentaux de toute matière selon la tradition alchimique. Ils ne sont pas simplement le feu, l'eau, l'air et la terre physiques, mais des qualités et des états de l'être.</p>
+
+            <div class="elements-grid">
+                <div class="element-card element-fire">
+                    <div class="symbol">🔥</div>
+                    <h4>FEU - Ignis</h4>
+                    <p><strong>Qualités :</strong> Chaud & Sec</p>
+                    <p><strong>Direction :</strong> Sud</p>
+                    <p><strong>Saison :</strong> Été</p>
+                    <p><strong>Humeur :</strong> Bile jaune (Colérique)</p>
+                    <p><strong>Symbole :</strong> △</p>
+                    <p style="margin-top: 10px;">Transformation, volonté, énergie, passion, purification</p>
+                </div>
+
+                <div class="element-card element-water">
+                    <div class="symbol">💧</div>
+                    <h4>EAU - Aqua</h4>
+                    <p><strong>Qualités :</strong> Froid & Humide</p>
+                    <p><strong>Direction :</strong> Ouest</p>
+                    <p><strong>Saison :</strong> Automne</p>
+                    <p><strong>Humeur :</strong> Flegme (Flegmatique)</p>
+                    <p><strong>Symbole :</strong> ▽</p>
+                    <p style="margin-top: 10px;">Émotion, intuition, fluidité, dissolution, purification</p>
+                </div>
+
+                <div class="element-card element-air">
+                    <div class="symbol">💨</div>
+                    <h4>AIR - Aer</h4>
+                    <p><strong>Qualités :</strong> Chaud & Humide</p>
+                    <p><strong>Direction :</strong> Est</p>
+                    <p><strong>Saison :</strong> Printemps</p>
+                    <p><strong>Humeur :</strong> Sang (Sanguin)</p>
+                    <p><strong>Symbole :</strong> △̲</p>
+                    <p style="margin-top: 10px;">Intellect, communication, mouvement, souffle vital</p>
+                </div>
+
+                <div class="element-card element-earth">
+                    <div class="symbol">🌍</div>
+                    <h4>TERRE - Terra</h4>
+                    <p><strong>Qualités :</strong> Froid & Sec</p>
+                    <p><strong>Direction :</strong> Nord</p>
+                    <p><strong>Saison :</strong> Hiver</p>
+                    <p><strong>Humeur :</strong> Bile noire (Mélancolique)</p>
+                    <p><strong>Symbole :</strong> ▽̲</p>
+                    <p style="margin-top: 10px;">Matière, stabilité, fondation, manifestation</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>✨ Le Cinquième Élément : La Quintessence</h3>
+                <p>Au-delà des quatre éléments se trouve la <strong>Quintessence</strong> (ou Éther), l'essence pure qui anime toute matière. C'est l'objectif ultime de l'extraction alchimique - isoler cette quintessence des substances.</p>
+            </div>
+        </section>
+
+        <!-- Les 3 Principes -->
+        <section class="lesson-section">
+            <h2>🜍 Les Trois Principes Alchimiques</h2>
+
+            <p>Paracelse (1493-1541) a développé la théorie des trois principes qui complète les quatre éléments. Ces trois principes sont présents dans toute substance :</p>
+
+            <div class="principles-grid">
+                <div class="principle-card principle-sulfur">
+                    <div class="symbol">🜍</div>
+                    <h4>SOUFRE - Sulfur</h4>
+                    <p><strong>Principe Masculin</strong></p>
+                    <p style="margin-top: 15px;">L'âme, la combustibilité, ce qui brûle. Représente la conscience, l'ego, la volonté.</p>
+                    <p style="margin-top: 10px;"><strong>Qualités :</strong> Actif, expansif, chaud</p>
+                </div>
+
+                <div class="principle-card principle-mercury">
+                    <div class="symbol">☿</div>
+                    <h4>MERCURE - Mercurius</h4>
+                    <p><strong>Principe Médiateur</strong></p>
+                    <p style="margin-top: 15px;">L'esprit, la volatilité, ce qui s'évapore. Représente l'intellect, la communication.</p>
+                    <p style="margin-top: 10px;"><strong>Qualités :</strong> Fluide, transformateur</p>
+                </div>
+
+                <div class="principle-card principle-salt">
+                    <div class="symbol">🜔</div>
+                    <h4>SEL - Sal</h4>
+                    <p><strong>Principe Féminin</strong></p>
+                    <p style="margin-top: 15px;">Le corps, la fixité, ce qui reste après combustion. Représente la forme, la structure.</p>
+                    <p style="margin-top: 10px;"><strong>Qualités :</strong> Passif, cristallisant, fixe</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les 7 Métaux -->
+        <section class="lesson-section">
+            <h2>🪙 Les Sept Métaux Planétaires</h2>
+
+            <p>Les alchimistes reconnaissaient sept métaux, chacun associé à une planète et possédant des qualités spirituelles spécifiques :</p>
+
+            <div class="metals-grid">
+                <div class="metal-card">
+                    <span class="metal-symbol">🌟</span>
+                    <h4>OR - Aurum</h4>
+                    <p class="planet">☉ Soleil</p>
+                    <p>Le métal parfait, incorruptible. Représente la perfection, l'illumination, le Soi réalisé.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ☉ ou ⊙</p>
+                </div>
+
+                <div class="metal-card">
+                    <span class="metal-symbol">🌙</span>
+                    <h4>ARGENT - Argentum</h4>
+                    <p class="planet">☽ Lune</p>
+                    <p>Le reflet de l'or. Représente l'âme, l'intuition, le féminin sacré.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ☽</p>
+                </div>
+
+                <div class="metal-card">
+                    <span class="metal-symbol">🔵</span>
+                    <h4>FER - Ferrum</h4>
+                    <p class="planet">♂ Mars</p>
+                    <p>Le métal de la guerre. Force, courage, volonté, action.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ♂</p>
+                </div>
+
+                <div class="metal-card">
+                    <span class="metal-symbol">💎</span>
+                    <h4>CUIVRE - Cuprum</h4>
+                    <p class="planet">♀ Vénus</p>
+                    <p>Le métal de l'amour. Beauté, harmonie, création artistique.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ♀</p>
+                </div>
+
+                <div class="metal-card">
+                    <span class="metal-symbol">⚡</span>
+                    <h4>MERCURE - Hydrargyrum</h4>
+                    <p class="planet">☿ Mercure</p>
+                    <p>Le métal vivant. Communication, transformation, adaptabilité.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ☿</p>
+                </div>
+
+                <div class="metal-card">
+                    <span class="metal-symbol">🔷</span>
+                    <h4>ÉTAIN - Stannum</h4>
+                    <p class="planet">♃ Jupiter</p>
+                    <p>Le métal de l'expansion. Sagesse, prospérité, justice.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ♃</p>
+                </div>
+
+                <div class="metal-card">
+                    <span class="metal-symbol">⬛</span>
+                    <h4>PLOMB - Plumbum</h4>
+                    <p class="planet">♄ Saturne</p>
+                    <p>Le métal le plus bas. Limitation, temps, mort, matière première.</p>
+                    <p style="margin-top: 10px;"><strong>Symbole :</strong> ♄</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>💡 La Transmutation</h3>
+                <p>L'objectif de l'alchimie opérative est de transmuter les métaux "vils" (comme le plomb) en métaux "nobles" (l'or). Spirituellement, cela représente la transformation de notre nature inférieure en notre nature supérieure.</p>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="quiz-section">
+            <h2>📝 Quiz de Compréhension</h2>
+
+            <div class="quiz-question">
+                <p><strong>1. Quel élément est associé aux qualités "Chaud & Sec" ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">🔥 Feu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">💧 Eau</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">💨 Air</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">🌍 Terre</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Quel métal est associé à la planète Vénus ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Or</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Argent</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Cuivre</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Fer</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Lequel des trois principes représente le corps physique ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Soufre</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Mercure</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Sel</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Que signifie V.I.T.R.I.O.L. ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Visite l'intérieur de la Terre...</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Un acide corrosif</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Un type de pierre</div>
+                </div>
+            </div>
+
+            <div id="quiz-result" style="text-align: center; margin-top: 20px; font-size: 1.2em;"></div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="alchimie-intermediaire.html" class="btn-next">
+                Continuer : Les Quatre Phases du Grand Œuvre →
+            </a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(201, 162, 39, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Alchimie Niveau Débutant</p>
+            <p style="margin-top: 10px;">
+                <a href="../../index.html" style="color: #d4af37; text-decoration: none;">← Retour au Portail</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+        let totalQuestions = 4;
+        let answeredQuestions = 0;
+
+        function checkAnswer(element, isCorrect) {
+            if (element.classList.contains('correct') || element.classList.contains('incorrect')) return;
+
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                correctAnswers++;
+            } else {
+                element.classList.add('incorrect');
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) opt.classList.add('correct');
+                });
+            }
+
+            answeredQuestions++;
+
+            if (answeredQuestions === totalQuestions) {
+                const resultDiv = document.getElementById('quiz-result');
+                const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+                if (percentage >= 75) {
+                    resultDiv.innerHTML = `🎉 Excellent ! ${correctAnswers}/${totalQuestions} (${percentage}%)`;
+                    resultDiv.style.color = '#10b981';
+                } else {
+                    resultDiv.innerHTML = `📚 ${correctAnswers}/${totalQuestions} (${percentage}%) - Continuez à étudier !`;
+                    resultDiv.style.color = '#f59e0b';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

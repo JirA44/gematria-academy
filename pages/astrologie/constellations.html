@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constellations - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5em; background: linear-gradient(135deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #818cf8; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(129, 140, 248, 0.3); }
+        .section h2 { color: #818cf8; margin-bottom: 20px; font-size: 1.6em; }
+        .constellation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .constellation-card { background: linear-gradient(135deg, rgba(129, 140, 248, 0.15), rgba(192, 132, 252, 0.1)); border-radius: 20px; padding: 25px; border: 1px solid rgba(129, 140, 248, 0.3); transition: all 0.3s; }
+        .constellation-card:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(129, 140, 248, 0.3); }
+        .constellation-icon { font-size: 3em; text-align: center; margin-bottom: 15px; }
+        .constellation-card h3 { color: #c084fc; margin-bottom: 10px; text-align: center; }
+        .star-map { background: #0a0a1a; border-radius: 15px; padding: 20px; margin: 20px 0; min-height: 300px; position: relative; overflow: hidden; }
+        .star { position: absolute; width: 3px; height: 3px; background: white; border-radius: 50%; animation: twinkle 2s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .myth-box { background: rgba(192, 132, 252, 0.1); padding: 20px; border-radius: 15px; margin: 15px 0; border-left: 4px solid #c084fc; }
+        .stats { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
+        .stat { background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 10px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+        <header>
+            <h1>Les Constellations</h1>
+            <p style="opacity: 0.8; font-size: 1.2em;">Cartographie céleste et mythologie stellaire</p>
+        </header>
+
+        <div class="section">
+            <h2>Carte Stellaire Interactive</h2>
+            <div class="star-map" id="starMap"></div>
+            <p style="text-align: center; opacity: 0.7;">88 constellations officielles reconnues par l'UAI</p>
+        </div>
+
+        <div class="section">
+            <h2>Constellations Majeures</h2>
+            <div class="constellation-grid">
+                <div class="constellation-card">
+                    <div class="constellation-icon">⭐</div>
+                    <h3>Orion - Le Chasseur</h3>
+                    <p>La constellation la plus reconnaissable avec ses trois étoiles alignées formant la ceinture d'Orion.</p>
+                    <div class="stats">
+                        <span class="stat">Bételgeuse: supergéante rouge</span>
+                        <span class="stat">Rigel: supergéante bleue</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> Orion était un chasseur géant, fils de Poséidon, placé dans les étoiles par Zeus.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">🐻</div>
+                    <h3>Grande Ourse - Ursa Major</h3>
+                    <p>La constellation circumpolaire visible toute l'année dans l'hémisphère nord, contenant le célèbre astérisme de la "Casserole".</p>
+                    <div class="stats">
+                        <span class="stat">7 étoiles principales</span>
+                        <span class="stat">Pointe vers Polaris</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> Callisto, transformée en ourse par Héra jalouse, puis placée au ciel par Zeus.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">🦂</div>
+                    <h3>Scorpion - Scorpius</h3>
+                    <p>Constellation zodiacale d'été avec Antarès, son cœur rouge flamboyant.</p>
+                    <div class="stats">
+                        <span class="stat">Antarès: "rival de Mars"</span>
+                        <span class="stat">Visible en été</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> Le scorpion envoyé par Gaïa pour tuer Orion, les deux placés aux antipodes du ciel.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">🦁</div>
+                    <h3>Lion - Leo</h3>
+                    <p>Constellation zodiacale du printemps avec Régulus, l'étoile royale.</p>
+                    <div class="stats">
+                        <span class="stat">Régulus: "petit roi"</span>
+                        <span class="stat">Météores Léonides</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> Le lion de Némée, premier des douze travaux d'Hercule.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">🦅</div>
+                    <h3>Aigle - Aquila</h3>
+                    <p>Constellation d'été avec Altaïr, formant le Triangle d'Été avec Véga et Deneb.</p>
+                    <div class="stats">
+                        <span class="stat">Altaïr: 17 années-lumière</span>
+                        <span class="stat">Triangle d'Été</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> L'aigle de Zeus qui transportait ses foudres et enleva Ganymède.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">🎵</div>
+                    <h3>Lyre - Lyra</h3>
+                    <p>Petite constellation avec Véga, l'une des étoiles les plus brillantes du ciel.</p>
+                    <div class="stats">
+                        <span class="stat">Véga: 25 années-lumière</span>
+                        <span class="stat">Future étoile polaire</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> La lyre d'Orphée, dont la musique charmait même les dieux.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">🦢</div>
+                    <h3>Cygne - Cygnus</h3>
+                    <p>La "Croix du Nord" avec Deneb marquant la queue du cygne céleste.</p>
+                    <div class="stats">
+                        <span class="stat">Deneb: supergéante</span>
+                        <span class="stat">Voie Lactée</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> Zeus transformé en cygne pour séduire Léda, mère d'Hélène de Troie.
+                    </div>
+                </div>
+
+                <div class="constellation-card">
+                    <div class="constellation-icon">👸</div>
+                    <h3>Cassiopée</h3>
+                    <p>Le "W" céleste, constellation circumpolaire facilement reconnaissable.</p>
+                    <div class="stats">
+                        <span class="stat">5 étoiles en W</span>
+                        <span class="stat">Circumpolaire</span>
+                    </div>
+                    <div class="myth-box">
+                        <strong>Mythe grec:</strong> Reine d'Éthiopie punie pour sa vanité, condamnée à tourner autour du pôle.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Navigation Stellaire</h2>
+            <div class="constellation-grid">
+                <div class="constellation-card">
+                    <div class="constellation-icon">⭐</div>
+                    <h3>Étoile Polaire</h3>
+                    <p>Polaris, l'étoile du Nord, guide des navigateurs depuis des millénaires. Située à moins de 1° du pôle céleste nord.</p>
+                </div>
+                <div class="constellation-card">
+                    <div class="constellation-icon">✝️</div>
+                    <h3>Croix du Sud</h3>
+                    <p>Crux, la plus petite constellation, indique le sud pour les navigateurs de l'hémisphère austral.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Générer des étoiles aléatoires
+        const starMap = document.getElementById('starMap');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            star.style.width = (Math.random() * 3 + 1) + 'px';
+            star.style.height = star.style.width;
+            starMap.appendChild(star);
+        }
+    </script>
+</body>
+</html>

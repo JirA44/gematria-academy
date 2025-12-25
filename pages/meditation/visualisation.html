@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5em; background: linear-gradient(135deg, #c084fc, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #c084fc; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(192, 132, 252, 0.3); }
+        .section h2 { color: #c084fc; margin-bottom: 20px; font-size: 1.6em; }
+        .visualization-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .viz-card { background: linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(139, 92, 246, 0.1)); border-radius: 20px; padding: 25px; border: 1px solid rgba(192, 132, 252, 0.3); transition: all 0.3s; cursor: pointer; }
+        .viz-card:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(192, 132, 252, 0.3); }
+        .viz-icon { font-size: 3.5em; text-align: center; margin-bottom: 15px; }
+        .viz-card h3 { color: #c084fc; margin-bottom: 10px; text-align: center; font-size: 1.3em; }
+        .viz-duration { text-align: center; opacity: 0.7; margin-bottom: 15px; font-size: 0.9em; }
+        .steps { list-style: none; counter-reset: step; }
+        .steps li { padding: 12px 0; padding-left: 40px; position: relative; border-bottom: 1px solid rgba(192, 132, 252, 0.1); }
+        .steps li:last-child { border-bottom: none; }
+        .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 12px; width: 28px; height: 28px; background: linear-gradient(135deg, #c084fc, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9em; font-weight: bold; }
+        .practice-area { background: #0a0a1a; border-radius: 20px; padding: 40px; text-align: center; min-height: 400px; position: relative; overflow: hidden; }
+        .practice-content { position: relative; z-index: 1; }
+        .practice-text { font-size: 1.4em; line-height: 1.8; max-width: 600px; margin: 0 auto; }
+        .practice-controls { margin-top: 30px; }
+        .control-btn { padding: 15px 35px; border-radius: 30px; border: 2px solid #c084fc; background: transparent; color: white; cursor: pointer; transition: all 0.3s; margin: 5px; font-size: 1.1em; }
+        .control-btn:hover { background: #c084fc; }
+        .control-btn.active { background: #c084fc; }
+        .visual-element { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(192, 132, 252, 0.3) 0%, transparent 70%); animation: pulse 4s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.8; } }
+        .benefits-box { background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 15px; margin-top: 20px; border-left: 4px solid #10b981; }
+        .techniques-list { display: grid; gap: 15px; }
+        .technique-item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; display: flex; gap: 15px; align-items: flex-start; }
+        .technique-icon { font-size: 2em; }
+        .progress-bar { height: 8px; background: rgba(192, 132, 252, 0.2); border-radius: 4px; margin-top: 15px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #c084fc, #8b5cf6); border-radius: 4px; transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+        <header>
+            <h1>Visualisation Créatrice</h1>
+            <p style="opacity: 0.8; font-size: 1.2em;">Le pouvoir de l'imagination pour transformer la réalité</p>
+        </header>
+
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>La visualisation créatrice est une technique puissante qui utilise l'imagination dirigée pour influencer le subconscient. Cette pratique ancestrale, présente dans toutes les traditions mystiques, permet de manifester des changements profonds dans la vie quotidienne et sur le chemin spirituel.</p>
+            <div class="benefits-box">
+                <h3 style="color: #10b981; margin-bottom: 10px;">Bienfaits Prouvés</h3>
+                <p>Des études scientifiques ont démontré que le cerveau ne fait pas de différence entre une expérience vécue et une expérience intensément imaginée. La visualisation active les mêmes zones cérébrales que l'action réelle.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Exercice de Visualisation Guidée</h2>
+            <div class="practice-area" id="practiceArea">
+                <div class="visual-element"></div>
+                <div class="practice-content">
+                    <div class="practice-text" id="practiceText">
+                        Cliquez sur "Commencer" pour débuter la visualisation guidée du Temple Intérieur.
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                    </div>
+                    <div class="practice-controls">
+                        <button class="control-btn" id="startBtn" onclick="startVisualization()">Commencer</button>
+                        <button class="control-btn" onclick="pauseVisualization()">Pause</button>
+                        <button class="control-btn" onclick="resetVisualization()">Recommencer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Visualisations Thématiques</h2>
+            <div class="visualization-grid">
+                <div class="viz-card" onclick="selectVisualization('temple')">
+                    <div class="viz-icon">🏛️</div>
+                    <h3>Le Temple Intérieur</h3>
+                    <div class="viz-duration">15 minutes</div>
+                    <p>Construisez mentalement votre sanctuaire sacré, un espace de paix et de sagesse accessible à tout moment.</p>
+                    <ol class="steps">
+                        <li>Descendre l'escalier de lumière</li>
+                        <li>Traverser le jardin secret</li>
+                        <li>Entrer dans le temple</li>
+                        <li>Rencontrer votre guide</li>
+                        <li>Recevoir un message</li>
+                    </ol>
+                </div>
+
+                <div class="viz-card" onclick="selectVisualization('chakras')">
+                    <div class="viz-icon">🌈</div>
+                    <h3>Activation des Chakras</h3>
+                    <div class="viz-duration">20 minutes</div>
+                    <p>Parcourez les 7 centres énergétiques avec leurs couleurs et qualités spécifiques.</p>
+                    <ol class="steps">
+                        <li>Muladhara - Rouge - Ancrage</li>
+                        <li>Svadhisthana - Orange - Créativité</li>
+                        <li>Manipura - Jaune - Pouvoir</li>
+                        <li>Anahata - Vert - Amour</li>
+                        <li>Vishuddha - Bleu - Expression</li>
+                        <li>Ajna - Indigo - Intuition</li>
+                        <li>Sahasrara - Violet - Connexion</li>
+                    </ol>
+                </div>
+
+                <div class="viz-card" onclick="selectVisualization('arbre')">
+                    <div class="viz-icon">🌳</div>
+                    <h3>L'Arbre de Vie</h3>
+                    <div class="viz-duration">15 minutes</div>
+                    <p>Devenez l'Arbre de Vie, connecté à la terre et au ciel, canalisant l'énergie universelle.</p>
+                    <ol class="steps">
+                        <li>Sentir les racines s'enfoncer</li>
+                        <li>Absorber l'énergie terrestre</li>
+                        <li>Le tronc grandit vers le ciel</li>
+                        <li>Les branches s'étendent</li>
+                        <li>Recevoir la lumière cosmique</li>
+                    </ol>
+                </div>
+
+                <div class="viz-card" onclick="selectVisualization('lumiere')">
+                    <div class="viz-icon">✨</div>
+                    <h3>Sphère de Lumière</h3>
+                    <div class="viz-duration">10 minutes</div>
+                    <p>Créez et expansez une sphère de lumière protectrice autour de vous.</p>
+                    <ol class="steps">
+                        <li>Visualiser un point de lumière</li>
+                        <li>L'agrandir au niveau du cœur</li>
+                        <li>L'étendre au corps entier</li>
+                        <li>Créer une bulle protectrice</li>
+                        <li>Ancrer cette protection</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Techniques Avancées</h2>
+            <div class="techniques-list">
+                <div class="technique-item">
+                    <div class="technique-icon">🎯</div>
+                    <div>
+                        <h3 style="color: #c084fc; margin-bottom: 8px;">Visualisation d'Objectifs</h3>
+                        <p>Imaginez votre objectif accompli avec tous les détails sensoriels : ce que vous voyez, entendez, ressentez. Vivez l'émotion de la réussite.</p>
+                    </div>
+                </div>
+                <div class="technique-item">
+                    <div class="technique-icon">💫</div>
+                    <div>
+                        <h3 style="color: #c084fc; margin-bottom: 8px;">Projection Astrale</h3>
+                        <p>Technique avancée de sortie consciente du corps physique pour explorer les plans subtils de l'existence.</p>
+                    </div>
+                </div>
+                <div class="technique-item">
+                    <div class="technique-icon">🔮</div>
+                    <div>
+                        <h3 style="color: #c084fc; margin-bottom: 8px;">Vision à Distance</h3>
+                        <p>Capacité à percevoir des informations sur des lieux ou événements éloignés dans l'espace ou le temps.</p>
+                    </div>
+                </div>
+                <div class="technique-item">
+                    <div class="technique-icon">🌀</div>
+                    <div>
+                        <h3 style="color: #c084fc; margin-bottom: 8px;">Régression</h3>
+                        <p>Exploration guidée des mémoires profondes et des vies antérieures pour la guérison et la compréhension.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Conseils pour la Pratique</h2>
+            <div class="visualization-grid">
+                <div class="viz-card">
+                    <div class="viz-icon">🌙</div>
+                    <h3>Environnement</h3>
+                    <p>Choisissez un endroit calme, température agréable, lumière tamisée. Évitez les interruptions.</p>
+                </div>
+                <div class="viz-card">
+                    <div class="viz-icon">👁️</div>
+                    <h3>Engagement Sensoriel</h3>
+                    <p>Plus vous engagez de sens (vue, ouïe, toucher, odorat, goût), plus la visualisation est puissante.</p>
+                </div>
+                <div class="viz-card">
+                    <div class="viz-icon">💖</div>
+                    <h3>Émotion</h3>
+                    <p>L'émotion est le carburant de la manifestation. Ressentez profondément ce que vous visualisez.</p>
+                </div>
+                <div class="viz-card">
+                    <div class="viz-icon">📅</div>
+                    <h3>Régularité</h3>
+                    <p>Pratiquez quotidiennement, même 5 minutes. La constance crée des changements durables.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const visualizations = {
+            temple: [
+                "Fermez les yeux et prenez trois respirations profondes...",
+                "Imaginez un escalier de lumière dorée devant vous...",
+                "Descendez lentement, marche après marche... 10... 9... 8...",
+                "Vous arrivez dans un magnifique jardin secret...",
+                "Des fleurs aux couleurs vives, une fontaine cristalline...",
+                "Au centre du jardin, vous apercevez un temple ancien...",
+                "Vous marchez vers le temple, la porte s'ouvre...",
+                "À l'intérieur, une lumière douce et apaisante...",
+                "Un guide bienveillant vous attend avec un message...",
+                "Écoutez ce message avec votre cœur...",
+                "Remerciez votre guide et revenez lentement...",
+                "3... 2... 1... Ouvrez les yeux, vous êtes en paix."
+            ],
+            chakras: [
+                "Installez-vous confortablement, respirez profondément...",
+                "Concentrez-vous sur la base de votre colonne...",
+                "Une lumière ROUGE s'éveille : Muladhara, votre ancrage...",
+                "Remontez au sacrum : lumière ORANGE : créativité, émotions...",
+                "Plexus solaire : lumière JAUNE éclatante : pouvoir personnel...",
+                "Centre du cœur : lumière VERTE d'amour inconditionnel...",
+                "Gorge : lumière BLEUE : expression de votre vérité...",
+                "Troisième œil : lumière INDIGO : intuition profonde...",
+                "Couronne : lumière VIOLETTE puis BLANCHE : connexion divine...",
+                "Tous vos chakras brillent, alignés et harmonisés...",
+                "Vous êtes un canal de lumière entre ciel et terre...",
+                "Revenez doucement, emportant cette harmonie avec vous."
+            ]
+        };
+
+        let currentStep = 0;
+        let isPlaying = false;
+        let currentVisualization = 'temple';
+        let intervalId = null;
+
+        function selectVisualization(type) {
+            currentVisualization = type;
+            resetVisualization();
+            document.getElementById('practiceText').textContent =
+                `Visualisation "${type === 'temple' ? 'Temple Intérieur' : type === 'chakras' ? 'Chakras' : type}" sélectionnée. Cliquez sur Commencer.`;
+        }
+
+        function startVisualization() {
+            if (!visualizations[currentVisualization]) {
+                document.getElementById('practiceText').textContent =
+                    "Cette visualisation sera bientôt disponible. Essayez le Temple Intérieur ou les Chakras.";
+                return;
+            }
+
+            isPlaying = true;
+            document.getElementById('startBtn').classList.add('active');
+            playStep();
+        }
+
+        function playStep() {
+            const steps = visualizations[currentVisualization];
+            if (currentStep >= steps.length) {
+                resetVisualization();
+                return;
+            }
+
+            document.getElementById('practiceText').textContent = steps[currentStep];
+            document.getElementById('progressFill').style.width = ((currentStep + 1) / steps.length * 100) + '%';
+            currentStep++;
+
+            if (isPlaying) {
+                intervalId = setTimeout(playStep, 8000);
+            }
+        }
+
+        function pauseVisualization() {
+            isPlaying = false;
+            document.getElementById('startBtn').classList.remove('active');
+            clearTimeout(intervalId);
+        }
+
+        function resetVisualization() {
+            pauseVisualization();
+            currentStep = 0;
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('practiceText').textContent =
+                "Cliquez sur \"Commencer\" pour débuter la visualisation guidée.";
+        }
+    </script>
+</body>
+</html>

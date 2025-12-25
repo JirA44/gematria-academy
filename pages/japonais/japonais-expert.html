@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japonais Expert - Calligraphie & Littérature | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a15 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .kanji-large {
+            font-size: 4em;
+            color: #d4af37;
+            text-shadow: 0 0 30px rgba(212,175,55,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #aaa;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+
+        h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(212,175,55,0.3);
+        }
+
+        h3 {
+            color: #f4d03f;
+            margin: 25px 0 15px;
+        }
+
+        /* Calligraphy Section */
+        .calligraphy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .calligraphy-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(212,175,55,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .calligraphy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.2);
+        }
+
+        .calligraphy-char {
+            font-size: 5em;
+            color: #d4af37;
+            text-shadow: 0 0 30px rgba(212,175,55,0.4);
+            font-family: 'MS Mincho', serif;
+            margin-bottom: 15px;
+        }
+
+        .calligraphy-name {
+            font-size: 1.3em;
+            color: #f4d03f;
+            margin-bottom: 10px;
+        }
+
+        .calligraphy-meaning {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Style Table */
+        .style-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .style-table th,
+        .style-table td {
+            padding: 15px;
+            border: 1px solid rgba(212,175,55,0.2);
+            text-align: center;
+        }
+
+        .style-table th {
+            background: rgba(212,175,55,0.2);
+            color: #d4af37;
+        }
+
+        .style-table td:first-child {
+            font-size: 2em;
+            font-family: 'MS Mincho', serif;
+        }
+
+        /* Poetry Section */
+        .poem-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 4px solid #d4af37;
+        }
+
+        .poem-japanese {
+            font-size: 1.8em;
+            color: #fff;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            height: 200px;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 2;
+            font-family: 'MS Mincho', serif;
+        }
+
+        .poem-horizontal {
+            font-size: 1.5em;
+            color: #fff;
+            text-align: center;
+            margin: 15px 0;
+            font-family: 'MS Mincho', serif;
+        }
+
+        .poem-romaji {
+            color: #888;
+            text-align: center;
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .poem-translation {
+            color: #d4af37;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .poem-author {
+            color: #f4d03f;
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        /* Kanji avancés */
+        .advanced-kanji-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .advanced-kanji-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .advanced-kanji {
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(212,175,55,0.3);
+            margin-bottom: 10px;
+        }
+
+        .jlpt-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+
+        .jlpt-n2 {
+            background: rgba(52,152,219,0.3);
+            color: #3498db;
+        }
+
+        .jlpt-n1 {
+            background: rgba(155,89,182,0.3);
+            color: #9b59b6;
+        }
+
+        .kanji-info {
+            color: #d4af37;
+            margin: 5px 0;
+        }
+
+        .kanji-detail {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* Concept boxes */
+        .concept-box {
+            background: rgba(212,175,55,0.1);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .concept-title {
+            color: #d4af37;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Philosophy Section */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .philosophy-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .philosophy-term {
+            font-size: 2.5em;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .philosophy-reading {
+            text-align: center;
+            color: #f4d03f;
+            margin-bottom: 15px;
+        }
+
+        /* Classical Text */
+        .classical-text {
+            background: rgba(0,0,0,0.4);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-family: 'MS Mincho', serif;
+        }
+
+        .classical-japanese {
+            font-size: 1.4em;
+            color: #fff;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        .classical-annotation {
+            color: #888;
+            font-size: 0.95em;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            padding-top: 15px;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212,175,55,0.3);
+        }
+
+        /* Info boxes */
+        .tip-box {
+            background: rgba(46,204,113,0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Proverb Section */
+        .proverb-list {
+            margin: 20px 0;
+        }
+
+        .proverb-item {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .proverb-japanese {
+            font-size: 1.4em;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .proverb-reading {
+            color: #888;
+            font-style: italic;
+        }
+
+        .proverb-meaning {
+            color: #d4af37;
+            margin-top: 8px;
+        }
+
+        .proverb-literal {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .kanji-large { font-size: 3em; }
+            .poem-japanese {
+                writing-mode: horizontal-tb;
+                height: auto;
+            }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="kanji-large">書道</div>
+            <h1>Japonais Niveau Expert</h1>
+            <p class="subtitle">Calligraphie, Littérature Classique & Philosophie</p>
+        </header>
+
+        <!-- Introduction à la Calligraphie -->
+        <section class="section">
+            <h2>書道 Shodō - L'Art de la Calligraphie</h2>
+            <p>La calligraphie japonaise (書道, "voie de l'écriture") est plus qu'une simple technique d'écriture - c'est une pratique méditative et artistique qui exprime l'essence de l'âme du calligraphe à travers le pinceau.</p>
+
+            <h3>Les Quatre Trésors du Lettré 文房四宝</h3>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-term">筆</div>
+                    <div class="philosophy-reading">Fude - Pinceau</div>
+                    <p>Traditionnellement en poils de chèvre, loup ou belette. Le choix du pinceau influence la fluidité du trait.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">墨</div>
+                    <div class="philosophy-reading">Sumi - Encre</div>
+                    <p>Bâton d'encre solide frotté sur la pierre avec de l'eau. Le processus de préparation est méditatif.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">紙</div>
+                    <div class="philosophy-reading">Kami - Papier</div>
+                    <p>Papier washi traditionnel, absorbant et résistant. Chaque papier a sa texture unique.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">硯</div>
+                    <div class="philosophy-reading">Suzuri - Pierre à encre</div>
+                    <p>Pierre plate pour préparer l'encre. La qualité de la pierre affecte la finesse de l'encre.</p>
+                </div>
+            </div>
+
+            <h3>Les Cinq Styles d'Écriture 書体</h3>
+            <table class="style-table">
+                <tr>
+                    <th>Style</th>
+                    <th>Nom</th>
+                    <th>Caractéristiques</th>
+                    <th>Usage</th>
+                </tr>
+                <tr>
+                    <td>永</td>
+                    <td>篆書 Tensho (Sigillaire)</td>
+                    <td>Ancien, angulaire, symétrique</td>
+                    <td>Sceaux, art décoratif</td>
+                </tr>
+                <tr>
+                    <td>永</td>
+                    <td>隷書 Reisho (Chancellerie)</td>
+                    <td>Traits horizontaux appuyés</td>
+                    <td>Documents officiels anciens</td>
+                </tr>
+                <tr>
+                    <td>永</td>
+                    <td>楷書 Kaisho (Régulier)</td>
+                    <td>Clair, structuré, standard</td>
+                    <td>Enseignement, textes formels</td>
+                </tr>
+                <tr>
+                    <td>永</td>
+                    <td>行書 Gyōsho (Semi-cursif)</td>
+                    <td>Fluide, traits connectés</td>
+                    <td>Correspondance quotidienne</td>
+                </tr>
+                <tr>
+                    <td>永</td>
+                    <td>草書 Sōsho (Cursif)</td>
+                    <td>Abstrait, artistique, rapide</td>
+                    <td>Art, expression personnelle</td>
+                </tr>
+            </table>
+
+            <div class="concept-box">
+                <div class="concept-title">永字八法 Eiji Happō - Les Huit Principes de 永</div>
+                <p>Le caractère 永 (éternité) contient les 8 traits fondamentaux de la calligraphie :</p>
+                <ol>
+                    <li><strong>側 Soku</strong> - Point (le point supérieur)</li>
+                    <li><strong>勒 Roku</strong> - Trait horizontal</li>
+                    <li><strong>努 Do</strong> - Trait vertical</li>
+                    <li><strong>趯 Teki</strong> - Crochet</li>
+                    <li><strong>策 Saku</strong> - Trait montant à droite</li>
+                    <li><strong>掠 Ryaku</strong> - Trait descendant à gauche long</li>
+                    <li><strong>啄 Taku</strong> - Trait descendant à gauche court</li>
+                    <li><strong>磔 Taku</strong> - Trait descendant à droite</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Kanji Avancés JLPT N2-N1 -->
+        <section class="section">
+            <h2>Kanji Avancés (JLPT N2-N1)</h2>
+
+            <h3>Kanji Philosophiques & Spirituels</h3>
+            <div class="advanced-kanji-grid">
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">禅</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">ZEN / -</div>
+                    <div class="kanji-detail">Zen, méditation. 禅宗 (zenshū) - bouddhisme zen</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">悟</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">GO / sato(ru)</div>
+                    <div class="kanji-detail">Éveil, illumination. 悟り (satori) - éveil spirituel</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">魂</div>
+                    <span class="jlpt-badge jlpt-n2">N2</span>
+                    <div class="kanji-info">KON / tamashii</div>
+                    <div class="kanji-detail">Âme, esprit. 霊魂 (reikon) - âme, esprit</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">縁</div>
+                    <span class="jlpt-badge jlpt-n2">N2</span>
+                    <div class="kanji-info">EN / fuchi</div>
+                    <div class="kanji-detail">Karma, lien. 因縁 (innen) - destin, karma</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">儚</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">- / hakanai</div>
+                    <div class="kanji-detail">Éphémère, fugace. 儚い夢 (hakanai yume) - rêve éphémère</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">憂</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">YŪ / u(i), ure(i)</div>
+                    <div class="kanji-detail">Mélancolie, inquiétude. 憂鬱 (yūutsu) - dépression</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">雅</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">GA / miyabi</div>
+                    <div class="kanji-detail">Élégance, raffinement. 優雅 (yūga) - gracieux</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">幽</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">YŪ / -</div>
+                    <div class="kanji-detail">Obscur, mystérieux. 幽玄 (yūgen) - beauté subtile</div>
+                </div>
+            </div>
+
+            <h3>Kanji Littéraires & Poétiques</h3>
+            <div class="advanced-kanji-grid">
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">詠</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">EI / yo(mu)</div>
+                    <div class="kanji-detail">Composer (poésie). 詠歌 (eika) - composition poétique</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">韻</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">IN / -</div>
+                    <div class="kanji-detail">Rime, son. 韻文 (inbun) - poésie rimée</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">趣</div>
+                    <span class="jlpt-badge jlpt-n2">N2</span>
+                    <div class="kanji-info">SHU / omomuki</div>
+                    <div class="kanji-detail">Goût, charme. 風趣 (fūshu) - élégance</div>
+                </div>
+                <div class="advanced-kanji-card">
+                    <div class="advanced-kanji">粋</div>
+                    <span class="jlpt-badge jlpt-n1">N1</span>
+                    <div class="kanji-info">SUI / iki</div>
+                    <div class="kanji-detail">Chic, raffiné. 粋な (iki na) - élégant</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concepts Esthétiques Japonais -->
+        <section class="section">
+            <h2>概念美学 Concepts Esthétiques Japonais</h2>
+            <p>La pensée japonaise a développé des concepts uniques pour exprimer des nuances esthétiques et émotionnelles subtiles.</p>
+
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-term">侘寂</div>
+                    <div class="philosophy-reading">Wabi-Sabi</div>
+                    <p>La beauté de l'imperfection, de l'impermanence et de l'incomplétude. Appréciation de la patine du temps, des fissures, de l'asymétrie.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">物哀</div>
+                    <div class="philosophy-reading">Mono no Aware</div>
+                    <p>"La tristesse des choses" - sensibilité émue face à la nature éphémère de l'existence. Mélancolie douce devant la beauté passagère.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">幽玄</div>
+                    <div class="philosophy-reading">Yūgen</div>
+                    <p>Profondeur mystérieuse, beauté subtile au-delà des mots. Ce qui est suggéré plutôt que montré directement.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">渋い</div>
+                    <div class="philosophy-reading">Shibui</div>
+                    <p>Élégance sobre et discrète. Beauté simple et non ostentatoire, raffinement sans excès.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">間</div>
+                    <div class="philosophy-reading">Ma</div>
+                    <p>L'espace négatif, la pause, l'intervalle. L'importance du vide et du silence dans la composition.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-term">木漏れ日</div>
+                    <div class="philosophy-reading">Komorebi</div>
+                    <p>La lumière du soleil filtrant à travers les feuilles des arbres. Un mot pour une beauté naturelle spécifique.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Poésie Japonaise -->
+        <section class="section">
+            <h2>詩歌 Shika - Poésie Japonaise</h2>
+
+            <h3>俳句 Haiku - L'Art de la Concision</h3>
+            <p>Le haiku est une forme poétique de 17 syllabes (5-7-5) qui capture un instant, souvent lié à la nature et aux saisons.</p>
+
+            <div class="poem-card">
+                <div class="poem-horizontal">古池や蛙飛び込む水の音</div>
+                <div class="poem-romaji">Furu ike ya / kawazu tobikomu / mizu no oto</div>
+                <div class="poem-translation">Vieil étang - une grenouille plonge - le bruit de l'eau</div>
+                <div class="poem-author">— 松尾芭蕉 Matsuo Bashō (1644-1694)</div>
+            </div>
+
+            <div class="poem-card">
+                <div class="poem-horizontal">閑さや岩にしみ入る蝉の声</div>
+                <div class="poem-romaji">Shizukasa ya / iwa ni shimiiru / semi no koe</div>
+                <div class="poem-translation">Silence profond - pénétrant les rochers - la voix des cigales</div>
+                <div class="poem-author">— 松尾芭蕉 Matsuo Bashō</div>
+            </div>
+
+            <div class="poem-card">
+                <div class="poem-horizontal">菜の花や月は東に日は西に</div>
+                <div class="poem-romaji">Na no hana ya / tsuki wa higashi ni / hi wa nishi ni</div>
+                <div class="poem-translation">Fleurs de colza - la lune à l'est - le soleil à l'ouest</div>
+                <div class="poem-author">— 与謝蕪村 Yosa Buson (1716-1784)</div>
+            </div>
+
+            <h3>季語 Kigo - Mots de Saison</h3>
+            <div class="concept-box">
+                <div class="concept-title">Les kigo évoquent une saison spécifique :</div>
+                <p><strong>春 Printemps:</strong> 桜 (sakura), 蛙 (kawazu), 霞 (kasumi - brume)</p>
+                <p><strong>夏 Été:</strong> 蝉 (semi - cigale), 夕立 (yūdachi - averse d'été), 蛍 (hotaru - luciole)</p>
+                <p><strong>秋 Automne:</strong> 月 (tsuki - lune), 紅葉 (momiji), 虫 (mushi - insectes)</p>
+                <p><strong>冬 Hiver:</strong> 雪 (yuki), 霜 (shimo - givre), 炬燵 (kotatsu)</p>
+            </div>
+
+            <h3>短歌 Tanka - 31 Syllabes</h3>
+            <p>Forme plus ancienne en 5-7-5-7-7, permettant plus d'expression émotionnelle.</p>
+
+            <div class="poem-card">
+                <div class="poem-horizontal">花の色は<br>移りにけりな<br>いたづらに<br>わが身世にふる<br>ながめせしまに</div>
+                <div class="poem-romaji">Hana no iro wa / utsurinikeri na / itazura ni / waga mi yo ni furu / nagame seshi ma ni</div>
+                <div class="poem-translation">Les couleurs des fleurs se sont fanées en vain, pendant que je contemplais distraitement les pluies du monde tomber sur ma vie</div>
+                <div class="poem-author">— 小野小町 Ono no Komachi (IXe siècle)</div>
+            </div>
+        </section>
+
+        <!-- Proverbes et Expressions -->
+        <section class="section">
+            <h2>諺 Kotowaza - Proverbes Japonais</h2>
+
+            <div class="proverb-list">
+                <div class="proverb-item">
+                    <div class="proverb-japanese">七転び八起き</div>
+                    <div class="proverb-reading">Nana korobi ya oki</div>
+                    <div class="proverb-literal">Tomber sept fois, se relever huit</div>
+                    <div class="proverb-meaning">La persévérance mène au succès</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">花鳥風月</div>
+                    <div class="proverb-reading">Kachō fūgetsu</div>
+                    <div class="proverb-literal">Fleurs, oiseaux, vent, lune</div>
+                    <div class="proverb-meaning">La beauté de la nature / L'essence de l'esthétique japonaise</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">一期一会</div>
+                    <div class="proverb-reading">Ichi-go ichi-e</div>
+                    <div class="proverb-literal">Une fois, une rencontre</div>
+                    <div class="proverb-meaning">Chérir chaque rencontre car elle ne se reproduira jamais</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">明日は明日の風が吹く</div>
+                    <div class="proverb-reading">Ashita wa ashita no kaze ga fuku</div>
+                    <div class="proverb-literal">Demain, le vent de demain soufflera</div>
+                    <div class="proverb-meaning">Ne pas s'inquiéter de demain / Carpe diem</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">猿も木から落ちる</div>
+                    <div class="proverb-reading">Saru mo ki kara ochiru</div>
+                    <div class="proverb-literal">Même les singes tombent des arbres</div>
+                    <div class="proverb-meaning">Même les experts font des erreurs</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">出る杭は打たれる</div>
+                    <div class="proverb-reading">Deru kui wa utareru</div>
+                    <div class="proverb-literal">Le clou qui dépasse se fait marteler</div>
+                    <div class="proverb-meaning">Se faire remarquer attire les critiques</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">井の中の蛙大海を知らず</div>
+                    <div class="proverb-reading">I no naka no kawazu taikai wo shirazu</div>
+                    <div class="proverb-literal">La grenouille dans le puits ne connaît pas l'océan</div>
+                    <div class="proverb-meaning">Avoir une vision étroite du monde</div>
+                </div>
+
+                <div class="proverb-item">
+                    <div class="proverb-japanese">能ある鷹は爪を隠す</div>
+                    <div class="proverb-reading">Nō aru taka wa tsume wo kakusu</div>
+                    <div class="proverb-literal">Le faucon talentueux cache ses serres</div>
+                    <div class="proverb-meaning">Les vrais talents ne s'affichent pas</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Littérature Classique -->
+        <section class="section">
+            <h2>古典文学 Koten Bungaku - Littérature Classique</h2>
+
+            <h3>源氏物語 Genji Monogatari (XIe siècle)</h3>
+            <p>Considéré comme le premier roman du monde, écrit par 紫式部 Murasaki Shikibu.</p>
+            <div class="classical-text">
+                <div class="classical-japanese">
+                    いづれの御時にか、女御、更衣あまたさぶらひたまひける中に、いとやむごとなき際にはあらぬが、すぐれて時めきたまふありけり。
+                </div>
+                <div class="classical-annotation">
+                    "En quel règne était-ce ? Parmi les nombreuses dames qui servaient à la cour, il y en avait une qui, sans être de très haute naissance, jouissait exceptionnellement des faveurs impériales."
+                </div>
+            </div>
+
+            <h3>枕草子 Makura no Sōshi (Xe siècle)</h3>
+            <p>Notes de chevet de 清少納言 Sei Shōnagon - l'un des premiers essais du monde.</p>
+            <div class="classical-text">
+                <div class="classical-japanese">
+                    春はあけぼの。やうやう白くなりゆく山ぎは、少しあかりて、紫だちたる雲の細くたなびきたる。
+                </div>
+                <div class="classical-annotation">
+                    "Au printemps, c'est l'aube. La ligne des montagnes s'éclaircit peu à peu, légèrement rosée, tandis que de fins nuages violacés s'étirent dans le ciel."
+                </div>
+            </div>
+
+            <h3>方丈記 Hōjōki (1212)</h3>
+            <p>Essai de 鴨長明 Kamo no Chōmei sur l'impermanence.</p>
+            <div class="classical-text">
+                <div class="classical-japanese">
+                    ゆく河の流れは絶えずして、しかももとの水にあらず。よどみに浮かぶうたかたは、かつ消えかつ結びて、久しくとどまりたるためしなし。
+                </div>
+                <div class="classical-annotation">
+                    "Le courant de la rivière coule sans cesse, et pourtant l'eau n'est jamais la même. L'écume qui flotte sur les remous disparaît et se reforme sans jamais demeurer longtemps."
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>Lectures Recommandées</h4>
+                <ul>
+                    <li><strong>源氏物語</strong> - Le Dit du Genji (Murasaki Shikibu)</li>
+                    <li><strong>平家物語</strong> - Le Dit des Heike (épopée guerrière)</li>
+                    <li><strong>徒然草</strong> - Les Heures Oisives (Yoshida Kenkō)</li>
+                    <li><strong>奥の細道</strong> - La Sente étroite du Bout-du-monde (Bashō)</li>
+                    <li><strong>雪国</strong> - Pays de neige (Kawabata Yasunari)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Exercice de Calligraphie -->
+        <section class="section">
+            <h2>練習 Exercice de Calligraphie Méditative</h2>
+
+            <div class="concept-box">
+                <div class="concept-title">Méditation par le Caractère 夢 (Yume - Rêve)</div>
+                <ol>
+                    <li>Préparez votre espace dans le calme et le silence</li>
+                    <li>Respirez profondément trois fois</li>
+                    <li>Contemplez le caractère 夢 pendant 2 minutes</li>
+                    <li>Observez sa structure : 艹 (herbe) + 罒 (filet) + 冖 (toit) + 夕 (soir)</li>
+                    <li>Imaginez : "Les herbes prises dans un filet sous le toit du soir = le rêve"</li>
+                    <li>Tracez le caractère lentement, en respirant avec chaque trait</li>
+                    <li>Répétez 10 fois, en cherchant l'harmonie plutôt que la perfection</li>
+                </ol>
+            </div>
+
+            <div class="calligraphy-grid">
+                <div class="calligraphy-card">
+                    <div class="calligraphy-char">夢</div>
+                    <div class="calligraphy-name">Yume</div>
+                    <div class="calligraphy-meaning">Rêve - 13 traits<br>Évoque l'imagination et l'aspiration</div>
+                </div>
+                <div class="calligraphy-card">
+                    <div class="calligraphy-char">愛</div>
+                    <div class="calligraphy-name">Ai</div>
+                    <div class="calligraphy-meaning">Amour - 13 traits<br>Le cœur (心) au centre du caractère</div>
+                </div>
+                <div class="calligraphy-card">
+                    <div class="calligraphy-char">和</div>
+                    <div class="calligraphy-name">Wa</div>
+                    <div class="calligraphy-meaning">Harmonie, Paix - 8 traits<br>L'essence de la culture japonaise</div>
+                </div>
+                <div class="calligraphy-card">
+                    <div class="calligraphy-char">道</div>
+                    <div class="calligraphy-name">Michi / Dō</div>
+                    <div class="calligraphy-meaning">Voie, Chemin - 12 traits<br>Le chemin spirituel (茶道, 書道, 柔道)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <a href="japonais-intermediaire.html" class="nav-btn">← Niveau Intermédiaire</a>
+            <a href="../user/progression.html" class="nav-btn">Ma Progression</a>
+            <a href="dictionnaire-japonais.html" class="nav-btn">Dictionnaire →</a>
+        </div>
+    </div>
+</body>
+</html>

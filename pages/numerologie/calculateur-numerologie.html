@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur Numérologique Complet | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #9333ea, #c084fc, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(147, 51, 234, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .input-section {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(192, 132, 252, 0.1));
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #c084fc;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .calc-btn {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            border: none;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto 0;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
+        }
+
+        .results-container {
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .result-section h2 {
+            color: #c084fc;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .main-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .number-box {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.25), rgba(192, 132, 252, 0.15));
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .number-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: #9333ea;
+        }
+
+        .number-box .value {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #9333ea, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .number-box .label {
+            color: #e879f9;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .number-box .meaning {
+            font-size: 0.9em;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .inclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .inclusion-cell {
+            background: rgba(147, 51, 234, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .inclusion-cell .num {
+            font-size: 2em;
+            color: #c084fc;
+        }
+
+        .inclusion-cell .count {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #22c55e;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .inclusion-cell .count.missing { background: #ef4444; }
+        .inclusion-cell .count.excess { background: #f59e0b; }
+
+        .cycles-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .cycle-box {
+            text-align: center;
+            padding: 15px 25px;
+            min-width: 150px;
+        }
+
+        .cycle-box .period {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .cycle-box .number {
+            font-size: 2.5em;
+            color: #c084fc;
+        }
+
+        .cycle-box .name {
+            font-size: 0.9em;
+            color: #e879f9;
+            margin-top: 5px;
+        }
+
+        .cycle-arrow {
+            font-size: 2em;
+            color: rgba(147, 51, 234, 0.5);
+        }
+
+        .pinnacles-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .pinnacle-row {
+            display: flex;
+            gap: 30px;
+        }
+
+        .pinnacle-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.1));
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            min-width: 120px;
+        }
+
+        .pinnacle-box .label {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .pinnacle-box .value {
+            font-size: 2.5em;
+            color: #f59e0b;
+        }
+
+        .pinnacle-box .ages {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .challenges-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(239, 68, 68, 0.1));
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid rgba(220, 38, 38, 0.4);
+        }
+
+        .challenge-box .value {
+            font-size: 2.5em;
+            color: #ef4444;
+        }
+
+        .challenge-box .label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .personal-year-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(34, 197, 94, 0.4);
+        }
+
+        .personal-year-box .year {
+            font-size: 1em;
+            opacity: 0.8;
+        }
+
+        .personal-year-box .value {
+            font-size: 3em;
+            color: #22c55e;
+            margin: 10px 0;
+        }
+
+        .personal-year-box .meaning {
+            color: #86efac;
+            font-weight: bold;
+        }
+
+        .interpretation {
+            background: rgba(147, 51, 234, 0.1);
+            border-left: 4px solid #9333ea;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+            line-height: 1.7;
+        }
+
+        .karmic-alert {
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid rgba(220, 38, 38, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .karmic-alert.show { display: block; }
+
+        .karmic-alert h4 {
+            color: #ef4444;
+            margin-bottom: 10px;
+        }
+
+        .print-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .print-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        @media print {
+            body { background: white; color: black; }
+            .nav-buttons, .input-section, .print-btn { display: none; }
+            .number-box, .result-section { break-inside: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .main-numbers { grid-template-columns: repeat(2, 1fr); }
+            .inclusion-grid { grid-template-columns: repeat(3, 1fr); }
+            .pinnacle-row { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 Calculateur Numérologique</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">Analyse complète de votre thème numérologique</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="numerologie-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="numerologie-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="numerologie-expert.html" class="nav-btn">🎓 Expert</a>
+        </nav>
+
+        <!-- Formulaire d'entrée -->
+        <div class="input-section">
+            <div class="input-group">
+                <label>👤 Nom complet (à la naissance)</label>
+                <input type="text" id="fullName" placeholder="Prénom et nom de famille complets">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>📅 Jour de naissance</label>
+                    <input type="number" id="birthDay" min="1" max="31" placeholder="Ex: 15">
+                </div>
+                <div class="input-group">
+                    <label>📅 Mois de naissance</label>
+                    <input type="number" id="birthMonth" min="1" max="12" placeholder="Ex: 3">
+                </div>
+                <div class="input-group">
+                    <label>📅 Année de naissance</label>
+                    <input type="number" id="birthYear" min="1900" max="2025" placeholder="Ex: 1990">
+                </div>
+            </div>
+
+            <button class="calc-btn" onclick="calculateFullTheme()">
+                ✨ Calculer mon thème complet
+            </button>
+        </div>
+
+        <!-- Résultats -->
+        <div class="results-container" id="results">
+
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button class="print-btn" onclick="window.print()">🖨️ Imprimer</button>
+                <button class="print-btn" onclick="saveResults()">💾 Sauvegarder</button>
+            </div>
+
+            <!-- Nombres principaux -->
+            <div class="result-section">
+                <h2>🔢 Vos 5 Nombres Fondamentaux</h2>
+                <div class="main-numbers">
+                    <div class="number-box" id="lifePathBox">
+                        <div class="value" id="lifePath">-</div>
+                        <div class="label">Chemin de Vie</div>
+                        <div class="meaning" id="lifePathMeaning">Votre mission de vie</div>
+                    </div>
+                    <div class="number-box" id="expressionBox">
+                        <div class="value" id="expression">-</div>
+                        <div class="label">Expression</div>
+                        <div class="meaning" id="expressionMeaning">Vos talents naturels</div>
+                    </div>
+                    <div class="number-box" id="soulBox">
+                        <div class="value" id="soul">-</div>
+                        <div class="label">Nombre Intime</div>
+                        <div class="meaning" id="soulMeaning">Vos désirs profonds</div>
+                    </div>
+                    <div class="number-box" id="personalityBox">
+                        <div class="value" id="personality">-</div>
+                        <div class="label">Réalisation</div>
+                        <div class="meaning" id="personalityMeaning">Votre image sociale</div>
+                    </div>
+                    <div class="number-box" id="birthdayBox">
+                        <div class="value" id="birthday">-</div>
+                        <div class="label">Jour de Naissance</div>
+                        <div class="meaning" id="birthdayMeaning">Talent spécial</div>
+                    </div>
+                </div>
+
+                <div class="karmic-alert" id="karmicAlert">
+                    <h4>⚠️ Dette(s) Karmique(s) Détectée(s)</h4>
+                    <p id="karmicDetails"></p>
+                </div>
+            </div>
+
+            <!-- Grille d'inclusion -->
+            <div class="result-section">
+                <h2>📊 Grille d'Inclusion</h2>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 20px;">Fréquence de chaque nombre dans votre nom</p>
+                <div class="inclusion-grid" id="inclusionGrid">
+                    <!-- Généré par JS -->
+                </div>
+                <div class="interpretation" id="inclusionInterpretation"></div>
+            </div>
+
+            <!-- Cycles de vie -->
+            <div class="result-section">
+                <h2>🔄 Vos 3 Cycles de Vie</h2>
+                <div class="cycles-timeline" id="cyclesTimeline">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+
+            <!-- Pinnacles -->
+            <div class="result-section">
+                <h2>🏔️ Vos 4 Pinnacles (Sommets)</h2>
+                <div class="pinnacles-display" id="pinnaclesDisplay">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+
+            <!-- Défis -->
+            <div class="result-section">
+                <h2>⚔️ Vos 4 Défis</h2>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 20px;">Les obstacles à surmonter pour évoluer</p>
+                <div class="challenges-display" id="challengesDisplay">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+
+            <!-- Année personnelle -->
+            <div class="result-section">
+                <h2>📅 Votre Année Personnelle 2025</h2>
+                <div class="personal-year-box" id="personalYearBox">
+                    <div class="year">Année 2025</div>
+                    <div class="value" id="personalYear">-</div>
+                    <div class="meaning" id="personalYearMeaning">-</div>
+                </div>
+                <div class="interpretation" id="yearInterpretation"></div>
+            </div>
+
+            <!-- Interprétation globale -->
+            <div class="result-section">
+                <h2>📜 Synthèse de votre Thème</h2>
+                <div class="interpretation" id="globalInterpretation" style="font-size: 1.05em;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Tables de correspondance
+        const letterValues = {
+            'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+            'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+            'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+        };
+
+        const vowels = ['A', 'E', 'I', 'O', 'U'];
+
+        const meanings = {
+            1: { short: "Leadership, indépendance", full: "Vous êtes un leader né avec un fort désir d'indépendance. Pionnier et innovateur, vous préférez tracer votre propre chemin." },
+            2: { short: "Diplomatie, sensibilité", full: "Vous êtes sensible, intuitif et excellent médiateur. La coopération et l'harmonie sont essentielles à votre équilibre." },
+            3: { short: "Créativité, expression", full: "Vous êtes créatif, expressif et optimiste. La communication et les arts sont vos domaines de prédilection." },
+            4: { short: "Stabilité, organisation", full: "Vous êtes pratique, organisé et travailleur. Vous construisez des fondations solides avec patience et détermination." },
+            5: { short: "Liberté, changement", full: "Vous êtes aventurier, adaptable et curieux. Le changement vous stimule et la liberté est votre oxygène." },
+            6: { short: "Responsabilité, amour", full: "Vous êtes aimant, responsable et protecteur. La famille et l'harmonie domestique sont au cœur de votre vie." },
+            7: { short: "Spiritualité, analyse", full: "Vous êtes introspectif, analytique et spirituel. La quête de vérité et de sagesse guide votre chemin." },
+            8: { short: "Pouvoir, abondance", full: "Vous êtes ambitieux, efficace et visionnaire. Le succès matériel et l'autorité sont à votre portée." },
+            9: { short: "Humanisme, sagesse", full: "Vous êtes compatissant, sage et universel. Servir l'humanité et partager votre sagesse est votre vocation." },
+            11: { short: "Illumination, intuition", full: "Nombre Maître. Vous avez une intuition exceptionnelle et une mission d'inspiration spirituelle." },
+            22: { short: "Maître bâtisseur", full: "Nombre Maître. Vous pouvez transformer les visions en réalité à grande échelle pour le bien de l'humanité." },
+            33: { short: "Maître enseignant", full: "Nombre Maître. Vous incarnez l'amour universel et avez une mission de guérison et d'enseignement spirituel." }
+        };
+
+        const yearMeanings = {
+            1: { title: "Nouveaux départs", desc: "Année idéale pour initier des projets et prendre des décisions importantes." },
+            2: { title: "Patience", desc: "Cultivez les relations et la coopération. Évitez les actions précipitées." },
+            3: { title: "Expression", desc: "Créativité et communication à l'honneur. Socialisez et exprimez-vous." },
+            4: { title: "Construction", desc: "Travail acharné et construction de fondations solides." },
+            5: { title: "Changement", desc: "Changements et aventures. Restez flexible et ouvert." },
+            6: { title: "Responsabilité", desc: "Focus famille et foyer. Engagement et harmonie domestique." },
+            7: { title: "Introspection", desc: "Réflexion intérieure et croissance spirituelle." },
+            8: { title: "Récolte", desc: "Succès matériel et reconnaissance. Gérez bien vos finances." },
+            9: { title: "Achèvement", desc: "Fin de cycle. Terminez et préparez le renouveau." }
+        };
+
+        const karmicDebts = {
+            13: "Dette du travail - Tendance passée à la paresse. Leçon: persévérance.",
+            14: "Dette de la liberté - Abus passés. Leçon: modération.",
+            16: "Dette de l'ego - Orgueil destructeur. Leçon: humilité.",
+            19: "Dette du pouvoir - Abus d'autorité. Leçon: leadership éthique."
+        };
+
+        function reduceNumber(num, keepMaster = true) {
+            while (num > 9) {
+                if (keepMaster && (num === 11 || num === 22 || num === 33)) break;
+                num = String(num).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            return num;
+        }
+
+        function getNameValue(name, type = 'all') {
+            name = name.toUpperCase().replace(/[^A-Z]/g, '');
+            let sum = 0;
+            for (let char of name) {
+                if (type === 'all') sum += letterValues[char] || 0;
+                else if (type === 'vowels' && vowels.includes(char)) sum += letterValues[char] || 0;
+                else if (type === 'consonants' && !vowels.includes(char)) sum += letterValues[char] || 0;
+            }
+            return sum;
+        }
+
+        function getInclusion(name) {
+            name = name.toUpperCase().replace(/[^A-Z]/g, '');
+            const counts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0};
+            for (let char of name) {
+                const val = letterValues[char];
+                if (val) counts[val]++;
+            }
+            return counts;
+        }
+
+        function calculateFullTheme() {
+            const name = document.getElementById('fullName').value.trim();
+            const day = parseInt(document.getElementById('birthDay').value);
+            const month = parseInt(document.getElementById('birthMonth').value);
+            const year = parseInt(document.getElementById('birthYear').value);
+
+            if (!name || !day || !month || !year) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+
+            // Calculs principaux
+            const lifePathRaw = day + month + reduceNumber(year, false);
+            const lifePath = reduceNumber(lifePathRaw);
+
+            const expressionRaw = getNameValue(name, 'all');
+            const expression = reduceNumber(expressionRaw);
+
+            const soulRaw = getNameValue(name, 'vowels');
+            const soul = reduceNumber(soulRaw);
+
+            const personalityRaw = getNameValue(name, 'consonants');
+            const personality = reduceNumber(personalityRaw);
+
+            const birthday = reduceNumber(day);
+
+            // Afficher nombres principaux
+            document.getElementById('lifePath').textContent = lifePath;
+            document.getElementById('lifePathMeaning').textContent = meanings[lifePath].short;
+
+            document.getElementById('expression').textContent = expression;
+            document.getElementById('expressionMeaning').textContent = meanings[expression].short;
+
+            document.getElementById('soul').textContent = soul;
+            document.getElementById('soulMeaning').textContent = meanings[soul].short;
+
+            document.getElementById('personality').textContent = personality;
+            document.getElementById('personalityMeaning').textContent = meanings[personality].short;
+
+            document.getElementById('birthday').textContent = birthday;
+            document.getElementById('birthdayMeaning').textContent = meanings[birthday].short;
+
+            // Vérifier dettes karmiques
+            let karmicFound = [];
+            [lifePathRaw, expressionRaw, soulRaw, personalityRaw].forEach(num => {
+                if ([13, 14, 16, 19].includes(num)) {
+                    karmicFound.push(num);
+                }
+            });
+
+            if (karmicFound.length > 0) {
+                document.getElementById('karmicAlert').classList.add('show');
+                document.getElementById('karmicDetails').innerHTML = karmicFound.map(k =>
+                    `<strong>${k}:</strong> ${karmicDebts[k]}`
+                ).join('<br>');
+            } else {
+                document.getElementById('karmicAlert').classList.remove('show');
+            }
+
+            // Grille d'inclusion
+            const inclusion = getInclusion(name);
+            let inclusionHTML = '';
+            let missing = [], excess = [];
+
+            for (let i = 1; i <= 9; i++) {
+                const count = inclusion[i];
+                let countClass = '';
+                if (count === 0) { countClass = 'missing'; missing.push(i); }
+                else if (count >= 4) { countClass = 'excess'; excess.push(i); }
+
+                inclusionHTML += `
+                    <div class="inclusion-cell">
+                        <div class="num">${i}</div>
+                        <div class="count ${countClass}">${count}</div>
+                    </div>
+                `;
+            }
+            document.getElementById('inclusionGrid').innerHTML = inclusionHTML;
+
+            let inclusionInterp = '';
+            if (missing.length > 0) {
+                inclusionInterp += `<strong>Nombres manquants (${missing.join(', ')}):</strong> Ces énergies demandent un effort conscient pour être développées.<br><br>`;
+            }
+            if (excess.length > 0) {
+                inclusionInterp += `<strong>Nombres en excès (${excess.join(', ')}):</strong> Ces énergies sont très présentes et peuvent parfois créer un déséquilibre.`;
+            }
+            if (!inclusionInterp) {
+                inclusionInterp = 'Votre nom présente un équilibre harmonieux de toutes les énergies numérologiques.';
+            }
+            document.getElementById('inclusionInterpretation').innerHTML = inclusionInterp;
+
+            // Cycles de vie
+            const firstCycleEnd = 36 - lifePath;
+            const secondCycleEnd = firstCycleEnd + 27;
+
+            const cycle1 = reduceNumber(month);
+            const cycle2 = reduceNumber(day);
+            const cycle3 = reduceNumber(year, false);
+
+            document.getElementById('cyclesTimeline').innerHTML = `
+                <div class="cycle-box">
+                    <div class="period">Naissance → ${firstCycleEnd} ans</div>
+                    <div class="number">${cycle1}</div>
+                    <div class="name">1er Cycle</div>
+                </div>
+                <div class="cycle-arrow">→</div>
+                <div class="cycle-box">
+                    <div class="period">${firstCycleEnd} → ${secondCycleEnd} ans</div>
+                    <div class="number">${cycle2}</div>
+                    <div class="name">2ème Cycle</div>
+                </div>
+                <div class="cycle-arrow">→</div>
+                <div class="cycle-box">
+                    <div class="period">${secondCycleEnd} ans → fin</div>
+                    <div class="number">${cycle3}</div>
+                    <div class="name">3ème Cycle</div>
+                </div>
+            `;
+
+            // Pinnacles
+            const p1 = reduceNumber(day + month);
+            const p2 = reduceNumber(day + reduceNumber(year, false));
+            const p3 = reduceNumber(p1 + p2);
+            const p4 = reduceNumber(month + reduceNumber(year, false));
+
+            const p1End = firstCycleEnd;
+            const p2End = p1End + 9;
+            const p3End = p2End + 9;
+
+            document.getElementById('pinnaclesDisplay').innerHTML = `
+                <div class="pinnacle-row">
+                    <div class="pinnacle-box">
+                        <div class="label">4ème Pinnacle</div>
+                        <div class="value">${p4}</div>
+                        <div class="ages">${p3End}+ ans</div>
+                    </div>
+                </div>
+                <div class="pinnacle-row">
+                    <div class="pinnacle-box">
+                        <div class="label">2ème Pinnacle</div>
+                        <div class="value">${p2}</div>
+                        <div class="ages">${p1End}-${p2End} ans</div>
+                    </div>
+                    <div class="pinnacle-box">
+                        <div class="label">3ème Pinnacle</div>
+                        <div class="value">${p3}</div>
+                        <div class="ages">${p2End}-${p3End} ans</div>
+                    </div>
+                </div>
+                <div class="pinnacle-row">
+                    <div class="pinnacle-box">
+                        <div class="label">1er Pinnacle</div>
+                        <div class="value">${p1}</div>
+                        <div class="ages">0-${p1End} ans</div>
+                    </div>
+                </div>
+            `;
+
+            // Défis
+            const c1 = Math.abs(reduceNumber(day) - reduceNumber(month));
+            const c2 = Math.abs(reduceNumber(day) - reduceNumber(year, false));
+            const c3 = Math.abs(c1 - c2);
+            const c4 = Math.abs(reduceNumber(month) - reduceNumber(year, false));
+
+            document.getElementById('challengesDisplay').innerHTML = `
+                <div class="challenge-box">
+                    <div class="value">${c1}</div>
+                    <div class="label">1er Défi</div>
+                </div>
+                <div class="challenge-box">
+                    <div class="value">${c2}</div>
+                    <div class="label">2ème Défi</div>
+                </div>
+                <div class="challenge-box">
+                    <div class="value">${c3}</div>
+                    <div class="label">Défi Principal</div>
+                </div>
+                <div class="challenge-box">
+                    <div class="value">${c4}</div>
+                    <div class="label">4ème Défi</div>
+                </div>
+            `;
+
+            // Année personnelle 2025
+            const universalYear = reduceNumber(2025);
+            const personalYear = reduceNumber(day + month + universalYear);
+
+            document.getElementById('personalYear').textContent = personalYear;
+            document.getElementById('personalYearMeaning').textContent = yearMeanings[personalYear].title;
+            document.getElementById('yearInterpretation').textContent = yearMeanings[personalYear].desc;
+
+            // Interprétation globale
+            document.getElementById('globalInterpretation').innerHTML = `
+                <p><strong>Chemin de Vie ${lifePath}:</strong> ${meanings[lifePath].full}</p>
+                <p><strong>Expression ${expression}:</strong> ${meanings[expression].full}</p>
+                <p><strong>Nombre Intime ${soul}:</strong> Vos désirs profonds sont alignés avec l'énergie du ${soul} - ${meanings[soul].short}.</p>
+                <p><strong>Synthèse:</strong> Avec un Chemin de Vie ${lifePath} et une Expression ${expression}, vous êtes appelé à ${lifePath < 5 ? 'construire et structurer' : 'explorer et transformer'} votre vie en utilisant vos talents naturels de ${meanings[expression].short.toLowerCase()}.</p>
+            `;
+
+            // Afficher les résultats
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveResults() {
+            const name = document.getElementById('fullName').value;
+            const content = document.getElementById('results').innerText;
+            const blob = new Blob([`Thème Numérologique de ${name}\n\n${content}`], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `numerologie_${name.replace(/\s+/g, '_')}.txt`;
+            a.click();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur Calendrier Maya | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d1b2a 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #87ceeb;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        .breadcrumb {
+            margin: 1rem 0 2rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        .breadcrumb a {
+            color: #87ceeb;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .calculator-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.05));
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .date-input-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .date-input-group input, .date-input-group select {
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            font-size: 1.1rem;
+            min-width: 150px;
+        }
+        .date-input-group input:focus, .date-input-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 1.5rem auto;
+        }
+        .calculate-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .result-card {
+            background: rgba(0,0,0,0.4);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .result-card:hover {
+            border-color: #ffd700;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        .result-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3em;
+        }
+        .result-value {
+            font-size: 2.5rem;
+            color: #87ceeb;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+        .result-detail {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .glyph-display {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+        .long-count-display {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .long-count-unit {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+        .long-count-value {
+            font-size: 2rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .long-count-name {
+            font-size: 0.8rem;
+            color: #87ceeb;
+        }
+        .tzolkin-wheel {
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+            position: relative;
+            border: 4px solid #ffd700;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(0,0,0,0.4) 100%);
+        }
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .wheel-center .glyph {
+            font-size: 3rem;
+        }
+        .wheel-center .name {
+            font-size: 1.2rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .nawal-info {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(135, 206, 235, 0.05));
+            border: 2px solid rgba(135, 206, 235, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .nawal-info h3 {
+            color: #87ceeb;
+            margin-bottom: 1rem;
+        }
+        .nawal-attributes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .attribute {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid #87ceeb;
+        }
+        .attribute-label {
+            color: #87ceeb;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: rgba(255, 215, 0, 0.4);
+            border-color: #ffd700;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .haab-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .haab-month {
+            background: linear-gradient(135deg, rgba(0, 128, 0, 0.2), rgba(0, 128, 0, 0.1));
+            border: 2px solid rgba(0, 128, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+        }
+        .haab-month .number {
+            font-size: 3rem;
+            color: #32cd32;
+            font-weight: bold;
+        }
+        .haab-month .name {
+            color: #90ee90;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .birthday-finder {
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.05));
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.05));
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .quiz-question {
+            font-size: 1.3rem;
+            color: #dda0dd;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .quiz-option {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .quiz-option:hover {
+            border-color: #dda0dd;
+            background: rgba(138, 43, 226, 0.2);
+        }
+        .quiz-option.correct {
+            border-color: #32cd32;
+            background: rgba(50, 205, 50, 0.3);
+        }
+        .quiz-option.incorrect {
+            border-color: #ff6347;
+            background: rgba(255, 99, 71, 0.3);
+        }
+        .history-timeline {
+            margin: 2rem 0;
+        }
+        .timeline-event {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+        }
+        .timeline-date {
+            min-width: 120px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        .nav-btn.secondary {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .date-input-group { flex-direction: column; align-items: center; }
+            .quiz-options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculateur du Calendrier Maya</h1>
+            <p class="subtitle">Decouvrez votre date maya et votre Nawal de naissance</p>
+        </header>
+
+        <nav class="breadcrumb">
+            <a href="../../index_production.html">Accueil</a> &gt;
+            <a href="../../index_production.html#maya">Glyphes Mayas</a> &gt;
+            <strong>Calculateur</strong>
+        </nav>
+
+        <!-- Onglets -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('calculator')">Calculateur</button>
+            <button class="tab-btn" onclick="showTab('birthday')">Mon Nawal</button>
+            <button class="tab-btn" onclick="showTab('learn')">Apprendre</button>
+            <button class="tab-btn" onclick="showTab('quiz')">Quiz</button>
+        </div>
+
+        <!-- ONGLET CALCULATEUR -->
+        <div id="tab-calculator" class="tab-content active">
+            <section class="calculator-section">
+                <h2 style="text-align: center; color: #ffd700; margin-bottom: 1rem;">Convertir une Date Gregorienne</h2>
+                <p style="text-align: center; margin-bottom: 1.5rem;">Entrez une date pour decouvrir sa correspondance dans les calendriers mayas</p>
+
+                <div class="date-input-group">
+                    <input type="number" id="day" min="1" max="31" placeholder="Jour" value="26">
+                    <select id="month">
+                        <option value="1">Janvier</option>
+                        <option value="2">Fevrier</option>
+                        <option value="3">Mars</option>
+                        <option value="4">Avril</option>
+                        <option value="5">Mai</option>
+                        <option value="6">Juin</option>
+                        <option value="7">Juillet</option>
+                        <option value="8">Aout</option>
+                        <option value="9">Septembre</option>
+                        <option value="10">Octobre</option>
+                        <option value="11" selected>Novembre</option>
+                        <option value="12">Decembre</option>
+                    </select>
+                    <input type="number" id="year" min="-3000" max="4000" placeholder="Annee" value="2025">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateMayaDate()">Calculer la Date Maya</button>
+
+                <div class="results-grid" id="results">
+                    <!-- Resultats generes par JS -->
+                </div>
+            </section>
+
+            <section class="nawal-info" id="nawal-info" style="display: none;">
+                <h3 id="nawal-title">Votre Nawal du jour</h3>
+                <div class="tzolkin-wheel">
+                    <div class="wheel-center">
+                        <div class="glyph" id="nawal-glyph">?</div>
+                        <div class="name" id="nawal-name">-</div>
+                    </div>
+                </div>
+                <div class="nawal-attributes" id="nawal-attributes">
+                    <!-- Attributs generes par JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ONGLET MON NAWAL -->
+        <div id="tab-birthday" class="tab-content">
+            <section class="birthday-finder">
+                <h2 style="text-align: center; color: #ff69b4; margin-bottom: 1rem;">Decouvrez Votre Nawal de Naissance</h2>
+                <p style="text-align: center; margin-bottom: 1.5rem;">Votre jour de naissance determine votre signe maya et vos traits de personnalite</p>
+
+                <div class="date-input-group">
+                    <input type="number" id="birth-day" min="1" max="31" placeholder="Jour de naissance">
+                    <select id="birth-month">
+                        <option value="1">Janvier</option>
+                        <option value="2">Fevrier</option>
+                        <option value="3">Mars</option>
+                        <option value="4">Avril</option>
+                        <option value="5">Mai</option>
+                        <option value="6">Juin</option>
+                        <option value="7">Juillet</option>
+                        <option value="8">Aout</option>
+                        <option value="9">Septembre</option>
+                        <option value="10">Octobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Decembre</option>
+                    </select>
+                    <input type="number" id="birth-year" min="1900" max="2100" placeholder="Annee de naissance">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateBirthNawal()" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">Decouvrir Mon Nawal</button>
+
+                <div id="birth-results" style="margin-top: 2rem;">
+                    <!-- Resultats generes par JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ONGLET APPRENDRE -->
+        <div id="tab-learn" class="tab-content">
+            <section class="calculator-section">
+                <h2 style="text-align: center; color: #ffd700;">Les Calendriers Mayas</h2>
+
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #87ceeb;">Le Tzolk'in (260 jours)</h3>
+                    <p>Le calendrier sacre de 260 jours combine 13 nombres (1-13) avec 20 nawales (jours sacres). Utilise pour la divination et les ceremonies.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <strong>Formule :</strong> 13 x 20 = 260 jours
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #32cd32;">Le Haab (365 jours)</h3>
+                    <p>Le calendrier solaire de 365 jours comprend 18 mois de 20 jours + 5 jours "malheureux" (Wayeb). Utilise pour l'agriculture et la vie quotidienne.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <strong>Formule :</strong> 18 x 20 + 5 = 365 jours
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #ffd700;">Le Compte Long</h3>
+                    <p>Systeme de datation lineaire utilise pour les grandes periodes historiques.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <ul style="list-style: none; padding: 0;">
+                            <li><strong>1 K'in</strong> = 1 jour</li>
+                            <li><strong>1 Winal</strong> = 20 K'in = 20 jours</li>
+                            <li><strong>1 Tun</strong> = 18 Winal = 360 jours</li>
+                            <li><strong>1 K'atun</strong> = 20 Tun = 7 200 jours (~20 ans)</li>
+                            <li><strong>1 B'ak'tun</strong> = 20 K'atun = 144 000 jours (~394 ans)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="color: #87ceeb; margin-top: 2rem;">La Roue Calendaire (52 ans)</h3>
+                <p>Quand le Tzolk'in et le Haab se synchronisent, cela se produit tous les 52 ans solaires (18 980 jours). Cette periode, appelee "Ronde Calendaire", etait une occasion de grande celebration.</p>
+            </section>
+
+            <section class="history-timeline">
+                <h2 style="color: #ffd700; margin-bottom: 1rem;">Dates Historiques Importantes</h2>
+
+                <div class="timeline-event">
+                    <div class="timeline-date">11 aout 3114 av. J.-C.</div>
+                    <div>
+                        <strong>Creation du monde maya</strong><br>
+                        Date 0.0.0.0.0 du Compte Long - 4 Ajaw 8 Kumk'u
+                    </div>
+                </div>
+
+                <div class="timeline-event">
+                    <div class="timeline-date">21 dec. 2012</div>
+                    <div>
+                        <strong>Fin du 13e B'ak'tun</strong><br>
+                        13.0.0.0.0 - 4 Ajaw 3 K'ank'in - Debut d'un nouveau cycle
+                    </div>
+                </div>
+
+                <div class="timeline-event">
+                    <div class="timeline-date">682 ap. J.-C.</div>
+                    <div>
+                        <strong>Couronnement de K'inich Janaab Pakal</strong><br>
+                        Seigneur de Palenque - 9.10.2.6.6 - 8 Kimi 19 Sek
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ONGLET QUIZ -->
+        <div id="tab-quiz" class="tab-content">
+            <section class="quiz-section">
+                <h2 style="text-align: center; color: #dda0dd; margin-bottom: 1.5rem;">Quiz : Calendrier Maya</h2>
+                <div id="quiz-container">
+                    <p class="quiz-question" id="quiz-question">Combien de jours compte le calendrier Tzolk'in ?</p>
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- Options generees par JS -->
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p>Score : <span id="quiz-score">0</span> / <span id="quiz-total">0</span></p>
+                    <button class="calculate-btn" onclick="nextQuestion()" style="background: linear-gradient(135deg, #9932cc, #8b008b);">Question Suivante</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="glyphes-mayas-intro.html" class="nav-btn secondary">Introduction</a>
+            <a href="maya-intermediaire.html" class="nav-btn">Niveau Intermediaire</a>
+            <a href="maya-expert.html" class="nav-btn">Niveau Expert</a>
+        </div>
+    </div>
+
+    <script>
+        // =============================================
+        // DONNEES DES NAWALES
+        // =============================================
+        const nawales = [
+            { name: 'Imix', glyph: '🐊', meaning: 'Crocodile', traits: 'Creativite, protection, mere nourriciere', element: 'Eau', direction: 'Est', color: 'Rouge' },
+            { name: "Ik'", glyph: '🌬️', meaning: 'Vent', traits: 'Communication, inspiration divine, souffle de vie', element: 'Air', direction: 'Nord', color: 'Blanc' },
+            { name: "Ak'b'al", glyph: '🌙', meaning: 'Nuit', traits: 'Intuition, reves, monde interieur', element: 'Terre', direction: 'Ouest', color: 'Noir' },
+            { name: "K'an", glyph: '🌾', meaning: 'Mais', traits: 'Abondance, fertilite, maturite', element: 'Feu', direction: 'Sud', color: 'Jaune' },
+            { name: 'Chikchan', glyph: '🐍', meaning: 'Serpent', traits: 'Force vitale, kundalini, transformation', element: 'Eau', direction: 'Est', color: 'Rouge' },
+            { name: 'Kimi', glyph: '💀', meaning: 'Mort', traits: 'Transformation, renaissance, ancetres', element: 'Air', direction: 'Nord', color: 'Blanc' },
+            { name: 'Manik', glyph: '🦌', meaning: 'Cerf', traits: 'Guerison, service, habilete', element: 'Terre', direction: 'Ouest', color: 'Noir' },
+            { name: 'Lamat', glyph: '🌟', meaning: 'Etoile', traits: 'Harmonie, Venus, fertilite', element: 'Feu', direction: 'Sud', color: 'Jaune' },
+            { name: 'Muluk', glyph: '💧', meaning: 'Eau', traits: 'Purification, emotions, offrandes', element: 'Eau', direction: 'Est', color: 'Rouge' },
+            { name: 'Ok', glyph: '🐕', meaning: 'Chien', traits: 'Loyaute, guide spirituel, amour', element: 'Air', direction: 'Nord', color: 'Blanc' },
+            { name: 'Chuwen', glyph: '🐵', meaning: 'Singe', traits: 'Art, creation, tissage du temps', element: 'Terre', direction: 'Ouest', color: 'Noir' },
+            { name: 'Eb', glyph: '🌿', meaning: 'Herbe', traits: 'Chemin de vie, destin, croissance', element: 'Feu', direction: 'Sud', color: 'Jaune' },
+            { name: "B'en", glyph: '🎋', meaning: 'Roseau', traits: 'Autorite, pilier, croissance verticale', element: 'Eau', direction: 'Est', color: 'Rouge' },
+            { name: 'Ix', glyph: '🐆', meaning: 'Jaguar', traits: 'Magie, feminin sacre, force de la terre', element: 'Air', direction: 'Nord', color: 'Blanc' },
+            { name: 'Men', glyph: '🦅', meaning: 'Aigle', traits: 'Vision, liberte, conscience elevee', element: 'Terre', direction: 'Ouest', color: 'Noir' },
+            { name: 'Kib', glyph: '🦉', meaning: 'Hibou', traits: 'Sagesse ancestrale, karma, pardon', element: 'Feu', direction: 'Sud', color: 'Jaune' },
+            { name: "Kab'an", glyph: '🌍', meaning: 'Terre', traits: 'Mouvement, evolution, intelligence', element: 'Eau', direction: 'Est', color: 'Rouge' },
+            { name: "Etz'nab", glyph: '🔪', meaning: 'Silex', traits: 'Verite, miroir, sacrifice', element: 'Air', direction: 'Nord', color: 'Blanc' },
+            { name: 'Kawak', glyph: '⛈️', meaning: 'Tempete', traits: 'Purification, guerison, feu celeste', element: 'Terre', direction: 'Ouest', color: 'Noir' },
+            { name: 'Ajaw', glyph: '☀️', meaning: 'Seigneur', traits: 'Soleil, illumination, maitrise', element: 'Feu', direction: 'Sud', color: 'Jaune' }
+        ];
+
+        const haabMonths = [
+            'Pop', 'Wo', 'Sip', 'Sotz', 'Sek', 'Xul', 'Yaxkin', 'Mol', 'Chen', 'Yax',
+            'Sak', 'Keh', 'Mak', 'Kankin', 'Muwan', 'Pax', 'Kayab', 'Kumku', 'Wayeb'
+        ];
+
+        // Constante de correlation GMT
+        const GMT_CORRELATION = 584283;
+
+        // =============================================
+        // CALCULS CALENDRIER MAYA
+        // =============================================
+        function gregorianToJulianDay(day, month, year) {
+            const a = Math.floor((14 - month) / 12);
+            const y = year + 4800 - a;
+            const m = month + 12 * a - 3;
+            return day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+        }
+
+        function julianDayToMaya(jd) {
+            const daysSinceCreation = jd - GMT_CORRELATION;
+
+            // Compte Long
+            let remaining = daysSinceCreation;
+            const baktun = Math.floor(remaining / 144000);
+            remaining %= 144000;
+            const katun = Math.floor(remaining / 7200);
+            remaining %= 7200;
+            const tun = Math.floor(remaining / 360);
+            remaining %= 360;
+            const winal = Math.floor(remaining / 20);
+            const kin = remaining % 20;
+
+            // Tzolk'in
+            const tzolkinNumber = ((daysSinceCreation % 13) + 13) % 13 + 1;
+            const tzolkinDay = ((daysSinceCreation % 20) + 20) % 20;
+
+            // Haab
+            const haabDays = ((daysSinceCreation + 348) % 365 + 365) % 365;
+            const haabDay = haabDays % 20;
+            const haabMonth = Math.floor(haabDays / 20);
+
+            return {
+                longCount: { baktun, katun, tun, winal, kin },
+                tzolkin: { number: tzolkinNumber, dayIndex: tzolkinDay, nawal: nawales[tzolkinDay] },
+                haab: { day: haabDay, monthIndex: haabMonth, month: haabMonths[haabMonth] }
+            };
+        }
+
+        function calculateMayaDate() {
+            const day = parseInt(document.getElementById('day').value);
+            const month = parseInt(document.getElementById('month').value);
+            const year = parseInt(document.getElementById('year').value);
+
+            if (!day || !month || !year) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+
+            const jd = gregorianToJulianDay(day, month, year);
+            const maya = julianDayToMaya(jd);
+
+            displayResults(maya);
+        }
+
+        function displayResults(maya) {
+            const resultsDiv = document.getElementById('results');
+            const nawalInfo = document.getElementById('nawal-info');
+
+            resultsDiv.innerHTML = `
+                <div class="result-card">
+                    <h3>Compte Long</h3>
+                    <div class="long-count-display">
+                        <div class="long-count-unit">
+                            <div class="long-count-value">${maya.longCount.baktun}</div>
+                            <div class="long-count-name">B'ak'tun</div>
+                        </div>
+                        <div class="long-count-unit">
+                            <div class="long-count-value">${maya.longCount.katun}</div>
+                            <div class="long-count-name">K'atun</div>
+                        </div>
+                        <div class="long-count-unit">
+                            <div class="long-count-value">${maya.longCount.tun}</div>
+                            <div class="long-count-name">Tun</div>
+                        </div>
+                        <div class="long-count-unit">
+                            <div class="long-count-value">${maya.longCount.winal}</div>
+                            <div class="long-count-name">Winal</div>
+                        </div>
+                        <div class="long-count-unit">
+                            <div class="long-count-value">${maya.longCount.kin}</div>
+                            <div class="long-count-name">K'in</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Tzolk'in (Sacre)</h3>
+                    <div class="glyph-display">${maya.tzolkin.nawal.glyph}</div>
+                    <div class="result-value">${maya.tzolkin.number} ${maya.tzolkin.nawal.name}</div>
+                    <div class="result-detail">"${maya.tzolkin.nawal.meaning}"</div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Haab (Solaire)</h3>
+                    <div class="haab-visual">
+                        <div class="haab-month">
+                            <div class="number">${maya.haab.day}</div>
+                            <div class="name">${maya.haab.month}</div>
+                        </div>
+                    </div>
+                    <div class="result-detail">Mois ${maya.haab.monthIndex + 1} sur 19</div>
+                </div>
+            `;
+
+            // Afficher les infos du Nawal
+            nawalInfo.style.display = 'block';
+            document.getElementById('nawal-glyph').textContent = maya.tzolkin.nawal.glyph;
+            document.getElementById('nawal-name').textContent = maya.tzolkin.nawal.name;
+            document.getElementById('nawal-title').textContent = `${maya.tzolkin.number} ${maya.tzolkin.nawal.name} - ${maya.tzolkin.nawal.meaning}`;
+
+            document.getElementById('nawal-attributes').innerHTML = `
+                <div class="attribute">
+                    <div class="attribute-label">Traits de personnalite</div>
+                    ${maya.tzolkin.nawal.traits}
+                </div>
+                <div class="attribute">
+                    <div class="attribute-label">Element</div>
+                    ${maya.tzolkin.nawal.element}
+                </div>
+                <div class="attribute">
+                    <div class="attribute-label">Direction</div>
+                    ${maya.tzolkin.nawal.direction}
+                </div>
+                <div class="attribute">
+                    <div class="attribute-label">Couleur</div>
+                    ${maya.tzolkin.nawal.color}
+                </div>
+            `;
+        }
+
+        function calculateBirthNawal() {
+            const day = parseInt(document.getElementById('birth-day').value);
+            const month = parseInt(document.getElementById('birth-month').value);
+            const year = parseInt(document.getElementById('birth-year').value);
+
+            if (!day || !month || !year) {
+                alert('Veuillez remplir votre date de naissance');
+                return;
+            }
+
+            const jd = gregorianToJulianDay(day, month, year);
+            const maya = julianDayToMaya(jd);
+
+            document.getElementById('birth-results').innerHTML = `
+                <div style="text-align: center; padding: 2rem; background: rgba(0,0,0,0.3); border-radius: 20px; border: 2px solid #ff69b4;">
+                    <h3 style="color: #ff69b4; margin-bottom: 1rem;">Votre Nawal de Naissance</h3>
+                    <div style="font-size: 5rem;">${maya.tzolkin.nawal.glyph}</div>
+                    <div style="font-size: 2rem; color: #ffd700; margin: 1rem 0;">${maya.tzolkin.number} ${maya.tzolkin.nawal.name}</div>
+                    <div style="font-size: 1.3rem; color: #87ceeb;">"${maya.tzolkin.nawal.meaning}"</div>
+
+                    <div style="margin-top: 2rem; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        <h4 style="color: #ff69b4; margin-bottom: 1rem;">Vos Caracteristiques :</h4>
+                        <p><strong>Traits :</strong> ${maya.tzolkin.nawal.traits}</p>
+                        <p><strong>Element :</strong> ${maya.tzolkin.nawal.element}</p>
+                        <p><strong>Direction :</strong> ${maya.tzolkin.nawal.direction}</p>
+                        <p><strong>Couleur :</strong> ${maya.tzolkin.nawal.color}</p>
+
+                        <h4 style="color: #ff69b4; margin: 1.5rem 0 1rem;">Votre Date Maya Complete :</h4>
+                        <p><strong>Compte Long :</strong> ${maya.longCount.baktun}.${maya.longCount.katun}.${maya.longCount.tun}.${maya.longCount.winal}.${maya.longCount.kin}</p>
+                        <p><strong>Tzolk'in :</strong> ${maya.tzolkin.number} ${maya.tzolkin.nawal.name}</p>
+                        <p><strong>Haab :</strong> ${maya.haab.day} ${maya.haab.month}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // =============================================
+        // ONGLETS
+        // =============================================
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // =============================================
+        // QUIZ
+        // =============================================
+        const quizQuestions = [
+            { q: 'Combien de jours compte le calendrier Tzolk\'in ?', options: ['260', '365', '360', '52'], correct: 0 },
+            { q: 'Combien de mois compte le calendrier Haab ?', options: ['12', '18', '20', '19'], correct: 3 },
+            { q: 'Qu\'est-ce que le Wayeb ?', options: ['Un dieu maya', '5 jours malheureux', 'Le premier mois', 'Une pyramide'], correct: 1 },
+            { q: 'Quelle est la duree d\'un B\'ak\'tun ?', options: ['20 jours', '360 jours', '~394 ans', '52 ans'], correct: 2 },
+            { q: 'Quel nawal represente le jaguar ?', options: ['Imix', 'Ix', 'Ok', 'Men'], correct: 1 },
+            { q: 'Quand a eu lieu la "creation" maya (0.0.0.0.0) ?', options: ['3114 av. J.-C.', '2012 ap. J.-C.', '1 ap. J.-C.', '5000 av. J.-C.'], correct: 0 },
+            { q: 'Combien y a-t-il de nawales (jours sacres) ?', options: ['13', '18', '20', '260'], correct: 2 },
+            { q: 'Qu\'est-ce que la Roue Calendaire ?', options: ['Un monument', 'Cycle de 52 ans', 'Un codex', 'Un rituel'], correct: 1 }
+        ];
+
+        let currentQuestion = 0;
+        let quizScore = 0;
+
+        function loadQuizQuestion() {
+            const q = quizQuestions[currentQuestion];
+            document.getElementById('quiz-question').textContent = q.q;
+
+            const optionsDiv = document.getElementById('quiz-options');
+            optionsDiv.innerHTML = q.options.map((opt, i) =>
+                `<div class="quiz-option" onclick="checkQuizAnswer(${i})">${opt}</div>`
+            ).join('');
+        }
+
+        function checkQuizAnswer(index) {
+            const q = quizQuestions[currentQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+
+            options.forEach((opt, i) => {
+                opt.style.pointerEvents = 'none';
+                if (i === q.correct) opt.classList.add('correct');
+                else if (i === index) opt.classList.add('incorrect');
+            });
+
+            if (index === q.correct) quizScore++;
+
+            document.getElementById('quiz-score').textContent = quizScore;
+            document.getElementById('quiz-total').textContent = currentQuestion + 1;
+        }
+
+        function nextQuestion() {
+            currentQuestion = (currentQuestion + 1) % quizQuestions.length;
+            if (currentQuestion === 0) quizScore = 0;
+            loadQuizQuestion();
+        }
+
+        // Initialisation
+        window.addEventListener('DOMContentLoaded', () => {
+            loadQuizQuestion();
+            // Calculer la date d'aujourd'hui
+            calculateMayaDate();
+        });
+    </script>
+</body>
+</html>

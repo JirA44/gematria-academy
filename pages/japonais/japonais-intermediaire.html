@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japonais Intermédiaire - Kanji & Grammaire | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .kanji-large {
+            font-size: 4em;
+            color: #ff6b6b;
+            text-shadow: 0 0 30px rgba(255,107,107,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #aaa;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,107,107,0.2);
+        }
+
+        h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,107,107,0.3);
+        }
+
+        h3 {
+            color: #ffa502;
+            margin: 20px 0 15px;
+        }
+
+        /* Kanji Grid */
+        .kanji-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .kanji-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .kanji-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,107,107,0.2);
+            border-color: #ff6b6b;
+        }
+
+        .kanji-char {
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255,107,107,0.5);
+            margin-bottom: 10px;
+        }
+
+        .kanji-reading {
+            font-size: 1.2em;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+
+        .kanji-meaning {
+            color: #ffa502;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .kanji-strokes {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .kanji-examples {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95em;
+        }
+
+        /* Reading types */
+        .on-reading {
+            color: #ff6b6b;
+        }
+
+        .kun-reading {
+            color: #4ecdc4;
+        }
+
+        /* Radical Section */
+        .radical-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .radical-table th,
+        .radical-table td {
+            padding: 12px;
+            border: 1px solid rgba(255,107,107,0.2);
+            text-align: center;
+        }
+
+        .radical-table th {
+            background: rgba(255,107,107,0.2);
+            color: #ff6b6b;
+        }
+
+        .radical-table td:first-child {
+            font-size: 2em;
+        }
+
+        /* Grammar Section */
+        .grammar-box {
+            background: rgba(78,205,196,0.1);
+            border-left: 4px solid #4ecdc4;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .grammar-pattern {
+            font-size: 1.3em;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .example-sentence {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .japanese-text {
+            font-size: 1.4em;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .romaji {
+            color: #888;
+            font-style: italic;
+        }
+
+        .translation {
+            color: #ffa502;
+        }
+
+        /* Particle Section */
+        .particle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .particle-card {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(78,205,196,0.3);
+        }
+
+        .particle {
+            font-size: 2.5em;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+        }
+
+        .particle-name {
+            color: #ffa502;
+            font-weight: bold;
+        }
+
+        /* Verb Conjugation */
+        .conjugation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .conjugation-table th,
+        .conjugation-table td {
+            padding: 12px;
+            border: 1px solid rgba(78,205,196,0.2);
+            text-align: center;
+        }
+
+        .conjugation-table th {
+            background: rgba(78,205,196,0.2);
+            color: #4ecdc4;
+        }
+
+        .verb-type-1 {
+            background: rgba(255,107,107,0.1);
+        }
+
+        .verb-type-2 {
+            background: rgba(78,205,196,0.1);
+        }
+
+        /* Quiz */
+        .quiz-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,107,107,0.3);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #e0e0e0;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255,107,107,0.2);
+            border-color: #ff6b6b;
+        }
+
+        .quiz-option.correct {
+            background: rgba(46,204,113,0.3);
+            border-color: #2ecc71;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(231,76,60,0.3);
+            border-color: #e74c3c;
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+        }
+
+        /* Stroke Order */
+        .stroke-order {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .stroke-step {
+            width: 60px;
+            height: 60px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #ff6b6b;
+            position: relative;
+        }
+
+        .stroke-step::after {
+            content: attr(data-step);
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(255,165,2,0.1);
+            border-left: 4px solid #ffa502;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .tip-box {
+            background: rgba(46,204,113,0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Numbers section */
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .number-card {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .number-kanji {
+            font-size: 2.5em;
+            color: #ff6b6b;
+        }
+
+        .number-value {
+            font-size: 1.5em;
+            color: #ffa502;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .kanji-large { font-size: 3em; }
+            .kanji-char { font-size: 3em; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="kanji-large">漢字</div>
+            <h1>Japonais Niveau Intermédiaire</h1>
+            <p class="subtitle">Kanji essentiels, Grammaire & Structure</p>
+        </header>
+
+        <!-- Introduction aux Kanji -->
+        <section class="section">
+            <h2>Introduction aux Kanji 漢字</h2>
+            <p>Les <strong>Kanji</strong> (漢字, "caractères Han") sont des logogrammes empruntés au chinois. Il existe plus de 50 000 kanji, mais environ <strong>2 136 Jōyō Kanji</strong> sont considérés comme essentiels pour la vie quotidienne au Japon.</p>
+
+            <div class="info-box">
+                <h4>Les deux lectures des Kanji</h4>
+                <p><strong class="on-reading">On'yomi (音読み)</strong> - Lecture sino-japonaise, dérivée du chinois</p>
+                <p><strong class="kun-reading">Kun'yomi (訓読み)</strong> - Lecture japonaise native</p>
+            </div>
+
+            <h3>Les 7 Types de Kanji</h3>
+            <table class="radical-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Japonais</th>
+                    <th>Description</th>
+                    <th>Exemple</th>
+                </tr>
+                <tr>
+                    <td>象形</td>
+                    <td>Shōkei</td>
+                    <td>Pictogrammes (images simplifiées)</td>
+                    <td>山 (montagne), 日 (soleil)</td>
+                </tr>
+                <tr>
+                    <td>指事</td>
+                    <td>Shiji</td>
+                    <td>Idéogrammes simples</td>
+                    <td>上 (haut), 下 (bas)</td>
+                </tr>
+                <tr>
+                    <td>会意</td>
+                    <td>Kaii</td>
+                    <td>Composés idéographiques</td>
+                    <td>森 (forêt = 3× 木)</td>
+                </tr>
+                <tr>
+                    <td>形声</td>
+                    <td>Keisei</td>
+                    <td>Composés phonétiques (80%)</td>
+                    <td>清 (clair) = 氵+ 青</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Radicaux Essentiels -->
+        <section class="section">
+            <h2>Les Radicaux (部首 Bushu) Essentiels</h2>
+            <p>Les radicaux sont les composants de base des kanji. Les connaître aide à mémoriser et deviner le sens des kanji.</p>
+
+            <table class="radical-table">
+                <tr>
+                    <th>Radical</th>
+                    <th>Nom</th>
+                    <th>Signification</th>
+                    <th>Exemples</th>
+                </tr>
+                <tr>
+                    <td>氵</td>
+                    <td>Sanzui</td>
+                    <td>Eau</td>
+                    <td>海 (mer), 泳 (nager), 洗 (laver)</td>
+                </tr>
+                <tr>
+                    <td>火</td>
+                    <td>Hi</td>
+                    <td>Feu</td>
+                    <td>焼 (brûler), 煙 (fumée)</td>
+                </tr>
+                <tr>
+                    <td>木</td>
+                    <td>Ki</td>
+                    <td>Arbre/Bois</td>
+                    <td>林 (bosquet), 森 (forêt)</td>
+                </tr>
+                <tr>
+                    <td>土</td>
+                    <td>Tsuchi</td>
+                    <td>Terre</td>
+                    <td>地 (sol), 場 (lieu)</td>
+                </tr>
+                <tr>
+                    <td>金</td>
+                    <td>Kane</td>
+                    <td>Métal/Or</td>
+                    <td>銀 (argent), 鉄 (fer)</td>
+                </tr>
+                <tr>
+                    <td>人/亻</td>
+                    <td>Hito/Ninben</td>
+                    <td>Personne</td>
+                    <td>休 (repos), 体 (corps)</td>
+                </tr>
+                <tr>
+                    <td>心/忄</td>
+                    <td>Kokoro/Risshinben</td>
+                    <td>Cœur/Esprit</td>
+                    <td>思 (penser), 悲 (triste)</td>
+                </tr>
+                <tr>
+                    <td>言</td>
+                    <td>Kotoba</td>
+                    <td>Parole</td>
+                    <td>話 (parler), 語 (langue)</td>
+                </tr>
+                <tr>
+                    <td>手/扌</td>
+                    <td>Te/Tehen</td>
+                    <td>Main</td>
+                    <td>持 (tenir), 打 (frapper)</td>
+                </tr>
+                <tr>
+                    <td>目</td>
+                    <td>Me</td>
+                    <td>Œil</td>
+                    <td>見 (voir), 眠 (dormir)</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 50 Kanji Essentiels -->
+        <section class="section">
+            <h2>50 Kanji Essentiels (JLPT N5-N4)</h2>
+
+            <h3>Nombres 数字</h3>
+            <div class="number-grid">
+                <div class="number-card">
+                    <div class="number-kanji">一</div>
+                    <div class="number-value">1 - ichi</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">二</div>
+                    <div class="number-value">2 - ni</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">三</div>
+                    <div class="number-value">3 - san</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">四</div>
+                    <div class="number-value">4 - shi/yon</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">五</div>
+                    <div class="number-value">5 - go</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">六</div>
+                    <div class="number-value">6 - roku</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">七</div>
+                    <div class="number-value">7 - shichi/nana</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">八</div>
+                    <div class="number-value">8 - hachi</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">九</div>
+                    <div class="number-value">9 - kyū/ku</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">十</div>
+                    <div class="number-value">10 - jū</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">百</div>
+                    <div class="number-value">100 - hyaku</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-kanji">千</div>
+                    <div class="number-value">1000 - sen</div>
+                </div>
+            </div>
+
+            <h3>Nature & Temps 自然・時</h3>
+            <div class="kanji-grid">
+                <div class="kanji-card">
+                    <div class="kanji-char">日</div>
+                    <div class="kanji-reading"><span class="on-reading">NICHI, JITSU</span> / <span class="kun-reading">hi, ka</span></div>
+                    <div class="kanji-meaning">Soleil, Jour</div>
+                    <div class="kanji-strokes">4 traits</div>
+                    <div class="kanji-examples">日本 (Nihon) Japon | 今日 (kyō) aujourd'hui</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">月</div>
+                    <div class="kanji-reading"><span class="on-reading">GETSU, GATSU</span> / <span class="kun-reading">tsuki</span></div>
+                    <div class="kanji-meaning">Lune, Mois</div>
+                    <div class="kanji-strokes">4 traits</div>
+                    <div class="kanji-examples">月曜日 (getsuyōbi) lundi | 一月 (ichigatsu) janvier</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">火</div>
+                    <div class="kanji-reading"><span class="on-reading">KA</span> / <span class="kun-reading">hi</span></div>
+                    <div class="kanji-meaning">Feu</div>
+                    <div class="kanji-strokes">4 traits</div>
+                    <div class="kanji-examples">火曜日 (kayōbi) mardi | 火山 (kazan) volcan</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">水</div>
+                    <div class="kanji-reading"><span class="on-reading">SUI</span> / <span class="kun-reading">mizu</span></div>
+                    <div class="kanji-meaning">Eau</div>
+                    <div class="kanji-strokes">4 traits</div>
+                    <div class="kanji-examples">水曜日 (suiyōbi) mercredi | 水泳 (suiei) natation</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">木</div>
+                    <div class="kanji-reading"><span class="on-reading">MOKU, BOKU</span> / <span class="kun-reading">ki</span></div>
+                    <div class="kanji-meaning">Arbre, Bois</div>
+                    <div class="kanji-strokes">4 traits</div>
+                    <div class="kanji-examples">木曜日 (mokuyōbi) jeudi | 木材 (mokuzai) bois</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">金</div>
+                    <div class="kanji-reading"><span class="on-reading">KIN, KON</span> / <span class="kun-reading">kane</span></div>
+                    <div class="kanji-meaning">Or, Métal, Argent</div>
+                    <div class="kanji-strokes">8 traits</div>
+                    <div class="kanji-examples">金曜日 (kinyōbi) vendredi | お金 (okane) argent</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">土</div>
+                    <div class="kanji-reading"><span class="on-reading">DO, TO</span> / <span class="kun-reading">tsuchi</span></div>
+                    <div class="kanji-meaning">Terre, Sol</div>
+                    <div class="kanji-strokes">3 traits</div>
+                    <div class="kanji-examples">土曜日 (doyōbi) samedi | 土地 (tochi) terrain</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">山</div>
+                    <div class="kanji-reading"><span class="on-reading">SAN</span> / <span class="kun-reading">yama</span></div>
+                    <div class="kanji-meaning">Montagne</div>
+                    <div class="kanji-strokes">3 traits</div>
+                    <div class="kanji-examples">富士山 (Fujisan) Mt Fuji | 山道 (yamamichi) sentier</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">川</div>
+                    <div class="kanji-reading"><span class="on-reading">SEN</span> / <span class="kun-reading">kawa</span></div>
+                    <div class="kanji-meaning">Rivière</div>
+                    <div class="kanji-strokes">3 traits</div>
+                    <div class="kanji-examples">川上 (kawakami) amont | 小川 (ogawa) ruisseau</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">空</div>
+                    <div class="kanji-reading"><span class="on-reading">KŪ</span> / <span class="kun-reading">sora, kara</span></div>
+                    <div class="kanji-meaning">Ciel, Vide</div>
+                    <div class="kanji-strokes">8 traits</div>
+                    <div class="kanji-examples">空気 (kūki) air | 青空 (aozora) ciel bleu</div>
+                </div>
+            </div>
+
+            <h3>Personnes & Corps 人・体</h3>
+            <div class="kanji-grid">
+                <div class="kanji-card">
+                    <div class="kanji-char">人</div>
+                    <div class="kanji-reading"><span class="on-reading">JIN, NIN</span> / <span class="kun-reading">hito</span></div>
+                    <div class="kanji-meaning">Personne</div>
+                    <div class="kanji-strokes">2 traits</div>
+                    <div class="kanji-examples">日本人 (nihonjin) japonais | 人生 (jinsei) vie</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">女</div>
+                    <div class="kanji-reading"><span class="on-reading">JO, NYO</span> / <span class="kun-reading">onna</span></div>
+                    <div class="kanji-meaning">Femme</div>
+                    <div class="kanji-strokes">3 traits</div>
+                    <div class="kanji-examples">女性 (josei) femme | 女の子 (onnanoko) fille</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">男</div>
+                    <div class="kanji-reading"><span class="on-reading">DAN, NAN</span> / <span class="kun-reading">otoko</span></div>
+                    <div class="kanji-meaning">Homme</div>
+                    <div class="kanji-strokes">7 traits</div>
+                    <div class="kanji-examples">男性 (dansei) homme | 男の子 (otokonoko) garçon</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">子</div>
+                    <div class="kanji-reading"><span class="on-reading">SHI, SU</span> / <span class="kun-reading">ko</span></div>
+                    <div class="kanji-meaning">Enfant</div>
+                    <div class="kanji-strokes">3 traits</div>
+                    <div class="kanji-examples">子供 (kodomo) enfant | 電子 (denshi) électron</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">目</div>
+                    <div class="kanji-reading"><span class="on-reading">MOKU</span> / <span class="kun-reading">me</span></div>
+                    <div class="kanji-meaning">Œil</div>
+                    <div class="kanji-strokes">5 traits</div>
+                    <div class="kanji-examples">目的 (mokuteki) but | 目玉 (medama) globe oculaire</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">口</div>
+                    <div class="kanji-reading"><span class="on-reading">KŌ, KU</span> / <span class="kun-reading">kuchi</span></div>
+                    <div class="kanji-meaning">Bouche</div>
+                    <div class="kanji-strokes">3 traits</div>
+                    <div class="kanji-examples">入口 (iriguchi) entrée | 出口 (deguchi) sortie</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">手</div>
+                    <div class="kanji-reading"><span class="on-reading">SHU</span> / <span class="kun-reading">te</span></div>
+                    <div class="kanji-meaning">Main</div>
+                    <div class="kanji-strokes">4 traits</div>
+                    <div class="kanji-examples">手紙 (tegami) lettre | 上手 (jōzu) habile</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">足</div>
+                    <div class="kanji-reading"><span class="on-reading">SOKU</span> / <span class="kun-reading">ashi, ta(riru)</span></div>
+                    <div class="kanji-meaning">Pied, Jambe, Suffisant</div>
+                    <div class="kanji-strokes">7 traits</div>
+                    <div class="kanji-examples">足りる (tariru) suffire | 遠足 (ensoku) excursion</div>
+                </div>
+            </div>
+
+            <h3>Actions & Verbes 動詞</h3>
+            <div class="kanji-grid">
+                <div class="kanji-card">
+                    <div class="kanji-char">見</div>
+                    <div class="kanji-reading"><span class="on-reading">KEN</span> / <span class="kun-reading">mi(ru)</span></div>
+                    <div class="kanji-meaning">Voir, Regarder</div>
+                    <div class="kanji-strokes">7 traits</div>
+                    <div class="kanji-examples">見る (miru) voir | 意見 (iken) opinion</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">聞</div>
+                    <div class="kanji-reading"><span class="on-reading">BUN, MON</span> / <span class="kun-reading">ki(ku)</span></div>
+                    <div class="kanji-meaning">Écouter, Entendre</div>
+                    <div class="kanji-strokes">14 traits</div>
+                    <div class="kanji-examples">聞く (kiku) écouter | 新聞 (shinbun) journal</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">食</div>
+                    <div class="kanji-reading"><span class="on-reading">SHOKU</span> / <span class="kun-reading">ta(beru)</span></div>
+                    <div class="kanji-meaning">Manger</div>
+                    <div class="kanji-strokes">9 traits</div>
+                    <div class="kanji-examples">食べる (taberu) manger | 食事 (shokuji) repas</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">飲</div>
+                    <div class="kanji-reading"><span class="on-reading">IN</span> / <span class="kun-reading">no(mu)</span></div>
+                    <div class="kanji-meaning">Boire</div>
+                    <div class="kanji-strokes">12 traits</div>
+                    <div class="kanji-examples">飲む (nomu) boire | 飲み物 (nomimono) boisson</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">読</div>
+                    <div class="kanji-reading"><span class="on-reading">DOKU</span> / <span class="kun-reading">yo(mu)</span></div>
+                    <div class="kanji-meaning">Lire</div>
+                    <div class="kanji-strokes">14 traits</div>
+                    <div class="kanji-examples">読む (yomu) lire | 読書 (dokusho) lecture</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">書</div>
+                    <div class="kanji-reading"><span class="on-reading">SHO</span> / <span class="kun-reading">ka(ku)</span></div>
+                    <div class="kanji-meaning">Écrire</div>
+                    <div class="kanji-strokes">10 traits</div>
+                    <div class="kanji-examples">書く (kaku) écrire | 辞書 (jisho) dictionnaire</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">行</div>
+                    <div class="kanji-reading"><span class="on-reading">KŌ, GYŌ</span> / <span class="kun-reading">i(ku), yu(ku)</span></div>
+                    <div class="kanji-meaning">Aller</div>
+                    <div class="kanji-strokes">6 traits</div>
+                    <div class="kanji-examples">行く (iku) aller | 旅行 (ryokō) voyage</div>
+                </div>
+                <div class="kanji-card">
+                    <div class="kanji-char">来</div>
+                    <div class="kanji-reading"><span class="on-reading">RAI</span> / <span class="kun-reading">ku(ru)</span></div>
+                    <div class="kanji-meaning">Venir</div>
+                    <div class="kanji-strokes">7 traits</div>
+                    <div class="kanji-examples">来る (kuru) venir | 未来 (mirai) futur</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grammaire -->
+        <section class="section">
+            <h2>Grammaire Intermédiaire 文法</h2>
+
+            <h3>Les Particules Essentielles 助詞</h3>
+            <div class="particle-grid">
+                <div class="particle-card">
+                    <div class="particle">は</div>
+                    <div class="particle-name">wa (thème)</div>
+                    <p>Marque le sujet/thème</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">が</div>
+                    <div class="particle-name">ga (sujet)</div>
+                    <p>Marque le sujet grammatical</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">を</div>
+                    <div class="particle-name">wo (objet)</div>
+                    <p>Marque l'objet direct</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">に</div>
+                    <div class="particle-name">ni (direction/temps)</div>
+                    <p>Direction, destination, temps</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">で</div>
+                    <div class="particle-name">de (lieu/moyen)</div>
+                    <p>Lieu d'action, moyen</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">へ</div>
+                    <div class="particle-name">e (direction)</div>
+                    <p>Direction (vers)</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">の</div>
+                    <div class="particle-name">no (possession)</div>
+                    <p>Possession, relation</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">と</div>
+                    <div class="particle-name">to (avec/et)</div>
+                    <p>Avec, et, citation</p>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">Sujet は Objet を Verbe</div>
+                <p>Structure de base de la phrase japonaise</p>
+                <div class="example-sentence">
+                    <div class="japanese-text">私は本を読みます。</div>
+                    <div class="romaji">Watashi wa hon wo yomimasu.</div>
+                    <div class="translation">Je lis un livre.</div>
+                </div>
+            </div>
+
+            <h3>は vs が - La Grande Question</h3>
+            <div class="info-box">
+                <p><strong>は (wa)</strong> - Information connue, thème de la phrase</p>
+                <p><strong>が (ga)</strong> - Nouvelle information, emphase sur le sujet</p>
+            </div>
+            <div class="example-sentence">
+                <div class="japanese-text">田中さんは学生です。</div>
+                <div class="romaji">Tanaka-san wa gakusei desu.</div>
+                <div class="translation">M. Tanaka est étudiant. (on parle de Tanaka)</div>
+            </div>
+            <div class="example-sentence">
+                <div class="japanese-text">誰が来ましたか？田中さんが来ました。</div>
+                <div class="romaji">Dare ga kimashita ka? Tanaka-san ga kimashita.</div>
+                <div class="translation">Qui est venu ? C'est M. Tanaka qui est venu.</div>
+            </div>
+        </section>
+
+        <!-- Conjugaison des Verbes -->
+        <section class="section">
+            <h2>Conjugaison des Verbes 動詞の活用</h2>
+
+            <h3>Les 3 Groupes de Verbes</h3>
+            <table class="conjugation-table">
+                <tr>
+                    <th>Groupe</th>
+                    <th>Nom</th>
+                    <th>Caractéristiques</th>
+                    <th>Exemples</th>
+                </tr>
+                <tr class="verb-type-1">
+                    <td>Groupe 1</td>
+                    <td>五段動詞 (Godan)</td>
+                    <td>Terminaison en -u (sauf -iru/-eru)</td>
+                    <td>書く (kaku), 飲む (nomu), 話す (hanasu)</td>
+                </tr>
+                <tr class="verb-type-2">
+                    <td>Groupe 2</td>
+                    <td>一段動詞 (Ichidan)</td>
+                    <td>Terminaison en -iru ou -eru</td>
+                    <td>食べる (taberu), 見る (miru), 起きる (okiru)</td>
+                </tr>
+                <tr>
+                    <td>Groupe 3</td>
+                    <td>不規則動詞 (Fukisoku)</td>
+                    <td>Irréguliers</td>
+                    <td>する (suru), 来る (kuru)</td>
+                </tr>
+            </table>
+
+            <h3>Formes de Conjugaison</h3>
+            <table class="conjugation-table">
+                <tr>
+                    <th>Forme</th>
+                    <th>Groupe 1 (書く)</th>
+                    <th>Groupe 2 (食べる)</th>
+                    <th>Groupe 3 (する/来る)</th>
+                </tr>
+                <tr>
+                    <td>Dictionnaire</td>
+                    <td>書く (kaku)</td>
+                    <td>食べる (taberu)</td>
+                    <td>する / 来る</td>
+                </tr>
+                <tr>
+                    <td>Forme -masu (poli)</td>
+                    <td>書きます</td>
+                    <td>食べます</td>
+                    <td>します / 来ます</td>
+                </tr>
+                <tr>
+                    <td>Négatif</td>
+                    <td>書かない</td>
+                    <td>食べない</td>
+                    <td>しない / 来ない</td>
+                </tr>
+                <tr>
+                    <td>Passé</td>
+                    <td>書いた</td>
+                    <td>食べた</td>
+                    <td>した / 来た</td>
+                </tr>
+                <tr>
+                    <td>Forme -te</td>
+                    <td>書いて</td>
+                    <td>食べて</td>
+                    <td>して / 来て</td>
+                </tr>
+                <tr>
+                    <td>Potentiel</td>
+                    <td>書ける</td>
+                    <td>食べられる</td>
+                    <td>できる / 来られる</td>
+                </tr>
+                <tr>
+                    <td>Volitif</td>
+                    <td>書こう</td>
+                    <td>食べよう</td>
+                    <td>しよう / 来よう</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <h4>Astuce : Forme -te des Groupe 1</h4>
+                <p>Règle de transformation :</p>
+                <ul>
+                    <li>-く → -いて (書く → 書いて) Exception: 行く → 行って</li>
+                    <li>-ぐ → -いで (泳ぐ → 泳いで)</li>
+                    <li>-す → -して (話す → 話して)</li>
+                    <li>-む/-ぬ/-ぶ → -んで (飲む → 飲んで)</li>
+                    <li>-う/-つ/-る → -って (買う → 買って)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Structures Grammaticales -->
+        <section class="section">
+            <h2>Structures Grammaticales Clés</h2>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">Verbe-て + いる</div>
+                <p>Action en cours ou état résultant</p>
+                <div class="example-sentence">
+                    <div class="japanese-text">今、本を読んでいます。</div>
+                    <div class="romaji">Ima, hon wo yonde imasu.</div>
+                    <div class="translation">Je suis en train de lire un livre.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">Verbe-たい</div>
+                <p>Exprimer un désir (je veux...)</p>
+                <div class="example-sentence">
+                    <div class="japanese-text">日本に行きたいです。</div>
+                    <div class="romaji">Nihon ni ikitai desu.</div>
+                    <div class="translation">Je veux aller au Japon.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">Verbe-ないで + ください</div>
+                <p>Demander de ne pas faire</p>
+                <div class="example-sentence">
+                    <div class="japanese-text">ここで写真を撮らないでください。</div>
+                    <div class="romaji">Koko de shashin wo toranaide kudasai.</div>
+                    <div class="translation">S'il vous plaît, ne prenez pas de photos ici.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">A より B のほうが ～</div>
+                <p>Comparaison (B est plus ~ que A)</p>
+                <div class="example-sentence">
+                    <div class="japanese-text">電車よりバスのほうが安いです。</div>
+                    <div class="romaji">Densha yori basu no hō ga yasui desu.</div>
+                    <div class="translation">Le bus est moins cher que le train.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">～ことができる</div>
+                <p>Capacité (pouvoir faire)</p>
+                <div class="example-sentence">
+                    <div class="japanese-text">日本語を話すことができます。</div>
+                    <div class="romaji">Nihongo wo hanasu koto ga dekimasu.</div>
+                    <div class="translation">Je peux parler japonais.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="section">
+            <h2>Quiz de Révision</h2>
+
+            <div class="quiz-container" id="quiz1">
+                <div class="quiz-question">1. Quelle est la lecture kun'yomi de 山 ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(1, this, false)">SAN</div>
+                    <div class="quiz-option" onclick="checkQuiz(1, this, true)">yama</div>
+                    <div class="quiz-option" onclick="checkQuiz(1, this, false)">ZAN</div>
+                    <div class="quiz-option" onclick="checkQuiz(1, this, false)">take</div>
+                </div>
+                <div class="quiz-feedback" id="feedback1"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz2">
+                <div class="quiz-question">2. Comment dit-on "Je mange du riz" en japonais ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(2, this, false)">私は ご飯が 飲みます</div>
+                    <div class="quiz-option" onclick="checkQuiz(2, this, true)">私は ご飯を 食べます</div>
+                    <div class="quiz-option" onclick="checkQuiz(2, this, false)">私を ご飯は 食べます</div>
+                    <div class="quiz-option" onclick="checkQuiz(2, this, false)">私が ご飯に 食べます</div>
+                </div>
+                <div class="quiz-feedback" id="feedback2"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz3">
+                <div class="quiz-question">3. Quel radical indique que le kanji est lié à l'eau ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(3, this, false)">火</div>
+                    <div class="quiz-option" onclick="checkQuiz(3, this, false)">木</div>
+                    <div class="quiz-option" onclick="checkQuiz(3, this, true)">氵</div>
+                    <div class="quiz-option" onclick="checkQuiz(3, this, false)">土</div>
+                </div>
+                <div class="quiz-feedback" id="feedback3"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz4">
+                <div class="quiz-question">4. Quelle est la forme -te de 飲む (nomu) ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(4, this, false)">飲いて</div>
+                    <div class="quiz-option" onclick="checkQuiz(4, this, false)">飲って</div>
+                    <div class="quiz-option" onclick="checkQuiz(4, this, true)">飲んで</div>
+                    <div class="quiz-option" onclick="checkQuiz(4, this, false)">飲みて</div>
+                </div>
+                <div class="quiz-feedback" id="feedback4"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz5">
+                <div class="quiz-question">5. Quelle particule marque l'objet direct ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(5, this, false)">は</div>
+                    <div class="quiz-option" onclick="checkQuiz(5, this, false)">が</div>
+                    <div class="quiz-option" onclick="checkQuiz(5, this, true)">を</div>
+                    <div class="quiz-option" onclick="checkQuiz(5, this, false)">に</div>
+                </div>
+                <div class="quiz-feedback" id="feedback5"></div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <a href="japonais-debutant.html" class="nav-btn">← Niveau Débutant</a>
+            <a href="../user/progression.html" class="nav-btn">Ma Progression</a>
+            <a href="japonais-expert.html" class="nav-btn">Niveau Expert →</a>
+        </div>
+    </div>
+
+    <script>
+        function checkQuiz(quizNum, element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById(`feedback${quizNum}`);
+
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                if (opt === element) {
+                    opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            });
+
+            feedback.style.display = 'block';
+            if (isCorrect) {
+                feedback.style.background = 'rgba(46,204,113,0.2)';
+                feedback.innerHTML = '✓ Correct ! 正解です！';
+            } else {
+                feedback.style.background = 'rgba(231,76,60,0.2)';
+                feedback.innerHTML = '✗ Incorrect. 不正解です。Réessayez !';
+                setTimeout(() => {
+                    options.forEach(opt => {
+                        opt.style.pointerEvents = 'auto';
+                        opt.classList.remove('incorrect');
+                    });
+                    feedback.style.display = 'none';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

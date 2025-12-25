@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleur de Vie - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5em; background: linear-gradient(135deg, #f59e0b, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #f59e0b; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .section h2 { color: #f59e0b; margin-bottom: 20px; font-size: 1.6em; }
+        .flower-display { text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; margin: 20px 0; }
+        canvas { display: block; margin: 0 auto; }
+        .controls { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .control-btn { padding: 12px 25px; border-radius: 25px; border: 2px solid #f59e0b; background: transparent; color: white; cursor: pointer; transition: all 0.3s; }
+        .control-btn:hover { background: #f59e0b; }
+        .control-btn.active { background: #f59e0b; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .info-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(236, 72, 153, 0.1)); border-radius: 20px; padding: 25px; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .info-card h3 { color: #f59e0b; margin-bottom: 15px; }
+        .info-card .icon { font-size: 3em; text-align: center; margin-bottom: 15px; }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #f59e0b, #ec4899); }
+        .timeline-item { position: relative; padding: 15px 0; padding-left: 20px; }
+        .timeline-item::before { content: ''; position: absolute; left: -24px; top: 20px; width: 12px; height: 12px; background: #f59e0b; border-radius: 50%; }
+        .sacred-forms { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin: 20px 0; text-align: center; }
+        .sacred-form { padding: 20px; }
+        .sacred-form .symbol { font-size: 3em; }
+        .color-slider { width: 100%; margin: 10px 0; }
+        .meditation-box { background: rgba(192, 132, 252, 0.1); padding: 25px; border-radius: 15px; margin: 20px 0; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+        <header>
+            <h1>La Fleur de Vie</h1>
+            <p style="opacity: 0.8; font-size: 1.2em;">Le modèle géométrique de la création universelle</p>
+        </header>
+
+        <div class="section">
+            <h2>Générateur Interactif</h2>
+            <div class="flower-display">
+                <canvas id="flowerCanvas" width="500" height="500"></canvas>
+                <div class="controls">
+                    <button class="control-btn active" onclick="setLayers(1)">Graine de Vie</button>
+                    <button class="control-btn" onclick="setLayers(2)">Œuf de Vie</button>
+                    <button class="control-btn" onclick="setLayers(3)">Fleur de Vie</button>
+                    <button class="control-btn" onclick="setLayers(4)">Étendue</button>
+                    <button class="control-btn" onclick="toggleAnimation()">Animer</button>
+                </div>
+                <div style="margin-top: 20px;">
+                    <label>Couleur : <input type="color" id="colorPicker" value="#f59e0b" onchange="updateColor()"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Qu'est-ce que la Fleur de Vie ?</h2>
+            <p style="margin-bottom: 20px;">La Fleur de Vie est un motif géométrique composé de cercles équidistants se chevauchant de manière symétrique. Elle contient en son sein tous les modèles géométriques de l'univers et représente le cycle complet de la création.</p>
+            <div class="sacred-forms">
+                <div class="sacred-form">
+                    <div class="symbol">⭕</div>
+                    <strong>Cercle</strong>
+                    <p>Unité, infini</p>
+                </div>
+                <div class="sacred-form">
+                    <div class="symbol">⚭</div>
+                    <strong>Vesica Piscis</strong>
+                    <p>Dualité, création</p>
+                </div>
+                <div class="sacred-form">
+                    <div class="symbol">🌱</div>
+                    <strong>Graine</strong>
+                    <p>7 cercles, genèse</p>
+                </div>
+                <div class="sacred-form">
+                    <div class="symbol">🥚</div>
+                    <strong>Œuf</strong>
+                    <p>13 cercles, embryon</p>
+                </div>
+                <div class="sacred-form">
+                    <div class="symbol">🌸</div>
+                    <strong>Fleur</strong>
+                    <p>19 cercles, vie</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Évolution Géométrique</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="icon">🌱</div>
+                    <h3>La Graine de Vie</h3>
+                    <p>7 cercles représentant les 7 jours de la création. Le premier cercle est l'esprit, puis chaque cercle représente un jour : lumière, eau, terre, ciel, vie, humanité, repos.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🥚</div>
+                    <h3>L'Œuf de Vie</h3>
+                    <p>13 cercles formant la structure de l'embryon. Cette forme est identique à la division cellulaire des premières étapes de la vie : 2, 4, 8 cellules en 3D.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🌸</div>
+                    <h3>La Fleur de Vie</h3>
+                    <p>19 cercles représentant la création complète. Symbole universellement trouvé dans les temples égyptiens, les églises médiévales, et les manuscrits anciens.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🍎</div>
+                    <h3>Le Fruit de Vie</h3>
+                    <p>13 cercles extraits de la Fleur de Vie. En reliant leurs centres, on obtient le Cube de Métatron contenant les 5 solides de Platon.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Présence Historique</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>Égypte Ancienne (vers -500 av. J.-C.)</strong>
+                    <p>Temple d'Osiris à Abydos - Gravée dans le granit, peut-être beaucoup plus ancienne.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Assyrie (vers -700 av. J.-C.)</strong>
+                    <p>Palais du roi Assurbanipal à Ninive - Motifs sur les seuils de porte.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Phénicie</strong>
+                    <p>Poteries et objets rituels décorés de ce motif sacré.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Inde (Temples hindous)</strong>
+                    <p>Présente dans l'architecture sacrée et les yantra de méditation.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Chine (Temple de la Cité Interdite)</strong>
+                    <p>Sous les pattes des lions gardiens, symbole de protection.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Léonard de Vinci (XVe siècle)</strong>
+                    <p>Études approfondies des proportions et de la géométrie de la Fleur de Vie.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ce que contient la Fleur de Vie</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="icon">⬡</div>
+                    <h3>Les 5 Solides de Platon</h3>
+                    <p>Tétraèdre, Cube, Octaèdre, Dodécaèdre, Icosaèdre - Tous peuvent être extraits de la Fleur de Vie.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">✡️</div>
+                    <h3>Le Merkaba</h3>
+                    <p>L'étoile tétraédrique, véhicule de lumière utilisé dans la méditation pour l'ascension spirituelle.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🔢</div>
+                    <h3>Le Nombre d'Or (φ)</h3>
+                    <p>Les proportions de la Fleur de Vie révèlent le ratio divin de 1.618...</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🌌</div>
+                    <h3>Le Cube de Métatron</h3>
+                    <p>En reliant les centres du Fruit de Vie, on obtient cette figure contenant toutes les formes de création.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Méditation avec la Fleur de Vie</h2>
+            <div class="meditation-box">
+                <p style="font-size: 1.2em; margin-bottom: 20px;">Contemplez la Fleur de Vie pendant votre méditation pour :</p>
+                <div class="info-grid">
+                    <div class="info-card" style="background: transparent; border: none;">
+                        <div class="icon">🧘</div>
+                        <h3>Harmonisation</h3>
+                        <p>Aligner vos centres énergétiques avec les proportions universelles.</p>
+                    </div>
+                    <div class="info-card" style="background: transparent; border: none;">
+                        <div class="icon">💡</div>
+                        <h3>Activation</h3>
+                        <p>Stimuler la glande pinéale et le troisième œil.</p>
+                    </div>
+                    <div class="info-card" style="background: transparent; border: none;">
+                        <div class="icon">🌀</div>
+                        <h3>Connexion</h3>
+                        <p>Se relier à la matrice géométrique de l'univers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('flowerCanvas');
+        const ctx = canvas.getContext('2d');
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        let radius = 60;
+        let layers = 1;
+        let color = '#f59e0b';
+        let isAnimating = false;
+        let animationId = null;
+        let hue = 30;
+
+        function drawCircle(x, y, r) {
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        function drawFlower() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.5;
+
+            // Centre
+            drawCircle(cx, cy, radius);
+
+            if (layers >= 1) {
+                // Graine de Vie - 6 cercles autour
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * Math.PI) / 3;
+                    const x = cx + radius * Math.cos(angle);
+                    const y = cy + radius * Math.sin(angle);
+                    drawCircle(x, y, radius);
+                }
+            }
+
+            if (layers >= 2) {
+                // Œuf de Vie - 6 cercles supplémentaires
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * Math.PI) / 3 + Math.PI / 6;
+                    const x = cx + radius * Math.sqrt(3) * Math.cos(angle);
+                    const y = cy + radius * Math.sqrt(3) * Math.sin(angle);
+                    drawCircle(x, y, radius);
+                }
+            }
+
+            if (layers >= 3) {
+                // Fleur de Vie
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * Math.PI) / 3;
+                    const x = cx + 2 * radius * Math.cos(angle);
+                    const y = cy + 2 * radius * Math.sin(angle);
+                    drawCircle(x, y, radius);
+                }
+            }
+
+            if (layers >= 4) {
+                // Extension
+                for (let i = 0; i < 12; i++) {
+                    const angle = (i * Math.PI) / 6;
+                    const x = cx + 2 * radius * Math.cos(angle);
+                    const y = cy + 2 * radius * Math.sin(angle);
+                    drawCircle(x, y, radius);
+                }
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * Math.PI) / 3 + Math.PI / 6;
+                    const x = cx + radius * Math.sqrt(3) * 2 * Math.cos(angle);
+                    const y = cy + radius * Math.sqrt(3) * 2 * Math.sin(angle);
+                    drawCircle(x, y, radius);
+                }
+            }
+        }
+
+        function setLayers(n) {
+            layers = n;
+            document.querySelectorAll('.control-btn').forEach((btn, i) => {
+                if (i < 4) btn.classList.toggle('active', i + 1 === n);
+            });
+            drawFlower();
+        }
+
+        function updateColor() {
+            color = document.getElementById('colorPicker').value;
+            drawFlower();
+        }
+
+        function toggleAnimation() {
+            isAnimating = !isAnimating;
+            if (isAnimating) {
+                animate();
+            } else {
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function animate() {
+            hue = (hue + 0.5) % 360;
+            color = `hsl(${hue}, 80%, 60%)`;
+            drawFlower();
+            if (isAnimating) {
+                animationId = requestAnimationFrame(animate);
+            }
+        }
+
+        // Initial draw
+        drawFlower();
+    </script>
+</body>
+</html>

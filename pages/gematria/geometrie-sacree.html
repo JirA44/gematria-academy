@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Géométrie Sacrée - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5em; background: linear-gradient(135deg, #f59e0b, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #f59e0b; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .section h2 { color: #f59e0b; margin-bottom: 20px; font-size: 1.6em; }
+        .shape-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .shape-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(236, 72, 153, 0.1)); border-radius: 20px; padding: 25px; text-align: center; border: 1px solid rgba(245, 158, 11, 0.3); transition: all 0.3s; }
+        .shape-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(245, 158, 11, 0.3); }
+        .shape-icon { font-size: 4em; margin-bottom: 15px; }
+        .shape-card h3 { color: #f59e0b; margin-bottom: 10px; }
+        .ratio-box { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 30px; background: rgba(245, 158, 11, 0.1); border-radius: 15px; margin: 20px 0; }
+        .ratio-symbol { font-size: 3em; color: #f59e0b; }
+        .info-box { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.1)); padding: 20px; border-radius: 15px; margin: 20px 0; }
+        .platonic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+        .platonic-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: center; }
+        .platonic-card .icon { font-size: 2.5em; margin-bottom: 10px; }
+        canvas { display: block; margin: 20px auto; border-radius: 15px; background: rgba(0,0,0,0.3); }
+        .interactive-btn { padding: 12px 30px; border-radius: 25px; border: 2px solid #f59e0b; background: transparent; color: white; cursor: pointer; transition: all 0.3s; margin: 5px; }
+        .interactive-btn:hover { background: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+        <header>
+            <h1>Géométrie Sacrée</h1>
+            <p style="opacity: 0.8; font-size: 1.2em;">Les formes divines qui structurent l'univers</p>
+        </header>
+
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>La géométrie sacrée révèle les motifs mathématiques fondamentaux qui se répètent dans toute la création : des galaxies aux coquillages, des flocons de neige aux fleurs. Ces formes sont considérées comme le langage de l'univers.</p>
+            <div class="info-box">
+                <strong>Le Nombre d'Or (φ = 1.618...)</strong><br>
+                Ce ratio divin apparaît partout dans la nature : la spirale des coquilles, la disposition des pétales, les proportions du corps humain.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Formes Fondamentales</h2>
+            <div class="shape-grid">
+                <div class="shape-card">
+                    <div class="shape-icon">⭕</div>
+                    <h3>Le Cercle</h3>
+                    <p>L'unité, l'infini, la perfection divine. Sans début ni fin, il représente l'éternité.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🌸</div>
+                    <h3>Fleur de Vie</h3>
+                    <p>19 cercles entrelacés contenant tous les modèles de création. Symbole universel trouvé dans toutes les cultures.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">✡️</div>
+                    <h3>Merkaba</h3>
+                    <p>Deux tétraèdres entrelacés représentant l'équilibre entre le masculin et le féminin, l'esprit et la matière.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🔯</div>
+                    <h3>Métatron</h3>
+                    <p>Le cube de Métatron contient les 5 solides de Platon et représente les formes de la création.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🌀</div>
+                    <h3>Spirale d'Or</h3>
+                    <p>Basée sur la suite de Fibonacci, cette spirale se retrouve dans les galaxies, les ouragans et les coquillages.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🔺</div>
+                    <h3>Torus</h3>
+                    <p>La forme de l'énergie en mouvement, du champ magnétique terrestre aux pommes et aux oranges.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Les 5 Solides de Platon</h2>
+            <p style="margin-bottom: 20px;">Les seuls polyèdres réguliers convexes possibles, associés aux éléments fondamentaux.</p>
+            <div class="platonic-grid">
+                <div class="platonic-card">
+                    <div class="icon">🔥</div>
+                    <strong>Tétraèdre</strong>
+                    <p>4 faces - Feu<br>Transformation</p>
+                </div>
+                <div class="platonic-card">
+                    <div class="icon">🌍</div>
+                    <strong>Hexaèdre</strong>
+                    <p>6 faces - Terre<br>Stabilité</p>
+                </div>
+                <div class="platonic-card">
+                    <div class="icon">💨</div>
+                    <strong>Octaèdre</strong>
+                    <p>8 faces - Air<br>Équilibre</p>
+                </div>
+                <div class="platonic-card">
+                    <div class="icon">💧</div>
+                    <strong>Icosaèdre</strong>
+                    <p>20 faces - Eau<br>Fluidité</p>
+                </div>
+                <div class="platonic-card">
+                    <div class="icon">✨</div>
+                    <strong>Dodécaèdre</strong>
+                    <p>12 faces - Éther<br>Univers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>La Suite de Fibonacci</h2>
+            <div class="ratio-box">
+                <span class="ratio-symbol">1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...</span>
+            </div>
+            <p>Chaque nombre est la somme des deux précédents. Le ratio entre nombres consécutifs converge vers φ (Phi), le nombre d'or.</p>
+            <div class="info-box">
+                <strong>Dans la nature :</strong> Spirales de tournesol (34 et 55), pommes de pin (8 et 13), ananas (8, 13, 21), disposition des feuilles sur les tiges.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Dessin Interactif</h2>
+            <canvas id="sacredCanvas" width="400" height="400"></canvas>
+            <div style="text-align: center;">
+                <button class="interactive-btn" onclick="drawFlowerOfLife()">Fleur de Vie</button>
+                <button class="interactive-btn" onclick="drawMeratron()">Métatron</button>
+                <button class="interactive-btn" onclick="drawSpiral()">Spirale d'Or</button>
+                <button class="interactive-btn" onclick="clearCanvas()">Effacer</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Applications</h2>
+            <div class="shape-grid">
+                <div class="shape-card">
+                    <div class="shape-icon">🏛️</div>
+                    <h3>Architecture</h3>
+                    <p>Parthénon, cathédrales gothiques, pyramides - tous utilisent les proportions sacrées.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🎨</div>
+                    <h3>Art</h3>
+                    <p>De Vinci, Michel-Ange, Dalí intégraient le nombre d'or dans leurs œuvres.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🎵</div>
+                    <h3>Musique</h3>
+                    <p>Les harmoniques musicales suivent des ratios géométriques précis.</p>
+                </div>
+                <div class="shape-card">
+                    <div class="shape-icon">🧬</div>
+                    <h3>ADN</h3>
+                    <p>La double hélice suit une spirale de 34Å par tour, ratio de Fibonacci.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('sacredCanvas');
+        const ctx = canvas.getContext('2d');
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawFlowerOfLife() {
+            clearCanvas();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 1;
+            const r = 40;
+
+            // Centre
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // 6 cercles autour
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI) / 3;
+                const x = cx + r * Math.cos(angle);
+                const y = cy + r * Math.sin(angle);
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            // 12 cercles extérieurs
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI) / 3;
+                const x = cx + 2 * r * Math.cos(angle);
+                const y = cy + 2 * r * Math.sin(angle);
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.stroke();
+
+                const angle2 = angle + Math.PI / 6;
+                const x2 = cx + r * Math.sqrt(3) * Math.cos(angle2);
+                const y2 = cy + r * Math.sqrt(3) * Math.sin(angle2);
+                ctx.beginPath();
+                ctx.arc(x2, y2, r, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        }
+
+        function drawMeratron() {
+            clearCanvas();
+            ctx.strokeStyle = '#ec4899';
+            ctx.lineWidth = 1;
+
+            const r = 80;
+            const points = [];
+
+            // 13 points du cube de Métatron
+            points.push({x: cx, y: cy}); // centre
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI) / 3 - Math.PI / 2;
+                points.push({x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle)});
+            }
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI) / 3 - Math.PI / 2;
+                points.push({x: cx + r * 2 * Math.cos(angle), y: cy + r * 2 * Math.sin(angle)});
+            }
+
+            // Relier tous les points
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[j].x, points[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            // Cercles
+            ctx.strokeStyle = '#f59e0b';
+            points.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+        }
+
+        function drawSpiral() {
+            clearCanvas();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+
+            const phi = (1 + Math.sqrt(5)) / 2;
+            let a = 0, b = 1;
+            let x = cx - 50, y = cy + 50;
+            let scale = 3;
+
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+
+            for (let i = 0; i < 10; i++) {
+                const size = b * scale;
+                const startAngle = (i * Math.PI) / 2;
+
+                // Dessiner l'arc
+                for (let t = 0; t <= Math.PI / 2; t += 0.1) {
+                    const angle = startAngle + t;
+                    let px, py;
+
+                    if (i % 4 === 0) { px = x + size * Math.sin(t); py = y - size * (1 - Math.cos(t)); }
+                    else if (i % 4 === 1) { px = x + size * (1 - Math.cos(t)); py = y + size * Math.sin(t); }
+                    else if (i % 4 === 2) { px = x - size * Math.sin(t); py = y + size * (1 - Math.cos(t)); }
+                    else { px = x - size * (1 - Math.cos(t)); py = y - size * Math.sin(t); }
+
+                    ctx.lineTo(px, py);
+                }
+
+                // Mettre à jour position
+                if (i % 4 === 0) { y -= size; }
+                else if (i % 4 === 1) { x += size; }
+                else if (i % 4 === 2) { y += size; }
+                else { x -= size; }
+
+                // Fibonacci
+                const temp = a + b;
+                a = b;
+                b = temp;
+            }
+
+            ctx.stroke();
+        }
+
+        // Dessiner la Fleur de Vie par défaut
+        drawFlowerOfLife();
+    </script>
+</body>
+</html>

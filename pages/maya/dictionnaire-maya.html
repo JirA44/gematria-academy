@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionnaire Maya Yucatèque - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #1e3a2f 50%, #0d2818 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.2), rgba(34, 197, 94, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(217, 119, 6, 0.4);
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #d97706, #22c55e, #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .nav-tab {
+            background: rgba(217, 119, 6, 0.2);
+            border: 2px solid rgba(217, 119, 6, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(217, 119, 6, 0.5);
+            border-color: #d97706;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(217, 119, 6, 0.3);
+            display: none;
+        }
+        .section.active { display: block; }
+        .section-title {
+            font-size: 1.8em;
+            color: #eab308;
+            margin-bottom: 20px;
+        }
+
+        /* Search */
+        .search-box {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(217, 119, 6, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 1em;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.5); }
+        .filter-select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+        }
+
+        /* Dictionary entries */
+        .dict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .dict-entry {
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        .dict-entry:hover {
+            transform: translateY(-3px);
+            border-color: #d97706;
+            box-shadow: 0 5px 20px rgba(217, 119, 6, 0.2);
+        }
+        .entry-maya {
+            font-size: 1.3em;
+            color: #eab308;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .entry-pronunciation {
+            font-size: 0.9em;
+            color: #22c55e;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .entry-meaning {
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+        .entry-category {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            color: #eab308;
+        }
+
+        /* Grammar tables */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background: rgba(217, 119, 6, 0.2);
+            color: #eab308;
+        }
+        .grammar-table tr:hover {
+            background: rgba(217, 119, 6, 0.1);
+        }
+
+        /* Grammar rules */
+        .grammar-rule {
+            background: rgba(217, 119, 6, 0.1);
+            border-left: 4px solid #d97706;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .rule-title {
+            font-size: 1.2em;
+            color: #eab308;
+            margin-bottom: 10px;
+        }
+        .rule-example {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+
+        /* Vocabulary themes */
+        .vocab-theme {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .theme-title {
+            font-size: 1.4em;
+            color: #22c55e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background: rgba(217, 119, 6, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .vocab-maya { font-size: 1.1em; color: #eab308; font-weight: bold; }
+        .vocab-trans { font-size: 0.9em; opacity: 0.9; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #eab308;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 { color: #22c55e; margin-bottom: 10px; }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .container { padding: 0 15px; }
+            .dict-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .grammar-table { font-size: 0.95em; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.6em; }
+            header { padding: 20px 15px; }
+            .section { padding: 20px 15px; }
+            .section-title { font-size: 1.4em; }
+            .dict-grid { grid-template-columns: 1fr; }
+            .nav-tabs { gap: 8px; }
+            .nav-tab { padding: 10px 16px; font-size: 0.9em; }
+            .search-box { flex-direction: column; padding: 12px; }
+            .search-input, .filter-select { width: 100%; }
+            .grammar-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .grammar-rule { padding: 15px; }
+            .vocab-grid { grid-template-columns: 1fr !important; }
+            .vocab-theme { padding: 15px; }
+            .back-link { font-size: 0.9em; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4em; }
+            .entry-glyph { font-size: 1.5em; }
+            .nav-tab { padding: 8px 12px; font-size: 0.85em; }
+            .dict-entry { padding: 12px; }
+        }
+
+        /* Touch-friendly */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-tab, .dict-entry, .portal-link {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .search-input, .filter-select {
+                min-height: 48px;
+                font-size: 16px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header { padding: 15px; margin-bottom: 20px; }
+            h1 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="maya-debutant.html" class="back-link">← Retour aux Glyphes Mayas</a>
+
+        <header>
+            <h1>Dictionnaire Maya Yucatèque</h1>
+            <p style="opacity: 0.9;">Dictionnaire, Grammaire et Vocabulaire de la langue maya</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('dictionnaire')">📖 Dictionnaire</button>
+            <button class="nav-tab" onclick="showSection('grammaire')">📐 Grammaire</button>
+            <button class="nav-tab" onclick="showSection('vocabulaire')">📚 Vocabulaire</button>
+        </div>
+
+        <!-- DICTIONNAIRE -->
+        <section class="section active" id="dictionnaire">
+            <h2 class="section-title">📖 Dictionnaire Maya-Français</h2>
+
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchDict" placeholder="Rechercher un mot..." onkeyup="filterDict()">
+                <select class="filter-select" id="categoryFilter" onchange="filterDict()">
+                    <option value="all">Toutes catégories</option>
+                    <option value="dieux">Dieux & Religion</option>
+                    <option value="nature">Nature</option>
+                    <option value="corps">Corps humain</option>
+                    <option value="animaux">Animaux</option>
+                    <option value="nourriture">Nourriture</option>
+                    <option value="famille">Famille</option>
+                    <option value="nombres">Nombres</option>
+                    <option value="temps">Temps</option>
+                </select>
+            </div>
+
+            <div class="dict-grid" id="dictContainer">
+                <!-- Dieux & Religion -->
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">K'uh</div>
+                    <div class="entry-pronunciation">[k'uuh]</div>
+                    <div class="entry-meaning">Dieu, divinité, sacré</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">Hunab K'u</div>
+                    <div class="entry-pronunciation">[huunab k'uu]</div>
+                    <div class="entry-meaning">Le Dieu Unique, source de tout</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">Itzamná</div>
+                    <div class="entry-pronunciation">[iitsamnah]</div>
+                    <div class="entry-meaning">Dieu créateur, seigneur du ciel</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">Chaak</div>
+                    <div class="entry-pronunciation">[chaak]</div>
+                    <div class="entry-meaning">Dieu de la pluie</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">K'inich Ahau</div>
+                    <div class="entry-pronunciation">[k'inich ahau]</div>
+                    <div class="entry-meaning">Dieu du soleil</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">Ix Chel</div>
+                    <div class="entry-pronunciation">[ish chel]</div>
+                    <div class="entry-meaning">Déesse de la lune et de la médecine</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">Yum K'ax</div>
+                    <div class="entry-pronunciation">[yuum k'ash]</div>
+                    <div class="entry-meaning">Dieu du maïs</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-maya">Xibalba</div>
+                    <div class="entry-pronunciation">[shibalba]</div>
+                    <div class="entry-meaning">Monde souterrain, inframonde</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+
+                <!-- Nature -->
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">K'in</div>
+                    <div class="entry-pronunciation">[k'iin]</div>
+                    <div class="entry-meaning">Soleil, jour</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">Uj</div>
+                    <div class="entry-pronunciation">[uuj]</div>
+                    <div class="entry-meaning">Lune</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">Ek'</div>
+                    <div class="entry-pronunciation">[ek']</div>
+                    <div class="entry-meaning">Étoile</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">Ha'</div>
+                    <div class="entry-pronunciation">[ha']</div>
+                    <div class="entry-meaning">Eau</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">K'áax</div>
+                    <div class="entry-pronunciation">[k'aash]</div>
+                    <div class="entry-meaning">Forêt, jungle</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">Lu'um</div>
+                    <div class="entry-pronunciation">[lu'um]</div>
+                    <div class="entry-meaning">Terre</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">K'áak'</div>
+                    <div class="entry-pronunciation">[k'aak']</div>
+                    <div class="entry-meaning">Feu</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-maya">Ik'</div>
+                    <div class="entry-pronunciation">[ik']</div>
+                    <div class="entry-meaning">Vent, air, souffle</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+
+                <!-- Corps -->
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-maya">Pol</div>
+                    <div class="entry-pronunciation">[pool]</div>
+                    <div class="entry-meaning">Tête</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-maya">Ich</div>
+                    <div class="entry-pronunciation">[ich]</div>
+                    <div class="entry-meaning">Œil, visage</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-maya">Chi'</div>
+                    <div class="entry-pronunciation">[chi']</div>
+                    <div class="entry-meaning">Bouche</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-maya">K'ab'</div>
+                    <div class="entry-pronunciation">[k'ab']</div>
+                    <div class="entry-meaning">Main, bras</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-maya">Ook</div>
+                    <div class="entry-pronunciation">[ook]</div>
+                    <div class="entry-meaning">Pied, jambe</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-maya">Puksi'ik'al</div>
+                    <div class="entry-pronunciation">[puksi'ik'al]</div>
+                    <div class="entry-meaning">Cœur</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+
+                <!-- Animaux -->
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-maya">B'aalam</div>
+                    <div class="entry-pronunciation">[b'aalam]</div>
+                    <div class="entry-meaning">Jaguar</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-maya">K'uk'</div>
+                    <div class="entry-pronunciation">[k'uk']</div>
+                    <div class="entry-meaning">Quetzal</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-maya">Kan</div>
+                    <div class="entry-pronunciation">[kaan]</div>
+                    <div class="entry-meaning">Serpent</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-maya">Peek'</div>
+                    <div class="entry-pronunciation">[peek']</div>
+                    <div class="entry-meaning">Chien</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-maya">Maax</div>
+                    <div class="entry-pronunciation">[maash]</div>
+                    <div class="entry-meaning">Singe</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-maya">Ch'o'</div>
+                    <div class="entry-pronunciation">[ch'o']</div>
+                    <div class="entry-meaning">Souris</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+
+                <!-- Nourriture -->
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-maya">Ixi'im</div>
+                    <div class="entry-pronunciation">[ishi'im]</div>
+                    <div class="entry-meaning">Maïs</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-maya">Waaj</div>
+                    <div class="entry-pronunciation">[waaj]</div>
+                    <div class="entry-meaning">Tortilla</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-maya">Bu'ul</div>
+                    <div class="entry-pronunciation">[bu'ul]</div>
+                    <div class="entry-meaning">Haricots</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-maya">Iik</div>
+                    <div class="entry-pronunciation">[iik]</div>
+                    <div class="entry-meaning">Piment</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+                <div class="dict-entry" data-category="nourriture">
+                    <div class="entry-maya">Kakaw</div>
+                    <div class="entry-pronunciation">[kakaw]</div>
+                    <div class="entry-meaning">Cacao</div>
+                    <span class="entry-category">Nourriture</span>
+                </div>
+
+                <!-- Famille -->
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-maya">Yuum</div>
+                    <div class="entry-pronunciation">[yuum]</div>
+                    <div class="entry-meaning">Père, seigneur</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-maya">Na'</div>
+                    <div class="entry-pronunciation">[na']</div>
+                    <div class="entry-meaning">Mère</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-maya">Paal</div>
+                    <div class="entry-pronunciation">[paal]</div>
+                    <div class="entry-meaning">Enfant, fils/fille</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-maya">Suukun</div>
+                    <div class="entry-pronunciation">[suukun]</div>
+                    <div class="entry-meaning">Frère aîné</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-maya">Kiik</div>
+                    <div class="entry-pronunciation">[kiik]</div>
+                    <div class="entry-meaning">Sœur aînée</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+
+                <!-- Nombres -->
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-maya">Hun</div>
+                    <div class="entry-pronunciation">[hun]</div>
+                    <div class="entry-meaning">Un (1)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-maya">Ka'a</div>
+                    <div class="entry-pronunciation">[ka'a]</div>
+                    <div class="entry-meaning">Deux (2)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-maya">Óox</div>
+                    <div class="entry-pronunciation">[oosh]</div>
+                    <div class="entry-meaning">Trois (3)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-maya">Kan</div>
+                    <div class="entry-pronunciation">[kan]</div>
+                    <div class="entry-meaning">Quatre (4)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-maya">Jo'</div>
+                    <div class="entry-pronunciation">[ho']</div>
+                    <div class="entry-meaning">Cinq (5)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+
+                <!-- Temps -->
+                <div class="dict-entry" data-category="temps">
+                    <div class="entry-maya">K'iin</div>
+                    <div class="entry-pronunciation">[k'iin]</div>
+                    <div class="entry-meaning">Jour</div>
+                    <span class="entry-category">Temps</span>
+                </div>
+                <div class="dict-entry" data-category="temps">
+                    <div class="entry-maya">Áak'ab'</div>
+                    <div class="entry-pronunciation">[aak'ab']</div>
+                    <div class="entry-meaning">Nuit</div>
+                    <span class="entry-category">Temps</span>
+                </div>
+                <div class="dict-entry" data-category="temps">
+                    <div class="entry-maya">Winal</div>
+                    <div class="entry-pronunciation">[winal]</div>
+                    <div class="entry-meaning">Mois (20 jours)</div>
+                    <span class="entry-category">Temps</span>
+                </div>
+                <div class="dict-entry" data-category="temps">
+                    <div class="entry-maya">Jaab'</div>
+                    <div class="entry-pronunciation">[haab']</div>
+                    <div class="entry-meaning">Année</div>
+                    <span class="entry-category">Temps</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRAMMAIRE -->
+        <section class="section" id="grammaire">
+            <h2 class="section-title">📐 Grammaire Maya Yucatèque</h2>
+
+            <div class="grammar-rule">
+                <div class="rule-title">1. Structure de la Phrase</div>
+                <p>Le maya yucatèque suit généralement l'ordre <strong>Verbe - Objet - Sujet (VOS)</strong>,
+                ce qui est assez rare parmi les langues du monde.</p>
+                <div class="rule-example">
+                    <strong>T-u hant-aj waaj le paal-o'</strong><br>
+                    Passé-il manger-accompli tortilla le enfant-là<br>
+                    = "L'enfant a mangé la tortilla"
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">2. Les Pronoms Personnels</div>
+                <p>Le maya utilise deux séries de pronoms : les pronoms indépendants et les affixes verbaux.</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Personne</th>
+                        <th>Indépendant</th>
+                        <th>Préfixe (Set A)</th>
+                        <th>Suffixe (Set B)</th>
+                    </tr>
+                    <tr>
+                        <td>Je</td>
+                        <td>teen</td>
+                        <td>in-</td>
+                        <td>-en</td>
+                    </tr>
+                    <tr>
+                        <td>Tu</td>
+                        <td>teech</td>
+                        <td>a-</td>
+                        <td>-ech</td>
+                    </tr>
+                    <tr>
+                        <td>Il/Elle</td>
+                        <td>leti'</td>
+                        <td>u-</td>
+                        <td>-Ø</td>
+                    </tr>
+                    <tr>
+                        <td>Nous</td>
+                        <td>to'on</td>
+                        <td>k-</td>
+                        <td>-o'on</td>
+                    </tr>
+                    <tr>
+                        <td>Vous</td>
+                        <td>te'ex</td>
+                        <td>a-...-e'ex</td>
+                        <td>-e'ex</td>
+                    </tr>
+                    <tr>
+                        <td>Ils/Elles</td>
+                        <td>leti'ob'</td>
+                        <td>u-...-ob'</td>
+                        <td>-ob'</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">3. Possession</div>
+                <p>La possession s'exprime avec les préfixes du Set A devant le nom possédé.</p>
+                <div class="rule-example">
+                    <strong>in na</strong> = ma maison (in- + na)<br>
+                    <strong>a na</strong> = ta maison<br>
+                    <strong>u na</strong> = sa maison<br>
+                    <strong>k na</strong> = notre maison
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">4. Les Temps Verbaux</div>
+                <p>Le maya utilise des marqueurs aspectuels plutôt que des temps au sens strict.</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Marqueur</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td>Inaccompli (présent/futur)</td>
+                        <td>k-</td>
+                        <td>k-in hant-ik = je mange / je mangerai</td>
+                    </tr>
+                    <tr>
+                        <td>Accompli (passé)</td>
+                        <td>t-</td>
+                        <td>t-in hant-aj = j'ai mangé</td>
+                    </tr>
+                    <tr>
+                        <td>Progressif</td>
+                        <td>táan</td>
+                        <td>táan in hant-ik = je suis en train de manger</td>
+                    </tr>
+                    <tr>
+                        <td>Futur certain</td>
+                        <td>bíin</td>
+                        <td>bíin in hant-ej = je mangerai (certainement)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">5. Les Questions</div>
+                <p>Les mots interrogatifs se placent en début de phrase.</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Maya</th>
+                        <th>Signification</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td>Ba'ax</td>
+                        <td>Quoi?</td>
+                        <td>Ba'ax ka wa'alik? = Que dis-tu?</td>
+                    </tr>
+                    <tr>
+                        <td>Máax</td>
+                        <td>Qui?</td>
+                        <td>Máax taal? = Qui vient?</td>
+                    </tr>
+                    <tr>
+                        <td>Tu'ux</td>
+                        <td>Où?</td>
+                        <td>Tu'ux ka bin? = Où vas-tu?</td>
+                    </tr>
+                    <tr>
+                        <td>Ba'ax k'iin</td>
+                        <td>Quand?</td>
+                        <td>Ba'ax k'iin ka taal? = Quand viens-tu?</td>
+                    </tr>
+                    <tr>
+                        <td>Bix</td>
+                        <td>Comment?</td>
+                        <td>Bix a k'aaba'? = Comment t'appelles-tu?</td>
+                    </tr>
+                    <tr>
+                        <td>Jay p'éel</td>
+                        <td>Combien?</td>
+                        <td>Jay p'éel? = Combien?</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">6. La Négation</div>
+                <p>La négation se forme avec <strong>ma'</strong> avant le verbe et <strong>-i'</strong> après.</p>
+                <div class="rule-example">
+                    K-in hant-ik = Je mange<br>
+                    <strong>Ma' k-in hant-ik-i'</strong> = Je ne mange pas<br><br>
+                    Táan u xíimbal = Il marche<br>
+                    <strong>Ma' táan u xíimbal-i'</strong> = Il ne marche pas
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Consonnes Glottalisées</h4>
+                <p>Le maya yucatèque possède des consonnes glottalisées (marquées par ') qui sont distinctives :
+                <strong>k</strong> vs <strong>k'</strong>, <strong>p</strong> vs <strong>p'</strong>,
+                <strong>t</strong> vs <strong>t'</strong>, <strong>ch</strong> vs <strong>ch'</strong>,
+                <strong>ts</strong> vs <strong>ts'</strong>. La glottalisation change le sens des mots !</p>
+            </div>
+        </section>
+
+        <!-- VOCABULAIRE -->
+        <section class="section" id="vocabulaire">
+            <h2 class="section-title">📚 Vocabulaire Thématique</h2>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🌽 Agriculture et Maïs</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ixi'im</span>
+                        <span class="vocab-trans">maïs</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Nal</span>
+                        <span class="vocab-trans">épi de maïs</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kool</span>
+                        <span class="vocab-trans">milpa (champ)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Pak'al</span>
+                        <span class="vocab-trans">planter</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Joch'</span>
+                        <span class="vocab-trans">récolter</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Bu'ul</span>
+                        <span class="vocab-trans">haricots</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">K'úum</span>
+                        <span class="vocab-trans">courge</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Iik</span>
+                        <span class="vocab-trans">piment</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🏛️ Architecture et Cité</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Naj</span>
+                        <span class="vocab-trans">maison</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">K'u naj</span>
+                        <span class="vocab-trans">temple</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Mul</span>
+                        <span class="vocab-trans">pyramide</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">B'ej</span>
+                        <span class="vocab-trans">chemin, route</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ts'onot</span>
+                        <span class="vocab-trans">cénote</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kaaj</span>
+                        <span class="vocab-trans">village, cité</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">K'íiwik</span>
+                        <span class="vocab-trans">place, marché</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Tunich</span>
+                        <span class="vocab-trans">pierre</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🐆 Animaux Sacrés</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-maya">B'aalam</span>
+                        <span class="vocab-trans">jaguar</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">K'uk'</span>
+                        <span class="vocab-trans">quetzal</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">K'uk'ulkaan</span>
+                        <span class="vocab-trans">serpent à plumes</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Koot</span>
+                        <span class="vocab-trans">aigle</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Maax</span>
+                        <span class="vocab-trans">singe araignée</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ayin</span>
+                        <span class="vocab-trans">crocodile</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kéej</span>
+                        <span class="vocab-trans">cerf</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ts'unu'un</span>
+                        <span class="vocab-trans">colibri</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">📅 Calendrier Tzolk'in (20 jours)</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Imix</span>
+                        <span class="vocab-trans">1 - Crocodile</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ik'</span>
+                        <span class="vocab-trans">2 - Vent</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ak'b'al</span>
+                        <span class="vocab-trans">3 - Nuit</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">K'an</span>
+                        <span class="vocab-trans">4 - Maïs</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Chikchan</span>
+                        <span class="vocab-trans">5 - Serpent</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kimi</span>
+                        <span class="vocab-trans">6 - Mort</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Manik'</span>
+                        <span class="vocab-trans">7 - Cerf</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Lamat</span>
+                        <span class="vocab-trans">8 - Étoile</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Muluk</span>
+                        <span class="vocab-trans">9 - Eau</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ok</span>
+                        <span class="vocab-trans">10 - Chien</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Chuwen</span>
+                        <span class="vocab-trans">11 - Singe</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Eb'</span>
+                        <span class="vocab-trans">12 - Herbe</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">B'en</span>
+                        <span class="vocab-trans">13 - Roseau</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ix</span>
+                        <span class="vocab-trans">14 - Jaguar</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Men</span>
+                        <span class="vocab-trans">15 - Aigle</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kib'</span>
+                        <span class="vocab-trans">16 - Vautour</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kab'an</span>
+                        <span class="vocab-trans">17 - Terre</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Etz'nab'</span>
+                        <span class="vocab-trans">18 - Silex</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kawak</span>
+                        <span class="vocab-trans">19 - Tempête</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ajaw</span>
+                        <span class="vocab-trans">20 - Seigneur</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🔢 Les Nombres (0-20)</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Mix</span>
+                        <span class="vocab-trans">0 (zéro)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Hun</span>
+                        <span class="vocab-trans">1</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ka'a</span>
+                        <span class="vocab-trans">2</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Óox</span>
+                        <span class="vocab-trans">3</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Kan</span>
+                        <span class="vocab-trans">4</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Jo'</span>
+                        <span class="vocab-trans">5</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Wak</span>
+                        <span class="vocab-trans">6</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Uuk</span>
+                        <span class="vocab-trans">7</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Waxak</span>
+                        <span class="vocab-trans">8</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">B'olon</span>
+                        <span class="vocab-trans">9</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Lajun</span>
+                        <span class="vocab-trans">10</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Jun k'aal</span>
+                        <span class="vocab-trans">20</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🎭 Expressions Courantes</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-maya">In Lak'ech</span>
+                        <span class="vocab-trans">Je suis toi</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ala K'in</span>
+                        <span class="vocab-trans">Tu es moi</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ma'alob'</span>
+                        <span class="vocab-trans">Bien, bon</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Dyos b'o'otik</span>
+                        <span class="vocab-trans">Merci</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ko'ox</span>
+                        <span class="vocab-trans">Allons-y!</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ba'ale'</span>
+                        <span class="vocab-trans">Mais...</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Jaaj</span>
+                        <span class="vocab-trans">Oui, vrai</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-maya">Ma'</span>
+                        <span class="vocab-trans">Non</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function filterDict() {
+            const search = document.getElementById('searchDict').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const entries = document.querySelectorAll('.dict-entry');
+
+            entries.forEach(entry => {
+                const text = entry.textContent.toLowerCase();
+                const entryCategory = entry.dataset.category;
+                const matchSearch = text.includes(search);
+                const matchCategory = category === 'all' || entryCategory === category;
+
+                entry.style.display = matchSearch && matchCategory ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

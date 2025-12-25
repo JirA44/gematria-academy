@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction à l'Alchimie | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d1a 50%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #d4af37, #f4d03f, #c9a227);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .lesson-section h3 {
+            color: #f4d03f;
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .element-card {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .element-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+        }
+
+        .element-symbol {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .element-name {
+            font-size: 1.3em;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .element-desc {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .process-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: rgba(0,0,0,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #1a1a2e;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #f4d03f;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .step-content p {
+            opacity: 0.85;
+            margin: 0;
+        }
+
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .symbol-card {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .symbol-card:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
+        .symbol-card .glyph {
+            font-size: 3em;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+
+        .symbol-card .name {
+            font-size: 0.9em;
+            color: #d4af37;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .principle-card {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.2), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid;
+        }
+
+        .principle-card.sulfur { border-color: #ef4444; }
+        .principle-card.mercury { border-color: #6366f1; }
+        .principle-card.salt { border-color: #22c55e; }
+
+        .principle-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .principle-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .principle-card.sulfur h4 { color: #ef4444; }
+        .principle-card.mercury h4 { color: #6366f1; }
+        .principle-card.salt h4 { color: #22c55e; }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(0,0,0,0.2));
+            border-left: 4px solid #d4af37;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+        }
+
+        .quote-box .author {
+            margin-top: 10px;
+            text-align: right;
+            color: #d4af37;
+            font-style: normal;
+        }
+
+        .info-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .principles-grid { grid-template-columns: 1fr; }
+            .process-step { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚗️ Introduction à l'Alchimie</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">L'Art Royal de la transformation intérieure et extérieure</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="symboles-alchimiques.html" class="nav-btn">🔯 Symboles</a>
+            <a href="grand-oeuvre.html" class="nav-btn">✨ Grand Œuvre</a>
+            <a href="philosophes.html" class="nav-btn">📚 Philosophes</a>
+        </nav>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>📜 Qu'est-ce que l'Alchimie ?</h2>
+
+            <p>L'<strong>Alchimie</strong> est bien plus que la quête légendaire de transformer le plomb en or. C'est un système philosophique, spirituel et scientifique ancien qui vise la <strong>transformation de l'âme humaine</strong> autant que celle de la matière.</p>
+
+            <div class="quote-box">
+                "Visita Interiora Terrae Rectificando Invenies Occultum Lapidem"<br>
+                (Visite l'intérieur de la terre, et en rectifiant tu trouveras la pierre cachée)
+                <div class="author">— Formule V.I.T.R.I.O.L.</div>
+            </div>
+
+            <p>Le mot "alchimie" vient de l'arabe <em>al-kimiya</em>, possiblement dérivé de l'égyptien <em>khem</em> (terre noire, l'Égypte). Cette science sacrée a voyagé de l'Égypte ancienne à la Grèce, puis aux mondes arabe et européen.</p>
+
+            <h3>Les deux faces de l'Alchimie</h3>
+            <div class="principles-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="principle-card" style="border-color: #d4af37;">
+                    <div class="icon">⚗️</div>
+                    <h4 style="color: #d4af37;">Alchimie Opérative</h4>
+                    <p>Le travail au laboratoire sur la matière physique : métaux, plantes, minéraux. Ancêtre de la chimie moderne.</p>
+                </div>
+                <div class="principle-card" style="border-color: #8b5cf6;">
+                    <div class="icon">🧘</div>
+                    <h4 style="color: #8b5cf6;">Alchimie Spirituelle</h4>
+                    <p>La transformation intérieure de l'âme. Le "plomb" de l'ignorance devient "l'or" de l'illumination.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les 4 Éléments -->
+        <section class="lesson-section">
+            <h2>🔥 Les Quatre Éléments</h2>
+            <p>La matière se compose de quatre éléments fondamentaux, chacun avec ses qualités propres :</p>
+
+            <div class="elements-grid">
+                <div class="element-card">
+                    <div class="element-symbol">🔥</div>
+                    <div class="element-name">Feu</div>
+                    <div class="element-desc">Chaud et Sec<br>Énergie, transformation, volonté</div>
+                </div>
+                <div class="element-card">
+                    <div class="element-symbol">💧</div>
+                    <div class="element-name">Eau</div>
+                    <div class="element-desc">Froid et Humide<br>Émotions, intuition, purification</div>
+                </div>
+                <div class="element-card">
+                    <div class="element-symbol">🌍</div>
+                    <div class="element-name">Terre</div>
+                    <div class="element-desc">Froid et Sec<br>Stabilité, matière, manifestation</div>
+                </div>
+                <div class="element-card">
+                    <div class="element-symbol">💨</div>
+                    <div class="element-name">Air</div>
+                    <div class="element-desc">Chaud et Humide<br>Intellect, communication, mouvement</div>
+                </div>
+            </div>
+
+            <p>Le <strong>cinquième élément</strong>, la <em>Quintessence</em> ou Éther, est l'essence pure qui anime les quatre autres. C'est la "materia prima" recherchée par les alchimistes.</p>
+        </section>
+
+        <!-- Les Trois Principes -->
+        <section class="lesson-section">
+            <h2>△ Les Trois Principes Philosophiques</h2>
+            <p>Selon Paracelse, toute matière contient trois principes essentiels :</p>
+
+            <div class="principles-grid">
+                <div class="principle-card sulfur">
+                    <div class="icon">🜍</div>
+                    <h4>Soufre (Sulfur)</h4>
+                    <p>Le principe actif, masculin. L'âme, la conscience, ce qui anime. Associé au Feu.</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;"><strong>Dans l'humain :</strong> L'esprit, la volonté</p>
+                </div>
+                <div class="principle-card mercury">
+                    <div class="icon">☿</div>
+                    <h4>Mercure</h4>
+                    <p>Le principe volatil, fluide. L'esprit, l'intelligence, ce qui relie. Associé à l'Air et l'Eau.</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;"><strong>Dans l'humain :</strong> L'intellect, la pensée</p>
+                </div>
+                <div class="principle-card salt">
+                    <div class="icon">🜔</div>
+                    <h4>Sel</h4>
+                    <p>Le principe fixe, féminin. Le corps, la forme, ce qui cristallise. Associé à la Terre.</p>
+                    <p style="margin-top: 10px; font-size: 0.9em;"><strong>Dans l'humain :</strong> Le corps physique</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Le Grand Œuvre -->
+        <section class="lesson-section">
+            <h2>✨ Le Grand Œuvre (Opus Magnum)</h2>
+            <p>Le Grand Œuvre est le processus alchimique complet de création de la <strong>Pierre Philosophale</strong>. Il se divise traditionnellement en plusieurs phases, souvent décrites par des couleurs :</p>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number" style="background: #1a1a2e; color: #fff; border: 2px solid #d4af37;">1</div>
+                    <div class="step-content">
+                        <h4>Nigredo (Œuvre au Noir)</h4>
+                        <p>La putréfaction, la mort symbolique. Dissolution de la matière première dans le chaos. Confrontation avec l'ombre. "Solve" - dissoudre.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number" style="background: #fff; color: #1a1a2e;">2</div>
+                    <div class="step-content">
+                        <h4>Albedo (Œuvre au Blanc)</h4>
+                        <p>La purification, le lavage. L'âme purifiée émerge du chaos. Moment de clarté et d'illumination lunaire.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number" style="background: #f4d03f; color: #1a1a2e;">3</div>
+                    <div class="step-content">
+                        <h4>Citrinitas (Œuvre au Jaune)</h4>
+                        <p>L'éveil de la lumière solaire dans l'âme purifiée. Parfois omise dans les textes tardifs. L'aube de la conscience éveillée.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number" style="background: #dc2626; color: #fff;">4</div>
+                    <div class="step-content">
+                        <h4>Rubedo (Œuvre au Rouge)</h4>
+                        <p>L'accomplissement final. L'union des opposés. Création de la Pierre Philosophale. "Coagula" - coaguler. L'or philosophal est atteint.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Symboles Alchimiques -->
+        <section class="lesson-section">
+            <h2>🔯 Symboles Alchimiques Essentiels</h2>
+            <p>Les alchimistes utilisaient un langage symbolique codé pour transmettre leurs secrets :</p>
+
+            <div class="symbols-grid">
+                <div class="symbol-card">
+                    <div class="glyph">☉</div>
+                    <div class="name">Or / Soleil</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">☽</div>
+                    <div class="name">Argent / Lune</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">☿</div>
+                    <div class="name">Mercure</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">♀</div>
+                    <div class="name">Cuivre / Vénus</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">♂</div>
+                    <div class="name">Fer / Mars</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">♃</div>
+                    <div class="name">Étain / Jupiter</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">♄</div>
+                    <div class="name">Plomb / Saturne</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">🜍</div>
+                    <div class="name">Soufre</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">🜔</div>
+                    <div class="name">Sel</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">🝰</div>
+                    <div class="name">Pierre Philosophale</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">🜎</div>
+                    <div class="name">Antimoine</div>
+                </div>
+                <div class="symbol-card">
+                    <div class="glyph">🜄</div>
+                    <div class="name">Aqua Fortis</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Le symbolisme de l'Ouroboros :</strong><br>
+                Le serpent qui se mord la queue (🐍) représente le cycle éternel de la création et de la destruction, l'unité de toutes choses, et la nature cyclique du Grand Œuvre.
+            </div>
+        </section>
+
+        <!-- Maximes Hermétiques -->
+        <section class="lesson-section">
+            <h2>📖 Les Sept Principes Hermétiques</h2>
+            <p>Du <em>Kybalion</em>, texte attribué à Hermès Trismégiste :</p>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Mentalisme</h4>
+                        <p>"Le Tout est Esprit ; l'Univers est Mental."</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Correspondance</h4>
+                        <p>"Ce qui est en haut est comme ce qui est en bas."</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Vibration</h4>
+                        <p>"Rien ne repose ; tout remue ; tout vibre."</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Polarité</h4>
+                        <p>"Tout est double ; tout a deux pôles."</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Rythme</h4>
+                        <p>"Tout s'écoule, tout a ses marées."</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Cause et Effet</h4>
+                        <p>"Toute cause a son effet ; tout effet a sa cause."</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>Genre</h4>
+                        <p>"Il y a un genre en toutes choses."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

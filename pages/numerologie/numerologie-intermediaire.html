@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numérologie - Niveau Intermédiaire | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #9333ea, #c084fc, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(147, 51, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+        }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #c084fc;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-section h3 {
+            color: #e879f9;
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .core-number {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(192, 132, 252, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .core-number:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: #9333ea;
+        }
+
+        .core-number h4 {
+            color: #e879f9;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .calculator-box {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(192, 132, 252, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+        }
+
+        .calculator-box h3 {
+            color: #e879f9;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .calc-input-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .calc-input-group input {
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1.1em;
+            width: 300px;
+            text-align: center;
+        }
+
+        .calc-input-group input:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+        }
+
+        .calc-btn {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .result-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            display: none;
+        }
+
+        .result-card.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card .number {
+            font-size: 3em;
+            background: linear-gradient(135deg, #9333ea, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-card .label {
+            color: #c084fc;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .result-card .desc {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .info-box {
+            background: rgba(147, 51, 234, 0.1);
+            border-left: 4px solid #9333ea;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .master-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .master-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            text-align: center;
+        }
+
+        .master-card .symbol {
+            font-size: 3em;
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+
+        .master-card h4 {
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+
+        .cycle-chart {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .cycle-item {
+            background: rgba(147, 51, 234, 0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 80px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .cycle-item:hover {
+            border-color: #9333ea;
+            transform: translateY(-3px);
+        }
+
+        .cycle-item .age {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .cycle-item .number {
+            font-size: 1.5em;
+            color: #c084fc;
+            font-weight: bold;
+        }
+
+        .pinnacle-pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .pinnacle-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .pinnacle-box {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(192, 132, 252, 0.2));
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+        }
+
+        .pinnacle-box .label {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .pinnacle-box .value {
+            font-size: 2em;
+            color: #e879f9;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        th { background: rgba(147, 51, 234, 0.2); color: #c084fc; }
+        tr:hover { background: rgba(147, 51, 234, 0.1); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .number-grid, .master-numbers { grid-template-columns: 1fr; }
+            .calc-input-group input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔢 Numérologie - Intermédiaire</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">Les nombres fondamentaux de votre thème numérologique</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="numerologie-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="numerologie-expert.html" class="nav-btn">🎓 Expert</a>
+            <a href="calculateur-numerologie.html" class="nav-btn">🧮 Calculateur</a>
+        </nav>
+
+        <!-- Les 5 nombres fondamentaux -->
+        <section class="lesson-section">
+            <h2>🎯 Les 5 Nombres Fondamentaux</h2>
+            <p>En numérologie, votre profil complet se compose de 5 nombres essentiels, chacun révélant un aspect différent de votre personnalité et de votre destinée.</p>
+
+            <div class="number-grid">
+                <div class="core-number">
+                    <h4>1. Chemin de Vie</h4>
+                    <p><strong>Calcul :</strong> Somme de la date de naissance complète</p>
+                    <p>Représente votre mission de vie, les leçons à apprendre et le chemin à parcourir. C'est le nombre le plus important.</p>
+                    <p><em>Exemple : 15/03/1990 → 1+5+0+3+1+9+9+0 = 28 → 2+8 = 10 → 1+0 = <strong>1</strong></em></p>
+                </div>
+
+                <div class="core-number">
+                    <h4>2. Nombre d'Expression</h4>
+                    <p><strong>Calcul :</strong> Somme de toutes les lettres du nom complet</p>
+                    <p>Révèle vos talents naturels, vos capacités et la façon dont vous vous exprimez dans le monde.</p>
+                    <p><em>Prénom + Nom de famille complet à la naissance</em></p>
+                </div>
+
+                <div class="core-number">
+                    <h4>3. Nombre Intime (Âme)</h4>
+                    <p><strong>Calcul :</strong> Somme des voyelles du nom complet</p>
+                    <p>Représente vos désirs profonds, vos motivations secrètes et ce qui vous rend vraiment heureux.</p>
+                    <p><em>Voyelles : A, E, I, O, U (et Y parfois)</em></p>
+                </div>
+
+                <div class="core-number">
+                    <h4>4. Nombre de Réalisation</h4>
+                    <p><strong>Calcul :</strong> Somme des consonnes du nom complet</p>
+                    <p>Indique l'image que vous projetez, comment les autres vous perçoivent et votre persona sociale.</p>
+                    <p><em>Toutes les lettres sauf les voyelles</em></p>
+                </div>
+
+                <div class="core-number">
+                    <h4>5. Nombre d'Anniversaire</h4>
+                    <p><strong>Calcul :</strong> Jour de naissance réduit</p>
+                    <p>Un talent spécial ou une capacité que vous apportez pour accomplir votre chemin de vie.</p>
+                    <p><em>Exemple : Né le 23 → 2+3 = <strong>5</strong></em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculateur complet -->
+        <section class="lesson-section">
+            <h2>🧮 Calculateur de Thème Complet</h2>
+
+            <div class="calculator-box">
+                <h3>Entrez vos informations</h3>
+                <div class="calc-input-group">
+                    <input type="text" id="fullName" placeholder="Nom complet (à la naissance)" style="width: 400px;">
+                </div>
+                <div class="calc-input-group">
+                    <input type="date" id="birthDate">
+                    <button class="calc-btn" onclick="calculateFullProfile()">Calculer mon thème</button>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-card" id="lifePathCard">
+                        <div class="number" id="lifePathNum">-</div>
+                        <div class="label">Chemin de Vie</div>
+                        <div class="desc" id="lifePathDesc">Votre mission de vie</div>
+                    </div>
+                    <div class="result-card" id="expressionCard">
+                        <div class="number" id="expressionNum">-</div>
+                        <div class="label">Expression</div>
+                        <div class="desc" id="expressionDesc">Vos talents naturels</div>
+                    </div>
+                    <div class="result-card" id="soulCard">
+                        <div class="number" id="soulNum">-</div>
+                        <div class="label">Nombre Intime</div>
+                        <div class="desc" id="soulDesc">Vos désirs profonds</div>
+                    </div>
+                    <div class="result-card" id="personalityCard">
+                        <div class="number" id="personalityNum">-</div>
+                        <div class="label">Réalisation</div>
+                        <div class="desc" id="personalityDesc">Votre image sociale</div>
+                    </div>
+                    <div class="result-card" id="birthdayCard">
+                        <div class="number" id="birthdayNum">-</div>
+                        <div class="label">Anniversaire</div>
+                        <div class="desc" id="birthdayDesc">Votre talent spécial</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nombres Maîtres -->
+        <section class="lesson-section">
+            <h2>✨ Les Nombres Maîtres</h2>
+            <p>Les nombres maîtres (11, 22, 33) ne sont pas réduits car ils portent une vibration spirituelle plus élevée. Ils indiquent un potentiel spécial mais aussi des défis plus grands.</p>
+
+            <div class="master-numbers">
+                <div class="master-card">
+                    <div class="symbol">11</div>
+                    <h4>Le Maître Illuminé</h4>
+                    <p>Intuition exceptionnelle, inspiration, illumination spirituelle. Canal entre le monde matériel et spirituel.</p>
+                    <p><strong>Défi :</strong> Nervosité, hypersensibilité, doute de soi</p>
+                    <p><strong>Mission :</strong> Inspirer et élever les autres</p>
+                </div>
+
+                <div class="master-card">
+                    <div class="symbol">22</div>
+                    <h4>Le Maître Bâtisseur</h4>
+                    <p>Vision + Action. Capacité de transformer les rêves en réalité à grande échelle.</p>
+                    <p><strong>Défi :</strong> Pression énorme, tendance au workaholisme</p>
+                    <p><strong>Mission :</strong> Construire quelque chose de durable pour l'humanité</p>
+                </div>
+
+                <div class="master-card">
+                    <div class="symbol">33</div>
+                    <h4>Le Maître Enseignant</h4>
+                    <p>Amour inconditionnel, guérison, enseignement spirituel. Très rare dans un thème.</p>
+                    <p><strong>Défi :</strong> Sacrifice de soi, martyrisme</p>
+                    <p><strong>Mission :</strong> Guider et guérir à travers l'amour</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Note importante :</strong><br>
+                Avoir un nombre maître dans son thème n'est pas "meilleur" - c'est simplement différent. Ces nombres apportent à la fois un plus grand potentiel ET de plus grands défis. Beaucoup de personnes avec des nombres maîtres vivent la vibration réduite (11→2, 22→4, 33→6) avant de manifester le plein potentiel du maître.
+            </div>
+        </section>
+
+        <!-- Cycles de vie -->
+        <section class="lesson-section">
+            <h2>🔄 Les Cycles de Vie</h2>
+            <p>Votre vie se divise en trois grands cycles, chacun avec sa propre énergie et ses leçons. La durée du premier cycle dépend de votre chemin de vie.</p>
+
+            <h3>Les 3 Cycles Principaux</h3>
+            <table>
+                <tr>
+                    <th>Cycle</th>
+                    <th>Période</th>
+                    <th>Calcul</th>
+                    <th>Signification</th>
+                </tr>
+                <tr>
+                    <td><strong>1er Cycle</strong></td>
+                    <td>Naissance → ~28 ans</td>
+                    <td>Mois de naissance</td>
+                    <td>Formation, jeunesse, influences familiales</td>
+                </tr>
+                <tr>
+                    <td><strong>2ème Cycle</strong></td>
+                    <td>~28 → ~56 ans</td>
+                    <td>Jour de naissance</td>
+                    <td>Productivité, carrière, responsabilités</td>
+                </tr>
+                <tr>
+                    <td><strong>3ème Cycle</strong></td>
+                    <td>~56 ans → fin</td>
+                    <td>Année de naissance</td>
+                    <td>Récolte, sagesse, accomplissement</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>📐 Calcul précis des transitions :</strong><br>
+                La fin du 1er cycle = 36 - Chemin de Vie<br>
+                <em>Exemple : Chemin de vie 7 → 36-7 = 29 ans</em>
+            </div>
+        </section>
+
+        <!-- Les Pinnacles -->
+        <section class="lesson-section">
+            <h2>🏔️ Les Pinnacles (Sommets)</h2>
+            <p>Les 4 Pinnacles représentent les grandes phases d'accomplissement de votre vie. Chaque pinnacle a sa propre vibration qui colore cette période.</p>
+
+            <div class="pinnacle-pyramid">
+                <div class="pinnacle-row">
+                    <div class="pinnacle-box">
+                        <div class="label">4ème Pinnacle</div>
+                        <div class="value">Mois + Année</div>
+                        <div style="font-size: 0.8em; margin-top: 5px;">Fin de vie</div>
+                    </div>
+                </div>
+                <div class="pinnacle-row">
+                    <div class="pinnacle-box">
+                        <div class="label">2ème Pinnacle</div>
+                        <div class="value">Jour + Année</div>
+                        <div style="font-size: 0.8em; margin-top: 5px;">9 ans</div>
+                    </div>
+                    <div class="pinnacle-box">
+                        <div class="label">3ème Pinnacle</div>
+                        <div class="value">1er + 2ème</div>
+                        <div style="font-size: 0.8em; margin-top: 5px;">9 ans</div>
+                    </div>
+                </div>
+                <div class="pinnacle-row">
+                    <div class="pinnacle-box">
+                        <div class="label">1er Pinnacle</div>
+                        <div class="value">Jour + Mois</div>
+                        <div style="font-size: 0.8em; margin-top: 5px;">36 - CV ans</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Signification des Pinnacles par nombre</h3>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Énergie du Pinnacle</th>
+                </tr>
+                <tr><td>1</td><td>Période d'indépendance, nouveaux départs, leadership</td></tr>
+                <tr><td>2</td><td>Coopération, patience, relations, diplomatie</td></tr>
+                <tr><td>3</td><td>Expression créative, communication, sociabilité</td></tr>
+                <tr><td>4</td><td>Travail, construction, stabilité, efforts soutenus</td></tr>
+                <tr><td>5</td><td>Changements, liberté, aventure, adaptabilité</td></tr>
+                <tr><td>6</td><td>Responsabilités familiales, amour, service</td></tr>
+                <tr><td>7</td><td>Introspection, études, spiritualité, solitude</td></tr>
+                <tr><td>8</td><td>Succès matériel, pouvoir, reconnaissance</td></tr>
+                <tr><td>9</td><td>Accomplissement, humanitarisme, fins de cycles</td></tr>
+            </table>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-buttons" style="margin-top: 40px;">
+            <a href="numerologie-debutant.html" class="nav-btn">← Niveau Débutant</a>
+            <a href="numerologie-expert.html" class="nav-btn" style="background: linear-gradient(135deg, #9333ea, #c084fc);">
+                Continuer vers Expert →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Correspondance lettres-nombres (Pythagoricien)
+        const letterValues = {
+            'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+            'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+            'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+        };
+
+        const vowels = ['A', 'E', 'I', 'O', 'U'];
+
+        const numberMeanings = {
+            1: "Initiative, leadership, indépendance",
+            2: "Coopération, sensibilité, équilibre",
+            3: "Expression, créativité, communication",
+            4: "Stabilité, travail, organisation",
+            5: "Liberté, changement, aventure",
+            6: "Responsabilité, amour, harmonie",
+            7: "Spiritualité, analyse, introspection",
+            8: "Pouvoir, succès, abondance",
+            9: "Humanisme, sagesse, accomplissement",
+            11: "Illumination, intuition, inspiration",
+            22: "Vision, construction, maîtrise",
+            33: "Enseignement, guérison, amour universel"
+        };
+
+        function reduceNumber(num, keepMaster = true) {
+            while (num > 9) {
+                if (keepMaster && (num === 11 || num === 22 || num === 33)) break;
+                num = String(num).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            return num;
+        }
+
+        function getNameValue(name, type = 'all') {
+            name = name.toUpperCase().replace(/[^A-Z]/g, '');
+            let sum = 0;
+
+            for (let char of name) {
+                if (type === 'all') {
+                    sum += letterValues[char] || 0;
+                } else if (type === 'vowels' && vowels.includes(char)) {
+                    sum += letterValues[char] || 0;
+                } else if (type === 'consonants' && !vowels.includes(char)) {
+                    sum += letterValues[char] || 0;
+                }
+            }
+
+            return reduceNumber(sum);
+        }
+
+        function calculateFullProfile() {
+            const name = document.getElementById('fullName').value;
+            const dateInput = document.getElementById('birthDate').value;
+
+            if (!name || !dateInput) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+
+            const date = new Date(dateInput);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+
+            // Chemin de vie
+            const lifePath = reduceNumber(day + month + reduceNumber(year, false));
+            document.getElementById('lifePathNum').textContent = lifePath;
+            document.getElementById('lifePathDesc').textContent = numberMeanings[lifePath];
+            document.getElementById('lifePathCard').classList.add('show');
+
+            // Expression (toutes les lettres)
+            const expression = getNameValue(name, 'all');
+            document.getElementById('expressionNum').textContent = expression;
+            document.getElementById('expressionDesc').textContent = numberMeanings[expression];
+            document.getElementById('expressionCard').classList.add('show');
+
+            // Nombre Intime (voyelles)
+            const soul = getNameValue(name, 'vowels');
+            document.getElementById('soulNum').textContent = soul;
+            document.getElementById('soulDesc').textContent = numberMeanings[soul];
+            document.getElementById('soulCard').classList.add('show');
+
+            // Réalisation (consonnes)
+            const personality = getNameValue(name, 'consonants');
+            document.getElementById('personalityNum').textContent = personality;
+            document.getElementById('personalityDesc').textContent = numberMeanings[personality];
+            document.getElementById('personalityCard').classList.add('show');
+
+            // Anniversaire
+            const birthday = reduceNumber(day);
+            document.getElementById('birthdayNum').textContent = birthday;
+            document.getElementById('birthdayDesc').textContent = numberMeanings[birthday];
+            document.getElementById('birthdayCard').classList.add('show');
+        }
+    </script>
+</body>
+</html>

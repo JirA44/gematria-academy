@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabbale - Niveau Expert | Les Quatre Mondes & Qliphoth | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0a2e 50%, #0f0f23 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(139, 92, 246, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(139, 92, 246, 0.6); border-color: #a855f7; }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #a855f7;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .lesson-section h3 {
+            color: #c084fc;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .world-card {
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .world-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .world-atziluth { background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(185, 28, 28, 0.2)); border: 2px solid #ef4444; }
+        .world-briah { background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(29, 78, 216, 0.2)); border: 2px solid #3b82f6; }
+        .world-yetzirah { background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(21, 128, 61, 0.2)); border: 2px solid #22c55e; }
+        .world-assiah { background: linear-gradient(135deg, rgba(161, 98, 7, 0.3), rgba(120, 53, 15, 0.2)); border: 2px solid #a16207; }
+
+        .world-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .world-card .hebrew {
+            font-size: 1.3em;
+            color: #d4af37;
+        }
+
+        .qliphoth-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(50,0,0,0.3));
+            border: 2px solid rgba(139, 0, 0, 0.5);
+        }
+
+        .qliphoth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .qlipha-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(139, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .qlipha-card h5 {
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+
+        .tetragrammaton {
+            text-align: center;
+            font-size: 4em;
+            color: #d4af37;
+            margin: 30px 0;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .name-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .name-card .hebrew-name {
+            font-size: 1.8em;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(185, 28, 28, 0.1));
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .practice-exercise {
+            background: rgba(245, 158, 11, 0.15);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        th { background: rgba(139, 92, 246, 0.3); }
+        tr:nth-child(even) { background: rgba(255,255,255,0.05); }
+
+        .btn-complete {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-complete:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Kabbale - Niveau Expert</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Les Quatre Mondes, les Noms Divins et les Qliphoth</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="arbre-de-vie.html" class="nav-btn">🌳 Arbre de Vie</a>
+            <a href="kabbale-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="kabbale-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="kabbale-expert.html" class="nav-btn active">🎓 Expert</a>
+        </nav>
+
+        <!-- Les Quatre Mondes en Détail -->
+        <section class="lesson-section">
+            <h2>🌍 Les Quatre Mondes (Olamot) en Profondeur</h2>
+
+            <p>Selon la Kabbale lourianique, la création s'est déployée à travers quatre niveaux distincts. Chaque monde possède son propre Arbre de Vie complet, créant ainsi <strong>40 Sephiroth</strong> (4 × 10) au total.</p>
+
+            <div class="worlds-grid">
+                <div class="world-card world-atziluth">
+                    <h4>🔥 Atziluth <span class="hebrew">אֲצִילוּת</span></h4>
+                    <p><strong>Le Monde de l'Émanation</strong></p>
+                    <p>Le monde le plus élevé, où réside la pure divinité. Ici, les Sephiroth sont des aspects directs de Dieu.</p>
+                    <ul style="margin-top: 15px; line-height: 1.8;">
+                        <li>Élément : Feu 🔥</li>
+                        <li>Lettre du Tétragramme : Yod (י)</li>
+                        <li>Partie de l'âme : Chiah (Étincelle divine)</li>
+                        <li>Archanges : Formes pures</li>
+                    </ul>
+                </div>
+
+                <div class="world-card world-briah">
+                    <h4>💨 Briah <span class="hebrew">בְּרִיאָה</span></h4>
+                    <p><strong>Le Monde de la Création</strong></p>
+                    <p>Le monde des archanges et de l'intellect pur. Les premières formes distinctes émergent.</p>
+                    <ul style="margin-top: 15px; line-height: 1.8;">
+                        <li>Élément : Air 💨</li>
+                        <li>Lettre du Tétragramme : Hé (ה)</li>
+                        <li>Partie de l'âme : Neshamah (Âme supérieure)</li>
+                        <li>Entités : Archanges</li>
+                    </ul>
+                </div>
+
+                <div class="world-card world-yetzirah">
+                    <h4>💧 Yetzirah <span class="hebrew">יְצִירָה</span></h4>
+                    <p><strong>Le Monde de la Formation</strong></p>
+                    <p>Le monde des anges et des émotions. Les formes prennent une structure plus définie.</p>
+                    <ul style="margin-top: 15px; line-height: 1.8;">
+                        <li>Élément : Eau 💧</li>
+                        <li>Lettre du Tétragramme : Vav (ו)</li>
+                        <li>Partie de l'âme : Ruach (Esprit)</li>
+                        <li>Entités : Anges, Chœurs angéliques</li>
+                    </ul>
+                </div>
+
+                <div class="world-card world-assiah">
+                    <h4>🌍 Assiah <span class="hebrew">עֲשִׂיָּה</span></h4>
+                    <p><strong>Le Monde de l'Action</strong></p>
+                    <p>Le monde matériel que nous habitons. La manifestation finale de toutes les énergies.</p>
+                    <ul style="margin-top: 15px; line-height: 1.8;">
+                        <li>Élément : Terre 🌍</li>
+                        <li>Lettre du Tétragramme : Hé final (ה)</li>
+                        <li>Partie de l'âme : Nephesh (Âme animale)</li>
+                        <li>Entités : Esprits élémentaires</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Le Tétragramme -->
+        <section class="lesson-section">
+            <h2>✡️ Le Tétragramme (YHVH)</h2>
+
+            <div class="tetragrammaton">יהוה</div>
+
+            <p>Le Tétragramme (Yod-Hé-Vav-Hé) est le Nom ineffable de Dieu, considéré comme trop sacré pour être prononcé. Il contient en lui-même la structure de toute la création.</p>
+
+            <table>
+                <tr>
+                    <th>Lettre</th>
+                    <th>Nom</th>
+                    <th>Valeur</th>
+                    <th>Monde</th>
+                    <th>Élément</th>
+                    <th>Sephiroth</th>
+                </tr>
+                <tr>
+                    <td style="font-size: 2em; color: #d4af37;">י</td>
+                    <td>Yod</td>
+                    <td>10</td>
+                    <td>Atziluth</td>
+                    <td>🔥 Feu</td>
+                    <td>Kether, Chokmah</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 2em; color: #d4af37;">ה</td>
+                    <td>Hé</td>
+                    <td>5</td>
+                    <td>Briah</td>
+                    <td>💧 Eau</td>
+                    <td>Binah</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 2em; color: #d4af37;">ו</td>
+                    <td>Vav</td>
+                    <td>6</td>
+                    <td>Yetzirah</td>
+                    <td>💨 Air</td>
+                    <td>Chesed → Yesod</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 2em; color: #d4af37;">ה</td>
+                    <td>Hé (final)</td>
+                    <td>5</td>
+                    <td>Assiah</td>
+                    <td>🌍 Terre</td>
+                    <td>Malkuth</td>
+                </tr>
+            </table>
+
+            <div class="highlight-box">
+                <h3>💡 Les 72 Noms de Dieu</h3>
+                <p>À partir du Tétragramme et de trois versets de l'Exode (14:19-21), les kabbalistes ont dérivé 72 noms à trois lettres, chacun associé à un ange et à des pouvoirs spécifiques.</p>
+            </div>
+        </section>
+
+        <!-- Les Noms Divins -->
+        <section class="lesson-section">
+            <h2>📿 Les Noms Divins par Sephira</h2>
+
+            <p>Chaque Sephira est associée à un Nom divin spécifique, un Archange et un Chœur angélique :</p>
+
+            <div class="names-grid">
+                <div class="name-card">
+                    <div class="hebrew-name">אהיה</div>
+                    <p><strong>Eheieh</strong></p>
+                    <p style="font-size: 0.9em;">Kether - "Je Suis"</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">יה</div>
+                    <p><strong>Yah</strong></p>
+                    <p style="font-size: 0.9em;">Chokmah</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">יהוה אלהים</div>
+                    <p><strong>YHVH Elohim</strong></p>
+                    <p style="font-size: 0.9em;">Binah</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">אל</div>
+                    <p><strong>El</strong></p>
+                    <p style="font-size: 0.9em;">Chesed - "Dieu"</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">אלהים גבור</div>
+                    <p><strong>Elohim Gibor</strong></p>
+                    <p style="font-size: 0.9em;">Geburah</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">יהוה אלוה ודעת</div>
+                    <p><strong>YHVH Eloah va-Daath</strong></p>
+                    <p style="font-size: 0.9em;">Tiphereth</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">יהוה צבאות</div>
+                    <p><strong>YHVH Tzabaoth</strong></p>
+                    <p style="font-size: 0.9em;">Netzach</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">אלהים צבאות</div>
+                    <p><strong>Elohim Tzabaoth</strong></p>
+                    <p style="font-size: 0.9em;">Hod</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">שדי אל חי</div>
+                    <p><strong>Shaddai El Chai</strong></p>
+                    <p style="font-size: 0.9em;">Yesod</p>
+                </div>
+                <div class="name-card">
+                    <div class="hebrew-name">אדני הארץ</div>
+                    <p><strong>Adonai ha-Aretz</strong></p>
+                    <p style="font-size: 0.9em;">Malkuth</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les Qliphoth -->
+        <section class="lesson-section qliphoth-section">
+            <h2>🌑 Les Qliphoth - L'Ombre de l'Arbre</h2>
+
+            <div class="warning-box">
+                <h3>⚠️ Avertissement</h3>
+                <p>L'étude des Qliphoth est réservée aux pratiquants avancés. Ces forces représentent les aspects déséquilibrés ou "écorces" de la création. Leur étude doit se faire avec prudence et un fondement solide dans les pratiques positives.</p>
+            </div>
+
+            <p>Les Qliphoth (קְלִיפּוֹת, "écorces" ou "coquilles") sont l'envers de l'Arbre de Vie. Chaque Sephira a son opposé qliphothique qui représente son aspect déséquilibré ou inversé.</p>
+
+            <div class="qliphoth-grid">
+                <div class="qlipha-card">
+                    <h5>1. Thaumiel</h5>
+                    <p>Opposé de Kether</p>
+                    <p style="font-size: 0.85em;">"Les Jumeaux de Dieu" - Dualité contre unité</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>2. Ghagiel</h5>
+                    <p>Opposé de Chokmah</p>
+                    <p style="font-size: 0.85em;">"Les Entravants" - Sagesse corrompue</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>3. Satariel</h5>
+                    <p>Opposé de Binah</p>
+                    <p style="font-size: 0.85em;">"Les Cacheurs" - Compréhension obscurcie</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>4. Gamchicoth</h5>
+                    <p>Opposé de Chesed</p>
+                    <p style="font-size: 0.85em;">"Les Dévoreurs" - Miséricorde pervertie</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>5. Golachab</h5>
+                    <p>Opposé de Geburah</p>
+                    <p style="font-size: 0.85em;">"Les Brûlants" - Force destructrice</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>6. Thagirion</h5>
+                    <p>Opposé de Tiphereth</p>
+                    <p style="font-size: 0.85em;">"Les Disputeurs" - Fausse beauté</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>7. A'arab Zaraq</h5>
+                    <p>Opposé de Netzach</p>
+                    <p style="font-size: 0.85em;">"Les Corbeaux" - Passion destructrice</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>8. Samael</h5>
+                    <p>Opposé de Hod</p>
+                    <p style="font-size: 0.85em;">"Le Poison de Dieu" - Intellect corrompu</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>9. Gamaliel</h5>
+                    <p>Opposé de Yesod</p>
+                    <p style="font-size: 0.85em;">"L'Obscène" - Fondation instable</p>
+                </div>
+                <div class="qlipha-card">
+                    <h5>10. Lilith</h5>
+                    <p>Opposé de Malkuth</p>
+                    <p style="font-size: 0.85em;">"La Nuit" - Matière sans esprit</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pratiques Avancées -->
+        <section class="lesson-section">
+            <h2>🧘 Pratiques Avancées</h2>
+
+            <div class="practice-exercise">
+                <h3>📿 Le Rituel du Pilier du Milieu</h3>
+                <p>Une pratique fondamentale de la Kabbale pratique pour équilibrer et activer les centres d'énergie le long du pilier central.</p>
+                <ol style="margin: 20px 0; line-height: 2;">
+                    <li>Debout, les pieds joints, respirez profondément</li>
+                    <li><strong>Kether</strong> : Visualisez une sphère de lumière blanche au-dessus de votre tête. Vibrez : "EHEIEH"</li>
+                    <li><strong>Daath</strong> : Descendez la lumière à votre gorge (sphère lavande). Vibrez : "YHVH ELOHIM"</li>
+                    <li><strong>Tiphereth</strong> : Continuez au cœur (sphère dorée). Vibrez : "YHVH ELOAH VA-DAATH"</li>
+                    <li><strong>Yesod</strong> : Descendez aux organes génitaux (sphère violette). Vibrez : "SHADDAI EL CHAI"</li>
+                    <li><strong>Malkuth</strong> : Terminez aux pieds (sphère aux 4 couleurs). Vibrez : "ADONAI HA-ARETZ"</li>
+                    <li>Faites circuler la lumière de Malkuth à Kether, puis redescendez</li>
+                    <li>Terminez en silence, sentant l'équilibre</li>
+                </ol>
+            </div>
+
+            <div class="highlight-box">
+                <h3>📚 Textes Recommandés pour l'Étude Avancée</h3>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>Sefer HaZohar</strong> - Le Livre de la Splendeur (traduit par Daniel C. Matt)</li>
+                    <li><strong>Sefer Yetzirah</strong> - Le Livre de la Formation (avec commentaires d'Aryeh Kaplan)</li>
+                    <li><strong>Etz Chaim</strong> - L'Arbre de Vie de Rabbi Isaac Louria</li>
+                    <li><strong>The Mystical Qabalah</strong> - Dion Fortune</li>
+                    <li><strong>The Kabbalah</strong> - Gershom Scholem</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="kabbale-intermediaire.html" class="nav-btn" style="margin-right: 20px;">
+                ← Retour au Niveau Intermédiaire
+            </a>
+            <a href="arbre-de-vie.html" class="btn-complete">
+                🌳 Explorer l'Arbre de Vie Interactif
+            </a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(139, 92, 246, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Kabbale Niveau Expert</p>
+            <p style="margin-top: 10px;">
+                <a href="../../index.html" style="color: #a855f7; text-decoration: none;">← Retour au Portail</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

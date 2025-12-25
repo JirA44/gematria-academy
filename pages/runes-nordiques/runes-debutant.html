@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ᚠ Runes Nordiques - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d1b2a 50%, #1b263b 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+        }
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        .subtitle { font-size: 1.3em; opacity: 0.9; margin-bottom: 10px; }
+        .intro { max-width: 800px; margin: 0 auto; line-height: 1.6; opacity: 0.85; }
+
+        .nav-buttons {
+            display: flex; justify-content: center; gap: 15px;
+            flex-wrap: wrap; margin-bottom: 30px;
+        }
+        .nav-btn {
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            color: #fff; padding: 12px 24px;
+            border-radius: 25px; text-decoration: none;
+            font-weight: 600; transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .nav-btn.active { background: rgba(59, 130, 246, 0.5); border-color: #3b82f6; }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #60a5fa;
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 15px;
+        }
+
+        /* Aettir sections */
+        .aett-title {
+            font-size: 1.4em;
+            color: #8b5cf6;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        /* Rune Grid */
+        .rune-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .rune-card {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .rune-card:hover {
+            transform: translateY(-5px);
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        .rune-char {
+            font-size: 3em;
+            display: block;
+            margin-bottom: 10px;
+            color: #60a5fa;
+        }
+        .rune-name { font-size: 1.1em; color: #8b5cf6; font-weight: bold; }
+        .rune-trans { font-size: 0.9em; opacity: 0.8; margin-top: 5px; }
+        .rune-meaning { font-size: 0.85em; opacity: 0.7; margin-top: 5px; font-style: italic; }
+
+        /* Phrases */
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .phrase-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .phrase-card:hover {
+            transform: translateY(-3px);
+            border-color: #3b82f6;
+        }
+        .phrase-rune {
+            font-size: 2em;
+            color: #60a5fa;
+            margin-bottom: 10px;
+            letter-spacing: 8px;
+        }
+        .phrase-old-norse {
+            font-size: 1.1em;
+            color: #8b5cf6;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .phrase-meaning {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        .phrase-context {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Category tabs */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .cat-tab {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cat-tab:hover, .cat-tab.active {
+            background: rgba(59, 130, 246, 0.4);
+            border-color: #3b82f6;
+        }
+
+        /* Formality levels */
+        .formality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .formality-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid;
+        }
+        .formality-card.sacred { border-color: #d4af37; }
+        .formality-card.formal { border-color: #60a5fa; }
+        .formality-card.casual { border-color: #81c784; }
+
+        .formality-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .formality-examples {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .example-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .example-item:last-child { border-bottom: none; }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.1), rgba(100, 181, 246, 0.05));
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 {
+            color: #64b5f6;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #60a5fa;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .rune-grid { grid-template-columns: repeat(4, 1fr); }
+            .phrases-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+
+        <header>
+            <h1>ᚠ Runes Nordiques</h1>
+            <div class="subtitle">L'Écriture Sacrée des Vikings</div>
+            <p class="intro">
+                Découvrez l'Elder Futhark, l'alphabet runique le plus ancien (IIe-VIIIe siècle).
+                Apprenez les 24 runes sacrées, leurs significations magiques, et les formules
+                traditionnelles des peuples nordiques.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="#futhark" class="nav-btn active">ᚠᚢᚦ Futhark</a>
+            <a href="#formules" class="nav-btn">⚡ Formules Sacrées</a>
+            <a href="#salutations" class="nav-btn">🤝 Salutations</a>
+            <a href="#benedictions" class="nav-btn">✨ Bénédictions</a>
+        </div>
+
+        <!-- Futhark Section -->
+        <section class="section" id="futhark">
+            <h2 class="section-title">ᚠᚢᚦ L'Elder Futhark (24 Runes)</h2>
+            <p style="margin-bottom: 20px; opacity: 0.9;">
+                Le Futhark tire son nom des six premières runes : ᚠ (F) ᚢ (U) ᚦ (Th) ᚨ (A) ᚱ (R) ᚲ (K).
+                Les 24 runes sont divisées en 3 "aettir" (familles) de 8 runes chacune.
+            </p>
+
+            <!-- Premier Aett - Freyr -->
+            <h3 class="aett-title">⚡ Premier Aett - Famille de Freyr (Fertilité & Richesse)</h3>
+            <div class="rune-grid">
+                <div class="rune-card">
+                    <span class="rune-char">ᚠ</span>
+                    <span class="rune-name">Fehu</span>
+                    <span class="rune-trans">F</span>
+                    <span class="rune-meaning">Bétail, richesse</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚢ</span>
+                    <span class="rune-name">Uruz</span>
+                    <span class="rune-trans">U</span>
+                    <span class="rune-meaning">Auroch, force</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚦ</span>
+                    <span class="rune-name">Thurisaz</span>
+                    <span class="rune-trans">Th</span>
+                    <span class="rune-meaning">Géant, Thor</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚨ</span>
+                    <span class="rune-name">Ansuz</span>
+                    <span class="rune-trans">A</span>
+                    <span class="rune-meaning">Dieu, Odin</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚱ</span>
+                    <span class="rune-name">Raidho</span>
+                    <span class="rune-trans">R</span>
+                    <span class="rune-meaning">Voyage, chemin</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚲ</span>
+                    <span class="rune-name">Kenaz</span>
+                    <span class="rune-trans">K</span>
+                    <span class="rune-meaning">Torche, lumière</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚷ</span>
+                    <span class="rune-name">Gebo</span>
+                    <span class="rune-trans">G</span>
+                    <span class="rune-meaning">Don, échange</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚹ</span>
+                    <span class="rune-name">Wunjo</span>
+                    <span class="rune-trans">W</span>
+                    <span class="rune-meaning">Joie, harmonie</span>
+                </div>
+            </div>
+
+            <!-- Deuxième Aett - Hagal -->
+            <h3 class="aett-title">❄️ Deuxième Aett - Famille de Hagal (Forces de la Nature)</h3>
+            <div class="rune-grid">
+                <div class="rune-card">
+                    <span class="rune-char">ᚺ</span>
+                    <span class="rune-name">Hagalaz</span>
+                    <span class="rune-trans">H</span>
+                    <span class="rune-meaning">Grêle, destruction</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᚾ</span>
+                    <span class="rune-name">Nauthiz</span>
+                    <span class="rune-trans">N</span>
+                    <span class="rune-meaning">Nécessité, besoin</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛁ</span>
+                    <span class="rune-name">Isa</span>
+                    <span class="rune-trans">I</span>
+                    <span class="rune-meaning">Glace, immobilité</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛃ</span>
+                    <span class="rune-name">Jera</span>
+                    <span class="rune-trans">J</span>
+                    <span class="rune-meaning">Récolte, année</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛇ</span>
+                    <span class="rune-name">Eihwaz</span>
+                    <span class="rune-trans">Ei</span>
+                    <span class="rune-meaning">If, Yggdrasil</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛈ</span>
+                    <span class="rune-name">Perthro</span>
+                    <span class="rune-trans">P</span>
+                    <span class="rune-meaning">Destin, mystère</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛉ</span>
+                    <span class="rune-name">Algiz</span>
+                    <span class="rune-trans">Z</span>
+                    <span class="rune-meaning">Protection, élan</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛊ</span>
+                    <span class="rune-name">Sowilo</span>
+                    <span class="rune-trans">S</span>
+                    <span class="rune-meaning">Soleil, victoire</span>
+                </div>
+            </div>
+
+            <!-- Troisième Aett - Tyr -->
+            <h3 class="aett-title">⚔️ Troisième Aett - Famille de Tyr (Guerre & Société)</h3>
+            <div class="rune-grid">
+                <div class="rune-card">
+                    <span class="rune-char">ᛏ</span>
+                    <span class="rune-name">Tiwaz</span>
+                    <span class="rune-trans">T</span>
+                    <span class="rune-meaning">Tyr, justice</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛒ</span>
+                    <span class="rune-name">Berkano</span>
+                    <span class="rune-trans">B</span>
+                    <span class="rune-meaning">Bouleau, renaissance</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛖ</span>
+                    <span class="rune-name">Ehwaz</span>
+                    <span class="rune-trans">E</span>
+                    <span class="rune-meaning">Cheval, mouvement</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛗ</span>
+                    <span class="rune-name">Mannaz</span>
+                    <span class="rune-trans">M</span>
+                    <span class="rune-meaning">Homme, humanité</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛚ</span>
+                    <span class="rune-name">Laguz</span>
+                    <span class="rune-trans">L</span>
+                    <span class="rune-meaning">Eau, lac</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛜ</span>
+                    <span class="rune-name">Ingwaz</span>
+                    <span class="rune-trans">Ng</span>
+                    <span class="rune-meaning">Ing, fertilité</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛞ</span>
+                    <span class="rune-name">Dagaz</span>
+                    <span class="rune-trans">D</span>
+                    <span class="rune-meaning">Jour, éveil</span>
+                </div>
+                <div class="rune-card">
+                    <span class="rune-char">ᛟ</span>
+                    <span class="rune-name">Othala</span>
+                    <span class="rune-trans">O</span>
+                    <span class="rune-meaning">Héritage, patrie</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>📜 Direction d'Écriture</h4>
+                <p>Les runes peuvent s'écrire de gauche à droite, de droite à gauche, ou en boustrophédon
+                (alternant les directions). Sur les pierres runiques, on suivait souvent la forme de la pierre.
+                Les runes inversées ou retournées avaient parfois des significations différentes.</p>
+            </div>
+        </section>
+
+        <!-- Formules Sacrées -->
+        <section class="section" id="formules">
+            <h2 class="section-title">⚡ Niveaux de Formalité</h2>
+            <p style="margin-bottom: 25px; opacity: 0.9;">
+                Les Vikings avaient différents registres de langage selon le contexte :
+                invocations aux dieux, discours formels au Thing, ou conversations quotidiennes.
+            </p>
+
+            <div class="formality-grid">
+                <div class="formality-card sacred">
+                    <div class="formality-title">
+                        <span style="font-size: 1.5em;">⚡</span>
+                        <span style="color: #d4af37;">Invocations Sacrées (aux Dieux)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Formules utilisées lors des blóts (sacrifices), des rituels et des prières aux Ases et Vanes.
+                    </p>
+                    <div class="formality-examples">
+                        <div class="example-item">
+                            <div style="color: #d4af37; font-size: 1.5em; letter-spacing: 5px;">ᚨᛊᚨᚦᚱᛟ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Ásaþró</div>
+                            <div>"Foi en les Ases" (déclaration de foi)</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #d4af37; font-size: 1.5em; letter-spacing: 5px;">ᚺᛖᛁᛚᛟᛞᛁᚾ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Heil Óðinn!</div>
+                            <div>"Gloire à Odin!" (invocation)</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #d4af37; font-size: 1.5em; letter-spacing: 5px;">ᚦᛟᚱᚹᛁᚷᛁ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Þórr vigi</div>
+                            <div>"Que Thor consacre" (bénédiction)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formality-card formal">
+                    <div class="formality-title">
+                        <span style="font-size: 1.5em;">🏛️</span>
+                        <span style="color: #60a5fa;">Langage Formel (au Thing)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Formules utilisées lors des assemblées (Thing), des serments et des déclarations officielles.
+                    </p>
+                    <div class="formality-examples">
+                        <div class="example-item">
+                            <div style="color: #60a5fa; font-size: 1.5em; letter-spacing: 5px;">ᚺᛖᛁᛚᚦᛖᚱ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Heil þér!</div>
+                            <div>"Honneur à toi!" (salut formel)</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #60a5fa; font-size: 1.5em; letter-spacing: 5px;">ᛖᚲᛊᚹᛖᚱᛃᚨ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Ek sverja</div>
+                            <div>"Je jure" (serment)</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #60a5fa; font-size: 1.5em; letter-spacing: 5px;">ᚷᚱᛁᚦᛊᛖ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Griðs sé</div>
+                            <div>"Que la paix soit" (trêve)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formality-card casual">
+                    <div class="formality-title">
+                        <span style="font-size: 1.5em;">🍺</span>
+                        <span style="color: #81c784;">Langage Quotidien</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Expressions courantes entre amis, famille et compagnons de voyage ou de guerre.
+                    </p>
+                    <div class="formality-examples">
+                        <div class="example-item">
+                            <div style="color: #81c784; font-size: 1.5em; letter-spacing: 5px;">ᚺᛖᛁᛚ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Heil!</div>
+                            <div>"Salut!" (salutation amicale)</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #81c784; font-size: 1.5em; letter-spacing: 5px;">ᛏᚨᚲᚲ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Þakk</div>
+                            <div>"Merci"</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #81c784; font-size: 1.5em; letter-spacing: 5px;">ᚷᛟᛏᛏ</div>
+                            <div style="font-style: italic; margin: 5px 0;">Gott!</div>
+                            <div>"Bien!" / "D'accord!"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Salutations -->
+        <section class="section" id="salutations">
+            <h2 class="section-title">🤝 Salutations et Phrases Usuelles</h2>
+
+            <div class="category-tabs">
+                <button class="cat-tab active" onclick="filterPhrases('all')">Toutes</button>
+                <button class="cat-tab" onclick="filterPhrases('salutation')">Salutations</button>
+                <button class="cat-tab" onclick="filterPhrases('remerciement')">Remerciements</button>
+                <button class="cat-tab" onclick="filterPhrases('toast')">Toasts</button>
+                <button class="cat-tab" onclick="filterPhrases('depart')">Départs</button>
+            </div>
+
+            <div class="phrases-grid" id="phrasesContainer">
+                <!-- Salutations -->
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-rune">ᚺᛖᛁᛚ ᛟᚲ ᛊᛇᛚ</div>
+                    <div class="phrase-old-norse">Heil ok sæl!</div>
+                    <div class="phrase-meaning">"Santé et bonheur!" (salut complet)</div>
+                    <div class="phrase-context">Salutation traditionnelle complète, souhaitant santé et prospérité</div>
+                </div>
+
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-rune">ᚷᛟᛞᚨᚾ ᛞᚨᚷ</div>
+                    <div class="phrase-old-norse">Góðan dag!</div>
+                    <div class="phrase-meaning">"Bonne journée!" / "Bonjour!"</div>
+                    <div class="phrase-context">Salutation quotidienne</div>
+                </div>
+
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-rune">ᚹᛖᛚᚲᛟᛗᛁᚾᚾ</div>
+                    <div class="phrase-old-norse">Velkominn!</div>
+                    <div class="phrase-meaning">"Bienvenue!"</div>
+                    <div class="phrase-context">Accueil d'un invité ou voyageur</div>
+                </div>
+
+                <!-- Remerciements -->
+                <div class="phrase-card" data-category="remerciement">
+                    <div class="phrase-rune">ᚦᚨᚲᚲ ᚠᛁᚱᛁᚱ</div>
+                    <div class="phrase-old-norse">Þakk fyrir!</div>
+                    <div class="phrase-meaning">"Merci beaucoup!"</div>
+                    <div class="phrase-context">Remerciement standard</div>
+                </div>
+
+                <div class="phrase-card" data-category="remerciement">
+                    <div class="phrase-rune">ᛗᛁᚲᛁᛚᛚ ᚦᚨᚲᚲ</div>
+                    <div class="phrase-old-norse">Mikill þakk</div>
+                    <div class="phrase-meaning">"Grand merci"</div>
+                    <div class="phrase-context">Remerciement appuyé</div>
+                </div>
+
+                <div class="phrase-card" data-category="remerciement">
+                    <div class="phrase-rune">ᛖᚲ ᚦᚨᚲᚲᚨ ᚦᛖᚱ</div>
+                    <div class="phrase-old-norse">Ek þakka þér</div>
+                    <div class="phrase-meaning">"Je te remercie"</div>
+                    <div class="phrase-context">Forme personnelle de gratitude</div>
+                </div>
+
+                <!-- Toasts -->
+                <div class="phrase-card" data-category="toast">
+                    <div class="phrase-rune">ᛊᚲᚨᛚ</div>
+                    <div class="phrase-old-norse">Skál!</div>
+                    <div class="phrase-meaning">"Santé!" (toast)</div>
+                    <div class="phrase-context">Le célèbre toast viking, "à la coupe!"</div>
+                </div>
+
+                <div class="phrase-card" data-category="toast">
+                    <div class="phrase-rune">ᛏᛁᛚ ᚨᛚᛚᛊ ᚺᛖᛁᛚᛊ</div>
+                    <div class="phrase-old-norse">Til alls heils!</div>
+                    <div class="phrase-meaning">"À toute santé!"</div>
+                    <div class="phrase-context">Toast souhaitant une santé complète</div>
+                </div>
+
+                <div class="phrase-card" data-category="toast">
+                    <div class="phrase-rune">ᛞᚱᛖᚲᚲ ᚺᛖᛁᛚ</div>
+                    <div class="phrase-old-norse">Drekk heil!</div>
+                    <div class="phrase-meaning">"Bois en bonne santé!"</div>
+                    <div class="phrase-context">Invitation à boire lors d'un festin</div>
+                </div>
+
+                <!-- Départs -->
+                <div class="phrase-card" data-category="depart">
+                    <div class="phrase-rune">ᚠᚨᚱ ᚹᛖᛚ</div>
+                    <div class="phrase-old-norse">Far vel!</div>
+                    <div class="phrase-meaning">"Va bien!" / "Adieu!"</div>
+                    <div class="phrase-context">Au revoir, souhait de bon voyage</div>
+                </div>
+
+                <div class="phrase-card" data-category="depart">
+                    <div class="phrase-rune">ᛊᛃᚨᚢᛗᛊᛏ</div>
+                    <div class="phrase-old-norse">Sjáumst!</div>
+                    <div class="phrase-meaning">"À bientôt!" / "On se revoit!"</div>
+                    <div class="phrase-context">Au revoir informel entre amis</div>
+                </div>
+
+                <div class="phrase-card" data-category="depart">
+                    <div class="phrase-rune">ᚷᛟᛞᚨ ᚠᛖᚱᛞ</div>
+                    <div class="phrase-old-norse">Góða ferð!</div>
+                    <div class="phrase-meaning">"Bon voyage!"</div>
+                    <div class="phrase-context">Souhait pour un voyageur partant</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bénédictions -->
+        <section class="section" id="benedictions">
+            <h2 class="section-title">✨ Bénédictions et Formules Magiques</h2>
+
+            <div class="phrases-grid">
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᚦᛟᚱ ᚹᛁᚷᛁ</div>
+                    <div class="phrase-old-norse">Þórr vigi!</div>
+                    <div class="phrase-meaning">"Que Thor consacre!"</div>
+                    <div class="phrase-context">Bénédiction de consécration, souvent gravée sur les amulettes</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᛟᛞᛁᚾ ᚨ ᚨᛚᛚᚨ</div>
+                    <div class="phrase-old-norse">Óðinn á alla!</div>
+                    <div class="phrase-meaning">"Odin possède tout!"</div>
+                    <div class="phrase-context">Invocation de la puissance d'Odin</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᚨᛚᚢ</div>
+                    <div class="phrase-old-norse">Alu</div>
+                    <div class="phrase-meaning">"Protection magique"</div>
+                    <div class="phrase-context">Mot de pouvoir trouvé sur de nombreuses pierres runiques</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᛚᚨᚢᚲᚨᛉ</div>
+                    <div class="phrase-old-norse">Laukaz</div>
+                    <div class="phrase-meaning">"Poireau" (symbole de croissance)</div>
+                    <div class="phrase-context">Mot magique de fertilité et de guérison</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᚷᛁᛒᚢ ᚨᚢᛃᚨ</div>
+                    <div class="phrase-old-norse">Gibu auja!</div>
+                    <div class="phrase-meaning">"Je donne la chance!"</div>
+                    <div class="phrase-context">Formule de bénédiction pour la bonne fortune</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᛊᛁᚷᛁᛊ</div>
+                    <div class="phrase-old-norse">Sigis</div>
+                    <div class="phrase-meaning">"Victoire"</div>
+                    <div class="phrase-context">Mot de pouvoir pour la victoire au combat</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᛖᚱᛁᛚᚨᛉ</div>
+                    <div class="phrase-old-norse">Erilaʀ</div>
+                    <div class="phrase-meaning">"Le maître des runes"</div>
+                    <div class="phrase-context">Titre du graveur de runes, celui qui maîtrise leur magie</div>
+                </div>
+
+                <div class="phrase-card">
+                    <div class="phrase-rune">ᛗᛖᛞ ᚷᛟᛞᚨ ᚺᛖᛁᛚᛚ</div>
+                    <div class="phrase-old-norse">Með góða heill</div>
+                    <div class="phrase-meaning">"Avec bonne fortune"</div>
+                    <div class="phrase-context">Bénédiction générale de bonne chance</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>🔮 La Magie des Runes</h4>
+                <p>Selon la mythologie nordique, Odin a découvert les runes après s'être pendu 9 jours
+                à Yggdrasil. Les runes n'étaient pas seulement un alphabet mais des symboles de pouvoir.
+                Chaque rune portait une force cosmique. Les "galdr" (chants runiques) activaient leur magie,
+                et les "bind runes" (runes liées) combinaient plusieurs pouvoirs en un seul symbole.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function filterPhrases(category) {
+            const cards = document.querySelectorAll('.phrase-card');
+            const tabs = document.querySelectorAll('.cat-tab');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

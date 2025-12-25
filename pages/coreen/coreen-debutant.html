@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coréen - Niveau Débutant | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1e3a5f 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(220, 38, 127, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #dc2680, #f472b6, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .korean-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(220, 38, 127, 0.2);
+            border: 2px solid rgba(220, 38, 127, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(220, 38, 127, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(220, 38, 127, 0.3);
+        }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(220, 38, 127, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #f472b6;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .lesson-section h3 {
+            color: #fb7185;
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        /* Hangul Grid */
+        .hangul-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .hangul-card {
+            background: linear-gradient(145deg, rgba(220, 38, 127, 0.2), rgba(0,0,0,0.3));
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid rgba(220, 38, 127, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hangul-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(220, 38, 127, 0.4);
+            border-color: #dc2680;
+        }
+
+        .hangul-card .char {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .hangul-card .roman {
+            font-size: 0.9em;
+            color: #f472b6;
+        }
+
+        .hangul-card .sound {
+            font-size: 0.75em;
+            opacity: 0.7;
+        }
+
+        /* Phrase cards */
+        .phrase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .phrase-card {
+            background: linear-gradient(145deg, rgba(220, 38, 127, 0.15), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(220, 38, 127, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .phrase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(220, 38, 127, 0.3);
+        }
+
+        .phrase-card .korean {
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .phrase-card .romanization {
+            font-size: 1.1em;
+            color: #f472b6;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .phrase-card .french {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .phrase-card .context {
+            font-size: 0.85em;
+            opacity: 0.7;
+            padding-top: 10px;
+            border-top: 1px solid rgba(220, 38, 127, 0.2);
+        }
+
+        .phrase-card .audio-btn {
+            background: rgba(220, 38, 127, 0.3);
+            border: none;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .phrase-card .audio-btn:hover {
+            background: rgba(220, 38, 127, 0.5);
+        }
+
+        /* Politeness levels */
+        .politeness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .politeness-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid;
+        }
+
+        .politeness-card.formal { border-color: #3b82f6; }
+        .politeness-card.polite { border-color: #22c55e; }
+        .politeness-card.casual { border-color: #f59e0b; }
+
+        .politeness-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .politeness-card.formal h4 { color: #3b82f6; }
+        .politeness-card.polite h4 { color: #22c55e; }
+        .politeness-card.casual h4 { color: #f59e0b; }
+
+        .politeness-card .example {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .politeness-card .kr { font-size: 1.3em; }
+        .politeness-card .rom { color: #f472b6; font-style: italic; }
+
+        .info-box {
+            background: rgba(220, 38, 127, 0.1);
+            border-left: 4px solid #dc2680;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        /* Quiz */
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .quiz-section h3 { color: #22c55e; margin-bottom: 20px; }
+
+        .quiz-question {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options { display: grid; gap: 10px; }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.05);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        .quiz-option.correct { background: rgba(34, 197, 94, 0.3); border-color: #22c55e; }
+        .quiz-option.incorrect { background: rgba(239, 68, 68, 0.3); border-color: #ef4444; }
+
+        /* Category tabs */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .category-tab {
+            background: rgba(220, 38, 127, 0.2);
+            border: 2px solid rgba(220, 38, 127, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab:hover, .category-tab.active {
+            background: rgba(220, 38, 127, 0.4);
+            border-color: #dc2680;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .phrase-grid { grid-template-columns: 1fr; }
+            .hangul-grid { grid-template-columns: repeat(5, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="korean-title">한국어</div>
+            <h1>🇰🇷 Coréen - Débutant</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">Apprenez le Hangul, les formules de politesse et les phrases essentielles</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="coreen-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="coreen-phrases.html" class="nav-btn">💬 Phrases</a>
+            <a href="coreen-vocabulaire.html" class="nav-btn">📖 Vocabulaire</a>
+        </nav>
+
+        <!-- Introduction au Hangul -->
+        <section class="lesson-section">
+            <h2>🔤 L'alphabet coréen : Le Hangul (한글)</h2>
+
+            <p>Le <strong>Hangul</strong> est l'alphabet coréen, créé en 1443 par le roi Sejong le Grand. Il est considéré comme l'un des systèmes d'écriture les plus scientifiques et faciles à apprendre au monde !</p>
+
+            <div class="info-box">
+                <strong>💡 Bonne nouvelle :</strong> Le Hangul peut s'apprendre en quelques heures ! Il compte 14 consonnes de base et 10 voyelles de base. Les lettres se combinent en blocs syllabiques.
+            </div>
+
+            <h3>Les 14 Consonnes de Base (자음)</h3>
+            <div class="hangul-grid">
+                <div class="hangul-card" onclick="playSound('g')">
+                    <div class="char">ㄱ</div>
+                    <div class="roman">g/k</div>
+                    <div class="sound">giyeok</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('n')">
+                    <div class="char">ㄴ</div>
+                    <div class="roman">n</div>
+                    <div class="sound">nieun</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('d')">
+                    <div class="char">ㄷ</div>
+                    <div class="roman">d/t</div>
+                    <div class="sound">digeut</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('r')">
+                    <div class="char">ㄹ</div>
+                    <div class="roman">r/l</div>
+                    <div class="sound">rieul</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('m')">
+                    <div class="char">ㅁ</div>
+                    <div class="roman">m</div>
+                    <div class="sound">mieum</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('b')">
+                    <div class="char">ㅂ</div>
+                    <div class="roman">b/p</div>
+                    <div class="sound">bieup</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('s')">
+                    <div class="char">ㅅ</div>
+                    <div class="roman">s</div>
+                    <div class="sound">siot</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('silent')">
+                    <div class="char">ㅇ</div>
+                    <div class="roman">-/ng</div>
+                    <div class="sound">ieung</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('j')">
+                    <div class="char">ㅈ</div>
+                    <div class="roman">j</div>
+                    <div class="sound">jieut</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('ch')">
+                    <div class="char">ㅊ</div>
+                    <div class="roman">ch</div>
+                    <div class="sound">chieut</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('k')">
+                    <div class="char">ㅋ</div>
+                    <div class="roman">k</div>
+                    <div class="sound">kieuk</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('t')">
+                    <div class="char">ㅌ</div>
+                    <div class="roman">t</div>
+                    <div class="sound">tieut</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('p')">
+                    <div class="char">ㅍ</div>
+                    <div class="roman">p</div>
+                    <div class="sound">pieup</div>
+                </div>
+                <div class="hangul-card" onclick="playSound('h')">
+                    <div class="char">ㅎ</div>
+                    <div class="roman">h</div>
+                    <div class="sound">hieut</div>
+                </div>
+            </div>
+
+            <h3>Les 10 Voyelles de Base (모음)</h3>
+            <div class="hangul-grid">
+                <div class="hangul-card">
+                    <div class="char">ㅏ</div>
+                    <div class="roman">a</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅑ</div>
+                    <div class="roman">ya</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅓ</div>
+                    <div class="roman">eo</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅕ</div>
+                    <div class="roman">yeo</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅗ</div>
+                    <div class="roman">o</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅛ</div>
+                    <div class="roman">yo</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅜ</div>
+                    <div class="roman">u</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅠ</div>
+                    <div class="roman">yu</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅡ</div>
+                    <div class="roman">eu</div>
+                </div>
+                <div class="hangul-card">
+                    <div class="char">ㅣ</div>
+                    <div class="roman">i</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Niveaux de politesse -->
+        <section class="lesson-section">
+            <h2>🎭 Les Niveaux de Politesse</h2>
+
+            <p>En coréen, le niveau de politesse est <strong>essentiel</strong>. Il y a plusieurs niveaux, mais voici les 3 principaux :</p>
+
+            <div class="politeness-grid">
+                <div class="politeness-card formal">
+                    <h4>📜 Formel (합쇼체 - Hapsyoche)</h4>
+                    <p>Utilisé dans les situations très formelles : discours, présentations, avec des supérieurs.</p>
+                    <div class="example">
+                        <div class="kr">감사합니다</div>
+                        <div class="rom">Gamsahamnida</div>
+                        <div>Merci (très formel)</div>
+                    </div>
+                    <p><strong>Terminaison :</strong> -ㅂ니다 / -습니다</p>
+                </div>
+
+                <div class="politeness-card polite">
+                    <h4>😊 Poli (해요체 - Haeyoche)</h4>
+                    <p>Le plus courant ! Utilisé avec des inconnus, des aînés, au travail.</p>
+                    <div class="example">
+                        <div class="kr">감사해요</div>
+                        <div class="rom">Gamsahaeyo</div>
+                        <div>Merci (poli)</div>
+                    </div>
+                    <p><strong>Terminaison :</strong> -아요 / -어요</p>
+                </div>
+
+                <div class="politeness-card casual">
+                    <h4>🤝 Familier (반말 - Banmal)</h4>
+                    <p>Entre amis proches du même âge, avec des plus jeunes.</p>
+                    <div class="example">
+                        <div class="kr">고마워</div>
+                        <div class="rom">Gomawo</div>
+                        <div>Merci (familier)</div>
+                    </div>
+                    <p><strong>Terminaison :</strong> -아 / -어</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>⚠️ Important :</strong> En cas de doute, utilisez toujours le niveau <strong>poli (해요체)</strong>. C'est le plus sûr dans la vie quotidienne !
+            </div>
+        </section>
+
+        <!-- Salutations -->
+        <section class="lesson-section">
+            <h2>👋 Salutations et Formules de Politesse</h2>
+
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="filterPhrases('all')">Toutes</button>
+                <button class="category-tab" onclick="filterPhrases('greeting')">Salutations</button>
+                <button class="category-tab" onclick="filterPhrases('thanks')">Remerciements</button>
+                <button class="category-tab" onclick="filterPhrases('sorry')">Excuses</button>
+                <button class="category-tab" onclick="filterPhrases('intro')">Présentations</button>
+            </div>
+
+            <div class="phrase-grid" id="phrasesGrid">
+                <!-- Généré par JS -->
+            </div>
+        </section>
+
+        <!-- Phrases usuelles -->
+        <section class="lesson-section">
+            <h2>💬 Phrases Usuelles du Quotidien</h2>
+
+            <h3>Au restaurant / café</h3>
+            <div class="phrase-grid">
+                <div class="phrase-card">
+                    <div class="korean">메뉴판 주세요</div>
+                    <div class="romanization">Menyupan juseyo</div>
+                    <div class="french">Le menu, s'il vous plaît</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">이거 주세요</div>
+                    <div class="romanization">Igeo juseyo</div>
+                    <div class="french">Ça, s'il vous plaît / Je prends ça</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">물 주세요</div>
+                    <div class="romanization">Mul juseyo</div>
+                    <div class="french">De l'eau, s'il vous plaît</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">계산이요</div>
+                    <div class="romanization">Gyesaniyo</div>
+                    <div class="french">L'addition, s'il vous plaît</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">맛있어요!</div>
+                    <div class="romanization">Masisseoyo!</div>
+                    <div class="french">C'est délicieux !</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">잘 먹겠습니다</div>
+                    <div class="romanization">Jal meokgesseumnida</div>
+                    <div class="french">Bon appétit (avant de manger)</div>
+                    <div class="context">Littéralement : "Je vais bien manger"</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">잘 먹었습니다</div>
+                    <div class="romanization">Jal meogeosseumnida</div>
+                    <div class="french">Merci pour le repas (après)</div>
+                    <div class="context">Littéralement : "J'ai bien mangé"</div>
+                </div>
+            </div>
+
+            <h3>Dans la rue / Transports</h3>
+            <div class="phrase-grid">
+                <div class="phrase-card">
+                    <div class="korean">실례합니다</div>
+                    <div class="romanization">Sillyehamnida</div>
+                    <div class="french">Excusez-moi (pour attirer l'attention)</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">어디예요?</div>
+                    <div class="romanization">Eodiyeyo?</div>
+                    <div class="french">Où est-ce ?</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">화장실이 어디예요?</div>
+                    <div class="romanization">Hwajangsiri eodiyeyo?</div>
+                    <div class="french">Où sont les toilettes ?</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">얼마예요?</div>
+                    <div class="romanization">Eolmayeyo?</div>
+                    <div class="french">Combien ça coûte ?</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">지하철역이 어디예요?</div>
+                    <div class="romanization">Jihacheollyeogi eodiyeyo?</div>
+                    <div class="french">Où est la station de métro ?</div>
+                </div>
+            </div>
+
+            <h3>Expressions utiles</h3>
+            <div class="phrase-grid">
+                <div class="phrase-card">
+                    <div class="korean">네 / 아니요</div>
+                    <div class="romanization">Ne / Aniyo</div>
+                    <div class="french">Oui / Non</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">괜찮아요</div>
+                    <div class="romanization">Gwaenchanayo</div>
+                    <div class="french">Ça va / C'est bon / Pas de problème</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">잠깐만요</div>
+                    <div class="romanization">Jamkkanmanyo</div>
+                    <div class="french">Un instant, s'il vous plaît</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">모르겠어요</div>
+                    <div class="romanization">Moreugesseoyo</div>
+                    <div class="french">Je ne sais pas</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">이해했어요</div>
+                    <div class="romanization">Ihaehhaesseoyo</div>
+                    <div class="french">J'ai compris</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">천천히 말해 주세요</div>
+                    <div class="romanization">Cheoncheonhi malhae juseyo</div>
+                    <div class="french">Parlez lentement, s'il vous plaît</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">다시 한번 말해 주세요</div>
+                    <div class="romanization">Dasi hanbeon malhae juseyo</div>
+                    <div class="french">Répétez, s'il vous plaît</div>
+                </div>
+                <div class="phrase-card">
+                    <div class="korean">한국어를 조금 해요</div>
+                    <div class="romanization">Hangugeoreul jogeum haeyo</div>
+                    <div class="french">Je parle un peu coréen</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="quiz-section">
+            <h3>🎯 Quiz de vérification</h3>
+
+            <div class="quiz-question">
+                <p><strong>1. Comment dit-on "Bonjour" en coréen (poli) ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">안녕 (Annyeong)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">안녕하세요 (Annyeonghaseyo)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">안녕히 가세요 (Annyeonghi gaseyo)</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Quelle terminaison utilise-t-on pour le niveau poli (해요체) ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">-ㅂ니다</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">-아요 / -어요</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">-아 / -어</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Comment dit-on "Merci" de façon formelle ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">고마워 (Gomawo)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">고마워요 (Gomawoyo)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">감사합니다 (Gamsahamnida)</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Que signifie "잘 먹겠습니다" ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Bon appétit (avant de manger)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Merci pour le repas</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C'est délicieux</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-buttons" style="margin-top: 40px;">
+            <a href="coreen-intermediaire.html" class="nav-btn" style="background: linear-gradient(135deg, #dc2680, #f472b6);">
+                Continuer vers Intermédiaire →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const greetingPhrases = [
+            { korean: "안녕하세요", roman: "Annyeonghaseyo", french: "Bonjour / Bonsoir", context: "Salutation universelle, à tout moment", category: "greeting" },
+            { korean: "안녕", roman: "Annyeong", french: "Salut", context: "Familier, entre amis", category: "greeting" },
+            { korean: "안녕히 가세요", roman: "Annyeonghi gaseyo", french: "Au revoir (à celui qui part)", context: "Quand l'autre personne s'en va", category: "greeting" },
+            { korean: "안녕히 계세요", roman: "Annyeonghi gyeseyo", french: "Au revoir (à celui qui reste)", context: "Quand vous partez", category: "greeting" },
+            { korean: "좋은 아침이에요", roman: "Joeun achimieyo", french: "Bonjour (matin)", context: "Le matin uniquement", category: "greeting" },
+            { korean: "잘 자요", roman: "Jal jayo", french: "Bonne nuit", context: "Avant de dormir", category: "greeting" },
+            { korean: "감사합니다", roman: "Gamsahamnida", french: "Merci (formel)", context: "Très poli, situations formelles", category: "thanks" },
+            { korean: "고마워요", roman: "Gomawoyo", french: "Merci (poli)", context: "Poli, usage courant", category: "thanks" },
+            { korean: "고마워", roman: "Gomawo", french: "Merci (familier)", context: "Entre amis proches", category: "thanks" },
+            { korean: "천만에요", roman: "Cheonmaneyo", french: "De rien / Je vous en prie", context: "Réponse à merci", category: "thanks" },
+            { korean: "죄송합니다", roman: "Joesonghamnida", french: "Je suis désolé (formel)", context: "Excuses sincères, formel", category: "sorry" },
+            { korean: "미안해요", roman: "Mianhaeyo", french: "Pardon / Désolé (poli)", context: "Excuses courantes", category: "sorry" },
+            { korean: "미안해", roman: "Mianhae", french: "Désolé (familier)", context: "Entre amis", category: "sorry" },
+            { korean: "제 이름은 ... 입니다", roman: "Je ireumeun ... imnida", french: "Je m'appelle ...", context: "Présentation formelle", category: "intro" },
+            { korean: "저는 ... 이에요", roman: "Jeoneun ... ieyo", french: "Je suis ... (poli)", context: "Présentation polie", category: "intro" },
+            { korean: "만나서 반갑습니다", roman: "Mannaseo bangapseumnida", french: "Enchanté(e)", context: "Première rencontre", category: "intro" },
+            { korean: "처음 뵙겠습니다", roman: "Cheoeum boepgesseumnida", french: "C'est la première fois que je vous vois", context: "Très formel, première rencontre", category: "intro" }
+        ];
+
+        function generatePhrases(filter = 'all') {
+            const grid = document.getElementById('phrasesGrid');
+            const filtered = filter === 'all' ? greetingPhrases : greetingPhrases.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map(phrase => `
+                <div class="phrase-card" data-category="${phrase.category}">
+                    <div class="korean">${phrase.korean}</div>
+                    <div class="romanization">${phrase.roman}</div>
+                    <div class="french">${phrase.french}</div>
+                    <div class="context">💡 ${phrase.context}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterPhrases(category) {
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            generatePhrases(category);
+        }
+
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        // Init
+        generatePhrases();
+    </script>
+</body>
+</html>

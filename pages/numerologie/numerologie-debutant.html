@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numérologie - Niveau Débutant | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #9333ea, #c084fc, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(147, 51, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+        }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #c084fc;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-section h3 {
+            color: #e879f9;
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .number-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(192, 132, 252, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border-color: #9333ea;
+        }
+
+        .number-symbol {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #9333ea, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .number-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #c084fc;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .number-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .keyword {
+            background: rgba(147, 51, 234, 0.3);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+
+        .number-desc {
+            font-size: 0.95em;
+            opacity: 0.85;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .calculator-box {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(192, 132, 252, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+        }
+
+        .calculator-box h3 {
+            color: #e879f9;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .calc-input-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .calc-input-group input {
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1.1em;
+            width: 300px;
+            text-align: center;
+        }
+
+        .calc-input-group input:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+        }
+
+        .calc-btn {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+        }
+
+        .calc-result {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .calc-result.show { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-number {
+            font-size: 4em;
+            background: linear-gradient(135deg, #9333ea, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .result-meaning {
+            font-size: 1.2em;
+            color: #c084fc;
+            margin-bottom: 10px;
+        }
+
+        .result-desc {
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(147, 51, 234, 0.1);
+            border-left: 4px solid #9333ea;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .quiz-section h3 {
+            color: #22c55e;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question p {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.05);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        .quiz-option.correct {
+            background: rgba(34, 197, 94, 0.3);
+            border-color: #22c55e;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: #ef4444;
+        }
+
+        .progress-section {
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9333ea, #e879f9);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        th {
+            background: rgba(147, 51, 234, 0.2);
+            color: #c084fc;
+        }
+
+        tr:hover { background: rgba(147, 51, 234, 0.1); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .number-grid { grid-template-columns: 1fr; }
+            .calc-input-group input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔢 Numérologie - Débutant</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">La science des nombres et leur signification mystique</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="numerologie-intermediaire.html" class="nav-btn">📚 Intermédiaire</a>
+            <a href="numerologie-expert.html" class="nav-btn">🎓 Expert</a>
+            <a href="calculateur-numerologie.html" class="nav-btn">🧮 Calculateur</a>
+        </nav>
+
+        <div class="progress-section">
+            <strong>Progression du cours :</strong> <span id="progressText">0%</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>📖 Introduction à la Numérologie</h2>
+
+            <p>La <strong>numérologie</strong> est une science ésotérique millénaire qui étudie la signification symbolique et mystique des nombres. Elle postule que chaque nombre possède une vibration unique qui influence notre vie, notre personnalité et notre destinée.</p>
+
+            <div class="info-box">
+                <strong>🌟 Origines historiques :</strong><br>
+                La numérologie trouve ses racines dans plusieurs traditions anciennes :
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>Pythagore (570-495 av. J.-C.)</strong> - "Tout est nombre" - père de la numérologie occidentale</li>
+                    <li><strong>Kabbale hébraïque</strong> - La Gematria, valeur numérique des lettres hébraïques</li>
+                    <li><strong>Tradition chinoise</strong> - Numérologie basée sur le I Ching</li>
+                    <li><strong>Védas indiens</strong> - Système de numérologie védique</li>
+                </ul>
+            </div>
+
+            <h3>Les principes fondamentaux</h3>
+            <p>En numérologie, on réduit généralement tous les nombres à un chiffre entre 1 et 9 (sauf les "nombres maîtres" 11, 22, 33). Cette réduction se fait en additionnant les chiffres jusqu'à obtenir un seul chiffre.</p>
+
+            <p><strong>Exemple :</strong> 1987 → 1+9+8+7 = 25 → 2+5 = <strong>7</strong></p>
+        </section>
+
+        <!-- Les 9 nombres -->
+        <section class="lesson-section">
+            <h2>🔮 Les 9 Nombres Fondamentaux</h2>
+            <p>Chaque nombre de 1 à 9 possède sa propre énergie et signification. Découvrez les caractéristiques de chacun :</p>
+
+            <div class="number-grid">
+                <div class="number-card">
+                    <div class="number-symbol">1</div>
+                    <div class="number-name">Le Leader</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Leadership</span>
+                        <span class="keyword">Indépendance</span>
+                        <span class="keyword">Originalité</span>
+                    </div>
+                    <p class="number-desc">Le 1 représente les débuts, l'initiative et l'individualité. C'est le nombre des pionniers et des leaders nés.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">2</div>
+                    <div class="number-name">Le Diplomate</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Coopération</span>
+                        <span class="keyword">Harmonie</span>
+                        <span class="keyword">Sensibilité</span>
+                    </div>
+                    <p class="number-desc">Le 2 symbolise la dualité, le partenariat et l'équilibre. C'est le nombre des médiateurs et des artistes de la paix.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">3</div>
+                    <div class="number-name">Le Créatif</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Expression</span>
+                        <span class="keyword">Créativité</span>
+                        <span class="keyword">Joie</span>
+                    </div>
+                    <p class="number-desc">Le 3 incarne la créativité, la communication et l'optimisme. C'est le nombre des artistes et des communicateurs.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">4</div>
+                    <div class="number-name">Le Bâtisseur</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Stabilité</span>
+                        <span class="keyword">Travail</span>
+                        <span class="keyword">Organisation</span>
+                    </div>
+                    <p class="number-desc">Le 4 représente la structure, la discipline et la persévérance. C'est le nombre des constructeurs et des organisateurs.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">5</div>
+                    <div class="number-name">L'Aventurier</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Liberté</span>
+                        <span class="keyword">Changement</span>
+                        <span class="keyword">Aventure</span>
+                    </div>
+                    <p class="number-desc">Le 5 symbolise la liberté, l'adaptabilité et l'expérience. C'est le nombre des explorateurs et des esprits libres.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">6</div>
+                    <div class="number-name">Le Protecteur</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Amour</span>
+                        <span class="keyword">Famille</span>
+                        <span class="keyword">Responsabilité</span>
+                    </div>
+                    <p class="number-desc">Le 6 incarne l'amour, l'harmonie familiale et le service. C'est le nombre des guérisseurs et des protecteurs.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">7</div>
+                    <div class="number-name">Le Mystique</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Spiritualité</span>
+                        <span class="keyword">Introspection</span>
+                        <span class="keyword">Sagesse</span>
+                    </div>
+                    <p class="number-desc">Le 7 représente la recherche intérieure, l'analyse et la spiritualité. C'est le nombre des philosophes et des chercheurs de vérité.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">8</div>
+                    <div class="number-name">Le Puissant</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Pouvoir</span>
+                        <span class="keyword">Succès</span>
+                        <span class="keyword">Abondance</span>
+                    </div>
+                    <p class="number-desc">Le 8 symbolise l'autorité, la réussite matérielle et le karma. C'est le nombre des entrepreneurs et des visionnaires.</p>
+                </div>
+
+                <div class="number-card">
+                    <div class="number-symbol">9</div>
+                    <div class="number-name">L'Humaniste</div>
+                    <div class="number-keywords">
+                        <span class="keyword">Compassion</span>
+                        <span class="keyword">Sagesse</span>
+                        <span class="keyword">Achèvement</span>
+                    </div>
+                    <p class="number-desc">Le 9 incarne l'humanitarisme, la sagesse universelle et l'accomplissement. C'est le nombre des philanthropes et des guides spirituels.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculateur simple -->
+        <section class="lesson-section">
+            <h2>🧮 Calculez votre Nombre de Chemin de Vie</h2>
+            <p>Le <strong>Chemin de Vie</strong> est le nombre le plus important en numérologie. Il est calculé à partir de votre date de naissance complète et révèle votre mission de vie.</p>
+
+            <div class="calculator-box">
+                <h3>Entrez votre date de naissance</h3>
+                <div class="calc-input-group">
+                    <input type="date" id="birthDate" placeholder="Date de naissance">
+                    <button class="calc-btn" onclick="calculateLifePath()">Calculer</button>
+                </div>
+                <div class="calc-result" id="calcResult">
+                    <div class="result-number" id="resultNumber"></div>
+                    <div class="result-meaning" id="resultMeaning"></div>
+                    <p class="result-desc" id="resultDesc"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tableau des correspondances lettres -->
+        <section class="lesson-section">
+            <h2>📊 Correspondance Lettres-Nombres</h2>
+            <p>En numérologie pythagoricienne, chaque lettre de l'alphabet correspond à un nombre de 1 à 9 :</p>
+
+            <table>
+                <tr>
+                    <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th>
+                </tr>
+                <tr>
+                    <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td>
+                </tr>
+                <tr>
+                    <td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td>
+                </tr>
+                <tr>
+                    <td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td></td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>💡 Comment l'utiliser ?</strong><br>
+                Pour calculer la valeur numérologique d'un nom, additionnez les valeurs de chaque lettre puis réduisez à un seul chiffre.<br><br>
+                <strong>Exemple : MARIE</strong><br>
+                M(4) + A(1) + R(9) + I(9) + E(5) = 28 → 2+8 = <strong>10</strong> → 1+0 = <strong>1</strong>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="quiz-section">
+            <h3>🎯 Quiz de vérification</h3>
+
+            <div class="quiz-question" id="q1">
+                <p>1. Quel philosophe grec est considéré comme le père de la numérologie occidentale ?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Aristote</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">Pythagore</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Platon</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">Socrate</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" id="q2">
+                <p>2. Quel nombre est associé à la créativité et l'expression artistique ?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">1</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">4</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">3</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">7</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" id="q3">
+                <p>3. Comment réduit-on le nombre 1987 en numérologie ?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">1+9 = 10 → 1</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">1+9+8+7 = 25 → 2+5 = 7</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">19+87 = 106 → 7</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">1987 reste 1987</div>
+                </div>
+            </div>
+
+            <div class="quiz-question" id="q4">
+                <p>4. À quel nombre correspond la lettre R dans le système pythagoricien ?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">7</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">8</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">9</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">1</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-buttons" style="margin-top: 40px;">
+            <a href="numerologie-intermediaire.html" class="nav-btn" style="background: linear-gradient(135deg, #9333ea, #c084fc);">
+                Continuer vers le niveau Intermédiaire →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Données des nombres
+        const numberMeanings = {
+            1: { name: "Le Leader", desc: "Vous êtes né pour diriger et innover. Indépendant et ambitieux, vous avez une forte volonté et un esprit pionnier. Votre défi est d'éviter l'égocentrisme." },
+            2: { name: "Le Diplomate", desc: "Vous êtes sensible, intuitif et coopératif. Excellent médiateur, vous recherchez l'harmonie et les partenariats. Votre défi est de ne pas vous effacer." },
+            3: { name: "Le Créatif", desc: "Vous êtes expressif, optimiste et artistique. La communication est votre force. Votre défi est de canaliser votre énergie créative." },
+            4: { name: "Le Bâtisseur", desc: "Vous êtes pratique, organisé et travailleur. Vous construisez des fondations solides. Votre défi est d'éviter la rigidité." },
+            5: { name: "L'Aventurier", desc: "Vous êtes libre, adaptable et curieux. Le changement vous stimule. Votre défi est de trouver la stabilité dans le mouvement." },
+            6: { name: "Le Protecteur", desc: "Vous êtes aimant, responsable et dévoué. La famille et le service sont essentiels. Votre défi est de ne pas vous sacrifier excessivement." },
+            7: { name: "Le Mystique", desc: "Vous êtes analytique, spirituel et introspectif. La quête de vérité guide votre vie. Votre défi est de ne pas vous isoler." },
+            8: { name: "Le Puissant", desc: "Vous êtes ambitieux, efficace et visionnaire. Le succès matériel vous attire. Votre défi est l'équilibre entre pouvoir et éthique." },
+            9: { name: "L'Humaniste", desc: "Vous êtes compatissant, sage et universel. L'humanité est votre famille. Votre défi est de lâcher prise et de pardonner." },
+            11: { name: "Maître Nombre - L'Illuminé", desc: "Nombre maître de l'intuition et de l'illumination spirituelle. Vous avez une mission d'inspiration et d'élévation des consciences." },
+            22: { name: "Maître Nombre - Le Maître Bâtisseur", desc: "Nombre maître de la construction visionnaire. Vous pouvez réaliser de grands projets qui servent l'humanité." },
+            33: { name: "Maître Nombre - Le Maître Enseignant", desc: "Nombre maître de l'amour universel et de l'enseignement spirituel. Très rare, c'est le chemin du guide suprême." }
+        };
+
+        // Calculateur de Chemin de Vie
+        function calculateLifePath() {
+            const dateInput = document.getElementById('birthDate').value;
+            if (!dateInput) {
+                alert('Veuillez entrer votre date de naissance');
+                return;
+            }
+
+            const date = new Date(dateInput);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+
+            // Réduction de chaque élément
+            let dayReduced = reduceNumber(day);
+            let monthReduced = reduceNumber(month);
+            let yearReduced = reduceNumber(year);
+
+            // Somme et réduction finale (en gardant les nombres maîtres)
+            let sum = dayReduced + monthReduced + yearReduced;
+            let lifePath = reduceToLifePath(sum);
+
+            // Affichage
+            const resultDiv = document.getElementById('calcResult');
+            document.getElementById('resultNumber').textContent = lifePath;
+            document.getElementById('resultMeaning').textContent = numberMeanings[lifePath].name;
+            document.getElementById('resultDesc').textContent = numberMeanings[lifePath].desc;
+            resultDiv.classList.add('show');
+
+            updateProgress(50);
+        }
+
+        function reduceNumber(num) {
+            while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+                num = String(num).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            return num;
+        }
+
+        function reduceToLifePath(num) {
+            while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+                num = String(num).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            return num;
+        }
+
+        // Quiz
+        let correctAnswers = 0;
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                correctAnswers++;
+            } else {
+                element.classList.add('incorrect');
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+
+            updateProgress(25 + (correctAnswers * 6.25));
+        }
+
+        // Progression
+        function updateProgress(percent) {
+            const fill = document.getElementById('progressFill');
+            const text = document.getElementById('progressText');
+            const currentWidth = parseFloat(fill.style.width) || 0;
+            const newWidth = Math.max(currentWidth, percent);
+            fill.style.width = newWidth + '%';
+            text.textContent = Math.round(newWidth) + '%';
+
+            // Sauvegarder la progression
+            localStorage.setItem('numerologie-debutant-progress', newWidth);
+        }
+
+        // Charger la progression sauvegardée
+        window.onload = function() {
+            const saved = localStorage.getItem('numerologie-debutant-progress');
+            if (saved) {
+                updateProgress(parseFloat(saved));
+            }
+        };
+    </script>
+</body>
+</html>

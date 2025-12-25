@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Arbre de Vie - Kabbale | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0a2e 50%, #0f0f23 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #a855f7;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        /* Arbre de Vie SVG interactif */
+        .tree-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .tree-svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .sephira {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sephira:hover {
+            filter: brightness(1.3) drop-shadow(0 0 20px currentColor);
+        }
+
+        .sephira-circle {
+            stroke-width: 3;
+            fill: rgba(0,0,0,0.5);
+        }
+
+        .path-line {
+            stroke: rgba(139, 92, 246, 0.4);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Grille des Sephiroth */
+        .sephiroth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .sephira-card {
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.15), rgba(0,0,0,0.3));
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .sephira-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+        }
+
+        .sephira-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sephira-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+
+        .sephira-names h3 {
+            font-size: 1.4em;
+            color: #a855f7;
+        }
+
+        .sephira-names .hebrew {
+            font-size: 1.5em;
+            opacity: 0.8;
+        }
+
+        .sephira-names .translation {
+            font-size: 0.9em;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .sephira-attributes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .attribute {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .attribute .label {
+            font-size: 0.75em;
+            opacity: 0.6;
+            margin-bottom: 3px;
+        }
+
+        .attribute .value {
+            color: #d946ef;
+            font-weight: bold;
+        }
+
+        .sephira-description {
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+
+        /* Piliers */
+        .pillars-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .pillar-card {
+            background: linear-gradient(145deg, rgba(0,0,0,0.3), rgba(139, 92, 246, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid;
+        }
+
+        .pillar-card.severity { border-color: #ef4444; }
+        .pillar-card.mercy { border-color: #3b82f6; }
+        .pillar-card.equilibrium { border-color: #22c55e; }
+
+        .pillar-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .pillar-card.severity h4 { color: #ef4444; }
+        .pillar-card.mercy h4 { color: #3b82f6; }
+        .pillar-card.equilibrium h4 { color: #22c55e; }
+
+        .pillar-sephiroth {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .pillar-sephiroth span {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid #8b5cf6;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .world-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .world-card .name {
+            color: #a855f7;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .world-card .hebrew {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .world-card .meaning {
+            font-size: 0.85em;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .sephiroth-grid { grid-template-columns: 1fr; }
+            .pillars-section { grid-template-columns: 1fr; }
+            .worlds-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌳 L'Arbre de Vie</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">La carte de l'univers et de l'âme selon la Kabbale</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="introduction-kabbale.html" class="nav-btn">📜 Introduction</a>
+            <a href="22-sentiers.html" class="nav-btn">🛤️ 22 Sentiers</a>
+            <a href="../gematria/gematria-debutant.html" class="nav-btn">🔯 Gematria</a>
+        </nav>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>📖 Qu'est-ce que l'Arbre de Vie ?</h2>
+
+            <p>L'<strong>Arbre de Vie</strong> (עץ החיים, Etz haChayim) est le diagramme central de la <strong>Kabbale</strong>, la tradition mystique juive. Il représente la structure de l'univers, le chemin de la création divine, et la carte de l'évolution spirituelle de l'âme.</p>
+
+            <p>Composé de <strong>10 Sephiroth</strong> (sphères/émanations) reliées par <strong>22 Sentiers</strong> (correspondant aux 22 lettres hébraïques et aux 22 Arcanes Majeurs du Tarot), l'Arbre de Vie est un modèle complet de la réalité, du divin au matériel.</p>
+
+            <div class="info-box">
+                <strong>💡 Double lecture :</strong><br>
+                L'Arbre peut être lu de haut en bas (le processus de création, l'émanation divine vers la matière) ou de bas en haut (le chemin de retour de l'âme vers la source).
+            </div>
+        </section>
+
+        <!-- Arbre visuel -->
+        <section class="lesson-section">
+            <h2>🌲 Diagramme de l'Arbre</h2>
+            <p>Cliquez sur une Sephira pour plus de détails :</p>
+
+            <div class="tree-container">
+                <svg class="tree-svg" viewBox="0 0 400 600" width="400" height="600">
+                    <!-- Sentiers (lignes) -->
+                    <g class="paths">
+                        <!-- Pilier central -->
+                        <line class="path-line" x1="200" y1="50" x2="200" y2="150"/>
+                        <line class="path-line" x1="200" y1="150" x2="200" y2="300"/>
+                        <line class="path-line" x1="200" y1="300" x2="200" y2="400"/>
+                        <line class="path-line" x1="200" y1="400" x2="200" y2="550"/>
+
+                        <!-- Pilier gauche -->
+                        <line class="path-line" x1="80" y1="120" x2="80" y2="250"/>
+                        <line class="path-line" x1="80" y1="250" x2="80" y2="450"/>
+
+                        <!-- Pilier droit -->
+                        <line class="path-line" x1="320" y1="120" x2="320" y2="250"/>
+                        <line class="path-line" x1="320" y1="250" x2="320" y2="450"/>
+
+                        <!-- Connexions horizontales -->
+                        <line class="path-line" x1="80" y1="120" x2="320" y2="120"/>
+                        <line class="path-line" x1="80" y1="250" x2="320" y2="250"/>
+                        <line class="path-line" x1="80" y1="450" x2="320" y2="450"/>
+
+                        <!-- Connexions diagonales supérieures -->
+                        <line class="path-line" x1="200" y1="50" x2="80" y2="120"/>
+                        <line class="path-line" x1="200" y1="50" x2="320" y2="120"/>
+                        <line class="path-line" x1="200" y1="150" x2="80" y2="120"/>
+                        <line class="path-line" x1="200" y1="150" x2="320" y2="120"/>
+
+                        <!-- Connexions diagonales moyennes -->
+                        <line class="path-line" x1="200" y1="150" x2="80" y2="250"/>
+                        <line class="path-line" x1="200" y1="150" x2="320" y2="250"/>
+                        <line class="path-line" x1="200" y1="300" x2="80" y2="250"/>
+                        <line class="path-line" x1="200" y1="300" x2="320" y2="250"/>
+
+                        <!-- Connexions diagonales inférieures -->
+                        <line class="path-line" x1="200" y1="300" x2="80" y2="450"/>
+                        <line class="path-line" x1="200" y1="300" x2="320" y2="450"/>
+                        <line class="path-line" x1="200" y1="400" x2="80" y2="450"/>
+                        <line class="path-line" x1="200" y1="400" x2="320" y2="450"/>
+
+                        <!-- Vers Malkuth -->
+                        <line class="path-line" x1="80" y1="450" x2="200" y2="550"/>
+                        <line class="path-line" x1="320" y1="450" x2="200" y2="550"/>
+                    </g>
+
+                    <!-- Sephiroth -->
+                    <g class="sephira" onclick="showSephira(1)">
+                        <circle class="sephira-circle" cx="200" cy="50" r="30" stroke="#fff"/>
+                        <text x="200" y="55" text-anchor="middle" fill="#fff" font-size="12">1</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(2)">
+                        <circle class="sephira-circle" cx="320" cy="120" r="28" stroke="#808080"/>
+                        <text x="320" y="125" text-anchor="middle" fill="#fff" font-size="12">2</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(3)">
+                        <circle class="sephira-circle" cx="80" cy="120" r="28" stroke="#1a1a1a"/>
+                        <text x="80" y="125" text-anchor="middle" fill="#fff" font-size="12">3</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(4)">
+                        <circle class="sephira-circle" cx="320" cy="250" r="28" stroke="#3b82f6"/>
+                        <text x="320" y="255" text-anchor="middle" fill="#fff" font-size="12">4</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(5)">
+                        <circle class="sephira-circle" cx="80" cy="250" r="28" stroke="#ef4444"/>
+                        <text x="80" y="255" text-anchor="middle" fill="#fff" font-size="12">5</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(6)">
+                        <circle class="sephira-circle" cx="200" cy="300" r="32" stroke="#f4d03f"/>
+                        <text x="200" y="305" text-anchor="middle" fill="#fff" font-size="12">6</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(7)">
+                        <circle class="sephira-circle" cx="320" cy="450" r="28" stroke="#22c55e"/>
+                        <text x="320" y="455" text-anchor="middle" fill="#fff" font-size="12">7</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(8)">
+                        <circle class="sephira-circle" cx="80" cy="450" r="28" stroke="#f97316"/>
+                        <text x="80" y="455" text-anchor="middle" fill="#fff" font-size="12">8</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(9)">
+                        <circle class="sephira-circle" cx="200" cy="400" r="28" stroke="#a855f7"/>
+                        <text x="200" y="405" text-anchor="middle" fill="#fff" font-size="12">9</text>
+                    </g>
+
+                    <g class="sephira" onclick="showSephira(10)">
+                        <circle class="sephira-circle" cx="200" cy="550" r="30" stroke="#8b4513"/>
+                        <text x="200" y="555" text-anchor="middle" fill="#fff" font-size="12">10</text>
+                    </g>
+
+                    <!-- Da'at (invisible) -->
+                    <g class="sephira" onclick="showSephira(0)" style="opacity: 0.4;">
+                        <circle class="sephira-circle" cx="200" cy="150" r="25" stroke="#8b5cf6" stroke-dasharray="5,5"/>
+                        <text x="200" y="155" text-anchor="middle" fill="#8b5cf6" font-size="10">Da'at</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Les Trois Piliers -->
+        <section class="lesson-section">
+            <h2>🏛️ Les Trois Piliers</h2>
+
+            <div class="pillars-section">
+                <div class="pillar-card severity">
+                    <h4>Pilier de la Rigueur</h4>
+                    <p>Force, jugement, limitation. Le principe féminin de restriction qui donne forme.</p>
+                    <div class="pillar-sephiroth">
+                        <span>3. Binah</span>
+                        <span>5. Geburah</span>
+                        <span>8. Hod</span>
+                    </div>
+                </div>
+
+                <div class="pillar-card equilibrium">
+                    <h4>Pilier de l'Équilibre</h4>
+                    <p>Harmonie, conscience, ascension. Le chemin du milieu qui réconcilie les opposés.</p>
+                    <div class="pillar-sephiroth">
+                        <span>1. Kether</span>
+                        <span>6. Tiphereth</span>
+                        <span>9. Yesod</span>
+                        <span>10. Malkuth</span>
+                    </div>
+                </div>
+
+                <div class="pillar-card mercy">
+                    <h4>Pilier de la Miséricorde</h4>
+                    <p>Expansion, grâce, bénédiction. Le principe masculin d'expansion et de don.</p>
+                    <div class="pillar-sephiroth">
+                        <span>2. Chokmah</span>
+                        <span>4. Chesed</span>
+                        <span>7. Netzach</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les 10 Sephiroth -->
+        <section class="lesson-section">
+            <h2>✡️ Les 10 Sephiroth</h2>
+
+            <div class="sephiroth-grid" id="sephirothGrid">
+                <!-- Généré par JS -->
+            </div>
+        </section>
+
+        <!-- Les Quatre Mondes -->
+        <section class="lesson-section">
+            <h2>🌍 Les Quatre Mondes</h2>
+            <p>L'Arbre de Vie existe dans quatre niveaux de réalité, du plus spirituel au plus matériel :</p>
+
+            <div class="worlds-grid">
+                <div class="world-card">
+                    <div class="name">Atziluth</div>
+                    <div class="hebrew">אצילות</div>
+                    <div class="meaning">Monde de l'Émanation<br>Archétypes divins</div>
+                </div>
+                <div class="world-card">
+                    <div class="name">Briah</div>
+                    <div class="hebrew">בריאה</div>
+                    <div class="meaning">Monde de la Création<br>Archanges</div>
+                </div>
+                <div class="world-card">
+                    <div class="name">Yetzirah</div>
+                    <div class="hebrew">יצירה</div>
+                    <div class="meaning">Monde de la Formation<br>Anges</div>
+                </div>
+                <div class="world-card">
+                    <div class="name">Assiah</div>
+                    <div class="hebrew">עשייה</div>
+                    <div class="meaning">Monde de l'Action<br>Matière physique</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const sephiroth = [
+            {
+                number: 1,
+                name: "Kether",
+                hebrew: "כתר",
+                translation: "Couronne",
+                color: "#ffffff",
+                planet: "Premier Mobile",
+                archangel: "Metatron",
+                divine: "Eheieh",
+                description: "La première émanation, le point d'origine. Pure volonté divine, au-delà de la compréhension humaine. L'unité absolue avant toute différenciation."
+            },
+            {
+                number: 2,
+                name: "Chokmah",
+                hebrew: "חכמה",
+                translation: "Sagesse",
+                color: "#808080",
+                planet: "Zodiaque",
+                archangel: "Raziel",
+                divine: "Yah",
+                description: "La sagesse primordiale, le Père cosmique. Force masculine dynamique, le premier mouvement de la création. L'inspiration pure."
+            },
+            {
+                number: 3,
+                name: "Binah",
+                hebrew: "בינה",
+                translation: "Intelligence",
+                color: "#1a1a1a",
+                planet: "Saturne",
+                archangel: "Tzaphkiel",
+                divine: "YHVH Elohim",
+                description: "L'intelligence formatrice, la Mère cosmique. Force féminine réceptive qui donne forme. La compréhension profonde."
+            },
+            {
+                number: 4,
+                name: "Chesed",
+                hebrew: "חסד",
+                translation: "Miséricorde",
+                color: "#3b82f6",
+                planet: "Jupiter",
+                archangel: "Tzadkiel",
+                divine: "El",
+                description: "L'amour et la bonté expansive. La grâce qui donne sans limites. Le roi bienveillant sur son trône."
+            },
+            {
+                number: 5,
+                name: "Geburah",
+                hebrew: "גבורה",
+                translation: "Force",
+                color: "#ef4444",
+                planet: "Mars",
+                archangel: "Kamael",
+                divine: "Elohim Gibor",
+                description: "La force et la justice divine. Le jugement nécessaire qui élimine l'excès. Le guerrier sacré."
+            },
+            {
+                number: 6,
+                name: "Tiphereth",
+                hebrew: "תפארת",
+                translation: "Beauté",
+                color: "#f4d03f",
+                planet: "Soleil",
+                archangel: "Raphaël",
+                divine: "YHVH Eloah Va-Da'at",
+                description: "Le cœur de l'Arbre, l'harmonie parfaite. Le Soi supérieur, le Christ intérieur. L'équilibre de toutes les forces."
+            },
+            {
+                number: 7,
+                name: "Netzach",
+                hebrew: "נצח",
+                translation: "Victoire",
+                color: "#22c55e",
+                planet: "Vénus",
+                archangel: "Haniel",
+                divine: "YHVH Tzabaoth",
+                description: "L'émotion, l'art, la nature. La victoire de l'endurance. La passion et le désir créateur."
+            },
+            {
+                number: 8,
+                name: "Hod",
+                hebrew: "הוד",
+                translation: "Gloire",
+                color: "#f97316",
+                planet: "Mercure",
+                archangel: "Michaël",
+                divine: "Elohim Tzabaoth",
+                description: "L'intellect, la communication, la magie. La gloire de la pensée structurée. La splendeur de la raison."
+            },
+            {
+                number: 9,
+                name: "Yesod",
+                hebrew: "יסוד",
+                translation: "Fondement",
+                color: "#a855f7",
+                planet: "Lune",
+                archangel: "Gabriel",
+                divine: "Shaddaï El Chaï",
+                description: "Le fondement de toute manifestation. L'inconscient collectif, le monde astral. Le réservoir d'images."
+            },
+            {
+                number: 10,
+                name: "Malkuth",
+                hebrew: "מלכות",
+                translation: "Royaume",
+                color: "#8b4513",
+                planet: "Terre",
+                archangel: "Sandalphon",
+                divine: "Adonaï Ha-Aretz",
+                description: "Le royaume physique, la Terre. La manifestation finale de toutes les forces. Le temple du corps."
+            }
+        ];
+
+        function generateSephirothCards() {
+            const grid = document.getElementById('sephirothGrid');
+            grid.innerHTML = sephiroth.map(s => `
+                <div class="sephira-card" id="sephira-${s.number}">
+                    <div class="sephira-header">
+                        <div class="sephira-number" style="background: ${s.color}; ${s.color === '#ffffff' || s.color === '#f4d03f' ? 'color: #1a1a1a;' : ''}">${s.number}</div>
+                        <div class="sephira-names">
+                            <h3>${s.name}</h3>
+                            <div class="hebrew">${s.hebrew}</div>
+                            <div class="translation">"${s.translation}"</div>
+                        </div>
+                    </div>
+
+                    <div class="sephira-attributes">
+                        <div class="attribute">
+                            <div class="label">Planète</div>
+                            <div class="value">${s.planet}</div>
+                        </div>
+                        <div class="attribute">
+                            <div class="label">Archange</div>
+                            <div class="value">${s.archangel}</div>
+                        </div>
+                        <div class="attribute">
+                            <div class="label">Nom Divin</div>
+                            <div class="value">${s.divine}</div>
+                        </div>
+                        <div class="attribute">
+                            <div class="label">Couleur</div>
+                            <div class="value" style="color: ${s.color};">●</div>
+                        </div>
+                    </div>
+
+                    <p class="sephira-description">${s.description}</p>
+                </div>
+            `).join('');
+        }
+
+        function showSephira(number) {
+            if (number === 0) {
+                alert("Da'at (Connaissance) - La Sephira invisible, le gouffre de l'Abîme. Représente la connaissance cachée et le passage entre les mondes supérieurs et inférieurs.");
+                return;
+            }
+            const card = document.getElementById(`sephira-${number}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.boxShadow = '0 0 30px rgba(139, 92, 246, 0.6)';
+                setTimeout(() => card.style.boxShadow = '', 2000);
+            }
+        }
+
+        generateSephirothCards();
+    </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot - Les 56 Arcanes Mineurs | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 50%, #1a1a2e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #d4af37, #f4d03f, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(212, 175, 55, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(212, 175, 55, 0.6); border-color: #d4af37; }
+
+        .suit-section {
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .suit-wands { background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(0,0,0,0.3)); border: 2px solid rgba(239, 68, 68, 0.4); }
+        .suit-cups { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(0,0,0,0.3)); border: 2px solid rgba(59, 130, 246, 0.4); }
+        .suit-swords { background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(0,0,0,0.3)); border: 2px solid rgba(251, 191, 36, 0.4); }
+        .suit-pentacles { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(0,0,0,0.3)); border: 2px solid rgba(34, 197, 94, 0.4); }
+
+        .suit-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .suit-header .symbol {
+            font-size: 3em;
+        }
+
+        .suit-header h2 {
+            font-size: 2em;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .card-item {
+            background: rgba(0,0,0,0.4);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .card-item .card-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .card-item .card-name {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .card-item .card-keywords {
+            font-size: 0.8em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .wands .card-number { color: #ef4444; }
+        .cups .card-number { color: #3b82f6; }
+        .swords .card-number { color: #fbbf24; }
+        .pentacles .card-number { color: #22c55e; }
+
+        .suit-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+        }
+
+        .suit-info-item h4 {
+            margin-bottom: 5px;
+            opacity: 0.7;
+        }
+
+        .court-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .court-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .court-card .title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎴 Les 56 Arcanes Mineurs</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Les Quatre Couleurs du Tarot</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="tarot-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="tarot-arcanes-majeurs.html" class="nav-btn">🃏 Arcanes Majeurs</a>
+            <a href="tarot-arcanes-mineurs.html" class="nav-btn active">🎴 Arcanes Mineurs</a>
+            <a href="tirage-tarot.html" class="nav-btn">🔮 Tirage</a>
+        </nav>
+
+        <!-- BÂTONS / WANDS -->
+        <section class="suit-section suit-wands">
+            <div class="suit-header">
+                <span class="symbol">🔥</span>
+                <div>
+                    <h2 style="color: #ef4444;">Les Bâtons (Wands)</h2>
+                    <p>Élément Feu | Action, Créativité, Passion</p>
+                </div>
+            </div>
+
+            <div class="suit-info">
+                <div class="suit-info-item">
+                    <h4>Élément</h4>
+                    <p>🔥 Feu</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Domaine</h4>
+                    <p>Action, créativité, carrière, passion</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Saison</h4>
+                    <p>Printemps</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Direction</h4>
+                    <p>Sud</p>
+                </div>
+            </div>
+
+            <div class="cards-grid wands">
+                <div class="card-item"><div class="card-number">As</div><div class="card-name">As de Bâtons</div><div class="card-keywords">Inspiration, nouveau départ, potentiel créatif</div></div>
+                <div class="card-item"><div class="card-number">2</div><div class="card-name">Deux de Bâtons</div><div class="card-keywords">Planification, décisions, vision future</div></div>
+                <div class="card-item"><div class="card-number">3</div><div class="card-name">Trois de Bâtons</div><div class="card-keywords">Expansion, prévoyance, entreprise</div></div>
+                <div class="card-item"><div class="card-number">4</div><div class="card-name">Quatre de Bâtons</div><div class="card-keywords">Célébration, harmonie, maison</div></div>
+                <div class="card-item"><div class="card-number">5</div><div class="card-name">Cinq de Bâtons</div><div class="card-keywords">Conflit, compétition, tension</div></div>
+                <div class="card-item"><div class="card-number">6</div><div class="card-name">Six de Bâtons</div><div class="card-keywords">Victoire, reconnaissance, succès</div></div>
+                <div class="card-item"><div class="card-number">7</div><div class="card-name">Sept de Bâtons</div><div class="card-keywords">Défense, persévérance, conviction</div></div>
+                <div class="card-item"><div class="card-number">8</div><div class="card-name">Huit de Bâtons</div><div class="card-keywords">Mouvement rapide, messages, action</div></div>
+                <div class="card-item"><div class="card-number">9</div><div class="card-name">Neuf de Bâtons</div><div class="card-keywords">Résilience, persévérance, limites</div></div>
+                <div class="card-item"><div class="card-number">10</div><div class="card-name">Dix de Bâtons</div><div class="card-keywords">Fardeau, responsabilité, surcharge</div></div>
+            </div>
+
+            <div class="court-cards">
+                <div class="court-card"><div class="title" style="color: #ef4444;">Valet de Bâtons</div><p>Enthousiasme, exploration, potentiel créatif, messages inspirants</p></div>
+                <div class="court-card"><div class="title" style="color: #ef4444;">Cavalier de Bâtons</div><p>Aventure, énergie, impulsivité, voyage</p></div>
+                <div class="court-card"><div class="title" style="color: #ef4444;">Reine de Bâtons</div><p>Confiance, charisme, détermination, indépendance</p></div>
+                <div class="court-card"><div class="title" style="color: #ef4444;">Roi de Bâtons</div><p>Leadership, vision, entrepreneur, audace</p></div>
+            </div>
+        </section>
+
+        <!-- COUPES / CUPS -->
+        <section class="suit-section suit-cups">
+            <div class="suit-header">
+                <span class="symbol">💧</span>
+                <div>
+                    <h2 style="color: #3b82f6;">Les Coupes (Cups)</h2>
+                    <p>Élément Eau | Émotions, Amour, Relations</p>
+                </div>
+            </div>
+
+            <div class="suit-info">
+                <div class="suit-info-item">
+                    <h4>Élément</h4>
+                    <p>💧 Eau</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Domaine</h4>
+                    <p>Émotions, amour, relations, intuition</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Saison</h4>
+                    <p>Été</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Direction</h4>
+                    <p>Ouest</p>
+                </div>
+            </div>
+
+            <div class="cards-grid cups">
+                <div class="card-item"><div class="card-number">As</div><div class="card-name">As de Coupes</div><div class="card-keywords">Amour nouveau, intuition, spiritualité</div></div>
+                <div class="card-item"><div class="card-number">2</div><div class="card-name">Deux de Coupes</div><div class="card-keywords">Union, partenariat, connexion</div></div>
+                <div class="card-item"><div class="card-number">3</div><div class="card-name">Trois de Coupes</div><div class="card-keywords">Célébration, amitié, communauté</div></div>
+                <div class="card-item"><div class="card-number">4</div><div class="card-name">Quatre de Coupes</div><div class="card-keywords">Contemplation, apathie, réévaluation</div></div>
+                <div class="card-item"><div class="card-number">5</div><div class="card-name">Cinq de Coupes</div><div class="card-keywords">Perte, regret, déception</div></div>
+                <div class="card-item"><div class="card-number">6</div><div class="card-name">Six de Coupes</div><div class="card-keywords">Nostalgie, souvenirs, innocence</div></div>
+                <div class="card-item"><div class="card-number">7</div><div class="card-name">Sept de Coupes</div><div class="card-keywords">Illusions, choix, fantasmes</div></div>
+                <div class="card-item"><div class="card-number">8</div><div class="card-name">Huit de Coupes</div><div class="card-keywords">Abandon, quête, départ</div></div>
+                <div class="card-item"><div class="card-number">9</div><div class="card-name">Neuf de Coupes</div><div class="card-keywords">Satisfaction, contentement, vœux exaucés</div></div>
+                <div class="card-item"><div class="card-number">10</div><div class="card-name">Dix de Coupes</div><div class="card-keywords">Bonheur familial, harmonie, accomplissement</div></div>
+            </div>
+
+            <div class="court-cards">
+                <div class="court-card"><div class="title" style="color: #3b82f6;">Valet de Coupes</div><p>Sensibilité, créativité, messages émotionnels, intuition naissante</p></div>
+                <div class="court-card"><div class="title" style="color: #3b82f6;">Cavalier de Coupes</div><p>Romance, charme, propositions, idéalisme</p></div>
+                <div class="court-card"><div class="title" style="color: #3b82f6;">Reine de Coupes</div><p>Compassion, intuition, soutien émotionnel, empathie</p></div>
+                <div class="court-card"><div class="title" style="color: #3b82f6;">Roi de Coupes</div><p>Sagesse émotionnelle, diplomatie, calme, maîtrise des émotions</p></div>
+            </div>
+        </section>
+
+        <!-- ÉPÉES / SWORDS -->
+        <section class="suit-section suit-swords">
+            <div class="suit-header">
+                <span class="symbol">⚔️</span>
+                <div>
+                    <h2 style="color: #fbbf24;">Les Épées (Swords)</h2>
+                    <p>Élément Air | Mental, Conflits, Vérité</p>
+                </div>
+            </div>
+
+            <div class="suit-info">
+                <div class="suit-info-item">
+                    <h4>Élément</h4>
+                    <p>💨 Air</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Domaine</h4>
+                    <p>Intellect, conflits, décisions, vérité</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Saison</h4>
+                    <p>Automne</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Direction</h4>
+                    <p>Est</p>
+                </div>
+            </div>
+
+            <div class="cards-grid swords">
+                <div class="card-item"><div class="card-number">As</div><div class="card-name">As d'Épées</div><div class="card-keywords">Clarté, vérité, percée mentale</div></div>
+                <div class="card-item"><div class="card-number">2</div><div class="card-name">Deux d'Épées</div><div class="card-keywords">Indécision, impasse, déni</div></div>
+                <div class="card-item"><div class="card-number">3</div><div class="card-name">Trois d'Épées</div><div class="card-keywords">Chagrin, douleur, trahison</div></div>
+                <div class="card-item"><div class="card-number">4</div><div class="card-name">Quatre d'Épées</div><div class="card-keywords">Repos, récupération, méditation</div></div>
+                <div class="card-item"><div class="card-number">5</div><div class="card-name">Cinq d'Épées</div><div class="card-keywords">Conflit, défaite, victoire amère</div></div>
+                <div class="card-item"><div class="card-number">6</div><div class="card-name">Six d'Épées</div><div class="card-keywords">Transition, voyage, passage difficile</div></div>
+                <div class="card-item"><div class="card-number">7</div><div class="card-name">Sept d'Épées</div><div class="card-keywords">Tromperie, stratégie, fuite</div></div>
+                <div class="card-item"><div class="card-number">8</div><div class="card-name">Huit d'Épées</div><div class="card-keywords">Restriction, victimisation, impuissance perçue</div></div>
+                <div class="card-item"><div class="card-number">9</div><div class="card-name">Neuf d'Épées</div><div class="card-keywords">Anxiété, cauchemars, inquiétude</div></div>
+                <div class="card-item"><div class="card-number">10</div><div class="card-name">Dix d'Épées</div><div class="card-keywords">Fin, trahison, fond du gouffre</div></div>
+            </div>
+
+            <div class="court-cards">
+                <div class="court-card"><div class="title" style="color: #fbbf24;">Valet d'Épées</div><p>Curiosité, vigilance, messages importants, nouvelles idées</p></div>
+                <div class="court-card"><div class="title" style="color: #fbbf24;">Cavalier d'Épées</div><p>Action rapide, ambition, impulsivité intellectuelle</p></div>
+                <div class="court-card"><div class="title" style="color: #fbbf24;">Reine d'Épées</div><p>Indépendance, perception claire, honnêteté directe</p></div>
+                <div class="court-card"><div class="title" style="color: #fbbf24;">Roi d'Épées</div><p>Autorité intellectuelle, vérité, jugement impartial</p></div>
+            </div>
+        </section>
+
+        <!-- DENIERS / PENTACLES -->
+        <section class="suit-section suit-pentacles">
+            <div class="suit-header">
+                <span class="symbol">🪙</span>
+                <div>
+                    <h2 style="color: #22c55e;">Les Deniers (Pentacles)</h2>
+                    <p>Élément Terre | Matériel, Argent, Santé</p>
+                </div>
+            </div>
+
+            <div class="suit-info">
+                <div class="suit-info-item">
+                    <h4>Élément</h4>
+                    <p>🌍 Terre</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Domaine</h4>
+                    <p>Finances, travail, santé, manifestation</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Saison</h4>
+                    <p>Hiver</p>
+                </div>
+                <div class="suit-info-item">
+                    <h4>Direction</h4>
+                    <p>Nord</p>
+                </div>
+            </div>
+
+            <div class="cards-grid pentacles">
+                <div class="card-item"><div class="card-number">As</div><div class="card-name">As de Deniers</div><div class="card-keywords">Opportunité, prospérité, nouvelle ressource</div></div>
+                <div class="card-item"><div class="card-number">2</div><div class="card-name">Deux de Deniers</div><div class="card-keywords">Équilibre, adaptabilité, gestion</div></div>
+                <div class="card-item"><div class="card-number">3</div><div class="card-name">Trois de Deniers</div><div class="card-keywords">Collaboration, compétence, travail d'équipe</div></div>
+                <div class="card-item"><div class="card-number">4</div><div class="card-name">Quatre de Deniers</div><div class="card-keywords">Sécurité, contrôle, avarice possible</div></div>
+                <div class="card-item"><div class="card-number">5</div><div class="card-name">Cinq de Deniers</div><div class="card-keywords">Difficulté, pauvreté, isolement</div></div>
+                <div class="card-item"><div class="card-number">6</div><div class="card-name">Six de Deniers</div><div class="card-keywords">Générosité, charité, équilibre donner/recevoir</div></div>
+                <div class="card-item"><div class="card-number">7</div><div class="card-name">Sept de Deniers</div><div class="card-keywords">Patience, investissement, évaluation</div></div>
+                <div class="card-item"><div class="card-number">8</div><div class="card-name">Huit de Deniers</div><div class="card-keywords">Maîtrise, apprentissage, diligence</div></div>
+                <div class="card-item"><div class="card-number">9</div><div class="card-name">Neuf de Deniers</div><div class="card-keywords">Indépendance, luxe, accomplissement</div></div>
+                <div class="card-item"><div class="card-number">10</div><div class="card-name">Dix de Deniers</div><div class="card-keywords">Richesse, héritage, famille, tradition</div></div>
+            </div>
+
+            <div class="court-cards">
+                <div class="court-card"><div class="title" style="color: #22c55e;">Valet de Deniers</div><p>Étude, opportunités, nouveaux projets, manifestation</p></div>
+                <div class="court-card"><div class="title" style="color: #22c55e;">Cavalier de Deniers</div><p>Travail acharné, routine, fiabilité, patience</p></div>
+                <div class="court-card"><div class="title" style="color: #22c55e;">Reine de Deniers</div><p>Abondance, sécurité, praticité, générosité</p></div>
+                <div class="court-card"><div class="title" style="color: #22c55e;">Roi de Deniers</div><p>Succès matériel, discipline, stabilité, richesse</p></div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="tarot-arcanes-majeurs.html" class="nav-btn" style="margin-right: 15px;">← Arcanes Majeurs</a>
+            <a href="tirage-tarot.html" class="nav-btn" style="background: linear-gradient(135deg, #d4af37, #f4d03f); color: #1a1a2e;">🔮 Faire un Tirage</a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Les 56 Arcanes Mineurs</p>
+        </footer>
+    </div>
+</body>
+</html>

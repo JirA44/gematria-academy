@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabbale - Niveau Intermédiaire | Les 22 Sentiers | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0a2e 50%, #0f0f23 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(139, 92, 246, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(139, 92, 246, 0.6); border-color: #a855f7; }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #a855f7;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .lesson-section h3 {
+            color: #c084fc;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .path-card {
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.1), rgba(0,0,0,0.3));
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            border-color: #a855f7;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .path-card .path-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .path-card .hebrew-letter {
+            font-size: 2em;
+            color: #d4af37;
+            float: right;
+        }
+
+        .path-card h4 { color: #c084fc; margin: 10px 0; }
+
+        .path-card .connection {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .correspondences {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+
+        .correspondences span {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .tarot-correspondence {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .tarot-correspondence .card-icon {
+            font-size: 2em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .mother-letters, .double-letters, .simple-letters {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .mother-letters {
+            background: rgba(220, 38, 38, 0.15);
+            border: 2px solid rgba(220, 38, 38, 0.4);
+        }
+
+        .double-letters {
+            background: rgba(59, 130, 246, 0.15);
+            border: 2px solid rgba(59, 130, 246, 0.4);
+        }
+
+        .simple-letters {
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-next {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .practice-exercise {
+            background: rgba(245, 158, 11, 0.15);
+            border: 2px solid rgba(245, 158, 11, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        th {
+            background: rgba(139, 92, 246, 0.3);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛤️ Kabbale - Niveau Intermédiaire</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Les 22 Sentiers et les Lettres Hébraïques</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="arbre-de-vie.html" class="nav-btn">🌳 Arbre de Vie</a>
+            <a href="kabbale-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="kabbale-intermediaire.html" class="nav-btn active">📚 Intermédiaire</a>
+            <a href="kabbale-expert.html" class="nav-btn">🎓 Expert</a>
+        </nav>
+
+        <!-- Introduction aux 22 Sentiers -->
+        <section class="lesson-section">
+            <h2>🛤️ Les 22 Sentiers de l'Arbre de Vie</h2>
+
+            <p>Les 22 Sentiers (Netivot) sont les chemins qui relient les 10 Sephiroth entre elles. Chaque sentier correspond à une des <strong>22 lettres de l'alphabet hébraïque</strong> et à un <strong>Arcane Majeur du Tarot</strong>.</p>
+
+            <div class="highlight-box">
+                <h3>🔑 Structure des 22 Lettres</h3>
+                <p>Les 22 lettres hébraïques sont divisées en trois catégories selon le Sefer Yetzirah :</p>
+                <ul style="margin: 15px 0; line-height: 2;">
+                    <li><strong>3 Lettres Mères</strong> (אמש) - Éléments primordiaux</li>
+                    <li><strong>7 Lettres Doubles</strong> (בגדכפרת) - Planètes</li>
+                    <li><strong>12 Lettres Simples</strong> (הוזחטילנסעצק) - Signes du Zodiaque</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Les 3 Lettres Mères -->
+        <section class="lesson-section">
+            <h2>🔥💨💧 Les 3 Lettres Mères</h2>
+
+            <p>Les trois lettres mères représentent les trois éléments primordiaux de la création :</p>
+
+            <div class="paths-grid">
+                <div class="path-card" style="border-color: #ef4444;">
+                    <span class="path-number">11</span>
+                    <span class="hebrew-letter">א</span>
+                    <h4>Aleph - Le Souffle</h4>
+                    <div class="connection">Kether ↔ Chokmah</div>
+                    <p>Élément : <strong>Air</strong> 💨</p>
+                    <p>Le souffle de vie, l'esprit qui plane sur les eaux.</p>
+                    <div class="tarot-correspondence">
+                        <span class="card-icon">🃏</span>
+                        <div>
+                            <strong>Le Fou (0)</strong><br>
+                            <small>Liberté, nouveaux départs, innocence</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="path-card" style="border-color: #3b82f6;">
+                    <span class="path-number">23</span>
+                    <span class="hebrew-letter">מ</span>
+                    <h4>Mem - Les Eaux</h4>
+                    <div class="connection">Geburah ↔ Hod</div>
+                    <p>Élément : <strong>Eau</strong> 💧</p>
+                    <p>Les eaux primordiales, l'inconscient, la matrice.</p>
+                    <div class="tarot-correspondence">
+                        <span class="card-icon">🌊</span>
+                        <div>
+                            <strong>Le Pendu (XII)</strong><br>
+                            <small>Sacrifice, perspective inversée, initiation</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="path-card" style="border-color: #f59e0b;">
+                    <span class="path-number">31</span>
+                    <span class="hebrew-letter">ש</span>
+                    <h4>Shin - Le Feu</h4>
+                    <div class="connection">Hod ↔ Malkuth</div>
+                    <p>Élément : <strong>Feu</strong> 🔥</p>
+                    <p>Le feu divin, l'esprit saint, la transformation.</p>
+                    <div class="tarot-correspondence">
+                        <span class="card-icon">⚖️</span>
+                        <div>
+                            <strong>Le Jugement (XX)</strong><br>
+                            <small>Renaissance, éveil, appel divin</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les 7 Lettres Doubles -->
+        <section class="lesson-section">
+            <h2>🌟 Les 7 Lettres Doubles (Planétaires)</h2>
+
+            <p>Les sept lettres doubles ont chacune deux prononciations (dure et douce) et correspondent aux sept planètes classiques :</p>
+
+            <table>
+                <tr>
+                    <th>Sentier</th>
+                    <th>Lettre</th>
+                    <th>Nom</th>
+                    <th>Planète</th>
+                    <th>Connexion</th>
+                    <th>Tarot</th>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ב</td>
+                    <td>Beth</td>
+                    <td>☿ Mercure</td>
+                    <td>Kether ↔ Binah</td>
+                    <td>I - Le Magicien</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ג</td>
+                    <td>Gimel</td>
+                    <td>☽ Lune</td>
+                    <td>Kether ↔ Tiphereth</td>
+                    <td>II - La Papesse</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ד</td>
+                    <td>Daleth</td>
+                    <td>♀ Vénus</td>
+                    <td>Chokmah ↔ Binah</td>
+                    <td>III - L'Impératrice</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">כ</td>
+                    <td>Kaph</td>
+                    <td>♃ Jupiter</td>
+                    <td>Chesed ↔ Netzach</td>
+                    <td>X - La Roue de Fortune</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">פ</td>
+                    <td>Peh</td>
+                    <td>♂ Mars</td>
+                    <td>Netzach ↔ Hod</td>
+                    <td>XVI - La Maison-Dieu</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ר</td>
+                    <td>Resh</td>
+                    <td>☉ Soleil</td>
+                    <td>Hod ↔ Yesod</td>
+                    <td>XIX - Le Soleil</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ת</td>
+                    <td>Tav</td>
+                    <td>♄ Saturne</td>
+                    <td>Yesod ↔ Malkuth</td>
+                    <td>XXI - Le Monde</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Les 12 Lettres Simples -->
+        <section class="lesson-section">
+            <h2>♈ Les 12 Lettres Simples (Zodiacales)</h2>
+
+            <p>Les douze lettres simples correspondent aux douze signes du zodiaque :</p>
+
+            <table>
+                <tr>
+                    <th>Sentier</th>
+                    <th>Lettre</th>
+                    <th>Nom</th>
+                    <th>Zodiaque</th>
+                    <th>Connexion</th>
+                    <th>Tarot</th>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ה</td>
+                    <td>Hé</td>
+                    <td>♈ Bélier</td>
+                    <td>Chokmah ↔ Tiphereth</td>
+                    <td>IV - L'Empereur</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ו</td>
+                    <td>Vav</td>
+                    <td>♉ Taureau</td>
+                    <td>Chokmah ↔ Chesed</td>
+                    <td>V - Le Hiérophante</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ז</td>
+                    <td>Zayin</td>
+                    <td>♊ Gémeaux</td>
+                    <td>Binah ↔ Tiphereth</td>
+                    <td>VI - Les Amoureux</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ח</td>
+                    <td>Cheth</td>
+                    <td>♋ Cancer</td>
+                    <td>Binah ↔ Geburah</td>
+                    <td>VII - Le Chariot</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ט</td>
+                    <td>Teth</td>
+                    <td>♌ Lion</td>
+                    <td>Chesed ↔ Geburah</td>
+                    <td>VIII - La Force</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">י</td>
+                    <td>Yod</td>
+                    <td>♍ Vierge</td>
+                    <td>Chesed ↔ Tiphereth</td>
+                    <td>IX - L'Hermite</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ל</td>
+                    <td>Lamed</td>
+                    <td>♎ Balance</td>
+                    <td>Geburah ↔ Tiphereth</td>
+                    <td>XI - La Justice</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">נ</td>
+                    <td>Nun</td>
+                    <td>♏ Scorpion</td>
+                    <td>Tiphereth ↔ Netzach</td>
+                    <td>XIII - La Mort</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ס</td>
+                    <td>Samekh</td>
+                    <td>♐ Sagittaire</td>
+                    <td>Tiphereth ↔ Yesod</td>
+                    <td>XIV - Tempérance</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ע</td>
+                    <td>Ayin</td>
+                    <td>♑ Capricorne</td>
+                    <td>Tiphereth ↔ Hod</td>
+                    <td>XV - Le Diable</td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">צ</td>
+                    <td>Tzaddi</td>
+                    <td>♒ Verseau</td>
+                    <td>Netzach ↔ Yesod</td>
+                    <td>XVII - L'Étoile</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td style="font-size: 1.5em; color: #d4af37;">ק</td>
+                    <td>Qoph</td>
+                    <td>♓ Poissons</td>
+                    <td>Netzach ↔ Malkuth</td>
+                    <td>XVIII - La Lune</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Correspondances Tarot-Kabbale -->
+        <section class="lesson-section">
+            <h2>🎴 Correspondances Tarot-Kabbale</h2>
+
+            <p>Chaque Arcane Majeur du Tarot correspond à un sentier de l'Arbre de Vie. Cette correspondance permet d'utiliser le Tarot comme outil de méditation kabbalistique.</p>
+
+            <div class="highlight-box">
+                <h3>📖 Comment utiliser ces correspondances</h3>
+                <ol style="line-height: 2; margin-top: 15px;">
+                    <li>Choisissez un sentier à explorer</li>
+                    <li>Méditez sur la lettre hébraïque correspondante</li>
+                    <li>Contemplez l'Arcane du Tarot associé</li>
+                    <li>Visualisez le voyage entre les deux Sephiroth</li>
+                    <li>Journalisez vos insights et expériences</li>
+                </ol>
+            </div>
+
+            <div class="practice-exercise">
+                <h3>🧘 Exercice : Méditation du Sentier 32 (Tav)</h3>
+                <p>Le sentier 32 relie Yesod (le subconscient) à Malkuth (le monde physique). C'est le premier sentier à explorer pour le débutant.</p>
+                <ol style="margin: 20px 0; line-height: 2;">
+                    <li>Visualisez-vous debout dans Malkuth (sphère aux couleurs de la Terre)</li>
+                    <li>Devant vous, un chemin s'ouvre vers une lumière violette (Yesod)</li>
+                    <li>Sur le chemin, contemplez l'image du Monde (XXI) du Tarot</li>
+                    <li>Sentez l'énergie de Saturne (structure, limites, temps)</li>
+                    <li>Récitez la lettre Tav (ת) en expirant lentement</li>
+                    <li>Avancez symboliquement vers Yesod</li>
+                    <li>Notez vos visions et sensations</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="kabbale-debutant.html" class="btn-next" style="background: linear-gradient(135deg, #6b7280, #9ca3af); margin-right: 20px;">
+                ← Retour au Niveau Débutant
+            </a>
+            <a href="kabbale-expert.html" class="btn-next">
+                Continuer vers le Niveau Expert →
+            </a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(139, 92, 246, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Kabbale Niveau Intermédiaire</p>
+            <p style="margin-top: 10px;">
+                <a href="../../index.html" style="color: #a855f7; text-decoration: none;">← Retour au Portail</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

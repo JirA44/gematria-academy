@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coréen Intermédiaire - Hangul & Grammaire | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .hangul-large {
+            font-size: 4em;
+            color: #e74c3c;
+            text-shadow: 0 0 30px rgba(231,76,60,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #aaa;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(231,76,60,0.2);
+        }
+
+        h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(231,76,60,0.3);
+        }
+
+        h3 {
+            color: #f39c12;
+            margin: 20px 0 15px;
+        }
+
+        /* Syllable Grid */
+        .syllable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .syllable-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(231,76,60,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .syllable-card:hover {
+            transform: translateY(-3px);
+            border-color: #e74c3c;
+        }
+
+        .syllable-char {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .syllable-romanization {
+            color: #e74c3c;
+            font-size: 0.9em;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .grammar-table th,
+        .grammar-table td {
+            padding: 12px;
+            border: 1px solid rgba(231,76,60,0.2);
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(231,76,60,0.2);
+            color: #e74c3c;
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Grammar Box */
+        .grammar-box {
+            background: rgba(231,76,60,0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .grammar-pattern {
+            font-size: 1.3em;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        /* Example Sentence */
+        .example-sentence {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .korean-text {
+            font-size: 1.4em;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .romanization {
+            color: #888;
+            font-style: italic;
+        }
+
+        .translation {
+            color: #f39c12;
+        }
+
+        /* Particle Grid */
+        .particle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .particle-card {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(231,76,60,0.2);
+        }
+
+        .particle {
+            font-size: 2.5em;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .particle-name {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Conjugation Section */
+        .conjugation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .conjugation-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(231,76,60,0.2);
+        }
+
+        .verb-base {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .verb-meaning {
+            text-align: center;
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+
+        .conjugation-list {
+            list-style: none;
+        }
+
+        .conjugation-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .conjugation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .conj-form {
+            color: #888;
+        }
+
+        .conj-result {
+            color: #e74c3c;
+            float: right;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(241,196,15,0.1);
+            border-left: 4px solid #f1c40f;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .tip-box {
+            background: rgba(46,204,113,0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Vocabulary Grid */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vocab-card {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .vocab-korean {
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .vocab-roman {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .vocab-meaning {
+            color: #e74c3c;
+            margin-top: 5px;
+        }
+
+        /* Quiz */
+        .quiz-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(231,76,60,0.3);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #e0e0e0;
+        }
+
+        .quiz-option:hover {
+            background: rgba(231,76,60,0.2);
+            border-color: #e74c3c;
+        }
+
+        .quiz-option.correct {
+            background: rgba(46,204,113,0.3);
+            border-color: #2ecc71;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(231,76,60,0.3);
+            border-color: #e74c3c;
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231,76,60,0.3);
+        }
+
+        /* Honorific Levels */
+        .honorific-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .honorific-table th,
+        .honorific-table td {
+            padding: 12px;
+            border: 1px solid rgba(231,76,60,0.2);
+            text-align: center;
+        }
+
+        .honorific-table th {
+            background: rgba(231,76,60,0.2);
+            color: #e74c3c;
+        }
+
+        .level-formal { background: rgba(155,89,182,0.2); }
+        .level-polite { background: rgba(52,152,219,0.2); }
+        .level-casual { background: rgba(46,204,113,0.2); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .hangul-large { font-size: 3em; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="hangul-large">한글</div>
+            <h1>Coréen Niveau Intermédiaire</h1>
+            <p class="subtitle">Syllabes complexes, Grammaire & Conjugaison</p>
+        </header>
+
+        <!-- Révision Structure Syllabique -->
+        <section class="section">
+            <h2>구조 Structure des Syllabes Coréennes</h2>
+            <p>Chaque bloc syllabique coréen suit une structure précise combinant consonnes et voyelles.</p>
+
+            <h3>Les 4 Structures de Base</h3>
+            <table class="grammar-table">
+                <tr>
+                    <th>Structure</th>
+                    <th>Formule</th>
+                    <th>Exemple</th>
+                    <th>Prononciation</th>
+                </tr>
+                <tr>
+                    <td>CV</td>
+                    <td>Consonne + Voyelle</td>
+                    <td>가, 나, 다</td>
+                    <td>ga, na, da</td>
+                </tr>
+                <tr>
+                    <td>CVC</td>
+                    <td>Consonne + Voyelle + Consonne finale</td>
+                    <td>강, 남, 달</td>
+                    <td>gang, nam, dal</td>
+                </tr>
+                <tr>
+                    <td>CVV</td>
+                    <td>Consonne + Voyelle composée</td>
+                    <td>과, 귀, 왜</td>
+                    <td>gwa, gwi, wae</td>
+                </tr>
+                <tr>
+                    <td>CVVC</td>
+                    <td>Consonne + Voyelle composée + Finale</td>
+                    <td>광, 권, 웬</td>
+                    <td>gwang, gwon, wen</td>
+                </tr>
+            </table>
+
+            <h3>받침 Batchim - Consonnes Finales</h3>
+            <p>Le batchim est la consonne placée en bas du bloc syllabique.</p>
+            <div class="syllable-grid">
+                <div class="syllable-card">
+                    <div class="syllable-char">ㄱ</div>
+                    <div class="syllable-romanization">-k</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">ㄴ</div>
+                    <div class="syllable-romanization">-n</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">ㄷ</div>
+                    <div class="syllable-romanization">-t</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">ㄹ</div>
+                    <div class="syllable-romanization">-l/-r</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">ㅁ</div>
+                    <div class="syllable-romanization">-m</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">ㅂ</div>
+                    <div class="syllable-romanization">-p</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">ㅇ</div>
+                    <div class="syllable-romanization">-ng</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Doubles Batchim (겹받침)</h4>
+                <p>Certaines syllabes ont deux consonnes finales : ㄳ, ㄵ, ㄶ, ㄺ, ㄻ, ㄼ, ㄽ, ㄾ, ㄿ, ㅀ, ㅄ</p>
+                <p>Exemple : 삶 (sam - vie), 읽다 (ikda - lire), 없다 (eopda - ne pas avoir)</p>
+            </div>
+        </section>
+
+        <!-- Voyelles Composées -->
+        <section class="section">
+            <h2>복합모음 Voyelles Composées</h2>
+
+            <h3>Voyelles Simples → Composées</h3>
+            <table class="grammar-table">
+                <tr>
+                    <th>Base</th>
+                    <th>+ ㅣ</th>
+                    <th>Résultat</th>
+                    <th>Son</th>
+                </tr>
+                <tr>
+                    <td>ㅏ (a)</td>
+                    <td>+ ㅣ</td>
+                    <td>ㅐ</td>
+                    <td>ae</td>
+                </tr>
+                <tr>
+                    <td>ㅓ (eo)</td>
+                    <td>+ ㅣ</td>
+                    <td>ㅔ</td>
+                    <td>e</td>
+                </tr>
+                <tr>
+                    <td>ㅗ (o)</td>
+                    <td>+ ㅏ</td>
+                    <td>ㅘ</td>
+                    <td>wa</td>
+                </tr>
+                <tr>
+                    <td>ㅗ (o)</td>
+                    <td>+ ㅐ</td>
+                    <td>ㅙ</td>
+                    <td>wae</td>
+                </tr>
+                <tr>
+                    <td>ㅗ (o)</td>
+                    <td>+ ㅣ</td>
+                    <td>ㅚ</td>
+                    <td>oe/we</td>
+                </tr>
+                <tr>
+                    <td>ㅜ (u)</td>
+                    <td>+ ㅓ</td>
+                    <td>ㅝ</td>
+                    <td>wo</td>
+                </tr>
+                <tr>
+                    <td>ㅜ (u)</td>
+                    <td>+ ㅔ</td>
+                    <td>ㅞ</td>
+                    <td>we</td>
+                </tr>
+                <tr>
+                    <td>ㅜ (u)</td>
+                    <td>+ ㅣ</td>
+                    <td>ㅟ</td>
+                    <td>wi</td>
+                </tr>
+                <tr>
+                    <td>ㅡ (eu)</td>
+                    <td>+ ㅣ</td>
+                    <td>ㅢ</td>
+                    <td>ui</td>
+                </tr>
+            </table>
+
+            <div class="syllable-grid">
+                <div class="syllable-card">
+                    <div class="syllable-char">과</div>
+                    <div class="syllable-romanization">gwa</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">귀</div>
+                    <div class="syllable-romanization">gwi</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">외</div>
+                    <div class="syllable-romanization">oe</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">워</div>
+                    <div class="syllable-romanization">wo</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">웨</div>
+                    <div class="syllable-romanization">we</div>
+                </div>
+                <div class="syllable-card">
+                    <div class="syllable-char">의</div>
+                    <div class="syllable-romanization">ui</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Particules -->
+        <section class="section">
+            <h2>조사 Josa - Les Particules</h2>
+            <p>Les particules sont essentielles en coréen pour indiquer la fonction grammaticale des mots.</p>
+
+            <div class="particle-grid">
+                <div class="particle-card">
+                    <div class="particle">은/는</div>
+                    <div class="particle-name">eun/neun (Thème)</div>
+                    <p>Marque le sujet/thème de la phrase</p>
+                    <p class="romanization">은 après consonne, 는 après voyelle</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">이/가</div>
+                    <div class="particle-name">i/ga (Sujet)</div>
+                    <p>Marque le sujet grammatical</p>
+                    <p class="romanization">이 après consonne, 가 après voyelle</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">을/를</div>
+                    <div class="particle-name">eul/reul (Objet)</div>
+                    <p>Marque l'objet direct</p>
+                    <p class="romanization">을 après consonne, 를 après voyelle</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">에</div>
+                    <div class="particle-name">e (Lieu/Temps)</div>
+                    <p>Indique le lieu statique ou le temps</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">에서</div>
+                    <div class="particle-name">eseo (Lieu d'action)</div>
+                    <p>Lieu où se déroule l'action</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">에게/한테</div>
+                    <div class="particle-name">ege/hante (À qqn)</div>
+                    <p>Indique le destinataire</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">와/과</div>
+                    <div class="particle-name">wa/gwa (Et/Avec)</div>
+                    <p>Coordination ou accompagnement</p>
+                </div>
+                <div class="particle-card">
+                    <div class="particle">의</div>
+                    <div class="particle-name">ui (Possession)</div>
+                    <p>Marque la possession (de)</p>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">Sujet + 은/는 + Objet + 을/를 + Verbe</div>
+                <p>Structure de base de la phrase coréenne (SOV)</p>
+                <div class="example-sentence">
+                    <div class="korean-text">저는 한국어를 공부해요.</div>
+                    <div class="romanization">Jeoneun hangugeo-reul gongbuhaeyo.</div>
+                    <div class="translation">J'étudie le coréen.</div>
+                </div>
+            </div>
+
+            <h3>은/는 vs 이/가</h3>
+            <div class="tip-box">
+                <p><strong>은/는</strong> - Information connue, contraste, thème général</p>
+                <p><strong>이/가</strong> - Nouvelle information, emphase sur le sujet</p>
+            </div>
+            <div class="example-sentence">
+                <div class="korean-text">저는 학생이에요.</div>
+                <div class="romanization">Jeoneun haksaeng-ieyo.</div>
+                <div class="translation">Je suis étudiant. (on parle de moi)</div>
+            </div>
+            <div class="example-sentence">
+                <div class="korean-text">누가 왔어요? - 민수가 왔어요.</div>
+                <div class="romanization">Nuga wasseoyo? - Minsu-ga wasseoyo.</div>
+                <div class="translation">Qui est venu ? - C'est Minsu qui est venu.</div>
+            </div>
+        </section>
+
+        <!-- Conjugaison des Verbes -->
+        <section class="section">
+            <h2>동사 활용 Conjugaison des Verbes</h2>
+
+            <h3>Les Niveaux de Politesse</h3>
+            <table class="honorific-table">
+                <tr>
+                    <th>Niveau</th>
+                    <th>Terminaison</th>
+                    <th>Usage</th>
+                    <th>Exemple (가다 - aller)</th>
+                </tr>
+                <tr class="level-formal">
+                    <td>Très formel</td>
+                    <td>-ㅂ니다/-습니다</td>
+                    <td>Discours, présentations</td>
+                    <td>갑니다</td>
+                </tr>
+                <tr class="level-polite">
+                    <td>Poli standard</td>
+                    <td>-아요/-어요</td>
+                    <td>Conversation quotidienne</td>
+                    <td>가요</td>
+                </tr>
+                <tr class="level-casual">
+                    <td>Informel</td>
+                    <td>-아/-어</td>
+                    <td>Amis proches, famille</td>
+                    <td>가</td>
+                </tr>
+            </table>
+
+            <h3>Règles de Conjugaison -아요/-어요</h3>
+            <div class="info-box">
+                <p><strong>Voyelle ㅏ ou ㅗ</strong> → ajouter -아요</p>
+                <p><strong>Autres voyelles</strong> → ajouter -어요</p>
+                <p><strong>하다</strong> → 해요</p>
+            </div>
+
+            <h3>Exemples de Conjugaison</h3>
+            <div class="conjugation-grid">
+                <div class="conjugation-card">
+                    <div class="verb-base">가다</div>
+                    <div class="verb-meaning">Aller</div>
+                    <ul class="conjugation-list">
+                        <li><span class="conj-form">Présent poli:</span> <span class="conj-result">가요</span></li>
+                        <li><span class="conj-form">Présent formel:</span> <span class="conj-result">갑니다</span></li>
+                        <li><span class="conj-form">Passé poli:</span> <span class="conj-result">갔어요</span></li>
+                        <li><span class="conj-form">Futur poli:</span> <span class="conj-result">갈 거예요</span></li>
+                        <li><span class="conj-form">Négatif:</span> <span class="conj-result">안 가요</span></li>
+                    </ul>
+                </div>
+                <div class="conjugation-card">
+                    <div class="verb-base">먹다</div>
+                    <div class="verb-meaning">Manger</div>
+                    <ul class="conjugation-list">
+                        <li><span class="conj-form">Présent poli:</span> <span class="conj-result">먹어요</span></li>
+                        <li><span class="conj-form">Présent formel:</span> <span class="conj-result">먹습니다</span></li>
+                        <li><span class="conj-form">Passé poli:</span> <span class="conj-result">먹었어요</span></li>
+                        <li><span class="conj-form">Futur poli:</span> <span class="conj-result">먹을 거예요</span></li>
+                        <li><span class="conj-form">Négatif:</span> <span class="conj-result">안 먹어요</span></li>
+                    </ul>
+                </div>
+                <div class="conjugation-card">
+                    <div class="verb-base">하다</div>
+                    <div class="verb-meaning">Faire</div>
+                    <ul class="conjugation-list">
+                        <li><span class="conj-form">Présent poli:</span> <span class="conj-result">해요</span></li>
+                        <li><span class="conj-form">Présent formel:</span> <span class="conj-result">합니다</span></li>
+                        <li><span class="conj-form">Passé poli:</span> <span class="conj-result">했어요</span></li>
+                        <li><span class="conj-form">Futur poli:</span> <span class="conj-result">할 거예요</span></li>
+                        <li><span class="conj-form">Négatif:</span> <span class="conj-result">안 해요</span></li>
+                    </ul>
+                </div>
+                <div class="conjugation-card">
+                    <div class="verb-base">보다</div>
+                    <div class="verb-meaning">Voir, Regarder</div>
+                    <ul class="conjugation-list">
+                        <li><span class="conj-form">Présent poli:</span> <span class="conj-result">봐요</span></li>
+                        <li><span class="conj-form">Présent formel:</span> <span class="conj-result">봅니다</span></li>
+                        <li><span class="conj-form">Passé poli:</span> <span class="conj-result">봤어요</span></li>
+                        <li><span class="conj-form">Futur poli:</span> <span class="conj-result">볼 거예요</span></li>
+                        <li><span class="conj-form">Négatif:</span> <span class="conj-result">안 봐요</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Verbes Irréguliers Courants</h3>
+            <table class="grammar-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Règle</th>
+                    <th>Exemple</th>
+                    <th>Conjugué</th>
+                </tr>
+                <tr>
+                    <td>ㅂ irrégulier</td>
+                    <td>ㅂ → 우</td>
+                    <td>춥다 (froid)</td>
+                    <td>추워요</td>
+                </tr>
+                <tr>
+                    <td>ㄷ irrégulier</td>
+                    <td>ㄷ → ㄹ</td>
+                    <td>듣다 (écouter)</td>
+                    <td>들어요</td>
+                </tr>
+                <tr>
+                    <td>ㅅ irrégulier</td>
+                    <td>ㅅ disparaît</td>
+                    <td>짓다 (construire)</td>
+                    <td>지어요</td>
+                </tr>
+                <tr>
+                    <td>르 irrégulier</td>
+                    <td>르 → ㄹㄹ</td>
+                    <td>모르다 (ne pas savoir)</td>
+                    <td>몰라요</td>
+                </tr>
+                <tr>
+                    <td>ㅎ irrégulier</td>
+                    <td>ㅎ disparaît</td>
+                    <td>좋다 (bon) - adjectif</td>
+                    <td>좋아요</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Structures Grammaticales -->
+        <section class="section">
+            <h2>문법 구조 Structures Grammaticales</h2>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">-고 싶다 (vouloir faire)</div>
+                <p>Exprimer un désir</p>
+                <div class="example-sentence">
+                    <div class="korean-text">한국에 가고 싶어요.</div>
+                    <div class="romanization">Hanguk-e gago sipeoyo.</div>
+                    <div class="translation">Je veux aller en Corée.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">-을/ㄹ 수 있다 (pouvoir faire)</div>
+                <p>Exprimer la capacité</p>
+                <div class="example-sentence">
+                    <div class="korean-text">한국어를 말할 수 있어요.</div>
+                    <div class="romanization">Hangugeo-reul malhal su isseoyo.</div>
+                    <div class="translation">Je peux parler coréen.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">-아/어서 (parce que, puis)</div>
+                <p>Cause ou séquence</p>
+                <div class="example-sentence">
+                    <div class="korean-text">배가 고파서 밥을 먹었어요.</div>
+                    <div class="romanization">Baega gopaseo bab-eul meogeosseoyo.</div>
+                    <div class="translation">J'avais faim alors j'ai mangé.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">-지만 (mais)</div>
+                <p>Contraste</p>
+                <div class="example-sentence">
+                    <div class="korean-text">비싸지만 맛있어요.</div>
+                    <div class="romanization">Bissajiman masisseoyo.</div>
+                    <div class="translation">C'est cher mais c'est bon.</div>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <div class="grammar-pattern">-으면/면 (si, quand)</div>
+                <p>Condition</p>
+                <div class="example-sentence">
+                    <div class="korean-text">시간이 있으면 같이 가요.</div>
+                    <div class="romanization">Sigan-i isseumyeon gachi gayo.</div>
+                    <div class="translation">Si tu as le temps, allons-y ensemble.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vocabulaire Essentiel -->
+        <section class="section">
+            <h2>어휘 Vocabulaire Essentiel</h2>
+
+            <h3>Temps et Fréquence 시간</h3>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <div class="vocab-korean">오늘</div>
+                    <div class="vocab-roman">oneul</div>
+                    <div class="vocab-meaning">aujourd'hui</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">내일</div>
+                    <div class="vocab-roman">naeil</div>
+                    <div class="vocab-meaning">demain</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">어제</div>
+                    <div class="vocab-roman">eoje</div>
+                    <div class="vocab-meaning">hier</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">지금</div>
+                    <div class="vocab-roman">jigeum</div>
+                    <div class="vocab-meaning">maintenant</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">항상</div>
+                    <div class="vocab-roman">hangsang</div>
+                    <div class="vocab-meaning">toujours</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">가끔</div>
+                    <div class="vocab-roman">gakkeum</div>
+                    <div class="vocab-meaning">parfois</div>
+                </div>
+            </div>
+
+            <h3>Verbes Courants 동사</h3>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <div class="vocab-korean">사다</div>
+                    <div class="vocab-roman">sada</div>
+                    <div class="vocab-meaning">acheter</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">마시다</div>
+                    <div class="vocab-roman">masida</div>
+                    <div class="vocab-meaning">boire</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">읽다</div>
+                    <div class="vocab-roman">ikda</div>
+                    <div class="vocab-meaning">lire</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">쓰다</div>
+                    <div class="vocab-roman">sseuda</div>
+                    <div class="vocab-meaning">écrire</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">만나다</div>
+                    <div class="vocab-roman">mannada</div>
+                    <div class="vocab-meaning">rencontrer</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">배우다</div>
+                    <div class="vocab-roman">baeuda</div>
+                    <div class="vocab-meaning">apprendre</div>
+                </div>
+            </div>
+
+            <h3>Adjectifs 형용사</h3>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <div class="vocab-korean">크다</div>
+                    <div class="vocab-roman">keuda</div>
+                    <div class="vocab-meaning">grand</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">작다</div>
+                    <div class="vocab-roman">jakda</div>
+                    <div class="vocab-meaning">petit</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">예쁘다</div>
+                    <div class="vocab-roman">yeppeuda</div>
+                    <div class="vocab-meaning">joli</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">맛있다</div>
+                    <div class="vocab-roman">masitda</div>
+                    <div class="vocab-meaning">délicieux</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">재미있다</div>
+                    <div class="vocab-roman">jaemiitda</div>
+                    <div class="vocab-meaning">intéressant</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-korean">어렵다</div>
+                    <div class="vocab-roman">eoryeopda</div>
+                    <div class="vocab-meaning">difficile</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="section">
+            <h2>퀴즈 Quiz de Révision</h2>
+
+            <div class="quiz-container" id="quiz1">
+                <div class="quiz-question">1. Quelle particule marque l'objet direct ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(1, this, false)">은/는</div>
+                    <div class="quiz-option" onclick="checkQuiz(1, this, false)">이/가</div>
+                    <div class="quiz-option" onclick="checkQuiz(1, this, true)">을/를</div>
+                    <div class="quiz-option" onclick="checkQuiz(1, this, false)">에서</div>
+                </div>
+                <div class="quiz-feedback" id="feedback1"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz2">
+                <div class="quiz-question">2. Comment dit-on "Je mange" en coréen poli ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(2, this, false)">먹다</div>
+                    <div class="quiz-option" onclick="checkQuiz(2, this, true)">먹어요</div>
+                    <div class="quiz-option" onclick="checkQuiz(2, this, false)">먹습니다</div>
+                    <div class="quiz-option" onclick="checkQuiz(2, this, false)">먹아요</div>
+                </div>
+                <div class="quiz-feedback" id="feedback2"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz3">
+                <div class="quiz-question">3. Quelle est la conjugaison correcte de 춥다 (froid) ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(3, this, false)">춥어요</div>
+                    <div class="quiz-option" onclick="checkQuiz(3, this, true)">추워요</div>
+                    <div class="quiz-option" onclick="checkQuiz(3, this, false)">춥아요</div>
+                    <div class="quiz-option" onclick="checkQuiz(3, this, false)">추보요</div>
+                </div>
+                <div class="quiz-feedback" id="feedback3"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz4">
+                <div class="quiz-question">4. Comment exprimer "Je veux aller" ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(4, this, true)">가고 싶어요</div>
+                    <div class="quiz-option" onclick="checkQuiz(4, this, false)">갈 수 있어요</div>
+                    <div class="quiz-option" onclick="checkQuiz(4, this, false)">가서요</div>
+                    <div class="quiz-option" onclick="checkQuiz(4, this, false)">가면요</div>
+                </div>
+                <div class="quiz-feedback" id="feedback4"></div>
+            </div>
+
+            <div class="quiz-container" id="quiz5">
+                <div class="quiz-question">5. Quel batchim entendez-vous à la fin de 강 (rivière) ?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(5, this, false)">ㄴ (-n)</div>
+                    <div class="quiz-option" onclick="checkQuiz(5, this, true)">ㅇ (-ng)</div>
+                    <div class="quiz-option" onclick="checkQuiz(5, this, false)">ㅁ (-m)</div>
+                    <div class="quiz-option" onclick="checkQuiz(5, this, false)">ㄱ (-k)</div>
+                </div>
+                <div class="quiz-feedback" id="feedback5"></div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <a href="coreen-debutant.html" class="nav-btn">← Niveau Débutant</a>
+            <a href="../user/progression.html" class="nav-btn">Ma Progression</a>
+            <a href="coreen-expert.html" class="nav-btn">Niveau Expert →</a>
+        </div>
+    </div>
+
+    <script>
+        function checkQuiz(quizNum, element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById(`feedback${quizNum}`);
+
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                if (opt === element) {
+                    opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            });
+
+            feedback.style.display = 'block';
+            if (isCorrect) {
+                feedback.style.background = 'rgba(46,204,113,0.2)';
+                feedback.innerHTML = '✓ 정답! Correct !';
+            } else {
+                feedback.style.background = 'rgba(231,76,60,0.2)';
+                feedback.innerHTML = '✗ 오답. Incorrect. Réessayez !';
+                setTimeout(() => {
+                    options.forEach(opt => {
+                        opt.style.pointerEvents = 'auto';
+                        opt.classList.remove('incorrect');
+                    });
+                    feedback.style.display = 'none';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

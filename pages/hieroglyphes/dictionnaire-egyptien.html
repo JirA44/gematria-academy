@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Dictionnaire Égyptien Ancien - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 69, 19, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #d4af37, #f4d03f, #c9a227);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .nav-tab {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(212, 175, 55, 0.5);
+            border-color: #d4af37;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: none;
+        }
+        .section.active { display: block; }
+        .section-title {
+            font-size: 1.8em;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        /* Search */
+        .search-box {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 1em;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.5); }
+        .filter-select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        /* Dictionary entries */
+        .dict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .dict-entry {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        .dict-entry:hover {
+            transform: translateY(-3px);
+            border-color: #d4af37;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+        .entry-hiero {
+            font-size: 2em;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+        .entry-transliteration {
+            font-size: 1.1em;
+            color: #f4d03f;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .entry-meaning {
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+        .entry-category {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            color: #d4af37;
+        }
+
+        /* Grammar tables */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+        }
+        .grammar-table tr:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Grammar rules */
+        .grammar-rule {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .rule-title {
+            font-size: 1.2em;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        .rule-example {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+
+        /* Vocabulary themes */
+        .vocab-theme {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .theme-title {
+            font-size: 1.4em;
+            color: #f4d03f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .vocab-hiero { font-size: 1.3em; color: #d4af37; }
+        .vocab-trans { font-size: 0.9em; opacity: 0.9; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d4af37;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.1), rgba(100, 181, 246, 0.05));
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 { color: #64b5f6; margin-bottom: 10px; }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .container { padding: 0 15px; }
+            .dict-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .grammar-table { font-size: 0.95em; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.6em; }
+            header { padding: 20px 15px; }
+            .section { padding: 20px 15px; }
+            .section-title { font-size: 1.4em; }
+            .dict-grid { grid-template-columns: 1fr; }
+            .nav-tabs { gap: 8px; }
+            .nav-tab { padding: 10px 16px; font-size: 0.9em; }
+            .search-box { flex-direction: column; padding: 12px; }
+            .search-input, .filter-select { width: 100%; }
+            .grammar-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .grammar-rule { padding: 15px; }
+            .vocab-grid { grid-template-columns: 1fr !important; }
+            .vocab-theme { padding: 15px; }
+            .back-link { font-size: 0.9em; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4em; }
+            .entry-hieroglyph { font-size: 1.5em; }
+            .nav-tab { padding: 8px 12px; font-size: 0.85em; }
+            .dict-entry { padding: 12px; }
+        }
+
+        /* Touch-friendly */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-tab, .dict-entry, .portal-link {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .search-input, .filter-select {
+                min-height: 48px;
+                font-size: 16px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header { padding: 15px; margin-bottom: 20px; }
+            h1 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="hieroglyphes-debutant.html" class="back-link">← Retour aux Hiéroglyphes</a>
+
+        <header>
+            <h1>𓂀 Dictionnaire Égyptien Ancien</h1>
+            <p style="opacity: 0.9;">Dictionnaire, Grammaire et Vocabulaire thématique de l'égyptien hiéroglyphique</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('dictionnaire')">📖 Dictionnaire</button>
+            <button class="nav-tab" onclick="showSection('grammaire')">📐 Grammaire</button>
+            <button class="nav-tab" onclick="showSection('vocabulaire')">📚 Vocabulaire</button>
+        </div>
+
+        <!-- DICTIONNAIRE -->
+        <section class="section active" id="dictionnaire">
+            <h2 class="section-title">📖 Dictionnaire Hiéroglyphique</h2>
+
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchDict" placeholder="Rechercher un mot..." onkeyup="filterDict()">
+                <select class="filter-select" id="categoryFilter" onchange="filterDict()">
+                    <option value="all">Toutes catégories</option>
+                    <option value="dieux">Dieux</option>
+                    <option value="nature">Nature</option>
+                    <option value="corps">Corps humain</option>
+                    <option value="animaux">Animaux</option>
+                    <option value="objets">Objets</option>
+                    <option value="actions">Actions</option>
+                    <option value="qualites">Qualités</option>
+                    <option value="nombres">Nombres</option>
+                </select>
+            </div>
+
+            <div class="dict-grid" id="dictContainer">
+                <!-- Dieux -->
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-hiero">𓁹</div>
+                    <div class="entry-transliteration">Rꜥ (Ra)</div>
+                    <div class="entry-meaning">Rê, le dieu soleil</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-hiero">𓊨𓏏𓆇</div>
+                    <div class="entry-transliteration">Ỉst (Iset)</div>
+                    <div class="entry-meaning">Isis, déesse de la magie</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-hiero">𓊩𓁹</div>
+                    <div class="entry-transliteration">Wsỉr (Ousir)</div>
+                    <div class="entry-meaning">Osiris, dieu des morts</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-hiero">𓅃</div>
+                    <div class="entry-transliteration">Ḥr (Hor)</div>
+                    <div class="entry-meaning">Horus, dieu faucon</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-hiero">𓎟𓏏𓉐</div>
+                    <div class="entry-transliteration">Ỉmn (Imen)</div>
+                    <div class="entry-meaning">Amon, le dieu caché</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-hiero">𓊹</div>
+                    <div class="entry-transliteration">nṯr</div>
+                    <div class="entry-meaning">Dieu, divinité</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+
+                <!-- Nature -->
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-hiero">𓇳</div>
+                    <div class="entry-transliteration">rꜥ</div>
+                    <div class="entry-meaning">Soleil, jour</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-hiero">𓇹</div>
+                    <div class="entry-transliteration">ỉꜥḥ</div>
+                    <div class="entry-meaning">Lune</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-hiero">𓈖𓈖𓈖</div>
+                    <div class="entry-transliteration">mw</div>
+                    <div class="entry-meaning">Eau</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-hiero">𓇾</div>
+                    <div class="entry-transliteration">tꜣ</div>
+                    <div class="entry-meaning">Terre, pays</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-hiero">𓊪𓏏</div>
+                    <div class="entry-transliteration">pt</div>
+                    <div class="entry-meaning">Ciel</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-hiero">𓆄</div>
+                    <div class="entry-transliteration">šw</div>
+                    <div class="entry-meaning">Air, lumière (dieu Shou)</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+
+                <!-- Corps humain -->
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓁶</div>
+                    <div class="entry-transliteration">tp</div>
+                    <div class="entry-meaning">Tête</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓂋</div>
+                    <div class="entry-transliteration">r</div>
+                    <div class="entry-meaning">Bouche</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓂀</div>
+                    <div class="entry-transliteration">ỉrt</div>
+                    <div class="entry-meaning">Œil</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓂝</div>
+                    <div class="entry-transliteration">ꜥ</div>
+                    <div class="entry-meaning">Bras, main</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓂧</div>
+                    <div class="entry-transliteration">d</div>
+                    <div class="entry-meaning">Main</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓃀</div>
+                    <div class="entry-transliteration">b</div>
+                    <div class="entry-meaning">Pied, jambe</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+                <div class="dict-entry" data-category="corps">
+                    <div class="entry-hiero">𓄣</div>
+                    <div class="entry-transliteration">ỉb</div>
+                    <div class="entry-meaning">Cœur</div>
+                    <span class="entry-category">Corps</span>
+                </div>
+
+                <!-- Animaux -->
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-hiero">𓃭</div>
+                    <div class="entry-transliteration">mꜣỉ</div>
+                    <div class="entry-meaning">Lion</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-hiero">𓅓</div>
+                    <div class="entry-transliteration">m (mwt)</div>
+                    <div class="entry-meaning">Chouette</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-hiero">𓆣</div>
+                    <div class="entry-transliteration">ḫpr</div>
+                    <div class="entry-meaning">Scarabée</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-hiero">𓆑</div>
+                    <div class="entry-transliteration">f (ḥfꜣw)</div>
+                    <div class="entry-meaning">Serpent, vipère</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-hiero">𓄿</div>
+                    <div class="entry-transliteration">ꜣ (nrw)</div>
+                    <div class="entry-meaning">Vautour</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+                <div class="dict-entry" data-category="animaux">
+                    <div class="entry-hiero">𓅱</div>
+                    <div class="entry-transliteration">w</div>
+                    <div class="entry-meaning">Caille</div>
+                    <span class="entry-category">Animaux</span>
+                </div>
+
+                <!-- Objets -->
+                <div class="dict-entry" data-category="objets">
+                    <div class="entry-hiero">𓉐</div>
+                    <div class="entry-transliteration">pr</div>
+                    <div class="entry-meaning">Maison</div>
+                    <span class="entry-category">Objets</span>
+                </div>
+                <div class="dict-entry" data-category="objets">
+                    <div class="entry-hiero">𓊵</div>
+                    <div class="entry-transliteration">ḥtp</div>
+                    <div class="entry-meaning">Offrande, autel</div>
+                    <span class="entry-category">Objets</span>
+                </div>
+                <div class="dict-entry" data-category="objets">
+                    <div class="entry-hiero">𓋹</div>
+                    <div class="entry-transliteration">ꜥnḫ</div>
+                    <div class="entry-meaning">Croix de vie (Ankh)</div>
+                    <span class="entry-category">Objets</span>
+                </div>
+                <div class="dict-entry" data-category="objets">
+                    <div class="entry-hiero">𓌂</div>
+                    <div class="entry-transliteration">nḫꜣḫꜣ</div>
+                    <div class="entry-meaning">Fléau (insigne royal)</div>
+                    <span class="entry-category">Objets</span>
+                </div>
+                <div class="dict-entry" data-category="objets">
+                    <div class="entry-hiero">𓏏</div>
+                    <div class="entry-transliteration">t</div>
+                    <div class="entry-meaning">Pain</div>
+                    <span class="entry-category">Objets</span>
+                </div>
+
+                <!-- Actions -->
+                <div class="dict-entry" data-category="actions">
+                    <div class="entry-hiero">𓏙</div>
+                    <div class="entry-transliteration">dỉ</div>
+                    <div class="entry-meaning">Donner</div>
+                    <span class="entry-category">Actions</span>
+                </div>
+                <div class="dict-entry" data-category="actions">
+                    <div class="entry-hiero">𓇋𓇋</div>
+                    <div class="entry-transliteration">ỉỉ</div>
+                    <div class="entry-meaning">Venir</div>
+                    <span class="entry-category">Actions</span>
+                </div>
+                <div class="dict-entry" data-category="actions">
+                    <div class="entry-hiero">𓅓𓂝𓂝</div>
+                    <div class="entry-transliteration">mꜣꜣ</div>
+                    <div class="entry-meaning">Voir, regarder</div>
+                    <span class="entry-category">Actions</span>
+                </div>
+                <div class="dict-entry" data-category="actions">
+                    <div class="entry-hiero">𓊃𓈖𓏏𓏥</div>
+                    <div class="entry-transliteration">sḏm</div>
+                    <div class="entry-meaning">Entendre, écouter</div>
+                    <span class="entry-category">Actions</span>
+                </div>
+                <div class="dict-entry" data-category="actions">
+                    <div class="entry-hiero">𓂞</div>
+                    <div class="entry-transliteration">rdỉ</div>
+                    <div class="entry-meaning">Faire, causer</div>
+                    <span class="entry-category">Actions</span>
+                </div>
+
+                <!-- Qualités -->
+                <div class="dict-entry" data-category="qualites">
+                    <div class="entry-hiero">𓄤</div>
+                    <div class="entry-transliteration">nfr</div>
+                    <div class="entry-meaning">Bon, beau, parfait</div>
+                    <span class="entry-category">Qualités</span>
+                </div>
+                <div class="dict-entry" data-category="qualites">
+                    <div class="entry-hiero">𓂝𓂝</div>
+                    <div class="entry-transliteration">ꜥꜣ</div>
+                    <div class="entry-meaning">Grand</div>
+                    <span class="entry-category">Qualités</span>
+                </div>
+                <div class="dict-entry" data-category="qualites">
+                    <div class="entry-hiero">𓈖𓆓𓊃</div>
+                    <div class="entry-transliteration">nḏs</div>
+                    <div class="entry-meaning">Petit</div>
+                    <span class="entry-category">Qualités</span>
+                </div>
+                <div class="dict-entry" data-category="qualites">
+                    <div class="entry-hiero">𓅓𓂝𓏏</div>
+                    <div class="entry-transliteration">mꜣꜥt</div>
+                    <div class="entry-meaning">Vrai, juste (Maât)</div>
+                    <span class="entry-category">Qualités</span>
+                </div>
+
+                <!-- Nombres -->
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-hiero">𓏤</div>
+                    <div class="entry-transliteration">wꜥ</div>
+                    <div class="entry-meaning">Un (1)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-hiero">𓏻</div>
+                    <div class="entry-transliteration">snwỉ</div>
+                    <div class="entry-meaning">Deux (2)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-hiero">𓏼</div>
+                    <div class="entry-transliteration">ḫmt</div>
+                    <div class="entry-meaning">Trois (3)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-hiero">𓎆</div>
+                    <div class="entry-transliteration">mḏ</div>
+                    <div class="entry-meaning">Dix (10)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-hiero">𓍢</div>
+                    <div class="entry-transliteration">šꜥt</div>
+                    <div class="entry-meaning">Cent (100)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+                <div class="dict-entry" data-category="nombres">
+                    <div class="entry-hiero">𓆼</div>
+                    <div class="entry-transliteration">ḫꜣ</div>
+                    <div class="entry-meaning">Mille (1000)</div>
+                    <span class="entry-category">Nombres</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRAMMAIRE -->
+        <section class="section" id="grammaire">
+            <h2 class="section-title">📐 Grammaire Égyptienne</h2>
+
+            <div class="grammar-rule">
+                <div class="rule-title">1. Structure de la Phrase</div>
+                <p>L'égyptien ancien suit généralement l'ordre <strong>Verbe - Sujet - Objet (VSO)</strong>,
+                contrairement au français (SVO).</p>
+                <div class="rule-example">
+                    <strong>𓏙 𓊹 𓋹 → dỉ nṯr ꜥnḫ</strong><br>
+                    Donne + dieu + vie = "Le dieu donne la vie"
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">2. Les Déterminatifs</div>
+                <p>Les déterminatifs sont des signes muets placés à la fin des mots pour indiquer leur catégorie sémantique.</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Déterminatif</th>
+                        <th>Catégorie</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5em;">𓀀</td>
+                        <td>Homme, personne masculine</td>
+                        <td>𓊃 𓀀 = s "homme"</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5em;">𓁐</td>
+                        <td>Femme, personne féminine</td>
+                        <td>𓊃𓏏 𓁐 = st "femme"</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5em;">𓊹</td>
+                        <td>Divinité</td>
+                        <td>𓇋𓏠𓈖 𓊹 = Ỉmn "Amon"</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5em;">𓏏𓏤</td>
+                        <td>Abstraction</td>
+                        <td>𓄤 𓏏𓏤 = nfrt "beauté"</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5em;">𓃀𓃀</td>
+                        <td>Mouvement, marche</td>
+                        <td>𓇋𓇋 𓃀𓃀 = ỉỉ "venir"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">3. Genre et Nombre</div>
+                <p><strong>Genre :</strong> Masculin (sans marque) / Féminin (suffixe <span style="color:#d4af37">𓏏 -t</span>)</p>
+                <p><strong>Nombre :</strong> Singulier / Duel (suffixe <span style="color:#d4af37">𓏭 -wy/-ty</span>) / Pluriel (suffixe <span style="color:#d4af37">𓏥 -w</span>)</p>
+                <div class="rule-example">
+                    𓊹 nṯr = "dieu" (masc. sing.)<br>
+                    𓊹𓏏 nṯrt = "déesse" (fém. sing.)<br>
+                    𓊹𓏥 nṯrw = "dieux" (masc. plur.)
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">4. Les Pronoms Suffixes</div>
+                <p>Les pronoms se placent après le nom ou le verbe.</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Personne</th>
+                        <th>Suffixe</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td>Je / Mon</td>
+                        <td>𓇋 -ỉ / =ỉ</td>
+                        <td>pr=ỉ "ma maison"</td>
+                    </tr>
+                    <tr>
+                        <td>Tu (masc.) / Ton</td>
+                        <td>𓎡 -k / =k</td>
+                        <td>pr=k "ta maison"</td>
+                    </tr>
+                    <tr>
+                        <td>Tu (fém.) / Ton</td>
+                        <td>𓏏 -t / =t</td>
+                        <td>pr=t "ta maison"</td>
+                    </tr>
+                    <tr>
+                        <td>Il / Son</td>
+                        <td>𓆑 -f / =f</td>
+                        <td>pr=f "sa maison"</td>
+                    </tr>
+                    <tr>
+                        <td>Elle / Sa</td>
+                        <td>𓊃 -s / =s</td>
+                        <td>pr=s "sa maison"</td>
+                    </tr>
+                    <tr>
+                        <td>Nous / Notre</td>
+                        <td>𓈖 -n / =n</td>
+                        <td>pr=n "notre maison"</td>
+                    </tr>
+                    <tr>
+                        <td>Ils / Leur</td>
+                        <td>𓊃𓈖 -sn / =sn</td>
+                        <td>pr=sn "leur maison"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">5. La Négation</div>
+                <p>La négation se forme avec <span style="color:#d4af37">𓈖 n</span> devant le verbe,
+                ou <span style="color:#d4af37">𓈖𓈖 nn</span> pour une négation plus forte.</p>
+                <div class="rule-example">
+                    𓈖 𓅓𓂝𓂝 = n mꜣꜣ = "il ne voit pas"<br>
+                    𓈖𓈖 𓂝𓎡 = nn ꜥk = "rien n'entre"
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">6. La Possession (Génitif)</div>
+                <p>Le génitif direct : le possesseur suit directement le possédé.</p>
+                <p>Le génitif indirect : utilise <span style="color:#d4af37">𓈖 n(y)</span> "de".</p>
+                <div class="rule-example">
+                    𓉐 𓊹 = pr nṯr = "maison du dieu" (direct)<br>
+                    𓊃𓏏 𓈖 𓇓 = sꜣt n(y)t nsw = "fille du roi" (indirect)
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>📜 Note sur l'écriture</h4>
+                <p>L'égyptien hiéroglyphique ne note généralement pas les voyelles. Les égyptologues
+                ajoutent un "e" entre les consonnes pour faciliter la prononciation. Ainsi "nfr"
+                se prononce conventionnellement "néfer".</p>
+            </div>
+        </section>
+
+        <!-- VOCABULAIRE -->
+        <section class="section" id="vocabulaire">
+            <h2 class="section-title">📚 Vocabulaire Thématique</h2>
+
+            <div class="vocab-theme">
+                <div class="theme-title">👨‍👩‍👧‍👦 La Famille</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇋𓏏𓆑</span>
+                        <span class="vocab-trans">ỉt - père</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓅓𓅱𓏏</span>
+                        <span class="vocab-trans">mwt - mère</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓏏</span>
+                        <span class="vocab-trans">sꜣ - fils</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓏏𓏏</span>
+                        <span class="vocab-trans">sꜣt - fille</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓈖</span>
+                        <span class="vocab-trans">sn - frère</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓈖𓏏</span>
+                        <span class="vocab-trans">snt - sœur</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓎛𓇋𓅓𓏏</span>
+                        <span class="vocab-trans">ḥmt - épouse</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓎛𓇋</span>
+                        <span class="vocab-trans">ḥy - mari</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🏛️ La Royauté et l'État</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇓𓏏𓆤</span>
+                        <span class="vocab-trans">nsw - roi</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓎛𓅓𓏏</span>
+                        <span class="vocab-trans">ḥm - majesté</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓈖𓃀</span>
+                        <span class="vocab-trans">nb - seigneur</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓈖𓃀𓏏</span>
+                        <span class="vocab-trans">nbt - dame</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓂋𓊪𓂝𓏏</span>
+                        <span class="vocab-trans">rpꜥt - noble</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓄂𓏏</span>
+                        <span class="vocab-trans">ḥꜣty-ꜥ - prince</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊹𓉻</span>
+                        <span class="vocab-trans">ḥm-nṯr - prêtre</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓏏𓎛</span>
+                        <span class="vocab-trans">sš - scribe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🌾 Agriculture et Nourriture</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏏</span>
+                        <span class="vocab-trans">t - pain</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓎛𓈎𓏏</span>
+                        <span class="vocab-trans">ḥnqt - bière</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇋𓂋𓊪</span>
+                        <span class="vocab-trans">ỉrp - vin</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇋𓏏</span>
+                        <span class="vocab-trans">ỉt - orge</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓃾</span>
+                        <span class="vocab-trans">kꜣ - taureau</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓆤𓏏</span>
+                        <span class="vocab-trans">ꜣpd - volaille</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓂋𓅓</span>
+                        <span class="vocab-trans">rm - poisson</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇌𓏏</span>
+                        <span class="vocab-trans">ỉꜣrrt - raisin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">⏰ Le Temps</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇳</span>
+                        <span class="vocab-trans">hrw - jour</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓎼𓂋𓎛</span>
+                        <span class="vocab-trans">grḥ - nuit</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓇹</span>
+                        <span class="vocab-trans">ꜣbd - mois</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓂋𓈖𓊪𓏏</span>
+                        <span class="vocab-trans">rnpt - année</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓆑</span>
+                        <span class="vocab-trans">sf - hier</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓅓𓇋𓈖</span>
+                        <span class="vocab-trans">mỉn - aujourd'hui</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓂧𓅱𓂝</span>
+                        <span class="vocab-trans">dwꜣw - demain</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓆓𓏏</span>
+                        <span class="vocab-trans">ḏt - éternité</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🎭 Émotions et États</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓅓𓂋𓅱𓏏</span>
+                        <span class="vocab-trans">mrwt - amour</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊵𓏏𓊪</span>
+                        <span class="vocab-trans">ḥtp - paix</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓋹</span>
+                        <span class="vocab-trans">ꜥnḫ - vie</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓅓𓏏</span>
+                        <span class="vocab-trans">mt - mort</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓊃𓈖𓂧</span>
+                        <span class="vocab-trans">snḏ - peur</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓂝𓅱</span>
+                        <span class="vocab-trans">ꜣw - joie</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓄤</span>
+                        <span class="vocab-trans">nfr - beauté</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓅓𓂝𓏏</span>
+                        <span class="vocab-trans">mꜣꜥt - vérité</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🔢 Les Nombres</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏤</span>
+                        <span class="vocab-trans">1 - wꜥ</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏻</span>
+                        <span class="vocab-trans">2 - snwỉ</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏼</span>
+                        <span class="vocab-trans">3 - ḫmt</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏽</span>
+                        <span class="vocab-trans">4 - ỉfdw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏾</span>
+                        <span class="vocab-trans">5 - dỉw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓏿</span>
+                        <span class="vocab-trans">6 - sỉsw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓐀</span>
+                        <span class="vocab-trans">7 - sfḫw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓐁</span>
+                        <span class="vocab-trans">8 - ḫmnw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓐂</span>
+                        <span class="vocab-trans">9 - psḏw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓎆</span>
+                        <span class="vocab-trans">10 - mḏw</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓍢</span>
+                        <span class="vocab-trans">100 - šꜥt</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-hiero">𓆼</span>
+                        <span class="vocab-trans">1000 - ḫꜣ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function filterDict() {
+            const search = document.getElementById('searchDict').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const entries = document.querySelectorAll('.dict-entry');
+
+            entries.forEach(entry => {
+                const text = entry.textContent.toLowerCase();
+                const entryCategory = entry.dataset.category;
+                const matchSearch = text.includes(search);
+                const matchCategory = category === 'all' || entryCategory === category;
+
+                entry.style.display = matchSearch && matchCategory ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

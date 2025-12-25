@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glyphes Mayas - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #1e3a2f 50%, #0d2818 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.2), rgba(34, 197, 94, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(217, 119, 6, 0.4);
+        }
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #d97706, #22c55e, #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        .subtitle { font-size: 1.3em; opacity: 0.9; margin-bottom: 10px; }
+        .intro { max-width: 800px; margin: 0 auto; line-height: 1.6; opacity: 0.85; }
+
+        .nav-buttons {
+            display: flex; justify-content: center; gap: 15px;
+            flex-wrap: wrap; margin-bottom: 30px;
+        }
+        .nav-btn {
+            background: rgba(217, 119, 6, 0.2);
+            border: 2px solid rgba(217, 119, 6, 0.4);
+            color: #fff; padding: 12px 24px;
+            border-radius: 25px; text-decoration: none;
+            font-weight: 600; transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(217, 119, 6, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3);
+        }
+        .nav-btn.active { background: rgba(217, 119, 6, 0.5); border-color: #d97706; }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(217, 119, 6, 0.3);
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #eab308;
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 15px;
+        }
+
+        /* Glyph Grid */
+        .glyph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .glyph-card {
+            background: rgba(217, 119, 6, 0.1);
+            border: 2px solid rgba(217, 119, 6, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .glyph-card:hover {
+            transform: translateY(-5px);
+            background: rgba(217, 119, 6, 0.2);
+            border-color: #d97706;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+        .glyph-symbol {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 8px;
+            min-height: 50px;
+        }
+        .glyph-name { font-size: 1em; color: #eab308; font-weight: bold; }
+        .glyph-meaning { font-size: 0.85em; opacity: 0.8; margin-top: 5px; }
+
+        /* Number system */
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .number-card {
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .number-card:hover {
+            transform: scale(1.05);
+            border-color: #22c55e;
+        }
+        .number-maya {
+            font-size: 2em;
+            display: block;
+            margin-bottom: 5px;
+            color: #22c55e;
+        }
+        .number-value { font-size: 1.2em; font-weight: bold; }
+
+        /* Phrases */
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .phrase-card {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(34, 197, 94, 0.1));
+            border: 2px solid rgba(217, 119, 6, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .phrase-card:hover {
+            transform: translateY(-3px);
+            border-color: #d97706;
+        }
+        .phrase-glyph {
+            font-size: 1.5em;
+            color: #eab308;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .phrase-mayan {
+            font-size: 1.1em;
+            color: #22c55e;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .phrase-meaning {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        .phrase-context {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        /* Formality levels */
+        .formality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .formality-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid;
+        }
+        .formality-card.royal { border-color: #d97706; }
+        .formality-card.priest { border-color: #8b5cf6; }
+        .formality-card.common { border-color: #22c55e; }
+
+        .formality-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .formality-examples {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .example-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .example-item:last-child { border-bottom: none; }
+
+        /* Category tabs */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .cat-tab {
+            background: rgba(217, 119, 6, 0.15);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cat-tab:hover, .cat-tab.active {
+            background: rgba(217, 119, 6, 0.4);
+            border-color: #d97706;
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 {
+            color: #22c55e;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #eab308;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        /* Calendar section */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+        }
+        .day-card {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .day-card:hover {
+            transform: scale(1.05);
+            border-color: #8b5cf6;
+        }
+        .day-glyph {
+            font-size: 1.8em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .day-name { font-size: 0.9em; color: #8b5cf6; font-weight: bold; }
+        .day-meaning { font-size: 0.75em; opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .glyph-grid { grid-template-columns: repeat(3, 1fr); }
+            .phrases-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+
+        <header>
+            <h1>Glyphes Mayas</h1>
+            <div class="subtitle">L'Écriture de la Civilisation du Maïs</div>
+            <p class="intro">
+                Découvrez l'écriture logosyllabique maya, l'une des plus sophistiquées des Amériques.
+                Apprenez les glyphes fondamentaux, le système numérique vigésimal, les noms des jours sacrés
+                et les formules de politesse utilisées par les scribes et les prêtres.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="#syllabaire" class="nav-btn active">Syllabaire</a>
+            <a href="#nombres" class="nav-btn">Nombres</a>
+            <a href="#calendrier" class="nav-btn">Calendrier</a>
+            <a href="#politesse" class="nav-btn">Formules</a>
+            <a href="#phrases" class="nav-btn">Phrases</a>
+        </div>
+
+        <!-- Syllabaire Section -->
+        <section class="section" id="syllabaire">
+            <h2 class="section-title">Syllabaire Maya de Base</h2>
+            <p style="margin-bottom: 20px; opacity: 0.9;">
+                L'écriture maya combine des logogrammes (un signe = un mot) et des syllabogrammes (un signe = une syllabe).
+                Voici les syllabes les plus courantes avec leur représentation simplifiée.
+            </p>
+
+            <div class="glyph-grid">
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊀</span>
+                    <span class="glyph-name">a</span>
+                    <span class="glyph-meaning">Voyelle A</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊁</span>
+                    <span class="glyph-name">e</span>
+                    <span class="glyph-meaning">Voyelle E</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊂</span>
+                    <span class="glyph-name">i</span>
+                    <span class="glyph-meaning">Voyelle I</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊃</span>
+                    <span class="glyph-name">o</span>
+                    <span class="glyph-meaning">Voyelle O</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊄</span>
+                    <span class="glyph-name">u</span>
+                    <span class="glyph-meaning">Voyelle U</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊅</span>
+                    <span class="glyph-name">ba</span>
+                    <span class="glyph-meaning">Syllabe BA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊆</span>
+                    <span class="glyph-name">ka</span>
+                    <span class="glyph-meaning">Syllabe KA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊇</span>
+                    <span class="glyph-name">la</span>
+                    <span class="glyph-meaning">Syllabe LA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊈</span>
+                    <span class="glyph-name">ma</span>
+                    <span class="glyph-meaning">Syllabe MA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊉</span>
+                    <span class="glyph-name">na</span>
+                    <span class="glyph-meaning">Syllabe NA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊊</span>
+                    <span class="glyph-name">pa</span>
+                    <span class="glyph-meaning">Syllabe PA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊋</span>
+                    <span class="glyph-name">ta</span>
+                    <span class="glyph-meaning">Syllabe TA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊌</span>
+                    <span class="glyph-name">wa</span>
+                    <span class="glyph-meaning">Syllabe WA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊍</span>
+                    <span class="glyph-name">ya</span>
+                    <span class="glyph-meaning">Syllabe YA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊎</span>
+                    <span class="glyph-name">cha</span>
+                    <span class="glyph-meaning">Syllabe CHA</span>
+                </div>
+                <div class="glyph-card">
+                    <span class="glyph-symbol">𐊏</span>
+                    <span class="glyph-name">ki</span>
+                    <span class="glyph-meaning">Syllabe KI</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Direction de Lecture</h4>
+                <p>Les glyphes mayas se lisent généralement de gauche à droite et de haut en bas, par paires de colonnes.
+                Les blocs glyphiques forment des cartouches qui contiennent un mot ou une phrase complète.
+                Un même mot pouvait s'écrire de plusieurs façons différentes - les scribes valorisaient la créativité!</p>
+            </div>
+        </section>
+
+        <!-- Nombres Section -->
+        <section class="section" id="nombres">
+            <h2 class="section-title">Système Numérique Maya (Base 20)</h2>
+            <p style="margin-bottom: 20px; opacity: 0.9;">
+                Les Mayas utilisaient un système vigésimal (base 20) avec seulement 3 symboles :
+                le point (1), la barre (5) et le coquillage (0). Ils furent parmi les premiers à utiliser le zéro!
+            </p>
+
+            <div class="number-grid">
+                <div class="number-card">
+                    <span class="number-maya">𝋀</span>
+                    <span class="number-value">0</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">•</span>
+                    <span class="number-value">1</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">••</span>
+                    <span class="number-value">2</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">•••</span>
+                    <span class="number-value">3</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">••••</span>
+                    <span class="number-value">4</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">―</span>
+                    <span class="number-value">5</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">―•</span>
+                    <span class="number-value">6</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">―••</span>
+                    <span class="number-value">7</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">―•••</span>
+                    <span class="number-value">8</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">―••••</span>
+                    <span class="number-value">9</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">══</span>
+                    <span class="number-value">10</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">══•</span>
+                    <span class="number-value">11</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">══••</span>
+                    <span class="number-value">12</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">══•••</span>
+                    <span class="number-value">13</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">══••••</span>
+                    <span class="number-value">14</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">≡</span>
+                    <span class="number-value">15</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">≡•</span>
+                    <span class="number-value">16</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">≡••</span>
+                    <span class="number-value">17</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">≡•••</span>
+                    <span class="number-value">18</span>
+                </div>
+                <div class="number-card">
+                    <span class="number-maya">≡••••</span>
+                    <span class="number-value">19</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendrier Section -->
+        <section class="section" id="calendrier">
+            <h2 class="section-title">Les 20 Jours du Tzolk'in</h2>
+            <p style="margin-bottom: 20px; opacity: 0.9;">
+                Le Tzolk'in est le calendrier sacré de 260 jours (13 x 20). Chaque jour porte un nom
+                avec une signification spirituelle profonde. Ces noms étaient utilisés dans les rituels et les salutations.
+            </p>
+
+            <div class="calendar-grid">
+                <div class="day-card">
+                    <span class="day-glyph">🐊</span>
+                    <span class="day-name">Imix</span>
+                    <span class="day-meaning">Crocodile</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🌬️</span>
+                    <span class="day-name">Ik'</span>
+                    <span class="day-meaning">Vent</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🌙</span>
+                    <span class="day-name">Ak'b'al</span>
+                    <span class="day-meaning">Nuit</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🌽</span>
+                    <span class="day-name">K'an</span>
+                    <span class="day-meaning">Maïs</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🐍</span>
+                    <span class="day-name">Chikchan</span>
+                    <span class="day-meaning">Serpent</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">💀</span>
+                    <span class="day-name">Kimi</span>
+                    <span class="day-meaning">Mort</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🦌</span>
+                    <span class="day-name">Manik'</span>
+                    <span class="day-meaning">Cerf</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">⭐</span>
+                    <span class="day-name">Lamat</span>
+                    <span class="day-meaning">Étoile</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">💧</span>
+                    <span class="day-name">Muluk</span>
+                    <span class="day-meaning">Eau</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🐕</span>
+                    <span class="day-name">Ok</span>
+                    <span class="day-meaning">Chien</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🐒</span>
+                    <span class="day-name">Chuwen</span>
+                    <span class="day-meaning">Singe</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🌿</span>
+                    <span class="day-name">Eb'</span>
+                    <span class="day-meaning">Herbe</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🦴</span>
+                    <span class="day-name">B'en</span>
+                    <span class="day-meaning">Roseau</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🐆</span>
+                    <span class="day-name">Ix</span>
+                    <span class="day-meaning">Jaguar</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🦅</span>
+                    <span class="day-name">Men</span>
+                    <span class="day-meaning">Aigle</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🪶</span>
+                    <span class="day-name">Kib'</span>
+                    <span class="day-meaning">Vautour</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🌍</span>
+                    <span class="day-name">Kab'an</span>
+                    <span class="day-meaning">Terre</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🗡️</span>
+                    <span class="day-name">Etz'nab'</span>
+                    <span class="day-meaning">Silex</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">🌧️</span>
+                    <span class="day-name">Kawak</span>
+                    <span class="day-meaning">Tempête</span>
+                </div>
+                <div class="day-card">
+                    <span class="day-glyph">☀️</span>
+                    <span class="day-name">Ajaw</span>
+                    <span class="day-meaning">Seigneur</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Politesse Section -->
+        <section class="section" id="politesse">
+            <h2 class="section-title">Niveaux de Politesse Maya</h2>
+            <p style="margin-bottom: 25px; opacity: 0.9;">
+                La société maya était très hiérarchisée. Les formules de politesse variaient selon
+                qu'on s'adressait aux dieux, aux seigneurs (Ajaw) ou au peuple.
+            </p>
+
+            <div class="formality-grid">
+                <div class="formality-card royal">
+                    <div class="formality-title">
+                        <span style="font-size: 1.5em;">👑</span>
+                        <span style="color: #d97706;">Langage Royal (K'uhul Ajaw)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Pour s'adresser au K'uhul Ajaw (Seigneur Divin), on utilisait des titres
+                        élaborés et des formules de révérence extrême.
+                    </p>
+                    <div class="formality-examples">
+                        <div class="example-item">
+                            <div style="color: #d97706; font-size: 1.2em;">K'uhul Ajaw</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Seigneur Divin"</div>
+                            <div>Titre suprême du roi maya</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #d97706; font-size: 1.2em;">In wahyil a w-otoot</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Je suis l'esprit protecteur de votre maison"</div>
+                            <div>Formule de soumission</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #d97706; font-size: 1.2em;">B'ahlam Ajaw</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Seigneur Jaguar"</div>
+                            <div>Titre honorifique guerrier</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formality-card priest">
+                    <div class="formality-title">
+                        <span style="font-size: 1.5em;">🏛️</span>
+                        <span style="color: #8b5cf6;">Langage Sacerdotal (aux Dieux)</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Les prêtres (Ah K'in) utilisaient un langage rituel pour communiquer
+                        avec les dieux et lors des cérémonies.
+                    </p>
+                    <div class="formality-examples">
+                        <div class="example-item">
+                            <div style="color: #8b5cf6; font-size: 1.2em;">K'uhul K'uh</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Dieu Sacré"</div>
+                            <div>Invocation divine</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #8b5cf6; font-size: 1.2em;">In k'ub'a ti k'uh</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Je m'offre au dieu"</div>
+                            <div>Formule de dévotion rituelle</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #8b5cf6; font-size: 1.2em;">Yum K'ax</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Seigneur de la Forêt"</div>
+                            <div>Invocation au dieu du maïs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formality-card common">
+                    <div class="formality-title">
+                        <span style="font-size: 1.5em;">🧑‍🤝‍🧑</span>
+                        <span style="color: #22c55e;">Langage Courant</span>
+                    </div>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Entre personnes de même rang, le langage était plus simple
+                        mais toujours respectueux.
+                    </p>
+                    <div class="formality-examples">
+                        <div class="example-item">
+                            <div style="color: #22c55e; font-size: 1.2em;">B'ix a b'eel?</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Comment vas-tu?"</div>
+                            <div>Salutation quotidienne</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #22c55e; font-size: 1.2em;">Ma'alob'</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Bien" / "C'est bon"</div>
+                            <div>Réponse positive</div>
+                        </div>
+                        <div class="example-item">
+                            <div style="color: #22c55e; font-size: 1.2em;">In weet</div>
+                            <div style="font-style: italic; margin: 5px 0;">"Mon ami"</div>
+                            <div>Terme affectueux</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phrases Section -->
+        <section class="section" id="phrases">
+            <h2 class="section-title">Phrases Usuelles en Maya Yucatèque</h2>
+
+            <div class="category-tabs">
+                <button class="cat-tab active" onclick="filterPhrases('all')">Toutes</button>
+                <button class="cat-tab" onclick="filterPhrases('salutation')">Salutations</button>
+                <button class="cat-tab" onclick="filterPhrases('remerciement')">Remerciements</button>
+                <button class="cat-tab" onclick="filterPhrases('quotidien')">Quotidien</button>
+                <button class="cat-tab" onclick="filterPhrases('rituel')">Rituels</button>
+            </div>
+
+            <div class="phrases-grid" id="phrasesContainer">
+                <!-- Salutations -->
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-glyph">BA'AX KA WA'ALIK</div>
+                    <div class="phrase-mayan">Ba'ax ka wa'alik?</div>
+                    <div class="phrase-meaning">"Comment ça va?" / "Quoi de neuf?"</div>
+                    <div class="phrase-context">Salutation informelle entre amis</div>
+                </div>
+
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-glyph">B'IX A B'EEL</div>
+                    <div class="phrase-mayan">B'ix a b'eel?</div>
+                    <div class="phrase-meaning">"Comment vas-tu?" (littéralement: "Comment est ton chemin?")</div>
+                    <div class="phrase-context">Salutation plus formelle</div>
+                </div>
+
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-glyph">MA'ALOB' K'IIN</div>
+                    <div class="phrase-mayan">Ma'alob' k'iin</div>
+                    <div class="phrase-meaning">"Bonne journée" / "Bonjour"</div>
+                    <div class="phrase-context">Salutation matinale</div>
+                </div>
+
+                <div class="phrase-card" data-category="salutation">
+                    <div class="phrase-glyph">KO'OTEN</div>
+                    <div class="phrase-mayan">Ko'oten!</div>
+                    <div class="phrase-meaning">"Viens!" / "Bienvenue!"</div>
+                    <div class="phrase-context">Invitation d'accueil</div>
+                </div>
+
+                <!-- Remerciements -->
+                <div class="phrase-card" data-category="remerciement">
+                    <div class="phrase-glyph">DYOS BO'OTIK</div>
+                    <div class="phrase-mayan">Dyos b'o'otik</div>
+                    <div class="phrase-meaning">"Merci" (lit. "Dieu te le paie")</div>
+                    <div class="phrase-context">Remerciement standard (influence espagnole)</div>
+                </div>
+
+                <div class="phrase-card" data-category="remerciement">
+                    <div class="phrase-glyph">YUM B'O'OTIK</div>
+                    <div class="phrase-mayan">Yum b'o'otik</div>
+                    <div class="phrase-meaning">"Merci" (forme traditionnelle)</div>
+                    <div class="phrase-context">Remerciement ancien, avant l'influence espagnole</div>
+                </div>
+
+                <div class="phrase-card" data-category="remerciement">
+                    <div class="phrase-glyph">MIXBA'AL</div>
+                    <div class="phrase-mayan">Mixb'a'al</div>
+                    <div class="phrase-meaning">"De rien" / "Ce n'est rien"</div>
+                    <div class="phrase-context">Réponse au remerciement</div>
+                </div>
+
+                <!-- Quotidien -->
+                <div class="phrase-card" data-category="quotidien">
+                    <div class="phrase-glyph">MA'ALOB'</div>
+                    <div class="phrase-mayan">Ma'alob'</div>
+                    <div class="phrase-meaning">"Bien" / "Bon" / "D'accord"</div>
+                    <div class="phrase-context">Accord, approbation</div>
+                </div>
+
+                <div class="phrase-card" data-category="quotidien">
+                    <div class="phrase-glyph">MA' TECH</div>
+                    <div class="phrase-mayan">Ma' tech</div>
+                    <div class="phrase-meaning">"Non" / "Pas toi"</div>
+                    <div class="phrase-context">Négation</div>
+                </div>
+
+                <div class="phrase-card" data-category="quotidien">
+                    <div class="phrase-glyph">JAAJ</div>
+                    <div class="phrase-mayan">Jaaj</div>
+                    <div class="phrase-meaning">"Oui" / "C'est vrai"</div>
+                    <div class="phrase-context">Affirmation</div>
+                </div>
+
+                <div class="phrase-card" data-category="quotidien">
+                    <div class="phrase-glyph">IN K'AABA' E'</div>
+                    <div class="phrase-mayan">In k'aaba' e' [nom]</div>
+                    <div class="phrase-meaning">"Mon nom est [nom]"</div>
+                    <div class="phrase-context">Se présenter</div>
+                </div>
+
+                <div class="phrase-card" data-category="quotidien">
+                    <div class="phrase-glyph">TU'UX KA BIN?</div>
+                    <div class="phrase-mayan">Tu'ux ka bin?</div>
+                    <div class="phrase-meaning">"Où vas-tu?"</div>
+                    <div class="phrase-context">Question courante</div>
+                </div>
+
+                <div class="phrase-card" data-category="quotidien">
+                    <div class="phrase-glyph">XEN XIK'IN</div>
+                    <div class="phrase-mayan">Xen xik'in</div>
+                    <div class="phrase-meaning">"Au revoir" (lit. "Va vers l'ouest")</div>
+                    <div class="phrase-context">Salutation de départ</div>
+                </div>
+
+                <!-- Rituels -->
+                <div class="phrase-card" data-category="rituel">
+                    <div class="phrase-glyph">IN LAKECH</div>
+                    <div class="phrase-mayan">In Lak'ech</div>
+                    <div class="phrase-meaning">"Je suis toi" / "Tu es mon autre moi"</div>
+                    <div class="phrase-context">Salutation sacrée de reconnaissance mutuelle</div>
+                </div>
+
+                <div class="phrase-card" data-category="rituel">
+                    <div class="phrase-glyph">ALA K'IN</div>
+                    <div class="phrase-mayan">Ala K'in</div>
+                    <div class="phrase-meaning">"Et toi es moi" (réponse à In Lak'ech)</div>
+                    <div class="phrase-context">Réponse rituelle à la salutation sacrée</div>
+                </div>
+
+                <div class="phrase-card" data-category="rituel">
+                    <div class="phrase-glyph">K'UHUL WINIK</div>
+                    <div class="phrase-mayan">K'uhul winik</div>
+                    <div class="phrase-meaning">"Personne sacrée" / "Être divin"</div>
+                    <div class="phrase-context">Reconnaissance de la divinité en chacun</div>
+                </div>
+
+                <div class="phrase-card" data-category="rituel">
+                    <div class="phrase-glyph">HUNAB K'U</div>
+                    <div class="phrase-mayan">Hunab K'u</div>
+                    <div class="phrase-meaning">"L'Unique Dieu" / "La Source"</div>
+                    <div class="phrase-context">Invocation du dieu suprême</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="info-box">
+            <h4>Note sur la Langue Maya</h4>
+            <p>Le maya yucatèque (Maaya T'aan) est encore parlé par environ 800 000 personnes au Mexique et au Guatemala.
+            C'est l'une des 30 langues mayas vivantes. Les phrases présentées ici sont en maya yucatèque moderne,
+            avec des influences du maya classique utilisé sur les monuments anciens. La célèbre salutation
+            "In Lak'ech - Ala K'in" exprime la philosophie maya de l'interconnexion de tous les êtres.</p>
+        </div>
+    </div>
+
+    <script>
+        function filterPhrases(category) {
+            const cards = document.querySelectorAll('.phrase-card');
+            const tabs = document.querySelectorAll('.cat-tab');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

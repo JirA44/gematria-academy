@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alchimie - Niveau Intermédiaire | Les Quatre Phases | Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a0a 0%, #2d2a1a 50%, #1a1a0a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(201, 162, 39, 0.3);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #c9a227, #d4af37, #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(201, 162, 39, 0.2);
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(201, 162, 39, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(201, 162, 39, 0.6); border-color: #d4af37; }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        p { line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+
+        .phases-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .phase-card {
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+
+        .phase-nigredo {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(30,30,30,0.6));
+            border: 2px solid #333;
+        }
+        .phase-nigredo::before { background: #1a1a1a; }
+
+        .phase-albedo {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(200,200,200,0.1));
+            border: 2px solid #e0e0e0;
+        }
+        .phase-albedo::before { background: #ffffff; }
+
+        .phase-citrinitas {
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,193,7,0.1));
+            border: 2px solid #ffd700;
+        }
+        .phase-citrinitas::before { background: #ffd700; }
+
+        .phase-rubedo {
+            background: linear-gradient(135deg, rgba(220,20,60,0.2), rgba(139,0,0,0.15));
+            border: 2px solid #dc143c;
+        }
+        .phase-rubedo::before { background: #dc143c; }
+
+        .phase-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .phase-card .symbol {
+            font-size: 2em;
+        }
+
+        .phase-card .latin {
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 0.6em;
+        }
+
+        .phase-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .phase-content { grid-template-columns: 1fr; }
+        }
+
+        .correspondences-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .correspondences-box h4 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .correspondences-box ul {
+            list-style: none;
+        }
+
+        .correspondences-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .correspondences-box li:last-child {
+            border-bottom: none;
+        }
+
+        .operations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .operation-card {
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .operation-card .op-symbol {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .operation-card h5 {
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(212, 175, 55, 0.1));
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .practice-exercise {
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .btn-next {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a227, #d4af37);
+            color: #1a1a0a;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #1a1a1a, #ffffff, #ffd700, #dc143c);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            background: #1a1a0a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚗️ Alchimie - Niveau Intermédiaire</h1>
+            <p style="font-size: 1.2em; opacity: 0.8;">Les Quatre Phases du Grand Œuvre (Magnum Opus)</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Accueil</a>
+            <a href="alchimie-introduction.html" class="nav-btn">📜 Introduction</a>
+            <a href="alchimie-debutant.html" class="nav-btn">📖 Débutant</a>
+            <a href="alchimie-intermediaire.html" class="nav-btn active">📚 Intermédiaire</a>
+            <a href="alchimie-expert.html" class="nav-btn">🎓 Expert</a>
+        </nav>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>🔄 Le Grand Œuvre (Magnum Opus)</h2>
+
+            <p>Le <strong>Grand Œuvre</strong> est le processus alchimique complet de transformation. Il se déroule en quatre phases principales, représentées par des couleurs. Ces phases s'appliquent aussi bien à la transformation de la matière qu'à la transformation spirituelle de l'alchimiste.</p>
+
+            <div class="highlight-box">
+                <h3>⚗️ "Solve et Coagula"</h3>
+                <p>La devise fondamentale de l'alchimie : <strong>Dissoudre et Coaguler</strong>. Toute transformation requiert d'abord une dissolution de l'ancien état, puis une recomposition en un nouvel état supérieur.</p>
+            </div>
+        </section>
+
+        <!-- Les 4 Phases -->
+        <div class="phases-container">
+            <!-- NIGREDO -->
+            <section class="phase-card phase-nigredo">
+                <h3>
+                    <span class="symbol">⬛</span>
+                    1. NIGREDO
+                    <span class="latin">(L'Œuvre au Noir)</span>
+                </h3>
+
+                <div class="phase-content">
+                    <div>
+                        <p>La première phase est la <strong>putréfaction</strong>, la mort de la matière première. C'est le chaos initial, la décomposition nécessaire avant toute renaissance. Dans l'âme humaine, c'est la confrontation avec l'ombre, la dépression initiatique.</p>
+
+                        <h4 style="color: #888; margin: 20px 0 10px;">Processus :</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Calcinatio</strong> - Calcination par le feu</li>
+                            <li><strong>Putrefactio</strong> - Putréfaction et décomposition</li>
+                            <li><strong>Mortificatio</strong> - Mort symbolique</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><em>"Visite l'intérieur de la Terre..."</em> - C'est la descente dans les profondeurs, la confrontation avec tout ce qui a été refoulé.</p>
+                    </div>
+
+                    <div class="correspondences-box">
+                        <h4>Correspondances</h4>
+                        <ul>
+                            <li>🪐 Planète : <strong>Saturne</strong></li>
+                            <li>🔩 Métal : <strong>Plomb</strong></li>
+                            <li>🌍 Élément : <strong>Terre</strong></li>
+                            <li>🌑 Corbeau / Tête de mort</li>
+                            <li>🌙 Phase lunaire : <strong>Nouvelle Lune</strong></li>
+                            <li>⏰ Durée : Variable (40 jours symboliques)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ALBEDO -->
+            <section class="phase-card phase-albedo">
+                <h3>
+                    <span class="symbol">⬜</span>
+                    2. ALBEDO
+                    <span class="latin">(L'Œuvre au Blanc)</span>
+                </h3>
+
+                <div class="phase-content">
+                    <div>
+                        <p>La deuxième phase est la <strong>purification</strong>, le lavage de la matière noircie. C'est l'aube après la nuit, la lumière qui émerge des ténèbres. Spirituellement, c'est l'illumination de la conscience, la rencontre avec l'Anima/Animus.</p>
+
+                        <h4 style="color: #ccc; margin: 20px 0 10px;">Processus :</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Ablutio</strong> - Lavage et purification</li>
+                            <li><strong>Albificatio</strong> - Blanchiment</li>
+                            <li><strong>Separatio</strong> - Séparation du pur et de l'impur</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><em>"En rectifiant..."</em> - La rectification, l'ajustement, la purification progressive de l'être.</p>
+                    </div>
+
+                    <div class="correspondences-box">
+                        <h4>Correspondances</h4>
+                        <ul>
+                            <li>🌙 Planète : <strong>Lune</strong></li>
+                            <li>🥈 Métal : <strong>Argent</strong></li>
+                            <li>💧 Élément : <strong>Eau</strong></li>
+                            <li>🕊️ Colombe blanche / Cygne</li>
+                            <li>🌗 Phase lunaire : <strong>Premier quartier</strong></li>
+                            <li>👸 Archétype : La Reine Blanche</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CITRINITAS -->
+            <section class="phase-card phase-citrinitas">
+                <h3>
+                    <span class="symbol">🟨</span>
+                    3. CITRINITAS
+                    <span class="latin">(L'Œuvre au Jaune)</span>
+                </h3>
+
+                <div class="phase-content">
+                    <div>
+                        <p>La troisième phase est le <strong>jaunissement</strong>, souvent omise dans les textes tardifs. C'est la transition entre l'argent et l'or, l'aube dorée de la conscience solaire. C'est l'éveil de la sagesse, l'intellect illuminé.</p>
+
+                        <h4 style="color: #ffd700; margin: 20px 0 10px;">Processus :</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Xanthosis</strong> - Jaunissement</li>
+                            <li><strong>Fermentatio</strong> - Fermentation</li>
+                            <li><strong>Illuminatio</strong> - Illumination</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><em>"Tu trouveras..."</em> - La découverte commence, la lumière intérieure grandit.</p>
+                    </div>
+
+                    <div class="correspondences-box">
+                        <h4>Correspondances</h4>
+                        <ul>
+                            <li>☀️ Planète : <strong>Soleil (lever)</strong></li>
+                            <li>🥇 Métal : <strong>Or naissant</strong></li>
+                            <li>💨 Élément : <strong>Air</strong></li>
+                            <li>🦅 Aigle / Phénix jaune</li>
+                            <li>🌕 Phase lunaire : <strong>Pleine Lune</strong></li>
+                            <li>💡 L'aube de la conscience solaire</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RUBEDO -->
+            <section class="phase-card phase-rubedo">
+                <h3>
+                    <span class="symbol">🟥</span>
+                    4. RUBEDO
+                    <span class="latin">(L'Œuvre au Rouge)</span>
+                </h3>
+
+                <div class="phase-content">
+                    <div>
+                        <p>La phase finale est le <strong>rougissement</strong>, l'accomplissement du Grand Œuvre. C'est la création de la Pierre Philosophale, l'union des opposés, le mariage alchimique du Roi et de la Reine. Spirituellement, c'est l'intégration totale, la réalisation du Soi.</p>
+
+                        <h4 style="color: #dc143c; margin: 20px 0 10px;">Processus :</h4>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Rubificatio</strong> - Rougissement</li>
+                            <li><strong>Coniunctio</strong> - Union sacrée</li>
+                            <li><strong>Multiplicatio</strong> - Multiplication de la Pierre</li>
+                            <li><strong>Projectio</strong> - Projection (transmutation)</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><em>"...la Pierre cachée"</em> - La Pierre Philosophale est trouvée. L'Œuvre est accomplie.</p>
+                    </div>
+
+                    <div class="correspondences-box">
+                        <h4>Correspondances</h4>
+                        <ul>
+                            <li>☀️ Planète : <strong>Soleil (zénith)</strong></li>
+                            <li>🥇 Métal : <strong>Or parfait</strong></li>
+                            <li>🔥 Élément : <strong>Feu</strong></li>
+                            <li>🦁 Lion rouge / Phénix</li>
+                            <li>👑 Archétype : Le Roi Rouge</li>
+                            <li>💒 Le Mariage Alchimique</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Les 12 Opérations -->
+        <section class="lesson-section">
+            <h2>⚙️ Les Douze Opérations Alchimiques</h2>
+
+            <p>Au-delà des quatre phases, l'alchimie reconnaît douze opérations fondamentales, correspondant aux douze signes du zodiaque :</p>
+
+            <div class="operations-grid">
+                <div class="operation-card">
+                    <div class="op-symbol">🔥</div>
+                    <h5>1. Calcinatio</h5>
+                    <p>♈ Bélier</p>
+                    <p style="font-size: 0.85em;">Réduction par le feu</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">❄️</div>
+                    <h5>2. Congelatio</h5>
+                    <p>♉ Taureau</p>
+                    <p style="font-size: 0.85em;">Solidification</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">🔧</div>
+                    <h5>3. Fixatio</h5>
+                    <p>♊ Gémeaux</p>
+                    <p style="font-size: 0.85em;">Fixation du volatile</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">💧</div>
+                    <h5>4. Solutio</h5>
+                    <p>♋ Cancer</p>
+                    <p style="font-size: 0.85em;">Dissolution</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">🍞</div>
+                    <h5>5. Digestio</h5>
+                    <p>♌ Lion</p>
+                    <p style="font-size: 0.85em;">Digestion lente</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">💨</div>
+                    <h5>6. Distillatio</h5>
+                    <p>♍ Vierge</p>
+                    <p style="font-size: 0.85em;">Distillation</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">⬆️</div>
+                    <h5>7. Sublimatio</h5>
+                    <p>♎ Balance</p>
+                    <p style="font-size: 0.85em;">Sublimation</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">✂️</div>
+                    <h5>8. Separatio</h5>
+                    <p>♏ Scorpion</p>
+                    <p style="font-size: 0.85em;">Séparation</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">�ite</div>
+                    <h5>9. Ceratio</h5>
+                    <p>♐ Sagittaire</p>
+                    <p style="font-size: 0.85em;">Ramollissement</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">🍷</div>
+                    <h5>10. Fermentatio</h5>
+                    <p>♑ Capricorne</p>
+                    <p style="font-size: 0.85em;">Fermentation</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">✖️</div>
+                    <h5>11. Multiplicatio</h5>
+                    <p>♒ Verseau</p>
+                    <p style="font-size: 0.85em;">Multiplication</p>
+                </div>
+                <div class="operation-card">
+                    <div class="op-symbol">📍</div>
+                    <h5>12. Projectio</h5>
+                    <p>♓ Poissons</p>
+                    <p style="font-size: 0.85em;">Projection finale</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercice -->
+        <section class="lesson-section">
+            <h2>🧘 Méditation sur les Phases</h2>
+
+            <div class="practice-exercise">
+                <h3>✨ Exercice : Le Voyage des Couleurs</h3>
+                <p>Cette méditation vous guide à travers les quatre phases du Grand Œuvre intérieur.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4 style="color: #666;">⬛ Phase Nigredo</h4>
+                        <p>Fermez les yeux. Visualisez-vous entouré de ténèbres. Acceptez tout ce qui est sombre en vous. Laissez mourir ce qui doit mourir. Restez 3-5 minutes.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 style="color: #ccc;">⬜ Phase Albedo</h4>
+                        <p>Une lumière blanche apparaît. Elle purifie et lave. Sentez la clarté mentale s'installer. Restez 3-5 minutes.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 style="color: #ffd700;">🟨 Phase Citrinitas</h4>
+                        <p>La lumière devient dorée. La sagesse s'éveille. Votre intelligence s'illumine. Restez 3-5 minutes.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 style="color: #dc143c;">🟥 Phase Rubedo</h4>
+                        <p>Le rouge de la vie parfaite. L'union totale. Vous êtes complet, intégré, réalisé. Restez aussi longtemps que nécessaire.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="alchimie-debutant.html" class="nav-btn" style="margin-right: 20px;">
+                ← Niveau Débutant
+            </a>
+            <a href="alchimie-expert.html" class="btn-next">
+                Continuer vers le Niveau Expert →
+            </a>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; opacity: 0.7; border-top: 1px solid rgba(201, 162, 39, 0.2); margin-top: 40px;">
+            <p>Gematria Academy - Alchimie Niveau Intermédiaire</p>
+        </footer>
+    </div>
+</body>
+</html>

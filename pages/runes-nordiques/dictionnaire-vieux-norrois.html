@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ᚠ Dictionnaire Vieux Norrois - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d1b2a 50%, #1b263b 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .nav-tab {
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(59, 130, 246, 0.5);
+            border-color: #3b82f6;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            display: none;
+        }
+        .section.active { display: block; }
+        .section-title {
+            font-size: 1.8em;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+
+        /* Search */
+        .search-box {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 1em;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.5); }
+        .filter-select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+        }
+
+        /* Dictionary entries */
+        .dict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .dict-entry {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        .dict-entry:hover {
+            transform: translateY(-3px);
+            border-color: #3b82f6;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
+        }
+        .entry-rune {
+            font-size: 1.8em;
+            color: #60a5fa;
+            margin-bottom: 5px;
+            letter-spacing: 3px;
+        }
+        .entry-norse {
+            font-size: 1.1em;
+            color: #8b5cf6;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .entry-meaning {
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
+        .entry-category {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            color: #60a5fa;
+        }
+
+        /* Grammar tables */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        .grammar-table th {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+        .grammar-table tr:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Grammar rules */
+        .grammar-rule {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .rule-title {
+            font-size: 1.2em;
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+        .rule-example {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+
+        /* Vocabulary themes */
+        .vocab-theme {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .theme-title {
+            font-size: 1.4em;
+            color: #8b5cf6;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .vocab-rune { font-size: 1.2em; color: #60a5fa; letter-spacing: 2px; }
+        .vocab-trans { font-size: 0.9em; opacity: 0.9; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #60a5fa;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-box h4 { color: #8b5cf6; margin-bottom: 10px; }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .container { padding: 0 15px; }
+            .dict-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .grammar-table { font-size: 0.95em; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.6em; }
+            header { padding: 20px 15px; }
+            .section { padding: 20px 15px; }
+            .section-title { font-size: 1.4em; }
+            .dict-grid { grid-template-columns: 1fr; }
+            .nav-tabs { gap: 8px; }
+            .nav-tab { padding: 10px 16px; font-size: 0.9em; }
+            .search-box { flex-direction: column; padding: 12px; }
+            .search-input, .filter-select { width: 100%; }
+            .grammar-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .grammar-rule { padding: 15px; }
+            .vocab-grid { grid-template-columns: 1fr !important; }
+            .vocab-theme { padding: 15px; }
+            .back-link { font-size: 0.9em; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4em; }
+            .entry-rune { font-size: 1.5em; }
+            .nav-tab { padding: 8px 12px; font-size: 0.85em; }
+            .dict-entry { padding: 12px; }
+        }
+
+        /* Touch-friendly */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-tab, .dict-entry, .portal-link {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .search-input, .filter-select {
+                min-height: 48px;
+                font-size: 16px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header { padding: 15px; margin-bottom: 20px; }
+            h1 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="runes-debutant.html" class="back-link">← Retour aux Runes</a>
+
+        <header>
+            <h1>ᚠ Dictionnaire Vieux Norrois</h1>
+            <p style="opacity: 0.9;">Dictionnaire, Grammaire et Vocabulaire de la langue des Vikings</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('dictionnaire')">📖 Dictionnaire</button>
+            <button class="nav-tab" onclick="showSection('grammaire')">📐 Grammaire</button>
+            <button class="nav-tab" onclick="showSection('vocabulaire')">📚 Vocabulaire</button>
+        </div>
+
+        <!-- DICTIONNAIRE -->
+        <section class="section active" id="dictionnaire">
+            <h2 class="section-title">📖 Dictionnaire Runique</h2>
+
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchDict" placeholder="Rechercher un mot..." onkeyup="filterDict()">
+                <select class="filter-select" id="categoryFilter" onchange="filterDict()">
+                    <option value="all">Toutes catégories</option>
+                    <option value="dieux">Dieux & Mythologie</option>
+                    <option value="guerre">Guerre & Combat</option>
+                    <option value="nature">Nature</option>
+                    <option value="famille">Famille</option>
+                    <option value="navigation">Navigation</option>
+                    <option value="magie">Magie & Runes</option>
+                    <option value="quotidien">Vie quotidienne</option>
+                </select>
+            </div>
+
+            <div class="dict-grid" id="dictContainer">
+                <!-- Dieux & Mythologie -->
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᛟᛞᛁᚾ</div>
+                    <div class="entry-norse">Óðinn</div>
+                    <div class="entry-meaning">Odin, père de tous les dieux</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᚦᛟᚱ</div>
+                    <div class="entry-norse">Þórr</div>
+                    <div class="entry-meaning">Thor, dieu du tonnerre</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᚠᚱᛖᛃᚨ</div>
+                    <div class="entry-norse">Freyja</div>
+                    <div class="entry-meaning">Freya, déesse de l'amour</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᛚᛟᚲᛁ</div>
+                    <div class="entry-norse">Loki</div>
+                    <div class="entry-meaning">Loki, dieu de la ruse</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᚨᛊᚷᚨᚱᛞ</div>
+                    <div class="entry-norse">Ásgarðr</div>
+                    <div class="entry-meaning">Asgard, royaume des dieux</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᚹᚨᛚᚺᚨᛚᛚ</div>
+                    <div class="entry-norse">Valhǫll</div>
+                    <div class="entry-meaning">Valhalla, hall des guerriers morts</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᛃᚷᚷᛞᚱᚨᛊᛁᛚ</div>
+                    <div class="entry-norse">Yggdrasill</div>
+                    <div class="entry-meaning">Yggdrasil, l'arbre monde</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+                <div class="dict-entry" data-category="dieux">
+                    <div class="entry-rune">ᚱᚨᚷᚾᚨᚱᛟᚲ</div>
+                    <div class="entry-norse">Ragnarǫk</div>
+                    <div class="entry-meaning">Ragnarök, fin du monde</div>
+                    <span class="entry-category">Dieux</span>
+                </div>
+
+                <!-- Guerre & Combat -->
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᛊᚹᛖᚱᛞ</div>
+                    <div class="entry-norse">sverð</div>
+                    <div class="entry-meaning">Épée</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᛊᚲᛁᛚᛞ</div>
+                    <div class="entry-norse">skjǫldr</div>
+                    <div class="entry-meaning">Bouclier</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᚺᛃᚨᛚᛗᚱ</div>
+                    <div class="entry-norse">hjálmr</div>
+                    <div class="entry-meaning">Casque</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᛟᛉ</div>
+                    <div class="entry-norse">øx</div>
+                    <div class="entry-meaning">Hache</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᛊᛈᛃᛟᛏ</div>
+                    <div class="entry-norse">spjót</div>
+                    <div class="entry-meaning">Lance</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᚹᛁᚲᛁᚾᚷᚱ</div>
+                    <div class="entry-norse">víkingr</div>
+                    <div class="entry-meaning">Viking, guerrier</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᛒᛖᚱᛊᛖᚱᚲᚱ</div>
+                    <div class="entry-norse">berserkr</div>
+                    <div class="entry-meaning">Berserker, guerrier-fauve</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+                <div class="dict-entry" data-category="guerre">
+                    <div class="entry-rune">ᛟᚱᚱᚢᛊᛏᚨ</div>
+                    <div class="entry-norse">orrusta</div>
+                    <div class="entry-meaning">Bataille</div>
+                    <span class="entry-category">Guerre</span>
+                </div>
+
+                <!-- Nature -->
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᛊᛟᛚ</div>
+                    <div class="entry-norse">sól</div>
+                    <div class="entry-meaning">Soleil</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᛗᚨᚾᛁ</div>
+                    <div class="entry-norse">máni</div>
+                    <div class="entry-meaning">Lune</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᛊᛃᛟᚱ</div>
+                    <div class="entry-norse">sjór</div>
+                    <div class="entry-meaning">Mer</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᚠᛃᚨᛚᛚ</div>
+                    <div class="entry-norse">fjall</div>
+                    <div class="entry-meaning">Montagne</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᛊᚲᛟᚷᚱ</div>
+                    <div class="entry-norse">skógr</div>
+                    <div class="entry-meaning">Forêt</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᛁᛊ</div>
+                    <div class="entry-norse">íss</div>
+                    <div class="entry-meaning">Glace</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᛖᛚᛞᚱ</div>
+                    <div class="entry-norse">eldr</div>
+                    <div class="entry-meaning">Feu</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+                <div class="dict-entry" data-category="nature">
+                    <div class="entry-rune">ᚹᛁᚾᛞᚱ</div>
+                    <div class="entry-norse">vindr</div>
+                    <div class="entry-meaning">Vent</div>
+                    <span class="entry-category">Nature</span>
+                </div>
+
+                <!-- Famille -->
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-rune">ᚠᚨᛞᛁᚱ</div>
+                    <div class="entry-norse">faðir</div>
+                    <div class="entry-meaning">Père</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-rune">ᛗᛟᛞᛁᚱ</div>
+                    <div class="entry-norse">móðir</div>
+                    <div class="entry-meaning">Mère</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-rune">ᛊᛟᚾᚱ</div>
+                    <div class="entry-norse">sonr</div>
+                    <div class="entry-meaning">Fils</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-rune">ᛞᛟᛏᛏᛁᚱ</div>
+                    <div class="entry-norse">dóttir</div>
+                    <div class="entry-meaning">Fille</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-rune">ᛒᚱᛟᛞᛁᚱ</div>
+                    <div class="entry-norse">bróðir</div>
+                    <div class="entry-meaning">Frère</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+                <div class="dict-entry" data-category="famille">
+                    <div class="entry-rune">ᛊᛁᛊᛏᛁᚱ</div>
+                    <div class="entry-norse">systir</div>
+                    <div class="entry-meaning">Sœur</div>
+                    <span class="entry-category">Famille</span>
+                </div>
+
+                <!-- Navigation -->
+                <div class="dict-entry" data-category="navigation">
+                    <div class="entry-rune">ᛊᚲᛁᛈ</div>
+                    <div class="entry-norse">skip</div>
+                    <div class="entry-meaning">Bateau, navire</div>
+                    <span class="entry-category">Navigation</span>
+                </div>
+                <div class="dict-entry" data-category="navigation">
+                    <div class="entry-rune">ᛞᚱᛖᚲᛁ</div>
+                    <div class="entry-norse">dreki</div>
+                    <div class="entry-meaning">Drakkar</div>
+                    <span class="entry-category">Navigation</span>
+                </div>
+                <div class="dict-entry" data-category="navigation">
+                    <div class="entry-rune">ᛊᛖᚷᛚ</div>
+                    <div class="entry-norse">segl</div>
+                    <div class="entry-meaning">Voile</div>
+                    <span class="entry-category">Navigation</span>
+                </div>
+                <div class="dict-entry" data-category="navigation">
+                    <div class="entry-rune">ᚨᚱ</div>
+                    <div class="entry-norse">ár</div>
+                    <div class="entry-meaning">Rame</div>
+                    <span class="entry-category">Navigation</span>
+                </div>
+
+                <!-- Magie -->
+                <div class="dict-entry" data-category="magie">
+                    <div class="entry-rune">ᚱᚢᚾ</div>
+                    <div class="entry-norse">rún</div>
+                    <div class="entry-meaning">Rune, secret, mystère</div>
+                    <span class="entry-category">Magie</span>
+                </div>
+                <div class="dict-entry" data-category="magie">
+                    <div class="entry-rune">ᚷᚨᛚᛞᚱ</div>
+                    <div class="entry-norse">galdr</div>
+                    <div class="entry-meaning">Chant magique</div>
+                    <span class="entry-category">Magie</span>
+                </div>
+                <div class="dict-entry" data-category="magie">
+                    <div class="entry-rune">ᛊᛖᛁᛞᚱ</div>
+                    <div class="entry-norse">seiðr</div>
+                    <div class="entry-meaning">Magie chamanique</div>
+                    <span class="entry-category">Magie</span>
+                </div>
+                <div class="dict-entry" data-category="magie">
+                    <div class="entry-rune">ᚹᛟᛚᚹᚨ</div>
+                    <div class="entry-norse">vǫlva</div>
+                    <div class="entry-meaning">Voyante, prophétesse</div>
+                    <span class="entry-category">Magie</span>
+                </div>
+
+                <!-- Quotidien -->
+                <div class="dict-entry" data-category="quotidien">
+                    <div class="entry-rune">ᛗᛃᛟᛞ</div>
+                    <div class="entry-norse">mjǫðr</div>
+                    <div class="entry-meaning">Hydromel</div>
+                    <span class="entry-category">Quotidien</span>
+                </div>
+                <div class="dict-entry" data-category="quotidien">
+                    <div class="entry-rune">ᛟᛚ</div>
+                    <div class="entry-norse">ǫl</div>
+                    <div class="entry-meaning">Bière</div>
+                    <span class="entry-category">Quotidien</span>
+                </div>
+                <div class="dict-entry" data-category="quotidien">
+                    <div class="entry-rune">ᛒᚱᚨᚢᛞ</div>
+                    <div class="entry-norse">brauð</div>
+                    <div class="entry-meaning">Pain</div>
+                    <span class="entry-category">Quotidien</span>
+                </div>
+                <div class="dict-entry" data-category="quotidien">
+                    <div class="entry-rune">ᚺᚢᛊ</div>
+                    <div class="entry-norse">hús</div>
+                    <div class="entry-meaning">Maison</div>
+                    <span class="entry-category">Quotidien</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRAMMAIRE -->
+        <section class="section" id="grammaire">
+            <h2 class="section-title">📐 Grammaire du Vieux Norrois</h2>
+
+            <div class="grammar-rule">
+                <div class="rule-title">1. Structure de la Phrase</div>
+                <p>Le vieux norrois suit généralement l'ordre <strong>Verbe en 2ème position (V2)</strong>.
+                Le verbe conjugué est toujours en deuxième position dans la phrase principale.</p>
+                <div class="rule-example">
+                    <strong>Konungr gaf honum sverð</strong><br>
+                    Roi + donna + à-lui + épée = "Le roi lui donna une épée"<br><br>
+                    <strong>Í dag fer ek til bæjar</strong><br>
+                    Aujourd'hui + vais + je + à + ville = "Aujourd'hui je vais en ville"
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">2. Les Cas (Déclinaisons)</div>
+                <p>Le vieux norrois possède 4 cas grammaticaux :</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Cas</th>
+                        <th>Fonction</th>
+                        <th>Exemple (úlfr = loup)</th>
+                    </tr>
+                    <tr>
+                        <td>Nominatif</td>
+                        <td>Sujet</td>
+                        <td>úlfr (le loup)</td>
+                    </tr>
+                    <tr>
+                        <td>Accusatif</td>
+                        <td>COD, direction</td>
+                        <td>úlf</td>
+                    </tr>
+                    <tr>
+                        <td>Datif</td>
+                        <td>COI, lieu</td>
+                        <td>úlfi</td>
+                    </tr>
+                    <tr>
+                        <td>Génitif</td>
+                        <td>Possession</td>
+                        <td>úlfs (du loup)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">3. Les Genres</div>
+                <p>Le vieux norrois a 3 genres grammaticaux :</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Genre</th>
+                        <th>Article défini</th>
+                        <th>Exemples</th>
+                    </tr>
+                    <tr>
+                        <td>Masculin</td>
+                        <td>-inn (suffixé)</td>
+                        <td>maðr (homme), konungr (roi), hestr (cheval)</td>
+                    </tr>
+                    <tr>
+                        <td>Féminin</td>
+                        <td>-in (suffixé)</td>
+                        <td>kona (femme), sól (soleil), rún (rune)</td>
+                    </tr>
+                    <tr>
+                        <td>Neutre</td>
+                        <td>-it (suffixé)</td>
+                        <td>skip (bateau), hús (maison), barn (enfant)</td>
+                    </tr>
+                </table>
+                <div class="rule-example">
+                    maðr → maðrinn (l'homme)<br>
+                    kona → konan (la femme)<br>
+                    skip → skipit (le bateau)
+                </div>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">4. Les Pronoms Personnels</div>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Personne</th>
+                        <th>Nominatif</th>
+                        <th>Accusatif</th>
+                        <th>Datif</th>
+                    </tr>
+                    <tr>
+                        <td>Je</td>
+                        <td>ek</td>
+                        <td>mik</td>
+                        <td>mér</td>
+                    </tr>
+                    <tr>
+                        <td>Tu</td>
+                        <td>þú</td>
+                        <td>þik</td>
+                        <td>þér</td>
+                    </tr>
+                    <tr>
+                        <td>Il</td>
+                        <td>hann</td>
+                        <td>hann</td>
+                        <td>honum</td>
+                    </tr>
+                    <tr>
+                        <td>Elle</td>
+                        <td>hon</td>
+                        <td>hana</td>
+                        <td>henni</td>
+                    </tr>
+                    <tr>
+                        <td>Nous</td>
+                        <td>vér</td>
+                        <td>oss</td>
+                        <td>oss</td>
+                    </tr>
+                    <tr>
+                        <td>Vous</td>
+                        <td>þér</td>
+                        <td>yðr</td>
+                        <td>yðr</td>
+                    </tr>
+                    <tr>
+                        <td>Ils/Elles</td>
+                        <td>þeir/þær</td>
+                        <td>þá/þær</td>
+                        <td>þeim</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">5. Conjugaison des Verbes</div>
+                <p>Exemple avec <strong>gefa</strong> (donner) au présent :</p>
+                <table class="grammar-table">
+                    <tr>
+                        <th>Personne</th>
+                        <th>Singulier</th>
+                        <th>Pluriel</th>
+                    </tr>
+                    <tr>
+                        <td>1ère</td>
+                        <td>ek gef (je donne)</td>
+                        <td>vér gefum (nous donnons)</td>
+                    </tr>
+                    <tr>
+                        <td>2ème</td>
+                        <td>þú gefr (tu donnes)</td>
+                        <td>þér gefið (vous donnez)</td>
+                    </tr>
+                    <tr>
+                        <td>3ème</td>
+                        <td>hann gefr (il donne)</td>
+                        <td>þeir gefa (ils donnent)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="grammar-rule">
+                <div class="rule-title">6. La Négation</div>
+                <p>La négation se forme avec <strong>eigi</strong> ou <strong>ekki</strong> après le verbe.</p>
+                <div class="rule-example">
+                    Ek veit = "Je sais"<br>
+                    Ek veit eigi = "Je ne sais pas"<br><br>
+                    Hann kemr = "Il vient"<br>
+                    Hann kemr ekki = "Il ne vient pas"
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>📜 Écriture Runique vs Latin</h4>
+                <p>Le vieux norrois s'écrivait en runes jusqu'au XIe siècle, puis progressivement en alphabet latin
+                avec l'arrivée du christianisme. Les sagas et les Eddas qui nous sont parvenues sont écrites en latin,
+                mais les inscriptions runiques sur pierres utilisent le Futhark.</p>
+            </div>
+        </section>
+
+        <!-- VOCABULAIRE -->
+        <section class="section" id="vocabulaire">
+            <h2 class="section-title">📚 Vocabulaire Thématique</h2>
+
+            <div class="vocab-theme">
+                <div class="theme-title">⚔️ Guerre et Combat</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᚹᛖᚱᛞ</span>
+                        <span class="vocab-trans">sverð - épée</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛟᛉ</span>
+                        <span class="vocab-trans">øx - hache</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᚲᛁᛚᛞᚱ</span>
+                        <span class="vocab-trans">skjǫldr - bouclier</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚺᛃᚨᛚᛗᚱ</span>
+                        <span class="vocab-trans">hjálmr - casque</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛒᚱᛁᚾᛃᚨ</span>
+                        <span class="vocab-trans">brynja - cotte de mailles</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛒᛟᚷᛁ</span>
+                        <span class="vocab-trans">bogi - arc</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛟᚱ</span>
+                        <span class="vocab-trans">ǫr - flèche</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛁᚷᚱ</span>
+                        <span class="vocab-trans">sigr - victoire</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🚢 Navigation Viking</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᚲᛁᛈ</span>
+                        <span class="vocab-trans">skip - navire</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛞᚱᛖᚲᛁ</span>
+                        <span class="vocab-trans">dreki - drakkar</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛖᚷᛚ</span>
+                        <span class="vocab-trans">segl - voile</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛏᛃᛟᚱᚾ</span>
+                        <span class="vocab-trans">stjórn - gouvernail</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚨᚱ</span>
+                        <span class="vocab-trans">ár - rame</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛃᛟᚱ</span>
+                        <span class="vocab-trans">sjór - mer</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛒᛁᛚᚷᛃᚨ</span>
+                        <span class="vocab-trans">bylgja - vague</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚺᚨᚠᚾ</span>
+                        <span class="vocab-trans">hǫfn - port</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🏠 La Maison Viking</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚺᚢᛊ</span>
+                        <span class="vocab-trans">hús - maison</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚺᚨᛚᛚ</span>
+                        <span class="vocab-trans">hǫll - grande salle</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛖᛚᛞᚱ</span>
+                        <span class="vocab-trans">eldr - feu</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚨᚱᛁᚾᚾ</span>
+                        <span class="vocab-trans">arinn - foyer</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛒᛖᚲᚲᚱ</span>
+                        <span class="vocab-trans">bekkr - banc</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛒᛟᚱᛞ</span>
+                        <span class="vocab-trans">borð - table</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛖᚾᚷ</span>
+                        <span class="vocab-trans">sæng - lit</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛞᛁᚱᚱ</span>
+                        <span class="vocab-trans">dyrr - porte</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🍺 Festins et Nourriture</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛗᛃᛟᛞᚱ</span>
+                        <span class="vocab-trans">mjǫðr - hydromel</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛟᛚ</span>
+                        <span class="vocab-trans">ǫl - bière</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛒᚱᚨᚢᛞ</span>
+                        <span class="vocab-trans">brauð - pain</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚲᛃᛟᛏ</span>
+                        <span class="vocab-trans">kjǫt - viande</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚠᛁᛊᚲᚱ</span>
+                        <span class="vocab-trans">fiskr - poisson</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛗᛃᛟᚱ</span>
+                        <span class="vocab-trans">smjǫr - beurre</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛟᛊᛏᚱ</span>
+                        <span class="vocab-trans">ostr - fromage</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚹᛖᛁᛉᛚᚨ</span>
+                        <span class="vocab-trans">veizla - festin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">🔢 Les Nombres</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛖᛁᚾᚾ</span>
+                        <span class="vocab-trans">einn - un (1)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛏᚹᛖᛁᚱ</span>
+                        <span class="vocab-trans">tveir - deux (2)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚦᚱᛁᚱ</span>
+                        <span class="vocab-trans">þrír - trois (3)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚠᛃᛟᚱᛁᚱ</span>
+                        <span class="vocab-trans">fjórir - quatre (4)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚠᛁᛗᛗ</span>
+                        <span class="vocab-trans">fimm - cinq (5)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛖᛉ</span>
+                        <span class="vocab-trans">sex - six (6)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᛃᚨᚢ</span>
+                        <span class="vocab-trans">sjau - sept (7)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚨᛏᛏᚨ</span>
+                        <span class="vocab-trans">átta - huit (8)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚾᛁᚢ</span>
+                        <span class="vocab-trans">níu - neuf (9)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛏᛁᚢ</span>
+                        <span class="vocab-trans">tíu - dix (10)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚺᚢᚾᛞᚱᚨᛞ</span>
+                        <span class="vocab-trans">hundrað - cent (100)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚦᚢᛊᚢᚾᛞ</span>
+                        <span class="vocab-trans">þúsund - mille (1000)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vocab-theme">
+                <div class="theme-title">⏰ Le Temps</div>
+                <div class="vocab-list">
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛞᚨᚷᚱ</span>
+                        <span class="vocab-trans">dagr - jour</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚾᛟᛏᛏ</span>
+                        <span class="vocab-trans">nótt - nuit</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚹᛁᚲᚨ</span>
+                        <span class="vocab-trans">vika - semaine</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛗᚨᚾᚨᛞᚱ</span>
+                        <span class="vocab-trans">mánaðr - mois</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚨᚱ</span>
+                        <span class="vocab-trans">ár - année</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛊᚢᛗᚨᚱ</span>
+                        <span class="vocab-trans">sumar - été</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᚹᛖᛏᚱ</span>
+                        <span class="vocab-trans">vetr - hiver</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="vocab-rune">ᛁ ᛞᚨᚷ</span>
+                        <span class="vocab-trans">í dag - aujourd'hui</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function filterDict() {
+            const search = document.getElementById('searchDict').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const entries = document.querySelectorAll('.dict-entry');
+
+            entries.forEach(entry => {
+                const text = entry.textContent.toLowerCase();
+                const entryCategory = entry.dataset.category;
+                const matchSearch = text.includes(search);
+                const matchCategory = category === 'all' || entryCategory === category;
+
+                entry.style.display = matchSearch && matchCategory ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

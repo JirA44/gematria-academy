@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantras Sacrés - Gematria Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5em; background: linear-gradient(135deg, #f59e0b, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #f59e0b; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .section h2 { color: #f59e0b; margin-bottom: 20px; font-size: 1.6em; }
+        .mantra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .mantra-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(139, 92, 246, 0.1)); border-radius: 20px; padding: 25px; border: 1px solid rgba(245, 158, 11, 0.3); transition: all 0.3s; }
+        .mantra-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(245, 158, 11, 0.3); }
+        .mantra-icon { font-size: 3em; text-align: center; margin-bottom: 15px; }
+        .mantra-card h3 { color: #f59e0b; margin-bottom: 10px; text-align: center; font-size: 1.3em; }
+        .mantra-sanskrit { font-size: 1.5em; text-align: center; color: #c084fc; margin: 15px 0; padding: 15px; background: rgba(192, 132, 252, 0.1); border-radius: 10px; font-style: italic; }
+        .mantra-pronunciation { font-size: 1.1em; text-align: center; opacity: 0.8; margin-bottom: 15px; }
+        .mantra-meaning { padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-bottom: 15px; }
+        .mantra-benefits { list-style: none; }
+        .mantra-benefits li { padding: 8px 0; padding-left: 25px; position: relative; }
+        .mantra-benefits li::before { content: '✨'; position: absolute; left: 0; }
+        .practice-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(245, 158, 11, 0.1)); padding: 25px; border-radius: 15px; margin: 20px 0; text-align: center; }
+        .counter { font-size: 3em; color: #f59e0b; margin: 15px 0; }
+        .counter-btn { padding: 12px 30px; border-radius: 25px; border: 2px solid #10b981; background: transparent; color: white; cursor: pointer; transition: all 0.3s; margin: 5px; font-size: 1.1em; }
+        .counter-btn:hover { background: #10b981; }
+        .mala-info { background: rgba(192, 132, 252, 0.1); padding: 20px; border-radius: 15px; margin-top: 20px; }
+        audio { width: 100%; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← Retour au Portail</a>
+        <header>
+            <h1>Mantras Sacrés</h1>
+            <p style="opacity: 0.8; font-size: 1.2em;">Les vibrations sonores pour l'éveil spirituel</p>
+        </header>
+
+        <div class="section">
+            <h2>Qu'est-ce qu'un Mantra ?</h2>
+            <p>Un mantra (du sanskrit मन्त्र, "instrument de pensée") est une formule sacrée répétée lors de la méditation. Les mantras utilisent le pouvoir vibratoire du son pour transformer la conscience et éveiller l'énergie spirituelle.</p>
+            <div class="mala-info">
+                <h3 style="color: #c084fc; margin-bottom: 10px;">🔮 Le Mala - 108 Perles</h3>
+                <p>Traditionnellement, les mantras sont récités 108 fois à l'aide d'un mala (chapelet). Le nombre 108 est sacré : 1 représente Dieu, 0 le vide, et 8 l'infini.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Compteur de Répétitions</h2>
+            <div class="practice-box">
+                <p>Utilisez ce compteur pour suivre vos répétitions de mantra</p>
+                <div class="counter" id="mantraCounter">0 / 108</div>
+                <div>
+                    <button class="counter-btn" onclick="incrementCounter()">+1 Répétition</button>
+                    <button class="counter-btn" onclick="resetCounter()">Réinitialiser</button>
+                </div>
+                <p style="margin-top: 15px; opacity: 0.7;" id="counterMessage">Commencez votre pratique...</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mantras Hindous</h2>
+            <div class="mantra-grid">
+                <div class="mantra-card">
+                    <div class="mantra-icon">🕉️</div>
+                    <h3>OM (AUM)</h3>
+                    <div class="mantra-sanskrit">ॐ</div>
+                    <div class="mantra-pronunciation">Prononciation : A-U-M (Aum)</div>
+                    <div class="mantra-meaning">
+                        <p>Le son primordial de l'univers, la vibration cosmique originelle. Les trois lettres représentent la création (A), la préservation (U) et la dissolution (M).</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Calme le mental</li>
+                        <li>Harmonise les chakras</li>
+                        <li>Connecte au divin</li>
+                    </ul>
+                </div>
+
+                <div class="mantra-card">
+                    <div class="mantra-icon">🙏</div>
+                    <h3>Om Mani Padme Hum</h3>
+                    <div class="mantra-sanskrit">ॐ मणि पद्मे हूँ</div>
+                    <div class="mantra-pronunciation">Om Ma-ni Pad-mé Houm</div>
+                    <div class="mantra-meaning">
+                        <p>"Le joyau dans le lotus" - Mantra de compassion du bouddhisme tibétain, associé au bodhisattva Avalokiteshvara.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Développe la compassion</li>
+                        <li>Purifie le karma</li>
+                        <li>Éveille la sagesse</li>
+                    </ul>
+                </div>
+
+                <div class="mantra-card">
+                    <div class="mantra-icon">🔥</div>
+                    <h3>Om Namah Shivaya</h3>
+                    <div class="mantra-sanskrit">ॐ नमः शिवाय</div>
+                    <div class="mantra-pronunciation">Om Na-mah Shi-va-ya</div>
+                    <div class="mantra-meaning">
+                        <p>"Je m'incline devant Shiva" - Mantra de transformation et de purification dédié au dieu Shiva.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Destruction de l'ego</li>
+                        <li>Transformation intérieure</li>
+                        <li>Protection spirituelle</li>
+                    </ul>
+                </div>
+
+                <div class="mantra-card">
+                    <div class="mantra-icon">☀️</div>
+                    <h3>Gayatri Mantra</h3>
+                    <div class="mantra-sanskrit">ॐ भूर्भुवः स्वः<br>तत्सवितुर्वरेण्यं<br>भर्गो देवस्य धीमहि<br>धियो यो नः प्रचोदयात्</div>
+                    <div class="mantra-pronunciation">Om Bhur Bhuvah Svah<br>Tat Savitur Varenyam<br>Bhargo Devasya Dhimahi<br>Dhiyo Yo Nah Prachodayat</div>
+                    <div class="mantra-meaning">
+                        <p>"Méditons sur la glorieuse splendeur du Soleil divin, qu'il illumine nos esprits." Le plus sacré des mantras védiques.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Illumination de l'esprit</li>
+                        <li>Purification mentale</li>
+                        <li>Sagesse divine</li>
+                    </ul>
+                </div>
+
+                <div class="mantra-card">
+                    <div class="mantra-icon">🐘</div>
+                    <h3>Om Gam Ganapataye Namaha</h3>
+                    <div class="mantra-sanskrit">ॐ गं गणपतये नमः</div>
+                    <div class="mantra-pronunciation">Om Gam Ga-na-pa-ta-yé Na-ma-ha</div>
+                    <div class="mantra-meaning">
+                        <p>Salutation à Ganesha, le dieu à tête d'éléphant qui supprime les obstacles.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Supprime les obstacles</li>
+                        <li>Nouveaux départs</li>
+                        <li>Sagesse et succès</li>
+                    </ul>
+                </div>
+
+                <div class="mantra-card">
+                    <div class="mantra-icon">💚</div>
+                    <h3>Om Shanti Shanti Shanti</h3>
+                    <div class="mantra-sanskrit">ॐ शान्ति शान्ति शान्ति</div>
+                    <div class="mantra-pronunciation">Om Shan-ti Shan-ti Shan-ti</div>
+                    <div class="mantra-meaning">
+                        <p>"Om Paix Paix Paix" - Les trois répétitions apportent la paix au corps, à l'esprit et à l'âme.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Paix intérieure</li>
+                        <li>Harmonie universelle</li>
+                        <li>Sérénité profonde</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mantras Bouddhistes</h2>
+            <div class="mantra-grid">
+                <div class="mantra-card">
+                    <div class="mantra-icon">☸️</div>
+                    <h3>Gate Gate Paragate</h3>
+                    <div class="mantra-sanskrit">गते गते पारगते पारसंगते बोधि स्वाहा</div>
+                    <div class="mantra-pronunciation">Ga-té Ga-té Pa-ra-ga-té Pa-ra-sam-ga-té Bo-dhi Sva-ha</div>
+                    <div class="mantra-meaning">
+                        <p>"Allé, allé, allé au-delà, complètement au-delà, éveil, ainsi soit-il!" - Mantra du Sutra du Cœur.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Transcendance</li>
+                        <li>Éveil progressif</li>
+                        <li>Libération</li>
+                    </ul>
+                </div>
+
+                <div class="mantra-card">
+                    <div class="mantra-icon">🌸</div>
+                    <h3>Nam Myoho Renge Kyo</h3>
+                    <div class="mantra-sanskrit">南無妙法蓮華經</div>
+                    <div class="mantra-pronunciation">Nam Myo-ho Ren-gué Kyo</div>
+                    <div class="mantra-meaning">
+                        <p>"Dévotion à la Loi Mystique du Lotus" - Mantra central du bouddhisme Nichiren.</p>
+                    </div>
+                    <ul class="mantra-benefits">
+                        <li>Éveil de la bouddhéité</li>
+                        <li>Transformation des difficultés</li>
+                        <li>Réalisation de soi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Guide de Pratique</h2>
+            <div class="mantra-grid">
+                <div class="mantra-card">
+                    <div class="mantra-icon">🌅</div>
+                    <h3>Meilleur Moment</h3>
+                    <p>Les heures de Brahma (4h-6h) et le crépuscule sont idéaux. La cohérence est plus importante que le moment choisi.</p>
+                </div>
+                <div class="mantra-card">
+                    <div class="mantra-icon">🧘</div>
+                    <h3>Posture</h3>
+                    <p>Asseyez-vous confortablement, colonne droite, yeux fermés ou mi-clos. Face à l'est si possible.</p>
+                </div>
+                <div class="mantra-card">
+                    <div class="mantra-icon">🔢</div>
+                    <h3>Nombre de Répétitions</h3>
+                    <p>108, 54, 27, ou 11 fois. Utilisez un mala pour compter. La qualité prime sur la quantité.</p>
+                </div>
+                <div class="mantra-card">
+                    <div class="mantra-icon">💭</div>
+                    <h3>État d'Esprit</h3>
+                    <p>Récitez avec dévotion et concentration. Ressentez la vibration dans votre corps. Laissez les pensées passer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const target = 108;
+
+        function incrementCounter() {
+            if (count < target) {
+                count++;
+                updateDisplay();
+            }
+        }
+
+        function resetCounter() {
+            count = 0;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('mantraCounter').textContent = count + ' / ' + target;
+            const message = document.getElementById('counterMessage');
+
+            if (count === 0) {
+                message.textContent = 'Commencez votre pratique...';
+            } else if (count < 27) {
+                message.textContent = 'Continuez... laissez le mantra résonner en vous.';
+            } else if (count < 54) {
+                message.textContent = 'Excellent ! Vous entrez dans un état méditatif.';
+            } else if (count < 81) {
+                message.textContent = 'Magnifique ! Plus de la moitié accomplie.';
+            } else if (count < 108) {
+                message.textContent = 'Presque ! La transformation s\'opère.';
+            } else {
+                message.textContent = '🎉 108 répétitions complètes ! Namaste 🙏';
+                message.style.color = '#10b981';
+            }
+        }
+    </script>
+</body>
+</html>
