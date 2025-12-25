@@ -112,6 +112,50 @@
     </script>
 </head>
 <body>
+    <!-- Widget XP/Niveau -->
+    <div id="xpWidget" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(236, 72, 153, 0.9)); padding: 10px 20px; border-radius: 25px; color: white; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: none; cursor: pointer;" onclick="window.location.href='pages/user/profile.html'">
+        <span id="xpLevel" style="font-weight: bold;">🌱 Niv.1</span>
+        <span id="xpPoints" style="margin-left: 10px; opacity: 0.9;">0 XP</span>
+    </div>
+
+    <script>
+        // Afficher le widget XP
+        function updateXPWidget() {
+            const widget = document.getElementById('xpWidget');
+            if (!widget) return;
+
+            const saved = localStorage.getItem('gematria_academy_user');
+            if (saved) {
+                const data = JSON.parse(saved);
+                const levels = [
+                    { level: 1, name: "Néophyte", icon: "🌱" },
+                    { level: 2, name: "Apprenti", icon: "📚" },
+                    { level: 3, name: "Initié", icon: "🔮" },
+                    { level: 4, name: "Adepte", icon: "⭐" },
+                    { level: 5, name: "Disciple", icon: "🌟" },
+                    { level: 6, name: "Érudit", icon: "📖" },
+                    { level: 7, name: "Sage", icon: "🧙" },
+                    { level: 8, name: "Maître", icon: "👑" },
+                    { level: 9, name: "Grand Maître", icon: "🏆" },
+                    { level: 10, name: "Illuminé", icon: "✨" }
+                ];
+                const lvl = levels.find(l => l.level === data.level) || levels[0];
+                document.getElementById('xpLevel').textContent = lvl.icon + ' ' + lvl.name;
+                document.getElementById('xpPoints').textContent = data.xp + ' XP';
+                widget.style.display = 'block';
+            } else {
+                // Nouvel utilisateur - afficher widget d'invitation
+                document.getElementById('xpLevel').textContent = '🎮 Commencer';
+                document.getElementById('xpPoints').textContent = '';
+                widget.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateXPWidget, 500);
+        });
+    </script>
+
     <script>
         // Appliquer le mode nuit immédiatement pour éviter le flash
         (function() {
@@ -924,6 +968,17 @@
                     document.getElementById('login-button').style.display = 'flex';
                 }
             }, 1000);
+        });
+    </script>
+
+    <!-- Système de Gamification -->
+    <script src="assets/js/gamification.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof GamificationSystem !== 'undefined') {
+                GamificationSystem.init();
+                console.log('🎮 Gamification activée');
+            }
         });
     </script>
 </body>

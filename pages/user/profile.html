@@ -577,7 +577,60 @@
         }
 
         // Charger le profil au chargement de la page
-        window.addEventListener('DOMContentLoaded', loadProfile);
+        window.addEventListener('DOMContentLoaded', () => {
+            loadProfile();
+            
+        // Afficher les données de gamification
+        function displayGamificationData() {
+            if (typeof GamificationSystem !== 'undefined') {
+                const data = GamificationSystem.userData;
+                const levelInfo = GamificationSystem.levels.find(l => l.level === data.level);
+
+                // Mettre à jour les stats
+                document.getElementById('totalPoints').textContent = data.xp;
+                document.getElementById('userLevel').textContent = levelInfo ? levelInfo.icon + ' ' + levelInfo.name : 'Niveau ' + data.level;
+                document.getElementById('completedLessons').textContent = data.lessonsCompleted.length;
+                document.getElementById('currentStreak').textContent = data.dailyStreak;
+                document.getElementById('badgesCount').textContent = data.badges.length;
+
+                // Afficher les badges débloqués
+                displayUnlockedBadges(data.badges);
+            }
+        }
+
+        function displayUnlockedBadges(unlockedIds) {
+            if (typeof GamificationSystem === 'undefined') return;
+
+            const grid = document.getElementById('badgesGrid');
+            const allBadges = GamificationSystem.badges;
+
+            grid.innerHTML = Object.entries(allBadges).map(([id, badge]) => {
+                const unlocked = unlockedIds.includes(id);
+                return `
+                    <div class="badge ${unlocked ? '' : 'locked'}" title="${badge.desc}">
+                        <div class="badge-icon">${badge.icon}</div>
+                        <div class="badge-name">${badge.name}</div>
+                        ${unlocked ? '' : '<div class="badge-xp">+' + badge.xp + ' XP</div>'}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Appeler après chargement
+        setTimeout(displayGamificationData, 1000);
+
+        });
+    </script>
+
+    <!-- Système de Gamification -->
+    <script src="../../assets/js/gamification.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof GamificationSystem !== 'undefined') {
+                GamificationSystem.init();
+                console.log('🎮 Gamification activée');
+            }
+        });
     </script>
 </body>
 </html>
