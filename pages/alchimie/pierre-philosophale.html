@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Pierre Philosophale | Le Secret Supr&ecirc;me de l'Alchimie | Gematria Academy</title>
+    <meta name="description" content="D&eacute;couvrez les myst&egrave;res de la Pierre Philosophale : histoire, symbolisme, recettes alchimiques, et transformation spirituelle. Le guide ultime du Lapis Philosophorum.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a0a 0%, #2d2a1a 50%, #1a1a0a 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(255,215,0,0.1), rgba(220,20,60,0.08));
+            border-radius: 20px;
+            border: 3px solid rgba(201, 162, 39, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .stone-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate, float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px #d4af37) drop-shadow(0 0 20px #ffd700);
+                text-shadow: 0 0 10px #d4af37;
+            }
+            to {
+                filter: drop-shadow(0 0 30px #ffd700) drop-shadow(0 0 50px #ff6b6b);
+                text-shadow: 0 0 30px #ffd700;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #c9a227, #d4af37, #f4d03f, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #f4d03f;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(201, 162, 39, 0.2);
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover { background: rgba(201, 162, 39, 0.4); transform: translateY(-3px); }
+        .nav-btn.active { background: rgba(201, 162, 39, 0.6); border-color: #d4af37; }
+
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .lesson-section h2 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lesson-section h3 {
+            color: #f4d03f;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        p { line-height: 1.9; margin-bottom: 15px; opacity: 0.95; }
+
+        /* Section Noms */
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .name-card {
+            background: linear-gradient(145deg, rgba(201, 162, 39, 0.15), rgba(0,0,0,0.4));
+            border: 2px solid rgba(201, 162, 39, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .name-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .name-card .latin {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .name-card .meaning {
+            color: #aaa;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        /* Section Pouvoirs */
+        .powers-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 900px) {
+            .powers-container { grid-template-columns: 1fr; }
+        }
+
+        .power-card {
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .power-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .power-gold {
+            background: linear-gradient(145deg, rgba(255,215,0,0.15), rgba(201,162,39,0.1));
+            border: 2px solid #d4af37;
+        }
+        .power-gold::before { background: linear-gradient(90deg, #d4af37, #ffd700); }
+
+        .power-heal {
+            background: linear-gradient(145deg, rgba(16,185,129,0.15), rgba(5,150,105,0.1));
+            border: 2px solid #10b981;
+        }
+        .power-heal::before { background: linear-gradient(90deg, #10b981, #34d399); }
+
+        .power-life {
+            background: linear-gradient(145deg, rgba(139,92,246,0.15), rgba(109,40,217,0.1));
+            border: 2px solid #8b5cf6;
+        }
+        .power-life::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+        .power-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .power-card .icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .power-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        /* Timeline historique */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #dc143c, #8b5cf6, #10b981);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #d4af37;
+            border: 4px solid #1a1a0a;
+        }
+
+        .timeline-item .date {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item .title {
+            color: #f4d03f;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Section Recette */
+        .recipe-section {
+            background: linear-gradient(145deg, rgba(220,20,60,0.1), rgba(255,215,0,0.08));
+            border: 3px solid rgba(220,20,60,0.4);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        .recipe-steps {
+            display: grid;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .recipe-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border-left: 4px solid;
+        }
+
+        .recipe-step.step-black { border-color: #333; }
+        .recipe-step.step-white { border-color: #e0e0e0; }
+        .recipe-step.step-yellow { border-color: #ffd700; }
+        .recipe-step.step-red { border-color: #dc143c; }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-black .step-number { background: #333; color: #fff; }
+        .step-white .step-number { background: #e0e0e0; color: #333; }
+        .step-yellow .step-number { background: #ffd700; color: #333; }
+        .step-red .step-number { background: #dc143c; color: #fff; }
+
+        .step-content h5 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .step-black .step-content h5 { color: #888; }
+        .step-white .step-content h5 { color: #e0e0e0; }
+        .step-yellow .step-content h5 { color: #ffd700; }
+        .step-red .step-content h5 { color: #dc143c; }
+
+        /* Section Symbolisme */
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .symbol-card {
+            background: linear-gradient(145deg, rgba(201, 162, 39, 0.1), rgba(0,0,0,0.4));
+            border: 2px solid rgba(201, 162, 39, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .symbol-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-3px);
+        }
+
+        .symbol-card .sym {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .symbol-card h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        /* Legends */
+        .legend-card {
+            background: linear-gradient(145deg, rgba(139,92,246,0.1), rgba(0,0,0,0.3));
+            border: 2px solid rgba(139,92,246,0.4);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .legend-card .portrait {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .legend-card h4 {
+            color: #a78bfa;
+            text-align: center;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .legend-card .dates {
+            text-align: center;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        /* Quote boxes */
+        .quote-box {
+            background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(201,162,39,0.1));
+            border-left: 4px solid #d4af37;
+            border-radius: 0 15px 15px 0;
+            padding: 25px;
+            margin: 25px 0;
+            font-style: italic;
+        }
+
+        .quote-box .author {
+            color: #d4af37;
+            margin-top: 15px;
+            font-style: normal;
+            text-align: right;
+        }
+
+        /* Jung Section */
+        .jung-section {
+            background: linear-gradient(145deg, rgba(59,130,246,0.1), rgba(0,0,0,0.3));
+            border: 2px solid rgba(59,130,246,0.4);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 30px 0;
+        }
+
+        .jung-section h3 {
+            color: #60a5fa;
+        }
+
+        .archetype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .archetype-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+
+        .archetype-card .arch-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .archetype-card h5 {
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }
+
+        /* Interactive Transmutation */
+        .transmutation-lab {
+            background: linear-gradient(145deg, rgba(201,162,39,0.15), rgba(0,0,0,0.4));
+            border: 3px solid #d4af37;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .lab-title {
+            color: #d4af37;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+        }
+
+        .transmutation-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .element-display {
+            text-align: center;
+        }
+
+        .element-icon {
+            font-size: 5em;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+        }
+
+        .arrow-display {
+            font-size: 3em;
+            color: #d4af37;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .stone-display {
+            font-size: 4em;
+            margin: 20px;
+            padding: 30px;
+            background: radial-gradient(circle, rgba(255,215,0,0.3), transparent);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stone-display:hover {
+            transform: scale(1.1);
+        }
+
+        .transmutation-btn {
+            background: linear-gradient(135deg, #dc143c, #8b0000);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .transmutation-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(220,20,60,0.4);
+        }
+
+        .transmutation-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        .result-display {
+            font-size: 1.3em;
+            margin-top: 20px;
+            min-height: 50px;
+            color: #ffd700;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(212, 175, 55, 0.1));
+            border: 2px solid rgba(201, 162, 39, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .highlight-box h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        /* Quiz */
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1));
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .quiz-question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: rgba(201, 162, 39, 0.25);
+            border-color: #d4af37;
+        }
+
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.4);
+            border-color: #10b981;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.4);
+            border-color: #ef4444;
+        }
+
+        #quiz-score {
+            text-align: center;
+            font-size: 1.4em;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        /* Navigation buttons */
+        .btn-next {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a227, #d4af37);
+            color: #1a1a0a;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.7;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .stone-icon { font-size: 3.5em; }
+            header { padding: 25px; }
+            .lesson-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="stone-icon">&#x1F48E;</div>
+            <h1>La Pierre Philosophale</h1>
+            <p class="subtitle">Lapis Philosophorum - Le Secret Ultime de l'Alchimie</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">&#x1F3E0; Accueil</a>
+            <a href="alchimie-debutant.html" class="nav-btn">&#x1F4D6; D&eacute;butant</a>
+            <a href="alchimie-intermediaire.html" class="nav-btn">&#x1F4DA; Interm&eacute;diaire</a>
+            <a href="alchimie-expert.html" class="nav-btn">&#x1F393; Expert</a>
+            <a href="pierre-philosophale.html" class="nav-btn active">&#x1F48E; Pierre Philosophale</a>
+        </nav>
+
+        <!-- Introduction -->
+        <section class="lesson-section">
+            <h2>&#x2728; Qu'est-ce que la Pierre Philosophale ?</h2>
+
+            <p>La <strong>Pierre Philosophale</strong> (en latin <em>Lapis Philosophorum</em>) est le but ultime de l'alchimie, l'aboutissement du Grand &OElig;uvre (<em>Magnum Opus</em>). Elle repr&eacute;sente la perfection absolue de la mati&egrave;re et de l'esprit, une substance l&eacute;gendaire capable de r&eacute;aliser les trois miracles de l'alchimie.</p>
+
+            <div class="quote-box">
+                "La Pierre n'est pas une pierre. Elle n'est ni min&eacute;rale, ni v&eacute;g&eacute;tale, ni animale, et pourtant elle est tout cela &agrave; la fois. Elle est ce que vous cherchez et ce qui vous cherche. Elle est partout et nulle part."
+                <div class="author">&mdash; Trait&eacute; alchimique anonyme, XVe si&egrave;cle</div>
+            </div>
+
+            <p>Contrairement &agrave; la croyance populaire, la Pierre n'est pas simplement un agent de transmutation des m&eacute;taux. Pour les v&eacute;ritables alchimistes, elle symbolise la transformation int&eacute;rieure de l'&acirc;me humaine vers son &eacute;tat de perfection.</p>
+        </section>
+
+        <!-- Les Noms de la Pierre -->
+        <section class="lesson-section">
+            <h2>&#x1F4DC; Les Mille Noms de la Pierre</h2>
+
+            <p>Les alchimistes ont donn&eacute; &agrave; la Pierre Philosophale de nombreux noms cod&eacute;s pour prot&eacute;ger leur secret :</p>
+
+            <div class="names-grid">
+                <div class="name-card">
+                    <div class="latin">Lapis Philosophorum</div>
+                    <div class="meaning">Pierre des Philosophes</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Medicina Universalis</div>
+                    <div class="meaning">M&eacute;decine Universelle</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Tinctura</div>
+                    <div class="meaning">La Teinture</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Elixir Vitae</div>
+                    <div class="meaning">&Eacute;lixir de Vie</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Quinta Essentia</div>
+                    <div class="meaning">Quintessence</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Aurum Potabile</div>
+                    <div class="meaning">Or Potable</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Rebis</div>
+                    <div class="meaning">La Chose Double</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Phoenix</div>
+                    <div class="meaning">Le Ph&eacute;nix Rena&icirc;t</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Lapis Angularis</div>
+                    <div class="meaning">Pierre Angulaire</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Ros&eacute;e de Mai</div>
+                    <div class="meaning">Ros&eacute;e C&eacute;leste</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">Lion Rouge</div>
+                    <div class="meaning">Le Soufre Parfait</div>
+                </div>
+                <div class="name-card">
+                    <div class="latin">L'&OElig;uf Philosophique</div>
+                    <div class="meaning">Le Vase Herm&eacute;tique</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Les Trois Pouvoirs -->
+        <section class="lesson-section">
+            <h2>&#x1F451; Les Trois Pouvoirs de la Pierre</h2>
+
+            <p>La Pierre Philosophale poss&egrave;de traditionnellement trois pouvoirs miraculeux, correspondant aux trois objectifs du Grand &OElig;uvre :</p>
+
+            <div class="powers-container">
+                <div class="power-card power-gold">
+                    <div class="icon">&#x1F947;</div>
+                    <h4 style="color: #d4af37;">Chrysop&eacute;e</h4>
+                    <p><strong>La Transmutation</strong></p>
+                    <p style="margin-top: 15px;">Transformer les m&eacute;taux vils (plomb, mercure) en or pur. Une infime quantit&eacute; de Pierre, projet&eacute;e sur du m&eacute;tal fondu, suffirait &agrave; le transmuter.</p>
+                    <p style="margin-top: 10px; color: #f4d03f; font-style: italic;">"1 partie de Pierre pour 1000 parties de m&eacute;tal"</p>
+                </div>
+
+                <div class="power-card power-heal">
+                    <div class="icon">&#x1F48A;</div>
+                    <h4 style="color: #10b981;">Panac&eacute;e</h4>
+                    <p><strong>La Gu&eacute;rison Universelle</strong></p>
+                    <p style="margin-top: 15px;">Gu&eacute;rir toutes les maladies du corps et de l'esprit. La Pierre dissoute dans du vin cr&eacute;e l'<em>Aurum Potabile</em>, rem&egrave;de universel.</p>
+                    <p style="margin-top: 10px; color: #34d399; font-style: italic;">"La maladie est un d&eacute;s&eacute;quilibre que la Pierre r&eacute;tablit"</p>
+                </div>
+
+                <div class="power-card power-life">
+                    <div class="icon">&#x267E;&#xFE0F;</div>
+                    <h4 style="color: #8b5cf6;">&Eacute;lixir de Vie</h4>
+                    <p><strong>L'Immortalit&eacute;</strong></p>
+                    <p style="margin-top: 15px;">Prolonger la vie ind&eacute;finiment, voire conf&eacute;rer l'immortalit&eacute;. L'alchimiste qui poss&egrave;de la Pierre ne conna&icirc;t plus la vieillesse ni la mort.</p>
+                    <p style="margin-top: 10px; color: #a78bfa; font-style: italic;">"L'immortalit&eacute; du corps suit celle de l'&acirc;me"</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>&#x1F4A1; Le Quatri&egrave;me Pouvoir Secret</h3>
+                <p>Les textes &eacute;sot&eacute;riques mentionnent un quatri&egrave;me pouvoir, rarement &eacute;voqu&eacute; : la <strong>Multiplication</strong>. La Pierre peut se multiplier elle-m&ecirc;me, chaque multiplication augmentant sa puissance de mani&egrave;re exponentielle.</p>
+            </div>
+        </section>
+
+        <!-- La Recette du Grand &OElig;uvre -->
+        <section class="recipe-section">
+            <h2 style="color: #dc143c; text-align: center; margin-bottom: 20px;">&#x2697;&#xFE0F; La Recette du Grand &OElig;uvre</h2>
+
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Voici les quatre phases principales de la cr&eacute;ation de la Pierre Philosophale, telles que d&eacute;crites dans les trait&eacute;s alchimiques :</p>
+
+            <div class="recipe-steps">
+                <div class="recipe-step step-black">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>NIGREDO - L'&OElig;uvre au Noir</h5>
+                        <p><strong>La Putr&eacute;faction</strong> - La mati&egrave;re premi&egrave;re (<em>Prima Materia</em>) est plac&eacute;e dans l'Athanor (le fourneau philosophique). Elle subit une mort symbolique, une d&eacute;composition totale. La mati&egrave;re noircit comme le corbeau.</p>
+                        <p style="margin-top: 10px;"><em>Plan&egrave;te : Saturne &#x2644; | M&eacute;tal : Plomb | Symbole : Le Corbeau</em></p>
+                    </div>
+                </div>
+
+                <div class="recipe-step step-white">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>ALBEDO - L'&OElig;uvre au Blanc</h5>
+                        <p><strong>La Purification</strong> - Apr&egrave;s la mort vient la renaissance. La mati&egrave;re est lav&eacute;e, purifi&eacute;e, blanchie. C'est l'apparition de la Lune, la premi&egrave;re renaissance. La Reine Blanche appara&icirc;t.</p>
+                        <p style="margin-top: 10px;"><em>Plan&egrave;te : Lune &#x263D; | M&eacute;tal : Argent | Symbole : La Colombe</em></p>
+                    </div>
+                </div>
+
+                <div class="recipe-step step-yellow">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>CITRINITAS - L'&OElig;uvre au Jaune</h5>
+                        <p><strong>L'Illumination</strong> - Phase souvent omise dans les trait&eacute;s tardifs. C'est l'aube dor&eacute;e, le passage entre l'argent et l'or. La conscience s'&eacute;veille pleinement. Le Soleil se l&egrave;ve.</p>
+                        <p style="margin-top: 10px;"><em>Plan&egrave;te : Soleil &#x2609; (lever) | M&eacute;tal : Or naissant | Symbole : L'Aigle</em></p>
+                    </div>
+                </div>
+
+                <div class="recipe-step step-red">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>RUBEDO - L'&OElig;uvre au Rouge</h5>
+                        <p><strong>L'Accomplissement</strong> - La phase finale. Le Mariage Alchimique entre le Roi Rouge et la Reine Blanche. L'union des contraires engendre l'Enfant Philosophique : la Pierre est n&eacute;e. Le Lion Rouge rugit.</p>
+                        <p style="margin-top: 10px;"><em>Plan&egrave;te : Soleil &#x2609; (z&eacute;nith) | M&eacute;tal : Or parfait | Symbole : Le Ph&eacute;nix</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box" style="margin-top: 30px;">
+                "Prends le Soleil et la Lune, unis-les par le feu philosophique, et apr&egrave;s une longue patience, tu obtiendras la Pierre qui transforme tout en or."
+                <div class="author">&mdash; Turba Philosophorum</div>
+            </div>
+        </section>
+
+        <!-- L&eacute;gendes et T&eacute;moignages -->
+        <section class="lesson-section">
+            <h2>&#x1F4DA; L&eacute;gendes et T&eacute;moignages Historiques</h2>
+
+            <div class="legend-card">
+                <div class="portrait">&#x1F9D9;</div>
+                <h4>Nicolas Flamel (1330-1418)</h4>
+                <div class="dates">Le plus c&eacute;l&egrave;bre alchimiste fran&ccedil;ais</div>
+                <p>Libraire et &eacute;crivain public parisien, Nicolas Flamel aurait d&eacute;couvert le secret de la Pierre Philosophale en d&eacute;chiffrant un myst&eacute;rieux manuscrit : le <em>Livre d'Abraham le Juif</em>. Selon la l&eacute;gende, il r&eacute;alisa sa premi&egrave;re transmutation le <strong>17 janvier 1382</strong>.</p>
+                <p style="margin-top: 15px;">Sa richesse soudaine (il fit construire de nombreux hospices et &eacute;glises) alimenta la l&eacute;gende. Certains pr&eacute;tendent qu'il ne mourut jamais et fut aper&ccedil;u &agrave; travers les si&egrave;cles...</p>
+            </div>
+
+            <div class="legend-card" style="border-color: rgba(220,20,60,0.4); background: linear-gradient(145deg, rgba(220,20,60,0.1), rgba(0,0,0,0.3));">
+                <div class="portrait">&#x1F9EA;</div>
+                <h4 style="color: #f87171;">Le Comte de Saint-Germain (1691?-1784?)</h4>
+                <div class="dates">L'homme immortel</div>
+                <p>Aventurier et alchimiste l&eacute;gendaire, le Comte de Saint-Germain affirmait avoir plusieurs si&egrave;cles et poss&eacute;der l'&Eacute;lixir de Vie. Il fut re&ccedil;u dans toutes les cours d'Europe, parlait une douzaine de langues, et pr&eacute;tendait avoir connu J&eacute;sus-Christ personnellement.</p>
+                <p style="margin-top: 15px;">Voltaire l'appela "l'homme qui ne meurt jamais". Des t&eacute;moins affirment l'avoir vu apr&egrave;s sa mort officielle en 1784...</p>
+            </div>
+
+            <div class="legend-card" style="border-color: rgba(16,185,129,0.4); background: linear-gradient(145deg, rgba(16,185,129,0.1), rgba(0,0,0,0.3));">
+                <div class="portrait">&#x2697;&#xFE0F;</div>
+                <h4 style="color: #34d399;">Johann Friedrich B&ouml;ttger (1682-1719)</h4>
+                <div class="dates">L'inventeur de la porcelaine europ&eacute;enne</div>
+                <p>Jeune apothicaire prussien qui pr&eacute;tendait pouvoir fabriquer de l'or. Emprisonn&eacute; par Auguste le Fort de Saxe, on lui ordonna de prouver ses dires. &Eacute;chouant &agrave; produire de l'or, il d&eacute;couvrit par hasard le secret de la <strong>porcelaine dure</strong> en 1708.</p>
+                <p style="margin-top: 15px;">Une transmutation inattendue : plut&ocirc;t que de l'or, il cr&eacute;a "l'or blanc" &mdash; la porcelaine de Meissen, tr&eacute;sor de l'Allemagne.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">&#x1F4C5; 1404 - Angleterre</div>
+                    <div class="title">L'Acte contre la Multiplication</div>
+                    <p>Le roi Henri IV d'Angleterre promulgue une loi interdisant la fabrication d'or alchimique, preuve que les autorit&eacute;s prenaient la menace au s&eacute;rieux.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">&#x1F4C5; 1666 - Hollande</div>
+                    <div class="title">La Transmutation de Helv&eacute;tius</div>
+                    <p>Johann Friedrich Schweitzer (Helv&eacute;tius), m&eacute;decin du prince d'Orange, rapporte avoir r&eacute;ussi une transmutation avec une poudre re&ccedil;ue d'un &eacute;tranger. Plusieurs t&eacute;moins confirm&egrave;rent.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">&#x1F4C5; 1782 - France</div>
+                    <div class="title">Dissolution des Ordres Alchimiques</div>
+                    <p>Louis XVI dissout plusieurs soci&eacute;t&eacute;s secr&egrave;tes incluant des cercles alchimiques. Le secret de la Pierre dispara&icirc;t dans la clandestinit&eacute;.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Symbolisme Profond -->
+        <section class="lesson-section">
+            <h2>&#x1F300; Le Symbolisme Profond de la Pierre</h2>
+
+            <p>Pour les alchimistes spirituels, la Pierre Philosophale n'est pas un objet mat&eacute;riel mais un symbole de la transformation int&eacute;rieure :</p>
+
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="sym">&#x1F48E;&#x1F49B;</div>
+                    <h4>L'Or Int&eacute;rieur</h4>
+                    <p>La Pierre repr&eacute;sente l'&eacute;tat de conscience &eacute;veill&eacute;e, le Soi r&eacute;alis&eacute;. Transmuter le plomb en or signifie transformer notre nature inf&eacute;rieure en nature divine.</p>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="sym">&#x262F;&#xFE0F;</div>
+                    <h4>L'Union des Oppos&eacute;s</h4>
+                    <p>La Pierre na&icirc;t de l'union du Soleil et de la Lune, du masculin et du f&eacute;minin, de l'actif et du passif. Elle est l'harmonie parfaite, le <em>Rebis</em>.</p>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="sym">&#x1F3DB;&#xFE0F;</div>
+                    <h4>Le Christ Alchimique</h4>
+                    <p>Dans la tradition chr&eacute;tienne &eacute;sot&eacute;rique, la Pierre est identifi&eacute;e au Christ : "La pierre rejet&eacute;e par les b&acirc;tisseurs est devenue la pierre d'angle."</p>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="sym">&#x1F40D;</div>
+                    <h4>L'Ouroboros</h4>
+                    <p>Le serpent qui se mord la queue symbolise l'&eacute;ternel retour et l'auto-g&eacute;n&eacute;ration de la Pierre. "Un est le Tout, et c'est par lui que le Tout existe."</p>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="sym">&#x1F525;&#x1F4A7;</div>
+                    <h4>Le Mariage Alchimique</h4>
+                    <p>L'union du Feu (Soufre) et de l'Eau (Mercure) dans le Sel produit la Pierre. C'est la <em>Coniunctio Oppositorum</em>, l'union sacr&eacute;e.</p>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="sym">&#x1F54A;&#xFE0F;</div>
+                    <h4>L'&OElig;uf Philosophique</h4>
+                    <p>Le vase herm&eacute;tique dans lequel se forme la Pierre est appel&eacute; "&OElig;uf". La Pierre est l'oiseau qui na&icirc;t de cet &oelig;uf cosmique.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interpr&eacute;tation Jungienne -->
+        <section class="jung-section">
+            <h2 style="color: #60a5fa; margin-bottom: 20px;">&#x1F9E0; L'Interpr&eacute;tation Psychologique (Carl Jung)</h2>
+
+            <p>Le psychiatre suisse <strong>Carl Gustav Jung</strong> (1875-1961) a consacr&eacute; des d&eacute;cennies &agrave; &eacute;tudier l'alchimie, y voyant une projection du processus d'individuation psychologique :</p>
+
+            <div class="highlight-box" style="background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4);">
+                <h3 style="color: #60a5fa;">L'Individuation</h3>
+                <p>Pour Jung, le Grand &OElig;uvre alchimique est une m&eacute;taphore du processus d'individuation : l'int&eacute;gration des diff&eacute;rents aspects de la psych&eacute; pour devenir un &ecirc;tre complet et unifi&eacute;.</p>
+            </div>
+
+            <h3 style="margin-top: 25px;">Les Phases comme &Eacute;tapes Psychologiques</h3>
+
+            <div class="archetype-grid">
+                <div class="archetype-card">
+                    <div class="arch-icon">&#x1F311;</div>
+                    <h5>Nigredo = L'Ombre</h5>
+                    <p>Confrontation avec l'inconscient, la part sombre de soi</p>
+                </div>
+                <div class="archetype-card">
+                    <div class="arch-icon">&#x1F315;</div>
+                    <h5>Albedo = L'Anima/Animus</h5>
+                    <p>Int&eacute;gration du principe f&eacute;minin/masculin int&eacute;rieur</p>
+                </div>
+                <div class="archetype-card">
+                    <div class="arch-icon">&#x2728;</div>
+                    <h5>Citrinitas = Le Sage</h5>
+                    <p>&Eacute;veil de la sagesse et de l'intuition</p>
+                </div>
+                <div class="archetype-card">
+                    <div class="arch-icon">&#x1F48E;</div>
+                    <h5>Rubedo = Le Soi</h5>
+                    <p>R&eacute;alisation du Soi, individuation accomplie</p>
+                </div>
+            </div>
+
+            <div class="quote-box" style="border-color: #60a5fa; margin-top: 25px;">
+                "La Pierre Philosophale symbolise le Soi, l'arch&eacute;type de la totalit&eacute;. L'alchimiste qui cherche la Pierre &agrave; l'ext&eacute;rieur ne fait que projeter sa qu&ecirc;te int&eacute;rieure d'int&eacute;gration psychique."
+                <div class="author">&mdash; Carl Gustav Jung, Psychologie et Alchimie (1944)</div>
+            </div>
+        </section>
+
+        <!-- Laboratoire Interactif -->
+        <section class="transmutation-lab">
+            <h2 class="lab-title">&#x2697;&#xFE0F; Laboratoire de Transmutation</h2>
+            <p>Exp&eacute;rimentez symboliquement la transmutation alchimique :</p>
+
+            <div class="transmutation-display">
+                <div class="element-display">
+                    <div class="element-icon" id="lead-icon">&#x1F5FF;</div>
+                    <p><strong>Plomb</strong><br><small>(Mati&egrave;re vile)</small></p>
+                </div>
+
+                <div class="arrow-display">+</div>
+
+                <div class="element-display">
+                    <div class="stone-display" id="stone-click" title="Cliquez sur la Pierre !">&#x1F48E;</div>
+                    <p><strong>Pierre Philosophale</strong></p>
+                </div>
+
+                <div class="arrow-display" id="arrow-trans" style="display: none;">&#x27A1;&#xFE0F;</div>
+
+                <div class="element-display" id="gold-result" style="display: none;">
+                    <div class="element-icon" style="color: #ffd700;">&#x1F947;</div>
+                    <p><strong style="color: #ffd700;">OR PUR</strong><br><small>(Mati&egrave;re parfaite)</small></p>
+                </div>
+            </div>
+
+            <button class="transmutation-btn" id="transmute-btn" onclick="transmute()">
+                &#x2728; R&eacute;aliser la Transmutation
+            </button>
+
+            <div class="result-display" id="result-text"></div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="quiz-section">
+            <h2 style="color: #10b981; margin-bottom: 25px;">&#x1F4DD; Quiz : Ma&icirc;trisez-vous les Secrets de la Pierre ?</h2>
+
+            <div class="quiz-question">
+                <p><strong>1. Quel est le nom latin de la Pierre Philosophale ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Prima Materia</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">Lapis Philosophorum</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Magnum Opus</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Corpus Hermeticum</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. Combien de pouvoirs principaux poss&egrave;de la Pierre ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Un seul</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Deux</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">Trois</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Sept</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. Quelle est la derni&egrave;re phase du Grand &OElig;uvre ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Nigredo</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Albedo</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Citrinitas</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">Rubedo</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>4. Quel alchimiste parisien aurait r&eacute;ussi la transmutation en 1382 ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">Nicolas Flamel</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Paracelse</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Le Comte de Saint-Germain</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Fulcanelli</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>5. Pour Carl Jung, la Pierre repr&eacute;sente quel arch&eacute;type ?</strong></p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">L'Ombre</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">L'Anima</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">Le Soi</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">Le Sage</div>
+                </div>
+            </div>
+
+            <div id="quiz-score"></div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="lesson-section">
+            <h2>&#x1F31F; La V&eacute;ritable Pierre Philosophale</h2>
+
+            <p>Apr&egrave;s des si&egrave;cles de recherche, quel est le v&eacute;ritable secret de la Pierre Philosophale ?</p>
+
+            <div class="highlight-box">
+                <h3>&#x1F4A1; Le Secret R&eacute;v&eacute;l&eacute;</h3>
+                <p>La Pierre Philosophale n'est pas &agrave; chercher dans un laboratoire. Elle est en vous. C'est votre propre conscience transform&eacute;e, votre &acirc;me purifi&eacute;e, votre &ecirc;tre r&eacute;alis&eacute;.</p>
+                <p style="margin-top: 15px;">L'or v&eacute;ritable n'est pas le m&eacute;tal jaune : c'est la lumi&egrave;re de la conscience &eacute;veill&eacute;e. Le plomb &agrave; transmuter, ce sont vos limites, vos peurs, vos conditionnements.</p>
+                <p style="margin-top: 15px; color: #f4d03f; font-style: italic;">"<strong>Tu es la Pierre Philosophale.</strong> Le Grand &OElig;uvre, c'est toi."</p>
+            </div>
+
+            <div class="quote-box" style="margin-top: 30px;">
+                "L'alchimie ne se propose pas de fabriquer de l'or. Elle se propose de r&eacute;aliser l'homme, de le porter &agrave; sa perfection int&eacute;rieure. L'or n'est qu'un symbole de cette perfection."
+                <div class="author">&mdash; Fulcanelli, Le Myst&egrave;re des Cath&eacute;drales</div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="alchimie-expert.html" class="nav-btn" style="margin-right: 20px;">
+                &#x2190; Niveau Expert
+            </a>
+            <a href="alchimie-debutant.html" class="btn-next">
+                &#x1F504; Recommencer le Parcours
+            </a>
+            <a href="../../index.html" class="btn-next" style="background: linear-gradient(135deg, #10b981, #059669);">
+                &#x1F3E0; Retour au Portail
+            </a>
+        </div>
+
+        <footer>
+            <p>Gematria Academy - La Pierre Philosophale</p>
+            <p style="margin-top: 10px;">
+                <a href="../../index.html">&#x2190; Retour au Portail</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Quiz
+        let correctAnswers = 0;
+        let totalQuestions = 5;
+        let answeredQuestions = 0;
+
+        function checkQuiz(element, isCorrect) {
+            if (element.classList.contains('correct') || element.classList.contains('incorrect')) return;
+
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                correctAnswers++;
+            } else {
+                element.classList.add('incorrect');
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) opt.classList.add('correct');
+                });
+            }
+
+            answeredQuestions++;
+
+            if (answeredQuestions === totalQuestions) {
+                const scoreDiv = document.getElementById('quiz-score');
+                const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+                if (percentage >= 80) {
+                    scoreDiv.innerHTML = '&#x1F3C6; Excellent ! ' + correctAnswers + '/' + totalQuestions + ' (' + percentage + '%) - Vous ma&icirc;trisez les secrets de la Pierre !';
+                    scoreDiv.style.background = 'rgba(16, 185, 129, 0.3)';
+                    scoreDiv.style.color = '#34d399';
+                } else if (percentage >= 60) {
+                    scoreDiv.innerHTML = '&#x1F4DA; Bien ! ' + correctAnswers + '/' + totalQuestions + ' (' + percentage + '%) - Continuez votre &eacute;tude !';
+                    scoreDiv.style.background = 'rgba(251, 191, 36, 0.3)';
+                    scoreDiv.style.color = '#fbbf24';
+                } else {
+                    scoreDiv.innerHTML = '&#x1F4D6; ' + correctAnswers + '/' + totalQuestions + ' (' + percentage + '%) - Relisez les sections pr&eacute;c&eacute;dentes !';
+                    scoreDiv.style.background = 'rgba(239, 68, 68, 0.3)';
+                    scoreDiv.style.color = '#f87171';
+                }
+            }
+        }
+
+        // Transmutation Lab
+        let transmuted = false;
+
+        function transmute() {
+            if (transmuted) return;
+            transmuted = true;
+
+            const btn = document.getElementById('transmute-btn');
+            const leadIcon = document.getElementById('lead-icon');
+            const arrow = document.getElementById('arrow-trans');
+            const goldResult = document.getElementById('gold-result');
+            const resultText = document.getElementById('result-text');
+
+            btn.disabled = true;
+            btn.textContent = 'Transmutation en cours...';
+
+            // Animation de la Pierre
+            const stone = document.getElementById('stone-click');
+            stone.style.animation = 'glow 0.3s ease-in-out infinite alternate';
+
+            setTimeout(() => {
+                leadIcon.style.transition = 'all 1s ease';
+                leadIcon.style.opacity = '0.3';
+                leadIcon.style.filter = 'grayscale(100%)';
+            }, 500);
+
+            setTimeout(() => {
+                arrow.style.display = 'block';
+                arrow.style.animation = 'pulse 0.5s ease-in-out infinite';
+            }, 1500);
+
+            setTimeout(() => {
+                goldResult.style.display = 'block';
+                goldResult.style.animation = 'float 2s ease-in-out infinite';
+                resultText.innerHTML = '&#x2728; <strong>OPUS MAGNUM COMPLETUM EST !</strong> &#x2728;<br><small>Le Grand &OElig;uvre est accompli. Le plomb est devenu or.</small>';
+                btn.textContent = '&#x1F451; Transmutation R&eacute;ussie !';
+                btn.style.background = 'linear-gradient(135deg, #d4af37, #ffd700)';
+                btn.style.color = '#1a1a0a';
+            }, 2500);
+        }
+
+        // Click on stone for effect
+        document.getElementById('stone-click').addEventListener('click', function() {
+            this.style.transform = 'scale(1.2) rotate(10deg)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+    </script>
+</body>
+</html>
