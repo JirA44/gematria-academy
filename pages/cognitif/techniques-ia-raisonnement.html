@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techniques de Raisonnement IA | Académie</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; min-height: 100vh; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #7c4dff; margin-bottom: 0.5rem; }
+        .back { color: #64b5f6; text-decoration: none; display: inline-block; margin-bottom: 2rem; }
+        .technique { background: rgba(124, 77, 255, 0.08); border: 2px solid rgba(124, 77, 255, 0.3); border-radius: 15px; padding: 2rem; margin: 2rem 0; }
+        .technique h2 { color: #b388ff; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .example { background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 10px; margin: 1rem 0; }
+        .good { border-left: 4px solid #4caf50; }
+        .bad { border-left: 4px solid #f44336; }
+        .practice { background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.3); padding: 1rem; border-radius: 10px; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/#cognitif" class="back">← Retour au Hub</a>
+
+        <h1>🤖 Techniques de Raisonnement IA</h1>
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem;">Les méthodes utilisées par les IA les plus avancées - adaptées pour le cerveau humain</p>
+
+        <div class="technique">
+            <h2>⛓️ Chain of Thought (CoT)</h2>
+            <p>La technique la plus fondamentale : décomposer explicitement chaque étape du raisonnement.</p>
+
+            <div class="example bad">
+                <strong style="color: #f44336;">❌ Sans CoT :</strong>
+                <p>"La réponse est 42."</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">→ Impossible de vérifier, de corriger, ou de comprendre</p>
+            </div>
+
+            <div class="example good">
+                <strong style="color: #4caf50;">✅ Avec CoT :</strong>
+                <p>"Étape 1 : Le problème demande X<br>
+                Étape 2 : Je sais que A implique B<br>
+                Étape 3 : Donc B + C = D<br>
+                Étape 4 : La réponse est 42"</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">→ Chaque étape est vérifiable et corrigeable</p>
+            </div>
+
+            <div class="practice">
+                <strong>🏋️ Exercice :</strong> Pour chaque problème cette semaine, écrivez "Étape 1, Étape 2, Étape 3..." avant de donner votre réponse.
+            </div>
+        </div>
+
+        <div class="technique">
+            <h2>🌳 Tree of Thoughts (ToT)</h2>
+            <p>Ne suivez pas qu'une seule piste. Explorez plusieurs branches en parallèle.</p>
+
+            <div class="example good">
+                <strong style="color: #4caf50;">Exemple :</strong>
+                <pre style="font-family: monospace; font-size: 0.9rem;">
+Problème: Comment doubler mon salaire ?
+│
+├── Branche A: Négocier augmentation
+│   ├── Avantages: Rapide, même employeur
+│   ├── Risques: Refus, tension
+│   └── Probabilité succès: 30%
+│
+├── Branche B: Changer d'entreprise
+│   ├── Avantages: +20-40% typique
+│   ├── Risques: Période d'essai, inconnu
+│   └── Probabilité succès: 60%
+│
+└── Branche C: Créer side business
+    ├── Avantages: Pas de plafond
+    ├── Risques: Temps, échec possible
+    └── Probabilité succès: 20%
+
+→ Décision: Poursuivre B (meilleur ratio)
+                </pre>
+            </div>
+
+            <div class="practice">
+                <strong>🏋️ Exercice :</strong> Pour chaque décision importante, forcez-vous à trouver AU MOINS 3 options avant de choisir.
+            </div>
+        </div>
+
+        <div class="technique">
+            <h2>🔄 Self-Consistency</h2>
+            <p>Résolvez le même problème par plusieurs méthodes. Si les résultats concordent, confiance élevée.</p>
+
+            <div class="example good">
+                <strong>Exemple - Estimer la population de Paris :</strong>
+                <p>Méthode 1 (mémoire): ~2 millions<br>
+                Méthode 2 (Fermi): 100km² × 20000/km² = 2M<br>
+                Méthode 3 (comparaison): Similaire à Vienne = ~2M<br>
+                <strong style="color: #4caf50;">→ Concordance = confiance élevée</strong></p>
+            </div>
+
+            <div class="practice">
+                <strong>🏋️ Exercice :</strong> Après chaque calcul/estimation, trouvez une deuxième méthode pour vérifier.
+            </div>
+        </div>
+
+        <div class="technique">
+            <h2>🪞 Réflexion / Self-Critique</h2>
+            <p>Après chaque raisonnement, critiquez-le vous-même avant que quelqu'un d'autre ne le fasse.</p>
+
+            <div class="example good">
+                <strong>Questions à se poser :</strong>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>Qu'est-ce qui pourrait être faux dans mon raisonnement ?</li>
+                    <li>Quelles hypothèses ai-je faites implicitement ?</li>
+                    <li>Quelles informations me manquent ?</li>
+                    <li>Comment quelqu'un qui n'est pas d'accord argumenterait-il ?</li>
+                </ul>
+            </div>
+
+            <div class="practice">
+                <strong>🏋️ Exercice :</strong> Avant de soumettre une idée, jouez 2 minutes à "l'avocat du diable" contre vous-même.
+            </div>
+        </div>
+
+        <div class="technique">
+            <h2>🧩 Décomposition</h2>
+            <p>Tout problème complexe peut être divisé en sous-problèmes plus simples.</p>
+
+            <div class="example good">
+                <strong>Exemple :</strong>
+                <p><strong>Problème géant:</strong> "Créer une startup rentable"<br><br>
+                <strong>Décomposition:</strong><br>
+                1. Trouver un problème à résoudre<br>
+                2. Valider que des gens paieraient<br>
+                3. Créer un MVP<br>
+                4. Acquérir les premiers clients<br>
+                5. Itérer selon feedback<br>
+                6. Scaler<br><br>
+                → Chaque sous-problème devient gérable</p>
+            </div>
+        </div>
+
+        <div class="technique">
+            <h2>🦆 Rubber Duck Debugging</h2>
+            <p>Expliquez votre problème à voix haute (à un canard en plastique, ou juste à vous-même).</p>
+
+            <div class="example good">
+                <p>"OK petit canard, mon problème c'est que... en fait, attends... oh je viens de comprendre !"</p>
+                <p style="margin-top: 1rem; opacity: 0.8;">Le simple fait de verbaliser force la clarification et révèle souvent la solution.</p>
+            </div>
+        </div>
+
+        <div class="technique">
+            <h2>🛡️ Steelmanning</h2>
+            <p>Renforcez l'argument adverse au maximum AVANT de le réfuter.</p>
+
+            <div class="example bad">
+                <strong style="color: #f44336;">❌ Strawman (à éviter) :</strong>
+                <p>"Les gens qui pensent X sont juste stupides/mal informés"</p>
+            </div>
+
+            <div class="example good">
+                <strong style="color: #4caf50;">✅ Steelman :</strong>
+                <p>"La meilleure version de l'argument X serait... et voici pourquoi, même dans sa forme la plus forte, il ne tient pas parce que..."</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/#cognitif" style="display: inline-block; background: linear-gradient(135deg, #7c4dff, #651fff); color: white; padding: 1rem 2.5rem; border-radius: 25px; text-decoration: none; font-weight: bold;">
+                Retour au Hub Cognitif →
+            </a>
+        </div>
+    </div>
+</body>
+</html>

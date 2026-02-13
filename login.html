@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Académie des Sagesses</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .login-container {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 { color: #8a2be2; margin-bottom: 0.5rem; }
+        .subtitle { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+        .info-box {
+            background: rgba(0, 188, 212, 0.1);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .info-box p { font-size: 0.95rem; line-height: 1.6; }
+        .features {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        .features li {
+            padding: 0.5rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0.5rem;
+            transition: transform 0.3s;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .btn-primary {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+        .note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>🔐 Connexion</h1>
+        <p class="subtitle">Académie des Sagesses Anciennes</p>
+
+        <div class="info-box">
+            <p>Le système de compte permet de :</p>
+            <ul class="features">
+                <li>💾 Sauvegarder votre progression XP</li>
+                <li>🏆 Synchroniser vos niveaux entre appareils</li>
+                <li>📊 Suivre vos statistiques d'exercices</li>
+                <li>🎯 Débloquer des achievements</li>
+            </ul>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; opacity: 0.9;">
+            La progression est actuellement sauvegardée localement dans votre navigateur.
+        </p>
+
+        <div>
+            <a href="/" class="btn btn-primary">← Retour à l'Académie</a>
+        </div>
+
+        <p class="note">
+            Système de compte en développement.<br>
+            Votre progression XP est sauvegardée automatiquement.
+        </p>
+    </div>
+</body>
+</html>

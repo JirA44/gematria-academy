@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Astronomie Débutant - Académie des Sagesses</title>
+    <link rel="stylesheet" href="../../assets/css/main/style.css">
+    <link rel="stylesheet" href="../../assets/css/main/fix-contrast.css">
+    <link rel="stylesheet" href="../../assets/css/animations/animated-background.css">
+    <link rel="stylesheet" href="../../assets/css/animations/bleus-cosmiques.css">
+    <script src="../../assets/js/animations/animated-background.js" defer></script>
+    <style>
+        .cosmos-hero {
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.95), rgba(10, 30, 60, 0.95));
+            border: 3px solid rgba(100, 181, 246, 0.6);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cosmos-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.8"/><circle cx="30" cy="20" r="0.5" fill="white" opacity="0.6"/><circle cx="50" cy="15" r="0.8" fill="white" opacity="0.7"/><circle cx="70" cy="25" r="0.6" fill="white" opacity="0.5"/><circle cx="90" cy="10" r="0.7" fill="white" opacity="0.8"/><circle cx="20" cy="40" r="0.5" fill="white" opacity="0.6"/><circle cx="60" cy="50" r="1" fill="white" opacity="0.8"/><circle cx="80" cy="60" r="0.6" fill="white" opacity="0.7"/><circle cx="40" cy="70" r="0.8" fill="white" opacity="0.6"/><circle cx="15" cy="80" r="0.5" fill="white" opacity="0.5"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .planet-card {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(100, 181, 246, 0.05));
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .planet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
+            border-color: rgba(100, 181, 246, 0.6);
+        }
+
+        .planet-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .planet-icon {
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .planet-name {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #64b5f6, #2196f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .planet-data {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .data-item {
+            background: rgba(100, 181, 246, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #64b5f6;
+        }
+
+        .data-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #64b5f6;
+        }
+
+        .constellation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .constellation-card {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(103, 58, 183, 0.05));
+            border: 2px solid rgba(156, 39, 176, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .constellation-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(156, 39, 176, 0.3);
+        }
+
+        .moon-phase {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin: 0.5rem;
+            position: relative;
+        }
+
+        .quiz-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.05));
+            border: 2px solid rgba(76, 175, 80, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .interactive-sky {
+            background: radial-gradient(ellipse at center, rgba(0, 10, 30, 0.95) 0%, rgba(0, 0, 10, 0.98) 100%);
+            border: 2px solid rgba(100, 181, 246, 0.4);
+            border-radius: 20px;
+            padding: 3rem;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌌 Astronomie - Niveau Débutant</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Découvrez les merveilles du cosmos</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index.html">🏠 Accueil</a>
+            <a href="astronomie-debutant.html" class="active">🌱 Débutant</a>
+            <a href="astronomie-intermediaire.html">🌿 Intermédiaire</a>
+            <a href="astronomie-expert.html">🌳 Expert</a>
+            <a href="astronomie-parcours-complet.html">📜 Parcours Complet</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="cosmos-hero">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; position: relative; z-index: 1;">
+                ✨ Bienvenue dans l'Univers ✨
+            </h2>
+            <p style="font-size: 1.3rem; opacity: 0.95; max-width: 800px; margin: 0 auto; position: relative; z-index: 1;">
+                L'astronomie est la science qui étudie les astres, les planètes, les étoiles et tous les phénomènes célestes.
+                Embarquez pour un voyage extraordinaire à la découverte du cosmos !
+            </p>
+        </div>
+
+        <!-- Module 1 : Le Système Solaire -->
+        <section class="section-category">
+            <h2 style="color: #ffa726;">☀️ Module 1 : Notre Système Solaire</h2>
+            <p class="intro">
+                Le Système Solaire est notre foyer cosmique. Il est composé du Soleil, 8 planètes, leurs lunes,
+                des astéroïdes, des comètes et bien d'autres objets fascinants.
+            </p>
+
+            <!-- Le Soleil -->
+            <div class="planet-card">
+                <div class="planet-header">
+                    <div class="planet-icon">☀️</div>
+                    <div>
+                        <div class="planet-name">Le Soleil</div>
+                        <p style="opacity: 0.8; margin: 0.5rem 0;">Notre étoile, source de toute vie</p>
+                    </div>
+                </div>
+
+                <div class="planet-data">
+                    <div class="data-item">
+                        <div class="data-label">Type</div>
+                        <div class="data-value">Étoile (naine jaune)</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Diamètre</div>
+                        <div class="data-value">1,4 million km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Température surface</div>
+                        <div class="data-value">5 500°C</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Température cœur</div>
+                        <div class="data-value">15 millions °C</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Âge</div>
+                        <div class="data-value">4,6 milliards d'années</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Composition</div>
+                        <div class="data-value">73% H, 25% He</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 167, 38, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                    <h4 style="color: #ffa726; margin-bottom: 1rem;">🔬 Le saviez-vous ?</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>☀️ Le Soleil représente 99,86% de la masse totale du Système Solaire</li>
+                        <li>⚡ Chaque seconde, 600 millions de tonnes d'hydrogène fusionnent en hélium</li>
+                        <li>💡 La lumière du Soleil met 8 minutes et 20 secondes pour atteindre la Terre</li>
+                        <li>🌊 Les taches solaires sont des zones plus froides (4 000°C) à la surface</li>
+                        <li>🔥 Le Soleil brillera encore pendant environ 5 milliards d'années</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Planètes Rocheuses -->
+            <h3 style="color: #64b5f6; margin: 3rem 0 1.5rem;">🪨 Les Planètes Rocheuses (Telluriques)</h3>
+
+            <!-- Mercure -->
+            <div class="planet-card">
+                <div class="planet-header">
+                    <div class="planet-icon">☿️</div>
+                    <div>
+                        <div class="planet-name">Mercure</div>
+                        <p style="opacity: 0.8; margin: 0.5rem 0;">La planète la plus proche du Soleil</p>
+                    </div>
+                </div>
+
+                <div class="planet-data">
+                    <div class="data-item">
+                        <div class="data-label">Distance du Soleil</div>
+                        <div class="data-value">58 millions km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Diamètre</div>
+                        <div class="data-value">4 879 km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Révolution</div>
+                        <div class="data-value">88 jours terrestres</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Température</div>
+                        <div class="data-value">-180°C à +430°C</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Lunes</div>
+                        <div class="data-value">0</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Atmosphère</div>
+                        <div class="data-value">Quasiment absente</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(158, 158, 158, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                    <h4 style="color: #9e9e9e; margin-bottom: 1rem;">✨ Particularités</h4>
+                    <p>• Plus petite planète du système solaire depuis le déclassement de Pluton</p>
+                    <p>• Surface criblée de cratères comme la Lune</p>
+                    <p>• Un jour sur Mercure dure 176 jours terrestres !</p>
+                    <p>• Présence de glace d'eau dans les cratères polaires</p>
+                </div>
+            </div>
+
+            <!-- Vénus -->
+            <div class="planet-card">
+                <div class="planet-header">
+                    <div class="planet-icon">♀️</div>
+                    <div>
+                        <div class="planet-name">Vénus</div>
+                        <p style="opacity: 0.8; margin: 0.5rem 0;">L'étoile du berger, la planète de l'amour</p>
+                    </div>
+                </div>
+
+                <div class="planet-data">
+                    <div class="data-item">
+                        <div class="data-label">Distance du Soleil</div>
+                        <div class="data-value">108 millions km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Diamètre</div>
+                        <div class="data-value">12 104 km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Révolution</div>
+                        <div class="data-value">225 jours terrestres</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Température surface</div>
+                        <div class="data-value">465°C</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Pression atmosphérique</div>
+                        <div class="data-value">92× celle de la Terre</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Atmosphère</div>
+                        <div class="data-value">96% CO₂</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 193, 7, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                    <h4 style="color: #ffc107; margin-bottom: 1rem;">🔥 La planète infernale</h4>
+                    <p>• Planète la plus chaude du système solaire (malgré que Mercure soit plus proche du Soleil)</p>
+                    <p>• Tourne dans le sens inverse des autres planètes (rotation rétrograde)</p>
+                    <p>• Visible à l'œil nu, souvent confondue avec une étoile brillante</p>
+                    <p>• Nuages d'acide sulfurique dans son atmosphère</p>
+                    <p>• Effet de serre extrême responsable de sa température élevée</p>
+                </div>
+            </div>
+
+            <!-- Terre -->
+            <div class="planet-card" style="border-color: rgba(76, 175, 80, 0.6);">
+                <div class="planet-header">
+                    <div class="planet-icon">🌍</div>
+                    <div>
+                        <div class="planet-name" style="background: linear-gradient(135deg, #4caf50, #8bc34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">La Terre</div>
+                        <p style="opacity: 0.8; margin: 0.5rem 0;">Notre planète bleue, la seule connue à abriter la vie</p>
+                    </div>
+                </div>
+
+                <div class="planet-data">
+                    <div class="data-item">
+                        <div class="data-label">Distance du Soleil</div>
+                        <div class="data-value">150 millions km (1 UA)</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Diamètre</div>
+                        <div class="data-value">12 742 km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Révolution</div>
+                        <div class="data-value">365,25 jours</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Rotation</div>
+                        <div class="data-value">23h 56min</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Lunes</div>
+                        <div class="data-value">1 (la Lune)</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Atmosphère</div>
+                        <div class="data-value">78% N₂, 21% O₂</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(76, 175, 80, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                    <h4 style="color: #4caf50; margin-bottom: 1rem;">🌿 Une planète unique</h4>
+                    <p>• Seule planète connue à posséder de l'eau liquide en surface (71% de sa surface)</p>
+                    <p>• Atmosphère riche en oxygène grâce à la photosynthèse</p>
+                    <p>• Champ magnétique protecteur contre les radiations solaires</p>
+                    <p>• Inclinaison de l'axe de 23,5° créant les saisons</p>
+                    <p>• Biodiversité estimée à 8,7 millions d'espèces</p>
+                </div>
+            </div>
+
+            <!-- Mars -->
+            <div class="planet-card">
+                <div class="planet-header">
+                    <div class="planet-icon">♂️</div>
+                    <div>
+                        <div class="planet-name" style="background: linear-gradient(135deg, #f44336, #ff5722); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mars</div>
+                        <p style="opacity: 0.8; margin: 0.5rem 0;">La planète rouge, future destination humaine</p>
+                    </div>
+                </div>
+
+                <div class="planet-data">
+                    <div class="data-item">
+                        <div class="data-label">Distance du Soleil</div>
+                        <div class="data-value">228 millions km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Diamètre</div>
+                        <div class="data-value">6 779 km</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Révolution</div>
+                        <div class="data-value">687 jours terrestres</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Température</div>
+                        <div class="data-value">-140°C à +20°C</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Lunes</div>
+                        <div class="data-value">2 (Phobos, Deimos)</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Gravité</div>
+                        <div class="data-value">38% de celle de la Terre</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(244, 67, 54, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                    <h4 style="color: #f44336; margin-bottom: 1rem;">🚀 La planète la plus explorée</h4>
+                    <p>• Couleur rouge due à l'oxyde de fer (rouille) à sa surface</p>
+                    <p>• Monte Olympe : le plus grand volcan du système solaire (25 km de haut !)</p>
+                    <p>• Vallée Mariner : le plus grand canyon (4 000 km de long)</p>
+                    <p>• Présence de glace d'eau aux pôles et sous la surface</p>
+                    <p>• Plus de 40 missions spatiales envoyées depuis 1960</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 2 : Les Phases de la Lune -->
+        <section class="section-category">
+            <h2 style="color: #e3f2fd;">🌙 Module 2 : Les Phases de la Lune</h2>
+            <p class="intro">
+                La Lune, notre satellite naturel, change d'apparence au fil du mois lunaire.
+                Ce cycle de 29,5 jours est dû à sa position par rapport au Soleil et à la Terre.
+            </p>
+
+            <div style="background: linear-gradient(135deg, rgba(189, 189, 189, 0.1), rgba(224, 224, 224, 0.05)); border: 2px solid rgba(189, 189, 189, 0.3); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Les 8 Phases Lunaires</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌑</div>
+                        <h4>Nouvelle Lune</h4>
+                        <p style="opacity: 0.8;">Invisible (alignée avec le Soleil)</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌒</div>
+                        <h4>Premier Croissant</h4>
+                        <p style="opacity: 0.8;">Fin croissant visible à l'Ouest</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌓</div>
+                        <h4>Premier Quartier</h4>
+                        <p style="opacity: 0.8;">Demi-lune croissante</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌔</div>
+                        <h4>Lune Gibbeuse Croissante</h4>
+                        <p style="opacity: 0.8;">Plus de la moitié éclairée</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌕</div>
+                        <h4>Pleine Lune</h4>
+                        <p style="opacity: 0.8;">Entièrement éclairée</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌖</div>
+                        <h4>Lune Gibbeuse Décroissante</h4>
+                        <p style="opacity: 0.8;">Commence à diminuer</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌗</div>
+                        <h4>Dernier Quartier</h4>
+                        <p style="opacity: 0.8;">Demi-lune décroissante</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 4rem; margin-bottom: 0.5rem;">🌘</div>
+                        <h4>Dernier Croissant</h4>
+                        <p style="opacity: 0.8;">Fin croissant visible à l'Est</p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
+                    <h4 style="color: #e3f2fd; margin-bottom: 1rem;">🌙 Faits lunaires fascinants</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>🌍 Distance Terre-Lune : 384 400 km en moyenne</li>
+                        <li>⚖️ La Lune a 1/6ème de la gravité terrestre</li>
+                        <li>🔄 Rotation synchrone : la Lune nous montre toujours la même face</li>
+                        <li>🌊 Responsable des marées océaniques sur Terre</li>
+                        <li>📏 Diamètre : 3 474 km (environ 1/4 de la Terre)</li>
+                        <li>🎯 12 humains ont marché sur la Lune (1969-1972)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 3 : Les Constellations -->
+        <section class="section-category">
+            <h2 style="color: #9c27b0;">⭐ Module 3 : Les Constellations</h2>
+            <p class="intro">
+                Les constellations sont des groupes d'étoiles formant des motifs reconnaissables dans le ciel nocturne.
+                Il existe 88 constellations officielles reconnues par l'Union Astronomique Internationale.
+            </p>
+
+            <h3 style="text-align: center; margin: 2rem 0;">🌌 Les Constellations les Plus Célèbres</h3>
+
+            <div class="constellation-grid">
+                <div class="constellation-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🐻</div>
+                    <h4>Grande Ourse</h4>
+                    <p style="opacity: 0.8; margin: 1rem 0;">Ursa Major - Visible toute l'année (hémisphère Nord)</p>
+                    <p><strong>7 étoiles principales</strong> forment la "Grande Casserole"</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">Permet de localiser l'étoile Polaire</p>
+                </div>
+
+                <div class="constellation-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏹</div>
+                    <h4>Orion</h4>
+                    <p style="opacity: 0.8; margin: 1rem 0;">Le Chasseur - Constellation d'hiver</p>
+                    <p><strong>Bételgeuse</strong> (étoile rouge géante) et <strong>Rigel</strong> (étoile bleue)</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">La "ceinture d'Orion" : 3 étoiles alignées</p>
+                </div>
+
+                <div class="constellation-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🦂</div>
+                    <h4>Scorpion</h4>
+                    <p style="opacity: 0.8; margin: 1rem 0;">Scorpius - Constellation d'été</p>
+                    <p><strong>Antarès</strong> : "rivale de Mars", étoile super-géante rouge</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">Forme reconnaissable en "S"</p>
+                </div>
+
+                <div class="constellation-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">♊</div>
+                    <h4>Gémeaux</h4>
+                    <p style="opacity: 0.8; margin: 1rem 0;">Gemini - Constellation d'hiver</p>
+                    <p><strong>Castor</strong> et <strong>Pollux</strong> : les deux étoiles jumelles</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">Signe du zodiaque (21 mai - 21 juin)</p>
+                </div>
+
+                <div class="constellation-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🦁</div>
+                    <h4>Lion</h4>
+                    <p style="opacity: 0.8; margin: 1rem 0;">Leo - Constellation de printemps</p>
+                    <p><strong>Régulus</strong> : "le petit roi", étoile très brillante</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">Forme un point d'interrogation inversé</p>
+                </div>
+
+                <div class="constellation-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🦅</div>
+                    <h4>Aigle</h4>
+                    <p style="opacity: 0.8; margin: 1rem 0;">Aquila - Constellation d'été</p>
+                    <p><strong>Altaïr</strong> : une des étoiles du Triangle d'été</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">Ailes déployées facilement reconnaissables</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(156, 39, 176, 0.1); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                <h4 style="color: #9c27b0; margin-bottom: 1rem;">🌠 Astuce d'observation</h4>
+                <p>Pour bien observer les constellations :</p>
+                <ul>
+                    <li>🌃 Choisissez un endroit sombre, loin de la pollution lumineuse</li>
+                    <li>🌙 Préférez les nuits sans Lune (nouvelle lune)</li>
+                    <li>⏰ Laissez vos yeux s'adapter à l'obscurité (20-30 minutes)</li>
+                    <li>📱 Utilisez une application de carte du ciel (SkyView, Stellarium)</li>
+                    <li>🧭 Repérez d'abord les étoiles les plus brillantes</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Quiz Interactif -->
+        <div class="quiz-box">
+            <h3 style="color: #4caf50; text-align: center; margin-bottom: 1.5rem;">
+                ✅ Quiz - Testez vos connaissances !
+            </h3>
+
+            <div style="margin: 1.5rem 0;">
+                <h4>1. Quelle est la planète la plus proche du Soleil ?</h4>
+                <div style="margin: 1rem 0;">
+                    <button onclick="alert('❌ Non, c\'est Mercure !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Vénus</button>
+                    <button onclick="alert('✅ Bravo ! Mercure est bien la plus proche du Soleil.')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Mercure</button>
+                    <button onclick="alert('❌ Non, c\'est Mercure !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Mars</button>
+                </div>
+            </div>
+
+            <div style="margin: 1.5rem 0;">
+                <h4>2. Combien de temps met la Terre pour faire le tour du Soleil ?</h4>
+                <div style="margin: 1rem 0;">
+                    <button onclick="alert('❌ Non, c\'est 365,25 jours !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">30 jours</button>
+                    <button onclick="alert('✅ Exact ! 365,25 jours (d\'où les années bissextiles).')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">365,25 jours</button>
+                    <button onclick="alert('❌ Non, c\'est 365,25 jours !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">500 jours</button>
+                </div>
+            </div>
+
+            <div style="margin: 1.5rem 0;">
+                <h4>3. Quelle est la couleur de Mars ?</h4>
+                <div style="margin: 1rem 0;">
+                    <button onclick="alert('❌ Non, Mars est rouge !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Bleue</button>
+                    <button onclick="alert('✅ Parfait ! Mars est rouge à cause de l\'oxyde de fer.')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Rouge</button>
+                    <button onclick="alert('❌ Non, Mars est rouge !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Verte</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="astronomie-intermediaire.html" style="display: inline-block; background: linear-gradient(135deg, #64b5f6, #2196f3); color: white; padding: 1.2rem 3rem; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);">
+                    Passer au Niveau Intermédiaire 🚀
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Sagesses Anciennes - Astronomie 🌌</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">
+            <a href="../../index.html" style="color: inherit; text-decoration: none;">🏠 Accueil</a> •
+            <a href="astronomie-parcours-complet.html" style="color: inherit; text-decoration: none;">📜 Parcours Complet</a>
+        </p>
+    </footer>
+
+    <script>
+        // Générer des étoiles aléatoires
+        function createStars() {
+            const sky = document.querySelector('.interactive-sky');
+            if (sky) {
+                for (let i = 0; i < 100; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.animationDelay = `${Math.random() * 3}s`;
+                    sky.appendChild(star);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createStars);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomie Intermédiaire | Académie des Sagesses Ésotériques</title>
+    <link rel="stylesheet" href="../../assets/css/main/style.css">
+    <link rel="stylesheet" href="../../assets/css/main/fix-contrast.css">
+    <link rel="stylesheet" href="../../assets/css/main/cosmic-header-styles.css">
+    <link rel="stylesheet" href="../../assets/css/animations/animated-background.css">
+    <link rel="stylesheet" href="../../assets/css/animations/bleus-cosmiques.css">
+    <link rel="stylesheet" href="../../assets/css/features/knowledge-validation.css">
+    <style>
+        .astronomie-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .level-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.3), rgba(138, 43, 226, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+        }
+
+        .level-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #ff8c00, #ffd700);
+            color: #1a1a2e;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .module {
+            margin-bottom: 3rem;
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(138, 43, 226, 0.4);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+        }
+
+        .module-title h2 {
+            color: #8a2be2;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .module-title p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0.5rem 0 0 0;
+        }
+
+        .planet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .planet-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.4), rgba(138, 43, 226, 0.2));
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .planet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            border-color: rgba(138, 43, 226, 0.8);
+        }
+
+        .planet-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .planet-icon {
+            font-size: 3rem;
+        }
+
+        .planet-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .planet-data {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid #8a2be2;
+        }
+
+        .data-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.3rem;
+        }
+
+        .data-value {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.3), rgba(138, 43, 226, 0.1));
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .concept-card h3 {
+            color: #ffd700;
+            margin-top: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .concept-icon {
+            font-size: 2rem;
+        }
+
+        .deep-space-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .deep-space-card {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.4), rgba(0, 0, 0, 0.6));
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .deep-space-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .constellation-card {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .constellation-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .constellation-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+
+        .navigation-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.6), rgba(138, 43, 226, 0.4));
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5);
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.8), rgba(138, 43, 226, 0.6));
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.4), rgba(138, 43, 226, 0.2));
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .planet-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .deep-space-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .planet-data {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-background"></div>
+
+    <header class="cosmic-header">
+        <div class="header-content">
+            <h1 class="site-title">🔮 Académie des Sagesses Ésotériques</h1>
+            <nav class="main-nav">
+                <a href="../../index.html">🏠 Accueil</a>
+                <a href="astronomie-debutant.html">🌙 Débutant</a>
+                <a href="astronomie-intermediaire.html" class="active">🌟 Intermédiaire</a>
+                <a href="astronomie-expert.html">🌌 Expert</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="astronomie-container">
+        <div class="level-header">
+            <div class="level-badge">⭐ NIVEAU INTERMÉDIAIRE</div>
+            <h1>🪐 Astronomie Intermédiaire</h1>
+            <p>Explorez les géantes gazeuses, les phénomènes célestes avancés et l'espace profond</p>
+        </div>
+
+        <!-- Module 1: Planètes Géantes Gazeuses -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">🪐</div>
+                <div class="module-title">
+                    <h2>Module 1 : Les Géantes Gazeuses</h2>
+                    <p>Jupiter, Saturne, Uranus et Neptune - Les titans du système solaire</p>
+                </div>
+            </div>
+
+            <div class="planet-grid">
+                <!-- Jupiter -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">🪐</div>
+                        <div class="planet-name">Jupiter</div>
+                    </div>
+                    <div class="planet-data">
+                        <div class="data-item">
+                            <div class="data-label">Type</div>
+                            <div class="data-value">Géante gazeuse</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Diamètre</div>
+                            <div class="data-value">142 984 km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Distance du Soleil</div>
+                            <div class="data-value">778 millions km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période de rotation</div>
+                            <div class="data-value">9h 56min (la plus rapide !)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période orbitale</div>
+                            <div class="data-value">11,86 années terrestres</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Lunes connues</div>
+                            <div class="data-value">95 lunes (dont 4 galiléennes)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Composition</div>
+                            <div class="data-value">H₂ (90%), He (10%)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Gravité</div>
+                            <div class="data-value">24,79 m/s² (2,5× Terre)</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 165, 0, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4 style="color: #ffd700; margin-top: 0;">🌪️ La Grande Tache Rouge</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Ouragan géant</strong> : 3× la taille de la Terre</li>
+                            <li><strong>Durée</strong> : Observé depuis au moins 400 ans</li>
+                            <li><strong>Vents</strong> : Jusqu'à 640 km/h</li>
+                            <li><strong>Lunes galiléennes</strong> : Io, Europe, Ganymède, Callisto</li>
+                            <li><strong>Europe</strong> : Ocean sous la glace, potentiel de vie</li>
+                            <li><strong>Protection</strong> : Bouclier magnétique protégeant la Terre des astéroïdes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Saturne -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">🪐</div>
+                        <div class="planet-name">Saturne</div>
+                    </div>
+                    <div class="planet-data">
+                        <div class="data-item">
+                            <div class="data-label">Type</div>
+                            <div class="data-value">Géante gazeuse</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Diamètre</div>
+                            <div class="data-value">120 536 km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Distance du Soleil</div>
+                            <div class="data-value">1,43 milliards km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période de rotation</div>
+                            <div class="data-value">10h 33min</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période orbitale</div>
+                            <div class="data-value">29,46 années terrestres</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Lunes connues</div>
+                            <div class="data-value">146 lunes</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Densité</div>
+                            <div class="data-value">0,687 g/cm³ (flotte sur l'eau !)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Anneaux</div>
+                            <div class="data-value">7 groupes principaux</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(218, 165, 32, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4 style="color: #ffd700; margin-top: 0;">💍 Les Anneaux de Saturne</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Composition</strong> : Milliards de particules de glace et roche</li>
+                            <li><strong>Largeur</strong> : 282 000 km de diamètre</li>
+                            <li><strong>Épaisseur</strong> : Seulement 10 mètres en moyenne</li>
+                            <li><strong>Titan</strong> : Lune avec atmosphère dense, lacs de méthane</li>
+                            <li><strong>Encelade</strong> : Geysers d'eau, potentiel de vie</li>
+                            <li><strong>Hexagone polaire</strong> : Vortex géant au pôle nord</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Uranus -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">🔵</div>
+                        <div class="planet-name">Uranus</div>
+                    </div>
+                    <div class="planet-data">
+                        <div class="data-item">
+                            <div class="data-label">Type</div>
+                            <div class="data-value">Géante de glace</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Diamètre</div>
+                            <div class="data-value">51 118 km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Distance du Soleil</div>
+                            <div class="data-value">2,87 milliards km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période de rotation</div>
+                            <div class="data-value">17h 14min (rétrograde)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période orbitale</div>
+                            <div class="data-value">84 années terrestres</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Lunes connues</div>
+                            <div class="data-value">27 lunes</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Inclinaison axiale</div>
+                            <div class="data-value">97,77° (roule sur le côté !)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Température</div>
+                            <div class="data-value">-224°C (la plus froide)</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(0, 191, 255, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4 style="color: #00bfff; margin-top: 0;">❄️ La Planète Couchée</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Couleur bleue</strong> : Méthane dans l'atmosphère</li>
+                            <li><strong>Rotation unique</strong> : Roule sur son orbite</li>
+                            <li><strong>Saisons extrêmes</strong> : 42 ans de jour, 42 ans de nuit</li>
+                            <li><strong>Collision ancienne</strong> : Impact géant l'a renversée</li>
+                            <li><strong>Anneaux verticaux</strong> : 13 anneaux sombres</li>
+                            <li><strong>Voyager 2</strong> : Seule sonde à l'avoir visitée (1986)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Neptune -->
+                <div class="planet-card">
+                    <div class="planet-header">
+                        <div class="planet-icon">🔷</div>
+                        <div class="planet-name">Neptune</div>
+                    </div>
+                    <div class="planet-data">
+                        <div class="data-item">
+                            <div class="data-label">Type</div>
+                            <div class="data-value">Géante de glace</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Diamètre</div>
+                            <div class="data-value">49 528 km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Distance du Soleil</div>
+                            <div class="data-value">4,5 milliards km</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période de rotation</div>
+                            <div class="data-value">16h 6min</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Période orbitale</div>
+                            <div class="data-value">164,8 années terrestres</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Lunes connues</div>
+                            <div class="data-value">16 lunes</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Vents</div>
+                            <div class="data-value">Jusqu'à 2 100 km/h !</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Découverte</div>
+                            <div class="data-value">1846 (par calcul mathématique)</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(30, 144, 255, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4 style="color: #1e90ff; margin-top: 0;">🌪️ Le Monde des Vents Furieux</h4>
+                        <ul style="line-height: 1.8;">
+                            <li><strong>Vents les plus rapides</strong> : 2× la vitesse du son</li>
+                            <li><strong>Grande Tache Sombre</strong> : Ouragan de la taille de la Terre</li>
+                            <li><strong>Triton</strong> : Lune avec geysers d'azote, orbite rétrograde</li>
+                            <li><strong>Chaleur interne</strong> : Émet 2,6× plus qu'elle reçoit du Soleil</li>
+                            <li><strong>Couleur intense</strong> : Bleu profond du méthane</li>
+                            <li><strong>Anneaux ténus</strong> : 5 anneaux faibles et fragmentés</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: Phénomènes Célestes Avancés -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">🌓</div>
+                <div class="module-title">
+                    <h2>Module 2 : Phénomènes Célestes Avancés</h2>
+                    <p>Éclipses, saisons, marées et autres merveilles astronomiques</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span class="concept-icon">🌑</span> Les Éclipses</h3>
+
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h4 style="color: #ffd700;">☀️ Éclipse Solaire</h4>
+                    <p><strong>Définition</strong> : La Lune passe devant le Soleil, projetant son ombre sur la Terre</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Totale</strong> : Le Soleil est complètement masqué (bande de 200-300 km)</li>
+                        <li><strong>Annulaire</strong> : La Lune est trop loin, laisse un anneau visible</li>
+                        <li><strong>Partielle</strong> : Seule une partie du Soleil est masquée</li>
+                        <li><strong>Durée maximale</strong> : 7 minutes 30 secondes</li>
+                        <li><strong>Fréquence</strong> : 2-5 éclipses solaires par an</li>
+                        <li><strong>Couronne solaire</strong> : Visible uniquement pendant une éclipse totale</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="color: #ffd700;">🌕 Éclipse Lunaire</h4>
+                    <p><strong>Définition</strong> : La Terre passe entre le Soleil et la Lune</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Totale</strong> : La Lune devient rouge ("Lune de sang")</li>
+                        <li><strong>Partielle</strong> : Seule une partie de la Lune est dans l'ombre</li>
+                        <li><strong>Pénombrale</strong> : La Lune traverse la pénombre (subtile)</li>
+                        <li><strong>Durée maximale</strong> : Jusqu'à 1h 40min (totalité)</li>
+                        <li><strong>Couleur rouge</strong> : Lumière réfractée par l'atmosphère terrestre</li>
+                        <li><strong>Visible partout</strong> : Toute la face nocturne de la Terre peut la voir</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span class="concept-icon">🍂</span> Les Saisons</h3>
+
+                <div class="highlight-box">
+                    <p><strong>💡 Idée reçue</strong> : Les saisons ne sont PAS causées par la distance Terre-Soleil, mais par l'inclinaison de l'axe terrestre (23,5°)</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255, 215, 0, 0.1); padding: 1rem; border-radius: 10px; border-left: 4px solid #ffd700;">
+                        <h4 style="color: #ffd700; margin-top: 0;">☀️ Été (Hémisphère Nord)</h4>
+                        <ul>
+                            <li>21 juin : Solstice d'été</li>
+                            <li>Jour le plus long</li>
+                            <li>Soleil au zénith (Tropique du Cancer)</li>
+                            <li>Rayons directs = plus de chaleur</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(255, 140, 0, 0.1); padding: 1rem; border-radius: 10px; border-left: 4px solid #ff8c00;">
+                        <h4 style="color: #ff8c00; margin-top: 0;">🍂 Automne</h4>
+                        <ul>
+                            <li>22-23 septembre : Équinoxe</li>
+                            <li>Jour = Nuit (12h chacun)</li>
+                            <li>Soleil au-dessus de l'équateur</li>
+                            <li>Température en baisse</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(135, 206, 250, 0.1); padding: 1rem; border-radius: 10px; border-left: 4px solid #87ceeb;">
+                        <h4 style="color: #87ceeb; margin-top: 0;">❄️ Hiver</h4>
+                        <ul>
+                            <li>21 décembre : Solstice d'hiver</li>
+                            <li>Jour le plus court</li>
+                            <li>Soleil au zénith (Tropique du Capricorne)</li>
+                            <li>Rayons obliques = moins de chaleur</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(144, 238, 144, 0.1); padding: 1rem; border-radius: 10px; border-left: 4px solid #90ee90;">
+                        <h4 style="color: #90ee90; margin-top: 0;">🌸 Printemps</h4>
+                        <ul>
+                            <li>20-21 mars : Équinoxe</li>
+                            <li>Jour = Nuit (12h chacun)</li>
+                            <li>Soleil au-dessus de l'équateur</li>
+                            <li>Température en hausse</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3><span class="concept-icon">🌊</span> Les Marées</h3>
+
+                <p><strong>Définition</strong> : Montée et descente du niveau des océans causées principalement par l'attraction gravitationnelle de la Lune (et dans une moindre mesure du Soleil)</p>
+
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem;">
+                    <h4 style="color: #ffd700;">🌕 Mécanisme des Marées</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Force de marée</strong> : Différence de gravité entre le côté proche et éloigné de la Terre</li>
+                        <li><strong>Deux bosses</strong> : Une face à la Lune, une opposée (force centrifuge)</li>
+                        <li><strong>Cycle</strong> : 2 marées hautes et 2 marées basses par jour (~24h 50min)</li>
+                        <li><strong>Amplitude</strong> : Varie de quelques cm à 16 mètres (Baie de Fundy, Canada)</li>
+                    </ul>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(138, 43, 226, 0.2); padding: 1.5rem; border-radius: 10px;">
+                        <h4 style="color: #ffd700; margin-top: 0;">🌕 Marées de Vive-Eau</h4>
+                        <p><strong>Quand</strong> : Nouvelle Lune et Pleine Lune</p>
+                        <p><strong>Configuration</strong> : Soleil, Terre, Lune alignés</p>
+                        <p><strong>Effet</strong> : Forces combinées = marées très fortes</p>
+                        <p><strong>Amplitude</strong> : Maximale (coefficient > 95)</p>
+                    </div>
+
+                    <div style="background: rgba(138, 43, 226, 0.2); padding: 1.5rem; border-radius: 10px;">
+                        <h4 style="color: #ffd700; margin-top: 0;">🌓 Marées de Morte-Eau</h4>
+                        <p><strong>Quand</strong> : Premier et Dernier Quartier</p>
+                        <p><strong>Configuration</strong> : Soleil et Lune à 90°</p>
+                        <p><strong>Effet</strong> : Forces s'opposent = marées faibles</p>
+                        <p><strong>Amplitude</strong> : Minimale (coefficient < 45)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3: Espace Profond -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">🌌</div>
+                <div class="module-title">
+                    <h2>Module 3 : Introduction à l'Espace Profond</h2>
+                    <p>Galaxies, nébuleuses, trous noirs et l'univers au-delà du système solaire</p>
+                </div>
+            </div>
+
+            <div class="deep-space-grid">
+                <div class="deep-space-card">
+                    <h3 style="color: #ffd700; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">🌌</span> Les Galaxies
+                    </h3>
+                    <p><strong>Définition</strong> : Gigantesques regroupements de milliards d'étoiles, gaz, poussières et matière noire</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Voie Lactée</strong> : Notre galaxie (100-400 milliards d'étoiles)</li>
+                        <li><strong>Type</strong> : Spirale barrée (100 000 années-lumière de diamètre)</li>
+                        <li><strong>Andromède (M31)</strong> : Galaxie la plus proche (2,5 millions AL)</li>
+                        <li><strong>Collision future</strong> : Andromède et Voie Lactée fusionneront dans 4 milliards d'années</li>
+                        <li><strong>Types</strong> : Spirales, elliptiques, irrégulières</li>
+                        <li><strong>Observable</strong> : ~2 000 milliards de galaxies dans l'univers observable</li>
+                    </ul>
+                </div>
+
+                <div class="deep-space-card">
+                    <h3 style="color: #ffd700; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">☁️</span> Les Nébuleuses
+                    </h3>
+                    <p><strong>Définition</strong> : Nuages de gaz et de poussière dans l'espace</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Nébuleuses à émission</strong> : Gaz ionisé brillant (ex: Orion)</li>
+                        <li><strong>Nébuleuses sombres</strong> : Bloquent la lumière (ex: Tête de Cheval)</li>
+                        <li><strong>Nébuleuses planétaires</strong> : Reste d'étoile mourante (ex: Helix)</li>
+                        <li><strong>Pouponnières d'étoiles</strong> : Lieux de formation stellaire</li>
+                        <li><strong>Nébuleuse d'Orion (M42)</strong> : À 1 350 AL, visible à l'œil nu</li>
+                        <li><strong>Couleurs</strong> : H (rouge), O (vert/bleu), S (rouge)</li>
+                    </ul>
+                </div>
+
+                <div class="deep-space-card">
+                    <h3 style="color: #ffd700; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">⚫</span> Les Trous Noirs
+                    </h3>
+                    <p><strong>Définition</strong> : Régions de l'espace où la gravité est si intense que rien ne peut s'échapper, pas même la lumière</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Formation</strong> : Effondrement d'étoiles massives (>25 masses solaires)</li>
+                        <li><strong>Horizon des événements</strong> : Point de non-retour</li>
+                        <li><strong>Singularité</strong> : Point de densité infinie au centre</li>
+                        <li><strong>Sagittarius A*</strong> : Trou noir supermassif au centre de la Voie Lactée (4 millions M☉)</li>
+                        <li><strong>Première image</strong> : M87* photographié en 2019 (6,5 milliards M☉)</li>
+                        <li><strong>Rayonnement Hawking</strong> : Les trous noirs s'évaporent lentement</li>
+                    </ul>
+                </div>
+
+                <div class="deep-space-card">
+                    <h3 style="color: #ffd700; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">💫</span> Les Étoiles
+                    </h3>
+                    <p><strong>Cycle de vie</strong> : De la naissance à la mort</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Naissance</strong> : Contraction d'un nuage de gaz (nébuleuse)</li>
+                        <li><strong>Séquence principale</strong> : Fusion H → He (90% de la vie)</li>
+                        <li><strong>Géante rouge</strong> : Expansion après épuisement de l'hydrogène</li>
+                        <li><strong>Mort (petites)</strong> : Nébuleuse planétaire + Naine blanche</li>
+                        <li><strong>Mort (grandes)</strong> : Supernova → Étoile à neutrons ou Trou noir</li>
+                        <li><strong>Classification</strong> : O B A F G K M (du plus chaud au plus froid)</li>
+                    </ul>
+                </div>
+
+                <div class="deep-space-card">
+                    <h3 style="color: #ffd700; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">🪐</span> Exoplanètes
+                    </h3>
+                    <p><strong>Définition</strong> : Planètes orbitant autour d'autres étoiles que le Soleil</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Découvertes</strong> : Plus de 5 500 exoplanètes confirmées</li>
+                        <li><strong>Méthodes</strong> : Transit, vitesse radiale, imagerie directe</li>
+                        <li><strong>Types</strong> : Jupiters chauds, super-Terres, mini-Neptunes</li>
+                        <li><strong>Zone habitable</strong> : Région où l'eau liquide peut exister</li>
+                        <li><strong>TRAPPIST-1</strong> : 7 planètes de taille terrestre, 3 en zone habitable</li>
+                        <li><strong>Proxima b</strong> : Exoplanète la plus proche (4,2 AL)</li>
+                    </ul>
+                </div>
+
+                <div class="deep-space-card">
+                    <h3 style="color: #ffd700; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">🌠</span> Supernovae
+                    </h3>
+                    <p><strong>Définition</strong> : Explosion cataclysmique marquant la mort d'une étoile massive</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Type Ia</strong> : Naine blanche atteignant 1,4 M☉ (chandelle standard)</li>
+                        <li><strong>Type II</strong> : Effondrement du cœur d'une étoile massive</li>
+                        <li><strong>Luminosité</strong> : Peut surpasser toute une galaxie pendant quelques semaines</li>
+                        <li><strong>Création d'éléments</strong> : Forge les éléments lourds (Fe, Au, U...)</li>
+                        <li><strong>Vestige</strong> : Pulsar, magnétar ou trou noir</li>
+                        <li><strong>Dernière visible</strong> : SN 1987A dans le Grand Nuage de Magellan</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4 style="color: #ffd700; margin-top: 0;">🔭 Télescopes et Missions Spatiales</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div>
+                        <strong style="color: #8a2be2;">🛰️ Hubble</strong>
+                        <p>En orbite depuis 1990, a révolutionné notre compréhension de l'univers</p>
+                    </div>
+                    <div>
+                        <strong style="color: #8a2be2;">🌌 James Webb (JWST)</strong>
+                        <p>Lancé en 2021, observe dans l'infrarouge, voit les premières galaxies</p>
+                    </div>
+                    <div>
+                        <strong style="color: #8a2be2;">🔴 Mars Perseverance</strong>
+                        <p>Rover cherchant des signes de vie ancienne sur Mars (2021-)</p>
+                    </div>
+                    <div>
+                        <strong style="color: #8a2be2;">🚀 Voyager 1 & 2</strong>
+                        <p>Dans l'espace interstellaire, lancées en 1977, toujours actives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 4: Navigation Céleste Avancée -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon">⭐</div>
+                <div class="module-title">
+                    <h2>Module 4 : Constellations et Navigation Céleste</h2>
+                    <p>Repérage dans le ciel nocturne et utilisation des étoiles</p>
+                </div>
+            </div>
+
+            <div class="constellation-card">
+                <div class="constellation-header">
+                    <span style="font-size: 2rem;">🐻</span>
+                    <div class="constellation-name">Grande Ourse et Petite Ourse</div>
+                </div>
+                <p><strong>Importance</strong> : Constellations circumpolaires essentielles pour la navigation</p>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Grande Ourse</strong> : 7 étoiles formant un chariot (asterism du Grand Chariot)</li>
+                    <li><strong>Étoile Polaire</strong> : Prolonger 5× la distance entre Merak et Dubhe</li>
+                    <li><strong>Petite Ourse</strong> : L'étoile Polaire (Polaris) est à son extrémité</li>
+                    <li><strong>Navigation</strong> : Polaris indique toujours le Nord (hémisphère nord)</li>
+                    <li><strong>Latitude</strong> : L'angle de Polaris = votre latitude</li>
+                </ul>
+            </div>
+
+            <div class="constellation-card">
+                <div class="constellation-header">
+                    <span style="font-size: 2rem;">🦂</span>
+                    <div class="constellation-name">Scorpion</div>
+                </div>
+                <p><strong>Visibilité</strong> : Constellation d'été (hémisphère nord)</p>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Antarès</strong> : Supergéante rouge, rivale de Mars ("Anti-Arès")</li>
+                    <li><strong>Forme</strong> : Corps et queue de scorpion facilement reconnaissable</li>
+                    <li><strong>Centre galactique</strong> : Pointe vers le centre de la Voie Lactée</li>
+                    <li><strong>M4</strong> : Amas globulaire visible aux jumelles</li>
+                </ul>
+            </div>
+
+            <div class="constellation-card">
+                <div class="constellation-header">
+                    <span style="font-size: 2rem;">🦅</span>
+                    <div class="constellation-name">Triangle d'Été</div>
+                </div>
+                <p><strong>Astérisme</strong> : Trois étoiles brillantes formant un triangle géant</p>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Véga</strong> : Dans la constellation de la Lyre, 5ème étoile la plus brillante</li>
+                    <li><strong>Deneb</strong> : Dans le Cygne, supergéante blanche lointaine</li>
+                    <li><strong>Altaïr</strong> : Dans l'Aigle, étoile rapide (rotation en 10h)</li>
+                    <li><strong>Repère</strong> : Domine le ciel d'été, facile à localiser</li>
+                    <li><strong>Voie Lactée</strong> : Traverse le triangle, spectaculaire à l'œil nu</li>
+                </ul>
+            </div>
+
+            <div class="constellation-card">
+                <div class="constellation-header">
+                    <span style="font-size: 2rem;">🦁</span>
+                    <div class="constellation-name">Lion</div>
+                </div>
+                <p><strong>Visibilité</strong> : Constellation de printemps</p>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Régulus</strong> : Étoile principale, "petit roi" en latin</li>
+                    <li><strong>Forme</strong> : Tête (faucille) et corps du lion</li>
+                    <li><strong>Triplet du Lion</strong> : 3 galaxies visibles (M65, M66, NGC 3628)</li>
+                    <li><strong>Point de repère</strong> : Prolonger la Grande Ourse vers le sud</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quiz Interactif -->
+        <div class="quiz-section">
+            <h2 style="text-align: center; color: #ffd700; margin-bottom: 2rem;">🧪 Quiz de Validation - Niveau Intermédiaire</h2>
+
+            <div id="quiz-container">
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 1 : Les Géantes Gazeuses</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quelle est la planète avec les vents les plus rapides du système solaire ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="a"> Jupiter
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="b"> Saturne
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="c"> Uranus
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q1" value="d"> Neptune ✓
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 2 : Les Éclipses</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quelle est la cause de la couleur rouge de la Lune lors d'une éclipse lunaire totale ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="a"> La Lune se réchauffe
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="b"> La lumière réfractée par l'atmosphère terrestre ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="c"> Le reflet de Mars
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q2" value="d"> La Lune change de composition
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 3 : Les Saisons</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quelle est la vraie cause des saisons sur Terre ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="a"> La distance variable Terre-Soleil
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="b"> L'inclinaison de l'axe terrestre (23,5°) ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="c"> La vitesse de rotation de la Terre
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q3" value="d"> L'activité solaire
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 4 : Espace Profond</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quel est le nom du trou noir supermassif au centre de notre galaxie ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="a"> M87*
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="b"> Sagittarius A* ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="c"> Cygnus X-1
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q4" value="d"> Andromeda Core
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-block" style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3 style="color: #8a2be2;">Question 5 : Navigation Céleste</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">Quelles sont les trois étoiles du Triangle d'Été ?</p>
+                    <div class="quiz-options">
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="a"> Sirius, Bételgeuse, Rigel
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="b"> Véga, Deneb, Altaïr ✓
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="c"> Polaris, Dubhe, Merak
+                        </label>
+                        <label style="display: block; padding: 1rem; background: rgba(138, 43, 226, 0.2); margin: 0.5rem 0; border-radius: 8px; cursor: pointer;">
+                            <input type="radio" name="q5" value="d"> Régulus, Arcturus, Spica
+                        </label>
+                    </div>
+                </div>
+
+                <button onclick="validateQuiz()" style="width: 100%; padding: 1.5rem; background: linear-gradient(135deg, #8a2be2, #6a1b9a); border: none; border-radius: 15px; color: white; font-size: 1.2rem; font-weight: bold; cursor: pointer; margin-top: 2rem;">
+                    ✅ Valider mes réponses
+                </button>
+
+                <div id="quiz-result" style="margin-top: 2rem; padding: 1.5rem; border-radius: 15px; display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation-section">
+            <a href="astronomie-debutant.html" class="nav-button">
+                ⬅️ Niveau Débutant
+            </a>
+            <a href="astronomie-expert.html" class="nav-button">
+                Niveau Expert ➡️
+            </a>
+            <a href="astronomie-parcours-complet.html" class="nav-button">
+                📚 Parcours Complet
+            </a>
+        </div>
+    </main>
+
+    <script src="../../assets/js/animations/animated-background.js"></script>
+    <script>
+        function validateQuiz() {
+            const answers = {
+                q1: 'd',
+                q2: 'b',
+                q3: 'b',
+                q4: 'b',
+                q5: 'b'
+            };
+
+            let score = 0;
+            let total = Object.keys(answers).length;
+
+            for (let question in answers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === answers[question]) {
+                    score++;
+                }
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultDiv = document.getElementById('quiz-result');
+
+            let resultHTML = `
+                <h3 style="color: #ffd700; text-align: center;">Résultat : ${score}/${total} (${percentage}%)</h3>
+            `;
+
+            if (percentage >= 80) {
+                resultHTML += `
+                    <div style="background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 200, 0, 0.1)); padding: 2rem; border-radius: 15px; border: 2px solid rgba(0, 255, 0, 0.5); text-align: center;">
+                        <h2 style="color: #00ff00; margin: 0;">🎉 Félicitations !</h2>
+                        <p style="font-size: 1.2rem; margin-top: 1rem;">Vous avez validé le niveau intermédiaire !</p>
+                        <p>Vous pouvez maintenant passer au niveau Expert.</p>
+                        <a href="astronomie-expert.html" style="display: inline-block; margin-top: 1rem; padding: 1rem 2rem; background: linear-gradient(135deg, #00ff00, #00aa00); color: #000; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                            Niveau Expert ➡️
+                        </a>
+                    </div>
+                `;
+            } else {
+                resultHTML += `
+                    <div style="background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 100, 0, 0.1)); padding: 2rem; border-radius: 15px; border: 2px solid rgba(255, 165, 0, 0.5); text-align: center;">
+                        <h2 style="color: #ffa500; margin: 0;">📚 Continuez vos efforts !</h2>
+                        <p style="font-size: 1.2rem; margin-top: 1rem;">Score minimum requis : 80%</p>
+                        <p>Révisez le contenu et réessayez le quiz.</p>
+                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 1rem 2rem; background: linear-gradient(135deg, #ffa500, #ff8c00); color: #000; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                            🔄 Réessayer
+                        </button>
+                    </div>
+                `;
+            }
+
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>

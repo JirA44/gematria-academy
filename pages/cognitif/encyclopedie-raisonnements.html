@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encyclopédie des 25 Raisonnements | Académie</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; min-height: 100vh; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { color: #ffd700; margin-bottom: 0.5rem; }
+        .back { color: #64b5f6; text-decoration: none; display: inline-block; margin-bottom: 2rem; }
+        .category { margin: 2.5rem 0; padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 15px; }
+        .category h2 { margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255, 215, 0, 0.2); }
+        .reasoning { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 10px; padding: 1.5rem; margin: 1rem 0; }
+        .reasoning h3 { color: #ffd700; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+        .reasoning h3 span { font-size: 1.3rem; }
+        .reasoning p { opacity: 0.9; line-height: 1.6; }
+        .example { background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.9rem; }
+        .use-when { color: #64b5f6; font-size: 0.85rem; margin-top: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/#cognitif" class="back">← Retour au Hub</a>
+
+        <h1>📚 Encyclopédie des 25 Types de Raisonnement</h1>
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem;">Tous les modes de pensée des IA avancées et des meilleurs penseurs humains</p>
+
+        <div class="category">
+            <h2 style="color: #64b5f6;">🔗 Raisonnements Séquentiels</h2>
+
+            <div class="reasoning">
+                <h3><span>1.</span> Chain of Thought</h3>
+                <p>Décomposer le raisonnement en étapes explicites. Chaque étape mène logiquement à la suivante.</p>
+                <div class="example"><strong>Exemple:</strong> "Pour résoudre 17×23: 17×20=340, 17×3=51, donc 340+51=391"</div>
+                <p class="use-when">▶ Utilisez quand: Problèmes multi-étapes, maths, logique complexe</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>2.</span> Step-by-Step (Procédural)</h3>
+                <p>Suivre une procédure définie étape par étape, comme une recette ou un algorithme.</p>
+                <div class="example"><strong>Exemple:</strong> "1) Identifier problème 2) Lister options 3) Évaluer 4) Choisir"</div>
+                <p class="use-when">▶ Utilisez quand: Processus répétables, checklists, protocoles</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>3.</span> Working Backwards</h3>
+                <p>Partir du résultat souhaité et remonter vers le point de départ.</p>
+                <div class="example"><strong>Exemple:</strong> "Pour être millionnaire à 50 ans, je dois avoir X à 40, Y à 30..."</div>
+                <p class="use-when">▶ Utilisez quand: Objectifs long-terme, puzzles, preuves mathématiques</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>4.</span> Means-End Analysis</h3>
+                <p>Identifier l'écart entre état actuel et objectif, puis trouver l'action qui réduit cet écart.</p>
+                <div class="example"><strong>Exemple:</strong> "Gap: pas de clients → Action: pub → Nouveau gap: budget → Action: ..."</div>
+                <p class="use-when">▶ Utilisez quand: Résolution de problèmes, planification projet</p>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 style="color: #81c784;">🌳 Raisonnements Exploratoires</h2>
+
+            <div class="reasoning">
+                <h3><span>5.</span> Tree of Thoughts</h3>
+                <p>Explorer plusieurs branches de possibilités en parallèle, évaluer chacune, garder les meilleures.</p>
+                <div class="example"><strong>Exemple:</strong> "Option A (40% succès) vs Option B (60%) vs Option C..."</div>
+                <p class="use-when">▶ Utilisez quand: Décisions complexes, stratégie, échecs</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>6.</span> Pensée Divergente</h3>
+                <p>Générer un maximum d'idées sans jugement. Quantité avant qualité.</p>
+                <div class="example"><strong>Exemple:</strong> "100 utilisations possibles d'un trombone"</div>
+                <p class="use-when">▶ Utilisez quand: Créativité, innovation, brainstorming</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>7.</span> Pensée Convergente</h3>
+                <p>Réduire les options pour trouver LA meilleure solution. Filtrer, éliminer, converger.</p>
+                <div class="example"><strong>Exemple:</strong> "Parmi ces 20 idées, les 3 meilleures selon X, Y, Z sont..."</div>
+                <p class="use-when">▶ Utilisez quand: Après brainstorming, sélection finale</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>8.</span> Pensée Latérale</h3>
+                <p>Approcher le problème sous un angle totalement différent. "Think outside the box."</p>
+                <div class="example"><strong>Exemple:</strong> "Et si le problème n'était pas X mais Y ?"</div>
+                <p class="use-when">▶ Utilisez quand: Problèmes bloqués, innovation disruptive</p>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 style="color: #ba68c8;">🧠 Raisonnements Logiques Formels</h2>
+
+            <div class="reasoning">
+                <h3><span>9.</span> Raisonnement Déductif</h3>
+                <p>Du général au particulier. Si les prémisses sont vraies, la conclusion est nécessairement vraie.</p>
+                <div class="example"><strong>Exemple:</strong> "Tous les hommes sont mortels. Socrate est un homme. Donc Socrate est mortel."</div>
+                <p class="use-when">▶ Utilisez quand: Preuves, démonstrations, arguments rigoureux</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>10.</span> Raisonnement Inductif</h3>
+                <p>Du particulier au général. Observer des cas, identifier un pattern, généraliser.</p>
+                <div class="example"><strong>Exemple:</strong> "Cygne 1 blanc, cygne 2 blanc... → Tous les cygnes sont blancs (probable)"</div>
+                <p class="use-when">▶ Utilisez quand: Science, statistiques, prédictions</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>11.</span> Raisonnement Abductif</h3>
+                <p>Inférence à la meilleure explication. Observer un effet, deviner la cause la plus probable.</p>
+                <div class="example"><strong>Exemple:</strong> "La pelouse est mouillée → Il a probablement plu" (Sherlock Holmes)</div>
+                <p class="use-when">▶ Utilisez quand: Diagnostic, enquêtes, debugging</p>
+            </div>
+
+            <div class="reasoning">
+                <h3><span>12.</span> Reductio ad Absurdum</h3>
+                <p>Supposer le contraire de ce qu'on veut prouver, montrer que ça mène à une contradiction.</p>
+                <div class="example"><strong>Exemple:</strong> "Supposons √2 rationnel → contradiction → donc √2 irrationnel"</div>
+                <p class="use-when">▶ Utilisez quand: Preuves mathématiques, réfuter des arguments</p>
+            </div>
+        </div>
+
+        <!-- Continuer avec les autres catégories... -->
+        <div style="text-align: center; padding: 2rem; background: rgba(255, 215, 0, 0.1); border-radius: 15px; margin-top: 2rem;">
+            <p style="font-size: 1.1rem;">Cette page contient les 12 premiers raisonnements.</p>
+            <p style="opacity: 0.7; margin-top: 0.5rem;">Les 13 autres (Analogiques, Probabilistes, Critiques, Méta) sont détaillés sur la page d'accueil.</p>
+            <a href="/#cognitif" style="display: inline-block; margin-top: 1rem; background: linear-gradient(135deg, #ffd700, #ff9800); color: #1a1a2e; padding: 1rem 2rem; border-radius: 20px; text-decoration: none; font-weight: bold;">
+                Voir l'Encyclopédie Complète →
+            </a>
+        </div>
+    </div>
+</body>
+</html>
