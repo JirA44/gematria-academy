@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique - Niveau Intermédiaire | Académie des Sagesses</title>
+    <script src="../../assets/js/progression/progression-system.js" defer></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container { max-width: 950px; margin: 0 auto; }
+        h1 { color: #ff9800; margin-bottom: 0.5rem; font-size: 2rem; }
+        h2 { color: #ffb74d; margin: 2rem 0 1rem; font-size: 1.4rem; }
+        .back { color: #64b5f6; text-decoration: none; display: inline-block; margin-bottom: 2rem; font-size: 0.95rem; }
+        .back:hover { text-decoration: underline; }
+        .subtitle { font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem; }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+            transition: border-color 0.3s;
+        }
+        .card:hover { border-color: rgba(255, 152, 0, 0.55); box-shadow: 0 6px 20px rgba(255,152,0,0.15); }
+        .card h3 { color: #ffcc80; margin-bottom: 1rem; font-size: 1.15rem; }
+        ul { padding-left: 1.5rem; line-height: 1.9; }
+        li { margin-bottom: 0.3rem; }
+        .tip {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.2rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        .example {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,152,0,0.2);
+            line-height: 1.7;
+        }
+        .example .label {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
+            color: #ff9800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .fallacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .fallacy-card {
+            background: rgba(244, 67, 54, 0.07);
+            border: 1px solid rgba(244, 67, 54, 0.25);
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s;
+        }
+        .fallacy-card:hover { border-color: rgba(244,67,54,0.5); }
+        .fallacy-card h4 { color: #ef9a9a; margin-bottom: 0.5rem; font-size: 1rem; }
+        .fallacy-card p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.5rem; }
+        .fallacy-card .ex { font-style: italic; font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .truth-table th {
+            background: rgba(255,152,0,0.2);
+            padding: 0.75rem;
+            border-bottom: 2px solid rgba(255,152,0,0.4);
+            text-align: center;
+        }
+        .truth-table td {
+            padding: 0.6rem 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .t { color: #a5d6a7; font-weight: 700; }
+        .f { color: #ef9a9a; font-weight: 700; }
+        /* Quiz */
+        .quiz-box {
+            background: rgba(255,152,0,0.07);
+            border: 2px solid rgba(255,152,0,0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .quiz-box h3 { color: #ff9800; margin-bottom: 1.5rem; }
+        .quiz-question { margin: 1.5rem 0; }
+        .quiz-question h4 { margin-bottom: 0.75rem; font-size: 1rem; }
+        .quiz-options { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+        .quiz-btn {
+            padding: 0.65rem 1.3rem;
+            background: rgba(255,152,0,0.12);
+            border: 2px solid rgba(255,152,0,0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+        }
+        .quiz-btn:hover { background: rgba(255,152,0,0.25); border-color: rgba(255,152,0,0.55); }
+        .quiz-feedback { margin-top: 0.5rem; font-size: 0.92rem; font-style: italic; padding: 0.5rem 0.8rem; border-radius: 8px; display: none; }
+        .nav-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; flex-wrap: wrap; gap: 1rem; }
+        .nav-footer a { display: inline-block; padding: 0.9rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+        .btn-next { background: linear-gradient(135deg, #ff9800, #e65100); color: #fff; box-shadow: 0 4px 15px rgba(255,152,0,0.3); }
+        .btn-next:hover { transform: translateY(-2px); }
+        .btn-prev { color: #64b5f6; border: 1px solid rgba(100,181,246,0.3); }
+        .btn-prev:hover { background: rgba(100,181,246,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/#logique" class="back">← Retour au Hub Logique</a>
+
+        <h1>🌿 Logique Avancée — Niveau Intermédiaire</h1>
+        <p class="subtitle">Fallacies, raisonnement formel, logique propositionnelle et connecteurs logiques.</p>
+
+        <!-- Module 1 : Fallacies / sophismes -->
+        <div class="card">
+            <h3>🚨 1. Les Sophismes (Fallacies) — Erreurs de raisonnement courantes</h3>
+            <p>Un sophisme est un argument qui <em>semble</em> valide mais qui est logiquement incorrect. Les reconnaître est une compétence défensive essentielle.</p>
+
+            <div class="fallacy-grid">
+                <div class="fallacy-card">
+                    <h4>Ad Hominem</h4>
+                    <p>Attaquer la personne plutôt que son argument.</p>
+                    <p class="ex">"Tu dis que le tabac est nocif, mais tu fumes !"</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Homme de Paille</h4>
+                    <p>Déformer l'argument adverse pour le réfuter facilement.</p>
+                    <p class="ex">"Vous voulez réduire le budget militaire ? Vous voulez qu'on soit sans défense !"</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Faux Dilemme</h4>
+                    <p>Présenter deux options comme les seules possibles.</p>
+                    <p class="ex">"Soit tu es avec nous, soit tu es contre nous."</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Appel à l'Autorité</h4>
+                    <p>Utiliser l'opinion d'une autorité hors de son domaine.</p>
+                    <p class="ex">"Ce footballeur dit que ce médicament est efficace."</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Pente Glissante</h4>
+                    <p>Supposer qu'une action entraîne inévitablement une catastrophe.</p>
+                    <p class="ex">"Si on autorise X, bientôt tout sera permis !"</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Post Hoc Ergo Propter Hoc</h4>
+                    <p>Confondre succession et causalité.</p>
+                    <p class="ex">"J'ai mis ce fétiche, puis j'ai gagné. Donc le fétiche m'a fait gagner."</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Appel à la Popularité</h4>
+                    <p>Conclure qu'une chose est vraie parce qu'elle est largement crue.</p>
+                    <p class="ex">"Des milliards de gens y croient, ça doit être vrai."</p>
+                </div>
+                <div class="fallacy-card">
+                    <h4>Généralisation Hâtive</h4>
+                    <p>Tirer une règle générale d'un trop petit échantillon.</p>
+                    <p class="ex">"J'ai rencontré deux Français arrogants, ils sont tous pareils."</p>
+                </div>
+            </div>
+            <div class="tip">
+                💡 Pour identifier un sophisme : isolez la structure de l'argument, puis demandez-vous si la conclusion suit <em>nécessairement</em> des prémisses.
+            </div>
+        </div>
+
+        <!-- Module 2 : Logique propositionnelle -->
+        <div class="card">
+            <h3>⚙️ 2. Logique Propositionnelle — Les Connecteurs Logiques</h3>
+            <p>La logique propositionnelle manipule des propositions (P, Q, R…) reliées par des connecteurs. Chaque proposition est soit vraie (V) soit fausse (F).</p>
+
+            <h4 style="color:#ffcc80; margin: 1.5rem 0 1rem;">Les 5 connecteurs de base</h4>
+            <ul>
+                <li><strong>¬P (NON)</strong> — Négation. Si P est V, ¬P est F.</li>
+                <li><strong>P ∧ Q (ET)</strong> — Conjonction. Vrai seulement si P ET Q sont vrais.</li>
+                <li><strong>P ∨ Q (OU)</strong> — Disjonction. Vrai si au moins l'un est vrai.</li>
+                <li><strong>P → Q (SI…ALORS)</strong> — Implication. Faux seulement si P est vrai et Q est faux.</li>
+                <li><strong>P ↔ Q (SI ET SEULEMENT SI)</strong> — Équivalence. Vrai si P et Q ont la même valeur.</li>
+            </ul>
+
+            <h4 style="color:#ffcc80; margin: 1.5rem 0 1rem;">Table de vérité — Implication (P → Q)</h4>
+            <table class="truth-table">
+                <thead>
+                    <tr>
+                        <th>P</th><th>Q</th><th>P → Q</th><th>Interprétation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="t">V</td><td class="t">V</td><td class="t">V</td><td>Promesse tenue</td></tr>
+                    <tr><td class="t">V</td><td class="f">F</td><td class="f">F</td><td>Promesse brisée ← seul cas faux</td></tr>
+                    <tr><td class="f">F</td><td class="t">V</td><td class="t">V</td><td>Prémisse fausse → tout est "valide"</td></tr>
+                    <tr><td class="f">F</td><td class="f">F</td><td class="t">V</td><td>Prémisse fausse → tout est "valide"</td></tr>
+                </tbody>
+            </table>
+
+            <div class="example">
+                <span class="label">Lecture concrète de P → Q</span>
+                P = "Il pleut"  |  Q = "Je prends mon parapluie"<br>
+                P → Q = "S'il pleut, je prends mon parapluie."<br>
+                <br>
+                Cas FAUX : il pleut (P=V) mais je n'ai pas de parapluie (Q=F) → j'ai menti.
+            </div>
+        </div>
+
+        <!-- Module 3 : Modus Ponens / Tollens -->
+        <div class="card">
+            <h3>🔗 3. Formes Valides Fondamentales</h3>
+
+            <h4 style="color:#ffcc80; margin-bottom:0.75rem;">Modus Ponens (affirmer la prémisse)</h4>
+            <div class="example">
+                <span class="label">Structure</span>
+                P1 : P → Q   (Si P alors Q)<br>
+                P2 : P       (P est vrai)<br>
+                C  : Q       (Donc Q est vrai) ✅
+            </div>
+            <div class="example">
+                <span class="label">Exemple concret</span>
+                P1 : S'il pleut, la route est mouillée.<br>
+                P2 : Il pleut.<br>
+                C  : Donc, la route est mouillée.
+            </div>
+
+            <h4 style="color:#ffcc80; margin: 1.5rem 0 0.75rem;">Modus Tollens (nier la conséquence)</h4>
+            <div class="example">
+                <span class="label">Structure</span>
+                P1 : P → Q   (Si P alors Q)<br>
+                P2 : ¬Q      (Q est faux)<br>
+                C  : ¬P      (Donc P est faux) ✅
+            </div>
+            <div class="example">
+                <span class="label">Exemple concret</span>
+                P1 : Si c'est un mammifère, ça allaite ses petits.<br>
+                P2 : Ça n'allaite pas ses petits.<br>
+                C  : Ce n'est pas un mammifère.
+            </div>
+
+            <h4 style="color:#ef9a9a; margin: 1.5rem 0 0.75rem;">Erreur fréquente : Affirmer le conséquent (INVALIDE)</h4>
+            <div class="example">
+                <span class="label">Structure invalide ❌</span>
+                P1 : P → Q<br>
+                P2 : Q       ← on affirme la conséquence<br>
+                C  : P       ← INVALIDE !
+            </div>
+            <div class="example">
+                <span class="label">Exemple d'erreur</span>
+                P1 : S'il pleut, le sol est mouillé.<br>
+                P2 : Le sol est mouillé.<br>
+                C  : Donc il pleut. ← FAUX (quelqu'un a pu arroser !)
+            </div>
+        </div>
+
+        <!-- Module 4 : Paradoxes classiques -->
+        <div class="card">
+            <h3>🌀 4. Paradoxes Logiques Classiques</h3>
+            <p>Les paradoxes montrent les limites de la logique formelle et ont conduit à des révolutions mathématiques.</p>
+
+            <ul>
+                <li>
+                    <strong>Paradoxe du Menteur</strong> — "Cette phrase est fausse."
+                    <br><small style="opacity:0.7">Si elle est vraie, elle est fausse. Si elle est fausse, elle est vraie. → Auto-référence impossible.</small>
+                </li>
+                <li style="margin-top:0.8rem;">
+                    <strong>Paradoxe du Barbier (Russell)</strong> — "Le barbier rase tous ceux qui ne se rasent pas eux-mêmes. Qui rase le barbier ?"
+                    <br><small style="opacity:0.7">A conduit Russell à reformuler les fondements des mathématiques (théorie des types).</small>
+                </li>
+                <li style="margin-top:0.8rem;">
+                    <strong>Paradoxe de Zénon (Achille et la Tortue)</strong> — Achille ne peut jamais rattraper la tortue si elle a de l'avance.
+                    <br><small style="opacity:0.7">Résolu par le calcul infinitésimal : somme infinie convergente.</small>
+                </li>
+                <li style="margin-top:0.8rem;">
+                    <strong>Paradoxe du Sorite (tas de sable)</strong> — Enlever un grain d'un tas ne détruit pas le tas. Alors combien de grains font un tas ?
+                    <br><small style="opacity:0.7">Illustre le problème de la vagueness (logique floue).</small>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-box">
+            <h3>✅ Quiz — Niveau Intermédiaire</h3>
+
+            <div class="quiz-question" id="mq1">
+                <h4>1. "Si tu travailles, tu réussiras. Tu n'as pas réussi. Donc tu n'as pas travaillé." — Quelle forme est-ce ?</h4>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="midQuiz('mq1', this, false, 'Non — le Modus Ponens affirme la prémisse (P → Q, P, donc Q).')">Modus Ponens</button>
+                    <button class="quiz-btn" onclick="midQuiz('mq1', this, true,  'Exact ! P → Q, ¬Q, donc ¬P : c\'est le Modus Tollens.')">Modus Tollens</button>
+                    <button class="quiz-btn" onclick="midQuiz('mq1', this, false, 'Non — affirmer le conséquent est une erreur logique.')">Affirmer le conséquent</button>
+                </div>
+                <div class="quiz-feedback" id="mq1-feedback"></div>
+            </div>
+
+            <div class="quiz-question" id="mq2">
+                <h4>2. Quel connecteur logique est FAUX seulement quand P est vrai et Q est faux ?</h4>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="midQuiz('mq2', this, false, 'Non — P ∧ Q (ET) est faux dès que l\'un est faux.')">P ∧ Q (ET)</button>
+                    <button class="quiz-btn" onclick="midQuiz('mq2', this, true,  'Parfait ! L\'implication P → Q n\'est fausse que si P est vrai et Q est faux.')">P → Q (Implication)</button>
+                    <button class="quiz-btn" onclick="midQuiz('mq2', this, false, 'Non — P ∨ Q (OU) est faux seulement si P ET Q sont tous les deux faux.')">P ∨ Q (OU)</button>
+                </div>
+                <div class="quiz-feedback" id="mq2-feedback"></div>
+            </div>
+
+            <div class="quiz-question" id="mq3">
+                <h4>3. "Tu es contre notre projet d'aide, donc tu te moques des gens dans le besoin." — Quel sophisme ?</h4>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="midQuiz('mq3', this, false, 'Non — l\'ad hominem attaque la personne, pas son argument.')">Ad Hominem</button>
+                    <button class="quiz-btn" onclick="midQuiz('mq3', this, true,  'Exact ! L\'argument adverse est déformé (on peut critiquer un projet sans se moquer des gens) : c\'est l\'homme de paille.')">Homme de Paille</button>
+                    <button class="quiz-btn" onclick="midQuiz('mq3', this, false, 'Non — la pente glissante suppose une cascade catastrophique.')">Pente Glissante</button>
+                </div>
+                <div class="quiz-feedback" id="mq3-feedback"></div>
+            </div>
+        </div>
+
+        <div class="nav-footer">
+            <a href="logique-debutant.html" class="btn-prev">← Débutant</a>
+            <a href="logique-expert.html" class="btn-next">Niveau Expert →</a>
+        </div>
+    </div>
+
+    <footer style="text-align:center; margin-top:3rem; padding:2rem; opacity:0.6; font-size:0.85rem; border-top:1px solid rgba(255,152,0,0.15);">
+        <p>© 2026 Académie des Sagesses Anciennes — Logique</p>
+    </footer>
+
+    <script>
+        var midScore = 0;
+        var midTotal = 3;
+        var midAnswered = 0;
+
+        function midQuiz(qId, btn, isCorrect, message) {
+            var container = document.getElementById(qId);
+            if (!container) return;
+            var buttons = container.querySelectorAll('.quiz-btn');
+            buttons.forEach(function(b) { b.disabled = true; b.style.cursor = 'default'; b.style.opacity = '0.65'; });
+            btn.disabled = false; btn.style.opacity = '1';
+            if (isCorrect) {
+                btn.style.background = 'rgba(76,175,80,0.3)'; btn.style.borderColor = '#4caf50'; btn.style.color = '#a5d6a7';
+            } else {
+                btn.style.background = 'rgba(244,67,54,0.2)'; btn.style.borderColor = '#f44336'; btn.style.color = '#ef9a9a';
+            }
+            btn.disabled = true;
+            var fb = document.getElementById(qId + '-feedback');
+            if (fb) {
+                fb.textContent = (isCorrect ? '✅ ' : '❌ ') + message;
+                fb.style.display = 'block';
+                fb.style.color = isCorrect ? '#a5d6a7' : '#ef9a9a';
+                fb.style.background = isCorrect ? 'rgba(76,175,80,0.1)' : 'rgba(244,67,54,0.1)';
+                fb.style.borderLeft = '3px solid ' + (isCorrect ? '#4caf50' : '#f44336');
+            }
+            if (isCorrect && typeof addXP === 'function') addXP(15, 'Quiz logique intermédiaire');
+            if (isCorrect) midScore++;
+            midAnswered++;
+            if (midAnswered >= midTotal) {
+                if (midScore >= 2 && typeof GematriaProgression !== 'undefined' && GematriaProgression.completeDomainLevel) {
+                    GematriaProgression.completeDomainLevel('logique', 'intermediaire', 200);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

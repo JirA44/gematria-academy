@@ -1,0 +1,19 @@
+{
+  "name": "gematria-academy",
+  "version": "1.1.0",
+  "description": "Académie des Sagesses — Plateforme d'apprentissage progressif (astronomie, logique, cognitif)",
+  "main": "index.html",
+  "scripts": {
+    "deploy": "npx wrangler pages deploy . --project-name=gematria-academy --commit-dirty=true"
+  },
+  "keywords": [
+    "education",
+    "astronomie",
+    "logique",
+    "cognitif",
+    "academie"
+  ],
+  "author": "Hugo",
+  "license": "UNLICENSED",
+  "private": true
+}

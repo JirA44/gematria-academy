@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/css/animations/animated-background.css">
     <link rel="stylesheet" href="../../assets/css/animations/bleus-cosmiques.css">
     <script src="../../assets/js/animations/animated-background.js" defer></script>
+    <script src="../../assets/js/progression/progression-system.js" defer></script>
     <style>
         .cosmos-hero {
             background: linear-gradient(135deg, rgba(0, 20, 40, 0.95), rgba(10, 30, 60, 0.95));
@@ -589,31 +590,37 @@
                 ✅ Quiz - Testez vos connaissances !
             </h3>
 
-            <div style="margin: 1.5rem 0;">
+            <!-- Q1 -->
+            <div style="margin: 1.5rem 0;" id="q1">
                 <h4>1. Quelle est la planète la plus proche du Soleil ?</h4>
-                <div style="margin: 1rem 0;">
-                    <button onclick="alert('❌ Non, c\'est Mercure !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Vénus</button>
-                    <button onclick="alert('✅ Bravo ! Mercure est bien la plus proche du Soleil.')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Mercure</button>
-                    <button onclick="alert('❌ Non, c\'est Mercure !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Mars</button>
+                <div style="margin: 1rem 0;" class="quiz-options">
+                    <button class="quiz-btn" onclick="answerQuiz('q1', this, false, 'Non, la plus proche est Mercure !')">Vénus</button>
+                    <button class="quiz-btn" onclick="answerQuiz('q1', this, true,  'Bravo ! Mercure est bien la plus proche du Soleil.')">Mercure</button>
+                    <button class="quiz-btn" onclick="answerQuiz('q1', this, false, 'Non, la plus proche est Mercure !')">Mars</button>
                 </div>
+                <div class="quiz-feedback" id="q1-feedback"></div>
             </div>
 
-            <div style="margin: 1.5rem 0;">
+            <!-- Q2 -->
+            <div style="margin: 1.5rem 0;" id="q2">
                 <h4>2. Combien de temps met la Terre pour faire le tour du Soleil ?</h4>
-                <div style="margin: 1rem 0;">
-                    <button onclick="alert('❌ Non, c\'est 365,25 jours !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">30 jours</button>
-                    <button onclick="alert('✅ Exact ! 365,25 jours (d\'où les années bissextiles).')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">365,25 jours</button>
-                    <button onclick="alert('❌ Non, c\'est 365,25 jours !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">500 jours</button>
+                <div style="margin: 1rem 0;" class="quiz-options">
+                    <button class="quiz-btn" onclick="answerQuiz('q2', this, false, 'Non, c\'est 365,25 jours !')">30 jours</button>
+                    <button class="quiz-btn" onclick="answerQuiz('q2', this, true,  'Exact ! 365,25 jours, d\'où les années bissextiles.')">365,25 jours</button>
+                    <button class="quiz-btn" onclick="answerQuiz('q2', this, false, 'Non, c\'est 365,25 jours !')">500 jours</button>
                 </div>
+                <div class="quiz-feedback" id="q2-feedback"></div>
             </div>
 
-            <div style="margin: 1.5rem 0;">
+            <!-- Q3 -->
+            <div style="margin: 1.5rem 0;" id="q3">
                 <h4>3. Quelle est la couleur de Mars ?</h4>
-                <div style="margin: 1rem 0;">
-                    <button onclick="alert('❌ Non, Mars est rouge !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Bleue</button>
-                    <button onclick="alert('✅ Parfait ! Mars est rouge à cause de l\'oxyde de fer.')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Rouge</button>
-                    <button onclick="alert('❌ Non, Mars est rouge !')" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(100, 181, 246, 0.2); border: 2px solid rgba(100, 181, 246, 0.4); border-radius: 10px; cursor: pointer;">Verte</button>
+                <div style="margin: 1rem 0;" class="quiz-options">
+                    <button class="quiz-btn" onclick="answerQuiz('q3', this, false, 'Non, Mars est rouge !')">Bleue</button>
+                    <button class="quiz-btn" onclick="answerQuiz('q3', this, true,  'Parfait ! Mars est rouge à cause de l\'oxyde de fer.')">Rouge</button>
+                    <button class="quiz-btn" onclick="answerQuiz('q3', this, false, 'Non, Mars est rouge !')">Verte</button>
                 </div>
+                <div class="quiz-feedback" id="q3-feedback"></div>
             </div>
 
             <div style="text-align: center; margin-top: 2rem;">
@@ -625,7 +632,7 @@
     </main>
 
     <footer>
-        <p>© 2025 Académie des Sagesses Anciennes - Astronomie 🌌</p>
+        <p>© 2026 Académie des Sagesses Anciennes - Astronomie 🌌</p>
         <p style="margin-top: 0.5rem; opacity: 0.8;">
             <a href="../../index.html" style="color: inherit; text-decoration: none;">🏠 Accueil</a> •
             <a href="astronomie-parcours-complet.html" style="color: inherit; text-decoration: none;">📜 Parcours Complet</a>
@@ -645,6 +652,65 @@
                     star.style.animationDelay = `${Math.random() * 3}s`;
                     sky.appendChild(star);
                 }
+            }
+        }
+
+        // Quiz score tracking
+        var quizScore = 0;
+        var quizTotal = 3;
+        var quizAnswered = 0;
+
+        // Inline quiz feedback — no alert()
+        function answerQuiz(questionId, btn, isCorrect, message) {
+            const container = document.getElementById(questionId);
+            if (!container) return;
+            // Disable all buttons for this question
+            const buttons = container.querySelectorAll('.quiz-btn');
+            buttons.forEach(function(b) {
+                b.disabled = true;
+                b.style.cursor = 'default';
+                b.style.opacity = '0.7';
+            });
+            // Highlight chosen button
+            btn.disabled = false; // re-enable briefly for styling
+            btn.style.opacity = '1';
+            if (isCorrect) {
+                btn.style.background = 'rgba(76, 175, 80, 0.35)';
+                btn.style.borderColor = '#4caf50';
+                btn.style.color = '#a5d6a7';
+            } else {
+                btn.style.background = 'rgba(244, 67, 54, 0.25)';
+                btn.style.borderColor = '#f44336';
+                btn.style.color = '#ef9a9a';
+            }
+            btn.disabled = true;
+            // Show feedback
+            const fb = document.getElementById(questionId + '-feedback');
+            if (fb) {
+                fb.textContent = (isCorrect ? '✅ ' : '❌ ') + message;
+                fb.style.display = 'block';
+                fb.style.marginTop = '0.5rem';
+                fb.style.fontSize = '0.95rem';
+                fb.style.fontStyle = 'italic';
+                fb.style.color = isCorrect ? '#a5d6a7' : '#ef9a9a';
+                fb.style.padding = '0.5rem 0.8rem';
+                fb.style.borderRadius = '8px';
+                fb.style.background = isCorrect ? 'rgba(76,175,80,0.1)' : 'rgba(244,67,54,0.1)';
+                fb.style.borderLeft = '3px solid ' + (isCorrect ? '#4caf50' : '#f44336');
+            }
+            // Award XP if correct
+            if (isCorrect && typeof addXP === 'function') addXP(10, 'Quiz astronomie débutant');
+            // Track score
+            if (isCorrect) quizScore++;
+            quizAnswered++;
+            if (quizAnswered >= quizTotal) {
+                checkQuizCompletion();
+            }
+        }
+
+        function checkQuizCompletion() {
+            if (quizScore >= 2 && typeof GematriaProgression !== 'undefined' && GematriaProgression.completeDomainLevel) {
+                GematriaProgression.completeDomainLevel('astronomie', 'debutant', 100);
             }
         }
 

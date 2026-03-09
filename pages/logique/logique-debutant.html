@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique - Niveau Débutant | Académie des Sagesses</title>
+    <script src="../../assets/js/progression/progression-system.js" defer></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #ff9800; margin-bottom: 0.5rem; font-size: 2rem; }
+        h2 { color: #ffb74d; margin: 2rem 0 1rem; font-size: 1.4rem; }
+        .back {
+            color: #64b5f6;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .back:hover { text-decoration: underline; }
+        .subtitle { font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem; }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(255, 152, 0, 0.55);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.15);
+        }
+        .card h3 { color: #ffcc80; margin-bottom: 1rem; font-size: 1.15rem; }
+        ul { padding-left: 1.5rem; line-height: 1.9; }
+        li { margin-bottom: 0.3rem; }
+        .tip {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.2rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        .example {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.92rem;
+            border: 1px solid rgba(255, 152, 0, 0.2);
+            line-height: 1.7;
+        }
+        .example .label {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
+            color: #ff9800;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .schema-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .schema-step {
+            background: rgba(255, 152, 0, 0.12);
+            border: 1px solid rgba(255, 152, 0, 0.35);
+            border-radius: 10px;
+            padding: 0.7rem 1.2rem;
+            text-align: center;
+            min-width: 100px;
+        }
+        .arrow { font-size: 1.4rem; color: #ff9800; }
+        /* Quiz */
+        .quiz-box {
+            background: rgba(255, 152, 0, 0.07);
+            border: 2px solid rgba(255, 152, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .quiz-box h3 { color: #ff9800; margin-bottom: 1.5rem; }
+        .quiz-question { margin: 1.5rem 0; }
+        .quiz-question h4 { margin-bottom: 0.75rem; font-size: 1rem; }
+        .quiz-options { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+        .quiz-btn {
+            padding: 0.65rem 1.3rem;
+            background: rgba(255, 152, 0, 0.12);
+            border: 2px solid rgba(255, 152, 0, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+        }
+        .quiz-btn:hover { background: rgba(255, 152, 0, 0.25); border-color: rgba(255, 152, 0, 0.55); }
+        .quiz-feedback {
+            margin-top: 0.5rem;
+            font-size: 0.92rem;
+            font-style: italic;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .nav-footer a {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-next {
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+        .btn-next:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,152,0,0.45); }
+        .btn-back { color: #64b5f6; border: 1px solid rgba(100,181,246,0.3); }
+        .btn-back:hover { background: rgba(100,181,246,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/#logique" class="back">← Retour au Hub Logique</a>
+
+        <h1>🌱 Logique Formelle — Niveau Débutant</h1>
+        <p class="subtitle">Maîtrisez les bases du raisonnement : syllogismes, déduction, induction et abduction.</p>
+
+        <!-- Module 1 : Qu'est-ce que la logique ? -->
+        <div class="card">
+            <h3>🧩 1. Qu'est-ce que la logique ?</h3>
+            <p>La logique est l'étude des règles du raisonnement <strong>valide</strong>. Elle permet de distinguer les arguments corrects des arguments fallacieux, indépendamment de leur contenu.</p>
+            <ul>
+                <li><strong>Argument</strong> : Ensemble de propositions dont l'une (la conclusion) est censée découler des autres (les prémisses).</li>
+                <li><strong>Validité</strong> : Un argument est valide si la conclusion suit <em>nécessairement</em> des prémisses.</li>
+                <li><strong>Solidité</strong> : Valide + prémisses vraies = argument solide.</li>
+                <li><strong>Proposition</strong> : Énoncé pouvant être vrai ou faux (ex : "Il pleut").</li>
+            </ul>
+            <div class="tip">
+                💡 Un argument valide avec de fausses prémisses peut mener à une fausse conclusion. La logique garantit la forme, pas le contenu.
+            </div>
+        </div>
+
+        <!-- Module 2 : Le syllogisme -->
+        <div class="card">
+            <h3>🏛️ 2. Le Syllogisme (Aristote ~350 av. J.-C.)</h3>
+            <p>Le syllogisme est la forme la plus ancienne de raisonnement formel. Il comporte trois parties :</p>
+            <ul>
+                <li><strong>Prémisse majeure</strong> : Règle générale</li>
+                <li><strong>Prémisse mineure</strong> : Cas particulier</li>
+                <li><strong>Conclusion</strong> : Ce qui en découle</li>
+            </ul>
+
+            <div class="example">
+                <span class="label">Syllogisme classique</span>
+                P1 (majeure)  : Tous les humains sont mortels.<br>
+                P2 (mineure)  : Socrate est un humain.<br>
+                C  (conclusion): Donc, Socrate est mortel.
+            </div>
+
+            <div class="example">
+                <span class="label">Syllogisme avec animaux</span>
+                P1 : Tous les mammifères sont des vertébrés.<br>
+                P2 : Le dauphin est un mammifère.<br>
+                C  : Donc, le dauphin est un vertébré.
+            </div>
+
+            <h4 style="color: #ffcc80; margin: 1.5rem 0 0.75rem;">Syllogismes invalides (pièges courants)</h4>
+            <div class="example">
+                <span class="label">Erreur de la conversion (INVALIDE)</span>
+                P1 : Tous les chiens sont des animaux.<br>
+                P2 : Tous les chats sont des animaux.<br>
+                C  : Donc, tous les chiens sont des chats. ❌<br>
+                <br>
+                → Erreur : "Tous les A sont B" ne signifie pas "Tous les B sont A".
+            </div>
+        </div>
+
+        <!-- Module 3 : Déduction -->
+        <div class="card">
+            <h3>🎯 3. Le Raisonnement Déductif</h3>
+            <p>La déduction va du <strong>général au particulier</strong>. Si les prémisses sont vraies et le raisonnement valide, la conclusion est <em>certaine</em>.</p>
+
+            <div class="schema-box">
+                <div class="schema-step">Règle générale<br><small style="opacity:0.7">P1</small></div>
+                <span class="arrow">+</span>
+                <div class="schema-step">Cas particulier<br><small style="opacity:0.7">P2</small></div>
+                <span class="arrow">→</span>
+                <div class="schema-step" style="border-color: #4caf50; background: rgba(76,175,80,0.12);">Conclusion certaine<br><small style="opacity:0.7">C</small></div>
+            </div>
+
+            <div class="example">
+                <span class="label">Exemple mathématique</span>
+                P1 : Si un nombre est divisible par 4, il est divisible par 2.<br>
+                P2 : 12 est divisible par 4.<br>
+                C  : Donc, 12 est divisible par 2. ✅ (Certain)
+            </div>
+
+            <ul>
+                <li><strong>Avantage</strong> : Certitude absolue si les prémisses sont vraies.</li>
+                <li><strong>Limite</strong> : On ne découvre rien de "nouveau" — la conclusion est contenue dans les prémisses.</li>
+                <li><strong>Usage</strong> : Mathématiques, droit, programmation.</li>
+            </ul>
+        </div>
+
+        <!-- Module 4 : Induction -->
+        <div class="card">
+            <h3>🔬 4. Le Raisonnement Inductif</h3>
+            <p>L'induction va du <strong>particulier au général</strong>. Elle génère des règles générales à partir d'observations. La conclusion est <em>probable</em>, jamais certaine.</p>
+
+            <div class="schema-box">
+                <div class="schema-step">Observations<br><small style="opacity:0.7">faits</small></div>
+                <span class="arrow">→</span>
+                <div class="schema-step" style="border-color: #ff9800; background: rgba(255,152,0,0.1);">Règle générale probable<br><small style="opacity:0.7">C</small></div>
+            </div>
+
+            <div class="example">
+                <span class="label">Exemple classique</span>
+                Observation 1 : Ce cygne est blanc.<br>
+                Observation 2 : Ce cygne est blanc.<br>
+                Observation 3 : Ce cygne est blanc.<br>
+                …<br>
+                Conclusion    : Tous les cygnes sont blancs. (Probable mais FAUX — il existe des cygnes noirs en Australie)
+            </div>
+
+            <div class="example">
+                <span class="label">Usage scientifique</span>
+                Obs. 1-100    : Ce médicament réduit la fièvre chez 100 patients.<br>
+                Conclusion    : Ce médicament est efficace contre la fièvre. (Probable, à confirmer)
+            </div>
+
+            <ul>
+                <li><strong>Avantage</strong> : Permet de formuler des hypothèses et de progresser.</li>
+                <li><strong>Limite</strong> : Un seul contre-exemple suffit à réfuter la règle (Karl Popper : "falsifiabilité").</li>
+                <li><strong>Usage</strong> : Science empirique, épidémiologie, machine learning.</li>
+            </ul>
+            <div class="tip">
+                💡 La science fonctionne par induction + falsification : on cherche des contre-exemples pour tester les théories.
+            </div>
+        </div>
+
+        <!-- Module 5 : Abduction -->
+        <div class="card">
+            <h3>🕵️ 5. Le Raisonnement Abductif</h3>
+            <p>L'abduction cherche la <strong>meilleure explication possible</strong> à un fait observé. C'est le raisonnement du détective.</p>
+
+            <div class="schema-box">
+                <div class="schema-step">Fait observé<br><small style="opacity:0.7">surprenant</small></div>
+                <span class="arrow">→</span>
+                <div class="schema-step" style="border-color: #9c27b0; background: rgba(156,39,176,0.1);">Meilleure explication<br><small style="opacity:0.7">hypothèse</small></div>
+            </div>
+
+            <div class="example">
+                <span class="label">Sherlock Holmes style</span>
+                Observation : Le sol est mouillé.<br>
+                Explication 1 : Il a plu. (probable)<br>
+                Explication 2 : Un tuyau a éclaté. (possible)<br>
+                Explication 3 : Quelqu'un a renversé de l'eau. (moins probable)<br>
+                Abduction    : La meilleure explication → il a plu.
+            </div>
+
+            <ul>
+                <li><strong>Utilisé par</strong> : Médecins (diagnostic), détectives, scientifiques.</li>
+                <li><strong>Avantage</strong> : Permet d'agir rapidement avec des informations incomplètes.</li>
+                <li><strong>Limite</strong> : La "meilleure" explication peut être fausse.</li>
+            </ul>
+        </div>
+
+        <!-- Comparatif des 3 raisonnements -->
+        <div class="card">
+            <h3>📊 6. Comparatif : Déduction / Induction / Abduction</h3>
+            <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                <thead>
+                    <tr>
+                        <th style="padding:0.75rem; text-align:left; background:rgba(255,152,0,0.2); border-bottom:2px solid rgba(255,152,0,0.4);">Type</th>
+                        <th style="padding:0.75rem; text-align:left; background:rgba(255,152,0,0.2); border-bottom:2px solid rgba(255,152,0,0.4);">Direction</th>
+                        <th style="padding:0.75rem; text-align:left; background:rgba(255,152,0,0.2); border-bottom:2px solid rgba(255,152,0,0.4);">Certitude</th>
+                        <th style="padding:0.75rem; text-align:left; background:rgba(255,152,0,0.2); border-bottom:2px solid rgba(255,152,0,0.4);">Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);"><strong style="color:#64b5f6;">Déduction</strong></td>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);">Général → Particulier</td>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);">Certaine (si prémisses vraies)</td>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);">Maths, droit</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);"><strong style="color:#ff9800;">Induction</strong></td>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);">Particulier → Général</td>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);">Probable (jamais certaine)</td>
+                        <td style="padding:0.65rem; border-bottom:1px solid rgba(255,255,255,0.07);">Science, IA</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.65rem;"><strong style="color:#ce93d8;">Abduction</strong></td>
+                        <td style="padding:0.65rem;">Observation → Hypothèse</td>
+                        <td style="padding:0.65rem;">Plausible (meilleure explication)</td>
+                        <td style="padding:0.65rem;">Diagnostic, investigation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-box">
+            <h3>✅ Quiz — Testez vos connaissances</h3>
+
+            <div class="quiz-question" id="lq1">
+                <h4>1. "Tous les oiseaux ont des plumes. Robin est un oiseau. Donc Robin a des plumes." — Quel type de raisonnement est-ce ?</h4>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="logicQuiz('lq1', this, false, 'Non — l\'induction va du particulier au général.')">Induction</button>
+                    <button class="quiz-btn" onclick="logicQuiz('lq1', this, true,  'Exact ! Règle générale + cas particulier = conclusion certaine : c\'est la déduction.')">Déduction</button>
+                    <button class="quiz-btn" onclick="logicQuiz('lq1', this, false, 'Non — l\'abduction cherche la meilleure explication d\'un fait observé.')">Abduction</button>
+                </div>
+                <div class="quiz-feedback" id="lq1-feedback"></div>
+            </div>
+
+            <div class="quiz-question" id="lq2">
+                <h4>2. Un médecin voit un patient avec de la fièvre, des frissons et une toux. Il dit "Probablement une grippe". C'est …</h4>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="logicQuiz('lq2', this, false, 'Non — la déduction est certaine; ici le médecin formule une hypothèse.')">Déduction</button>
+                    <button class="quiz-btn" onclick="logicQuiz('lq2', this, false, 'Non — l\'induction généralise à partir de nombreuses observations.')">Induction</button>
+                    <button class="quiz-btn" onclick="logicQuiz('lq2', this, true,  'Parfait ! Le médecin cherche la meilleure explication aux symptômes : c\'est l\'abduction.')">Abduction</button>
+                </div>
+                <div class="quiz-feedback" id="lq2-feedback"></div>
+            </div>
+
+            <div class="quiz-question" id="lq3">
+                <h4>3. Dans un syllogisme valide, que se passe-t-il si l'une des prémisses est fausse ?</h4>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="logicQuiz('lq3', this, false, 'Pas forcément — la conclusion peut aussi être fausse.')">La conclusion est toujours vraie</button>
+                    <button class="quiz-btn" onclick="logicQuiz('lq3', this, true,  'Correct ! La validité garantit la forme, pas la vérité. Une fausse prémisse peut mener à une fausse conclusion.')">La conclusion peut être fausse</button>
+                    <button class="quiz-btn" onclick="logicQuiz('lq3', this, false, 'Non — le syllogisme reste valide formellement même avec de fausses prémisses.')">Le syllogisme devient invalide</button>
+                </div>
+                <div class="quiz-feedback" id="lq3-feedback"></div>
+            </div>
+        </div>
+
+        <div class="nav-footer">
+            <a href="/#logique" class="btn-back">← Retour au Hub</a>
+            <a href="logique-intermediaire.html" class="btn-next">Niveau Intermédiaire →</a>
+        </div>
+    </div>
+
+    <footer style="text-align:center; margin-top:3rem; padding:2rem; opacity:0.6; font-size:0.85rem; border-top:1px solid rgba(255,152,0,0.15);">
+        <p>© 2026 Académie des Sagesses Anciennes — Logique</p>
+    </footer>
+
+    <script>
+        var logicScore = 0;
+        var logicTotal = 3;
+        var logicAnswered = 0;
+
+        function logicQuiz(qId, btn, isCorrect, message) {
+            var container = document.getElementById(qId);
+            if (!container) return;
+            var buttons = container.querySelectorAll('.quiz-btn');
+            buttons.forEach(function(b) {
+                b.disabled = true;
+                b.style.cursor = 'default';
+                b.style.opacity = '0.65';
+            });
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            if (isCorrect) {
+                btn.style.background = 'rgba(76,175,80,0.3)';
+                btn.style.borderColor = '#4caf50';
+                btn.style.color = '#a5d6a7';
+            } else {
+                btn.style.background = 'rgba(244,67,54,0.2)';
+                btn.style.borderColor = '#f44336';
+                btn.style.color = '#ef9a9a';
+            }
+            btn.disabled = true;
+            var fb = document.getElementById(qId + '-feedback');
+            if (fb) {
+                fb.textContent = (isCorrect ? '✅ ' : '❌ ') + message;
+                fb.style.display = 'block';
+                fb.style.color = isCorrect ? '#a5d6a7' : '#ef9a9a';
+                fb.style.background = isCorrect ? 'rgba(76,175,80,0.1)' : 'rgba(244,67,54,0.1)';
+                fb.style.borderLeft = '3px solid ' + (isCorrect ? '#4caf50' : '#f44336');
+            }
+            if (isCorrect && typeof addXP === 'function') addXP(10, 'Quiz logique débutant');
+            if (isCorrect) logicScore++;
+            logicAnswered++;
+            if (logicAnswered >= logicTotal) {
+                if (logicScore >= 2 && typeof GematriaProgression !== 'undefined' && GematriaProgression.completeDomainLevel) {
+                    GematriaProgression.completeDomainLevel('logique', 'debutant', 100);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

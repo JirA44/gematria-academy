@@ -1,0 +1,137 @@
+/* ============================================================
+   Gematria Academy — Cosmic Header Styles
+   © 2026 Académie des Sagesses
+   ============================================================ */
+
+/* Animated starfield header background */
+header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,
+        rgba(10, 10, 30, 0.97) 0%,
+        rgba(26, 26, 46, 0.95) 50%,
+        rgba(15, 52, 96, 0.9) 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-bottom: 2px solid rgba(138, 43, 226, 0.5);
+}
+
+/* Subtle star dots via pseudo-element */
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 20% 85%, rgba(200,180,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.6) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Nebula glow */
+header::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 70%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+header > * {
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    background: linear-gradient(135deg, #ffd700 0%, #e040fb 50%, #64b5f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    margin-bottom: 0.75rem;
+}
+
+header p.subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumb a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.breadcrumb span {
+    margin: 0 0.4rem;
+}
+
+/* Level badge in header */
+.header-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    border: 2px solid currentColor;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.header-badge.level-debutant {
+    color: #81c784;
+    border-color: #81c784;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.header-badge.level-intermediaire {
+    color: #ffb74d;
+    border-color: #ffb74d;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.header-badge.level-expert {
+    color: #f48fb1;
+    border-color: #f48fb1;
+    background: rgba(233, 30, 99, 0.1);
+}
+
+/* XP counter in header */
+.header-xp {
+    font-size: 0.9rem;
+    color: rgba(255, 215, 0, 0.8);
+    margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    header p.subtitle { font-size: 1rem; }
+}

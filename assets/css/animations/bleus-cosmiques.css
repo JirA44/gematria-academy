@@ -1,0 +1,160 @@
+/* ============================================================
+   Gematria Academy — Bleus Cosmiques (Astronomy Color Theme)
+   Palette dominante : bleus profonds + violet + or
+   © 2026 Académie des Sagesses
+   ============================================================ */
+
+/* Overrides for astronomie pages — blue cosmic palette */
+:root {
+    --cosmos-blue-dark:   #0a1628;
+    --cosmos-blue-mid:    #1a3a6e;
+    --cosmos-blue-light:  #64b5f6;
+    --cosmos-blue-bright: #2196f3;
+    --cosmos-violet:      #8a2be2;
+    --cosmos-gold:        #ffd700;
+    --cosmos-orange:      #ffa726;
+    --cosmos-cyan:        #4ecdc4;
+    --cosmos-nebula:      rgba(33, 150, 243, 0.15);
+}
+
+/* Body — deep space tint for astro pages */
+body.astro-page {
+    background: linear-gradient(160deg,
+        #030514 0%,
+        #0a0f2e 30%,
+        #0d1f3c 60%,
+        #1a1a2e 100%) fixed;
+}
+
+/* Section / module cards — blue tint */
+.section-category {
+    border-color: rgba(100, 181, 246, 0.3);
+    background: linear-gradient(135deg,
+        rgba(10, 22, 40, 0.7) 0%,
+        rgba(26, 58, 110, 0.2) 100%);
+}
+
+/* Glowing text titles — cosmique */
+.cosmic-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffd700, #64b5f6, #e040fb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+/* Glowing borders for special boxes */
+.cosmos-glow {
+    box-shadow: 0 0 25px rgba(100, 181, 246, 0.25),
+                0 0 50px rgba(100, 181, 246, 0.1),
+                inset 0 0 30px rgba(33, 150, 243, 0.05);
+}
+
+/* Deep space card */
+.deep-space-card {
+    background: linear-gradient(135deg,
+        rgba(3, 5, 20, 0.8) 0%,
+        rgba(26, 58, 110, 0.3) 100%);
+    border: 1px solid rgba(100, 181, 246, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.deep-space-card:hover {
+    border-color: rgba(100, 181, 246, 0.5);
+    box-shadow: 0 8px 30px rgba(33, 150, 243, 0.2);
+    transform: translateY(-4px);
+}
+
+/* Star sparkle — decorative inline icon */
+.sparkle {
+    display: inline-block;
+    animation: sparkle-anim 2s ease-in-out infinite;
+}
+
+@keyframes sparkle-anim {
+    0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    50% { opacity: 0.7; transform: scale(1.2) rotate(20deg); }
+}
+
+/* Orbit ring decoration */
+.orbit-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(100, 181, 246, 0.4);
+    border-radius: 50%;
+    position: relative;
+    animation: orbit-spin 8s linear infinite;
+}
+
+@keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Cosmos data grid */
+.cosmos-data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.cosmos-data-item {
+    background: rgba(33, 150, 243, 0.08);
+    border: 1px solid rgba(100, 181, 246, 0.25);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.cosmos-data-item .label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+}
+
+.cosmos-data-item .value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cosmos-blue-light);
+}
+
+/* Pulsar animation for special highlights */
+.pulsar {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--cosmos-blue-light);
+    border-radius: 50%;
+    animation: pulsar-anim 1.5s ease-in-out infinite;
+}
+
+@keyframes pulsar-anim {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 181, 246, 0.6); }
+    50% { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(100, 181, 246, 0); }
+}
+
+/* Galaxy gradient text */
+.galaxy-text {
+    background: linear-gradient(135deg,
+        #64b5f6 0%,
+        #e040fb 35%,
+        #ffd700 65%,
+        #4ecdc4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .cosmos-data-grid { grid-template-columns: repeat(2, 1fr); }
+}

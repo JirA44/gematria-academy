@@ -105,6 +105,13 @@
         </div>
 
         <div class="section">
+            <h2>🗺️ Maîtrise par Domaine</h2>
+            <div id="domain-mastery-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;">
+                <!-- injecté par JS -->
+            </div>
+        </div>
+
+        <div class="section">
             <h2>📜 Activité Récente</h2>
             <div id="profile-history" style="max-height: 200px; overflow-y: auto;">
                 <p style="opacity: 0.5; text-align: center;">Chargement...</p>
@@ -163,6 +170,47 @@
             } else {
                 historyEl.innerHTML = '<p style="opacity: 0.5; text-align: center;">Aucune activité enregistrée</p>';
             }
+
+            // Domain mastery
+            var DOMAINS = [
+                { id: 'astronomie',   icon: '🌌', name: 'Astronomie',    color: '#64b5f6' },
+                { id: 'cognitif',     icon: '🧠', name: 'Cognitif',      color: '#00bcd4' },
+                { id: 'logique',      icon: '🧩', name: 'Logique',       color: '#ff9800' },
+                { id: 'runes',        icon: '📿', name: 'Runes',         color: '#9c27b0' },
+                { id: 'gematria',     icon: '✡️',  name: 'Gematria',     color: '#ffd700' },
+                { id: 'hieroglyphes', icon: '𓂀',  name: 'Hiéroglyphes', color: '#ff5722' },
+                { id: 'maya',         icon: '🪬',  name: 'Maya',         color: '#4caf50' },
+            ];
+            var MASTERY_LABELS = ['Novice', 'Débutant', 'Intermédiaire', 'Expert', 'Maître'];
+            var allMastery = (JSON.parse(localStorage.getItem('gematria_progression') || '{}')).domainMastery || {};
+
+            var grid = document.getElementById('domain-mastery-grid');
+            grid.innerHTML = DOMAINS.map(function(d) {
+                var dm = allMastery[d.id] || { masteryLevel: 0, completedLevels: [] };
+                var lvl = dm.masteryLevel || 0;
+                var label = MASTERY_LABELS[lvl] || 'Novice';
+                var pct = Math.round((lvl / 3) * 100);
+                var completed = dm.completedLevels || [];
+                var steps = ['debutant','intermediaire','expert'].map(function(s) {
+                    var done = completed.indexOf(s) !== -1;
+                    return '<span style="display:inline-block;width:28px;height:28px;border-radius:50%;background:' +
+                        (done ? d.color : 'rgba(255,255,255,0.1)') +
+                        ';border:2px solid ' + (done ? d.color : 'rgba(255,255,255,0.2)') +
+                        ';font-size:0.7rem;line-height:26px;text-align:center;color:' + (done ? '#1a1a2e' : 'rgba(255,255,255,0.3)') +
+                        ';">' + (done ? '✓' : '') + '</span>';
+                }).join('');
+                return '<div style="background:rgba(255,255,255,0.04);border:1px solid ' + d.color + '33;border-radius:12px;padding:1.2rem;">' +
+                    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;">' +
+                        '<span style="font-size:1.5rem;">' + d.icon + '</span>' +
+                        '<span style="font-size:0.8rem;font-weight:bold;color:' + d.color + ';background:' + d.color + '22;padding:0.2rem 0.7rem;border-radius:10px;">' + label + '</span>' +
+                    '</div>' +
+                    '<div style="font-weight:600;margin-bottom:0.7rem;">' + d.name + '</div>' +
+                    '<div style="display:flex;gap:0.4rem;margin-bottom:0.7rem;">' + steps + '</div>' +
+                    '<div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;">' +
+                        '<div style="height:100%;width:' + pct + '%;background:' + d.color + ';border-radius:3px;transition:width 0.5s;"></div>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
         });
     </script>
 </body>

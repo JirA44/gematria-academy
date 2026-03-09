@@ -1,0 +1,135 @@
+/* ============================================================
+   Gematria Academy — Contrast & Accessibility Fixes
+   © 2026 Académie des Sagesses
+   ============================================================ */
+
+/* Ensure text stays readable on dark backgrounds */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Minimum contrast for body text */
+p, li, span, td, th, label, small {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+/* Headings — keep bright */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+/* Links in dark contexts */
+a {
+    color: #90caf9;
+}
+a:hover {
+    color: #bbdefb;
+}
+
+/* Inputs / selects readable */
+input, textarea, select {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Focus ring for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #90caf9;
+    outline-offset: 2px;
+}
+
+/* Code blocks readable */
+code, pre {
+    background: rgba(0, 0, 0, 0.35);
+    color: #a5d6a7;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre {
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: rgba(138, 43, 226, 0.25);
+    color: #ffffff;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid rgba(138, 43, 226, 0.4);
+}
+
+td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+tr:hover td {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Strong / em */
+strong, b {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+em, i {
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 4px solid rgba(138, 43, 226, 0.6);
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: rgba(138, 43, 226, 0.08);
+    border-radius: 0 10px 10px 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+}
+
+/* HR */
+hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+/* Scrollbar cosmetic */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #1a1a2e; }
+::-webkit-scrollbar-thumb {
+    background: rgba(138, 43, 226, 0.5);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(138, 43, 226, 0.8);
+}
+
+/* Selection */
+::selection {
+    background: rgba(138, 43, 226, 0.4);
+    color: #ffffff;
+}
