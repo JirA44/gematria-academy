@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique - Niveau Débutant | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <style>
+        .logic-symbol {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            font-family: 'Times New Roman', serif;
+        }
+        .truth-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: rgba(30, 30, 45, 0.7);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .truth-table th, .truth-table td {
+            border: 2px solid var(--primary);
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .truth-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+        .truth-table td {
+            background: rgba(40, 40, 60, 0.5);
+        }
+        .truth-table .true { color: var(--accent-beginner); font-weight: bold; }
+        .truth-table .false { color: #e74c3c; font-weight: bold; }
+
+        .interactive-exercise {
+            background: rgba(255, 193, 7, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--accent-intermediate);
+        }
+
+        .option-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            background: rgba(30, 30, 45, 0.7);
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        .option-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .option-btn.correct {
+            background: var(--accent-beginner);
+            color: white;
+            border-color: var(--accent-beginner);
+        }
+        .option-btn.wrong {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .connector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .connector-card {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .connector-symbol {
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🧠 Logique - Niveau Débutant</h1>
+        <p class="subtitle">Les fondations du raisonnement logique</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="logique-debutant.html" class="active">Logique Débutant</a>
+            <a href="logique-intermediaire.html">Logique Intermédiaire</a>
+            <a href="logique-expert.html">Logique Expert</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > <a href="index.html#logique">Logique</a> > Niveau Débutant
+            </div>
+
+            <section class="lesson" style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(25, 118, 210, 0.2) 100%); padding: 2rem; border-radius: 15px; border-left: 5px solid var(--accent-beginner); color: inherit;">
+                <h2 style="color: inherit;">📚 Référence Rapide - Symboles Logiques</h2>
+                <p style="color: inherit;">Voici tous les symboles logiques que vous allez apprendre dans ce niveau :</p>
+
+                <table class="truth-table" style="margin-top: 1.5rem;">
+                    <tr>
+                        <th>Symbole</th>
+                        <th>Nom</th>
+                        <th>Lecture</th>
+                        <th>Signification</th>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">¬</td>
+                        <td><strong>Négation</strong></td>
+                        <td>"Non P"</td>
+                        <td>Inverse la valeur (VRAI ↔ FAUX)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">∧</td>
+                        <td><strong>Conjonction</strong></td>
+                        <td>"P et Q"</td>
+                        <td>Vrai si les deux sont vrais</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">∨</td>
+                        <td><strong>Disjonction</strong></td>
+                        <td>"P ou Q"</td>
+                        <td>Vrai si au moins un est vrai</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">→</td>
+                        <td><strong>Implication</strong></td>
+                        <td>"Si P alors Q"</td>
+                        <td>Faux uniquement si P vrai et Q faux</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">↔</td>
+                        <td><strong>Équivalence</strong></td>
+                        <td>"P si et seulement si Q"</td>
+                        <td>Vrai si P et Q ont la même valeur</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">≡</td>
+                        <td><strong>Équivalence logique</strong></td>
+                        <td>"P équivaut à Q"</td>
+                        <td>Les deux expressions sont logiquement identiques</td>
+                    </tr>
+                </table>
+
+                <div class="tip" style="margin-top: 1.5rem; background: rgba(30, 30, 45, 0.7); color: #e0e0e0; padding: 1rem; border-radius: 8px;">
+                    <p style="color: #e0e0e0;"><strong>💡 Astuce :</strong> Revenez à ce tableau chaque fois que vous avez un doute sur la signification d'un symbole !</p>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>📖 Qu'est-ce que la Logique ?</h2>
+                <p>La <strong>logique</strong> est la science du raisonnement correct. Elle étudie les règles qui permettent de déduire de nouvelles vérités à partir de vérités connues.</p>
+
+                <div class="tip">
+                    <h3>💡 Les trois lois fondamentales</h3>
+                    <ol>
+                        <li><strong>Loi d'identité :</strong> A = A (Une chose est elle-même)</li>
+                        <li><strong>Loi de non-contradiction :</strong> ¬(A ∧ ¬A) (Une chose ne peut pas être et ne pas être en même temps)</li>
+                        <li><strong>Loi du tiers exclu :</strong> A ∨ ¬A (Une proposition est soit vraie, soit fausse)</li>
+                    </ol>
+                </div>
+            </section>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 33%;"></div>
+            </div>
+
+            <section class="lesson">
+                <h2>🔤 Les Propositions Logiques</h2>
+                <p>Une <strong>proposition</strong> est un énoncé qui peut être soit <span class="truth-table true">VRAI</span> soit <span class="truth-table false">FAUX</span>.</p>
+
+                <h3>Exemples de propositions :</h3>
+                <ul>
+                    <li>"Paris est la capitale de la France" → <span class="truth-table true">VRAI</span></li>
+                    <li>"2 + 2 = 5" → <span class="truth-table false">FAUX</span></li>
+                    <li>"Il pleut aujourd'hui" → Dépend du contexte</li>
+                </ul>
+
+                <h3>Ce qui n'est PAS une proposition :</h3>
+                <ul>
+                    <li>Questions : "Quelle heure est-il ?"</li>
+                    <li>Ordres : "Ferme la porte !"</li>
+                    <li>Exclamations : "Bravo !"</li>
+                </ul>
+
+                <p><strong>Notation :</strong> On utilise des lettres majuscules pour représenter les propositions : P, Q, R, etc.</p>
+            </section>
+
+            <section class="lesson">
+                <h2>🔗 Les Connecteurs Logiques</h2>
+                <p>Les connecteurs permettent de combiner des propositions simples en propositions composées.</p>
+
+                <div class="connector-grid">
+                    <div class="connector-card">
+                        <div class="connector-symbol">¬</div>
+                        <h3>Négation (NON)</h3>
+                        <p><strong>Symbole :</strong> ¬P ou ~P</p>
+                        <p><strong>Lecture :</strong> "Non P"</p>
+                        <p>Inverse la valeur de vérité</p>
+                    </div>
+
+                    <div class="connector-card">
+                        <div class="connector-symbol">∧</div>
+                        <h3>Conjonction (ET)</h3>
+                        <p><strong>Symbole :</strong> P ∧ Q</p>
+                        <p><strong>Lecture :</strong> "P et Q"</p>
+                        <p>Vrai seulement si les deux sont vrais</p>
+                    </div>
+
+                    <div class="connector-card">
+                        <div class="connector-symbol">∨</div>
+                        <h3>Disjonction (OU)</h3>
+                        <p><strong>Symbole :</strong> P ∨ Q</p>
+                        <p><strong>Lecture :</strong> "P ou Q"</p>
+                        <p>Vrai si au moins un est vrai</p>
+                    </div>
+
+                    <div class="connector-card">
+                        <div class="connector-symbol">→</div>
+                        <h3>Implication (SI...ALORS)</h3>
+                        <p><strong>Symbole :</strong> P → Q</p>
+                        <p><strong>Lecture :</strong> "Si P alors Q"</p>
+                        <p>Faux seulement si P est vrai et Q faux</p>
+                    </div>
+
+                    <div class="connector-card">
+                        <div class="connector-symbol">↔</div>
+                        <h3>Équivalence (SI ET SEULEMENT SI)</h3>
+                        <p><strong>Symbole :</strong> P ↔ Q</p>
+                        <p><strong>Lecture :</strong> "P si et seulement si Q"</p>
+                        <p>Vrai si P et Q ont la même valeur</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>📊 Tables de Vérité</h2>
+                <p>Une <strong>table de vérité</strong> liste toutes les combinaisons possibles de valeurs de vérité pour une expression logique.</p>
+
+                <h3>Table de vérité de la Négation (¬P)</h3>
+                <table class="truth-table">
+                    <tr>
+                        <th>P</th>
+                        <th>¬P</th>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="false">F</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="true">V</td>
+                    </tr>
+                </table>
+
+                <h3>Table de vérité de la Conjonction (P ∧ Q)</h3>
+                <table class="truth-table">
+                    <tr>
+                        <th>P</th>
+                        <th>Q</th>
+                        <th>P ∧ Q</th>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="true">V</td>
+                        <td class="false">F</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                    </tr>
+                </table>
+
+                <h3>Table de vérité de la Disjonction (P ∨ Q)</h3>
+                <table class="truth-table">
+                    <tr>
+                        <th>P</th>
+                        <th>Q</th>
+                        <th>P ∨ Q</th>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="false">F</td>
+                        <td class="true">V</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                    </tr>
+                </table>
+
+                <h3>Table de vérité de l'Implication (P → Q)</h3>
+                <table class="truth-table">
+                    <tr>
+                        <th>P</th>
+                        <th>Q</th>
+                        <th>P → Q</th>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                    </tr>
+                    <tr>
+                        <td class="true">V</td>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="true">V</td>
+                        <td class="true">V</td>
+                    </tr>
+                    <tr>
+                        <td class="false">F</td>
+                        <td class="false">F</td>
+                        <td class="true">V</td>
+                    </tr>
+                </table>
+
+                <div class="tip">
+                    <h3>💡 Astuce pour l'implication</h3>
+                    <p>L'implication P → Q est <strong>fausse uniquement</strong> quand P est vrai et Q est faux. Dans tous les autres cas, elle est vraie !</p>
+                    <p><em>Exemple :</em> "S'il pleut, je prends un parapluie"</p>
+                    <ul>
+                        <li>Il pleut ET je prends un parapluie → Vrai ✓</li>
+                        <li>Il pleut ET je ne prends PAS de parapluie → Faux ✗</li>
+                        <li>Il ne pleut pas → Vrai quelle que soit mon action ✓</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="interactive-exercise">
+                <h2>✍️ Exercice Interactif 1</h2>
+                <p><strong>Question :</strong> Si P est VRAI et Q est FAUX, quelle est la valeur de P ∧ Q ?</p>
+                <div id="exercise1">
+                    <button class="option-btn" onclick="checkAnswer(1, 'V', false)">VRAI</button>
+                    <button class="option-btn" onclick="checkAnswer(1, 'F', true)">FAUX</button>
+                </div>
+                <p id="result1" style="margin-top: 1rem; font-weight: bold;"></p>
+            </section>
+
+            <section class="interactive-exercise">
+                <h2>✍️ Exercice Interactif 2</h2>
+                <p><strong>Question :</strong> Si P est FAUX et Q est VRAI, quelle est la valeur de P ∨ Q ?</p>
+                <div id="exercise2">
+                    <button class="option-btn" onclick="checkAnswer(2, 'V', true)">VRAI</button>
+                    <button class="option-btn" onclick="checkAnswer(2, 'F', false)">FAUX</button>
+                </div>
+                <p id="result2" style="margin-top: 1rem; font-weight: bold;"></p>
+            </section>
+
+            <section class="interactive-exercise">
+                <h2>✍️ Exercice Interactif 3</h2>
+                <p><strong>Question :</strong> Si P est FAUX, quelle est la valeur de ¬P ?</p>
+                <div id="exercise3">
+                    <button class="option-btn" onclick="checkAnswer(3, 'V', true)">VRAI</button>
+                    <button class="option-btn" onclick="checkAnswer(3, 'F', false)">FAUX</button>
+                </div>
+                <p id="result3" style="margin-top: 1rem; font-weight: bold;"></p>
+            </section>
+
+            <section class="interactive-exercise">
+                <h2>✍️ Exercice Interactif 4</h2>
+                <p><strong>Question :</strong> Si P est VRAI et Q est FAUX, quelle est la valeur de P → Q ?</p>
+                <div id="exercise4">
+                    <button class="option-btn" onclick="checkAnswer(4, 'V', false)">VRAI</button>
+                    <button class="option-btn" onclick="checkAnswer(4, 'F', true)">FAUX</button>
+                </div>
+                <p id="result4" style="margin-top: 1rem; font-weight: bold;"></p>
+            </section>
+
+            <section class="lesson">
+                <h2>🎯 Lois de De Morgan</h2>
+                <p>Ces lois fondamentales permettent de transformer des expressions logiques :</p>
+
+                <div class="tip">
+                    <h3>Première loi de De Morgan</h3>
+                    <p class="logic-symbol">¬(P ∧ Q) ≡ (¬P) ∨ (¬Q)</p>
+                    <p>"La négation d'une conjonction est la disjonction des négations"</p>
+                    <p><em>Exemple :</em> "Il ne fait PAS beau ET chaud" = "Il ne fait pas beau OU il ne fait pas chaud"</p>
+                </div>
+
+                <div class="tip">
+                    <h3>Deuxième loi de De Morgan</h3>
+                    <p class="logic-symbol">¬(P ∨ Q) ≡ (¬P) ∧ (¬Q)</p>
+                    <p>"La négation d'une disjonction est la conjonction des négations"</p>
+                    <p><em>Exemple :</em> "Je ne vais PAS au cinéma OU au théâtre" = "Je ne vais pas au cinéma ET je ne vais pas au théâtre"</p>
+                </div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="index.html" class="btn btn-beginner">← Retour à l'accueil</a>
+                <a href="logique-intermediaire.html" class="btn btn-intermediate">Niveau Intermédiaire →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        function checkAnswer(exerciseNum, answer, isCorrect) {
+            const buttons = document.querySelectorAll(`#exercise${exerciseNum} .option-btn`);
+            const result = document.getElementById(`result${exerciseNum}`);
+
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === answer) {
+                    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+                }
+            });
+
+            if (isCorrect) {
+                result.textContent = '✓ Correct ! Bien joué !';
+                result.style.color = 'var(--accent-beginner)';
+            } else {
+                result.textContent = '✗ Incorrect. Révisez la table de vérité correspondante.';
+                result.style.color = '#e74c3c';
+            }
+        }
+
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

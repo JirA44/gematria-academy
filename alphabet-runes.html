@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Runique Complet | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <style>
+        .rune-large { font-size: 5rem; font-weight: bold; }
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .letter-card-interactive {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 2rem 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .letter-card-interactive:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-intermediate);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .letter-card-interactive.learned {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-color: var(--accent-beginner);
+        }
+        .progress-tracker {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .practice-mode {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.2) 100%);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .practice-rune {
+            font-size: 8rem;
+            margin: 2rem 0;
+        }
+        .answer-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .answer-btn {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            border: 3px solid var(--primary);
+            background: rgba(30, 30, 45, 0.7);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .answer-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .answer-btn.correct {
+            background: var(--accent-beginner);
+            color: white;
+            border-color: var(--accent-beginner);
+        }
+        .answer-btn.wrong {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+        .close-modal {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        .aett-section {
+            border-left: 5px solid;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+        .aett1 { border-color: var(--accent-beginner); }
+        .aett2 { border-color: var(--accent-intermediate); }
+        .aett3 { border-color: var(--accent-expert); }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .letter-card-interactive {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .letter-card-interactive .rune-large {
+            color: #64b5f6;
+        }
+        body.dark-mode .letter-card-interactive.learned {
+            background: linear-gradient(135deg, #2d5016 0%, #3a6e1e 100%);
+            color: #c8e6c9;
+        }
+        body.dark-mode .progress-tracker {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .practice-mode {
+            background: linear-gradient(135deg, #5a4a1f 0%, #7a6a3f 100%);
+            color: #fff3cd;
+        }
+        body.dark-mode .answer-btn {
+            background: #2a2a3e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+        body.dark-mode .answer-btn:hover {
+            background: #64b5f6;
+            color: #1a1a2e;
+        }
+        body.dark-mode .modal-content {
+            background: #2a2a3e;
+            color: #eee;
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>📿 Alphabet Runique Complet</h1>
+        <p class="subtitle">Futhark Ancien - Les 24 Runes Sacrées</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="runes-debutant.html">Runes Débutant</a>
+            <a href="alphabet-runes.html" class="active">Alphabet Runique</a>
+            <a href="tirage-runes.html">Tirage</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > Outils > Alphabet Runique
+            </div>
+
+            <div class="progress-tracker">
+                <h2>Votre Progression</h2>
+                <div class="progress-bar" style="max-width: 800px; margin: 1.5rem auto;">
+                    <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+                </div>
+                <p id="progressText">0/24 runes maîtrisées</p>
+                <button class="btn btn-intermediate" onclick="startPractice()">
+                    Mode Entraînement
+                </button>
+                <button class="btn btn-beginner" onclick="resetProgress()">
+                    Réinitialiser
+                </button>
+            </div>
+
+            <section class="calculator-container aett-section aett1">
+                <h2>🌱 Premier Aett : Freyr's Aett (Runes 1-8)</h2>
+                <p>Runes de fertilité, création et fondations</p>
+                <div class="alphabet-grid" id="aett1Grid"></div>
+            </section>
+
+            <section class="calculator-container aett-section aett2">
+                <h2>⚔️ Deuxième Aett : Heimdall's Aett (Runes 9-16)</h2>
+                <p>Runes de transformation, défis et épreuves</p>
+                <div class="alphabet-grid" id="aett2Grid"></div>
+            </section>
+
+            <section class="calculator-container aett-section aett3">
+                <h2>🛡️ Troisième Aett : Tyr's Aett (Runes 17-24)</h2>
+                <p>Runes de spiritualité, guerre et transcendance</p>
+                <div class="alphabet-grid" id="aett3Grid"></div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="index.html" class="btn btn-beginner">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal pour détails de rune -->
+    <div class="modal" id="runeModal">
+        <div class="modal-content">
+            <div class="rune-large" id="modalRune"></div>
+            <h2 id="modalName"></h2>
+            <p><strong>Prononciation :</strong> <span id="modalPronunciation"></span></p>
+            <p><strong>Lettre :</strong> <span id="modalLetter"></span></p>
+            <p><strong>Signification :</strong> <span id="modalMeaning"></span></p>
+            <p><strong>Élément :</strong> <span id="modalElement"></span></p>
+            <button class="btn btn-beginner" id="markLearnedBtn" onclick="markAsLearned()">
+                ✓ Marquer comme apprise
+            </button>
+            <button class="close-modal" onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Modal pour mode pratique -->
+    <div class="modal" id="practiceModal">
+        <div class="modal-content">
+            <h2>Mode Entraînement</h2>
+            <p id="practiceQuestion">Quelle est cette rune ?</p>
+            <div class="practice-rune" id="practiceRune"></div>
+            <div class="answer-buttons" id="answerButtons"></div>
+            <p id="practiceScore" style="margin-top: 2rem; font-size: 1.2rem;"></p>
+            <button class="close-modal" onclick="closePractice()">Terminer</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        const futharkRunes = [
+            // Premier Aett
+            { symbol: 'ᚠ', name: 'Fehu', pronunciation: 'fé-hou', letter: 'F', meaning: 'Richesse, abondance', element: 'Terre', aett: 1 },
+            { symbol: 'ᚢ', name: 'Uruz', pronunciation: 'ou-rouz', letter: 'U', meaning: 'Force brute, santé', element: 'Terre', aett: 1 },
+            { symbol: 'ᚦ', name: 'Thurisaz', pronunciation: 'thou-ri-saz', letter: 'TH', meaning: 'Protection, Thor', element: 'Feu', aett: 1 },
+            { symbol: 'ᚨ', name: 'Ansuz', pronunciation: 'an-souz', letter: 'A', meaning: 'Sagesse divine, Odin', element: 'Air', aett: 1 },
+            { symbol: 'ᚱ', name: 'Raidho', pronunciation: 'raï-do', letter: 'R', meaning: 'Voyage, mouvement', element: 'Air', aett: 1 },
+            { symbol: 'ᚲ', name: 'Kenaz', pronunciation: 'ké-naz', letter: 'K', meaning: 'Torche, connaissance', element: 'Feu', aett: 1 },
+            { symbol: 'ᚷ', name: 'Gebo', pronunciation: 'gué-bo', letter: 'G', meaning: 'Cadeau, échange', element: 'Air', aett: 1 },
+            { symbol: 'ᚹ', name: 'Wunjo', pronunciation: 'woun-yo', letter: 'W', meaning: 'Joie, harmonie', element: 'Terre', aett: 1 },
+
+            // Deuxième Aett
+            { symbol: 'ᚺ', name: 'Hagalaz', pronunciation: 'ha-ga-laz', letter: 'H', meaning: 'Grêle, destruction', element: 'Glace', aett: 2 },
+            { symbol: 'ᚾ', name: 'Nauthiz', pronunciation: 'naou-tiz', letter: 'N', meaning: 'Besoin, nécessité', element: 'Feu', aett: 2 },
+            { symbol: 'ᛁ', name: 'Isa', pronunciation: 'i-sa', letter: 'I', meaning: 'Glace, immobilité', element: 'Glace', aett: 2 },
+            { symbol: 'ᛃ', name: 'Jera', pronunciation: 'yé-ra', letter: 'J', meaning: 'Année, récolte', element: 'Terre', aett: 2 },
+            { symbol: 'ᛇ', name: 'Eihwaz', pronunciation: 'aï-waz', letter: 'EI', meaning: 'If, endurance', element: 'Tous', aett: 2 },
+            { symbol: 'ᛈ', name: 'Perthro', pronunciation: 'per-tro', letter: 'P', meaning: 'Destin, mystère', element: 'Eau', aett: 2 },
+            { symbol: 'ᛉ', name: 'Algiz', pronunciation: 'al-guiz', letter: 'Z', meaning: 'Protection spirituelle', element: 'Air', aett: 2 },
+            { symbol: 'ᛊ', name: 'Sowilo', pronunciation: 'so-wi-lo', letter: 'S', meaning: 'Soleil, victoire', element: 'Feu', aett: 2 },
+
+            // Troisième Aett
+            { symbol: 'ᛏ', name: 'Tiwaz', pronunciation: 'ti-waz', letter: 'T', meaning: 'Justice, Tyr', element: 'Air', aett: 3 },
+            { symbol: 'ᛒ', name: 'Berkano', pronunciation: 'ber-ka-no', letter: 'B', meaning: 'Bouleau, naissance', element: 'Terre', aett: 3 },
+            { symbol: 'ᛖ', name: 'Ehwaz', pronunciation: 'é-waz', letter: 'E', meaning: 'Cheval, mouvement', element: 'Terre', aett: 3 },
+            { symbol: 'ᛗ', name: 'Mannaz', pronunciation: 'ma-naz', letter: 'M', meaning: 'Humanité, conscience', element: 'Air', aett: 3 },
+            { symbol: 'ᛚ', name: 'Laguz', pronunciation: 'la-gouz', letter: 'L', meaning: 'Eau, intuition', element: 'Eau', aett: 3 },
+            { symbol: 'ᛜ', name: 'Ingwaz', pronunciation: 'ing-waz', letter: 'NG', meaning: 'Fertilité, semence', element: 'Terre', aett: 3 },
+            { symbol: 'ᛞ', name: 'Dagaz', pronunciation: 'da-gaz', letter: 'D', meaning: 'Jour, transformation', element: 'Feu/Air', aett: 3 },
+            { symbol: 'ᛟ', name: 'Othala', pronunciation: 'o-ta-la', letter: 'O', meaning: 'Héritage, patrie', element: 'Terre', aett: 3 }
+        ];
+
+        let learnedRunes = JSON.parse(localStorage.getItem('learnedRunes') || '[]');
+        let currentRune = null;
+        let practiceScore = 0;
+        let practiceTotal = 0;
+
+        function renderAett(aettNumber) {
+            const grid = document.getElementById(`aett${aettNumber}Grid`);
+            grid.innerHTML = '';
+
+            const runes = futharkRunes.filter(r => r.aett === aettNumber);
+
+            runes.forEach(rune => {
+                const card = document.createElement('div');
+                card.className = 'letter-card-interactive';
+                if (learnedRunes.includes(rune.symbol)) {
+                    card.classList.add('learned');
+                }
+
+                card.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">${rune.symbol}</div>
+                    <div style="font-weight: bold; color: var(--primary);">${rune.name}</div>
+                    <div style="color: var(--secondary);">${rune.letter}</div>
+                `;
+
+                card.onclick = () => showRuneDetail(rune);
+                grid.appendChild(card);
+            });
+        }
+
+        function showRuneDetail(rune) {
+            currentRune = rune;
+            document.getElementById('modalRune').textContent = rune.symbol;
+            document.getElementById('modalName').textContent = rune.name;
+            document.getElementById('modalPronunciation').textContent = rune.pronunciation;
+            document.getElementById('modalLetter').textContent = rune.letter;
+            document.getElementById('modalMeaning').textContent = rune.meaning;
+            document.getElementById('modalElement').textContent = rune.element;
+
+            const btn = document.getElementById('markLearnedBtn');
+            if (learnedRunes.includes(rune.symbol)) {
+                btn.textContent = '✓ Déjà apprise';
+                btn.style.background = '#27ae60';
+            } else {
+                btn.textContent = '✓ Marquer comme apprise';
+                btn.style.background = '';
+            }
+
+            document.getElementById('runeModal').classList.add('active');
+        }
+
+        function markAsLearned() {
+            if (currentRune && !learnedRunes.includes(currentRune.symbol)) {
+                learnedRunes.push(currentRune.symbol);
+                localStorage.setItem('learnedRunes', JSON.stringify(learnedRunes));
+                renderAllAetts();
+
+                const btn = document.getElementById('markLearnedBtn');
+                btn.textContent = '✓ Apprise !';
+                btn.style.background = '#27ae60';
+
+                setTimeout(() => {
+                    closeModal();
+                }, 500);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('runeModal').classList.remove('active');
+        }
+
+        function updateProgress() {
+            const total = futharkRunes.length;
+            const learned = learnedRunes.length;
+            const percent = (learned / total) * 100;
+
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `${learned}/${total} runes maîtrisées`;
+        }
+
+        function resetProgress() {
+            if (confirm('Voulez-vous vraiment réinitialiser votre progression ?')) {
+                learnedRunes = [];
+                localStorage.setItem('learnedRunes', JSON.stringify(learnedRunes));
+                renderAllAetts();
+            }
+        }
+
+        function renderAllAetts() {
+            renderAett(1);
+            renderAett(2);
+            renderAett(3);
+            updateProgress();
+        }
+
+        function startPractice() {
+            if (learnedRunes.length < 4) {
+                alert('Apprenez au moins 4 runes avant de commencer l\'entraînement !');
+                return;
+            }
+
+            practiceScore = 0;
+            practiceTotal = 0;
+            showPracticeQuestion();
+            document.getElementById('practiceModal').classList.add('active');
+        }
+
+        function showPracticeQuestion() {
+            const learnedItems = futharkRunes.filter(r => learnedRunes.includes(r.symbol));
+            const correctAnswer = learnedItems[Math.floor(Math.random() * learnedItems.length)];
+
+            document.getElementById('practiceRune').textContent = correctAnswer.symbol;
+
+            let answers = [correctAnswer];
+            while (answers.length < 4) {
+                const randomRune = futharkRunes[Math.floor(Math.random() * futharkRunes.length)];
+                if (!answers.includes(randomRune)) {
+                    answers.push(randomRune);
+                }
+            }
+
+            answers.sort(() => Math.random() - 0.5);
+
+            const buttonsDiv = document.getElementById('answerButtons');
+            buttonsDiv.innerHTML = '';
+
+            answers.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = answer.name;
+                btn.onclick = () => checkAnswer(answer.symbol === correctAnswer.symbol, btn);
+                buttonsDiv.appendChild(btn);
+            });
+
+            updatePracticeScore();
+        }
+
+        function checkAnswer(isCorrect, button) {
+            practiceTotal++;
+
+            if (isCorrect) {
+                practiceScore++;
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+            }
+
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            setTimeout(() => {
+                showPracticeQuestion();
+            }, 1500);
+        }
+
+        function updatePracticeScore() {
+            const percent = practiceTotal > 0 ? Math.round((practiceScore / practiceTotal) * 100) : 0;
+            document.getElementById('practiceScore').textContent =
+                `Score : ${practiceScore}/${practiceTotal} (${percent}%)`;
+        }
+
+        function closePractice() {
+            document.getElementById('practiceModal').classList.remove('active');
+        }
+
+        // Initialiser
+        renderAllAetts();
+
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

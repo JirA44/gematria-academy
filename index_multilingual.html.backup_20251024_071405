@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">Académie des Runes & Gematria Hébraïque</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <script src="dark-mode-auto.js"></script>
+</head>
+<body>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <button class="lang-toggle" onclick="toggleLanguage()">🌐 EN</button>
+        <h1 data-i18n="title">🔮 Académie des Runes & Gematria Hébraïque</h1>
+        <p class="subtitle" data-i18n="subtitle">Voyage initiatique de la connaissance ésotérique</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index_multilingual.html" class="active" data-i18n="nav_home">Accueil</a>
+            <a href="#runes" data-i18n="nav_runes">Runes</a>
+            <a href="#gematria" data-i18n="nav_gematria">Gematria</a>
+            <a href="#logique" data-i18n="nav_logic">Logique</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2 data-i18n="hero_title">Bienvenue dans votre parcours initiatique</h2>
+            <p data-i18n="hero_text">Découvrez les secrets ancestraux des runes nordiques et de la gematria hébraïque à travers un apprentissage progressif, structuré en trois niveaux de maîtrise.</p>
+        </section>
+
+        <section id="runes" class="section-category">
+            <h2 data-i18n="runes_title">📿 Les Runes Nordiques</h2>
+            <p class="intro" data-i18n="runes_intro">Les runes sont un ancien système d'écriture utilisé par les peuples germaniques et scandinaves. Chaque rune porte une signification symbolique profonde.</p>
+
+            <div class="level-cards">
+                <div class="card beginner">
+                    <div class="card-header">
+                        <h3 data-i18n="level_beginner">🌱 Niveau Débutant</h3>
+                        <span class="badge" data-i18n="badge_foundations">Fondations</span>
+                    </div>
+                    <ul data-section="runes-beginner">
+                        <li data-i18n="runes_beg_1">Introduction au Futhark ancien (24 runes)</li>
+                        <li data-i18n="runes_beg_2">Prononciation et tracé de base</li>
+                        <li data-i18n="runes_beg_3">Les 8 premières runes du Futhark</li>
+                        <li data-i18n="runes_beg_4">Significations élémentaires</li>
+                        <li data-i18n="runes_beg_5">Exercices de reconnaissance</li>
+                    </ul>
+                    <a href="runes-debutant.html" class="btn btn-beginner" data-i18n="btn_start">Commencer →</a>
+                </div>
+
+                <div class="card intermediate">
+                    <div class="card-header">
+                        <h3 data-i18n="level_intermediate">🌿 Niveau Intermédiaire</h3>
+                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
+                    </div>
+                    <ul data-section="runes-intermediate">
+                        <li data-i18n="runes_int_1">Les 24 runes complètes du Futhark</li>
+                        <li data-i18n="runes_int_2">Les trois Aettir (familles de runes)</li>
+                        <li data-i18n="runes_int_3">Symbolisme et mythologie nordique</li>
+                        <li data-i18n="runes_int_4">Combinaisons runiques</li>
+                        <li data-i18n="runes_int_5">Introduction à la divination</li>
+                    </ul>
+                    <a href="runes-intermediaire.html" class="btn btn-intermediate" data-i18n="btn_continue">Continuer →</a>
+                </div>
+
+                <div class="card expert">
+                    <div class="card-header">
+                        <h3 data-i18n="level_expert">🌳 Niveau Expert</h3>
+                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
+                    </div>
+                    <ul data-section="runes-expert">
+                        <li data-i18n="runes_exp_1">Magie runique (Galdr & Seidr)</li>
+                        <li data-i18n="runes_exp_2">Bind runes et sigils</li>
+                        <li data-i18n="runes_exp_3">Interprétations ésotériques avancées</li>
+                        <li data-i18n="runes_exp_4">Runes dans l'Edda et les sagas</li>
+                        <li data-i18n="runes_exp_5">Pratique divinatoire approfondie</li>
+                    </ul>
+                    <a href="runes-expert.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="gematria" class="section-category">
+            <h2 data-i18n="gematria_title">✡️ La Gematria Hébraïque</h2>
+            <p class="intro" data-i18n="gematria_intro">La gematria est un système numérologique basé sur les lettres hébraïques. Chaque lettre possède une valeur numérique révélant des correspondances mystiques.</p>
+
+            <div class="level-cards">
+                <div class="card beginner">
+                    <div class="card-header">
+                        <h3 data-i18n="level_beginner">🌱 Niveau Débutant</h3>
+                        <span class="badge" data-i18n="badge_foundations">Fondations</span>
+                    </div>
+                    <ul data-section="gematria-beginner">
+                        <li data-i18n="gem_beg_1">L'alphabet hébreu (Aleph-Bet)</li>
+                        <li data-i18n="gem_beg_2">Les 22 lettres et leurs valeurs</li>
+                        <li data-i18n="gem_beg_3">Prononciation et écriture</li>
+                        <li data-i18n="gem_beg_4">Introduction à la gematria simple</li>
+                        <li data-i18n="gem_beg_5">Calculs de base</li>
+                    </ul>
+                    <a href="gematria-debutant.html" class="btn btn-beginner" data-i18n="btn_start">Commencer →</a>
+                </div>
+
+                <div class="card intermediate">
+                    <div class="card-header">
+                        <h3 data-i18n="level_intermediate">🌿 Niveau Intermédiaire</h3>
+                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
+                    </div>
+                    <ul data-section="gematria-intermediate">
+                        <li data-i18n="gem_int_1">Lettres finales et variations</li>
+                        <li data-i18n="gem_int_2">Différents systèmes de gematria</li>
+                        <li data-i18n="gem_int_3">Notarikon et Temurah</li>
+                        <li data-i18n="gem_int_4">Noms divins et leur gematria</li>
+                        <li data-i18n="gem_int_5">Correspondances dans la Torah</li>
+                    </ul>
+                    <a href="gematria-intermediaire.html" class="btn btn-intermediate" data-i18n="btn_continue">Continuer →</a>
+                </div>
+
+                <div class="card expert">
+                    <div class="card-header">
+                        <h3 data-i18n="level_expert">🌳 Niveau Expert</h3>
+                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
+                    </div>
+                    <ul data-section="gematria-expert">
+                        <li data-i18n="gem_exp_1">Kabbale et Arbre de Vie</li>
+                        <li data-i18n="gem_exp_2">Gematria des 72 Noms de Dieu</li>
+                        <li data-i18n="gem_exp_3">Analyse de textes sacrés</li>
+                        <li data-i18n="gem_exp_4">Correspondances astrologiques</li>
+                        <li data-i18n="gem_exp_5">Applications méditatives et mystiques</li>
+                    </ul>
+                    <a href="gematria-expert.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="logique" class="section-category">
+            <h2 data-i18n="logic_title">🧠 La Logique & Raisonnement</h2>
+            <p class="intro" data-i18n="logic_intro">La logique est l'art du raisonnement correct. Maîtrisez les principes fondamentaux de la pensée rationnelle, des tables de vérité aux systèmes formels.</p>
+
+            <div class="level-cards">
+                <div class="card beginner">
+                    <div class="card-header">
+                        <h3 data-i18n="level_beginner">🌱 Niveau Débutant</h3>
+                        <span class="badge" data-i18n="badge_foundations">Fondations</span>
+                    </div>
+                    <ul data-section="logic-beginner">
+                        <li data-i18n="log_beg_1">Propositions et connecteurs logiques</li>
+                        <li data-i18n="log_beg_2">Tables de vérité</li>
+                        <li data-i18n="log_beg_3">Lois fondamentales (identité, non-contradiction)</li>
+                        <li data-i18n="log_beg_4">Négation, conjonction, disjonction</li>
+                        <li data-i18n="log_beg_5">Introduction à l'implication</li>
+                    </ul>
+                    <a href="logique-debutant.html" class="btn btn-beginner" data-i18n="btn_start">Commencer →</a>
+                </div>
+
+                <div class="card intermediate">
+                    <div class="card-header">
+                        <h3 data-i18n="level_intermediate">🌿 Niveau Intermédiaire</h3>
+                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
+                    </div>
+                    <ul data-section="logic-intermediate">
+                        <li data-i18n="log_int_1">Raisonnement déductif et inductif</li>
+                        <li data-i18n="log_int_2">Syllogismes et arguments valides</li>
+                        <li data-i18n="log_int_3">Logique des prédicats</li>
+                        <li data-i18n="log_int_4">Quantificateurs (∀ ∃)</li>
+                        <li data-i18n="log_int_5">Démonstrations par l'absurde</li>
+                    </ul>
+                    <a href="logique-intermediaire.html" class="btn btn-intermediate" data-i18n="btn_continue">Continuer →</a>
+                </div>
+
+                <div class="card expert">
+                    <div class="card-header">
+                        <h3 data-i18n="level_expert">🌳 Niveau Expert</h3>
+                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
+                    </div>
+                    <ul data-section="logic-expert">
+                        <li data-i18n="log_exp_1">Logique formelle et axiomatique</li>
+                        <li data-i18n="log_exp_2">Théorèmes de complétude et cohérence</li>
+                        <li data-i18n="log_exp_3">Logique modale et temporelle</li>
+                        <li data-i18n="log_exp_4">Paradoxes logiques</li>
+                        <li data-i18n="log_exp_5">Applications en IA et mathématiques</li>
+                    </ul>
+                    <a href="logique-expert.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools">
+            <h2 data-i18n="tools_title">🛠️ Outils Pratiques</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3 data-i18n="tool_hebrew_title">Alphabet Hébreu</h3>
+                    <p data-i18n="tool_hebrew_desc">Apprenez les 22 lettres de l'Aleph-Bet</p>
+                    <a href="alphabet-hebreu.html" class="btn-small" data-i18n="btn_learn">Apprendre</a>
+                </div>
+                <div class="tool-card">
+                    <h3 data-i18n="tool_runes_title">Alphabet Runique</h3>
+                    <p data-i18n="tool_runes_desc">Maîtrisez les 24 runes du Futhark</p>
+                    <a href="alphabet-runes.html" class="btn-small" data-i18n="btn_learn">Apprendre</a>
+                </div>
+                <div class="tool-card">
+                    <h3 data-i18n="tool_calc_title">Calculateur de Gematria</h3>
+                    <p data-i18n="tool_calc_desc">Calculez la valeur numérique de mots hébreux</p>
+                    <a href="calculateur-gematria.html" class="btn-small" data-i18n="btn_use">Utiliser</a>
+                </div>
+                <div class="tool-card">
+                    <h3 data-i18n="tool_divination_title">Tirages de Runes</h3>
+                    <p data-i18n="tool_divination_desc">Pratiquez la divination runique</p>
+                    <a href="tirage-runes.html" class="btn-small" data-i18n="btn_draw">Tirer</a>
+                </div>
+                <div class="tool-card">
+                    <h3 data-i18n="tool_logic_title">Exercices de Logique</h3>
+                    <p data-i18n="tool_logic_desc">Entraînez votre raisonnement logique</p>
+                    <a href="exercices-logique.html" class="btn-small" data-i18n="btn_practice">Pratiquer</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-i18n="footer">© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage moderne</p>
+    </footer>
+
+    <script>
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+
+            // Mettre à jour le texte du bouton
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage - MODE NUIT PAR DÉFAUT
+        window.addEventListener('DOMContentLoaded', () => {
+            // Si aucune préférence n'est définie, activer le mode nuit par défaut
+            const darkMode = localStorage.getItem('darkMode');
+            const isDark = darkMode === null ? true : darkMode === 'true';
+
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+            }
+
+            // Sauvegarder la préférence si c'est la première visite
+            if (darkMode === null) {
+                localStorage.setItem('darkMode', 'true');
+            }
+        });
+
+        // Smooth scrolling pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Système de traduction
+        const translations = {
+            fr: {
+                page_title: "Académie des Runes & Gematria Hébraïque",
+                title: "🔮 Académie des Runes & Gematria Hébraïque",
+                subtitle: "Voyage initiatique de la connaissance ésotérique",
+                nav_home: "Accueil",
+                nav_runes: "Runes",
+                nav_gematria: "Gematria",
+                nav_logic: "Logique",
+                hero_title: "Bienvenue dans votre parcours initiatique",
+                hero_text: "Découvrez les secrets ancestraux des runes nordiques et de la gematria hébraïque à travers un apprentissage progressif, structuré en trois niveaux de maîtrise.",
+                runes_title: "📿 Les Runes Nordiques",
+                runes_intro: "Les runes sont un ancien système d'écriture utilisé par les peuples germaniques et scandinaves. Chaque rune porte une signification symbolique profonde.",
+                gematria_title: "✡️ La Gematria Hébraïque",
+                gematria_intro: "La gematria est un système numérologique basé sur les lettres hébraïques. Chaque lettre possède une valeur numérique révélant des correspondances mystiques.",
+                logic_title: "🧠 La Logique & Raisonnement",
+                logic_intro: "La logique est l'art du raisonnement correct. Maîtrisez les principes fondamentaux de la pensée rationnelle, des tables de vérité aux systèmes formels.",
+                level_beginner: "🌱 Niveau Débutant",
+                level_intermediate: "🌿 Niveau Intermédiaire",
+                level_expert: "🌳 Niveau Expert",
+                badge_foundations: "Fondations",
+                badge_deepening: "Approfondissement",
+                badge_mastery: "Maîtrise",
+                btn_start: "Commencer →",
+                btn_continue: "Continuer →",
+                btn_master: "Maîtriser →",
+                tools_title: "🛠️ Outils Pratiques",
+                tool_hebrew_title: "Alphabet Hébreu",
+                tool_hebrew_desc: "Apprenez les 22 lettres de l'Aleph-Bet",
+                tool_runes_title: "Alphabet Runique",
+                tool_runes_desc: "Maîtrisez les 24 runes du Futhark",
+                tool_calc_title: "Calculateur de Gematria",
+                tool_calc_desc: "Calculez la valeur numérique de mots hébreux",
+                tool_divination_title: "Tirages de Runes",
+                tool_divination_desc: "Pratiquez la divination runique",
+                tool_logic_title: "Exercices de Logique",
+                tool_logic_desc: "Entraînez votre raisonnement logique",
+                btn_learn: "Apprendre",
+                btn_use: "Utiliser",
+                btn_draw: "Tirer",
+                btn_practice: "Pratiquer",
+                footer: "© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage moderne"
+            },
+            en: {
+                page_title: "Academy of Runes & Hebrew Gematria",
+                title: "🔮 Academy of Runes & Hebrew Gematria",
+                subtitle: "Initiatory journey of esoteric knowledge",
+                nav_home: "Home",
+                nav_runes: "Runes",
+                nav_gematria: "Gematria",
+                nav_logic: "Logic",
+                hero_title: "Welcome to your initiatory path",
+                hero_text: "Discover the ancestral secrets of Nordic runes and Hebrew gematria through progressive learning, structured in three levels of mastery.",
+                runes_title: "📿 Nordic Runes",
+                runes_intro: "Runes are an ancient writing system used by Germanic and Scandinavian peoples. Each rune carries deep symbolic meaning.",
+                gematria_title: "✡️ Hebrew Gematria",
+                gematria_intro: "Gematria is a numerological system based on Hebrew letters. Each letter has a numerical value revealing mystical correspondences.",
+                logic_title: "🧠 Logic & Reasoning",
+                logic_intro: "Logic is the art of correct reasoning. Master the fundamental principles of rational thought, from truth tables to formal systems.",
+                level_beginner: "🌱 Beginner Level",
+                level_intermediate: "🌿 Intermediate Level",
+                level_expert: "🌳 Expert Level",
+                badge_foundations: "Foundations",
+                badge_deepening: "Deepening",
+                badge_mastery: "Mastery",
+                btn_start: "Start →",
+                btn_continue: "Continue →",
+                btn_master: "Master →",
+                tools_title: "🛠️ Practical Tools",
+                tool_hebrew_title: "Hebrew Alphabet",
+                tool_hebrew_desc: "Learn the 22 letters of the Aleph-Bet",
+                tool_runes_title: "Runic Alphabet",
+                tool_runes_desc: "Master the 24 runes of the Futhark",
+                tool_calc_title: "Gematria Calculator",
+                tool_calc_desc: "Calculate the numerical value of Hebrew words",
+                tool_divination_title: "Rune Casting",
+                tool_divination_desc: "Practice runic divination",
+                tool_logic_title: "Logic Exercises",
+                tool_logic_desc: "Train your logical reasoning",
+                btn_learn: "Learn",
+                btn_use: "Use",
+                btn_draw: "Cast",
+                btn_practice: "Practice",
+                footer: "© 2025 Academy of Runes & Gematria - Ancient knowledge, modern learning"
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('language', currentLang);
+            applyTranslations();
+
+            // Mettre à jour le bouton
+            const btn = document.querySelector('.lang-toggle');
+            btn.textContent = currentLang === 'fr' ? '🌐 EN' : '🌐 FR';
+
+            // Mettre à jour la langue du document
+            document.documentElement.lang = currentLang;
+        }
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+
+            // Traduire tous les éléments avec data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (t[key]) {
+                    element.textContent = t[key];
+                }
+            });
+        }
+
+        // Charger la langue au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang && savedLang !== 'fr') {
+                currentLang = savedLang;
+                applyTranslations();
+                const btn = document.querySelector('.lang-toggle');
+                if (btn) btn.textContent = currentLang === 'fr' ? '🌐 EN' : '🌐 FR';
+                document.documentElement.lang = currentLang;
+            }
+        });
+    </script>
+</body>
+</html>

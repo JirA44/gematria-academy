@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - Accès Mobile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            color: #c0c0c0;
+        }
+        h1 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        #qrcode {
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(30, 30, 45, 0.7);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .url {
+            background: rgba(40, 40, 60, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            word-break: break-all;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .instructions {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="fix-contrast.css">
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📱</div>
+        <h1>Scannez pour accéder</h1>
+        <p style="color: #666;">Académie des Runes & Gematria</p>
+
+        <div id="qrcode"></div>
+
+        <div class="url" id="urlDisplay">Chargement...</div>
+
+        <div class="instructions">
+            <p><strong>Instructions (WiFi local uniquement):</strong></p>
+            <p>⚠️ Votre téléphone doit être sur le même WiFi que ce PC</p>
+            <p>1. Ouvrez l'appareil photo de votre téléphone</p>
+            <p>2. Pointez vers le QR code</p>
+            <p>3. Cliquez sur le lien qui apparaît</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const url = "http://192.168.1.35:8080";
+
+        // Afficher l'URL
+        document.getElementById('urlDisplay').textContent = url;
+
+        // Générer le QR code
+        new QRCode(document.getElementById("qrcode"), {
+            text: url,
+            width: 256,
+            height: 256,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <title>🕉️ Mandalas Sacrés - Bleus Cosmiques</title>
+    <link rel="stylesheet" href="bleus-cosmiques.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Écran d'introduction */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #000d1a 0%, #001a33 50%, #000d1a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1.5s ease;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .intro-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-symbol {
+            font-size: 6rem;
+            margin-bottom: 3rem;
+            animation: pulse 3s ease-in-out infinite;
+            text-shadow: 0 0 30px #4169e1, 0 0 60px #1e90ff;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .intro-text {
+            max-width: 600px;
+            font-size: 1.5rem;
+            line-height: 2;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            text-shadow: 0 0 20px rgba(65, 105, 225, 0.5);
+        }
+
+        .intro-instruction {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+
+        .begin-btn {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #001a33, #003366);
+            border: 2px solid #4169e1;
+            color: white;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(65, 105, 225, 0.4);
+        }
+
+        .begin-btn:hover {
+            background: linear-gradient(135deg, #003366, #004d99);
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(65, 105, 225, 0.8);
+        }
+
+        /* Conteneur de visualisation */
+        .viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewer.active {
+            display: flex;
+        }
+
+        .mandala-image {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-position: center;
+            transition: opacity 0.8s ease;
+            opacity: 0;
+        }
+
+        .mandala-image.entering {
+            opacity: 1;
+        }
+
+        /* Navigation */
+        .nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(65, 105, 225, 0.1);
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 4rem;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            z-index: 100;
+            border-radius: 10px;
+        }
+
+        .viewer:hover .nav-btn {
+            opacity: 1;
+        }
+
+        .nav-btn:hover {
+            background: rgba(65, 105, 225, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(65, 105, 225, 0.6);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        /* Indicateurs */
+        .dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .viewer:hover .dots {
+            opacity: 1;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(65, 105, 225, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(65, 105, 225, 0.5);
+        }
+
+        .dot.active {
+            background: #4169e1;
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(65, 105, 225, 1);
+        }
+
+        .dot:hover {
+            background: rgba(65, 105, 225, 0.6);
+            transform: scale(1.2);
+        }
+
+        /* Contrôle upload */
+        .upload-trigger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(65, 105, 225, 0.1);
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        .viewer:hover .upload-trigger {
+            opacity: 1;
+        }
+
+        .upload-trigger:hover {
+            background: rgba(65, 105, 225, 0.3);
+            color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(65, 105, 225, 0.6);
+        }
+
+        /* Overlay upload */
+        .upload-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 13, 26, 0.98);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .upload-overlay.active {
+            display: flex;
+        }
+
+        .upload-zone {
+            width: 80vw;
+            height: 80vh;
+            border: 3px dashed rgba(65, 105, 225, 0.3);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: rgba(65, 105, 225, 0.7);
+            background: rgba(65, 105, 225, 0.05);
+            box-shadow: 0 0 40px rgba(65, 105, 225, 0.4);
+        }
+
+        .upload-symbol {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            opacity: 0.3;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .close-upload {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-upload:hover {
+            color: #4169e1;
+            transform: rotate(90deg);
+            text-shadow: 0 0 20px rgba(65, 105, 225, 0.8);
+        }
+
+        /* Instructions clavier */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .viewer:hover .keyboard-hint {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Écran d'introduction -->
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-symbol">🕉️</div>
+        <div class="intro-text">
+            Contemplation profonde<br>
+            Sans mots<br>
+            Sans pensées<br>
+            Silence intérieur<br>
+            · · ·
+        </div>
+        <div class="intro-instruction">
+            Appuyez sur <strong>F11</strong> pour le plein écran
+        </div>
+        <button class="begin-btn" onclick="beginMeditation()">Commencer</button>
+    </div>
+
+    <!-- Visionneuse -->
+    <div class="viewer" id="viewer">
+        <img src="" alt="" class="mandala-image" id="mandalaImage">
+
+        <button class="nav-btn prev" onclick="prevImage()">‹</button>
+        <button class="nav-btn next" onclick="nextImage()">›</button>
+
+        <button class="upload-trigger" onclick="openUpload()">+</button>
+
+        <div class="dots" id="dots"></div>
+
+        <div class="keyboard-hint">
+            ← → pour naviguer • Échap pour quitter le plein écran
+        </div>
+    </div>
+
+    <!-- Overlay upload -->
+    <div class="upload-overlay" id="uploadOverlay">
+        <button class="close-upload" onclick="closeUpload()">×</button>
+        <label for="fileInput" class="upload-zone" id="uploadZone">
+            <div class="upload-symbol">🌀</div>
+            <h2 style="margin-bottom: 1rem; color: #4169e1;">Ajoutez vos mandalas</h2>
+            <p style="opacity: 0.7; font-size: 1.2rem;">
+                Glissez vos mandalas ici ou cliquez pour sélectionner
+            </p>
+            <input type="file" id="fileInput" accept="image/*" multiple>
+        </label>
+    </div>
+
+    <script>
+        // MANDALAS PAR DÉFAUT - BLEUS COSMIQUES
+        const DEFAULT_MANDALAS = [
+            // Mandala 1 - Océan Cosmique
+            'data:image/svg+xml;base64,' + btoa(`
+                <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="oceanGrad">
+                            <stop offset="0%" stop-color="#001f3f" />
+                            <stop offset="50%" stop-color="#003366" />
+                            <stop offset="100%" stop-color="#001a33" />
+                        </radialGradient>
+                        <radialGradient id="blueGlow">
+                            <stop offset="0%" stop-color="#4169e1" stop-opacity="0.8"/>
+                            <stop offset="50%" stop-color="#1e90ff" stop-opacity="0.4"/>
+                            <stop offset="100%" stop-color="#0066cc" stop-opacity="0"/>
+                        </radialGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <circle cx="400" cy="400" r="390" fill="url(#oceanGrad)"/>
+                    <circle cx="400" cy="400" r="350" fill="url(#blueGlow)"/>
+
+                    <circle cx="400" cy="400" r="320" fill="none" stroke="#0080ff" stroke-width="2" opacity="0.6"/>
+                    <circle cx="400" cy="400" r="290" fill="none" stroke="#4169e1" stroke-width="3" opacity="0.8"/>
+                    <circle cx="400" cy="400" r="260" fill="none" stroke="#1e90ff" stroke-width="2" opacity="0.6"/>
+                    <circle cx="400" cy="400" r="230" fill="none" stroke="#0066cc" stroke-width="4" opacity="0.9"/>
+                    <circle cx="400" cy="400" r="200" fill="none" stroke="#4682b4" stroke-width="2" opacity="0.7"/>
+                    <circle cx="400" cy="400" r="170" fill="none" stroke="#5f9ea0" stroke-width="3" opacity="0.8"/>
+                    <circle cx="400" cy="400" r="140" fill="none" stroke="#00bfff" stroke-width="2" opacity="0.6"/>
+
+                    ${[...Array(24)].map((_, i) => {
+                        const angle = (i * 15) * Math.PI / 180;
+                        const x1 = 400 + 100 * Math.cos(angle);
+                        const y1 = 400 + 100 * Math.sin(angle);
+                        const x2 = 400 + 340 * Math.cos(angle);
+                        const y2 = 400 + 340 * Math.sin(angle);
+                        const opacity = 0.3 + (i % 3) * 0.2;
+                        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#1e90ff" stroke-width="2" opacity="${opacity}" filter="url(#glow)"/>`;
+                    }).join('')}
+
+                    ${[...Array(12)].map((_, i) => {
+                        const angle = (i * 30) * Math.PI / 180;
+                        const x = 400 + 310 * Math.cos(angle);
+                        const y = 400 + 310 * Math.sin(angle);
+                        return `<circle cx="${x}" cy="${y}" r="8" fill="#4169e1" filter="url(#glow)"/>`;
+                    }).join('')}
+
+                    <circle cx="400" cy="400" r="90" fill="#003366"/>
+                    <circle cx="400" cy="400" r="85" fill="none" stroke="#00bfff" stroke-width="3" filter="url(#glow)"/>
+                    <circle cx="400" cy="400" r="70" fill="#001f3f"/>
+                    <circle cx="400" cy="400" r="65" fill="none" stroke="#4169e1" stroke-width="2"/>
+                    <circle cx="400" cy="400" r="50" fill="#0066cc" opacity="0.5"/>
+                    <text x="400" y="420" font-size="50" text-anchor="middle" fill="#00bfff" font-weight="bold" filter="url(#glow)">ॐ</text>
+                </svg>
+            `),
+
+            // Mandala 2 - Fleur de Saphir
+            'data:image/svg+xml;base64,' + btoa(`
+                <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="sapphireGrad">
+                            <stop offset="0%" stop-color="#001a33" />
+                            <stop offset="50%" stop-color="#003d66" />
+                            <stop offset="100%" stop-color="#002d4d" />
+                        </radialGradient>
+                        <linearGradient id="petalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#4169e1"/>
+                            <stop offset="50%" stop-color="#1e90ff"/>
+                            <stop offset="100%" stop-color="#0066cc"/>
+                        </linearGradient>
+                        <filter id="softGlow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <circle cx="400" cy="400" r="390" fill="url(#sapphireGrad)"/>
+
+                    ${[...Array(8)].map((_, i) => {
+                        const angle = (i * 45) * Math.PI / 180;
+                        const x = 400 + 240 * Math.cos(angle);
+                        const y = 400 + 240 * Math.sin(angle);
+                        return `
+                            <ellipse cx="${x}" cy="${y}" rx="120" ry="80"
+                                fill="url(#petalGrad)" opacity="0.7"
+                                transform="rotate(${i * 45} ${x} ${y})"
+                                filter="url(#softGlow)"/>
+                            <ellipse cx="${x}" cy="${y}" rx="110" ry="70"
+                                fill="none" stroke="#00bfff" stroke-width="2"
+                                transform="rotate(${i * 45} ${x} ${y})"/>
+                        `;
+                    }).join('')}
+
+                    ${[...Array(16)].map((_, i) => {
+                        const angle = (i * 22.5) * Math.PI / 180;
+                        const x = 400 + 330 * Math.cos(angle);
+                        const y = 400 + 330 * Math.sin(angle);
+                        const size = 12 + (i % 2) * 8;
+                        return `<circle cx="${x}" cy="${y}" r="${size}" fill="#1e90ff" opacity="0.8" filter="url(#softGlow)"/>`;
+                    }).join('')}
+
+                    <circle cx="400" cy="400" r="180" fill="none" stroke="#4169e1" stroke-width="3" opacity="0.6"/>
+                    <circle cx="400" cy="400" r="150" fill="none" stroke="#00bfff" stroke-width="2" opacity="0.8"/>
+                    ${[...Array(6)].map((_, i) => {
+                        const angle = (i * 60) * Math.PI / 180;
+                        const x = 400 + 150 * Math.cos(angle);
+                        const y = 400 + 150 * Math.sin(angle);
+                        return `<circle cx="${x}" cy="${y}" r="30" fill="#003366" stroke="#00bfff" stroke-width="2"/>`;
+                    }).join('')}
+
+                    <circle cx="400" cy="400" r="100" fill="#001f3f"/>
+                    <circle cx="400" cy="400" r="95" fill="none" stroke="#4169e1" stroke-width="4" filter="url(#softGlow)"/>
+                    <circle cx="400" cy="400" r="80" fill="#0066cc" opacity="0.4"/>
+                    <circle cx="400" cy="400" r="60" fill="#001a33"/>
+                    <circle cx="400" cy="400" r="55" fill="none" stroke="#1e90ff" stroke-width="3"/>
+                </svg>
+            `),
+
+            // Mandala 3 - Galaxie Bleue
+            'data:image/svg+xml;base64,' + btoa(`
+                <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="galaxyGrad">
+                            <stop offset="0%" stop-color="#000d1a" />
+                            <stop offset="30%" stop-color="#001a33" />
+                            <stop offset="60%" stop-color="#003366" />
+                            <stop offset="100%" stop-color="#001f3f" />
+                        </radialGradient>
+                        <radialGradient id="starGlow">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                            <stop offset="30%" stop-color="#4169e1" stop-opacity="0.8"/>
+                            <stop offset="70%" stop-color="#1e90ff" stop-opacity="0.3"/>
+                            <stop offset="100%" stop-color="#0066cc" stop-opacity="0"/>
+                        </radialGradient>
+                        <filter id="strongGlow">
+                            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <circle cx="400" cy="400" r="390" fill="url(#galaxyGrad)"/>
+
+                    ${[...Array(8)].map((_, i) => {
+                        const angle = (i * 45) * Math.PI / 180;
+                        const points = [];
+                        for (let r = 50; r <= 350; r += 30) {
+                            const spiralAngle = angle + (r / 100);
+                            const x = 400 + r * Math.cos(spiralAngle);
+                            const y = 400 + r * Math.sin(spiralAngle);
+                            points.push(`${x},${y}`);
+                        }
+                        return `<polyline points="${points.join(' ')}" fill="none" stroke="#1e90ff" stroke-width="3" opacity="0.4" filter="url(#strongGlow)"/>`;
+                    }).join('')}
+
+                    ${[...Array(60)].map((_, i) => {
+                        const angle = (i * 6) * Math.PI / 180;
+                        const radius = 120 + (i % 4) * 60;
+                        const x = 400 + radius * Math.cos(angle);
+                        const y = 400 + radius * Math.sin(angle);
+                        const size = 3 + (i % 5) * 2;
+                        const opacity = 0.4 + (i % 3) * 0.2;
+                        return `<circle cx="${x}" cy="${y}" r="${size}" fill="url(#starGlow)" opacity="${opacity}"/>`;
+                    }).join('')}
+
+                    ${[...Array(5)].map((_, i) => {
+                        const r = 250 - i * 40;
+                        const width = 2 + i;
+                        const opacity = 0.3 + i * 0.1;
+                        return `<circle cx="400" cy="400" r="${r}" fill="none" stroke="#0080ff" stroke-width="${width}" opacity="${opacity}" filter="url(#strongGlow)"/>`;
+                    }).join('')}
+
+                    <circle cx="400" cy="400" r="120" fill="#000d1a"/>
+                    <circle cx="400" cy="400" r="115" fill="none" stroke="#4169e1" stroke-width="5" filter="url(#strongGlow)"/>
+                    <circle cx="400" cy="400" r="100" fill="url(#starGlow)" opacity="0.3"/>
+                    ${[...Array(12)].map((_, i) => {
+                        const angle = (i * 30) * Math.PI / 180;
+                        const x1 = 400 + 60 * Math.cos(angle);
+                        const y1 = 400 + 60 * Math.sin(angle);
+                        const x2 = 400 + 100 * Math.cos(angle);
+                        const y2 = 400 + 100 * Math.sin(angle);
+                        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#00bfff" stroke-width="2" filter="url(#strongGlow)"/>`;
+                    }).join('')}
+                    <circle cx="400" cy="400" r="50" fill="#0066cc"/>
+                    <circle cx="400" cy="400" r="45" fill="none" stroke="#1e90ff" stroke-width="3"/>
+                    <circle cx="400" cy="400" r="30" fill="url(#starGlow)"/>
+                </svg>
+            `)
+        ];
+
+        let images = [];
+        let currentIndex = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadImages();
+            setupListeners();
+
+            if (images.length === 0) {
+                images = [...DEFAULT_MANDALAS];
+                saveImages();
+            }
+        });
+
+        function setupListeners() {
+            const fileInput = document.getElementById('fileInput');
+            const uploadZone = document.getElementById('uploadZone');
+
+            fileInput.addEventListener('change', handleFiles);
+
+            uploadZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadZone.classList.add('dragover');
+            });
+
+            uploadZone.addEventListener('dragleave', () => {
+                uploadZone.classList.remove('dragover');
+            });
+
+            uploadZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadZone.classList.remove('dragover');
+                const files = Array.from(e.dataTransfer.files);
+                processFiles(files);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
+
+            updateDots();
+        }
+
+        function handleFiles(e) {
+            const files = Array.from(e.target.files);
+            processFiles(files);
+        }
+
+        function processFiles(files) {
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        images.push(e.target.result);
+                        saveImages();
+                        updateDots();
+                        closeUpload();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function saveImages() {
+            try {
+                localStorage.setItem('mandalaImages', JSON.stringify(images));
+            } catch (e) {
+                images = images.slice(-30);
+                localStorage.setItem('mandalaImages', JSON.stringify(images));
+            }
+        }
+
+        function loadImages() {
+            const stored = localStorage.getItem('mandalaImages');
+            if (stored) {
+                images = JSON.parse(stored);
+            }
+        }
+
+        function beginMeditation() {
+            const intro = document.getElementById('introScreen');
+            intro.classList.add('fade-out');
+
+            setTimeout(() => {
+                intro.style.display = 'none';
+                document.getElementById('viewer').classList.add('active');
+                updateDisplay();
+            }, 1500);
+        }
+
+        function updateDisplay() {
+            if (images.length === 0) {
+                images = [...DEFAULT_MANDALAS];
+                saveImages();
+            }
+
+            const img = document.getElementById('mandalaImage');
+            img.classList.remove('entering');
+
+            setTimeout(() => {
+                img.src = images[currentIndex];
+                img.classList.add('entering');
+            }, 50);
+
+            updateDots();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateDisplay();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateDisplay();
+        }
+
+        function updateDots() {
+            const dotsContainer = document.getElementById('dots');
+            dotsContainer.innerHTML = '';
+
+            images.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === currentIndex ? ' active' : '');
+                dot.onclick = () => {
+                    currentIndex = i;
+                    updateDisplay();
+                };
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function openUpload() {
+            document.getElementById('uploadOverlay').classList.add('active');
+        }
+
+        function closeUpload() {
+            document.getElementById('uploadOverlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

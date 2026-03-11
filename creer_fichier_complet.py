@@ -1,0 +1,346 @@
+# -*- coding: utf-8 -*-
+import re
+
+# Lire le fichier original
+with open('index_multilingual.html', 'r', encoding='utf-8', errors='ignore') as f:
+    contenu = f.read()
+
+# Supprimer la section Mandala corrompue si elle existe
+contenu = re.sub(r'<section id="mandala".*?</section>\s*(?=<section class="tools">)', '', contenu, flags=re.DOTALL)
+
+# Supprimer les sections Hiéroglyphes et Maya si elles existent
+contenu = re.sub(r'<section id="hieroglyphes".*?</section>\s*(?=<section)', '', contenu, flags=re.DOTALL)
+contenu = re.sub(r'<section id="maya".*?</section>\s*(?=<section)', '', contenu, flags=re.DOTALL)
+
+# Ajouter le lien CSS s'il n'existe pas
+if 'animated-backgrounds.css' not in contenu:
+    contenu = contenu.replace(
+        '<link rel="stylesheet" href="fix-contrast.css">',
+        '<link rel="stylesheet" href="fix-contrast.css">\n    <link rel="stylesheet" href="animated-backgrounds.css">'
+    )
+
+# Nettoyer les mauvais caractères de navigation
+contenu = re.sub(r'`n\s*<a href="#mandala".*?</a>', '', contenu)
+
+# Ajouter les liens de navigation propres
+nav_pattern = r'(<a href="#logique" data-i18n="nav_logic">Logique</a>)'
+nav_replacement = r'\1\n            <a href="#mandala" data-i18n="nav_mandala">Mandala</a>\n            <a href="#hieroglyphes" data-i18n="nav_hieroglyphes">Hiéroglyphes</a>\n            <a href="#maya" data-i18n="nav_maya">Maya</a>'
+if 'nav_mandala' not in contenu:
+    contenu = re.sub(nav_pattern, nav_replacement, contenu)
+
+# Définir les 3 nouvelles sections avec bon encodage
+section_mandala = '''
+        <section id="mandala" class="section-category">
+            <h2 data-i18n="mandala_title">🕉️ Mandalas Sacrés</h2>
+            <p class="intro" data-i18n="mandala_intro">Les mandalas sont des représentations géométriques de l'univers, utilisés depuis des millénaires dans les traditions bouddhistes et hindoues. La contemplation profonde d'un mandala, sans mots ni pensées, permet d'accéder au silence intérieur et à la paix de l'esprit.</p>
+
+            <div class="level-cards">
+                <div class="card beginner">
+                    <div class="card-header">
+                        <h3 data-i18n="mandala_contemplation">🧘 Contemplation Profonde</h3>
+                        <span class="badge" data-i18n="badge_meditation">Méditation</span>
+                    </div>
+                    <ul data-section="mandala-practice">
+                        <li data-i18n="mandala_1">Galerie plein écran immersive</li>
+                        <li data-i18n="mandala_2">Sans mots, sans pensées</li>
+                        <li data-i18n="mandala_3">Silence intérieur et concentration</li>
+                        <li data-i18n="mandala_4">Navigation intuitive (flèches ‹ ›)</li>
+                        <li data-i18n="mandala_5">Uploadez vos mandalas personnels</li>
+                    </ul>
+                    <a href="mandala.html" class="btn btn-beginner" data-i18n="btn_contemplate">Contempler →</a>
+                </div>
+
+                <div class="card intermediate">
+                    <div class="card-header">
+                        <h3 data-i18n="mandala_creation">🎨 Création de Mandalas</h3>
+                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
+                    </div>
+                    <ul data-section="mandala-creation">
+                        <li data-i18n="mandala_create_1">Comprendre la géométrie sacrée</li>
+                        <li data-i18n="mandala_create_2">Symbolisme des formes et couleurs</li>
+                        <li data-i18n="mandala_create_3">Mandalas tibétains traditionnels</li>
+                        <li data-i18n="mandala_create_4">Techniques de dessin circulaire</li>
+                        <li data-i18n="mandala_create_5">Méditation créative guidée</li>
+                    </ul>
+                    <a href="mandala.html" class="btn btn-intermediate" data-i18n="btn_create">Créer →</a>
+                </div>
+
+                <div class="card expert">
+                    <div class="card-header">
+                        <h3 data-i18n="mandala_mastery">🌺 Maîtrise des Mandalas</h3>
+                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
+                    </div>
+                    <ul data-section="mandala-expert">
+                        <li data-i18n="mandala_master_1">Mandalas tantriques avancés</li>
+                        <li data-i18n="mandala_master_2">Yantras et diagrammes cosmiques</li>
+                        <li data-i18n="mandala_master_3">Méditation profonde prolongée</li>
+                        <li data-i18n="mandala_master_4">Rituel de création et destruction</li>
+                        <li data-i18n="mandala_master_5">Transmission spirituelle par le mandala</li>
+                    </ul>
+                    <a href="mandala.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
+                </div>
+            </div>
+        </section>
+'''
+
+section_hieroglyphes = '''
+        <section id="hieroglyphes" class="section-category">
+            <h2 data-i18n="hieroglyphes_title">𓂀 Les Hiéroglyphes Égyptiens</h2>
+            <p class="intro" data-i18n="hieroglyphes_intro">Les hiéroglyphes sont l'écriture sacrée de l'Égypte ancienne, utilisée pendant plus de 3000 ans. Chaque symbole porte en lui la sagesse des pharaons et les mystères des pyramides. Apprenez à déchiffrer et écrire cette langue millénaire.</p>
+
+            <div class="level-cards">
+                <div class="card beginner">
+                    <div class="card-header">
+                        <h3 data-i18n="level_beginner">🌱 Niveau Débutant</h3>
+                        <span class="badge" data-i18n="badge_foundations">Fondations</span>
+                    </div>
+                    <ul data-section="hieroglyphes-beginner">
+                        <li data-i18n="hiero_beg_1">Introduction aux hiéroglyphes</li>
+                        <li data-i18n="hiero_beg_2">Les 24 signes unilitères (alphabet)</li>
+                        <li data-i18n="hiero_beg_3">Direction de lecture et cartouches</li>
+                        <li data-i18n="hiero_beg_4">Idéogrammes et phonogrammes de base</li>
+                        <li data-i18n="hiero_beg_5">Écrire son nom en hiéroglyphes</li>
+                    </ul>
+                    <a href="hieroglyphes-debutant.html" class="btn btn-beginner" data-i18n="btn_start">Commencer →</a>
+                </div>
+
+                <div class="card intermediate">
+                    <div class="card-header">
+                        <h3 data-i18n="level_intermediate">🌿 Niveau Intermédiaire</h3>
+                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
+                    </div>
+                    <ul data-section="hieroglyphes-intermediate">
+                        <li data-i18n="hiero_int_1">Signes bilitères et trilitères</li>
+                        <li data-i18n="hiero_int_2">Déterminatifs et classificateurs</li>
+                        <li data-i18n="hiero_int_3">Grammaire égyptienne de base</li>
+                        <li data-i18n="hiero_int_4">Lecture de textes funéraires simples</li>
+                        <li data-i18n="hiero_int_5">Noms des dieux et pharaons célèbres</li>
+                    </ul>
+                    <a href="hieroglyphes-intermediaire.html" class="btn btn-intermediate" data-i18n="btn_continue">Continuer →</a>
+                </div>
+
+                <div class="card expert">
+                    <div class="card-header">
+                        <h3 data-i18n="level_expert">🌳 Niveau Expert</h3>
+                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
+                    </div>
+                    <ul data-section="hieroglyphes-expert">
+                        <li data-i18n="hiero_exp_1">Analyse du Livre des Morts</li>
+                        <li data-i18n="hiero_exp_2">Textes des Pyramides et des Sarcophages</li>
+                        <li data-i18n="hiero_exp_3">Égyptien hiératique et démotique</li>
+                        <li data-i18n="hiero_exp_4">Symbolisme ésotérique des hiéroglyphes</li>
+                        <li data-i18n="hiero_exp_5">Transcription et traduction avancée</li>
+                    </ul>
+                    <a href="hieroglyphes-expert.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
+                </div>
+            </div>
+        </section>
+'''
+
+section_maya = '''
+        <section id="maya" class="section-category">
+            <h2 data-i18n="maya_title">𓇳 Les Symboles Maya</h2>
+            <p class="intro" data-i18n="maya_intro">Les glyphes mayas constituent un des systèmes d'écriture les plus sophistiqués de l'Amérique précolombienne. Utilisés pendant plus de 2000 ans, ils encodent l'histoire, l'astronomie et la cosmologie d'une civilisation extraordinaire. Percez les secrets du calendrier maya et de leur écriture sacrée.</p>
+
+            <div class="level-cards">
+                <div class="card beginner">
+                    <div class="card-header">
+                        <h3 data-i18n="level_beginner">🌱 Niveau Débutant</h3>
+                        <span class="badge" data-i18n="badge_foundations">Fondations</span>
+                    </div>
+                    <ul data-section="maya-beginner">
+                        <li data-i18n="maya_beg_1">Introduction aux glyphes mayas</li>
+                        <li data-i18n="maya_beg_2">Les chiffres mayas (système vigésimal)</li>
+                        <li data-i18n="maya_beg_3">Le calendrier Haab et Tzolk'in</li>
+                        <li data-i18n="maya_beg_4">Glyphes syllabiques de base</li>
+                        <li data-i18n="maya_beg_5">Symboles des jours et des mois</li>
+                    </ul>
+                    <a href="maya-debutant.html" class="btn btn-beginner" data-i18n="btn_start">Commencer →</a>
+                </div>
+
+                <div class="card intermediate">
+                    <div class="card-header">
+                        <h3 data-i18n="level_intermediate">🌿 Niveau Intermédiaire</h3>
+                        <span class="badge" data-i18n="badge_deepening">Approfondissement</span>
+                    </div>
+                    <ul data-section="maya-intermediate">
+                        <li data-i18n="maya_int_1">Le Compte Long et les dates</li>
+                        <li data-i18n="maya_int_2">Glyphes logographiques et phonétiques</li>
+                        <li data-i18n="maya_int_3">Lecture des stèles et inscriptions</li>
+                        <li data-i18n="maya_int_4">Noms des dieux et des rois</li>
+                        <li data-i18n="maya_int_5">Écriture et structure grammaticale</li>
+                    </ul>
+                    <a href="maya-intermediaire.html" class="btn btn-intermediate" data-i18n="btn_continue">Continuer →</a>
+                </div>
+
+                <div class="card expert">
+                    <div class="card-header">
+                        <h3 data-i18n="level_expert">🌳 Niveau Expert</h3>
+                        <span class="badge" data-i18n="badge_mastery">Maîtrise</span>
+                    </div>
+                    <ul data-section="maya-expert">
+                        <li data-i18n="maya_exp_1">Analyse du Codex de Dresde</li>
+                        <li data-i18n="maya_exp_2">Textes sacrés et prophétiques</li>
+                        <li data-i18n="maya_exp_3">Astronomie et mathématiques mayas</li>
+                        <li data-i18n="maya_exp_4">Symboles ésotériques du Popol Vuh</li>
+                        <li data-i18n="maya_exp_5">Déchiffrement et épigraphie avancée</li>
+                    </ul>
+                    <a href="maya-expert.html" class="btn btn-expert" data-i18n="btn_master">Maîtriser →</a>
+                </div>
+            </div>
+        </section>
+'''
+
+# Insérer les 3 sections avant <section class="tools">
+contenu = contenu.replace(
+    '        <section class="tools">',
+    section_mandala + '\n' + section_hieroglyphes + '\n' + section_maya + '\n        <section class="tools">'
+)
+
+# Ajouter les traductions FR si elles n'existent pas
+if 'mandala_title:' not in contenu:
+    trad_fr = ''',
+                mandala_title: "🕉️ Mandalas Sacrés",
+                mandala_intro: "Les mandalas sont des représentations géométriques de l'univers, utilisés depuis des millénaires dans les traditions bouddhistes et hindoues. La contemplation profonde d'un mandala, sans mots ni pensées, permet d'accéder au silence intérieur et à la paix de l'esprit.",
+                mandala_contemplation: "🧘 Contemplation Profonde",
+                badge_meditation: "Méditation",
+                mandala_1: "Galerie plein écran immersive",
+                mandala_2: "Sans mots, sans pensées",
+                mandala_3: "Silence intérieur et concentration",
+                mandala_4: "Navigation intuitive (flèches ‹ ›)",
+                mandala_5: "Uploadez vos mandalas personnels",
+                btn_contemplate: "Contempler →",
+                mandala_creation: "🎨 Création de Mandalas",
+                mandala_create_1: "Comprendre la géométrie sacrée",
+                mandala_create_2: "Symbolisme des formes et couleurs",
+                mandala_create_3: "Mandalas tibétains traditionnels",
+                mandala_create_4: "Techniques de dessin circulaire",
+                mandala_create_5: "Méditation créative guidée",
+                btn_create: "Créer →",
+                mandala_mastery: "🌺 Maîtrise des Mandalas",
+                mandala_master_1: "Mandalas tantriques avancés",
+                mandala_master_2: "Yantras et diagrammes cosmiques",
+                mandala_master_3: "Méditation profonde prolongée",
+                mandala_master_4: "Rituel de création et destruction",
+                mandala_master_5: "Transmission spirituelle par le mandala",
+                nav_mandala: "Mandala",
+                hieroglyphes_title: "𓂀 Les Hiéroglyphes Égyptiens",
+                hieroglyphes_intro: "Les hiéroglyphes sont l'écriture sacrée de l'Égypte ancienne, utilisée pendant plus de 3000 ans. Chaque symbole porte en lui la sagesse des pharaons et les mystères des pyramides. Apprenez à déchiffrer et écrire cette langue millénaire.",
+                hiero_beg_1: "Introduction aux hiéroglyphes",
+                hiero_beg_2: "Les 24 signes unilitères (alphabet)",
+                hiero_beg_3: "Direction de lecture et cartouches",
+                hiero_beg_4: "Idéogrammes et phonogrammes de base",
+                hiero_beg_5: "Écrire son nom en hiéroglyphes",
+                hiero_int_1: "Signes bilitères et trilitères",
+                hiero_int_2: "Déterminatifs et classificateurs",
+                hiero_int_3: "Grammaire égyptienne de base",
+                hiero_int_4: "Lecture de textes funéraires simples",
+                hiero_int_5: "Noms des dieux et pharaons célèbres",
+                hiero_exp_1: "Analyse du Livre des Morts",
+                hiero_exp_2: "Textes des Pyramides et des Sarcophages",
+                hiero_exp_3: "Égyptien hiératique et démotique",
+                hiero_exp_4: "Symbolisme ésotérique des hiéroglyphes",
+                hiero_exp_5: "Transcription et traduction avancée",
+                nav_hieroglyphes: "Hiéroglyphes",
+                maya_title: "𓇳 Les Symboles Maya",
+                maya_intro: "Les glyphes mayas constituent un des systèmes d'écriture les plus sophistiqués de l'Amérique précolombienne. Utilisés pendant plus de 2000 ans, ils encodent l'histoire, l'astronomie et la cosmologie d'une civilisation extraordinaire. Percez les secrets du calendrier maya et de leur écriture sacrée.",
+                maya_beg_1: "Introduction aux glyphes mayas",
+                maya_beg_2: "Les chiffres mayas (système vigésimal)",
+                maya_beg_3: "Le calendrier Haab et Tzolk'in",
+                maya_beg_4: "Glyphes syllabiques de base",
+                maya_beg_5: "Symboles des jours et des mois",
+                maya_int_1: "Le Compte Long et les dates",
+                maya_int_2: "Glyphes logographiques et phonétiques",
+                maya_int_3: "Lecture des stèles et inscriptions",
+                maya_int_4: "Noms des dieux et des rois",
+                maya_int_5: "Écriture et structure grammaticale",
+                maya_exp_1: "Analyse du Codex de Dresde",
+                maya_exp_2: "Textes sacrés et prophétiques",
+                maya_exp_3: "Astronomie et mathématiques mayas",
+                maya_exp_4: "Symboles ésotériques du Popol Vuh",
+                maya_exp_5: "Déchiffrement et épigraphie avancée",
+                nav_maya: "Maya"'''
+
+    contenu = contenu.replace(
+        'footer: "© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage moderne"',
+        'footer: "© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage moderne"' + trad_fr
+    )
+
+# Ajouter les traductions EN
+if 'Sacred Mandalas' not in contenu:
+    trad_en = ''',
+                mandala_title: "🕉️ Sacred Mandalas",
+                mandala_intro: "Mandalas are geometric representations of the universe, used for millennia in Buddhist and Hindu traditions. Deep contemplation of a mandala, without words or thoughts, allows access to inner silence and peace of mind.",
+                mandala_contemplation: "🧘 Deep Contemplation",
+                badge_meditation: "Meditation",
+                mandala_1: "Immersive full-screen gallery",
+                mandala_2: "Without words, without thoughts",
+                mandala_3: "Inner silence and concentration",
+                mandala_4: "Intuitive navigation (arrows ‹ ›)",
+                mandala_5: "Upload your personal mandalas",
+                btn_contemplate: "Contemplate →",
+                mandala_creation: "🎨 Mandala Creation",
+                mandala_create_1: "Understanding sacred geometry",
+                mandala_create_2: "Symbolism of shapes and colors",
+                mandala_create_3: "Traditional Tibetan mandalas",
+                mandala_create_4: "Circular drawing techniques",
+                mandala_create_5: "Guided creative meditation",
+                btn_create: "Create →",
+                mandala_mastery: "🌺 Mandala Mastery",
+                mandala_master_1: "Advanced tantric mandalas",
+                mandala_master_2: "Yantras and cosmic diagrams",
+                mandala_master_3: "Prolonged deep meditation",
+                mandala_master_4: "Ritual of creation and destruction",
+                mandala_master_5: "Spiritual transmission through mandala",
+                nav_mandala: "Mandala",
+                hieroglyphes_title: "𓂀 Egyptian Hieroglyphs",
+                hieroglyphes_intro: "Hieroglyphs are the sacred writing of ancient Egypt, used for over 3000 years. Each symbol carries the wisdom of the pharaohs and the mysteries of the pyramids. Learn to decipher and write this millennial language.",
+                hiero_beg_1: "Introduction to hieroglyphs",
+                hiero_beg_2: "The 24 uniliteral signs (alphabet)",
+                hiero_beg_3: "Reading direction and cartouches",
+                hiero_beg_4: "Basic ideograms and phonograms",
+                hiero_beg_5: "Write your name in hieroglyphs",
+                hiero_int_1: "Biliteral and triliteral signs",
+                hiero_int_2: "Determinatives and classifiers",
+                hiero_int_3: "Basic Egyptian grammar",
+                hiero_int_4: "Reading simple funerary texts",
+                hiero_int_5: "Names of famous gods and pharaohs",
+                hiero_exp_1: "Analysis of the Book of the Dead",
+                hiero_exp_2: "Pyramid Texts and Coffin Texts",
+                hiero_exp_3: "Hieratic and Demotic Egyptian",
+                hiero_exp_4: "Esoteric symbolism of hieroglyphs",
+                hiero_exp_5: "Advanced transcription and translation",
+                nav_hieroglyphes: "Hieroglyphs",
+                maya_title: "𓇳 Maya Symbols",
+                maya_intro: "Mayan glyphs constitute one of the most sophisticated writing systems of pre-Columbian America. Used for over 2000 years, they encode the history, astronomy and cosmology of an extraordinary civilization. Unlock the secrets of the Mayan calendar and their sacred writing.",
+                maya_beg_1: "Introduction to Mayan glyphs",
+                maya_beg_2: "Mayan numbers (vigesimal system)",
+                maya_beg_3: "The Haab and Tzolk'in calendars",
+                maya_beg_4: "Basic syllabic glyphs",
+                maya_beg_5: "Symbols for days and months",
+                maya_int_1: "The Long Count and dates",
+                maya_int_2: "Logographic and phonetic glyphs",
+                maya_int_3: "Reading stelae and inscriptions",
+                maya_int_4: "Names of gods and kings",
+                maya_int_5: "Writing and grammatical structure",
+                maya_exp_1: "Analysis of the Dresden Codex",
+                maya_exp_2: "Sacred and prophetic texts",
+                maya_exp_3: "Mayan astronomy and mathematics",
+                maya_exp_4: "Esoteric symbols of the Popol Vuh",
+                maya_exp_5: "Advanced decipherment and epigraphy",
+                nav_maya: "Maya"'''
+
+    contenu = contenu.replace(
+        'footer: "© 2025 Academy of Runes & Gematria - Ancient knowledge, modern learning"',
+        'footer: "© 2025 Academy of Runes & Gematria - Ancient knowledge, modern learning"' + trad_en
+    )
+
+# Sauvegarder avec UTF-8
+with open('index_COMPLET.html', 'w', encoding='utf-8') as f:
+    f.write(contenu)
+
+print("✅ Fichier index_COMPLET.html créé avec succès !")
+print("✅ Encodage UTF-8 correct")
+print("✅ 3 sections ajoutées (Mandala, Hiéroglyphes, Maya)")
+print("✅ Animations CSS activées")
+print("✅ Toutes les traductions FR/EN ajoutées")

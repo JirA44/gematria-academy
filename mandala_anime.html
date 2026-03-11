@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕉️ Mandalas Animés Vivants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Mandala Container */
+        .mandala-container {
+            position: absolute;
+            width: 80vmin;
+            height: 80vmin;
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(90deg); }
+            50% { transform: scale(1) rotate(180deg); }
+            75% { transform: scale(1.1) rotate(270deg); }
+        }
+
+        /* Layers of the mandala */
+        .layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+        }
+
+        .layer1 {
+            background: radial-gradient(circle,
+                rgba(255, 0, 255, 0.3) 0%,
+                rgba(0, 255, 255, 0.3) 50%,
+                transparent 70%);
+            animation: rotate1 20s linear infinite;
+        }
+
+        .layer2 {
+            background: radial-gradient(circle,
+                transparent 30%,
+                rgba(255, 255, 0, 0.3) 40%,
+                rgba(255, 0, 0, 0.3) 60%,
+                transparent 70%);
+            animation: rotate2 15s linear infinite reverse;
+        }
+
+        .layer3 {
+            background: radial-gradient(circle,
+                transparent 40%,
+                rgba(0, 255, 0, 0.3) 50%,
+                rgba(0, 0, 255, 0.3) 60%,
+                transparent 70%);
+            animation: rotate3 25s linear infinite;
+        }
+
+        @keyframes rotate1 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate2 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate3 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Geometric patterns */
+        .pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .circle1 { width: 90%; height: 90%; top: 5%; left: 5%; border-color: rgba(255, 0, 255, 0.6); animation-delay: 0s; }
+        .circle2 { width: 75%; height: 75%; top: 12.5%; left: 12.5%; border-color: rgba(0, 255, 255, 0.6); animation-delay: 0.5s; }
+        .circle3 { width: 60%; height: 60%; top: 20%; left: 20%; border-color: rgba(255, 255, 0, 0.6); animation-delay: 1s; }
+        .circle4 { width: 45%; height: 45%; top: 27.5%; left: 27.5%; border-color: rgba(255, 0, 0, 0.6); animation-delay: 1.5s; }
+        .circle5 { width: 30%; height: 30%; top: 35%; left: 35%; border-color: rgba(0, 255, 0, 0.6); animation-delay: 2s; }
+
+        /* Petals */
+        .petal {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            transform-origin: center;
+        }
+
+        .petal::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center,
+                rgba(255, 100, 200, 0.5) 0%,
+                transparent 70%);
+            border-radius: 50% 50% 0 0;
+            animation: petalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes petalPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .petal:nth-child(1) { transform: rotate(0deg); animation-delay: 0s; }
+        .petal:nth-child(2) { transform: rotate(45deg); animation-delay: 0.2s; }
+        .petal:nth-child(3) { transform: rotate(90deg); animation-delay: 0.4s; }
+        .petal:nth-child(4) { transform: rotate(135deg); animation-delay: 0.6s; }
+        .petal:nth-child(5) { transform: rotate(180deg); animation-delay: 0.8s; }
+        .petal:nth-child(6) { transform: rotate(225deg); animation-delay: 1s; }
+        .petal:nth-child(7) { transform: rotate(270deg); animation-delay: 1.2s; }
+        .petal:nth-child(8) { transform: rotate(315deg); animation-delay: 1.4s; }
+
+        /* Center Om */
+        .center-om {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15vmin;
+            animation: omGlow 5s ease-in-out infinite;
+            text-shadow:
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(255, 0, 255, 0.6),
+                0 0 60px rgba(0, 255, 255, 0.4);
+        }
+
+        @keyframes omGlow {
+            0%, 100% {
+                filter: hue-rotate(0deg) brightness(1);
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+            33% {
+                filter: hue-rotate(120deg) brightness(1.3);
+                transform: translate(-50%, -50%) scale(1.1) rotate(120deg);
+            }
+            66% {
+                filter: hue-rotate(240deg) brightness(0.8);
+                transform: translate(-50%, -50%) scale(0.9) rotate(240deg);
+            }
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(30, 30, 45, 0.7);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20vw, -20vh); }
+            50% { transform: translate(-20vw, 20vh); }
+            75% { transform: translate(20vw, 20vh); }
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .controls:hover {
+            opacity: 1;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 20px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .home-btn:hover {
+            opacity: 1;
+        }
+
+        /* Info text */
+        .info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .info:hover {
+            opacity: 1;
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+</head>
+<body>
+    <a href="index_COMPLET.html" class="home-btn">⌂</a>
+
+    <div class="info">
+        Mandalas vivants<br>
+        Contemplation psychédélique
+    </div>
+
+    <div class="container" id="container">
+        <div class="mandala-container">
+            <!-- Layers -->
+            <div class="layer layer1"></div>
+            <div class="layer layer2"></div>
+            <div class="layer layer3"></div>
+
+            <!-- Geometric patterns -->
+            <div class="pattern">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="circle circle3"></div>
+                <div class="circle circle4"></div>
+                <div class="circle circle5"></div>
+            </div>
+
+            <!-- Petals -->
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+
+            <!-- Center -->
+            <div class="center-om">🕉️</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="changeSpeed('slow')">🐌 Lent</button>
+        <button class="btn" onclick="changeSpeed('normal')">🧘 Normal</button>
+        <button class="btn" onclick="changeSpeed('fast')">⚡ Rapide</button>
+        <button class="btn" onclick="toggleParticles()">✨ Particules</button>
+    </div>
+
+    <script>
+        // Generate particles
+        function createParticles() {
+            const container = document.getElementById('container');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        let particlesVisible = false;
+
+        function toggleParticles() {
+            particlesVisible = !particlesVisible;
+            const particles = document.querySelectorAll('.particle');
+
+            if (particlesVisible && particles.length === 0) {
+                createParticles();
+            } else {
+                particles.forEach(p => {
+                    p.style.display = particlesVisible ? 'block' : 'none';
+                });
+            }
+        }
+
+        function changeSpeed(speed) {
+            const mandala = document.querySelector('.mandala-container');
+            const layers = document.querySelectorAll('.layer');
+
+            let breatheDuration, rotateDuration;
+
+            switch(speed) {
+                case 'slow':
+                    breatheDuration = '16s';
+                    rotateDuration = ['40s', '30s', '50s'];
+                    break;
+                case 'fast':
+                    breatheDuration = '4s';
+                    rotateDuration = ['10s', '7.5s', '12.5s'];
+                    break;
+                default:
+                    breatheDuration = '8s';
+                    rotateDuration = ['20s', '15s', '25s'];
+            }
+
+            mandala.style.animationDuration = breatheDuration;
+            layers[0].style.animationDuration = rotateDuration[0];
+            layers[1].style.animationDuration = rotateDuration[1];
+            layers[2].style.animationDuration = rotateDuration[2];
+        }
+
+        // Color cycling
+        let hue = 0;
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            document.body.style.filter = `hue-rotate(${hue}deg)`;
+        }, 100);
+    </script>
+</body>
+</html>

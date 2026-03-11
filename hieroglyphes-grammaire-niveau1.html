@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Grammaire Hiéroglyphique - Niveau 1</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c49c62;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(196, 156, 98, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            background: rgba(30, 30, 45, 0.8);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            height: 30px;
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .lesson {
+            background: rgba(30, 30, 45, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .lesson h2 {
+            color: #ba68c8;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid rgba(138, 43, 226, 0.5);
+            padding-bottom: 1rem;
+        }
+
+        .lesson h3 {
+            color: #ffa726;
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 5px solid #4caf50;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .example-hieroglyph {
+            font-size: 3rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #ffa726;
+            direction: rtl;
+            letter-spacing: 0.5rem;
+        }
+
+        .example-breakdown {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .word-component {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.2);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .word-component-symbol {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .word-component-sound {
+            color: #ffa726;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .word-component-meaning {
+            color: #81c784;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .rule-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.5);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .rule-box h4 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box {
+            background: rgba(244, 67, 54, 0.1);
+            border-left: 5px solid #f44336;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .quiz-box {
+            background: rgba(33, 150, 243, 0.1);
+            border: 2px dashed rgba(33, 150, 243, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-box h4 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            background: rgba(40, 40, 60, 0.8);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: rgba(138, 43, 226, 0.8);
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+
+        .table-grammar {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .table-grammar th {
+            background: rgba(138, 43, 226, 0.3);
+            color: #ba68c8;
+            padding: 1rem;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .table-grammar td {
+            background: rgba(40, 40, 60, 0.5);
+            padding: 1rem;
+            border: 1px solid rgba(100, 100, 150, 0.3);
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>𓂀 Grammaire Hiéroglyphique</h1>
+        <p class="subtitle">Niveau 1 - Les Fondamentaux de la Lecture</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%;">0% complété</div>
+        </div>
+
+        <!-- LEÇON 1 : SENS DE LECTURE -->
+        <div class="lesson" data-lesson="1">
+            <h2>📖 Leçon 1 : Le Sens de Lecture</h2>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Contrairement à notre écriture qui va toujours de gauche à droite, les hiéroglyphes peuvent se lire dans plusieurs directions.
+            </p>
+
+            <h3>🧭 Règle d'Or : Regardez où les êtres vivants "regardent"</h3>
+
+            <div class="rule-box">
+                <h4>✨ RÈGLE FONDAMENTALE</h4>
+                <p>
+                    Les signes représentant des êtres vivants (humains, animaux, oiseaux) "regardent" toujours vers le <strong>DÉBUT</strong> de la ligne.
+                </p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li>Si les signes regardent vers la gauche ← : on lit de <strong>gauche à droite</strong></li>
+                    <li>Si les signes regardent vers la droite → : on lit de <strong>droite à gauche</strong></li>
+                    <li>Si les signes regardent vers le bas ↓ : on lit de <strong>haut en bas</strong></li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Exemple 1 : Lecture de gauche à droite</h4>
+                <div class="example-hieroglyph">
+                    𓀀 𓇋𓈖𓂧 𓎛𓂋
+                </div>
+                <p style="text-align: center; color: #81c784; font-size: 1.2rem;">
+                    Les signes regardent vers la gauche ← donc on lit : <strong>ind hr</strong> (salutations)
+                </p>
+            </div>
+
+            <div class="example-box">
+                <h4>Exemple 2 : Lecture de droite à gauche</h4>
+                <div class="example-hieroglyph">
+                    𓂋𓎛 𓂧𓈖𓇋 𓀀
+                </div>
+                <p style="text-align: center; color: #81c784; font-size: 1.2rem;">
+                    Les signes regardent vers la droite → donc on lit : <strong>hr ind</strong> (salutations)
+                </p>
+            </div>
+
+            <div class="quiz-box">
+                <h4>🧠 Mini-Quiz 1</h4>
+                <p>Dans quel sens lit-on cette inscription : 𓅓𓂋𓇋 𓀀 ?</p>
+                <div class="quiz-option" onclick="checkAnswer(1, this, false)">
+                    A) De gauche à droite
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(1, this, true)">
+                    B) De droite à gauche (les signes regardent vers la droite)
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(1, this, false)">
+                    C) De haut en bas
+                </div>
+            </div>
+
+            <button class="btn btn-success" onclick="completeLesson(1)">✅ J'ai compris cette leçon</button>
+        </div>
+
+        <!-- LEÇON 2 : PHONOGRAMMES UNILITÈRES -->
+        <div class="lesson" data-lesson="2">
+            <h2>🔤 Leçon 2 : Les Phonogrammes Unilitères (L'Alphabet)</h2>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Les <strong>phonogrammes</strong> sont des signes qui représentent des <strong>sons</strong>. Les unilitères représentent une seule consonne.
+            </p>
+
+            <h3>🎯 Les 10 unilitères les plus fréquents</h3>
+
+            <table class="table-grammar">
+                <thead>
+                    <tr>
+                        <th>Hiéroglyphe</th>
+                        <th>Son</th>
+                        <th>Nom</th>
+                        <th>Exemple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓇋</td>
+                        <td><strong>I / Y</strong></td>
+                        <td>Roseau</td>
+                        <td>𓇋𓈖 (in = par)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓈖</td>
+                        <td><strong>N</strong></td>
+                        <td>Eau</td>
+                        <td>𓈖 𓆑𓂋 (n fr = bon)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓂋</td>
+                        <td><strong>R</strong></td>
+                        <td>Bouche</td>
+                        <td>𓂋𓏏 (r t = pied)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓏏</td>
+                        <td><strong>T</strong></td>
+                        <td>Pain</td>
+                        <td>𓏏𓄿 (t a = terre)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓅓</td>
+                        <td><strong>M</strong></td>
+                        <td>Chouette</td>
+                        <td>𓅓𓏏 (m t = mort)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓆑</td>
+                        <td><strong>F</strong></td>
+                        <td>Vipère</td>
+                        <td>𓆑𓅱 (f w = il)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓅱</td>
+                        <td><strong>W / U</strong></td>
+                        <td>Caille</td>
+                        <td>𓅱𓈖 (w n = être)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓊪</td>
+                        <td><strong>P</strong></td>
+                        <td>Tabouret</td>
+                        <td>𓊪𓂋 (p r = maison)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓎛</td>
+                        <td><strong>H</strong></td>
+                        <td>Verrou</td>
+                        <td>𓎛𓏏𓊪 (h t p = offrande)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓋴</td>
+                        <td><strong>S</strong></td>
+                        <td>Étoffe</td>
+                        <td>𓋴𓈖 (s n = frère)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>Exemple pratique : Déchiffrer un nom simple</h4>
+                <div class="example-breakdown">
+                    <p style="margin-bottom: 1rem;">Décortiquons le mot : <span style="font-size: 2rem;">𓈖𓆑𓂋</span></p>
+
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                        <div class="word-component">
+                            <div class="word-component-symbol">𓈖</div>
+                            <div class="word-component-sound">N</div>
+                            <div class="word-component-meaning">Eau</div>
+                        </div>
+
+                        <div style="font-size: 3rem; margin: 0 1rem; align-self: center;">+</div>
+
+                        <div class="word-component">
+                            <div class="word-component-symbol">𓆑</div>
+                            <div class="word-component-sound">F</div>
+                            <div class="word-component-meaning">Vipère</div>
+                        </div>
+
+                        <div style="font-size: 3rem; margin: 0 1rem; align-self: center;">+</div>
+
+                        <div class="word-component">
+                            <div class="word-component-symbol">𓂋</div>
+                            <div class="word-component-sound">R</div>
+                            <div class="word-component-meaning">Bouche</div>
+                        </div>
+                    </div>
+
+                    <p style="text-align: center; margin-top: 2rem; font-size: 1.5rem; color: #81c784;">
+                        = <strong>NFR</strong> (nefer) = "bon, beau, parfait"
+                    </p>
+                </div>
+            </div>
+
+            <div class="quiz-box">
+                <h4>🧠 Mini-Quiz 2</h4>
+                <p>Que signifie le mot 𓇋𓈖 (in) ?</p>
+                <div class="quiz-option" onclick="checkAnswer(2, this, false)">
+                    A) Maison
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(2, this, true)">
+                    B) Par / Dans
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(2, this, false)">
+                    C) Eau
+                </div>
+            </div>
+
+            <button class="btn btn-success" onclick="completeLesson(2)">✅ J'ai compris cette leçon</button>
+        </div>
+
+        <!-- LEÇON 3 : DÉTERMINATIFS -->
+        <div class="lesson" data-lesson="3">
+            <h2>🔍 Leçon 3 : Les Déterminatifs (Signes Muets)</h2>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Les <strong>déterminatifs</strong> sont des signes qui ne se prononcent PAS mais qui précisent la catégorie du mot (personne, animal, abstrait, etc.)
+            </p>
+
+            <h3>❓ Pourquoi des signes muets ?</h3>
+
+            <div class="rule-box">
+                <h4>🤔 Le Problème de l'Écriture Sans Voyelles</h4>
+                <p>
+                    L'égyptien ancien n'écrit que les consonnes (comme l'hébreu). Imaginez en français si on écrivait seulement :
+                </p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>PR</strong> pourrait être : PRé, PReU, PouR, PaRi, PaiRe...</li>
+                    <li><strong>MR</strong> pourrait être : MèRe, MeR, MuR, éMiR...</li>
+                </ul>
+                <p style="margin-top: 1rem;">
+                    Les déterminatifs aident à lever l'ambiguïté en indiquant le sens général du mot.
+                </p>
+            </div>
+
+            <h3>📊 Les Déterminatifs Essentiels</h3>
+
+            <table class="table-grammar">
+                <thead>
+                    <tr>
+                        <th>Déterminatif</th>
+                        <th>Catégorie</th>
+                        <th>Exemples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓀀</td>
+                        <td>Homme, masculin, "je"</td>
+                        <td>𓇋𓈖𓂧 𓀀 (ind = salutation)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓁐</td>
+                        <td>Femme, féminin</td>
+                        <td>𓆓𓏏 𓁐 (ḏt = corps féminin)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓀭</td>
+                        <td>Dieu, divinité</td>
+                        <td>𓇋𓏠𓈖 𓀭 (imn = Amon)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓏛</td>
+                        <td>Abstrait, concept</td>
+                        <td>𓅓𓏏 𓏛 (mt = mort [concept])</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 2rem; text-align: center;">𓊖</td>
+                        <td>Ville, lieu</td>
+                        <td>𓉐𓂋 𓊖 (pr = maison [lieu])</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>Exemple : Même racine, sens différent</h4>
+                <div class="example-breakdown">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.2rem;">
+                        Regardons comment le déterminatif change le sens :
+                    </p>
+
+                    <div style="background: rgba(76, 175, 80, 0.2); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">𓈖𓆑𓂋</div>
+                        <p style="color: #81c784;">NFR (sans déterminatif) = racine "bon/beau"</p>
+                    </div>
+
+                    <div style="background: rgba(76, 175, 80, 0.2); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">𓈖𓆑𓂋 𓀀</div>
+                        <p style="color: #81c784;">NFR + homme assis = jeune homme, bel homme</p>
+                    </div>
+
+                    <div style="background: rgba(76, 175, 80, 0.2); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">𓈖𓆑𓂋 𓏛</div>
+                        <p style="color: #81c784;">NFR + papyrus = beauté (concept abstrait)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ ATTENTION :</strong> Les déterminatifs sont TOUJOURS à la fin du mot et ne se prononcent JAMAIS !
+            </div>
+
+            <div class="quiz-box">
+                <h4>🧠 Mini-Quiz 3</h4>
+                <p>Quel est le rôle du signe 𓀭 dans le mot 𓇋𓏠𓈖𓀭 ?</p>
+                <div class="quiz-option" onclick="checkAnswer(3, this, false)">
+                    A) Il se prononce "dieu"
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(3, this, true)">
+                    B) Il indique que le mot désigne un dieu (déterminatif muet)
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(3, this, false)">
+                    C) Il signifie "homme assis"
+                </div>
+            </div>
+
+            <button class="btn btn-success" onclick="completeLesson(3)">✅ J'ai compris cette leçon</button>
+        </div>
+
+        <!-- LEÇON 4 : COMPLÉMENT PHONÉTIQUE -->
+        <div class="lesson" data-lesson="4">
+            <h2>🔊 Leçon 4 : Les Compléments Phonétiques</h2>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Les Égyptiens aimaient la redondance pour s'assurer qu'on prononce correctement. Ils ajoutaient souvent des unilitères pour "renforcer" la prononciation d'un signe bilitère ou trilitère.
+            </p>
+
+            <div class="example-box">
+                <h4>Exemple : Le mot "nfr" (bon)</h4>
+                <div class="example-breakdown">
+                    <p style="margin-bottom: 1rem;">Plusieurs façons d'écrire le même mot :</p>
+
+                    <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <div style="font-size: 2.5rem;">𓄤</div>
+                        <p>Version courte : un seul signe trilitère NFR</p>
+                    </div>
+
+                    <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <div style="font-size: 2.5rem;">𓄤𓂋</div>
+                        <p>Avec complément phonétique : NFR + R (pour confirmer le "r")</p>
+                    </div>
+
+                    <div style="background: rgba(138, 43, 226, 0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <div style="font-size: 2.5rem;">𓈖𓆑𓂋</div>
+                        <p>Version complète : N + F + R (trois unilitères)</p>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; text-align: center; color: #ffa726; font-size: 1.3rem;">
+                        Ces trois versions se prononcent EXACTEMENT pareil : <strong>NFR</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="rule-box">
+                <h4>✨ RÈGLE D'OR DES COMPLÉMENTS</h4>
+                <p>
+                    Quand vous voyez un signe bilitère ou trilitère suivi d'unilitères qui répètent une partie de sa prononciation,
+                    <strong>ne les prononcez qu'une seule fois</strong> !
+                </p>
+            </div>
+
+            <div class="quiz-box">
+                <h4>🧠 Mini-Quiz 4</h4>
+                <p>Comment prononce-t-on 𓊪𓂋𓂋 (le signe 𓊪 se lit "PR") ?</p>
+                <div class="quiz-option" onclick="checkAnswer(4, this, false)">
+                    A) PR-R-R (on prononce tout)
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(4, this, true)">
+                    B) PR (le R est un complément phonétique redondant)
+                </div>
+                <div class="quiz-option" onclick="checkAnswer(4, this, false)">
+                    C) P-R-R
+                </div>
+            </div>
+
+            <button class="btn btn-success" onclick="completeLesson(4)">✅ J'ai compris cette leçon</button>
+        </div>
+
+        <!-- RÉCAPITULATIF -->
+        <div class="lesson">
+            <h2>🎯 Récapitulatif des 4 Leçons</h2>
+
+            <div style="background: rgba(76, 175, 80, 0.1); border: 2px solid rgba(76, 175, 80, 0.5); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+                <h3 style="color: #81c784; margin-bottom: 1.5rem;">Ce que vous maîtrisez maintenant :</h3>
+                <ul style="font-size: 1.2rem; line-height: 2.5;">
+                    <li>✅ Déterminer le sens de lecture en observant l'orientation des signes</li>
+                    <li>✅ Reconnaître et prononcer les 10 unilitères les plus fréquents</li>
+                    <li>✅ Identifier les déterminatifs et comprendre leur rôle</li>
+                    <li>✅ Gérer les compléments phonétiques sans les prononcer deux fois</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.3rem; margin-bottom: 2rem;">
+                    Vous êtes maintenant prêt pour les exercices pratiques de déchiffrage !
+                </p>
+                <a href="hieroglyphes-exercices-dechiffrage.html" class="btn btn-success" style="font-size: 1.3rem; padding: 1.5rem 3rem;">
+                    🎯 Passer aux Exercices Pratiques →
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="hieroglyphes-parcours-complet.html" class="btn">← Retour au Parcours</a>
+            <a href="hieroglyphes-alphabet-complet.html" class="btn">Étape 1 : Alphabet</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+            <a href="hieroglyphes-exercices-dechiffrage.html" class="btn">Étape 3 : Exercices →</a>
+        </div>
+    </div>
+
+    <script>
+        let lessonsCompleted = JSON.parse(localStorage.getItem('hieroglyphes_grammar_lessons') || '[]');
+        let quizAnswered = {};
+
+        // Mettre à jour la barre de progression
+        function updateProgress() {
+            const totalLessons = 4;
+            const completed = lessonsCompleted.length;
+            const percentage = Math.round((completed / totalLessons) * 100);
+
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressBar').textContent = percentage + '% complété (' + completed + '/' + totalLessons + ' leçons)';
+        }
+
+        // Marquer une leçon comme complétée
+        function completeLesson(lessonNumber) {
+            if (!lessonsCompleted.includes(lessonNumber)) {
+                lessonsCompleted.push(lessonNumber);
+                localStorage.setItem('hieroglyphes_grammar_lessons', JSON.stringify(lessonsCompleted));
+                updateProgress();
+                alert('✅ Leçon ' + lessonNumber + ' complétée ! Continuez comme ça !');
+            } else {
+                alert('Vous avez déjà complété cette leçon.');
+            }
+        }
+
+        // Vérifier une réponse de quiz
+        function checkAnswer(quizNumber, element, isCorrect) {
+            if (quizAnswered[quizNumber]) return;
+
+            quizAnswered[quizNumber] = true;
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                setTimeout(() => {
+                    alert('✅ Correct ! Excellente compréhension !');
+                }, 100);
+            } else {
+                element.classList.add('incorrect');
+                // Montrer la bonne réponse
+                const options = element.parentElement.querySelectorAll('.quiz-option');
+                options.forEach(opt => {
+                    if (opt.textContent.includes('B)') || opt !== element && !opt.classList.contains('incorrect')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                setTimeout(() => {
+                    alert('❌ Incorrect. Regardez la réponse correcte en vert et relisez la leçon.');
+                }, 100);
+            }
+
+            // Désactiver toutes les options
+            const allOptions = element.parentElement.querySelectorAll('.quiz-option');
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+        }
+
+        // Initialiser la progression au chargement
+        updateProgress();
+
+        // Fond étoilé animé
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 250;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5
+            });
+        }
+
+        const shootingStars = [];
+        function createShootingStar() {
+            shootingStars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height / 2,
+                length: Math.random() * 80 + 40,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 4 + Math.random() * 0.3,
+                opacity: 1
+            });
+        }
+        setInterval(() => {
+            if (shootingStars.length < 3) createShootingStar();
+        }, Math.random() * 2000 + 3000);
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) { star.opacity = 1; star.increasing = false; }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) { star.opacity = 0.2; star.increasing = true; }
+                }
+            });
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+                const gradient = ctx.createLinearGradient(star.x, star.y, star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - Math.cos(star.angle) * star.length, star.y - Math.sin(star.angle) * star.length);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

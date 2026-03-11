@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Hiéroglyphes - Niveau Débutant</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #c49c62 0%, #8b6f47 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b6f47;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #8b6f47;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #c49c62;
+        }
+
+        .hieroglyph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .hieroglyph-card {
+            background: #f9f6f0;
+            border: 2px solid #c49c62;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .hieroglyph-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hieroglyph-symbol {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #8b6f47;
+        }
+
+        .hieroglyph-name {
+            font-weight: bold;
+            color: #c0c0c0;
+            margin-bottom: 5px;
+        }
+
+        .hieroglyph-meaning {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .info-box {
+            background: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .exercise {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .exercise h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #8b6f47;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #6d5638;
+        }
+
+        .btn-home {
+            background: #607d8b;
+        }
+
+        .btn-home:hover {
+            background: #455a64;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+        }
+
+        ul {
+            line-height: 2;
+            color: #c0c0c0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+    </style>
+    <script src="theme-backgrounds.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>𓂀 Hiéroglyphes Égyptiens</h1>
+        <p class="subtitle">Niveau Débutant - Introduction à l'écriture sacrée</p>
+        <div style="text-align: center;">
+            <span class="level-badge">🌱 Débutant</span>
+        </div>
+
+        <div class="section">
+            <h2>📚 Introduction aux Hiéroglyphes</h2>
+            <div class="info-box">
+                <p><strong>Les hiéroglyphes</strong> sont l'écriture sacrée de l'Égypte ancienne, utilisée pendant plus de 3000 ans. Le mot "hiéroglyphe" vient du grec et signifie "écriture sacrée sculptée".</p>
+                <br>
+                <p>Cette écriture combine trois types de signes :</p>
+                <ul>
+                    <li><strong>Idéogrammes</strong> : Représentent directement un objet ou une idée</li>
+                    <li><strong>Phonogrammes</strong> : Représentent des sons</li>
+                    <li><strong>Déterminatifs</strong> : Précisent le sens du mot</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔤 Premiers Hiéroglyphes à Apprendre</h2>
+            <p>Voici les 12 hiéroglyphes de base les plus importants :</p>
+
+            <div class="hieroglyph-grid">
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓀀</div>
+                    <div class="hieroglyph-name">A1</div>
+                    <div class="hieroglyph-meaning">Homme assis</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓁐</div>
+                    <div class="hieroglyph-name">B1</div>
+                    <div class="hieroglyph-meaning">Femme assise</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓃀</div>
+                    <div class="hieroglyph-name">D1</div>
+                    <div class="hieroglyph-meaning">Tête</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓄿</div>
+                    <div class="hieroglyph-name">G1</div>
+                    <div class="hieroglyph-meaning">Vautour (A)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓅓</div>
+                    <div class="hieroglyph-name">G17</div>
+                    <div class="hieroglyph-meaning">Chouette (M)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓆑</div>
+                    <div class="hieroglyph-name">I9</div>
+                    <div class="hieroglyph-meaning">Vipère (F)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓇋</div>
+                    <div class="hieroglyph-name">M17</div>
+                    <div class="hieroglyph-meaning">Roseau (I)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓈖</div>
+                    <div class="hieroglyph-name">N35</div>
+                    <div class="hieroglyph-meaning">Eau (N)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓉐</div>
+                    <div class="hieroglyph-name">O1</div>
+                    <div class="hieroglyph-meaning">Maison (PR)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓊃</div>
+                    <div class="hieroglyph-name">O34</div>
+                    <div class="hieroglyph-meaning">Verrou (S)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓊪</div>
+                    <div class="hieroglyph-name">Q3</div>
+                    <div class="hieroglyph-meaning">Tabouret (P)</div>
+                </div>
+                <div class="hieroglyph-card">
+                    <div class="hieroglyph-symbol">𓋴</div>
+                    <div class="hieroglyph-name">S29</div>
+                    <div class="hieroglyph-meaning">Étoffe (S)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✍️ Principes de Base</h2>
+            <ul>
+                <li><strong>Direction d'écriture :</strong> Les hiéroglyphes peuvent s'écrire de gauche à droite, de droite à gauche, ou de haut en bas</li>
+                <li><strong>Orientation :</strong> Les signes représentant des êtres vivants "regardent" vers le début de la ligne</li>
+                <li><strong>Cartouches :</strong> Les noms royaux sont écrits dans des ovales appelés cartouches</li>
+                <li><strong>Pas de voyelles :</strong> Seules les consonnes sont écrites (comme en hébreu)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="exercise">
+                <h3>📝 Exercice 1 : Reconnaissance</h3>
+                <p>Essayez de mémoriser les 12 hiéroglyphes ci-dessus. Observez leur forme et leur signification.</p>
+                <p><strong>Astuce :</strong> Beaucoup de hiéroglyphes sont pictographiques - ils ressemblent à ce qu'ils représentent !</p>
+            </div>
+
+            <div class="exercise">
+                <h3>📝 Exercice 2 : Premier Mot</h3>
+                <p>Votre premier mot en hiéroglyphes : <strong>𓈖𓆑𓂋</strong> (NFR) = "bon, beau"</p>
+                <p>Décomposition :</p>
+                <ul>
+                    <li>𓈖 = N (eau)</li>
+                    <li>𓆑 = F (vipère)</li>
+                    <li>𓂋 = R</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Objectifs du Niveau Débutant</h2>
+            <ul>
+                <li>✅ Reconnaître les 12 hiéroglyphes de base</li>
+                <li>✅ Comprendre les trois types de signes</li>
+                <li>✅ Connaître le sens de lecture</li>
+                <li>✅ Écrire votre premier mot en hiéroglyphes</li>
+            </ul>
+        </div>
+
+        <div class="navigation">
+            <a href="index_COMPLET.html" class="btn btn-home">⌂ Accueil</a>
+            <a href="hieroglyphes-intermediaire.html" class="btn">Niveau Intermédiaire →</a>
+        </div>
+    </div>
+</body>
+</html>

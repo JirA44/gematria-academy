@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de Gematria | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <style>
+        .hebrew-input {
+            font-size: 2rem;
+            padding: 1rem;
+            width: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            text-align: center;
+            direction: rtl;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .calculator-container {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 2rem 0;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .result-box h2 {
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+
+        .breakdown {
+            background: rgba(40, 40, 60, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .letter-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(30, 30, 45, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .letter-symbol {
+            font-size: 2rem;
+            font-weight: bold;
+            direction: rtl;
+        }
+
+        .letter-name {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .letter-value {
+            background: var(--accent-beginner);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .system-selector {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .system-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: rgba(30, 30, 45, 0.7);
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .system-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .system-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .preset-btn {
+            padding: 1rem;
+            background: var(--bg-light);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .preset-btn:hover {
+            background: var(--accent-intermediate);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .preset-hebrew {
+            font-size: 1.5rem;
+            direction: rtl;
+            font-weight: bold;
+        }
+
+        .correspondence-box {
+            background: #d1ecf1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 5px solid #0c5460;
+        }
+
+        .calc-btn {
+            background: var(--accent-beginner);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .calc-btn:hover {
+            background: var(--accent-intermediate);
+            transform: scale(1.02);
+        }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .calculator-container {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .hebrew-input {
+            background: #1a1a2e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        body.dark-mode .breakdown {
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        body.dark-mode .letter-item {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .letter-symbol {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .letter-name {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .letter-value {
+            background: var(--accent-beginner);
+            color: white;
+        }
+
+        body.dark-mode .system-btn {
+            background: #2a2a3e;
+            color: #64b5f6;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .system-btn:hover,
+        body.dark-mode .system-btn.active {
+            background: #64b5f6;
+            color: #1a1a2e;
+        }
+
+        body.dark-mode .preset-btn {
+            background: #2a2a3e;
+            color: #eee;
+        }
+
+        body.dark-mode .preset-btn:hover {
+            background: var(--accent-intermediate);
+            color: white;
+        }
+
+        body.dark-mode .preset-hebrew {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .correspondence-box {
+            background: #2d4a5a;
+            color: #d1ecf1;
+            border-left-color: #64b5f6;
+        }
+
+        body.dark-mode .calc-btn {
+            background: var(--accent-beginner);
+            color: white;
+        }
+
+        body.dark-mode .calc-btn:hover {
+            background: var(--accent-intermediate);
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🔢 Calculateur de Gematria</h1>
+        <p class="subtitle">Découvrez les valeurs numériques des mots hébreux</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="gematria-debutant.html">Gematria Débutant</a>
+            <a href="calculateur-gematria.html" class="active">Calculateur</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > Outils > Calculateur de Gematria
+            </div>
+
+            <section class="calculator-container">
+                <h2>Entrez un mot ou une phrase en hébreu</h2>
+
+                <div class="system-selector">
+                    <button class="system-btn active" onclick="changeSystem('absolute')" id="btn-absolute">
+                        Gematria Absolue
+                    </button>
+                    <button class="system-btn" onclick="changeSystem('ordinal')" id="btn-ordinal">
+                        Gematria Ordinale
+                    </button>
+                    <button class="system-btn" onclick="changeSystem('reduced')" id="btn-reduced">
+                        Gematria Réduite
+                    </button>
+                </div>
+
+                <input type="text"
+                       id="hebrewInput"
+                       class="hebrew-input"
+                       placeholder="הקלד טקסט בעברית"
+                       oninput="calculateGematria()">
+
+                <button class="calc-btn" onclick="calculateGematria()">
+                    Calculer
+                </button>
+
+                <div id="results"></div>
+                <div id="breakdown"></div>
+                <div id="correspondences"></div>
+            </section>
+
+            <section class="calculator-container">
+                <h2>🔍 Recherche Inverse : Trouver des mots par nombre</h2>
+                <p>Entrez un nombre pour découvrir quels mots hébreux ont cette valeur gematrique</p>
+
+                <input type="number"
+                       id="numberInput"
+                       class="hebrew-input"
+                       placeholder="Entrez un nombre (ex: 13, 18, 26...)"
+                       style="direction: ltr; text-align: center;"
+                       oninput="searchByNumber()">
+
+                <button class="calc-btn" onclick="searchByNumber()">
+                    Rechercher
+                </button>
+
+                <div id="numberResults"></div>
+            </section>
+
+            <section class="calculator-container">
+                <h2>Mots d'exemple (cliquez pour calculer)</h2>
+
+                <div class="presets">
+                    <button class="preset-btn" onclick="setWord('אהבה')">
+                        <div class="preset-hebrew">אהבה</div>
+                        <div>Ahava (Amour)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('אחד')">
+                        <div class="preset-hebrew">אחד</div>
+                        <div>Ekhad (Un)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('חי')">
+                        <div class="preset-hebrew">חי</div>
+                        <div>Khaï (Vie)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('שלום')">
+                        <div class="preset-hebrew">שלום</div>
+                        <div>Shalom (Paix)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('יהוה')">
+                        <div class="preset-hebrew">יהוה</div>
+                        <div>YHVH (Tétragramme)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('אלהים')">
+                        <div class="preset-hebrew">אלהים</div>
+                        <div>Elohim (Dieu)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('תורה')">
+                        <div class="preset-hebrew">תורה</div>
+                        <div>Torah (Loi)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('חכמה')">
+                        <div class="preset-hebrew">חכמה</div>
+                        <div>Hokhma (Sagesse)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('ברכה')">
+                        <div class="preset-hebrew">ברכה</div>
+                        <div>Berakha (Bénédiction)</div>
+                    </button>
+                    <button class="preset-btn" onclick="setWord('אמן')">
+                        <div class="preset-hebrew">אמן</div>
+                        <div>Amen</div>
+                    </button>
+                </div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="index.html" class="btn btn-beginner">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        // Valeurs de gematria pour chaque lettre hébraïque
+        const hebrewLetters = {
+            'א': { name: 'Aleph', absolute: 1, ordinal: 1 },
+            'ב': { name: 'Bet', absolute: 2, ordinal: 2 },
+            'ג': { name: 'Gimel', absolute: 3, ordinal: 3 },
+            'ד': { name: 'Dalet', absolute: 4, ordinal: 4 },
+            'ה': { name: 'Hé', absolute: 5, ordinal: 5 },
+            'ו': { name: 'Vav', absolute: 6, ordinal: 6 },
+            'ז': { name: 'Zayin', absolute: 7, ordinal: 7 },
+            'ח': { name: 'Het', absolute: 8, ordinal: 8 },
+            'ט': { name: 'Tet', absolute: 9, ordinal: 9 },
+            'י': { name: 'Yod', absolute: 10, ordinal: 10 },
+            'כ': { name: 'Kaf', absolute: 20, ordinal: 11 },
+            'ך': { name: 'Kaf Sofit', absolute: 20, ordinal: 11 },
+            'ל': { name: 'Lamed', absolute: 30, ordinal: 12 },
+            'מ': { name: 'Mem', absolute: 40, ordinal: 13 },
+            'ם': { name: 'Mem Sofit', absolute: 40, ordinal: 13 },
+            'נ': { name: 'Nun', absolute: 50, ordinal: 14 },
+            'ן': { name: 'Nun Sofit', absolute: 50, ordinal: 14 },
+            'ס': { name: 'Samekh', absolute: 60, ordinal: 15 },
+            'ע': { name: 'Ayin', absolute: 70, ordinal: 16 },
+            'פ': { name: 'Pé', absolute: 80, ordinal: 17 },
+            'ף': { name: 'Pé Sofit', absolute: 80, ordinal: 17 },
+            'צ': { name: 'Tsadé', absolute: 90, ordinal: 18 },
+            'ץ': { name: 'Tsadé Sofit', absolute: 90, ordinal: 18 },
+            'ק': { name: 'Qof', absolute: 100, ordinal: 19 },
+            'ר': { name: 'Resh', absolute: 200, ordinal: 20 },
+            'ש': { name: 'Shin', absolute: 300, ordinal: 21 },
+            'ת': { name: 'Tav', absolute: 400, ordinal: 22 }
+        };
+
+        // Correspondances mystiques connues
+        const knownCorrespondences = {
+            13: ['אהבה (Ahava - Amour)', 'אחד (Ekhad - Un/Unité)'],
+            18: ['חי (Khaï - Vie)', 'חטא (Khet - Péché)'],
+            26: ['יהוה (YHVH - Tétragramme)'],
+            86: ['אלהים (Elohim - Dieu)', 'הללויה (Hallelouya)'],
+            91: ['אמן (Amen)', 'מלאך (Malakh - Ange)'],
+            358: ['נחש (Nakhash - Serpent)', 'משיח (Mashiakh - Messie)'],
+            611: ['תורה (Torah - Loi)']
+        };
+
+        // Base de données étendue de mots hébreux
+        const hebrewWords = [
+            { word: 'א', meaning: 'Aleph (lettre)', value: 1 },
+            { word: 'אב', meaning: 'Av (Père)', value: 3 },
+            { word: 'חי', meaning: 'Khaï (Vie)', value: 18 },
+            { word: 'חטא', meaning: 'Khet (Péché)', value: 18 },
+            { word: 'טוב', meaning: 'Tov (Bon)', value: 17 },
+            { word: 'אהבה', meaning: 'Ahava (Amour)', value: 13 },
+            { word: 'אחד', meaning: 'Ekhad (Un, Unité)', value: 13 },
+            { word: 'זהב', meaning: 'Zahav (Or)', value: 14 },
+            { word: 'דוד', meaning: 'David (Bien-aimé)', value: 14 },
+            { word: 'הוד', meaning: 'Hod (Gloire)', value: 15 },
+            { word: 'יהוה', meaning: 'YHVH (Tétragramme sacré)', value: 26 },
+            { word: 'אדני', meaning: 'Adonaï (Mon Seigneur)', value: 65 },
+            { word: 'אלהים', meaning: 'Elohim (Dieu)', value: 86 },
+            { word: 'הללויה', meaning: 'Hallelouya', value: 86 },
+            { word: 'אהיה', meaning: 'Ehyeh (Je Suis)', value: 21 },
+            { word: 'שלום', meaning: 'Shalom (Paix)', value: 376 },
+            { word: 'תורה', meaning: 'Torah (Loi, Enseignement)', value: 611 },
+            { word: 'חכמה', meaning: 'Hokhma (Sagesse)', value: 73 },
+            { word: 'בינה', meaning: 'Binah (Intelligence)', value: 67 },
+            { word: 'חסד', meaning: 'Hesed (Miséricorde)', value: 72 },
+            { word: 'גבורה', meaning: 'Gevurah (Force)', value: 216 },
+            { word: 'יראה', meaning: 'Yira (Crainte)', value: 216 },
+            { word: 'נצח', meaning: 'Netzah (Victoire)', value: 148 },
+            { word: 'פסח', meaning: 'Pessah (Pâque)', value: 148 },
+            { word: 'יסוד', meaning: 'Yesod (Fondation)', value: 80 },
+            { word: 'מלכות', meaning: 'Malkuth (Royaume)', value: 496 },
+            { word: 'סוכות', meaning: 'Souccot', value: 496 },
+            { word: 'כתר', meaning: 'Kether (Couronne)', value: 620 },
+            { word: 'אמן', meaning: 'Amen (Vérité)', value: 91 },
+            { word: 'מלאך', meaning: 'Malakh (Ange)', value: 91 },
+            { word: 'אמת', meaning: 'Emet (Vérité)', value: 441 },
+            { word: 'ברכה', meaning: 'Berakha (Bénédiction)', value: 227 },
+            { word: 'ברוך', meaning: 'Baroukh (Béni)', value: 228 },
+            { word: 'נשמה', meaning: 'Neshama (Âme)', value: 395 },
+            { word: 'רוח', meaning: 'Ruakh (Esprit, Vent)', value: 214 },
+            { word: 'נפש', meaning: 'Nefesh (Âme vitale)', value: 430 },
+            { word: 'לב', meaning: 'Lev (Cœur)', value: 32 },
+            { word: 'כבוד', meaning: 'Kavod (Gloire)', value: 32 },
+            { word: 'אור', meaning: 'Or (Lumière)', value: 207 },
+            { word: 'חושך', meaning: 'Khoshekh (Ténèbres)', value: 328 },
+            { word: 'שמים', meaning: 'Shamaïm (Cieux)', value: 390 },
+            { word: 'ארץ', meaning: 'Eretz (Terre)', value: 291 },
+            { word: 'מים', meaning: 'Maïm (Eau)', value: 90 },
+            { word: 'אש', meaning: 'Esh (Feu)', value: 301 },
+            { word: 'אדם', meaning: 'Adam (Homme)', value: 45 },
+            { word: 'גאולה', meaning: 'Gueoula (Rédemption)', value: 45 },
+            { word: 'חוה', meaning: 'Khava (Eve)', value: 19 },
+            { word: 'נחש', meaning: 'Nakhash (Serpent)', value: 358 },
+            { word: 'משיח', meaning: 'Mashiakh (Messie)', value: 358 },
+            { word: 'שטן', meaning: 'Satan', value: 359 },
+            { word: 'גיהנום', meaning: 'Gehinnom (Enfer)', value: 124 },
+            { word: 'ישראל', meaning: 'Israël', value: 541 },
+            { word: 'יהודה', meaning: 'Yehouda (Juda)', value: 30 },
+            { word: 'משה', meaning: 'Moshe (Moïse)', value: 345 },
+            { word: 'אברהם', meaning: 'Avraham (Abraham)', value: 248 },
+            { word: 'יצחק', meaning: 'Yitzkhak (Isaac)', value: 208 },
+            { word: 'יעקב', meaning: 'Ya\'akov (Jacob)', value: 182 },
+            { word: 'שרה', meaning: 'Sarah', value: 505 },
+            { word: 'מצוה', meaning: 'Mitzvah (Commandement)', value: 141 },
+            { word: 'צדקה', meaning: 'Tzedakah (Charité)', value: 199 },
+            { word: 'תפילה', meaning: 'Tefilah (Prière)', value: 515 },
+            { word: 'שבת', meaning: 'Shabbat', value: 702 },
+            { word: 'חנוכה', meaning: 'Hanouka', value: 89 },
+            { word: 'פורים', meaning: 'Pourim', value: 336 },
+            { word: 'קדוש', meaning: 'Kadosh (Saint)', value: 410 },
+            { word: 'ישועה', meaning: 'Yeshoua (Salut)', value: 391 },
+            { word: 'רחמים', meaning: 'Rakhamim (Miséricorde)', value: 298 },
+            { word: 'דין', meaning: 'Din (Jugement)', value: 64 },
+            { word: 'צדיק', meaning: 'Tzadik (Juste)', value: 204 },
+            { word: 'רשע', meaning: 'Rasha (Méchant)', value: 570 },
+            { word: 'תשובה', meaning: 'Teshouva (Repentance)', value: 713 },
+            { word: 'שמחה', meaning: 'Simkha (Joie)', value: 353 },
+            { word: 'בטחון', meaning: 'Bitakhon (Confiance)', value: 471 },
+            { word: 'אמונה', meaning: 'Emouna (Foi)', value: 102 },
+            { word: 'תקוה', meaning: 'Tikva (Espoir)', value: 511 },
+            { word: 'ספר', meaning: 'Sefer (Livre)', value: 340 },
+            { word: 'שם', meaning: 'Shem (Nom)', value: 340 },
+            { word: 'דבר', meaning: 'Davar (Parole)', value: 206 },
+            { word: 'קול', meaning: 'Kol (Voix)', value: 136 },
+            { word: 'דרך', meaning: 'Derekh (Chemin)', value: 224 },
+            { word: 'חיים', meaning: 'Khaïm (Vies)', value: 68 },
+            { word: 'מות', meaning: 'Mavet (Mort)', value: 446 },
+            { word: 'עולם', meaning: '\'Olam (Monde)', value: 146 },
+            { word: 'זמן', meaning: 'Zman (Temps)', value: 97 },
+            { word: 'מקום', meaning: 'Makom (Lieu)', value: 186 },
+            { word: 'שכינה', meaning: 'Shekhina (Présence divine)', value: 385 },
+            { word: 'כוונה', meaning: 'Kavana (Intention)', value: 131 },
+
+            // Lettres finales et valeurs élevées
+            { word: 'ך', meaning: 'Kaf Sofit (lettre finale)', value: 500 },
+            { word: 'ם', meaning: 'Mem Sofit (lettre finale)', value: 600 },
+            { word: 'ן', meaning: 'Nun Sofit (lettre finale)', value: 700 },
+            { word: 'ף', meaning: 'Pé Sofit (lettre finale)', value: 800 },
+            { word: 'ץ', meaning: 'Tsadé Sofit (lettre finale)', value: 900 },
+
+            // Plus de mots communs
+            { word: 'בן', meaning: 'Ben (Fils)', value: 52 },
+            { word: 'בת', meaning: 'Bat (Fille)', value: 402 },
+            { word: 'אם', meaning: 'Em (Mère)', value: 41 },
+            { word: 'אח', meaning: 'Akh (Frère)', value: 9 },
+            { word: 'אחות', meaning: 'Akhot (Sœur)', value: 415 },
+            { word: 'איש', meaning: 'Ish (Homme)', value: 311 },
+            { word: 'אשה', meaning: 'Isha (Femme)', value: 306 },
+            { word: 'ילד', meaning: 'Yeled (Enfant)', value: 44 },
+            { word: 'זקן', meaning: 'Zaken (Ancien, vieillard)', value: 157 },
+
+            // Corps et âme
+            { word: 'ראש', meaning: 'Rosh (Tête)', value: 501 },
+            { word: 'יד', meaning: 'Yad (Main)', value: 14 },
+            { word: 'רגל', meaning: 'Regel (Pied)', value: 233 },
+            { word: 'עין', meaning: 'Ayin (Œil)', value: 130 },
+            { word: 'אזן', meaning: 'Ozen (Oreille)', value: 58 },
+            { word: 'פה', meaning: 'Peh (Bouche)', value: 85 },
+            { word: 'לשון', meaning: 'Lashon (Langue)', value: 386 },
+            { word: 'גוף', meaning: 'Gouf (Corps)', value: 89 },
+            { word: 'דם', meaning: 'Dam (Sang)', value: 44 },
+            { word: 'עצם', meaning: 'Etzem (Os)', value: 200 },
+
+            // Nature
+            { word: 'שמש', meaning: 'Shemesh (Soleil)', value: 640 },
+            { word: 'ירח', meaning: 'Yareach (Lune)', value: 218 },
+            { word: 'כוכב', meaning: 'Kokhav (Étoile)', value: 48 },
+            { word: 'עב', meaning: 'Av (Nuage)', value: 72 },
+            { word: 'גשם', meaning: 'Geshem (Pluie)', value: 343 },
+            { word: 'רוח', meaning: 'Ruakh (Vent)', value: 214 },
+            { word: 'אבן', meaning: 'Even (Pierre)', value: 53 },
+            { word: 'הר', meaning: 'Har (Montagne)', value: 205 },
+            { word: 'נהר', meaning: 'Nahar (Fleuve)', value: 255 },
+            { word: 'ים', meaning: 'Yam (Mer)', value: 50 },
+            { word: 'עץ', meaning: 'Etz (Arbre)', value: 160 },
+            { word: 'פרי', meaning: 'Pri (Fruit)', value: 290 },
+            { word: 'זרע', meaning: 'Zera (Semence)', value: 277 },
+            { word: 'דשא', meaning: 'Deshe (Herbe)', value: 304 },
+
+            // Animaux
+            { word: 'חיה', meaning: 'Khaya (Animal vivant)', value: 23 },
+            { word: 'בהמה', meaning: 'Behema (Bétail)', value: 52 },
+            { word: 'עוף', meaning: 'Of (Oiseau)', value: 156 },
+            { word: 'דג', meaning: 'Dag (Poisson)', value: 7 },
+            { word: 'ארי', meaning: 'Ari (Lion)', value: 211 },
+            { word: 'שור', meaning: 'Shor (Taureau)', value: 506 },
+            { word: 'כבש', meaning: 'Keves (Agneau)', value: 322 },
+            { word: 'צפור', meaning: 'Tsipor (Oiseau petit)', value: 376 },
+
+            // Concepts spirituels
+            { word: 'קדושה', meaning: 'Kedousha (Sainteté)', value: 415 },
+            { word: 'טהרה', meaning: 'Tahara (Pureté)', value: 220 },
+            { word: 'טומאה', meaning: 'Touma (Impureté)', value: 61 },
+            { word: 'מעשה', meaning: 'Ma\'ase (Action, œuvre)', value: 415 },
+            { word: 'מחשבה', meaning: 'Makhshava (Pensée)', value: 355 },
+            { word: 'דעה', meaning: 'Dea (Opinion)', value: 79 },
+            { word: 'שכל', meaning: 'Sekhel (Intellect)', value: 350 },
+            { word: 'רצון', meaning: 'Ratzon (Volonté)', value: 346 },
+            { word: 'כח', meaning: 'Koakh (Force, pouvoir)', value: 28 },
+            { word: 'גבור', meaning: 'Gibor (Héros)', value: 211 },
+
+            // Temps
+            { word: 'יום', meaning: 'Yom (Jour)', value: 56 },
+            { word: 'לילה', meaning: 'Layla (Nuit)', value: 75 },
+            { word: 'בקר', meaning: 'Boker (Matin)', value: 302 },
+            { word: 'ערב', meaning: 'Erev (Soir)', value: 272 },
+            { word: 'שנה', meaning: 'Shana (Année)', value: 355 },
+            { word: 'חדש', meaning: 'Khodesh (Mois)', value: 312 },
+            { word: 'שבוע', meaning: 'Shavua (Semaine)', value: 378 },
+            { word: 'עת', meaning: 'Et (Temps, moment)', value: 470 },
+
+            // Nombres
+            { word: 'שנים', meaning: 'Shnaïm (Deux)', value: 400 },
+            { word: 'שלשה', meaning: 'Shlosha (Trois)', value: 635 },
+            { word: 'ארבעה', meaning: 'Arba\'a (Quatre)', value: 278 },
+            { word: 'חמשה', meaning: 'Khamisha (Cinq)', value: 353 },
+            { word: 'ששה', meaning: 'Shisha (Six)', value: 605 },
+            { word: 'שבעה', meaning: 'Shiva (Sept)', value: 377 },
+            { word: 'שמונה', meaning: 'Shmona (Huit)', value: 401 },
+            { word: 'תשעה', meaning: 'Tisha (Neuf)', value: 775 },
+            { word: 'עשרה', meaning: 'Asara (Dix)', value: 575 },
+            { word: 'מאה', meaning: 'Mea (Cent)', value: 46 },
+            { word: 'אלף', meaning: 'Elef (Mille)', value: 111 },
+
+            // Vertus et vices
+            { word: 'ענוה', meaning: 'Anava (Humilité)', value: 131 },
+            { word: 'גאוה', meaning: 'Gaava (Orgueil)', value: 15 },
+            { word: 'חכם', meaning: 'Khakham (Sage)', value: 68 },
+            { word: 'כסיל', meaning: 'Kesil (Fou)', value: 120 },
+            { word: 'צדק', meaning: 'Tsedek (Justice)', value: 194 },
+            { word: 'עול', meaning: 'Avel (Injustice)', value: 106 },
+            { word: 'חסד', meaning: 'Khesed (Bonté)', value: 72 },
+            { word: 'אכזריות', meaning: 'Akhzariout (Cruauté)', value: 658 },
+            { word: 'סבלנות', meaning: 'Savlanout (Patience)', value: 576 },
+            { word: 'כעס', meaning: 'Kaas (Colère)', value: 150 },
+
+            // Lieux sacrés
+            { word: 'היכל', meaning: 'Hekhal (Temple)', value: 65 },
+            { word: 'מקדש', meaning: 'Mikdash (Sanctuaire)', value: 444 },
+            { word: 'משכן', meaning: 'Mishkan (Tabernacle)', value: 410 },
+            { word: 'ארון', meaning: 'Aron (Arche)', value: 257 },
+            { word: 'מזבח', meaning: 'Mizbeakh (Autel)', value: 57 },
+            { word: 'כפרת', meaning: 'Kaporet (Propitiatoire)', value: 700 },
+            { word: 'מנורה', meaning: 'Menora (Chandelier)', value: 301 },
+            { word: 'קדש', meaning: 'Kodesh (Saint, sanctuaire)', value: 404 },
+
+            // Anges et êtres célestes
+            { word: 'שרף', meaning: 'Saraph (Séraphin)', value: 580 },
+            { word: 'כרוב', meaning: 'Keroub (Chérubin)', value: 228 },
+            { word: 'אופן', meaning: 'Ofan (Roue céleste)', value: 137 },
+            { word: 'חשמל', meaning: 'Khashmal (Électrum céleste)', value: 378 },
+            { word: 'מיכאל', meaning: 'Mikhaël (Qui est comme Dieu)', value: 101 },
+            { word: 'גבריאל', meaning: 'Gabriël (Force de Dieu)', value: 246 },
+            { word: 'רפאל', meaning: 'Raphaël (Dieu guérit)', value: 311 },
+            { word: 'אוריאל', meaning: 'Ouriël (Lumière de Dieu)', value: 248 },
+
+            // Concepts de Torah
+            { word: 'מצות', meaning: 'Mitzvot (Commandements)', value: 536 },
+            { word: 'הלכה', meaning: 'Halakha (Loi juive)', value: 60 },
+            { word: 'אגדה', meaning: 'Aggada (Récit)', value: 13 },
+            { word: 'תלמוד', meaning: 'Talmud', value: 480 },
+            { word: 'משנה', meaning: 'Mishna', value: 395 },
+            { word: 'גמרא', meaning: 'Guemara', value: 244 },
+            { word: 'זוהר', meaning: 'Zohar (Splendeur)', value: 220 },
+            { word: 'קבלה', meaning: 'Kabbala (Réception)', value: 137 },
+
+            // Valeurs exactes demandées
+            { word: 'צץ', meaning: 'Tsats (Fleurir)', value: 900 },
+            { word: 'תץ', meaning: 'Tats (Voler rapidement)', value: 900 }
+        ];
+
+        let currentSystem = 'absolute';
+
+        function changeSystem(system) {
+            currentSystem = system;
+
+            // Mettre à jour les boutons actifs
+            document.querySelectorAll('.system-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`btn-${system}`).classList.add('active');
+
+            // Recalculer si du texte est présent
+            if (document.getElementById('hebrewInput').value) {
+                calculateGematria();
+            }
+        }
+
+        function setWord(word) {
+            document.getElementById('hebrewInput').value = word;
+            calculateGematria();
+        }
+
+        function getReduced(value) {
+            while (value > 9) {
+                value = value.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            return value;
+        }
+
+        function calculateGematria() {
+            const input = document.getElementById('hebrewInput').value;
+
+            if (!input) {
+                document.getElementById('results').innerHTML = '';
+                document.getElementById('breakdown').innerHTML = '';
+                document.getElementById('correspondences').innerHTML = '';
+                return;
+            }
+
+            let total = 0;
+            let breakdown = [];
+
+            // Calculer pour chaque lettre
+            for (let char of input) {
+                if (hebrewLetters[char]) {
+                    const letter = hebrewLetters[char];
+                    let value;
+
+                    if (currentSystem === 'absolute') {
+                        value = letter.absolute;
+                    } else if (currentSystem === 'ordinal') {
+                        value = letter.ordinal;
+                    } else if (currentSystem === 'reduced') {
+                        value = getReduced(letter.absolute);
+                    }
+
+                    total += value;
+                    breakdown.push({
+                        char: char,
+                        name: letter.name,
+                        value: value
+                    });
+                }
+            }
+
+            // Afficher le résultat
+            let systemName = currentSystem === 'absolute' ? 'Absolue' :
+                           currentSystem === 'ordinal' ? 'Ordinale' : 'Réduite';
+
+            let resultsHTML = `
+                <div class="result-box">
+                    <h3>Résultat (Gematria ${systemName})</h3>
+                    <h2>${total}</h2>
+                    <p>${input}</p>
+                </div>
+            `;
+
+            document.getElementById('results').innerHTML = resultsHTML;
+
+            // Afficher le détail
+            let breakdownHTML = '<div class="breakdown"><h3>Détail du calcul :</h3>';
+            breakdown.forEach(item => {
+                breakdownHTML += `
+                    <div class="letter-item">
+                        <div class="letter-symbol">${item.char}</div>
+                        <div class="letter-name">${item.name}</div>
+                        <div class="letter-value">${item.value}</div>
+                    </div>
+                `;
+            });
+            breakdownHTML += `
+                <div class="letter-item" style="background: var(--primary); color: white; font-size: 1.2rem;">
+                    <div><strong>TOTAL</strong></div>
+                    <div></div>
+                    <div><strong>${total}</strong></div>
+                </div>
+            </div>`;
+
+            document.getElementById('breakdown').innerHTML = breakdownHTML;
+
+            // Afficher les correspondances si elles existent
+            if (knownCorrespondences[total]) {
+                let corrHTML = `
+                    <div class="correspondence-box">
+                        <h3>💡 Correspondances mystiques pour ${total} :</h3>
+                        <ul>
+                `;
+                knownCorrespondences[total].forEach(corr => {
+                    corrHTML += `<li>${corr}</li>`;
+                });
+                corrHTML += '</ul></div>';
+                document.getElementById('correspondences').innerHTML = corrHTML;
+            } else {
+                document.getElementById('correspondences').innerHTML = '';
+            }
+        }
+
+        // Fonction de recherche par nombre
+        function searchByNumber() {
+            const numberInput = parseInt(document.getElementById('numberInput').value);
+            const resultsDiv = document.getElementById('numberResults');
+
+            if (!numberInput || isNaN(numberInput)) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            // Chercher tous les mots correspondants
+            const matches = hebrewWords.filter(item => item.value === numberInput);
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="result-box" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                        <h3>Aucune correspondance trouvée pour ${numberInput}</h3>
+                        <p>Essayez un autre nombre (ex: 13, 18, 26, 45, 91, 358, 611...)</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="result-box">
+                    <h3>Mots hébreux pour la valeur ${numberInput}</h3>
+                    <h2>${matches.length} correspondance${matches.length > 1 ? 's' : ''}</h2>
+                </div>
+                <div class="breakdown">
+                    <h3>Mots trouvés (cliquez pour calculer) :</h3>
+            `;
+
+            matches.forEach(item => {
+                html += `
+                    <div class="letter-item" onclick="setWord('${item.word}')" style="cursor: pointer; transition: all 0.3s;">
+                        <div class="letter-symbol">${item.word}</div>
+                        <div class="letter-name">${item.meaning}</div>
+                        <div class="letter-value">${item.value}</div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+
+            // Ajouter les correspondances mystiques si elles existent
+            if (knownCorrespondences[numberInput]) {
+                html += `
+                    <div class="correspondence-box">
+                        <h3>💡 Signification mystique du nombre ${numberInput} :</h3>
+                        <ul>
+                `;
+                knownCorrespondences[numberInput].forEach(corr => {
+                    html += `<li>${corr}</li>`;
+                });
+                html += '</ul></div>';
+            }
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // Calculer automatiquement lors de la saisie
+        document.getElementById('hebrewInput').addEventListener('input', calculateGematria);
+
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

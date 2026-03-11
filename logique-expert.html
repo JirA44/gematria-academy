@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique Expert - Académie</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🌳 Logique Niveau Expert</h1>
+        <p class="subtitle">Logique formelle, modale et paradoxes</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index_multilingual.html">Accueil</a>
+            <a href="logique-debutant.html">Débutant</a>
+            <a href="logique-intermediaire.html">Intermédiaire</a>
+            <a href="logique-expert.html" class="active">Expert</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index_multilingual.html">Accueil</a> » <a href="#logique">Logique</a> » Expert
+            </div>
+
+            <h2>🎓 Logique Niveau Expert</h2>
+            <p class="intro">Explorez les systèmes formels, la logique modale, les théorèmes fondamentaux et les paradoxes qui ont façonné la logique moderne.</p>
+
+            <section class="lesson" style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.15) 0%, rgba(123, 31, 162, 0.2) 100%); padding: 2rem; border-radius: 15px; border-left: 5px solid var(--accent-expert);">
+                <h2>📚 Référence Rapide - Symboles Logiques Niveau Expert</h2>
+                <p>Tous les symboles logiques + notations avancées :</p>
+
+                <table class="truth-table" style="margin-top: 1.5rem;">
+                    <tr>
+                        <th>Symbole</th>
+                        <th>Nom</th>
+                        <th>Lecture</th>
+                        <th>Domaine</th>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">□</td>
+                        <td><strong>Nécessité (logique modale)</strong></td>
+                        <td>"Nécessairement P"</td>
+                        <td>Logique modale</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">◇</td>
+                        <td><strong>Possibilité (logique modale)</strong></td>
+                        <td>"Possiblement P"</td>
+                        <td>Logique modale</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">G, □</td>
+                        <td><strong>Toujours (logique temporelle)</strong></td>
+                        <td>"Toujours P"</td>
+                        <td>Logique temporelle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">F, ◇</td>
+                        <td><strong>Finalement (logique temporelle)</strong></td>
+                        <td>"Finalement P"</td>
+                        <td>Logique temporelle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">X</td>
+                        <td><strong>Prochain (logique temporelle)</strong></td>
+                        <td>"Au prochain instant P"</td>
+                        <td>Logique temporelle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">U</td>
+                        <td><strong>Until (jusqu'à)</strong></td>
+                        <td>"P jusqu'à Q"</td>
+                        <td>Logique temporelle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">⊨</td>
+                        <td><strong>Conséquence sémantique</strong></td>
+                        <td>"Implique sémantiquement"</td>
+                        <td>Métalogique</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">⊢</td>
+                        <td><strong>Dérivation syntaxique</strong></td>
+                        <td>"On peut dériver"</td>
+                        <td>Métalogique</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">⊥</td>
+                        <td><strong>Contradiction (faux)</strong></td>
+                        <td>"Absurde"</td>
+                        <td>Logique formelle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">⊤</td>
+                        <td><strong>Tautologie (vrai)</strong></td>
+                        <td>"Toujours vrai"</td>
+                        <td>Logique formelle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">∃!</td>
+                        <td><strong>Existence unique</strong></td>
+                        <td>"Il existe un unique x"</td>
+                        <td>Logique des prédicats</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 1.5rem; font-weight: bold;">λ</td>
+                        <td><strong>Abstraction lambda</strong></td>
+                        <td>"Lambda x"</td>
+                        <td>Logique lambda</td>
+                    </tr>
+                </table>
+
+                <div class="tip" style="margin-top: 1.5rem;">
+                    <p><strong>💡 Référence experte :</strong> Ces symboles couvrent la logique modale, temporelle et formelle. Maîtrisez-les pour atteindre l'excellence !</p>
+                </div>
+            </section>
+
+            <div class="lesson">
+                <h3>🔬 1. Logique Formelle et Axiomatique</h3>
+
+                <h4>Système Formel</h4>
+                <p>Un système formel comprend:</p>
+                <ul>
+                    <li><strong>Alphabet:</strong> Ensemble de symboles de base</li>
+                    <li><strong>Grammaire:</strong> Règles de formation des formules bien formées (fbf)</li>
+                    <li><strong>Axiomes:</strong> Propositions admises sans démonstration</li>
+                    <li><strong>Règles d'inférence:</strong> Règles pour dériver de nouvelles formules</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>Les 5 axiomes de Peano pour l'arithmétique:</strong>
+                    <ol>
+                        <li>0 est un nombre naturel</li>
+                        <li>Pour tout n, le successeur S(n) est un nombre naturel</li>
+                        <li>Pour tout n, S(n) ≠ 0</li>
+                        <li>Si S(m) = S(n), alors m = n (injectivité)</li>
+                        <li>Axiome d'induction: Si P(0) et ∀n(P(n)→P(S(n))), alors ∀n P(n)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="lesson">
+                <h3>⚖️ 2. Théorèmes Fondamentaux</h3>
+
+                <h4>Théorème de Complétude (Gödel, 1929)</h4>
+                <div class="exercise">
+                    <p>Si une formule est vraie dans tous les modèles, alors elle est démontrable dans le système.</p>
+                    <p><strong>⊨ φ ⟹ ⊢ φ</strong></p>
+                    <p>Autrement dit: Tout ce qui est sémantiquement valide est syntaxiquement démontrable.</p>
+                </div>
+
+                <h4>Théorèmes d'Incomplétude (Gödel, 1931)</h4>
+                <div class="exercise">
+                    <strong>Premier théorème:</strong><br>
+                    Dans tout système formel suffisamment puissant (contenant l'arithmétique), il existe des énoncés vrais mais indémontrables dans le système.
+
+                    <p style="margin-top: 1rem;"><strong>Deuxième théorème:</strong><br>
+                    Un système formel cohérent ne peut pas démontrer sa propre cohérence.</p>
+                </div>
+
+                <h4>Théorème de Löwenheim-Skolem</h4>
+                <p>Si une théorie du premier ordre a un modèle infini, alors elle a un modèle dénombrable.</p>
+            </div>
+
+            <div class="lesson">
+                <h3>🔮 3. Logique Modale</h3>
+                <p>Extension de la logique classique avec des opérateurs de modalité.</p>
+
+                <h4>Opérateurs Modaux:</h4>
+                <ul>
+                    <li><strong>□ (Nécessité):</strong> □P = "Il est nécessaire que P"</li>
+                    <li><strong>◇ (Possibilité):</strong> ◇P = "Il est possible que P"</li>
+                </ul>
+
+                <div class="exercise">
+                    <strong>Relations entre les opérateurs:</strong><br>
+                    ◇P ≡ ¬□¬P (Possible P = Non nécessairement non-P)<br>
+                    □P ≡ ¬◇¬P (Nécessaire P = Non possible non-P)
+                </div>
+
+                <h4>Systèmes de Logique Modale:</h4>
+                <div class="tip">
+                    <ul>
+                        <li><strong>K:</strong> Système minimal (Kripke)</li>
+                        <li><strong>T:</strong> K + □P → P (ce qui est nécessaire est vrai)</li>
+                        <li><strong>S4:</strong> T + □P → □□P (ce qui est nécessaire est nécessairement nécessaire)</li>
+                        <li><strong>S5:</strong> S4 + ◇P → □◇P (ce qui est possible est nécessairement possible)</li>
+                    </ul>
+                </div>
+
+                <h4>Logique Temporelle</h4>
+                <p>Variante modale pour raisonner sur le temps:</p>
+                <ul>
+                    <li><strong>G (toujours):</strong> GP = "P sera toujours vrai"</li>
+                    <li><strong>F (finalement):</strong> FP = "P sera vrai à un moment futur"</li>
+                    <li><strong>X (next):</strong> XP = "P sera vrai au prochain instant"</li>
+                    <li><strong>U (until):</strong> P U Q = "P jusqu'à ce que Q"</li>
+                </ul>
+            </div>
+
+            <div class="lesson">
+                <h3>🌀 4. Paradoxes Logiques Célèbres</h3>
+
+                <h4>Paradoxe du Menteur</h4>
+                <div class="exercise">
+                    <p>"Cette phrase est fausse."</p>
+                    <ul>
+                        <li>Si elle est vraie, alors elle est fausse (par son contenu)</li>
+                        <li>Si elle est fausse, alors elle est vraie (car elle affirme être fausse)</li>
+                    </ul>
+                    <p><strong>Solution:</strong> Hiérarchie des langages (Tarski) - un énoncé ne peut parler de sa propre vérité.</p>
+                </div>
+
+                <h4>Paradoxe de Russell</h4>
+                <div class="tip" style="background: #d1ecf1;">
+                    <p>Soit R l'ensemble de tous les ensembles qui ne se contiennent pas eux-mêmes.</p>
+                    <p><strong>Question:</strong> R se contient-il lui-même?</p>
+                    <ul>
+                        <li>Si R ∈ R, alors R ne se contient pas (par définition de R)</li>
+                        <li>Si R ∉ R, alors R se contient (par définition de R)</li>
+                    </ul>
+                    <p><strong>Impact:</strong> A conduit à la théorie des types et aux axiomes de Zermelo-Fraenkel.</p>
+                </div>
+
+                <h4>Paradoxe de Berry</h4>
+                <p>"Le plus petit entier non définissable en moins de vingt mots."</p>
+                <p>Cette phrase définit cet entier en moins de vingt mots! 🤯</p>
+
+                <h4>Paradoxe du Barbier</h4>
+                <p>Le barbier rase tous ceux (et seulement ceux) qui ne se rasent pas eux-mêmes.</p>
+                <p><strong>Question:</strong> Le barbier se rase-t-il lui-même?</p>
+            </div>
+
+            <div class="lesson">
+                <h3>🤖 5. Applications en IA et Informatique</h3>
+
+                <h4>Logique de Description (DL)</h4>
+                <p>Utilisée dans les ontologies et le web sémantique (OWL).</p>
+                <div class="exercise">
+                    <strong>Exemple:</strong><br>
+                    Humain ⊑ Mammifère (Humain est une sous-classe de Mammifère)<br>
+                    ∃hasParent.Humain (a au moins un parent humain)
+                </div>
+
+                <h4>Programmation Logique (Prolog)</h4>
+                <p>Langage basé sur la logique des prédicats et la résolution.</p>
+
+                <h4>Vérification Formelle</h4>
+                <p>Utilisation de la logique temporelle (LTL, CTL) pour vérifier des systèmes critiques.</p>
+
+                <h4>Théorème Provers</h4>
+                <p>Outils automatiques de démonstration:</p>
+                <ul>
+                    <li>Coq (assistant de preuves)</li>
+                    <li>Isabelle/HOL</li>
+                    <li>Lean</li>
+                    <li>Z3 (SMT solver)</li>
+                </ul>
+            </div>
+
+            <div class="tip" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                <h3 style="color: white;">🎓 Félicitations!</h3>
+                <p>Vous avez maintenant exploré les fondements profonds de la logique formelle. Ces concepts sont au cœur de l'informatique théorique, de l'intelligence artificielle et des mathématiques modernes.</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="logique-intermediaire.html" class="btn btn-intermediate">← Niveau Intermédiaire</a>
+                <a href="exercices-logique.html" class="btn btn-expert">📝 Exercices Avancés</a>
+                <a href="index_multilingual.html" class="btn btn-beginner">🏠 Retour Accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
