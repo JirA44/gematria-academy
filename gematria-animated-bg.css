@@ -1,0 +1,335 @@
+/* Fond animé mystique hébreu pour les pages gematria */
+
+body.gematria-theme {
+    background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Lumière divine descendante */
+body.gematria-theme::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 80%;
+    background: radial-gradient(ellipse at center,
+        rgba(255, 215, 0, 0.15) 0%,
+        rgba(255, 235, 59, 0.1) 20%,
+        rgba(255, 245, 157, 0.05) 40%,
+        transparent 70%
+    );
+    animation: divine-light 12s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Particules de lumière sacrée */
+body.gematria-theme::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.4) 0%, transparent 1%),
+        radial-gradient(circle at 60% 20%, rgba(255, 235, 59, 0.3) 0%, transparent 0.8%),
+        radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.5) 0%, transparent 1%),
+        radial-gradient(circle at 40% 70%, rgba(255, 245, 157, 0.3) 0%, transparent 0.8%),
+        radial-gradient(circle at 15% 80%, rgba(255, 215, 0, 0.4) 0%, transparent 1%);
+    background-size: 100% 100%;
+    animation: sacred-particles 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Étoile de David géométrique */
+.star-of-david {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    opacity: 0.08;
+    z-index: 1;
+    pointer-events: none;
+    animation: sacred-rotation 60s linear infinite;
+}
+
+.star-of-david::before,
+.star-of-david::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.star-of-david::before {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 150px 260px 150px;
+    border-color: transparent transparent rgba(255, 215, 0, 0.3) transparent;
+}
+
+.star-of-david::after {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    border-width: 0 150px 260px 150px;
+    border-color: transparent transparent rgba(255, 215, 0, 0.3) transparent;
+}
+
+/* Lettres hébraïques flottantes */
+.hebrew-letters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.1;
+}
+
+.hebrew-letter {
+    position: absolute;
+    font-size: 60px;
+    color: rgba(255, 215, 0, 0.6);
+    font-family: 'Times New Roman', serif;
+    animation: letter-float 45s linear infinite;
+}
+
+.hebrew-letter:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-duration: 40s;
+}
+
+.hebrew-letter:nth-child(2) {
+    top: 65%;
+    left: 75%;
+    animation-duration: 50s;
+    animation-delay: 8s;
+}
+
+.hebrew-letter:nth-child(3) {
+    top: 40%;
+    left: 85%;
+    animation-duration: 45s;
+    animation-delay: 15s;
+}
+
+.hebrew-letter:nth-child(4) {
+    top: 80%;
+    left: 20%;
+    animation-duration: 48s;
+    animation-delay: 5s;
+}
+
+/* Cercles de sagesse kabbalistique */
+.wisdom-circles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.wisdom-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 215, 0, 0.15);
+    animation: circle-pulse 10s ease-in-out infinite;
+}
+
+.wisdom-circle:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    width: 120px;
+    height: 120px;
+    animation-duration: 9s;
+}
+
+.wisdom-circle:nth-child(2) {
+    top: 60%;
+    right: 20%;
+    width: 80px;
+    height: 80px;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+.wisdom-circle:nth-child(3) {
+    bottom: 25%;
+    left: 25%;
+    width: 100px;
+    height: 100px;
+    animation-duration: 10s;
+    animation-delay: 5s;
+}
+
+/* Arbre de vie simplifié en arrière-plan */
+.tree-of-life {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 700px;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700"><g stroke="rgba(255,215,0,0.6)" stroke-width="3" fill="none"><line x1="250" y1="100" x2="250" y2="600"/><line x1="150" y1="200" x2="350" y2="200"/><line x1="150" y1="400" x2="350" y2="400"/><circle cx="250" cy="100" r="40" fill="rgba(255,215,0,0.2)"/><circle cx="150" cy="200" r="35" fill="rgba(255,215,0,0.2)"/><circle cx="350" cy="200" r="35" fill="rgba(255,215,0,0.2)"/><circle cx="250" cy="300" r="40" fill="rgba(255,215,0,0.2)"/><circle cx="150" cy="400" r="35" fill="rgba(255,215,0,0.2)"/><circle cx="350" cy="400" r="35" fill="rgba(255,215,0,0.2)"/><circle cx="250" cy="500" r="40" fill="rgba(255,215,0,0.2)"/></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: tree-glow 15s ease-in-out infinite;
+}
+
+/* Chandelier à sept branches (Menorah) stylisé */
+.menorah-glow {
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 150px;
+    opacity: 0.15;
+    z-index: 2;
+    pointer-events: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><g stroke="rgba(255,215,0,0.8)" stroke-width="4" fill="none"><line x1="100" y1="20" x2="100" y2="130"/><path d="M 60 130 Q 60 80 80 80 L 80 30"/><path d="M 140 130 Q 140 80 120 80 L 120 30"/><path d="M 40 130 Q 40 60 70 60 L 70 30"/><path d="M 160 130 Q 160 60 130 60 L 130 30"/><path d="M 20 130 Q 20 40 60 40 L 60 30"/><path d="M 180 130 Q 180 40 140 40 L 140 30"/></g><g fill="rgba(255,215,0,0.6)"><ellipse cx="60" cy="25" rx="6" ry="10"/><ellipse cx="70" cy="25" rx="6" ry="10"/><ellipse cx="80" cy="25" rx="6" ry="10"/><ellipse cx="100" cy="25" rx="6" ry="10"/><ellipse cx="120" cy="25" rx="6" ry="10"/><ellipse cx="130" cy="25" rx="6" ry="10"/><ellipse cx="140" cy="25" rx="6" ry="10"/></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: menorah-flicker 6s ease-in-out infinite;
+}
+
+/* Étoiles mystiques */
+.mystical-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(1px 1px at 12% 18%, rgba(255, 215, 0, 0.8), transparent),
+        radial-gradient(2px 2px at 88% 25%, rgba(255, 235, 59, 0.7), transparent),
+        radial-gradient(1px 1px at 45% 12%, rgba(255, 215, 0, 0.6), transparent),
+        radial-gradient(1px 1px at 72% 40%, rgba(255, 245, 157, 0.8), transparent),
+        radial-gradient(2px 2px at 28% 65%, rgba(255, 215, 0, 0.7), transparent),
+        radial-gradient(1px 1px at 65% 78%, rgba(255, 235, 59, 0.6), transparent);
+    background-size: 100% 100%;
+    animation: mystical-twinkle 5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Animations */
+@keyframes divine-light {
+    0% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+@keyframes sacred-particles {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes sacred-rotation {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes letter-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.12;
+    }
+    90% {
+        opacity: 0.12;
+    }
+    100% {
+        transform: translateY(-100px) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+@keyframes circle-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+@keyframes tree-glow {
+    0%, 100% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.12;
+    }
+}
+
+@keyframes menorah-flicker {
+    0%, 100% {
+        opacity: 0.15;
+        filter: brightness(1);
+    }
+    25% {
+        opacity: 0.25;
+        filter: brightness(1.3);
+    }
+    50% {
+        opacity: 0.2;
+        filter: brightness(1.1);
+    }
+    75% {
+        opacity: 0.25;
+        filter: brightness(1.4);
+    }
+}
+
+@keyframes mystical-twinkle {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Container doit avoir un z-index plus élevé */
+body.gematria-theme .container {
+    position: relative;
+    z-index: 10;
+}

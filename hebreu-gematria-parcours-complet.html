@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✡️ Parcours Complet - Maîtriser l'Hébreu & la Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(184, 134, 11, 0.2));
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(100, 149, 237, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: #6495ed;
+            box-shadow: 0 15px 40px rgba(100, 149, 237, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #6495ed, #4169e1);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(100, 149, 237, 0.5);
+        }
+
+        .step-icon {
+            font-size: 5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step-title {
+            color: #87ceeb;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .step-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #6495ed, #4169e1);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(100, 149, 237, 0.6);
+        }
+
+        .methodology-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .methodology-box h2 {
+            color: #ffd700;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-item {
+            background: rgba(30, 30, 45, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .method-item h3 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(100, 149, 237, 0.3), rgba(65, 105, 225, 0.3));
+            border: 3px solid rgba(100, 149, 237, 0.6);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-box h2 {
+            color: #87ceeb;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: rgba(100, 149, 237, 0.3);
+            border: 2px solid rgba(100, 149, 237, 0.6);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(100, 149, 237, 0.5);
+            transform: translateY(-3px);
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+
+        .bonus-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .bonus-box h2 {
+            color: #ba68c8;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>✡️ Parcours Complet Hébreu & Gematria</h1>
+        <p class="subtitle">Maîtrisez l'alphabet sacré et décodez les mystères numériques de la Torah</p>
+
+        <div class="hero-box">
+            <h2>🎯 Objectif Final</h2>
+            <p>
+                À la fin de ce parcours, vous serez capable de <strong>lire l'hébreu biblique</strong>,
+                <strong>calculer la gematria de n'importe quel mot</strong> et <strong>décoder les correspondances mystiques</strong>
+                entre les lettres, les nombres et les concepts spirituels.
+            </p>
+            <p style="font-size: 1.2rem;">
+                Vous maîtriserez les 22 lettres de l'Aleph-Bet, les systèmes de gematria classique et avancée,
+                et vous aurez exploré les textes sacrés de la Kabbale.
+            </p>
+        </div>
+
+        <h2 style="text-align: center; color: #ffd700; font-size: 2.5rem; margin-bottom: 3rem;">
+            📖 Les 5 Étapes du Parcours
+        </h2>
+
+        <div class="parcours-grid">
+            <!-- ÉTAPE 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">א</div>
+                <h3 class="step-title">Alphabet Hébreu Complet</h3>
+                <p class="step-description">
+                    Apprenez les 22 lettres de l'Aleph-Bet avec leurs formes, prononciations, valeurs numériques et significations mystiques.
+                </p>
+                <ul class="step-features">
+                    <li>22 lettres avec audio de prononciation</li>
+                    <li>Formes finales (Kaf, Mem, Nun, Peh, Tzadik)</li>
+                    <li>Valeurs numériques (1 à 400)</li>
+                    <li>Significations symboliques profondes</li>
+                    <li>Exercices de tracé et reconnaissance</li>
+                </ul>
+                <a href="alphabet-hebreu.html" class="btn-start">Commencer l'Alphabet →</a>
+            </div>
+
+            <!-- ÉTAPE 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">🔢</div>
+                <h3 class="step-title">Gematria Classique</h3>
+                <p class="step-description">
+                    Découvrez le système de numérologie hébraïque où chaque lettre possède une valeur numérique révélant des connexions cachées.
+                </p>
+                <ul class="step-features">
+                    <li>Système de calcul standard (Mispar Hechrachi)</li>
+                    <li>Calcul de mots et phrases bibliques</li>
+                    <li>Correspondances entre mots de même valeur</li>
+                    <li>Exercices progressifs avec correction</li>
+                    <li>Base de données de 100+ mots sacrés</li>
+                </ul>
+                <a href="calculateur-gematria.html" class="btn-start">Étudier la Gematria →</a>
+            </div>
+
+            <!-- ÉTAPE 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">📚</div>
+                <h3 class="step-title">Lecture de Textes Sacrés</h3>
+                <p class="step-description">
+                    Pratiquez la lecture de passages bibliques, de prières traditionnelles et de textes kabbalistiques avec traduction mot-à-mot.
+                </p>
+                <ul class="step-features">
+                    <li>15+ textes authentiques progressifs</li>
+                    <li>Shema Yisrael, Kaddish, Psaumes</li>
+                    <li>Traduction littérale et phonétique</li>
+                    <li>Analyse grammaticale de base</li>
+                    <li>Audio de lecture correcte</li>
+                </ul>
+                <a href="hebreu-textes-sacres.html" class="btn-start">Lire les Textes →</a>
+            </div>
+
+            <!-- ÉTAPE 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">🌳</div>
+                <h3 class="step-title">Kabbale & Arbre de Vie</h3>
+                <p class="step-description">
+                    Explorez les 10 Sephiroth de l'Arbre de Vie, les correspondances avec les lettres hébraïques et les 72 Noms de Dieu.
+                </p>
+                <ul class="step-features">
+                    <li>Les 10 Sephiroth et leurs attributs</li>
+                    <li>Les 22 chemins de l'Arbre de Vie</li>
+                    <li>Les 72 Noms de Dieu (Shemhamphorash)</li>
+                    <li>Méditations kabbalistiques guidées</li>
+                    <li>Diagrammes interactifs</li>
+                </ul>
+                <a href="kabbale-arbre-vie.html" class="btn-start">Explorer la Kabbale →</a>
+            </div>
+
+            <!-- ÉTAPE 5 -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-icon">🎴</div>
+                <h3 class="step-title">Flashcards & Maîtrise</h3>
+                <p class="step-description">
+                    Entraînement quotidien intensif avec flashcards pour mémoriser instantanément les lettres, valeurs et mots courants.
+                </p>
+                <ul class="step-features">
+                    <li>4 modes : Lettres, Valeurs, Mots, Gematria</li>
+                    <li>Sessions de 20-30 cartes</li>
+                    <li>Répétition espacée intelligente</li>
+                    <li>Statistiques de progression détaillées</li>
+                    <li>Révision personnalisée des erreurs</li>
+                </ul>
+                <a href="hebreu-flashcards.html" class="btn-start">Lancer les Flashcards →</a>
+            </div>
+
+            <!-- BONUS : Gematria Avancée -->
+            <div class="step-card" style="border-color: rgba(138, 43, 226, 0.5);">
+                <div class="step-number" style="background: linear-gradient(135deg, #8a2be2, #6a0dad);">★</div>
+                <div class="step-icon">🔮</div>
+                <h3 class="step-title">Gematria Avancée</h3>
+                <p class="step-description">
+                    Explorez les systèmes avancés : Mispar Gadol, Mispar Katan, Atbash, Notarikon et Temurah pour des analyses approfondies.
+                </p>
+                <ul class="step-features">
+                    <li>8 systèmes de gematria différents</li>
+                    <li>Atbash (substitution inversée)</li>
+                    <li>Notarikon (acronymes mystiques)</li>
+                    <li>Temurah (permutations de lettres)</li>
+                    <li>Analyses de passages bibliques</li>
+                </ul>
+                <a href="gematria-avancee.html" class="btn-start">Approfondir →</a>
+            </div>
+        </div>
+
+        <!-- MÉTHODOLOGIE -->
+        <div class="methodology-box">
+            <h2>🧠 Notre Méthodologie Pédagogique</h2>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <h3>📊 Immersion Progressive</h3>
+                    <p>
+                        Commencez par les bases (alphabet) et progressez vers les concepts avancés (Kabbale)
+                        de manière naturelle et structurée.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>🔁 Pratique Quotidienne</h3>
+                    <p>
+                        Les flashcards et exercices réguliers ancrent durablement les lettres, valeurs et mots
+                        dans votre mémoire à long terme.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>🎯 Contexte Spirituel</h3>
+                    <p>
+                        Chaque lettre est présentée avec sa dimension symbolique, mythologique et mystique
+                        pour une compréhension profonde.
+                    </p>
+                </div>
+                <div class="method-item">
+                    <h3>✍️ Textes Authentiques</h3>
+                    <p>
+                        Vous pratiquez avec de vrais textes bibliques et kabbalistiques dès le début
+                        pour une immersion totale dans la langue sacrée.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="cta-box">
+            <h2>🚀 Prêt à Commencer ?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem;">
+                Le parcours complet prend environ <strong>8-10 heures</strong> à suivre en continu,<br>
+                mais vous pouvez le faire à votre rythme sur plusieurs semaines.<br>
+                <em style="color: #ffd700;">Shalom et bienvenue dans la sagesse ancestrale !</em>
+            </p>
+            <a href="alphabet-hebreu.html" class="btn-start" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
+                א Commencer Maintenant l'Étape 1
+            </a>
+        </div>
+
+        <!-- BONUS : Noms Divins -->
+        <div class="bonus-box">
+            <h2>🎁 Bonus : Les Noms Divins</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Explorez les 72 Noms de Dieu (Shemhamphorash) avec leurs gematria, significations et méditations associées.
+            </p>
+            <a href="noms-divins-72.html" class="btn-secondary" style="font-size: 1.2rem;">
+                ✨ Découvrir les 72 Noms de Dieu
+            </a>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="index_multilingual.html" class="btn-secondary">🏠 Retour Accueil</a>
+            <a href="gematria-debutant.html" class="btn-secondary">📖 Introduction à la Gematria</a>
+            <a href="alphabet-hebreu.html" class="btn-secondary">א Alphabet Hébreu</a>
+        </div>
+    </div>
+
+    <script>
+        // Fond étoilé animé avec étoiles de David scintillantes
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 250;
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5
+            });
+        }
+
+        const shootingStars = [];
+
+        function createShootingStar() {
+            const startX = Math.random() * canvas.width;
+            const startY = Math.random() * canvas.height / 2;
+
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                length: Math.random() * 80 + 40,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 4 + Math.random() * 0.3,
+                opacity: 1,
+                tail: []
+            });
+        }
+
+        setInterval(() => {
+            if (shootingStars.length < 3) {
+                createShootingStar();
+            }
+        }, Math.random() * 2000 + 3000);
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const gradient = ctx.createLinearGradient(
+                    star.x,
+                    star.y,
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+
+                gradient.addColorStop(0, `rgba(255, 215, 0, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(255, 255, 150, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(255, 255, 150, 0)');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

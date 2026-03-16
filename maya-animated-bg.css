@@ -1,0 +1,338 @@
+/* Fond animé jungle maya avec pyramides pour les pages maya */
+
+body.maya-theme {
+    background: linear-gradient(to bottom, #1a3a2e 0%, #0f2922 30%, #1a4d3a 60%, #0d2818 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ciel crépusculaire avec teintes orangées */
+body.maya-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom,
+        rgba(255, 140, 0, 0.15) 0%,
+        rgba(218, 165, 32, 0.1) 40%,
+        transparent 100%
+    );
+    animation: sky-gradient 30s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Feuillage jungle en premier plan */
+.jungle-foreground {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><path d="M0,300 Q50,200 100,250 T200,230 T300,270 T400,240 T500,280 T600,250 T700,290 T800,260 T900,280 T1000,250 T1100,270 L1200,300 Z" fill="rgba(10,40,20,0.9)"/><ellipse cx="150" cy="200" rx="80" ry="120" fill="rgba(15,50,25,0.7)"/><ellipse cx="400" cy="180" rx="100" ry="140" fill="rgba(15,50,25,0.7)"/><ellipse cx="700" cy="190" rx="90" ry="130" fill="rgba(15,50,25,0.7)"/><ellipse cx="950" cy="210" rx="85" ry="115" fill="rgba(15,50,25,0.7)"/></svg>');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: jungle-sway 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.8;
+}
+
+/* Pyramides maya en silhouette */
+.maya-pyramids {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><g><polygon points="300,400 400,150 500,400" fill="rgba(20,40,30,0.7)"/><rect x="380" y="380" width="40" height="20" fill="rgba(15,35,25,0.8)"/><polygon points="700,400 850,100 1000,400" fill="rgba(25,45,35,0.75)"/><rect x="850" y="360" width="50" height="40" fill="rgba(20,40,30,0.85)"/><line x1="750" y1="300" x2="950" y2="300" stroke="rgba(10,30,20,0.5)" stroke-width="3"/><line x1="780" y1="350" x2="920" y2="350" stroke="rgba(10,30,20,0.5)" stroke-width="3"/></g></svg>');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.9;
+}
+
+/* Oiseaux tropicaux volant */
+.tropical-birds {
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.4;
+}
+
+.bird {
+    position: absolute;
+    font-size: 20px;
+    animation: bird-fly 40s linear infinite;
+}
+
+.bird:nth-child(1) {
+    top: 20%;
+    animation-duration: 35s;
+    animation-delay: 0s;
+}
+
+.bird:nth-child(2) {
+    top: 45%;
+    animation-duration: 50s;
+    animation-delay: 10s;
+}
+
+.bird:nth-child(3) {
+    top: 60%;
+    animation-duration: 42s;
+    animation-delay: 20s;
+}
+
+/* Lucioles / lueurs mystiques */
+.fireflies {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 255, 150, 0.9) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 150, 0.6);
+    animation: firefly-float 8s ease-in-out infinite;
+}
+
+.firefly:nth-child(1) {
+    top: 40%;
+    left: 15%;
+    animation-duration: 7s;
+    animation-delay: 0s;
+}
+
+.firefly:nth-child(2) {
+    top: 60%;
+    left: 75%;
+    animation-duration: 9s;
+    animation-delay: 2s;
+}
+
+.firefly:nth-child(3) {
+    top: 50%;
+    left: 45%;
+    animation-duration: 6s;
+    animation-delay: 4s;
+}
+
+.firefly:nth-child(4) {
+    top: 70%;
+    left: 25%;
+    animation-duration: 8s;
+    animation-delay: 1s;
+}
+
+.firefly:nth-child(5) {
+    top: 35%;
+    left: 85%;
+    animation-duration: 7.5s;
+    animation-delay: 3s;
+}
+
+/* Brume de jungle */
+.jungle-mist {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top,
+        rgba(150, 200, 150, 0.15) 0%,
+        rgba(100, 150, 100, 0.08) 30%,
+        transparent 100%
+    );
+    animation: mist-drift 25s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Soleil couchant / Lune maya */
+.maya-celestial {
+    position: fixed;
+    top: 10%;
+    right: 15%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%,
+        #ffeb3b 0%,
+        #ffc107 30%,
+        #ff9800 60%,
+        #ff5722 100%
+    );
+    box-shadow:
+        0 0 50px rgba(255, 152, 0, 0.6),
+        0 0 100px rgba(255, 152, 0, 0.4),
+        inset -15px -15px 30px rgba(0, 0, 0, 0.2);
+    animation: celestial-pulse 8s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Glyphes maya flottants subtils */
+.maya-glyphs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.08;
+}
+
+.glyph {
+    position: absolute;
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.3);
+    animation: glyph-drift 60s linear infinite;
+}
+
+.glyph:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-duration: 50s;
+}
+
+.glyph:nth-child(2) {
+    top: 70%;
+    left: 80%;
+    animation-duration: 70s;
+    animation-delay: 10s;
+}
+
+.glyph:nth-child(3) {
+    top: 45%;
+    left: 50%;
+    animation-duration: 60s;
+    animation-delay: 20s;
+}
+
+/* Animations */
+@keyframes sky-gradient {
+    0% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes jungle-sway {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+}
+
+@keyframes bird-fly {
+    0% {
+        left: -5%;
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(15px);
+    }
+    100% {
+        left: 105%;
+        transform: translateY(0);
+    }
+}
+
+@keyframes firefly-float {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(20px, -30px);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-15px, -50px);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translate(30px, -20px);
+        opacity: 1;
+    }
+}
+
+@keyframes mist-drift {
+    0% {
+        transform: translateX(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateX(30px);
+        opacity: 0.8;
+    }
+}
+
+@keyframes celestial-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 50px rgba(255, 152, 0, 0.6),
+            0 0 100px rgba(255, 152, 0, 0.4),
+            inset -15px -15px 30px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 70px rgba(255, 152, 0, 0.8),
+            0 0 140px rgba(255, 152, 0, 0.6),
+            inset -15px -15px 30px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@keyframes glyph-drift {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Container doit avoir un z-index plus élevé */
+body.maya-theme .container {
+    position: relative;
+    z-index: 10;
+}

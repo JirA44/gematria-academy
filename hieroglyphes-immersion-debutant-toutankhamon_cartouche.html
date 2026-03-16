@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Cartouche de Toutânkhamon</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <script src="progression-system.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .level-debutant {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4caf50;
+            color: #81c784;
+        }
+
+        .level-intermediaire {
+            background: rgba(255, 152, 0, 0.3);
+            border: 2px solid #ff9800;
+            color: #ffb74d;
+        }
+
+        .level-expert {
+            background: rgba(156, 39, 176, 0.3);
+            border: 2px solid #9c27b0;
+            color: #ce93d8;
+        }
+
+        .monument-card {
+            background: rgba(25, 25, 40, 0.9);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .context-box {
+            background: rgba(255, 243, 205, 0.1);
+            border-left: 4px solid rgba(255, 193, 7, 0.7);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+
+        .inscription-display {
+            background: rgba(40, 40, 60, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 2px solid rgba(196, 156, 98, 0.5);
+        }
+
+        .hieroglyphic-text {
+            font-size: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            line-height: 1.8;
+            direction: rtl;
+            letter-spacing: 0.5rem;
+        }
+
+        .word-by-word {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .word-block {
+            background: rgba(30, 30, 45, 0.85);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .word-block:hover {
+            border-color: rgba(138, 43, 226, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .word-hieroglyph {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .word-pronunciation {
+            font-size: 1.3rem;
+            color: #ffa726;
+            font-weight: bold;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 167, 38, 0.1);
+            border-radius: 5px;
+        }
+
+        .word-transliteration {
+            font-size: 1.2rem;
+            color: #64b5f6;
+            margin: 0.5rem 0;
+            font-style: italic;
+        }
+
+        .word-translation {
+            font-size: 1.1rem;
+            color: #81c784;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .word-explanation {
+            font-size: 0.9rem;
+            color: #b0b0c0;
+            margin-top: 0.5rem;
+        }
+
+        .translation-box {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .translation-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #81c784;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .hint-box {
+            background: rgba(100, 150, 255, 0.1);
+            border-left: 4px solid rgba(100, 150, 255, 0.7);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .exercise-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px dashed rgba(138, 43, 226, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .quiz-section {
+            background: rgba(25, 25, 40, 0.9);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            background: rgba(40, 40, 60, 0.7);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: rgba(138, 43, 226, 0.6);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(231, 76, 60, 0.3);
+            border-color: #e74c3c;
+        }
+
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+        }
+
+        .quiz-feedback.incorrect {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e57373;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-3px);
+        }
+
+        .score-display {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+    <script src="theme-backgrounds.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <span class="level-badge level-debutant">Niveau Debutant</span>
+        <h1>𓂀 Cartouche de Toutânkhamon</h1>
+        <p class="subtitle">Tombe de Toutânkhamon (KV62), Vallée des Rois, Louxor</p>
+
+        <div style="display: flex; justify-content: space-between; margin: 3rem 0;"><a href="hieroglyphes-immersion-debutant-karnak_001.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">← Précédent</a><a href="immersion-inscriptions-index.html" style="background: rgba(100, 100, 150, 0.3); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">📚 Index</a><a href="hieroglyphes-immersion-debutant-amon_roi_dieux.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">Suivant →</a></div>
+
+        <div class="monument-card">
+            <div class="context-box">
+                <strong>📍 Contexte historique :</strong><br>
+                <strong>Monument :</strong> Tombe de Toutânkhamon (KV62)<br>
+                <strong>Lieu :</strong> Vallée des Rois, Louxor<br>
+                <strong>Époque :</strong> XVIIIe dynastie (1332-1323 av. J.-C.)<br>
+                <strong>Description :</strong> Le célèbre cartouche royal de Toutânkhamon, trouvé sur de nombreux objets de sa tombe
+            </div>
+
+            <div class="inscription-display">
+                <h2 style="text-align: center; margin-bottom: 2rem;">📜 Inscription originale</h2>
+
+                <div class="hieroglyphic-text">
+                    𓇳𓁧𓎟 𓏏𓄿𓈖𓎡𓇯
+                </div>
+
+                <button class="btn" onclick="toggleTranslation()">
+                    Révéler/Cacher la traduction mot à mot
+                </button>
+
+                <div id="translation-detail" class="hidden">
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Décomposition mot à mot :</h3>
+                    <div class="word-by-word">
+
+                    <div class="word-block">
+                        <div class="word-hieroglyph">𓇳𓁧𓎟</div>
+                        <div class="word-pronunciation">🗣️ ni-sout-bi-ti</div>
+                        <div class="word-transliteration">ny-swt-bity</div>
+                        <div class="word-translation">Roi de Haute et Basse-Égypte</div>
+                        <div class="word-explanation">Titre royal standard précédant le nom de trône</div>
+                    </div>
+
+                    <div class="word-block">
+                        <div class="word-hieroglyph">𓏏𓄿𓈖</div>
+                        <div class="word-pronunciation">🗣️ tout-ânkh</div>
+                        <div class="word-transliteration">tut-ankh</div>
+                        <div class="word-translation">Image vivante</div>
+                        <div class="word-explanation">Première partie du nom : 'Tut' (image) + 'Ankh' (vie)</div>
+                    </div>
+
+                    <div class="word-block">
+                        <div class="word-hieroglyph">𓎡𓇯</div>
+                        <div class="word-pronunciation">🗣️ a-mon</div>
+                        <div class="word-transliteration">Amon</div>
+                        <div class="word-translation">d'Amon</div>
+                        <div class="word-explanation">Nom du dieu Amon, signifiant que le pharaon est l'image vivante d'Amon</div>
+                    </div>
+
+                    </div>
+
+                    <div class="translation-box">
+                        <div class="translation-title">📖 Traduction littérale :</div>
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Roi de Haute et Basse-Égypte, Image-vivante-Amon</p>
+
+                        <div class="translation-title">✨ Traduction fluide :</div>
+                        <p style="font-size: 1.3rem; font-weight: bold;">Le roi de Haute et Basse-Égypte, Toutânkhamon (l'image vivante d'Amon)</p>
+                    </div>
+
+                    <div class="hint-box">
+                        📚 <strong>Grammaire :</strong> Le cartouche (ovale) entoure le nom de naissance du pharaon
+                    </div>
+
+                    <div class="hint-box">
+                        🏛️ <strong>Contexte culturel :</strong><br>👑 <strong>TOUTÂNKHAMON - LE PHARAON LE PLUS CÉLÈBRE</strong><br><br><strong>Signification du nom :</strong><br>"Toutânkhamon" (twt-ꜥnḫ-imn) se décompose ainsi :<ul><li><strong>Tut</strong> (twt) : Image, représentation vivante</li></ul>- <strong>Ankh</strong> (ꜥnḫ) : Vie<ul><li><strong>Amon</strong> (imn) : Nom du dieu Amon</li></ul><br><strong>Traduction complète</strong> : "Image vivante d'Amon" ou "Représentation vivante d'Amon"<br><br><strong>Changement de nom :</strong><br>À sa naissance, il s'appelait "<strong>Toutânkhaton</strong>" (image vivante d'Aton, le dieu-soleil unique)<ul><li>Son père Akhenaton avait imposé le culte exclusif d'Aton</li></ul>- Vers 9 ans, le jeune pharaon change de nom pour "<strong>Toutânkhamon</strong>"<ul><li>Ce changement marque le <strong>retour aux dieux traditionnels</strong>, notamment Amon</li></ul><br><strong>Le cartouche royal :</strong><br>Un <strong>cartouche</strong> (shenu en égyptien) est un ovale allongé entourant le nom du pharaon :<ul><li>Forme : Ovale avec une barre horizontale à la base</li></ul>- Symbolisme : Représente une corde nouée qui entoure et protège le nom<ul><li>Fonction : Le nom royal est sacré et doit être protégé magiquement</li></ul>- Lecture : Les hiéroglyphes à l'intérieur se lisent de droite à gauche (ou de haut en bas)<br><br><strong>Structure du cartouche de Toutânkhamon :</strong><br>Dans son cartouche, on trouve les hiéroglyphes suivants (de droite à gauche) :<br>1. <strong>𓇋𓏠𓈖</strong> (Imn) : Amon - le dieu caché<br>2. <strong>𓋹</strong> (ꜥnḫ) : Ankh - vie<br>3. <strong>𓏏𓅱𓏏</strong> (twt) : Image vivante<br><br><strong>Vie et règne :</strong><ul><li><strong>Dates</strong> : Vers 1345-1327 avant J.-C. (XVIIIe dynastie)</li></ul>- <strong>Âge de couronnement</strong> : 9 ans environ<ul><li><strong>Âge de mort</strong> : 18-19 ans</li></ul>- <strong>Durée du règne</strong> : ~10 ans<ul><li><strong>Contexte</strong> : Période de restauration après la révolution religieuse d'Akhenaton</li></ul>- <strong>Capitale</strong> : Retour à Memphis après Akhetaton (Amarna)<br><br><strong>La découverte du tombeau (1922) :</strong><ul><li><strong>Découvreur</strong> : Howard Carter (archéologue britannique)</li></ul>- <strong>Localisation</strong> : Vallée des Rois (KV62), Louxor<ul><li><strong>État</strong> : Quasi intact (seule tombe royale presque intacte découverte)</li></ul>- <strong>Trésors</strong> : Plus de 5000 objets retrouvés<ul><li><strong>Masque funéraire</strong> : 11 kg d'or massif, devenu icône mondiale</li></ul>- <strong>Impact</strong> : "Toutmania" - engouement mondial pour l'Égypte antique<br><br><strong>Pourquoi est-il si célèbre ?</strong><br>Ironiquement, Toutânkhamon était un pharaon mineur de son vivant :<ul><li>Règne court</li></ul>- Jeune âge<ul><li>Pas de grandes conquêtes militaires</li></ul>- Mais sa tombe intacte en a fait le pharaon le plus célèbre du XXe siècle !<br><br><br><strong>Réponse à 'Qu'est-ce qu'un cartouche ?' :</strong><br>Un ovale contenant un nom royal. Le cartouche est un ovale (ou rectangle aux coins arrondis) qui entoure le nom de naissance ou de trône du pharaon
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <h3>✍️ Exercice pratique</h3>
+                <p style="margin: 1rem 0;">Dessinez un cartouche (ovale) et écrivez votre prénom à l'intérieur en hiéroglyphes phonétiques.</p>
+                <button class="btn" onclick="completeExercise()">
+                    J'ai terminé mon exercice (15 points)
+                </button>
+            </div>
+
+            
+            <div style="background: rgba(255, 193, 7, 0.15); border: 3px solid rgba(255, 193, 7, 0.8); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+                <h2 style="color: #ffc107; margin-bottom: 1.5rem; text-align: center;">📖 Vocabulaire à apprendre</h2>
+
+                <div style="display: grid; gap: 1.5rem;">
+
+                    <!-- Vocabulaire principal -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4caf50;">
+                        <div style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">𓇳𓁧𓎟 𓏏𓄿𓈖𓎡𓇯</div>
+                        <h3 style="color: #81c784; margin-bottom: 1rem; text-align: center;">
+                            <strong style="font-size: 1.8rem;">Roi de Haute et Basse-Égypte</strong>
+                        </h3>
+
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            🗣️ Prononciation : <strong style="color: #81c784;">ni-sout-bi-ti</strong>
+                        </p>
+
+                        <p style="margin-top: 1rem; font-size: 1.1rem; text-align: center;">
+                            Titre royal standard précédant le nom de trône
+                        </p>
+
+                    </div>
+
+                    <!-- Info 1: Que signifie littéralement 'To... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ba68c8;">
+                        <h3 style="color: #ba68c8; margin-bottom: 1rem; text-align: center;">Que signifie littéralement 'Toutânkhamon' ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ba68c8; font-size: 1.4rem;">Image vivante d'Amon</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 2: Qu'est-ce qu'un cartouche ?... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4fc3f7;">
+                        <h3 style="color: #4fc3f7; margin-bottom: 1rem; text-align: center;">Qu'est-ce qu'un cartouche ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #4fc3f7; font-size: 1.4rem;">Un ovale contenant un nom royal</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 3: À quel âge Toutânkhamon est-il... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ff9800;">
+                        <h3 style="color: #ff9800; margin-bottom: 1rem; text-align: center;">À quel âge Toutânkhamon est-il mort ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ff9800; font-size: 1.4rem;">19 ans</strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 193, 7, 0.15); border: 3px solid rgba(255, 193, 7, 0.8); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+                <h2 style="color: #ffc107; margin-bottom: 1.5rem; text-align: center;">📖 Vocabulaire à apprendre</h2>
+
+                <div style="display: grid; gap: 1.5rem;">
+
+                    <!-- Vocabulaire principal -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4caf50;">
+                        <div style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">𓇳𓁧𓎟 𓏏𓄿𓈖𓎡𓇯</div>
+                        <h3 style="color: #81c784; margin-bottom: 1rem; text-align: center;">
+                            <strong style="font-size: 1.8rem;">Roi de Haute et Basse-Égypte</strong>
+                        </h3>
+
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            🗣️ Prononciation : <strong style="color: #81c784;">ni-sout-bi-ti</strong>
+                        </p>
+
+                        <p style="margin-top: 1rem; font-size: 1.1rem; text-align: center;">
+                            Titre royal standard précédant le nom de trône
+                        </p>
+
+                    </div>
+
+                    <!-- Info 1: Que signifie littéralement 'To... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ba68c8;">
+                        <h3 style="color: #ba68c8; margin-bottom: 1rem; text-align: center;">Que signifie littéralement 'Toutânkhamon' ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ba68c8; font-size: 1.4rem;">Image vivante d'Amon</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 2: Qu'est-ce qu'un cartouche ?... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4fc3f7;">
+                        <h3 style="color: #4fc3f7; margin-bottom: 1rem; text-align: center;">Qu'est-ce qu'un cartouche ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #4fc3f7; font-size: 1.4rem;">Un ovale contenant un nom royal</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 3: À quel âge Toutânkhamon est-il... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ff9800;">
+                        <h3 style="color: #ff9800; margin-bottom: 1rem; text-align: center;">À quel âge Toutânkhamon est-il mort ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ff9800; font-size: 1.4rem;">19 ans</strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+<div class="quiz-section">
+                <h2 style="margin-bottom: 2rem;">🧠 Quiz de compréhension</h2>
+
+                <div class="quiz-question" id="quiz-0">
+                    <h4>Question 1 :</h4>
+                    <p>Que signifie littéralement 'Toutânkhamon' ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('toutankhamon_cartouche', 0, 0, 1)">
+                        Roi puissant
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('toutankhamon_cartouche', 0, 1, 1)">
+                        Image vivante d'Amon
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('toutankhamon_cartouche', 0, 2, 1)">
+                        Fils du soleil
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('toutankhamon_cartouche', 0, 3, 1)">
+                        Gardien du temple
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-0" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-1">
+                    <h4>Question 2 :</h4>
+                    <p>Qu'est-ce qu'un cartouche ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('toutankhamon_cartouche', 1, 0, 1)">
+                        Une pyramide
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('toutankhamon_cartouche', 1, 1, 1)">
+                        Un ovale contenant un nom royal
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('toutankhamon_cartouche', 1, 2, 1)">
+                        Un sarcophage
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('toutankhamon_cartouche', 1, 3, 1)">
+                        Un temple
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-1" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-2">
+                    <h4>Question 3 :</h4>
+                    <p>À quel âge Toutânkhamon est-il mort ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('toutankhamon_cartouche', 2, 0, 1)">
+                        9 ans
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('toutankhamon_cartouche', 2, 1, 1)">
+                        19 ans
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('toutankhamon_cartouche', 2, 2, 1)">
+                        29 ans
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('toutankhamon_cartouche', 2, 3, 1)">
+                        39 ans
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-2" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-3">
+                    <h4>Question 4 :</h4>
+                    <p>Qui a découvert la tombe de Toutânkhamon ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('toutankhamon_cartouche', 3, 0, 1)">
+                        Champollion
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('toutankhamon_cartouche', 3, 1, 1)">
+                        Howard Carter
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('toutankhamon_cartouche', 3, 2, 1)">
+                        Mariette
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('toutankhamon_cartouche', 3, 3, 1)">
+                        Petrie
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-3" style="display: none;"></div>
+                </div>
+
+                <div class="score-display" id="quiz-score" style="display: none;">
+                    Score : <span id="score-value">0</span> / 4
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="hieroglyphes-debutant.html" class="btn-nav">⬅️ Retour au cours</a>
+            <a href="progression-dashboard.html" class="btn-nav">📊 Voir ma progression</a>
+            <a href="index_COMPLET.html" class="btn-nav">🏠 Accueil</a>
+        </div>
+    </div>
+
+    <script>
+        let quizAnswered = {};
+        let correctAnswers = 0;
+        let exerciseCompleted = false;
+
+        function toggleTranslation() {
+            const detail = document.getElementById('translation-detail');
+            detail.classList.toggle('hidden');
+        }
+
+        function checkAnswer(inscriptionId, questionIndex, selectedIndex, correctIndex) {
+            if (quizAnswered[questionIndex]) return; // Déjà répondu
+
+            const options = document.querySelectorAll(`#quiz-${questionIndex} .quiz-option`);
+            const feedback = document.getElementById(`feedback-${questionIndex}`);
+            const explanation = ["Tout\u00e2nkhamon = Tut (image) + Ankh (vie) + Amon (dieu)", "Le cartouche est un ovale (ou rectangle aux coins arrondis) qui entoure le nom de naissance ou de tr\u00f4ne du pharaon", "Tout\u00e2nkhamon est mort vers 19 ans, probablement d'une infection suite \u00e0 une fracture de la jambe", "Howard Carter a d\u00e9couvert la tombe KV62 en 1922, financ\u00e9 par Lord Carnarvon"];
+
+            quizAnswered[questionIndex] = true;
+
+            if (selectedIndex === correctIndex) {
+                options[selectedIndex].classList.add('correct');
+                feedback.className = 'quiz-feedback correct';
+                feedback.textContent = '✅ Correct ! ' + explanation[questionIndex];
+                correctAnswers++;
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                options[correctIndex].classList.add('correct');
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = '❌ Incorrect. La bonne réponse était : ' + options[correctIndex].textContent + '. ' + explanation[questionIndex];
+            }
+
+            feedback.style.display = 'block';
+
+            // Désactiver tous les boutons de cette question
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            // Afficher le score si toutes les questions sont répondues
+            if (Object.keys(quizAnswered).length === 4) {
+                const scoreDisplay = document.getElementById('quiz-score');
+                const scoreValue = document.getElementById('score-value');
+                scoreValue.textContent = correctAnswers;
+                scoreDisplay.style.display = 'block';
+
+                // Calculer le score en pourcentage
+                const percentage = Math.round((correctAnswers / 4) * 100);
+
+                // Sauvegarder dans le système de progression
+                if (typeof ProgressionSystem !== 'undefined') {
+                    ProgressionSystem.sauvegarderResultat(
+                        'hieroglyphes',
+                        'debutant',
+                        'toutankhamon_cartouche',
+                        percentage
+                    );
+                }
+
+                // Afficher message
+                if (percentage >= 80) {
+                    alert('🎉 Excellent ! Vous avez obtenu ' + percentage + '% !');
+                } else if (percentage >= 60) {
+                    alert('👍 Bien joué ! Vous avez obtenu ' + percentage + '%. Continuez ainsi !');
+                } else {
+                    alert('📚 Vous avez obtenu ' + percentage + '%. Relisez le contenu et réessayez !');
+                }
+            }
+        }
+
+        function completeExercise() {
+            if (exerciseCompleted) {
+                alert('Vous avez déjà validé cet exercice !');
+                return;
+            }
+
+            exerciseCompleted = true;
+
+            // Sauvegarder dans le système de progression
+            if (typeof ProgressionSystem !== 'undefined') {
+                ProgressionSystem.sauvegarderResultat(
+                    'hieroglyphes',
+                    'debutant',
+                    'toutankhamon_cartouche_exercice',
+                    100 // Exercice de copie = 100% si complété
+                );
+            }
+
+            alert('✅ Exercice validé ! Vous avez gagné 15 points !');
+        }
+    </script>
+
+    <div style="display: flex; justify-content: space-between; margin: 3rem 0;"><a href="hieroglyphes-immersion-debutant-karnak_001.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">← Précédent</a><a href="immersion-inscriptions-index.html" style="background: rgba(100, 100, 150, 0.3); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">📚 Index</a><a href="hieroglyphes-immersion-debutant-amon_roi_dieux.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">Suivant →</a></div>
+
+</body>
+</html>

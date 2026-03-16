@@ -1,0 +1,522 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✡️ Parcours Hébreu & Gematria | Hebrew & Gematria Course | Curso Hebreo & Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">n    <script src="i18n-global.js"></script>n    <button class="lang-toggle">EN</button>
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">n    <script src="i18n-global.js"></script>n    <button class="lang-toggle">EN</button>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header avec bouton de langue */
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .lang-switch-btn {
+            background: linear-gradient(135deg, #6495ed, #4169e1);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(100, 149, 237, 0.4);
+        }
+
+        .lang-switch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(100, 149, 237, 0.6);
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #555, #333);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(135deg, #666, #444);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Box */
+        .hero-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(184, 134, 11, 0.2));
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-box h2 {
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .duration {
+            font-size: 1.2rem;
+            color: #87ceeb;
+            font-weight: bold;
+        }
+
+        /* Grille des étapes */
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-card {
+            background: rgba(30, 30, 45, 0.9);
+            border: 3px solid rgba(100, 149, 237, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: #6495ed;
+            box-shadow: 0 15px 40px rgba(100, 149, 237, 0.5);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #6495ed, #4169e1);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(100, 149, 237, 0.5);
+        }
+
+        .step-icon {
+            font-size: 5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step-title {
+            color: #87ceeb;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+        }
+
+        .step-features li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .step-duration {
+            font-size: 1rem;
+            color: #87ceeb;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #6495ed, #4169e1);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(100, 149, 237, 0.6);
+        }
+
+        /* Méthodologie */
+        .methodology-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .methodology-box h2 {
+            color: #ffd700;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .method-item {
+            background: rgba(30, 30, 45, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .method-item h3 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(100, 149, 237, 0.3), rgba(65, 105, 225, 0.3));
+            border: 3px solid rgba(100, 149, 237, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-box h2 {
+            color: #87ceeb;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #000;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            opacity: 0.8;
+            font-size: 1.1rem;
+            background: rgba(40, 40, 60, 0.5);
+            border-radius: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .parcours-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step-icon {
+                font-size: 3.5rem;
+            }
+
+            .step-title {
+                font-size: 1.5rem;
+            }
+
+            .btn-start {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header avec contrôles -->
+        <div class="header-controls">
+            <a href="index_multilingual.html" class="home-btn" data-i18n="nav.home">🏠 Retour Accueil</a>
+            <button class="lang-switch-btn" onclick="switchLanguage()" data-i18n="nav.langSwitch">🌐 EN / ES</button>
+        </div>
+
+        <!-- Titre principal -->
+        <h1 data-i18n="hebrew.title">✡️ Parcours Complet - Maîtriser l'Hébreu & la Gematria</h1>
+        <div class="subtitle" data-i18n="hebrew.subtitle">Décodez les mystères numériques de la Torah et maîtrisez l'alphabet sacré</div>
+
+        <!-- Hero Box -->
+        <div class="hero-box">
+            <h2 data-i18n="hebrew.heroTitle">Bienvenue dans l'Univers Sacré de l'Hébreu et de la Gematria</h2>
+            <p data-i18n="hebrew.heroDesc">Ce parcours complet vous emmène des fondamentaux de l'Aleph-Bet jusqu'aux secrets les plus profonds de la Kabbale numérique. Apprenez à lire, écrire et décoder les textes sacrés.</p>
+            <div class="duration" data-i18n="hebrew.duration">⏱️ Durée totale estimée : 15-25 heures</div>
+        </div>
+
+        <!-- Grille des étapes du parcours -->
+        <div class="parcours-grid">
+            <!-- Étape 1 : Alphabet -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">✡️</div>
+                <h3 class="step-title" data-i18n="hebrew.step1Title">Alphabet Aleph-Bet</h3>
+                <p class="step-description" data-i18n="hebrew.step1Desc">Maîtrisez les 22 lettres hébraïques, leur prononciation, leur forme et leur valeur numérique</p>
+
+                <ul class="step-features" id="step1-features">
+                    <!-- Rempli dynamiquement par JavaScript -->
+                </ul>
+
+                <div class="step-duration" data-i18n="hebrew.step1Duration">⏱️ 3-5 heures</div>
+                <a href="alphabet-hebreu.html" class="btn-start" data-i18n="hebrew.step1Btn">📖 Commencer l'Alphabet</a>
+            </div>
+
+            <!-- Étape 2 : Gematria -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">🔢</div>
+                <h3 class="step-title" data-i18n="hebrew.step2Title">Systèmes de Gematria</h3>
+                <p class="step-description" data-i18n="hebrew.step2Desc">9 méthodes de calcul des valeurs numériques des mots et phrases hébraïques</p>
+
+                <ul class="step-features" id="step2-features">
+                    <!-- Rempli dynamiquement par JavaScript -->
+                </ul>
+
+                <div class="step-duration" data-i18n="hebrew.step2Duration">⏱️ 4-6 heures</div>
+                <a href="calculateur-gematria.html" class="btn-start" data-i18n="hebrew.step2Btn">🔢 Explorer la Gematria</a>
+            </div>
+
+            <!-- Étape 3 : Textes Bibliques -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">📜</div>
+                <h3 class="step-title" data-i18n="hebrew.step3Title">Textes Bibliques Authentiques</h3>
+                <p class="step-description" data-i18n="hebrew.step3Desc">Lisez et déchiffrez les passages originaux de la Torah avec traduction</p>
+
+                <ul class="step-features" id="step3-features">
+                    <!-- Rempli dynamiquement par JavaScript -->
+                </ul>
+
+                <div class="step-duration" data-i18n="hebrew.step3Duration">⏱️ 3-5 heures</div>
+                <a href="textes-bibliques.html" class="btn-start" data-i18n="hebrew.step3Btn">📜 Lire les Textes Sacrés</a>
+            </div>
+
+            <!-- Étape 4 : Kabbale -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">🌳</div>
+                <h3 class="step-title" data-i18n="hebrew.step4Title">Kabbale & 72 Noms de Dieu</h3>
+                <p class="step-description" data-i18n="hebrew.step4Desc">Plongez dans l'Arbre de Vie (עץ חיים) et les 72 combinaisons des Noms Divins</p>
+
+                <ul class="step-features" id="step4-features">
+                    <!-- Rempli dynamiquement par JavaScript -->
+                </ul>
+
+                <div class="step-duration" data-i18n="hebrew.step4Duration">⏱️ 4-6 heures</div>
+                <a href="kabbale-noms-dieu.html" class="btn-start" data-i18n="hebrew.step4Btn">🌳 Découvrir la Kabbale</a>
+            </div>
+
+            <!-- Étape 5 : Flashcards -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="step-icon">🎯</div>
+                <h3 class="step-title" data-i18n="hebrew.step5Title">Flashcards Interactives</h3>
+                <p class="step-description" data-i18n="hebrew.step5Desc">Mémorisez efficacement avec 4 modes d'apprentissage scientifiques</p>
+
+                <ul class="step-features" id="step5-features">
+                    <!-- Rempli dynamiquement par JavaScript -->
+                </ul>
+
+                <div class="step-duration" data-i18n="hebrew.step5Duration">⏱️ 2-4 heures</div>
+                <a href="flashcards-hebreu.html" class="btn-start" data-i18n="hebrew.step5Btn">🎯 Pratiquer avec Flashcards</a>
+            </div>
+        </div>
+
+        <!-- Méthodologie -->
+        <div class="methodology-box">
+            <h2 data-i18n="hebrew.methodologyTitle">📚 Méthodologie Scientifique du Parcours</h2>
+            <div class="methodology-grid">
+                <div class="method-item">
+                    <h3 data-i18n="hebrew.method1Title">1️⃣ Apprentissage Progressif</h3>
+                    <p data-i18n="hebrew.method1Desc">Du simple au complexe : alphabet → gematria → textes → kabbale</p>
+                </div>
+                <div class="method-item">
+                    <h3 data-i18n="hebrew.method2Title">2️⃣ Pratique Immédiate</h3>
+                    <p data-i18n="hebrew.method2Desc">Chaque concept est immédiatement appliqué avec des exercices</p>
+                </div>
+                <div class="method-item">
+                    <h3 data-i18n="hebrew.method3Title">3️⃣ Multi-Sensoriel</h3>
+                    <p data-i18n="hebrew.method3Desc">Audio + Visuel + Écriture pour ancrer dans la mémoire</p>
+                </div>
+                <div class="method-item">
+                    <h3 data-i18n="hebrew.method4Title">4️⃣ Répétition Espacée</h3>
+                    <p data-i18n="hebrew.method4Desc">Flashcards SRS pour mémorisation à long terme</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <h2 data-i18n="hebrew.ctaTitle">🚀 Commencez Votre Voyage Maintenant</h2>
+            <p data-i18n="hebrew.ctaText">Choisissez votre étape de départ selon votre niveau</p>
+            <button class="btn-cta" onclick="window.location.href='alphabet-hebreu.html'" data-i18n="hebrew.ctaBtn">✨ Débuter le Parcours Hébreu</button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note" data-i18n="hebrew.footer">
+            Ce parcours est conçu pour tous niveaux : débutants absolus aux étudiants avancés en hébreu biblique.
+        </div>
+    </div>
+
+    <!-- Script i18n -->
+    <script src="i18n-parcours.js"></script>
+    <script>
+        // Fonction pour remplir les listes de features dynamiquement
+        function populateFeatures() {
+            const lang = localStorage.getItem('preferredLang') || 'fr';
+
+            // Step 1 features
+            const step1Features = i18n.hebrew[lang].step1Features;
+            const step1List = document.getElementById('step1-features');
+            step1List.innerHTML = step1Features.map(f => `<li>${f}</li>`).join('');
+
+            // Step 2 features
+            const step2Features = i18n.hebrew[lang].step2Features;
+            const step2List = document.getElementById('step2-features');
+            step2List.innerHTML = step2Features.map(f => `<li>${f}</li>`).join('');
+
+            // Step 3 features
+            const step3Features = i18n.hebrew[lang].step3Features;
+            const step3List = document.getElementById('step3-features');
+            step3List.innerHTML = step3Features.map(f => `<li>${f}</li>`).join('');
+
+            // Step 4 features
+            const step4Features = i18n.hebrew[lang].step4Features;
+            const step4List = document.getElementById('step4-features');
+            step4List.innerHTML = step4Features.map(f => `<li>${f}</li>`).join('');
+
+            // Step 5 features
+            const step5Features = i18n.hebrew[lang].step5Features;
+            const step5List = document.getElementById('step5-features');
+            step5List.innerHTML = step5Features.map(f => `<li>${f}</li>`).join('');
+        }
+
+        // Override de updatePageLanguage pour inclure les features
+        const originalUpdate = updatePageLanguage;
+        updatePageLanguage = function() {
+            originalUpdate();
+            populateFeatures();
+        };
+
+        // Initialiser au chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            populateFeatures();
+        });
+    </script>
+</body>
+</html>

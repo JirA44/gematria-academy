@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gematria - Niveau Intermédiaire | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="gematria-animated-bg.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <style>
+        .hebrew { font-size: 2rem; font-weight: bold; direction: rtl; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 0.8rem; text-align: center; }
+        .comparison-table th { background: var(--primary); color: white; }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+    <script src="theme-backgrounds.js" defer></script>
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🌿 Gematria Hébraïque - Niveau Intermédiaire</h1>
+        <p class="subtitle">Lettres finales, systèmes avancés et noms divins</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="gematria-debutant.html">Gematria Débutant</a>
+            <a href="gematria-intermediaire.html" class="active">Gematria Intermédiaire</a>
+            <a href="gematria-expert.html">Gematria Expert</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > <a href="index.html#gematria">Gematria</a> > Niveau Intermédiaire
+            </div>
+
+            <section class="lesson">
+                <h2>📖 Les Lettres Finales (Sofit)</h2>
+                <p>Cinq lettres hébraïques ont une <strong>forme finale</strong> (sofit) utilisée uniquement en fin de mot. Ces lettres ont des valeurs numériques différentes dans certains systèmes !</p>
+
+                <div class="letter-grid">
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ך</div>
+                        <div class="letter-name">Kaf Sofit</div>
+                        <p><strong>Forme normale :</strong> כ (20)</p>
+                        <p><strong>Valeur finale :</strong> 500</p>
+                        <div class="letter-value">
+                            Utilisée en fin de mot uniquement
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ם</div>
+                        <div class="letter-name">Mem Sofit</div>
+                        <p><strong>Forme normale :</strong> מ (40)</p>
+                        <p><strong>Valeur finale :</strong> 600</p>
+                        <div class="letter-value">
+                            Forme fermée du Mem
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ן</div>
+                        <div class="letter-name">Nun Sofit</div>
+                        <p><strong>Forme normale :</strong> נ (50)</p>
+                        <p><strong>Valeur finale :</strong> 700</p>
+                        <div class="letter-value">
+                            Descend sous la ligne
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ף</div>
+                        <div class="letter-name">Pé Sofit</div>
+                        <p><strong>Forme normale :</strong> פ (80)</p>
+                        <p><strong>Valeur finale :</strong> 800</p>
+                        <div class="letter-value">
+                            Forme allongée
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ץ</div>
+                        <div class="letter-name">Tsadé Sofit</div>
+                        <p><strong>Forme normale :</strong> צ (90)</p>
+                        <p><strong>Valeur finale :</strong> 900</p>
+                        <div class="letter-value">
+                            Forme distinctive finale
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 66%;"></div>
+            </div>
+
+            <section class="lesson">
+                <h2>🔢 Les Différents Systèmes de Gematria</h2>
+                <p>Il existe plusieurs méthodes de calcul en gematria, chacune révélant des insights différents :</p>
+
+                <h3>1. Gematria Absolue (Mispar Hechrachi)</h3>
+                <p>C'est le système simple que vous connaissez : א=1, ב=2, etc.</p>
+
+                <h3>2. Gematria Ordinale (Mispar Siduri)</h3>
+                <p>Chaque lettre vaut sa position dans l'alphabet : א=1, ב=2... ת=22</p>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Lettre</th>
+                        <th>Absolue</th>
+                        <th>Ordinale</th>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">י</td>
+                        <td>10</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ק</td>
+                        <td>100</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ת</td>
+                        <td>400</td>
+                        <td>22</td>
+                    </tr>
+                </table>
+
+                <h3>3. Gematria Réduite (Mispar Katan)</h3>
+                <p>On réduit chaque nombre à un chiffre : 10→1, 20→2, 100→1, etc.</p>
+                <div class="tip">
+                    <p><strong>Exemple :</strong> ש (Shin) = 300 → 3+0+0 = 3</p>
+                </div>
+
+                <h3>4. Gematria "AtBash" (אתב״ש)</h3>
+                <p>Système de substitution inversé : א↔ת, ב↔ש, ג↔ר, etc.</p>
+                <p>La première lettre devient la dernière, la deuxième devient l'avant-dernière...</p>
+
+                <div class="exercise">
+                    <h3>✍️ Exercice : AtBash</h3>
+                    <p>Convertissez le mot בבל (Babel) en AtBash :</p>
+                    <ul>
+                        <li>ב → ש</li>
+                        <li>ב → ש</li>
+                        <li>ל → כ</li>
+                    </ul>
+                    <p>Résultat : ששכ - qui se lit "Sheshakh", un nom codé de Babylone dans Jérémie 25:26 !</p>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>🌟 Les Noms Divins et leur Gematria</h2>
+                <p>Les noms de Dieu en hébreu révèlent des mystères profonds par leur gematria.</p>
+
+                <div class="letter-grid">
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">יהוה</div>
+                        <div class="letter-name">YHVH (Tétragramme)</div>
+                        <p><strong>י</strong> (10) + <strong>ה</strong> (5) + <strong>ו</strong> (6) + <strong>ה</strong> (5)</p>
+                        <div class="letter-value">
+                            <strong>Total : 26</strong>
+                            <br>Le nom ineffable de Dieu
+                            <br>Adonaï (Seigneur)
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">אהיה</div>
+                        <div class="letter-name">EHYEH</div>
+                        <p><strong>א</strong> (1) + <strong>ה</strong> (5) + <strong>י</strong> (10) + <strong>ה</strong> (5)</p>
+                        <div class="letter-value">
+                            <strong>Total : 21</strong>
+                            <br>"Je Suis"
+                            <br>Révélé à Moïse
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">אלהים</div>
+                        <div class="letter-name">Elohim</div>
+                        <p><strong>א</strong>(1) + <strong>ל</strong>(30) + <strong>ה</strong>(5) + <strong>י</strong>(10) + <strong>ם</strong>(40)</p>
+                        <div class="letter-value">
+                            <strong>Total : 86</strong>
+                            <br>Dieu (pluriel majestueux)
+                            <br>Aspect créateur
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">אדני</div>
+                        <div class="letter-name">Adonaï</div>
+                        <p><strong>א</strong>(1) + <strong>ד</strong>(4) + <strong>ן</strong>(50) + <strong>י</strong>(10)</p>
+                        <div class="letter-value">
+                            <strong>Total : 65</strong>
+                            <br>Mon Seigneur
+                            <br>Prononcé à la place de YHVH
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <h3>💡 Correspondance mystique :</h3>
+                    <p><strong>YHVH (26) + Adonaï (65) = 91</strong></p>
+                    <p>91 = אמן (Amen) - Affirmation de vérité !</p>
+                    <p>Aussi : 91 = מלאך (Malakh - Ange)</p>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>📚 Notarikon et Temurah</h2>
+                <p>Deux autres techniques kabbalistiques d'analyse des textes :</p>
+
+                <h3>Notarikon (נוטריקון)</h3>
+                <p>Technique d'acronymes où chaque lettre d'un mot représente un mot entier.</p>
+
+                <div class="tip">
+                    <h4>Exemple célèbre : בראשית (Bereshit - "Au commencement")</h4>
+                    <p>Chaque lettre est l'initiale d'un mot :</p>
+                    <ul>
+                        <li><strong>ב</strong> - בראשית (Bereshit - Au commencement)</li>
+                        <li><strong>ר</strong> - ראה (Raah - Il vit)</li>
+                        <li><strong>א</strong> - אלהים (Elohim - Dieu)</li>
+                        <li><strong>ש</strong> - שיקבלו (Sheyikabelu - Qu'ils acceptent)</li>
+                        <li><strong>י</strong> - ישראל (Israël - Israël)</li>
+                        <li><strong>ת</strong> - תורה (Torah - Torah)</li>
+                    </ul>
+                    <p>"Au commencement, Dieu vit qu'Israël accepterait la Torah"</p>
+                </div>
+
+                <h3>Temurah (תמורה)</h3>
+                <p>Permutations et substitutions de lettres selon des règles fixes.</p>
+                <p>Exemples de systèmes Temurah :</p>
+                <ul>
+                    <li><strong>AtBash</strong> (déjà vu) : א↔ת, ב↔ש...</li>
+                    <li><strong>Albam</strong> : א↔ל, ב↔מ, ג↔נ...</li>
+                    <li><strong>Atbah</strong> : א↔ט, ב↔ח, ג↔ז...</li>
+                </ul>
+            </section>
+
+            <section class="lesson">
+                <h2>📖 Gematria dans la Torah</h2>
+                <p>Exemples de correspondances révélées par la gematria dans les textes sacrés :</p>
+
+                <div class="tip">
+                    <h3>Exemple 1 : Jacob et Esaü</h3>
+                    <p class="hebrew">יעקב</p>
+                    <p><strong>Jacob (יעקב)</strong> = 10+70+100+2 = <strong>182</strong></p>
+                    <p class="hebrew">עשו</p>
+                    <p><strong>Esaü (עשו)</strong> = 70+300+6 = <strong>376</strong></p>
+                    <p>376 - 182 = 194 = <strong>צדקה</strong> (Tsedakah - Charité)</p>
+                    <p><em>Enseignement : La charité comble la différence entre les frères.</em></p>
+                </div>
+
+                <div class="tip">
+                    <h3>Exemple 2 : Le serpent et le Messie</h3>
+                    <p class="hebrew">נחש</p>
+                    <p><strong>Serpent (נחש)</strong> = 50+8+300 = <strong>358</strong></p>
+                    <p class="hebrew">משיח</p>
+                    <p><strong>Messie (משיח)</strong> = 40+300+10+8 = <strong>358</strong></p>
+                    <p><em>Enseignement : Le Messie vient vaincre le serpent primordial.</em></p>
+                </div>
+            </section>
+
+            <section class="exercise">
+                <h2>✍️ Exercice pratique : Analyse comparative</h2>
+                <p>Calculez ces mots avec les trois systèmes (Absolue, Ordinale, Réduite) :</p>
+
+                <ol>
+                    <li><span class="hebrew">תורה</span> (Torah - Loi) : ת+ו+ר+ה</li>
+                    <li><span class="hebrew">חכמה</span> (Hokhma - Sagesse) : ח+כ+מ+ה</li>
+                    <li><span class="hebrew">שלום</span> (Shalom - Paix) : ש+ל+ו+ם</li>
+                </ol>
+
+                <p>Cherchez des correspondances entre les totaux !</p>
+
+                <div class="tip">
+                    <h3>Indice :</h3>
+                    <p>Torah en gematria absolue = 611, soit le nombre de commandements donnés par Moïse (613 - 2 donnés directement par Dieu au Sinaï) !</p>
+                </div>
+            </section>
+
+            <section class="exercise">
+                <h2>✍️ Projet : Votre Nom en Hébreu</h2>
+                <ol>
+                    <li>Translittérez votre prénom en lettres hébraïques</li>
+                    <li>Calculez sa gematria absolue</li>
+                    <li>Trouvez un mot hébreu avec la même valeur</li>
+                    <li>Méditez sur cette correspondance personnelle</li>
+                </ol>
+
+                <p><strong>Exemple :</strong> "David" = דוד = 4+6+4 = 14 = יד (Yad - Main)</p>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="gematria-debutant.html" class="btn btn-beginner">← Niveau Débutant</a>
+                <a href="gematria-expert.html" class="btn btn-expert">Niveau Expert →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

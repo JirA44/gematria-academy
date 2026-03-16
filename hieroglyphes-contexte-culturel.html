@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓆣 Contexte Culturel de l'Égypte Antique | Académie Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #c49c62 0%, #8b6f47 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b6f47;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: #8b6f47;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: #c49c62;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-section {
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-radius: 20px;
+            border: 3px solid #ffa000;
+        }
+
+        .timeline-section h2 {
+            color: #e65100;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ffa000, #ff6f00);
+        }
+
+        .timeline-item {
+            margin: 30px 0;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item.right {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #ffa000;
+        }
+
+        .timeline-content h3 {
+            color: #e65100;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #ff6f00;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: #ffa000;
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #ffa000;
+        }
+
+        .timeline-item.left .timeline-marker {
+            right: -15px;
+        }
+
+        .timeline-item.right .timeline-marker {
+            left: -15px;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .culture-card {
+            background: white;
+            border: 3px solid #8b6f47;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .culture-card h3 {
+            color: #8b6f47;
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .culture-icon {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .info-box h4 {
+            color: #1565C0;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .warning-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .section {
+            margin: 50px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            border: 3px solid #c49c62;
+        }
+
+        .section h2 {
+            color: #8b6f47;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #c49c62;
+            padding-bottom: 15px;
+        }
+
+        .gods-pantheon {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .god-card {
+            background: linear-gradient(135deg, #f9f6f0, #fff);
+            border: 2px solid #8b6f47;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .god-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: #c49c62;
+        }
+
+        .god-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .god-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #8b6f47;
+            margin-bottom: 10px;
+        }
+
+        .god-role {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .god-hieroglyph {
+            font-size: 2em;
+            color: #c49c62;
+            margin: 10px 0;
+        }
+
+        .interactive-map {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #4CAF50;
+        }
+
+        .map-location {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #4CAF50;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .map-location:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-location h4 {
+            color: #2e7d32;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .daily-life-section {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 3px solid #e91e63;
+        }
+
+        .daily-life-section h2 {
+            color: #880e4f;
+            border-bottom-color: #e91e63;
+        }
+
+        .profession-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .profession-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            transition: all 0.3s;
+        }
+
+        .profession-card:hover {
+            background: linear-gradient(135deg, #fff, #fce4ec);
+            transform: translateY(-5px);
+        }
+
+        .hieroglyph-example {
+            font-size: 2.5em;
+            text-align: center;
+            color: #8b6f47;
+            padding: 20px;
+            background: #f9f6f0;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px dashed #c49c62;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item.left,
+            .timeline-item.right {
+                width: 100%;
+                left: 0;
+                padding-left: 60px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item.left .timeline-marker,
+            .timeline-item.right .timeline-marker {
+                left: 5px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>𓆣 Contexte Culturel de l'Égypte Antique</h1>
+        <p class="subtitle">Plongez dans la civilisation qui a donné naissance aux hiéroglyphes</p>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">⬅ Accueil</a>
+            <a href="hieroglyphes-debutant.html" class="nav-btn">📚 Niveau Débutant</a>
+            <a href="hieroglyphes-exercices-phrases.html" class="nav-btn">✍️ Exercices de Phrases</a>
+            <a href="hieroglyphes-immersion-temples.html" class="nav-btn">🏛 Immersion Temples</a>
+        </div>
+
+        <!-- CHRONOLOGIE DE L'ÉGYPTE ANCIENNE -->
+        <div class="timeline-section">
+            <h2>⏳ Chronologie de l'Égypte Antique</h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 40px;">
+                L'histoire égyptienne s'étend sur plus de 3000 ans, de 3100 av. J.-C. à 30 av. J.-C.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">3100-2686 av. J.-C.</span>
+                        <h3>Période Thinite</h3>
+                        <p><strong>Dynasties I-II</strong></p>
+                        <p>Unification de la Haute et Basse-Égypte par le roi Narmer (Ménès). Début de l'écriture hiéroglyphique. Capitale : Memphis.</p>
+                        <div class="hieroglyph-example">𓋹 𓏃 𓈖</div>
+                        <p><em>Narmer en hiéroglyphes</em></p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2686-2181 av. J.-C.</span>
+                        <h3>Ancien Empire</h3>
+                        <p><strong>Dynasties III-VI</strong></p>
+                        <p>L'âge des pyramides ! Construction de la pyramide à degrés de Djéser (première pyramide), puis les grandes pyramides de Gizeh sous Khéops, Khéphren et Mykérinos.</p>
+                        <div class="hieroglyph-example">𓍋 𓅓 𓂋</div>
+                        <p><em>Khufu (Khéops) - Bâtisseur de la Grande Pyramide</em></p>
+                        <div class="info-box">
+                            <h4>💎 Faits remarquables :</h4>
+                            <ul>
+                                <li>La Grande Pyramide utilisait 2,3 millions de blocs de pierre</li>
+                                <li>Chaque bloc pesait en moyenne 2,5 tonnes</li>
+                                <li>Construite en environ 20 ans avec 100 000 ouvriers</li>
+                                <li>Précision astronomique incroyable dans l'alignement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2181-2055 av. J.-C.</span>
+                        <h3>Première Période Intermédiaire</h3>
+                        <p><strong>Dynasties VII-X</strong></p>
+                        <p>Période de troubles et de division. L'autorité centrale s'effondre. Famine et guerre civile. L'Égypte est divisée entre plusieurs royaumes rivaux.</p>
+                        <div class="warning-box">
+                            <h4>⚠️ Temps de Chaos</h4>
+                            <p>Cette période montre la fragilité de la civilisation égyptienne face aux crises climatiques et politiques.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2055-1650 av. J.-C.</span>
+                        <h3>Moyen Empire</h3>
+                        <p><strong>Dynasties XI-XIII</strong></p>
+                        <p>Renaissance culturelle et littéraire. Âge d'or de la littérature égyptienne. Expansion en Nubie. Les "Textes des Sarcophages" remplacent les "Textes des Pyramides".</p>
+                        <div class="hieroglyph-example">𓇋 𓈖 𓂓 𓏤 𓊃 𓈖 𓅱 𓋴 𓂋 𓏏</div>
+                        <p><em>"Enseignements de Ptahhotep" - Chef-d'œuvre littéraire</em></p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">1650-1550 av. J.-C.</span>
+                        <h3>Deuxième Période Intermédiaire</h3>
+                        <p><strong>Dynasties XIV-XVII</strong></p>
+                        <p>Invasion des Hyksôs ("princes étrangers") qui introduisent le cheval et le char de guerre. Ils règnent sur le Delta tandis que des dynasties égyptiennes survivent à Thèbes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">1550-1077 av. J.-C.</span>
+                        <h3>Nouvel Empire</h3>
+                        <p><strong>Dynasties XVIII-XX</strong></p>
+                        <p>L'apogée de la puissance égyptienne ! Empire s'étendant de la Nubie à l'Euphrate. Pharaons célèbres : Hatchepsout, Thoutmosis III, Akhenaton, Toutânkhamon, Ramsès II.</p>
+                        <div class="hieroglyph-example">𓇳 𓁧 𓇳 𓎟 𓊨 𓐍</div>
+                        <p><em>Ramsès II - "Ramsès le Grand"</em></p>
+                        <div class="info-box">
+                            <h4>👑 Pharaons légendaires :</h4>
+                            <ul>
+                                <li><strong>Hatchepsout</strong> : Femme pharaon, grande bâtisseuse</li>
+                                <li><strong>Akhenaton</strong> : Révolution religieuse monothéiste</li>
+                                <li><strong>Toutânkhamon</strong> : Tombe intacte découverte en 1922</li>
+                                <li><strong>Ramsès II</strong> : Règne de 67 ans, 100+ enfants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">1077-664 av. J.-C.</span>
+                        <h3>Troisième Période Intermédiaire</h3>
+                        <p><strong>Dynasties XXI-XXV</strong></p>
+                        <p>Division entre le nord et le sud. Domination libyenne puis kushite (nubienne). Les pharaons noirs de la XXVe dynastie restaurent les traditions anciennes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">664-332 av. J.-C.</span>
+                        <h3>Basse Époque</h3>
+                        <p><strong>Dynasties XXVI-XXX</strong></p>
+                        <p>Renaissance saïte. Invasions perses (dynasties XXVII et XXXI). Derniers pharaons égyptiens natifs. L'Égypte lutte pour son indépendance.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">332-30 av. J.-C.</span>
+                        <h3>Période Ptolémaïque</h3>
+                        <p>Conquête d'Alexandre le Grand. Dynastie grecque des Ptolémées. Fondation d'Alexandrie. Cléopâtre VII, dernière reine d'Égypte. Fin avec l'annexion romaine en 30 av. J.-C.</p>
+                        <div class="hieroglyph-example">𓁯 𓇋 𓉐 𓏏 𓆇 𓏏 𓁐</div>
+                        <p><em>Cléopâtre - Dernière reine</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANTHÉON DES DIEUX -->
+        <div class="section">
+            <h2>🌟 Le Panthéon Égyptien</h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 30px;">
+                Les Égyptiens vénéraient des centaines de divinités. Voici les principaux dieux et déesses :
+            </p>
+
+            <div class="gods-pantheon">
+                <div class="god-card">
+                    <div class="god-icon">☀️</div>
+                    <div class="god-name">Râ (Rê)</div>
+                    <div class="god-hieroglyph">𓇳</div>
+                    <div class="god-role">Dieu du Soleil</div>
+                    <p>Créateur suprême, roi des dieux. Traverse le ciel le jour et le monde souterrain la nuit dans sa barque solaire.</p>
+                    <div class="info-box">
+                        <strong>Symboles :</strong> Disque solaire, faucon, scarabée
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🦅</div>
+                    <div class="god-name">Horus</div>
+                    <div class="god-hieroglyph">𓅃</div>
+                    <div class="god-role">Dieu du Ciel</div>
+                    <p>Fils d'Osiris et Isis. Dieu faucon protecteur des pharaons. Ses yeux sont le soleil et la lune.</p>
+                    <div class="info-box">
+                        <strong>Symboles :</strong> Faucon, œil oudjat (œil d'Horus)
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">👁️</div>
+                    <div class="god-name">Osiris</div>
+                    <div class="god-hieroglyph">𓁹 𓏤 𓀭</div>
+                    <div class="god-role">Dieu de l'Au-delà</div>
+                    <p>Roi des morts, juge suprême dans la pesée du cœur. Assassiné par son frère Seth puis ressuscité par Isis.</p>
+                    <div class="info-box">
+                        <strong>Représentation :</strong> Momiforme, peau verte (renaissance)
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🪽</div>
+                    <div class="god-name">Isis</div>
+                    <div class="god-hieroglyph">𓊨 𓏏 𓆇 𓁐</div>
+                    <div class="god-role">Grande Magicienne</div>
+                    <p>Épouse d'Osiris, mère d'Horus. Déesse de la magie, maternité et protection. Culte répandu jusqu'à Rome.</p>
+                    <div class="info-box">
+                        <strong>Symboles :</strong> Trône sur la tête, ailes protectrices
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🐺</div>
+                    <div class="god-name">Anubis</div>
+                    <div class="god-hieroglyph">𓃣 𓁢</div>
+                    <div class="god-role">Dieu de la Momification</div>
+                    <p>Dieu à tête de chacal. Guide les âmes vers l'au-delà et préside à la momification.</p>
+                    <div class="info-box">
+                        <strong>Rôle :</strong> Pesée du cœur, embaumement
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">📚</div>
+                    <div class="god-name">Thot</div>
+                    <div class="god-hieroglyph">𓅤 𓏃</div>
+                    <div class="god-role">Dieu de la Sagesse</div>
+                    <p>Inventeur de l'écriture et des hiéroglyphes. Dieu de la connaissance, des sciences et de la magie.</p>
+                    <div class="info-box">
+                        <strong>Forme :</strong> Ibis ou babouin
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">⚖️</div>
+                    <div class="god-name">Maât</div>
+                    <div class="god-hieroglyph">𓐢 𓏏 𓁐</div>
+                    <div class="god-role">Déesse de la Justice</div>
+                    <p>Personnification de l'ordre, vérité, justice et harmonie cosmique. Sa plume sert dans la pesée du cœur.</p>
+                    <div class="info-box">
+                        <strong>Symbole :</strong> Plume d'autruche
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">⚡</div>
+                    <div class="god-name">Seth</div>
+                    <div class="god-hieroglyph">𓃣 𓏏 𓃩</div>
+                    <div class="god-role">Dieu du Chaos</div>
+                    <p>Dieu des tempêtes, déserts et violence. Assassin d'Osiris. Représente les forces destructrices mais aussi protectrices.</p>
+                    <div class="info-box">
+                        <strong>Ambivalence :</strong> Malfaisant mais défenseur de Râ
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🐈</div>
+                    <div class="god-name">Bastet</div>
+                    <div class="god-hieroglyph">𓃠 𓏏 𓏏</div>
+                    <div class="god-role">Déesse de la Joie</div>
+                    <p>Déesse chat protectrice du foyer, de la joie et de la fertilité. Également déesse guerrière sous forme de lionne.</p>
+                    <div class="info-box">
+                        <strong>Culte :</strong> Chats sacrés momifiés à Bubastis
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🐄</div>
+                    <div class="god-name">Hathor</div>
+                    <div class="god-hieroglyph">𓉡 𓏏 𓁃</div>
+                    <div class="god-role">Déesse de l'Amour</div>
+                    <p>Déesse vache céleste de l'amour, beauté, musique et danse. Mère nourricière du pharaon.</p>
+                    <div class="info-box">
+                        <strong>Centre de culte :</strong> Temple de Dendérah
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🔨</div>
+                    <div class="god-name">Ptah</div>
+                    <div class="god-hieroglyph">𓊪 𓏏 𓎛</div>
+                    <div class="god-role">Dieu Créateur</div>
+                    <p>Créateur du monde par la parole. Patron des artisans et architectes. Dieu de Memphis.</p>
+                    <div class="info-box">
+                        <strong>Représentation :</strong> Momiforme tenant un sceptre ouas
+                    </div>
+                </div>
+
+                <div class="god-card">
+                    <div class="god-icon">🦁</div>
+                    <div class="god-name">Sekhmet</div>
+                    <div class="god-hieroglyph">𓌂 𓐍 𓏏 𓏭</div>
+                    <div class="god-role">Déesse Guerrière</div>
+                    <p>Lionne féroce, déesse de la guerre et des épidémies. Forme colérique d'Hathor. Guérisseuse paradoxale.</p>
+                    <div class="info-box">
+                        <strong>Légende :</strong> Apaisée par la bière rouge (vin)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GÉOGRAPHIE -->
+        <div class="section" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+            <h2>🗺️ Géographie de l'Égypte Antique</h2>
+
+            <div class="interactive-map">
+                <h3 style="text-align: center; color: #2e7d32; margin-bottom: 30px;">Principaux Sites et Villes</h3>
+
+                <div class="map-location">
+                    <h4>🏛️ Memphis (Men-nefer)</h4>
+                    <div class="hieroglyph-example">𓏠 𓈖 𓄤 𓊪 𓂋</div>
+                    <p><strong>Capitale :</strong> Ancien Empire</p>
+                    <p><strong>Signification :</strong> "Murs blancs" puis "Stable et belle"</p>
+                    <p>Fondée vers 3100 av. J.-C. par Narmer. Centre administratif et culturel majeur pendant 2000 ans. Temple de Ptah, nécropole de Saqqarah avec la pyramide à degrés de Djéser.</p>
+                </div>
+
+                <div class="map-location">
+                    <h4>⛰️ Thèbes (Waset)</h4>
+                    <div class="hieroglyph-example">𓌀 𓋴 𓏏 𓊖</div>
+                    <p><strong>Capitale :</strong> Moyen et Nouvel Empire</p>
+                    <p><strong>Nom grec :</strong> Thèbes</p>
+                    <p>Complexes de Karnak et Louxor sur la rive est. Vallée des Rois et des Reines sur la rive ouest. Centre du culte d'Amon-Râ. Ville des centaines de portes selon Homère.</p>
+                </div>
+
+                <div class="map-location">
+                    <h4>🌊 Alexandrie</h4>
+                    <div class="hieroglyph-example">𓄿 𓍯 𓎡 𓋴 𓈖 𓍿 𓅱</div>
+                    <p><strong>Fondation :</strong> 331 av. J.-C. par Alexandre le Grand</p>
+                    <p>Capitale hellénistique et romaine. Phare d'Alexandrie (une des 7 merveilles). Grande Bibliothèque. Centre intellectuel du monde antique.</p>
+                </div>
+
+                <div class="map-location">
+                    <h4>🔺 Gizeh</h4>
+                    <p><strong>Nécropole :</strong> Ancien Empire</p>
+                    <p>Site des trois grandes pyramides : Khéops (Grande Pyramide, seule merveille antique encore debout), Khéphren et Mykérinos. Grand Sphinx. Complexe funéraire massif.</p>
+                </div>
+
+                <div class="map-location">
+                    <h4>🏜️ Abydos</h4>
+                    <div class="hieroglyph-example">𓉐 𓃀 𓊖</div>
+                    <p><strong>Sanctuaire :</strong> Culte d'Osiris</p>
+                    <p>Lieu sacré le plus ancien. Tombeau mythique d'Osiris. Temple de Séthi Ier avec Table des Rois listant 76 pharaons. Destination de pèlerinage.</p>
+                </div>
+
+                <div class="map-location">
+                    <h4>☀️ Héliopolis (Iounou)</h4>
+                    <div class="hieroglyph-example">𓉺 𓇋 𓅱 𓈖 𓏌</div>
+                    <p><strong>Ville sainte :</strong> Culte du soleil</p>
+                    <p><strong>Signification :</strong> "Ville des Piliers"</p>
+                    <p>Centre théologique majeur. Culte de Râ et Atoum. Académie sacerdotale. Obélisques solaires. Mythe de la création héliopolitaine.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>🌊 Le Nil : Source de Vie</h4>
+                <p>Le Nil (ỉtrw) était l'essence même de l'Égypte. "L'Égypte est un don du Nil" disait Hérodote.</p>
+                <ul>
+                    <li><strong>Crue annuelle (Akhet) :</strong> Juin-septembre - Inondation fertilisante</li>
+                    <li><strong>Germination (Peret) :</strong> Octobre-février - Saison des cultures</li>
+                    <li><strong>Récolte (Shemou) :</strong> Mars-mai - Moisson</li>
+                </ul>
+                <p>Le limon noir déposé par la crue créait une bande fertile de 10-20 km de large, entourée de déserts rouge. Cette dualité inspirait la cosmologie égyptienne : Kemet (terre noire/fertile) vs Deshret (terre rouge/stérile).</p>
+            </div>
+        </div>
+
+        <!-- VIE QUOTIDIENNE -->
+        <div class="daily-life-section">
+            <h2>🏘️ La Vie Quotidienne</h2>
+
+            <div class="profession-grid">
+                <div class="profession-card">
+                    <div class="culture-icon">📜</div>
+                    <h3>Le Scribe (sš)</h3>
+                    <div class="hieroglyph-example">𓏞 𓉐</div>
+                    <p><strong>Rôle :</strong> Élite intellectuelle de l'Égypte. Seulement 1% de la population savait lire et écrire !</p>
+                    <p><strong>Formation :</strong> Années d'apprentissage rigoureux dans les "Maisons de Vie" (temples-écoles)</p>
+                    <p><strong>Outils :</strong> Calame (roseau taillé), palette avec encre noire et rouge, papyrus</p>
+                    <div class="info-box">
+                        <strong>Citation célèbre :</strong> "Sois scribe ! Tes membres seront lisses, tes mains seront tendres, tu sortiras vêtu de lin blanc..." (Satire des Métiers)
+                    </div>
+                </div>
+
+                <div class="profession-card">
+                    <div class="culture-icon">⚱️</div>
+                    <h3>L'Embaumeur (wt)</h3>
+                    <div class="hieroglyph-example">𓅱 𓏏 𓅱</div>
+                    <p><strong>Processus :</strong> Momification en 70 jours</p>
+                    <ol style="text-align: left;">
+                        <li>Extraction du cerveau par le nez</li>
+                        <li>Retrait des organes (sauf le cœur)</li>
+                        <li>Dessication au natron (sel) 40 jours</li>
+                        <li>Onctions d'huiles et résines</li>
+                        <li>Enroulement de bandelettes</li>
+                    </ol>
+                    <p><strong>But :</strong> Préserver le corps pour l'éternité. "Faire vivre le nom" du défunt.</p>
+                </div>
+
+                <div class="profession-card">
+                    <div class="culture-icon">👷</div>
+                    <h3>Le Bâtisseur</h3>
+                    <div class="hieroglyph-example">𓂓 𓂧 𓁷</div>
+                    <p><strong>Grandes réalisations :</strong> Pyramides, temples, obélisques</p>
+                    <p><strong>Techniques :</strong> Rampes, leviers, traîneaux. Pas d'esclaves contrairement au mythe ! Paysans libres pendant la crue du Nil.</p>
+                    <p><strong>Organisation :</strong> Équipes de 20-25 hommes ("phyles") en compétition amicale</p>
+                    <div class="info-box">
+                        <strong>Découverte :</strong> Village des ouvriers de Gizeh avec boulangeries, brasseries, infirmerie. Salaires en pain et bière !
+                    </div>
+                </div>
+
+                <div class="profession-card">
+                    <div class="culture-icon">🌾</div>
+                    <h3>Le Paysan (hekerou)</h3>
+                    <div class="hieroglyph-example">𓎛 𓎡 𓂋 𓅱</div>
+                    <p><strong>Majorité :</strong> 80% de la population</p>
+                    <p><strong>Cultures :</strong> Blé, orge, lin, lentilles, oignons</p>
+                    <p><strong>Outils :</strong> Araire (charrue primitive), faucille, pioche</p>
+                    <p><strong>Taxes :</strong> Lourdes, calculées selon la hauteur de crue</p>
+                    <div class="info-box">
+                        <strong>Proverbe :</strong> "Celui qui contrôle le grain contrôle l'Égypte"
+                    </div>
+                </div>
+
+                <div class="profession-card">
+                    <div class="culture-icon">⚕️</div>
+                    <h3>Le Médecin (sounou)</h3>
+                    <div class="hieroglyph-example">𓋴 𓅱 𓈖 𓅱</div>
+                    <p><strong>Spécialisation :</strong> Dentistes, ophtalmologues, gynécologues</p>
+                    <p><strong>Textes :</strong> Papyrus Ebers (médical), Papyrus Edwin Smith (chirurgical)</p>
+                    <p><strong>Pratiques :</strong> Chirurgie, pharmacopée végétale, magie curative</p>
+                    <div class="info-box">
+                        <strong>Progrès :</strong> Premiers à pratiquer la chirurgie du cerveau, à diagnostiquer le diabète
+                    </div>
+                </div>
+
+                <div class="profession-card">
+                    <div class="culture-icon">⛵</div>
+                    <h3>Le Marin</h3>
+                    <div class="hieroglyph-example">𓂧 𓊪 𓏏 𓇋</div>
+                    <p><strong>Navigation :</strong> Voile carrée, rames</p>
+                    <p><strong>Commerce :</strong> Liban (cèdre), Nubie (or), Pount (encens, myrrhe)</p>
+                    <p><strong>Types de bateaux :</strong> Papyrus, bois, pour transport ou guerre</p>
+                    <div class="info-box">
+                        <strong>Expédition :</strong> Reine Hatchepsout vers Pount (actuelle Somalie) - 5 navires, fresques à Deir el-Bahari
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>🏡 La Maison Égyptienne</h4>
+                <ul>
+                    <li><strong>Matériaux :</strong> Briques de boue crue (adobe), toits plats</li>
+                    <li><strong>Disposition :</strong> Cour centrale, pièces autour, toit-terrasse</li>
+                    <li><strong>Mobilier :</strong> Simple - lits, tabourets, coffres</li>
+                    <li><strong>Éclairage :</strong> Lampes à huile, fenêtres hautes</li>
+                    <li><strong>Fraîcheur :</strong> Murs épais, orientation nord-sud pour les vents</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- NOURRITURE ET BOISSON -->
+        <div class="section">
+            <h2>🍞 Alimentation Égyptienne</h2>
+
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">🍞</div>
+                    <h3>Le Pain</h3>
+                    <div class="hieroglyph-example">𓏏</div>
+                    <p>Aliment de base. Dizaines de variétés : rond, allongé, en cône. Farine d'orge ou de blé.</p>
+                    <p><strong>Problème :</strong> Grains de sable dans la farine usaient les dents !</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">🍺</div>
+                    <h3>La Bière (heneqet)</h3>
+                    <div class="hieroglyph-example">𓎛 𓈖 𓈎 𓏏</div>
+                    <p>Boisson nationale ! Brassée quotidiennement. Faible en alcool, nutritive, épaisse.</p>
+                    <p><strong>Usage :</strong> Salaire, offrande aux dieux, médicament</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">🥬</div>
+                    <h3>Légumes</h3>
+                    <p>Oignons, ail, laitue, concombres, lentilles, pois chiches, poireaux.</p>
+                    <p><strong>Anecdote :</strong> Ouvriers des pyramides en grève pour manque d'oignons !</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">🐟</div>
+                    <h3>Protéines</h3>
+                    <p>Poisson du Nil (séché, salé). Volaille (canards, oies). Viande (bœuf, porc) pour les riches et fêtes.</p>
+                    <p><strong>Tabou :</strong> Certains poissons interdits par religion</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">🍯</div>
+                    <h3>Desserts</h3>
+                    <p>Miel, dattes, figues, raisins. Pâtisseries au miel. Pastèques et melons.</p>
+                    <p><strong>Luxe :</strong> Le sucre n'existait pas, le miel était précieux</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">🍷</div>
+                    <h3>Le Vin (irep)</h3>
+                    <div class="hieroglyph-example">𓇋 𓂋 𓊪</div>
+                    <p>Boisson d'élite. Delta et oasis. Rouge, blanc. Jarres étiquetées (année, vignoble).</p>
+                    <p><strong>Découverte :</strong> Cave à vin dans la tombe de Scorpion I (3150 av. J.-C.)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BIJOUX ET COSMÉTIQUES -->
+        <div class="section" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">
+            <h2>💎 Beauté et Parure</h2>
+
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">👁️</div>
+                    <h3>Le Khôl</h3>
+                    <p>Maquillage noir/vert autour des yeux. Galène (plomb) ou malachite (cuivre).</p>
+                    <p><strong>Raisons :</strong> Beauté, protection solaire, antibactérien, magie (œil d'Horus)</p>
+                    <div class="hieroglyph-example">𓌳 𓋴 𓂧 𓏛</div>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">🌺</div>
+                    <h3>Parfums et Huiles</h3>
+                    <p>Myrrhe, encens, lotus. Huiles parfumées pour peau et cheveux.</p>
+                    <p><strong>Cône de graisse :</strong> Portés sur perruques lors de banquets, fondaient parfumant les convives</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">💍</div>
+                    <h3>Bijoux</h3>
+                    <p>Or, argent, électrum (alliage or-argent), semi-précieux (lapis-lazuli, turquoise, cornaline)</p>
+                    <p><strong>Symboles :</strong> Scarabée (renaissance), œil oudjat (protection), cartouche (éternité)</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">👩</div>
+                    <h3>Perruques</h3>
+                    <p>Hommes et femmes portaient des perruques. Cheveux naturels rasés (hygiène, poux).</p>
+                    <p><strong>Types :</strong> Courtes (quotidien), longues et élaborées (cérémonies)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCLUSION -->
+        <div class="section" style="background: linear-gradient(135deg, #c8e6c9, #a5d6a7);">
+            <h2>🎓 En Résumé</h2>
+            <div class="info-box">
+                <h4>🏺 L'Héritage Égyptien</h4>
+                <p>La civilisation égyptienne a duré <strong>plus de 3000 ans</strong> - plus longtemps que toute autre grande civilisation de l'histoire !</p>
+                <ul style="margin-top: 15px;">
+                    <li>📐 Mathématiques : Géométrie, fractions, calcul des surfaces</li>
+                    <li>📅 Calendrier : Premier calendrier solaire de 365 jours</li>
+                    <li>⚕️ Médecine : Anatomie, chirurgie, pharmacologie</li>
+                    <li>🏛️ Architecture : Techniques de construction monumentale</li>
+                    <li>✍️ Écriture : Un des premiers systèmes d'écriture au monde</li>
+                    <li>🎨 Art : Style artistique reconnaissable immédiatement</li>
+                    <li>⚖️ Droit : Premiers codes de lois et contrats écrits</li>
+                </ul>
+            </div>
+
+            <div class="warning-box" style="background: linear-gradient(135deg, #fff9c4, #fff59d); border-left-color: #f57f17;">
+                <h4>📚 Pour Aller Plus Loin</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="hieroglyphes-debutant.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Commencer l'apprentissage des hiéroglyphes</a></li>
+                    <li><a href="hieroglyphes-exercices-phrases.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Pratiquer avec des phrases complètes</a></li>
+                    <li><a href="hieroglyphes-immersion-temples.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Explorer les inscriptions des temples</a></li>
+                    <li><a href="hieroglyphes-parcours-complet.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Suivre le parcours complet</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

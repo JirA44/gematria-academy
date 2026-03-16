@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gematria - Niveau Expert | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="gematria-animated-bg.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <style>
+        .hebrew { font-size: 2rem; font-weight: bold; direction: rtl; }
+        .tree-diagram {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .sephirah {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 50%;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+    <script src="theme-backgrounds.js" defer></script>
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🌳 Gematria Hébraïque - Niveau Expert</h1>
+        <p class="subtitle">Kabbale, Arbre de Vie et applications mystiques avancées</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="gematria-debutant.html">Gematria Débutant</a>
+            <a href="gematria-intermediaire.html">Gematria Intermédiaire</a>
+            <a href="gematria-expert.html" class="active">Gematria Expert</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > <a href="index.html#gematria">Gematria</a> > Niveau Expert
+            </div>
+
+            <section class="lesson">
+                <h2>🌳 L'Arbre de Vie Kabbalistique (Etz Chaim)</h2>
+                <p>L'<strong>Arbre de Vie</strong> est le diagramme central de la Kabbale, représentant le processus de la création divine à travers <strong>10 Sephiroth</strong> (émanations) et <strong>22 chemins</strong> (correspondant aux 22 lettres hébraïques).</p>
+
+                <div class="tree-diagram">
+                    <h3>Les 10 Sephiroth</h3>
+                    <div style="margin: 1rem 0;">
+                        <div class="sephirah">
+                            <strong class="hebrew">כתר</strong>
+                            <br>1. Kether (Couronne)
+                            <br>Gematria: 620
+                        </div>
+                    </div>
+
+                    <div class="grid-3col" style="max-width: 600px; margin: 0 auto;">
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">חכמה</strong>
+                            <br>2. Hokhmah
+                            <br>(Sagesse)
+                            <br>73
+                        </div>
+                        <div></div>
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">בינה</strong>
+                            <br>3. Binah
+                            <br>(Intelligence)
+                            <br>67
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">חסד</strong>
+                            <br>4. Hesed
+                            <br>(Miséricorde)
+                            <br>72
+                        </div>
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">גבורה</strong>
+                            <br>5. Gevurah
+                            <br>(Rigueur)
+                            <br>216
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">תפארת</strong>
+                            <br>6. Tiferet
+                            <br>(Beauté)
+                            <br>1081
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">נצח</strong>
+                            <br>7. Netzah
+                            <br>(Victoire)
+                            <br>148
+                        </div>
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">הוד</strong>
+                            <br>8. Hod
+                            <br>(Gloire)
+                            <br>15
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">יסוד</strong>
+                            <br>9. Yesod
+                            <br>(Fondation)
+                            <br>80
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <div class="sephirah" style="width: 120px; height: 120px;">
+                            <strong class="hebrew">מלכות</strong>
+                            <br>10. Malkuth
+                            <br>(Royaume)
+                            <br>496
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <h3>💡 Les Trois Piliers</h3>
+                    <ul>
+                        <li><strong>Pilier de la Rigueur</strong> (gauche) : Binah, Gevurah, Hod - Principe féminin</li>
+                        <li><strong>Pilier de la Miséricorde</strong> (droite) : Hokhmah, Hesed, Netzah - Principe masculin</li>
+                        <li><strong>Pilier de l'Équilibre</strong> (centre) : Kether, Tiferet, Yesod, Malkuth - Union harmonieuse</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>✨ Les 72 Noms de Dieu (Shem HaMephorash)</h2>
+                <p>Dans l'Exode 14:19-21, trois versets de 72 lettres chacun contiennent le secret des <strong>72 Noms de Dieu</strong>, chacun composé de 3 lettres hébraïques.</p>
+
+                <h3>Méthode d'extraction :</h3>
+                <ol>
+                    <li>Premier verset (14:19) - lu de <strong>droite à gauche</strong></li>
+                    <li>Deuxième verset (14:20) - lu de <strong>gauche à droite</strong> (inversé !)</li>
+                    <li>Troisième verset (14:21) - lu de <strong>droite à gauche</strong></li>
+                    <li>On forme 72 trigrammes en prenant la 1ère lettre de chaque verset, puis la 2ème, etc.</li>
+                </ol>
+
+                <h3>Exemples de Noms divins (quelques-uns des 72) :</h3>
+
+                <div class="letter-grid">
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">והו</div>
+                        <div class="letter-name">1. VeHaVaH</div>
+                        <p><strong>Gematria :</strong> 6+5+6 = 17</p>
+                        <div class="letter-value">
+                            Pour la volonté divine
+                            <br>Éveiller les désirs nobles
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ילי</div>
+                        <div class="letter-name">2. YeLaYa</div>
+                        <p><strong>Gematria :</strong> 10+30+10 = 50</p>
+                        <div class="letter-value">
+                            Pour la fortune
+                            <br>Manifester l'abondance
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">סית</div>
+                        <div class="letter-name">3. SiYeT</div>
+                        <p><strong>Gematria :</strong> 60+10+400 = 470</p>
+                        <div class="letter-value">
+                            Pour vaincre l'adversité
+                            <br>Force dans les épreuves
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">עלם</div>
+                        <div class="letter-name">4. 'OLeM</div>
+                        <p><strong>Gematria :</strong> 70+30+40 = 140</p>
+                        <div class="letter-value">
+                            Pour voir l'invisible
+                            <br>Révélation spirituelle
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">מהש</div>
+                        <div class="letter-name">5. MaHaSh</div>
+                        <p><strong>Gematria :</strong> 40+5+300 = 345</p>
+                        <div class="letter-value">
+                            Pour la paix intérieure
+                            <br>Rectification de l'âme
+                        </div>
+                    </div>
+
+                    <div class="letter-card">
+                        <div class="letter-symbol hebrew">ללה</div>
+                        <div class="letter-name">6. LaLaH</div>
+                        <p><strong>Gematria :</strong> 30+30+5 = 65</p>
+                        <div class="letter-value">
+                            Pour l'amour universel
+                            <br>Connexion du cœur
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <h3>💡 Utilisation méditative des 72 Noms</h3>
+                    <p>Chaque nom est médité en fixant les 3 lettres hébraïques, sans les prononcer, pour activer une énergie spirituelle spécifique. Cette pratique est centrale dans la Kabbale moderne.</p>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>🔮 Gematria et Analyse des Textes Sacrés</h2>
+                <p>L'analyse gematrique révèle des couches de sens cachées dans la Torah.</p>
+
+                <h3>Premier verset de la Torah (Bereshit 1:1) :</h3>
+                <p class="hebrew">בראשית ברא אלהים את השמים ואת הארץ</p>
+                <p>"Au commencement, Dieu créa les cieux et la terre"</p>
+
+                <div class="tip">
+                    <h4>Analyse gematrique approfondie :</h4>
+                    <ul>
+                        <li><strong>בראשית</strong> (Bereshit - Au commencement) = 913</li>
+                        <li><strong>ברא</strong> (Bara - créa) = 203</li>
+                        <li><strong>אלהים</strong> (Elohim - Dieu) = 86</li>
+                        <li><strong>את</strong> (Et - particule d'objet) = 401</li>
+                        <li><strong>השמים</strong> (HaShamaïm - les cieux) = 395</li>
+                        <li><strong>ואת</strong> (VeEt - et) = 407</li>
+                        <li><strong>הארץ</strong> (HaAretz - la terre) = 296</li>
+                    </ul>
+                    <p><strong>Total du verset : 2701</strong></p>
+                    <p>2701 est un nombre triangulaire (somme de 1 à 73), révélant une structure géométrique parfaite !</p>
+                    <p>De plus : 2701 = 37 × 73 (nombres miroirs !)</p>
+                </div>
+
+                <h3>Le Shema Israël :</h3>
+                <p class="hebrew">שמע ישראל יהוה אלהינו יהוה אחד</p>
+                <p>"Écoute Israël, l'Éternel est notre Dieu, l'Éternel est Un"</p>
+
+                <div class="tip">
+                    <h4>Mystères du Shema :</h4>
+                    <ul>
+                        <li>Le <strong>ע</strong> (Ayin) de שמע est agrandi dans les rouleaux de Torah</li>
+                        <li>Le <strong>ד</strong> (Dalet) de אחד est agrandi</li>
+                        <li>Ensemble : <strong>עד</strong> = "témoin" (valeur 74)</li>
+                        <li>Réciter le Shema fait de vous un témoin de l'Unité divine</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>🌌 Correspondances Astrologiques et Gematria</h2>
+                <p>La Kabbale associe les lettres hébraïques aux planètes, signes zodiacaux et éléments.</p>
+
+                <h3>Les 7 Lettres Doubles (liées aux planètes) :</h3>
+                <table class="comparison-table" style="width: 100%; margin: 1.5rem 0;">
+                    <tr>
+                        <th>Lettre</th>
+                        <th>Planète</th>
+                        <th>Jour</th>
+                        <th>Valeur</th>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ב</td>
+                        <td>Lune</td>
+                        <td>Lundi</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ג</td>
+                        <td>Mars</td>
+                        <td>Mardi</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ד</td>
+                        <td>Soleil</td>
+                        <td>Dimanche</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">כ</td>
+                        <td>Vénus</td>
+                        <td>Vendredi</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">פ</td>
+                        <td>Mercure</td>
+                        <td>Mercredi</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ר</td>
+                        <td>Saturne</td>
+                        <td>Samedi</td>
+                        <td>200</td>
+                    </tr>
+                    <tr>
+                        <td class="hebrew">ת</td>
+                        <td>Jupiter</td>
+                        <td>Jeudi</td>
+                        <td>400</td>
+                    </tr>
+                </table>
+
+                <h3>Les 12 Lettres Simples (liées aux signes zodiacaux) :</h3>
+                <p>ה ו ז ח ט י ל נ ס ע צ ק</p>
+                <p>Chaque lettre correspond à un signe du zodiaque et à un mois du calendrier hébraïque.</p>
+            </section>
+
+            <section class="lesson">
+                <h2>🧘 Méditation et Visualisation avec la Gematria</h2>
+                <p>Pratiques contemplatives avancées utilisant les lettres hébraïques.</p>
+
+                <h3>Méditation des Noms Divins :</h3>
+                <div class="exercise">
+                    <h4>Pratique du Tétragramme (יהוה)</h4>
+                    <ol>
+                        <li>Asseyez-vous confortablement, dos droit</li>
+                        <li>Visualisez la lettre <strong class="hebrew">י</strong> (Yod) au-dessus de votre tête - Point divin</li>
+                        <li>Inspirez, visualisez <strong class="hebrew">ה</strong> (Hé) - Souffle descendant dans le cœur</li>
+                        <li>Retenez le souffle, visualisez <strong class="hebrew">ו</strong> (Vav) - Colonne vertébrale, connexion</li>
+                        <li>Expirez, visualisez <strong class="hebrew">ה</strong> (Hé final) - Manifestation dans le monde</li>
+                        <li>Répétez 26 fois (valeur de YHVH)</li>
+                    </ol>
+                </div>
+
+                <h3>Construction de carrés magiques :</h3>
+                <div class="tip">
+                    <h4>Le Carré de Saturne (3×3)</h4>
+                    <p>Utilisé pour la concentration et la discipline :</p>
+                    <pre style="text-align: center; font-size: 1.3rem; line-height: 2;">
+4   9   2
+3   5   7
+8   1   6
+                    </pre>
+                    <p>Chaque ligne = 15 = <strong class="hebrew">יה</strong> (YaH - Nom de Dieu)</p>
+                    <p>Total = 45 = <strong class="hebrew">אדם</strong> (Adam - Humanité)</p>
+                </div>
+            </section>
+
+            <section class="exercise">
+                <h2>🎓 Projet de Maîtrise Expert</h2>
+                <p>Pour compléter votre formation en gematria, accomplissez ce projet final :</p>
+
+                <h3>Création de votre Grimoire Kabbalistique</h3>
+                <ol>
+                    <li><strong>Calligraphiez les 22 lettres</strong> avec leurs valeurs et correspondances</li>
+                    <li><strong>Créez un tableau</strong> des 72 Noms de Dieu avec leurs significations</li>
+                    <li><strong>Analysez un passage de la Torah</strong> de votre choix avec gematria</li>
+                    <li><strong>Dessinez l'Arbre de Vie</strong> avec les 10 Sephiroth et leurs valeurs</li>
+                    <li><strong>Documentez 10 correspondances gematriques</strong> que vous avez découvertes</li>
+                    <li><strong>Créez votre propre système</strong> de méditation avec les lettres hébraïques</li>
+                    <li><strong>Calculez et interprétez</strong> la gematria de 20 mots clés de votre vie spirituelle</li>
+                </ol>
+
+                <div class="tip">
+                    <h3>💡 Consécration</h3>
+                    <p>Consacrez votre grimoire durant <strong>Shabbat</strong> (vendredi soir) :</p>
+                    <ul>
+                        <li>Allumez deux bougies</li>
+                        <li>Récitez le Shema</li>
+                        <li>Méditez sur le Tétragramme</li>
+                        <li>Placez le grimoire sous votre oreiller pendant 7 nuits</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="lesson">
+                <h2>📚 Ressources pour l'Étude Continue</h2>
+                <h3>Textes essentiels :</h3>
+                <ul>
+                    <li><strong>Le Sefer Yetzirah</strong> (Livre de la Formation)</li>
+                    <li><strong>Le Zohar</strong> (Livre de la Splendeur)</li>
+                    <li><strong>Le Sefer HaBahir</strong> (Livre de l'Illumination)</li>
+                    <li><strong>Les écrits du Ari (Isaac Louria)</strong></li>
+                    <li><strong>"La Kabbale" de Gershom Scholem</strong></li>
+                    <li><strong>"Le Pouvoir des Lettres" de Rav Berg</strong></li>
+                </ul>
+
+                <h3>Pratiques quotidiennes :</h3>
+                <ul>
+                    <li>Méditation sur une lettre hébraïque par jour (cycle de 22 jours)</li>
+                    <li>Calcul de la gematria de mots rencontrés dans vos lectures</li>
+                    <li>Contemplation d'un des 72 Noms chaque jour</li>
+                    <li>Étude d'un verset de Torah avec analyse gematrique</li>
+                    <li>Journal de correspondances personnelles découvertes</li>
+                </ul>
+            </section>
+
+            <section class="lesson">
+                <h2>⚖️ Éthique de la Pratique Kabbalistique</h2>
+                <div class="tip">
+                    <h3>Principes fondamentaux :</h3>
+                    <ul>
+                        <li><strong>Humilité :</strong> La Kabbale révèle l'infini - restez humble face au mystère</li>
+                        <li><strong>Intention pure (Kavannah) :</strong> Travaillez toujours pour l'élévation spirituelle, jamais pour le pouvoir personnel</li>
+                        <li><strong>Étude continue :</strong> La connaissance kabbalistique est sans fin</li>
+                        <li><strong>Service (Tikkun Olam) :</strong> Utilisez vos connaissances pour réparer le monde</li>
+                        <li><strong>Discernement :</strong> Ne partagez les enseignements secrets qu'avec des étudiants sincères et préparés</li>
+                        <li><strong>Équilibre :</strong> Maintenez un pied dans le monde spirituel, un pied dans le monde matériel</li>
+                    </ul>
+                </div>
+
+                <p><em>"Celui qui étudie la Kabbale pour son ego personnel en perd les bénéfices. Celui qui l'étudie pour servir le Divin en reçoit des bénédictions infinies."</em> - Sagesse kabbalistique</p>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="gematria-intermediaire.html" class="btn btn-intermediate">← Niveau Intermédiaire</a>
+                <a href="index.html" class="btn btn-beginner">Retour à l'accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

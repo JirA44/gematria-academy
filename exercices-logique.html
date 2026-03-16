@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices de Logique - Académie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🧠 Exercices de Logique</h1>
+        <p class="subtitle">Entraînez votre raisonnement logique</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index_multilingual.html">Accueil</a>
+            <a href="logique-debutant.html">Débutant</a>
+            <a href="logique-intermediaire.html">Intermédiaire</a>
+            <a href="logique-expert.html">Expert</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index_multilingual.html">Accueil</a> » <a href="#logique">Logique</a> » Exercices
+            </div>
+
+            <h2>🎯 Exercices Progressifs de Logique</h2>
+            <p>Entraînez-vous avec ces exercices interactifs classés par niveau de difficulté.</p>
+
+            <div class="lesson" style="border-left-color: #27ae60;">
+                <h3>🌱 Niveau Débutant</h3>
+                <p><strong>Exercice 1: Tables de Vérité</strong></p>
+                <p>Complétez la table de vérité pour l'expression: <code>P ∧ Q</code></p>
+                <div id="exercise1" style="margin: 1rem 0;">
+                    <table style="border-collapse: collapse; margin: 1rem 0;">
+                        <tr style="background: #34495e; color: white;">
+                            <th style="border: 1px solid #ddd; padding: 0.5rem;">P</th>
+                            <th style="border: 1px solid #ddd; padding: 0.5rem;">Q</th>
+                            <th style="border: 1px solid #ddd; padding: 0.5rem;">P ∧ Q</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">V</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">V</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">
+                                <select id="q1a" style="padding: 0.3rem;">
+                                    <option value="">?</option>
+                                    <option value="V">V</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">V</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">F</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">
+                                <select id="q1b" style="padding: 0.3rem;">
+                                    <option value="">?</option>
+                                    <option value="V">V</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">F</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">V</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">
+                                <select id="q1c" style="padding: 0.3rem;">
+                                    <option value="">?</option>
+                                    <option value="V">V</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">F</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">F</td>
+                            <td style="border: 1px solid #ddd; padding: 0.5rem;">
+                                <select id="q1d" style="padding: 0.3rem;">
+                                    <option value="">?</option>
+                                    <option value="V">V</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <button onclick="checkExercise1()" class="btn btn-beginner">Vérifier</button>
+                    <p id="result1" style="margin-top: 1rem; font-weight: bold;"></p>
+                </div>
+
+                <p style="margin-top: 2rem;"><strong>Exercice 2: Négation</strong></p>
+                <p>Si P = "Il pleut", quelle est la négation de P?</p>
+                <div style="margin: 1rem 0;">
+                    <input type="radio" name="q2" value="a" id="q2a">
+                    <label for="q2a">Il ne pleut jamais</label><br>
+                    <input type="radio" name="q2" value="b" id="q2b">
+                    <label for="q2b">Il ne pleut pas</label><br>
+                    <input type="radio" name="q2" value="c" id="q2c">
+                    <label for="q2c">Il va pleuvoir</label><br>
+                    <button onclick="checkExercise2()" class="btn btn-beginner" style="margin-top: 1rem;">Vérifier</button>
+                    <p id="result2" style="margin-top: 1rem; font-weight: bold;"></p>
+                </div>
+            </div>
+
+            <div class="lesson" style="border-left-color: #f39c12;">
+                <h3>🌿 Niveau Intermédiaire</h3>
+                <p><strong>Exercice 3: Loi de De Morgan</strong></p>
+                <p>Quelle est l'expression équivalente à: <code>¬(P ∧ Q)</code> ?</p>
+                <div style="margin: 1rem 0;">
+                    <input type="radio" name="q3" value="a" id="q3a">
+                    <label for="q3a">¬P ∧ ¬Q</label><br>
+                    <input type="radio" name="q3" value="b" id="q3b">
+                    <label for="q3b">¬P ∨ ¬Q</label><br>
+                    <input type="radio" name="q3" value="c" id="q3c">
+                    <label for="q3c">P ∨ Q</label><br>
+                    <button onclick="checkExercise3()" class="btn btn-intermediate" style="margin-top: 1rem;">Vérifier</button>
+                    <p id="result3" style="margin-top: 1rem; font-weight: bold;"></p>
+                </div>
+
+                <p style="margin-top: 2rem;"><strong>Exercice 4: Implication</strong></p>
+                <p>Si "P → Q" est vrai et P est vrai, que peut-on conclure?</p>
+                <div style="margin: 1rem 0;">
+                    <input type="radio" name="q4" value="a" id="q4a">
+                    <label for="q4a">Q est vrai (Modus Ponens)</label><br>
+                    <input type="radio" name="q4" value="b" id="q4b">
+                    <label for="q4b">Q est faux</label><br>
+                    <input type="radio" name="q4" value="c" id="q4c">
+                    <label for="q4c">On ne peut rien conclure</label><br>
+                    <button onclick="checkExercise4()" class="btn btn-intermediate" style="margin-top: 1rem;">Vérifier</button>
+                    <p id="result4" style="margin-top: 1rem; font-weight: bold;"></p>
+                </div>
+            </div>
+
+            <div class="lesson" style="border-left-color: #8e44ad;">
+                <h3>🌳 Niveau Expert</h3>
+                <p><strong>Exercice 5: Logique des Prédicats</strong></p>
+                <p>Exprimez en logique: "Tous les humains sont mortels"</p>
+                <div style="margin: 1rem 0;">
+                    <input type="radio" name="q5" value="a" id="q5a">
+                    <label for="q5a">∀x (Humain(x) → Mortel(x))</label><br>
+                    <input type="radio" name="q5" value="b" id="q5b">
+                    <label for="q5b">∃x (Humain(x) ∧ Mortel(x))</label><br>
+                    <input type="radio" name="q5" value="c" id="q5c">
+                    <label for="q5c">∀x (Humain(x) ∧ Mortel(x))</label><br>
+                    <button onclick="checkExercise5()" class="btn btn-expert" style="margin-top: 1rem;">Vérifier</button>
+                    <p id="result5" style="margin-top: 1rem; font-weight: bold;"></p>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+            </div>
+            <p style="text-align: center; margin-top: 1rem;">
+                Progression: <span id="score">0</span>/5 exercices réussis
+            </p>
+
+            <div class="navigation-buttons">
+                <a href="logique-debutant.html" class="btn btn-beginner">← Cours Débutant</a>
+                <a href="index_multilingual.html" class="btn btn-intermediate">🏠 Accueil</a>
+                <a href="logique-intermediaire.html" class="btn btn-expert">Cours Intermédiaire →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        let score = 0;
+
+        function updateProgress() {
+            const percentage = (score / 5) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('score').textContent = score;
+        }
+
+        function checkExercise1() {
+            const answers = {
+                q1a: 'V',
+                q1b: 'F',
+                q1c: 'F',
+                q1d: 'F'
+            };
+            let correct = true;
+            for (let key in answers) {
+                if (document.getElementById(key).value !== answers[key]) {
+                    correct = false;
+                    break;
+                }
+            }
+            const result = document.getElementById('result1');
+            if (correct) {
+                result.textContent = '✅ Correct! La conjonction (∧) n\'est vraie que si P ET Q sont tous deux vrais.';
+                result.style.color = '#27ae60';
+                if (!result.dataset.counted) {
+                    score++;
+                    result.dataset.counted = 'true';
+                    updateProgress();
+                }
+            } else {
+                result.textContent = '❌ Incorrect. Rappelez-vous: P ∧ Q est vrai seulement si P ET Q sont vrais.';
+                result.style.color = '#e74c3c';
+            }
+        }
+
+        function checkExercise2() {
+            const selected = document.querySelector('input[name="q2"]:checked');
+            const result = document.getElementById('result2');
+            if (!selected) {
+                result.textContent = '⚠️ Veuillez sélectionner une réponse.';
+                result.style.color = '#f39c12';
+                return;
+            }
+            if (selected.value === 'b') {
+                result.textContent = '✅ Correct! La négation de "Il pleut" est simplement "Il ne pleut pas".';
+                result.style.color = '#27ae60';
+                if (!result.dataset.counted) {
+                    score++;
+                    result.dataset.counted = 'true';
+                    updateProgress();
+                }
+            } else {
+                result.textContent = '❌ Incorrect. La négation doit simplement inverser la proposition.';
+                result.style.color = '#e74c3c';
+            }
+        }
+
+        function checkExercise3() {
+            const selected = document.querySelector('input[name="q3"]:checked');
+            const result = document.getElementById('result3');
+            if (!selected) {
+                result.textContent = '⚠️ Veuillez sélectionner une réponse.';
+                result.style.color = '#f39c12';
+                return;
+            }
+            if (selected.value === 'b') {
+                result.textContent = '✅ Correct! Loi de De Morgan: ¬(P ∧ Q) ≡ ¬P ∨ ¬Q';
+                result.style.color = '#27ae60';
+                if (!result.dataset.counted) {
+                    score++;
+                    result.dataset.counted = 'true';
+                    updateProgress();
+                }
+            } else {
+                result.textContent = '❌ Incorrect. Révisez les lois de De Morgan.';
+                result.style.color = '#e74c3c';
+            }
+        }
+
+        function checkExercise4() {
+            const selected = document.querySelector('input[name="q4"]:checked');
+            const result = document.getElementById('result4');
+            if (!selected) {
+                result.textContent = '⚠️ Veuillez sélectionner une réponse.';
+                result.style.color = '#f39c12';
+                return;
+            }
+            if (selected.value === 'a') {
+                result.textContent = '✅ Correct! C\'est le Modus Ponens: si P→Q et P, alors Q.';
+                result.style.color = '#27ae60';
+                if (!result.dataset.counted) {
+                    score++;
+                    result.dataset.counted = 'true';
+                    updateProgress();
+                }
+            } else {
+                result.textContent = '❌ Incorrect. C\'est une règle d\'inférence fondamentale (Modus Ponens).';
+                result.style.color = '#e74c3c';
+            }
+        }
+
+        function checkExercise5() {
+            const selected = document.querySelector('input[name="q5"]:checked');
+            const result = document.getElementById('result5');
+            if (!selected) {
+                result.textContent = '⚠️ Veuillez sélectionner une réponse.';
+                result.style.color = '#f39c12';
+                return;
+            }
+            if (selected.value === 'a') {
+                result.textContent = '✅ Correct! ∀x signifie "pour tout x", et l\'implication exprime la règle universelle.';
+                result.style.color = '#27ae60';
+                if (!result.dataset.counted) {
+                    score++;
+                    result.dataset.counted = 'true';
+                    updateProgress();
+                }
+            } else {
+                result.textContent = '❌ Incorrect. Il faut un quantificateur universel (∀) et une implication (→).';
+                result.style.color = '#e74c3c';
+            }
+        }
+
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

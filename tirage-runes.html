@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirage de Runes | Académie des Runes & Gematria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fix-contrast.css">
+    <style>
+        .spread-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .spread-card {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .spread-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-intermediate);
+        }
+
+        .spread-card.selected {
+            border-color: var(--accent-beginner);
+            background: linear-gradient(135deg, rgba(40, 40, 60, 0.3) 0%, rgba(60, 60, 80, 0.4) 100%);
+        }
+
+        .rune-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+            min-height: 300px;
+        }
+
+        .rune-tile {
+            width: 120px;
+            height: 160px;
+            background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: all 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .rune-tile:hover {
+            transform: scale(1.05);
+        }
+
+        .rune-tile.flipped {
+            animation: flipRune 0.6s ease-in-out;
+        }
+
+        @keyframes flipRune {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(90deg); }
+            100% { transform: rotateY(0deg); }
+        }
+
+        .rune-back {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+
+        .draw-button {
+            background: var(--accent-beginner);
+            color: white;
+            padding: 1.5rem 4rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .draw-button:hover {
+            background: var(--accent-intermediate);
+            transform: scale(1.05);
+        }
+
+        .draw-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .interpretation {
+            background: rgba(30, 30, 45, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .rune-detail {
+            background: rgba(40, 40, 60, 0.5);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-beginner);
+        }
+
+        .rune-detail h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .position-label {
+            display: inline-block;
+            background: var(--accent-intermediate);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+
+        .reset-button {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 1rem;
+            transition: all 0.3s;
+        }
+
+        .reset-button:hover {
+            background: var(--primary);
+        }
+
+        /* Styles pour le mode nuit */
+        body.dark-mode .spread-card {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .spread-card:hover {
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .spread-card.selected {
+            border-color: var(--accent-beginner);
+            background: linear-gradient(135deg, #2a2a3e 0%, #2d5016 100%);
+            color: #c8e6c9;
+        }
+
+        body.dark-mode .rune-tile {
+            background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+            color: white;
+        }
+
+        body.dark-mode .rune-back {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+
+        body.dark-mode .interpretation {
+            background: #2a2a3e;
+            color: #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        body.dark-mode .rune-detail {
+            background: #1a1a2e;
+            color: #eee;
+            border-left-color: #64b5f6;
+        }
+
+        body.dark-mode .rune-detail h3 {
+            color: #64b5f6;
+        }
+
+        body.dark-mode .position-label {
+            background: var(--accent-intermediate);
+            color: white;
+        }
+
+        body.dark-mode .question-input {
+            background: #1a1a2e;
+            color: #eee;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .draw-button {
+            background: var(--accent-beginner);
+            color: white;
+        }
+
+        body.dark-mode .draw-button:hover {
+            background: var(--accent-intermediate);
+        }
+
+        body.dark-mode .draw-button:disabled {
+            background: #555;
+            color: #999;
+        }
+
+        body.dark-mode .reset-button {
+            background: #555;
+            color: #eee;
+        }
+
+        body.dark-mode .reset-button:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Appliquer le mode nuit immédiatement pour éviter le flash
+        (function() {
+            const darkModePref = localStorage.getItem('darkMode');
+            if (darkModePref === null || darkModePref === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <header>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Mode Nuit</button>
+        <h1>🔮 Tirage de Runes</h1>
+        <p class="subtitle">Consultez l'oracle runique</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Accueil</a>
+            <a href="runes-debutant.html">Runes Débutant</a>
+            <a href="tirage-runes.html" class="active">Tirage de Runes</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-page">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a> > Outils > Tirage de Runes
+            </div>
+
+            <section class="calculator-container">
+                <h2>Choisissez votre type de tirage</h2>
+
+                <div class="spread-selector">
+                    <div class="spread-card selected" onclick="selectSpread('single')">
+                        <h3>🌟 Tirage à 1 Rune</h3>
+                        <p><strong>Rune d'Odin</strong></p>
+                        <p>Guidance quotidienne ou réponse simple</p>
+                    </div>
+
+                    <div class="spread-card" onclick="selectSpread('three')">
+                        <h3>🔱 Tirage à 3 Runes</h3>
+                        <p><strong>Passé - Présent - Futur</strong></p>
+                        <p>Vision complète d'une situation</p>
+                    </div>
+
+                    <div class="spread-card" onclick="selectSpread('cross')">
+                        <h3>✚ Croix Runique</h3>
+                        <p><strong>5 Runes</strong></p>
+                        <p>Analyse approfondie avec obstacles et conseils</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <h3>Posez votre question (optionnel)</h3>
+                    <input type="text" id="questionInput" class="question-input" placeholder="Quelle guidance cherchez-vous ?">
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="draw-button" onclick="drawRunes()">
+                        Tirer les Runes
+                    </button>
+                    <button class="reset-button" onclick="resetReading()">
+                        Nouveau Tirage
+                    </button>
+                </div>
+
+                <div id="runeContainer" class="rune-container"></div>
+                <div id="interpretation"></div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="index.html" class="btn btn-beginner">← Retour à l'accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Académie des Runes & Gematria - Savoir ancestral, apprentissage progressif</p>
+    </footer>
+
+    <script>
+        const runes = [
+            { symbol: 'ᚠ', name: 'Fehu', meaning: 'Richesse, abondance, mobilité. Représente la prospérité matérielle et les nouveaux commencements.' },
+            { symbol: 'ᚢ', name: 'Uruz', meaning: 'Force, santé, vitalité. Énergie brute et puissance physique ou mentale.' },
+            { symbol: 'ᚦ', name: 'Thurisaz', meaning: 'Protection, défense, Thor. Conflit constructif, limites à établir.' },
+            { symbol: 'ᚨ', name: 'Ansuz', meaning: 'Sagesse divine, communication, Odin. Messages importants et inspiration.' },
+            { symbol: 'ᚱ', name: 'Raidho', meaning: 'Voyage, mouvement, rythme. Progression sur votre chemin de vie.' },
+            { symbol: 'ᚲ', name: 'Kenaz', meaning: 'Connaissance, créativité, illumination. La torche qui éclaire l\'obscurité.' },
+            { symbol: 'ᚷ', name: 'Gebo', meaning: 'Cadeau, échange, partenariat. Équilibre dans les relations.' },
+            { symbol: 'ᚹ', name: 'Wunjo', meaning: 'Joie, harmonie, satisfaction. Bonheur et bien-être.' },
+            { symbol: 'ᚺ', name: 'Hagalaz', meaning: 'Grêle, destruction, changement brusque. Transformation par la crise.' },
+            { symbol: 'ᚾ', name: 'Nauthiz', meaning: 'Besoin, nécessité, contrainte. Résistance et détermination face aux épreuves.' },
+            { symbol: 'ᛁ', name: 'Isa', meaning: 'Glace, immobilité, patience. Période d\'attente et de concentration.' },
+            { symbol: 'ᛃ', name: 'Jera', meaning: 'Année, récolte, cycles. Patience récompensée, fruits du travail.' },
+            { symbol: 'ᛇ', name: 'Eihwaz', meaning: 'If, endurance, connexion. L\'arbre monde Yggdrasil, force spirituelle.' },
+            { symbol: 'ᛈ', name: 'Perthro', meaning: 'Destin, mystère, secrets cachés. Ce qui n\'est pas encore révélé.' },
+            { symbol: 'ᛉ', name: 'Algiz', meaning: 'Protection spirituelle, défense, connexion divine. Bouclier sacré.' },
+            { symbol: 'ᛊ', name: 'Sowilo', meaning: 'Soleil, victoire, succès. Énergie positive et réussite assurée.' },
+            { symbol: 'ᛏ', name: 'Tiwaz', meaning: 'Justice, honneur, victoire. Le guerrier spirituel, sacrifice noble.' },
+            { symbol: 'ᛒ', name: 'Berkano', meaning: 'Bouleau, naissance, croissance. Nouveaux départs et fertilité.' },
+            { symbol: 'ᛖ', name: 'Ehwaz', meaning: 'Cheval, partenariat, mouvement. Progrès harmonieux et collaboration.' },
+            { symbol: 'ᛗ', name: 'Mannaz', meaning: 'Humanité, conscience, soi. Intelligence et conscience sociale.' },
+            { symbol: 'ᛚ', name: 'Laguz', meaning: 'Eau, intuition, flux. Émotions et monde inconscient.' },
+            { symbol: 'ᛜ', name: 'Ingwaz', meaning: 'Fertilité, gestation, potentiel. Période de préparation avant manifestation.' },
+            { symbol: 'ᛞ', name: 'Dagaz', meaning: 'Jour, aube, transformation. Percée spirituelle et clarté soudaine.' },
+            { symbol: 'ᛟ', name: 'Othala', meaning: 'Héritage, racines, propriété. Connexion ancestrale et tradition.' }
+        ];
+
+        let currentSpread = 'single';
+        let drawnRunes = [];
+
+        function selectSpread(spread) {
+            currentSpread = spread;
+            document.querySelectorAll('.spread-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.target.closest('.spread-card').classList.add('selected');
+            resetReading();
+        }
+
+        function shuffle(array) {
+            let currentIndex = array.length;
+            while (currentIndex != 0) {
+                let randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function drawRunes() {
+            const container = document.getElementById('runeContainer');
+            container.innerHTML = '';
+            drawnRunes = [];
+
+            let numberOfRunes = currentSpread === 'single' ? 1 : currentSpread === 'three' ? 3 : 5;
+
+            // Mélanger et tirer les runes
+            const shuffledRunes = shuffle([...runes]);
+            drawnRunes = shuffledRunes.slice(0, numberOfRunes);
+
+            // Afficher les runes (dos d'abord)
+            drawnRunes.forEach((rune, index) => {
+                const tile = document.createElement('div');
+                tile.className = 'rune-tile rune-back';
+                tile.innerHTML = '?';
+                tile.onclick = () => flipRune(index);
+                container.appendChild(tile);
+            });
+
+            // Retourner automatiquement après 1 seconde
+            setTimeout(() => {
+                drawnRunes.forEach((rune, index) => {
+                    setTimeout(() => flipRune(index), index * 300);
+                });
+            }, 500);
+        }
+
+        function flipRune(index) {
+            const tiles = document.querySelectorAll('.rune-tile');
+            const tile = tiles[index];
+
+            if (!tile.classList.contains('flipped')) {
+                tile.classList.add('flipped');
+                setTimeout(() => {
+                    tile.classList.remove('rune-back');
+                    tile.innerHTML = drawnRunes[index].symbol;
+                }, 300);
+
+                // Vérifier si toutes les runes sont retournées
+                setTimeout(() => {
+                    if (document.querySelectorAll('.rune-tile:not(.rune-back)').length === drawnRunes.length) {
+                        showInterpretation();
+                    }
+                }, 600);
+            }
+        }
+
+        function showInterpretation() {
+            const interpretationDiv = document.getElementById('interpretation');
+            const question = document.getElementById('questionInput').value;
+
+            let html = '<div class="interpretation">';
+
+            if (question) {
+                html += `<h2>Question : "${question}"</h2>`;
+            } else {
+                html += '<h2>Votre tirage runique</h2>';
+            }
+
+            if (currentSpread === 'single') {
+                html += `
+                    <div class="rune-detail">
+                        <span class="position-label">Guidance du jour</span>
+                        <h3>${drawnRunes[0].symbol} ${drawnRunes[0].name}</h3>
+                        <p>${drawnRunes[0].meaning}</p>
+                    </div>
+                `;
+            } else if (currentSpread === 'three') {
+                const positions = ['Passé / Influences', 'Présent / Situation', 'Futur / Résultat'];
+                drawnRunes.forEach((rune, index) => {
+                    html += `
+                        <div class="rune-detail">
+                            <span class="position-label">${positions[index]}</span>
+                            <h3>${rune.symbol} ${rune.name}</h3>
+                            <p>${rune.meaning}</p>
+                        </div>
+                    `;
+                });
+            } else if (currentSpread === 'cross') {
+                const positions = [
+                    'Situation Actuelle',
+                    'Obstacles / Défis',
+                    'Influences Passées',
+                    'Futur Proche',
+                    'Conseil Spirituel'
+                ];
+                drawnRunes.forEach((rune, index) => {
+                    html += `
+                        <div class="rune-detail">
+                            <span class="position-label">${positions[index]}</span>
+                            <h3>${rune.symbol} ${rune.name}</h3>
+                            <p>${rune.meaning}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            html += '<div class="tip" style="margin-top: 2rem;"><h3>💡 Conseil</h3>';
+            html += '<p>Prenez le temps de méditer sur ces runes. Notez ce tirage dans votre journal et observez comment les messages se manifestent dans votre vie.</p></div>';
+            html += '</div>';
+
+            interpretationDiv.innerHTML = html;
+        }
+
+        function resetReading() {
+            document.getElementById('runeContainer').innerHTML = '';
+            document.getElementById('interpretation').innerHTML = '';
+            drawnRunes = [];
+        }
+
+        // Mode Nuit
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+
+            const btn = document.querySelector('.dark-mode-toggle');
+            btn.textContent = isDark ? '☀️ Mode Jour' : '🌙 Mode Nuit';
+        }
+
+        // Charger la préférence au démarrage (mode nuit par défaut)
+        window.addEventListener('DOMContentLoaded', () => {
+            const darkModePref = localStorage.getItem('darkMode');
+            const isDark = darkModePref === null || darkModePref === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const btn = document.querySelector('.dark-mode-toggle');
+                if (btn) btn.textContent = '☀️ Mode Jour';
+                if (darkModePref === null) {
+                    localStorage.setItem('darkMode', 'true');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

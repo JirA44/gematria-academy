@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚱️ Momification et Rituels Funéraires | Académie Gematria</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #8b6f47);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #8b6f47, #c49c62);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #c49c62, #8b6f47);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-section {
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-radius: 20px;
+            border: 3px solid #ffa000;
+        }
+
+        .process-section h2 {
+            color: #e65100;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ffa000, #e65100);
+        }
+
+        .timeline-step {
+            margin: 40px 0;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-step.left {
+            left: 0;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-step.right {
+            left: 55%;
+            padding-left: 50px;
+        }
+
+        .step-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ffa000;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ffa000;
+            border: 5px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-step.left .step-number {
+            right: -30px;
+        }
+
+        .timeline-step.right .step-number {
+            left: -30px;
+        }
+
+        .step-content h3 {
+            color: #e65100;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .step-duration {
+            display: inline-block;
+            background: #e65100;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .tool-card {
+            background: white;
+            border: 3px solid #8b6f47;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .tool-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #8b6f47;
+            margin-bottom: 10px;
+        }
+
+        .canopic-section {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 3px solid #4CAF50;
+        }
+
+        .canopic-jars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .jar-card {
+            background: white;
+            border: 3px solid #4CAF50;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .jar-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .jar-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .jar-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .jar-hieroglyph {
+            font-size: 2.5em;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+
+        .jar-info {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .afterlife-section {
+            background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 3px solid #0277bd;
+        }
+
+        .journey-map {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .journey-step {
+            background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 5px solid #0277bd;
+        }
+
+        .journey-step h4 {
+            color: #01579b;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .hieroglyph-display {
+            font-size: 3em;
+            text-align: center;
+            color: #8b6f47;
+            margin: 20px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f9f6f0, #fff);
+            border-radius: 10px;
+            border: 2px dashed #c49c62;
+        }
+
+        .spell-card {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #9c27b0;
+        }
+
+        .spell-card h4 {
+            color: #4a148c;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .spell-number {
+            display: inline-block;
+            background: #9c27b0;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .info-box h4 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .warning-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .interactive-diagram {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .body-part {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffecb3, #ffd54f);
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 15px;
+            border: 2px solid #ffa000;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .body-part:hover {
+            background: linear-gradient(135deg, #ffd54f, #ffc107);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 160, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-step,
+            .timeline-step.left,
+            .timeline-step.right {
+                width: 100%;
+                left: 0;
+                padding-left: 60px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-step.left .step-number,
+            .timeline-step.right .step-number {
+                left: 5px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚱️ Momification et Rituels Funéraires</h1>
+        <p class="subtitle">Le chemin sacré vers l'éternité dans l'Égypte ancienne</p>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">⬅ Accueil</a>
+            <a href="hieroglyphes-contexte-culturel.html" class="nav-btn">🏛 Culture Égyptienne</a>
+            <a href="hieroglyphes-exercices-phrases.html" class="nav-btn">✍️ Exercices</a>
+        </div>
+
+        <!-- INTRODUCTION -->
+        <div class="process-section">
+            <h2>🏺 Introduction à la Momification</h2>
+
+            <div class="info-box">
+                <h4>🔮 Pourquoi momifier ?</h4>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    Les Égyptiens croyaient que l'âme (<strong>Bâ</strong>) et la force vitale (<strong>Kâ</strong>) avaient besoin du corps physique pour survivre dans l'au-delà. Sans corps intact, l'âme ne pouvait pas atteindre les <strong>Champs d'Ialou</strong> (paradis égyptien). La momification préservait le corps pour l'éternité.
+                </p>
+            </div>
+
+            <div class="hieroglyph-display">
+                𓂀 𓃀 𓊪 𓅱 𓏏 𓏲
+                <p style="font-size: 0.4em; margin-top: 15px; color: #666;">"bâ-t" (momie) en hiéroglyphes</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>⏳ Durée du processus</h4>
+                <p style="line-height: 1.8;">
+                    La momification complète prenait <strong>70 jours</strong> :
+                </p>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>40 jours</strong> : Dessication au natron</li>
+                    <li><strong>30 jours</strong> : Onctions, bandelettes, rituels</li>
+                </ul>
+                <p style="margin-top: 15px;">Ces 70 jours correspondaient au cycle de Sirius (l'étoile de Sopdet/Isis) qui disparaissait 70 jours du ciel avant de réapparaître.</p>
+            </div>
+        </div>
+
+        <!-- PROCESSUS ÉTAPE PAR ÉTAPE -->
+        <div class="process-section" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0); border-color: #e91e63;">
+            <h2 style="color: #880e4f;">📋 Les 10 Étapes de la Momification</h2>
+
+            <div class="timeline">
+                <div class="timeline-step left">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 1</span>
+                        <h3>Purification Initiale</h3>
+                        <p>Le corps est lavé avec de l'eau du Nil et du vin de palme pour le purifier. Les prêtres récitent des formules sacrées pendant le lavage.</p>
+                        <div class="hieroglyph-display" style="font-size: 2em;">
+                            𓏲 𓎛 𓂝 𓃀
+                            <p style="font-size: 0.5em; color: #666;">"oua-eb" (purification)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step right">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 1</span>
+                        <h3>Extraction du Cerveau</h3>
+                        <p>Un crochet de bronze est inséré par le nez pour briser l'ethmoïde et extraire le cerveau petit à petit. Les Égyptiens ne connaissaient pas l'importance du cerveau !</p>
+                        <div class="warning-box">
+                            <h4>💡 Fait intéressant</h4>
+                            <p>Les Égyptiens pensaient que le <strong>cœur</strong> était le siège de l'intelligence et de l'âme, pas le cerveau. C'est pourquoi le cerveau était jeté, mais le cœur conservé dans le corps.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step left">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 1-2</span>
+                        <h3>Éviscération</h3>
+                        <p>Une incision est faite sur le flanc gauche avec une lame d'obsidienne. Les organes internes sont retirés sauf le cœur (nécessaire pour le jugement) et les reins.</p>
+                        <div class="interactive-diagram">
+                            <h4 style="color: #8b6f47; margin-bottom: 20px;">Organes retirés :</h4>
+                            <div class="body-part">🫁 Poumons</div>
+                            <div class="body-part">🫀 Foie</div>
+                            <div class="body-part">🧠 Estomac</div>
+                            <div class="body-part">🩺 Intestins</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step right">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 2-3</span>
+                        <h3>Nettoyage Interne</h3>
+                        <p>La cavité abdominale est lavée avec du vin de palme et des épices (cannelle, myrrhe, casse). Cela désinfecte et parfume le corps.</p>
+                        <div class="info-box">
+                            <h4>🌿 Épices utilisées :</h4>
+                            <ul style="line-height: 2;">
+                                <li><strong>Myrrhe</strong> : Résine antibactérienne précieuse</li>
+                                <li><strong>Encens</strong> : Fumigation sacrée</li>
+                                <li><strong>Cannelle</strong> : Parfum et conservation</li>
+                                <li><strong>Casse</strong> : Aromate proche de la cannelle</li>
+                                <li><strong>Genévrier</strong> : Propriétés antiseptiques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step left">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 3-40</span>
+                        <h3>Dessication au Natron</h3>
+                        <p>Le corps est entièrement recouvert et rempli de <strong>natron</strong> (mélange naturel de sels minéraux). Le natron absorbe toute l'humidité du corps, le desséchant complètement.</p>
+                        <div class="hieroglyph-display" style="font-size: 2em;">
+                            𓈖 𓏏 𓂋 𓏭 𓈖
+                            <p style="font-size: 0.5em; color: #666;">"netjeryen" (natron - sel divin)</p>
+                        </div>
+                        <div class="warning-box">
+                            <h4>🧂 Le Natron</h4>
+                            <p>Composé de carbonate de sodium et bicarbonate de sodium, le natron venait des lacs salés du Ouadi Natroun. C'était un ingrédient si précieux qu'il était considéré comme "divin".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step right">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 40-41</span>
+                        <h3>Retrait du Natron</h3>
+                        <p>Le natron est enlevé. Le corps a perdu 75% de son poids et de son eau. La peau est devenue sèche et coriace, de couleur brun-noir.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step left">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 41-45</span>
+                        <h3>Onctions et Remplissage</h3>
+                        <p>Le corps est massé avec des huiles parfumées pour assouplir la peau. La cavité abdominale est remplie de sciure, de sable, de lin, parfois d'oignons ou de myrrhe.</p>
+                        <div class="info-box">
+                            <h4>🛢️ Huiles sacrées :</h4>
+                            <ul style="line-height: 2;">
+                                <li><strong>Huile de cèdre du Liban</strong> : La plus précieuse</li>
+                                <li><strong>Huile de genévrier</strong> : Purificatrice</li>
+                                <li><strong>Huile de myrrhe</strong> : Odeur divine</li>
+                                <li><strong>Huile de lotus</strong> : Symbolisme de renaissance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step right">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 45-65</span>
+                        <h3>Enroulement des Bandelettes</h3>
+                        <p>Des centaines de mètres de bandelettes de lin sont enroulées autour du corps. Entre les couches, des amulettes protectrices sont insérées.</p>
+                        <div class="hieroglyph-display" style="font-size: 2em;">
+                            𓌙 𓏏 𓋴
+                            <p style="font-size: 0.5em; color: #666;">"wedjâ" (bandelettes protectrices)</p>
+                        </div>
+                        <div class="warning-box">
+                            <h4>🧿 Amulettes principales :</h4>
+                            <ul style="line-height: 2;">
+                                <li><strong>Scarabée du cœur (𓆣)</strong> : Sur le cœur, avec chapitre 30B du Livre des Morts</li>
+                                <li><strong>Œil Oudjat (𓂀)</strong> : Protection d'Horus</li>
+                                <li><strong>Pilier Djed (𓊽)</strong> : Stabilité d'Osiris</li>
+                                <li><strong>Nœud Tyet (𓎬)</strong> : Protection d'Isis</li>
+                                <li><strong>Ankh (𓋹)</strong> : Vie éternelle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step left">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 65-68</span>
+                        <h3>Masque et Cartonnage</h3>
+                        <p>Un masque funéraire est placé sur le visage. Pour les pharaons, c'était en or massif (Toutânkhamon). Pour les autres, en cartonnage peint.</p>
+                        <div class="info-box">
+                            <h4>👑 Masques célèbres :</h4>
+                            <ul style="line-height: 2;">
+                                <li><strong>Toutânkhamon</strong> : 11 kg d'or massif</li>
+                                <li><strong>Psousennès I</strong> : Masque d'or et lapis-lazuli</li>
+                                <li><strong>Chéchanq II</strong> : Masque d'or avec scarabée</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step right">
+                    <div class="step-number">10</div>
+                    <div class="step-content">
+                        <span class="step-duration">⏱ Jour 69-70</span>
+                        <h3>Cérémonie d'Ouverture de la Bouche</h3>
+                        <p>Rituel crucial où les prêtres "réactivent" les sens de la momie avec des outils spéciaux. Cela permet au défunt de manger, boire, parler et respirer dans l'au-delà.</p>
+                        <div class="hieroglyph-display" style="font-size: 2em;">
+                            𓏲 𓊪 𓂋 𓂝
+                            <p style="font-size: 0.5em; color: #666;">"oup-er-râ" (ouverture de la bouche)</p>
+                        </div>
+                        <div class="spell-card">
+                            <span class="spell-number">Chapitre 23</span>
+                            <h4>Formule d'Ouverture de la Bouche</h4>
+                            <p style="font-style: italic; line-height: 1.8;">
+                                "Ma bouche m'est ouverte par Ptah,<br>
+                                Les liens de ma bouche sont dénoués par mon dieu local.<br>
+                                Thot vient, rempli et équipé de formules magiques,<br>
+                                Il dénoue les liens, les liens qui fermaient ma bouche..."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VASES CANOPES -->
+        <div class="canopic-section">
+            <h2 style="color: #2e7d32; text-align: center; font-size: 2.5em; margin-bottom: 30px;">🏺 Les Vases Canopes - Gardiens des Organes</h2>
+
+            <div class="info-box">
+                <h4>🔮 Qu'est-ce qu'un vase canope ?</h4>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    Les organes retirés du corps étaient conservés séparément dans quatre vases spéciaux appelés <strong>vases canopes</strong>. Chaque vase était protégé par l'un des <strong>quatre fils d'Horus</strong>, divinités gardienne orientées vers les quatre points cardinaux.
+                </p>
+            </div>
+
+            <div class="canopic-jars">
+                <div class="jar-card">
+                    <div class="jar-icon">🐕</div>
+                    <div class="jar-name">Duamoutef</div>
+                    <div class="jar-hieroglyph">𓂧 𓅱 𓏏 𓆑</div>
+                    <div class="jar-info">
+                        <strong>Tête :</strong> Chacal<br>
+                        <strong>Protège :</strong> Estomac<br>
+                        <strong>Direction :</strong> Est<br>
+                        <strong>Déesse :</strong> Neith
+                    </div>
+                </div>
+
+                <div class="jar-card">
+                    <div class="jar-icon">🦅</div>
+                    <div class="jar-name">Qebehsenouf</div>
+                    <div class="jar-hieroglyph">𓏘 𓈖 𓋴 𓆑</div>
+                    <div class="jar-info">
+                        <strong>Tête :</strong> Faucon<br>
+                        <strong>Protège :</strong> Intestins<br>
+                        <strong>Direction :</strong> Ouest<br>
+                        <strong>Déesse :</strong> Serket
+                    </div>
+                </div>
+
+                <div class="jar-card">
+                    <div class="jar-icon">🐵</div>
+                    <div class="jar-name">Hâpy</div>
+                    <div class="jar-hieroglyph">𓎛 𓊪 𓏭</div>
+                    <div class="jar-info">
+                        <strong>Tête :</strong> Babouin<br>
+                        <strong>Protège :</strong> Poumons<br>
+                        <strong>Direction :</strong> Nord<br>
+                        <strong>Déesse :</strong> Nephtys
+                    </div>
+                </div>
+
+                <div class="jar-card">
+                    <div class="jar-icon">👤</div>
+                    <div class="jar-name">Amset</div>
+                    <div class="jar-hieroglyph">𓇋 𓏠 𓋴 𓏏</div>
+                    <div class="jar-info">
+                        <strong>Tête :</strong> Humaine<br>
+                        <strong>Protège :</strong> Foie<br>
+                        <strong>Direction :</strong> Sud<br>
+                        <strong>Déesse :</strong> Isis
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>❤️ Le Cœur : L'Organe Sacré</h4>
+                <p style="line-height: 1.8;">
+                    Le <strong>cœur</strong> (𓇋𓃀 - "ib") était le seul organe majeur laissé dans le corps. Les Égyptiens croyaient qu'il était :
+                </p>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li>Le siège de l'intelligence et de la conscience</li>
+                    <li>Le centre de toutes les émotions</li>
+                    <li>La mémoire de toutes les actions (bonnes et mauvaises)</li>
+                    <li>Nécessaire pour le jugement d'Osiris (pesée du cœur)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LE VOYAGE VERS L'AU-DELÀ -->
+        <div class="afterlife-section">
+            <h2 style="color: #01579b; text-align: center; font-size: 2.5em; margin-bottom: 30px;">⚖️ Le Voyage vers l'Au-delà</h2>
+
+            <div class="journey-map">
+                <h3 style="color: #01579b; text-align: center; margin-bottom: 30px; font-size: 2em;">Le Parcours du Défunt dans la Douât</h3>
+
+                <div class="journey-step">
+                    <h4>1️⃣ Entrée dans la Douât (Monde Souterrain)</h4>
+                    <p>À la mort, le Bâ (âme) et le Kâ (force vitale) se séparent du corps. Le défunt entre dans la Douât, un monde souterrain plein de dangers : serpents, démons, lacs de feu.</p>
+                    <div class="hieroglyph-display" style="font-size: 2em;">
+                        𓇽 𓅱 𓏏
+                        <p style="font-size: 0.5em; color: #666;">"Douât" (le monde souterrain)</p>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <h4>2️⃣ Les 12 Heures de la Nuit</h4>
+                    <p>Le défunt doit traverser 12 régions correspondant aux 12 heures de la nuit. Chaque heure présente des épreuves spécifiques, des portails gardés, et des créatures hostiles.</p>
+                    <div class="info-box">
+                        <h4>🌙 Exemples d'épreuves :</h4>
+                        <ul style="line-height: 2;">
+                            <li><strong>Heure 1</strong> : Descente dans l'obscurité</li>
+                            <li><strong>Heure 4</strong> : Désert de Ro-Setaou (chemin tortueux d'Osiris)</li>
+                            <li><strong>Heure 7</strong> : Combat contre Apophis (serpent du chaos)</li>
+                            <li><strong>Heure 12</strong> : Renaissance avec Râ à l'aube</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <h4>3️⃣ Les 42 Déclarations Négatives</h4>
+                    <p>Avant le jugement, le défunt doit réciter les 42 déclarations négatives devant les 42 juges divins, affirmant qu'il n'a pas commis de péchés.</p>
+                    <div class="spell-card">
+                        <span class="spell-number">Chapitre 125</span>
+                        <h4>Extrait des Déclarations Négatives</h4>
+                        <p style="font-style: italic; line-height: 2;">
+                            "Je n'ai pas tué...<br>
+                            Je n'ai pas volé...<br>
+                            Je n'ai pas menti...<br>
+                            Je n'ai pas fait pleurer...<br>
+                            Je n'ai pas pollué l'eau...<br>
+                            Je n'ai pas coupé un canal d'irrigation...<br>
+                            Je n'ai pas été colérique sans cause...<br>
+                            Je n'ai pas commis d'adultère..."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <h4>4️⃣ La Pesée du Cœur (Tribunal d'Osiris)</h4>
+                    <p>La scène la plus importante : le cœur du défunt est pesé sur une balance contre la plume de Maât (symbole de vérité et justice).</p>
+
+                    <div style="background: white; padding: 30px; border-radius: 15px; margin: 20px 0;">
+                        <h4 style="text-align: center; color: #8b6f47; margin-bottom: 20px;">⚖️ Les Participants au Jugement</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div style="text-align: center; padding: 15px;">
+                                <div style="font-size: 3em;">👑</div>
+                                <strong>Osiris</strong>
+                                <p style="color: #666; font-size: 0.9em;">Le juge suprême, roi des morts</p>
+                            </div>
+                            <div style="text-align: center; padding: 15px;">
+                                <div style="font-size: 3em;">🐺</div>
+                                <strong>Anubis</strong>
+                                <p style="color: #666; font-size: 0.9em;">Supervise la pesée</p>
+                            </div>
+                            <div style="text-align: center; padding: 15px;">
+                                <div style="font-size: 3em;">📚</div>
+                                <strong>Thot</strong>
+                                <p style="color: #666; font-size: 0.9em;">Enregistre le résultat</p>
+                            </div>
+                            <div style="text-align: center; padding: 15px;">
+                                <div style="font-size: 3em;">🐊</div>
+                                <strong>Ammout</strong>
+                                <p style="color: #666; font-size: 0.9em;">Dévoreuse des cœurs impurs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Deux Destins Possibles :</h4>
+                        <ul style="line-height: 2;">
+                            <li><strong>✅ Cœur léger :</strong> Le défunt est déclaré "justifié" (maâ-kherou). Il peut entrer dans les Champs d'Ialou, un paradis éternel où il vivra heureux pour toujours.</li>
+                            <li><strong>❌ Cœur lourd :</strong> Le cœur est dévoré par Ammout (créature hybride : tête de crocodile, corps de lion, arrière-train d'hippopotame). Le défunt subit la "seconde mort" - l'annihilation totale et définitive de son existence.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <h4>5️⃣ Les Champs d'Ialou (Paradis Égyptien)</h4>
+                    <p>Si le défunt passe le jugement, il entre dans les Champs d'Ialou (ou Aaru), un paradis agricole idéalisé.</p>
+                    <div class="hieroglyph-display" style="font-size: 2em;">
+                        𓇋 𓄿 𓂋 𓅱
+                        <p style="font-size: 0.5em; color: #666;">"Iarou/Aaru" (les Champs de Roseaux)</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>🌾 La Vie dans les Champs d'Ialou :</h4>
+                        <ul style="line-height: 2;">
+                            <li>Champs de blé hauts de 3 mètres</li>
+                            <li>Trois récoltes abondantes par an</li>
+                            <li>Retrouvailles avec les êtres chers</li>
+                            <li>Nourriture et boisson à volonté</li>
+                            <li>Pas de souffrance, pas de mort</li>
+                            <li>Présence des dieux bienveillants</li>
+                            <li>Possibilité de revenir visiter les vivants sous forme de Bâ (oiseau)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spell-card">
+                <span class="spell-number">Chapitre 110</span>
+                <h4>Formule pour Entrer dans les Champs d'Ialou</h4>
+                <p style="font-style: italic; line-height: 1.8;">
+                    "Salut à toi, Seigneur des Champs d'Ialou,<br>
+                    Je connais ton nom et les noms des 42 dieux qui sont avec toi dans les Champs d'Ialou,<br>
+                    Qui vivent des pécheurs et se nourrissent de leur sang...<br>
+                    Mais je suis pur ! Je suis pur ! Je suis pur ! Je suis pur !<br>
+                    Ma pureté est la pureté du grand Bénou qui est à Héracléopolis."
+                </p>
+            </div>
+        </div>
+
+        <!-- CONCLUSION -->
+        <div class="process-section" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-color: #4CAF50;">
+            <h2 style="color: #2e7d32;">🎓 L'Héritage de la Momification</h2>
+
+            <div class="info-box" style="border-left-color: #4CAF50; background: white;">
+                <h4 style="color: #2e7d32;">🔬 Découvertes Scientifiques Modernes</h4>
+                <p style="line-height: 1.8;">
+                    Grâce aux momies, nous avons appris énormément sur l'Égypte ancienne :
+                </p>
+                <ul style="margin-top: 15px; line-height: 2;">
+                    <li><strong>Médecine :</strong> Maladies, régime alimentaire, espérance de vie</li>
+                    <li><strong>ADN :</strong> Liens de parenté entre pharaons, migrations</li>
+                    <li><strong>Chimie :</strong> Composition des résines et huiles</li>
+                    <li><strong>Artisanat :</strong> Techniques de tissage, teinture des bandelettes</li>
+                    <li><strong>Religion :</strong> Évolution des pratiques funéraires sur 3000 ans</li>
+                </ul>
+            </div>
+
+            <div class="warning-box" style="border-left-color: #4CAF50; background: white;">
+                <h4 style="color: #2e7d32;">🏛️ Momies Célèbres</h4>
+                <ul style="line-height: 2;">
+                    <li><strong>Toutânkhamon</strong> : La momie royale la plus célèbre, morte vers 19 ans</li>
+                    <li><strong>Ramsès II</strong> : Bien préservée, cheveux roux, arthrite sévère</li>
+                    <li><strong>Hatchepsout</strong> : Identifiée grâce à son ADN en 2007</li>
+                    <li><strong>Séthi I</strong> : Une des momies les mieux conservées</li>
+                    <li><strong>La Dame de Téhénou</strong> : Momie naturelle prédynastique (3400 av. J.-C.)</li>
+                </ul>
+            </div>
+
+            <div class="spell-card" style="background: linear-gradient(135deg, #fff8e1, #ffecb3); border-color: #ffa000;">
+                <h4 style="color: #e65100;">📚 Pour Aller Plus Loin :</h4>
+                <ul style="list-style: none; font-size: 1.1em; line-height: 2;">
+                    <li><a href="hieroglyphes-contexte-culturel.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Découvrir la culture égyptienne complète</a></li>
+                    <li><a href="hieroglyphes-exercices-phrases.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Lire le Livre des Morts en hiéroglyphes</a></li>
+                    <li><a href="hieroglyphes-debutant.html" style="color: #e65100; font-weight: bold; text-decoration: none;">→ Apprendre à déchiffrer les hiéroglyphes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

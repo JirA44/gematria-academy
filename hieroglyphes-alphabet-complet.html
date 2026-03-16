@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Alphabet Hiéroglyphique Complet - Manuel de Lecture</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            color: #e0e0e0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c49c62;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(196, 156, 98, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .intro-box {
+            background: rgba(196, 156, 98, 0.1);
+            border: 2px solid rgba(196, 156, 98, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .intro-box h2 {
+            color: #c49c62;
+            margin-bottom: 1rem;
+        }
+
+        .category-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2));
+            border-left: 5px solid #8a2be2;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .category-header h2 {
+            color: #ba68c8;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .hieroglyphs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .hieroglyph-card {
+            background: rgba(30, 30, 45, 0.8);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hieroglyph-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 43, 226, 0.8);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+        }
+
+        .hieroglyph-symbol {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ffa726;
+        }
+
+        .hieroglyph-code {
+            color: #64b5f6;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            font-family: monospace;
+        }
+
+        .hieroglyph-sound {
+            background: rgba(255, 167, 38, 0.2);
+            color: #ffa726;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .hieroglyph-name {
+            color: #81c784;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hieroglyph-explanation {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+
+        .search-box {
+            position: sticky;
+            top: 20px;
+            background: rgba(30, 30, 45, 0.95);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            background: rgba(40, 40, 60, 0.8);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            color: #e0e0e0;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(138, 43, 226, 0.8);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .filter-btn {
+            background: rgba(138, 43, 226, 0.2);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            color: #ba68c8;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(138, 43, 226, 0.5);
+            border-color: #8a2be2;
+        }
+
+        .practice-box {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .practice-box h3 {
+            color: #81c784;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000814;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="container">
+        <h1>𓂀 Alphabet Hiéroglyphique Complet</h1>
+        <p class="subtitle">Manuel de lecture - Tous les signes essentiels pour déchiffrer les textes</p>
+
+        <div class="intro-box">
+            <h2>📚 Comment utiliser cet alphabet</h2>
+            <p style="margin-bottom: 1rem;">
+                Cet alphabet contient tous les signes hiéroglyphiques essentiels organisés par catégorie.
+                Pour chaque signe, vous trouverez :
+            </p>
+            <ul style="margin-left: 2rem; line-height: 2;">
+                <li><strong>Le symbole hiéroglyphique</strong> - L'apparence visuelle du signe</li>
+                <li><strong>Le code Gardiner</strong> - Référence standard en égyptologie</li>
+                <li><strong>La prononciation</strong> - Comment le lire à voix haute</li>
+                <li><strong>Le nom français</strong> - Description de ce que représente le signe</li>
+                <li><strong>L'explication</strong> - Comment et quand l'utiliser</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                <strong>Conseil :</strong> Utilisez la recherche pour trouver rapidement un signe, ou filtrez par catégorie pour apprendre progressivement.
+            </p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Rechercher un hiéroglyphe (ex: 'homme', 'A', 'main')...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterCategory('all')">Tous</button>
+                <button class="filter-btn" onclick="filterCategory('uniliteres')">Unilitères (lettres)</button>
+                <button class="filter-btn" onclick="filterCategory('biliteres')">Bilitères</button>
+                <button class="filter-btn" onclick="filterCategory('triliteres')">Trilitères</button>
+                <button class="filter-btn" onclick="filterCategory('determinatifs')">Déterminatifs</button>
+                <button class="filter-btn" onclick="filterCategory('nombres')">Nombres</button>
+            </div>
+        </div>
+
+        <!-- UNILITÈRES (ALPHABET PHONÉTIQUE) -->
+        <div class="category-section" data-category="uniliteres">
+            <div class="category-header">
+                <h2>🔤 Unilitères - L'Alphabet Phonétique (26 signes)</h2>
+                <p class="category-description">
+                    Les signes unilitères représentent une seule consonne. C'est l'équivalent de notre alphabet.
+                    Maîtrisez ces 26 signes pour pouvoir lire phonétiquement n'importe quel texte.
+                </p>
+            </div>
+            <div class="hieroglyphs-grid">
+                <div class="hieroglyph-card" data-search="vautour egyptien a aleph glotte">
+                    <div class="hieroglyph-symbol">𓄿</div>
+                    <div class="hieroglyph-code">G1</div>
+                    <div class="hieroglyph-sound">A (ꜣ)</div>
+                    <div class="hieroglyph-name">Vautour égyptien</div>
+                    <div class="hieroglyph-explanation">Coup de glotte, comme dans "ah"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="roseau i y jonc">
+                    <div class="hieroglyph-symbol">𓇋</div>
+                    <div class="hieroglyph-code">M17</div>
+                    <div class="hieroglyph-sound">I / Y</div>
+                    <div class="hieroglyph-name">Roseau fleuri</div>
+                    <div class="hieroglyph-explanation">Son "i" ou "y"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="deux roseaux ii y double">
+                    <div class="hieroglyph-symbol">𓇌</div>
+                    <div class="hieroglyph-code">M18</div>
+                    <div class="hieroglyph-sound">Y (double I)</div>
+                    <div class="hieroglyph-name">Deux roseaux</div>
+                    <div class="hieroglyph-explanation">Double "i", son "y" accentué</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="avant-bras a ayin">
+                    <div class="hieroglyph-symbol">𓂝</div>
+                    <div class="hieroglyph-code">D36</div>
+                    <div class="hieroglyph-sound">ʿ (ayin)</div>
+                    <div class="hieroglyph-name">Avant-bras</div>
+                    <div class="hieroglyph-explanation">Consonne pharyngale, comme le ayin hébreu</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="caille w u poussin oiseau">
+                    <div class="hieroglyph-symbol">𓅱</div>
+                    <div class="hieroglyph-code">G43</div>
+                    <div class="hieroglyph-sound">W / U</div>
+                    <div class="hieroglyph-name">Poussin de caille</div>
+                    <div class="hieroglyph-explanation">Son "ou" ou "w"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="jambe pied b ba">
+                    <div class="hieroglyph-symbol">𓃀</div>
+                    <div class="hieroglyph-code">D58</div>
+                    <div class="hieroglyph-sound">B</div>
+                    <div class="hieroglyph-name">Jambe</div>
+                    <div class="hieroglyph-explanation">Son "b"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="tabouret siege p pa">
+                    <div class="hieroglyph-symbol">𓊪</div>
+                    <div class="hieroglyph-code">Q3</div>
+                    <div class="hieroglyph-sound">P</div>
+                    <div class="hieroglyph-name">Tabouret</div>
+                    <div class="hieroglyph-explanation">Son "p"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="vipere serpent f fa horned">
+                    <div class="hieroglyph-symbol">𓆑</div>
+                    <div class="hieroglyph-code">I9</div>
+                    <div class="hieroglyph-sound">F</div>
+                    <div class="hieroglyph-name">Vipère à cornes</div>
+                    <div class="hieroglyph-explanation">Son "f"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="chouette hibou m ma owl">
+                    <div class="hieroglyph-symbol">𓅓</div>
+                    <div class="hieroglyph-code">G17</div>
+                    <div class="hieroglyph-sound">M</div>
+                    <div class="hieroglyph-name">Chouette</div>
+                    <div class="hieroglyph-explanation">Son "m"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="eau vague n na zigzag">
+                    <div class="hieroglyph-symbol">𓈖</div>
+                    <div class="hieroglyph-code">N35</div>
+                    <div class="hieroglyph-sound">N</div>
+                    <div class="hieroglyph-name">Eau</div>
+                    <div class="hieroglyph-explanation">Son "n"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="bouche r ra">
+                    <div class="hieroglyph-symbol">𓂋</div>
+                    <div class="hieroglyph-code">D21</div>
+                    <div class="hieroglyph-sound">R</div>
+                    <div class="hieroglyph-name">Bouche</div>
+                    <div class="hieroglyph-explanation">Son "r"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="verrou h ha bolt">
+                    <div class="hieroglyph-symbol">𓎛</div>
+                    <div class="hieroglyph-code">V28</div>
+                    <div class="hieroglyph-sound">H</div>
+                    <div class="hieroglyph-name">Verrou</div>
+                    <div class="hieroglyph-explanation">Son "h" doux</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="corde torsadee h kh twisted">
+                    <div class="hieroglyph-symbol">𓎛</div>
+                    <div class="hieroglyph-code">V28</div>
+                    <div class="hieroglyph-sound">Ḥ</div>
+                    <div class="hieroglyph-name">Corde torsadée</div>
+                    <div class="hieroglyph-explanation">Son "h" emphatique</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="placenta kh ch placenta">
+                    <div class="hieroglyph-symbol">𓐍</div>
+                    <div class="hieroglyph-code">Aa1</div>
+                    <div class="hieroglyph-sound">Ḫ / KH</div>
+                    <div class="hieroglyph-name">Placenta</div>
+                    <div class="hieroglyph-explanation">Son "kh" guttural, comme le "jota" espagnol</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="tamis van sieve kh">
+                    <div class="hieroglyph-symbol">𓐍</div>
+                    <div class="hieroglyph-code">Aa2</div>
+                    <div class="hieroglyph-sound">H̱ / KH</div>
+                    <div class="hieroglyph-name">Tamis</div>
+                    <div class="hieroglyph-explanation">Variante de "kh"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="ventre animal s sa belly">
+                    <div class="hieroglyph-symbol">𓋴</div>
+                    <div class="hieroglyph-code">S29</div>
+                    <div class="hieroglyph-sound">S</div>
+                    <div class="hieroglyph-name">Étoffe pliée</div>
+                    <div class="hieroglyph-explanation">Son "s"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="etoffe pliee s sa cloth">
+                    <div class="hieroglyph-symbol">𓊃</div>
+                    <div class="hieroglyph-code">O34</div>
+                    <div class="hieroglyph-sound">S</div>
+                    <div class="hieroglyph-name">Verrou</div>
+                    <div class="hieroglyph-explanation">Son "s" (variante)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="bassin sh sha pool">
+                    <div class="hieroglyph-symbol">𓈙</div>
+                    <div class="hieroglyph-code">N37</div>
+                    <div class="hieroglyph-sound">Š / SH</div>
+                    <div class="hieroglyph-name">Bassin d'eau</div>
+                    <div class="hieroglyph-explanation">Son "sh"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="colline k ka hill">
+                    <div class="hieroglyph-symbol">𓈎</div>
+                    <div class="hieroglyph-code">N29</div>
+                    <div class="hieroglyph-sound">K / Q</div>
+                    <div class="hieroglyph-name">Colline</div>
+                    <div class="hieroglyph-explanation">Son "k" emphatique</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="corbeille panier k ka basket">
+                    <div class="hieroglyph-symbol">𓎡</div>
+                    <div class="hieroglyph-code">V31</div>
+                    <div class="hieroglyph-sound">K</div>
+                    <div class="hieroglyph-name">Corbeille</div>
+                    <div class="hieroglyph-explanation">Son "k"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="support vase g ga stand">
+                    <div class="hieroglyph-symbol">𓎼</div>
+                    <div class="hieroglyph-code">W11</div>
+                    <div class="hieroglyph-sound">G</div>
+                    <div class="hieroglyph-name">Support de jarre</div>
+                    <div class="hieroglyph-explanation">Son "g" dur</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="pains t ta bread loaf">
+                    <div class="hieroglyph-symbol">𓏏</div>
+                    <div class="hieroglyph-code">X1</div>
+                    <div class="hieroglyph-sound">T</div>
+                    <div class="hieroglyph-name">Pain</div>
+                    <div class="hieroglyph-explanation">Son "t"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="corde entrave tj tch hobble">
+                    <div class="hieroglyph-symbol">𓍿</div>
+                    <div class="hieroglyph-code">V13</div>
+                    <div class="hieroglyph-sound">Ṯ / TCH</div>
+                    <div class="hieroglyph-name">Corde d'entrave</div>
+                    <div class="hieroglyph-explanation">Son "tch" emphatique</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="main d da hand">
+                    <div class="hieroglyph-symbol">𓂧</div>
+                    <div class="hieroglyph-code">D46</div>
+                    <div class="hieroglyph-sound">D</div>
+                    <div class="hieroglyph-name">Main</div>
+                    <div class="hieroglyph-explanation">Son "d"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="serpent dj dja snake">
+                    <div class="hieroglyph-symbol">𓆓</div>
+                    <div class="hieroglyph-code">I10</div>
+                    <div class="hieroglyph-sound">Ḏ / DJ</div>
+                    <div class="hieroglyph-name">Serpent cobra</div>
+                    <div class="hieroglyph-explanation">Son "dj" emphatique</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BILITÈRES -->
+        <div class="category-section" data-category="biliteres">
+            <div class="category-header">
+                <h2>🔠 Bilitères - Signes à 2 consonnes</h2>
+                <p class="category-description">
+                    Les bilitères représentent deux consonnes d'un seul coup. Très fréquents dans les textes égyptiens.
+                </p>
+            </div>
+            <div class="hieroglyphs-grid">
+                <div class="hieroglyph-card" data-search="lievre wen wn hare">
+                    <div class="hieroglyph-symbol">𓃹</div>
+                    <div class="hieroglyph-code">E34</div>
+                    <div class="hieroglyph-sound">WN</div>
+                    <div class="hieroglyph-name">Lièvre</div>
+                    <div class="hieroglyph-explanation">Bilitère "wn" (être, exister)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="maison pr per house">
+                    <div class="hieroglyph-symbol">𓉐</div>
+                    <div class="hieroglyph-code">O1</div>
+                    <div class="hieroglyph-sound">PR</div>
+                    <div class="hieroglyph-name">Maison</div>
+                    <div class="hieroglyph-explanation">Bilitère "pr" (maison, sortir)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="coeur ib ab heart">
+                    <div class="hieroglyph-symbol">𓇋𓃀</div>
+                    <div class="hieroglyph-code">F34</div>
+                    <div class="hieroglyph-sound">IB</div>
+                    <div class="hieroglyph-name">Cœur</div>
+                    <div class="hieroglyph-explanation">Bilitère "ib" (cœur)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="houe mr mer hoe">
+                    <div class="hieroglyph-symbol">𓌸</div>
+                    <div class="hieroglyph-code">U6</div>
+                    <div class="hieroglyph-sound">MR</div>
+                    <div class="hieroglyph-name">Houe</div>
+                    <div class="hieroglyph-explanation">Bilitère "mr" (aimer)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="canal mr canal water">
+                    <div class="hieroglyph-symbol">𓈗</div>
+                    <div class="hieroglyph-code">N36</div>
+                    <div class="hieroglyph-sound">MR</div>
+                    <div class="hieroglyph-name">Canal d'eau</div>
+                    <div class="hieroglyph-explanation">Bilitère "mr" (canal)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="fleur nfr nefer lotus">
+                    <div class="hieroglyph-symbol">𓆑𓂋</div>
+                    <div class="hieroglyph-code">M42</div>
+                    <div class="hieroglyph-sound">NF / NFR</div>
+                    <div class="hieroglyph-name">Fleur de lotus</div>
+                    <div class="hieroglyph-explanation">Bilitère/trilitère "nfr" (bon, beau)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="soleil ra re sun">
+                    <div class="hieroglyph-symbol">𓇳</div>
+                    <div class="hieroglyph-code">N5</div>
+                    <div class="hieroglyph-sound">RA / RE</div>
+                    <div class="hieroglyph-name">Soleil</div>
+                    <div class="hieroglyph-explanation">Bilitère "ra" (dieu soleil)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="croix ankh vie life">
+                    <div class="hieroglyph-symbol">𓋹</div>
+                    <div class="hieroglyph-code">S34</div>
+                    <div class="hieroglyph-sound">ʿNḪ</div>
+                    <div class="hieroglyph-name">Ankh (croix de vie)</div>
+                    <div class="hieroglyph-explanation">Trilitère "ânkh" (vie)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DÉTERMINATIFS -->
+        <div class="category-section" data-category="determinatifs">
+            <div class="category-header">
+                <h2>🔍 Déterminatifs - Signes muets qui précisent le sens</h2>
+                <p class="category-description">
+                    Les déterminatifs ne se prononcent pas mais indiquent la catégorie sémantique du mot (personne, animal, abstrait, etc.)
+                </p>
+            </div>
+            <div class="hieroglyphs-grid">
+                <div class="hieroglyph-card" data-search="homme assis masculin man sitting">
+                    <div class="hieroglyph-symbol">𓀀</div>
+                    <div class="hieroglyph-code">A1</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Homme assis</div>
+                    <div class="hieroglyph-explanation">Déterminatif : homme, masculin, "je"</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="femme assise feminine woman sitting">
+                    <div class="hieroglyph-symbol">𓁐</div>
+                    <div class="hieroglyph-code">B1</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Femme assise</div>
+                    <div class="hieroglyph-explanation">Déterminatif : femme, féminin</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="dieu assis divin god sitting">
+                    <div class="hieroglyph-symbol">𓀭</div>
+                    <div class="hieroglyph-code">A40</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Dieu assis</div>
+                    <div class="hieroglyph-explanation">Déterminatif : dieu, divinité</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="deesse assise divine goddess">
+                    <div class="hieroglyph-symbol">𓊹</div>
+                    <div class="hieroglyph-code">R8</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Déesse assise</div>
+                    <div class="hieroglyph-explanation">Déterminatif : déesse</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="rouleau papyrus abstrait scroll abstract">
+                    <div class="hieroglyph-symbol">𓏛</div>
+                    <div class="hieroglyph-code">Y1</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Rouleau de papyrus</div>
+                    <div class="hieroglyph-explanation">Déterminatif : abstrait, écriture</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="ville cité city town">
+                    <div class="hieroglyph-symbol">𓊖</div>
+                    <div class="hieroglyph-code">O49</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Enceinte de ville</div>
+                    <div class="hieroglyph-explanation">Déterminatif : ville, lieu</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="etranger ennemi captif foreigner enemy">
+                    <div class="hieroglyph-symbol">𓀎</div>
+                    <div class="hieroglyph-code">A14</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Homme tombant</div>
+                    <div class="hieroglyph-explanation">Déterminatif : ennemi, captif</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="pays terre land country foreign">
+                    <div class="hieroglyph-symbol">𓈉</div>
+                    <div class="hieroglyph-code">N25</div>
+                    <div class="hieroglyph-sound">(muet)</div>
+                    <div class="hieroglyph-name">Collines du désert</div>
+                    <div class="hieroglyph-explanation">Déterminatif : pays étranger, désert</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOMBRES -->
+        <div class="category-section" data-category="nombres">
+            <div class="category-header">
+                <h2>🔢 Nombres - Système décimal égyptien</h2>
+                <p class="category-description">
+                    Les Égyptiens utilisaient un système décimal avec des signes spécifiques pour les unités, dizaines, centaines, etc.
+                </p>
+            </div>
+            <div class="hieroglyphs-grid">
+                <div class="hieroglyph-card" data-search="un 1 trait">
+                    <div class="hieroglyph-symbol">𓏤</div>
+                    <div class="hieroglyph-code">Z1</div>
+                    <div class="hieroglyph-sound">1</div>
+                    <div class="hieroglyph-name">Trait</div>
+                    <div class="hieroglyph-explanation">Un (unité)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="dix 10 arc">
+                    <div class="hieroglyph-symbol">𓎆</div>
+                    <div class="hieroglyph-code">V20</div>
+                    <div class="hieroglyph-sound">10</div>
+                    <div class="hieroglyph-name">Arc pastoral</div>
+                    <div class="hieroglyph-explanation">Dix (dizaine)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="cent 100 corde">
+                    <div class="hieroglyph-symbol">𓍢</div>
+                    <div class="hieroglyph-code">V1</div>
+                    <div class="hieroglyph-sound">100</div>
+                    <div class="hieroglyph-name">Corde enroulée</div>
+                    <div class="hieroglyph-explanation">Cent (centaine)</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="mille 1000 lotus fleur">
+                    <div class="hieroglyph-symbol">𓆼</div>
+                    <div class="hieroglyph-code">M12</div>
+                    <div class="hieroglyph-sound">1000</div>
+                    <div class="hieroglyph-name">Fleur de lotus</div>
+                    <div class="hieroglyph-explanation">Mille</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="dix mille 10000 doigt">
+                    <div class="hieroglyph-symbol">𓂭</div>
+                    <div class="hieroglyph-code">D50</div>
+                    <div class="hieroglyph-sound">10000</div>
+                    <div class="hieroglyph-name">Doigt</div>
+                    <div class="hieroglyph-explanation">Dix mille</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="cent mille 100000 tetard">
+                    <div class="hieroglyph-symbol">𓆐</div>
+                    <div class="hieroglyph-code">I8</div>
+                    <div class="hieroglyph-sound">100000</div>
+                    <div class="hieroglyph-name">Têtard</div>
+                    <div class="hieroglyph-explanation">Cent mille</div>
+                </div>
+
+                <div class="hieroglyph-card" data-search="million 1000000 heh infini">
+                    <div class="hieroglyph-symbol">𓁨</div>
+                    <div class="hieroglyph-code">C11</div>
+                    <div class="hieroglyph-sound">1000000</div>
+                    <div class="hieroglyph-name">Dieu Heh</div>
+                    <div class="hieroglyph-explanation">Million (infini)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="practice-box">
+            <h3>🎯 Prêt à pratiquer ?</h3>
+            <p style="margin-bottom: 2rem;">
+                Maintenant que vous connaissez l'alphabet, passez aux leçons de grammaire et exercices de déchiffrage !
+            </p>
+            <a href="hieroglyphes-grammaire-niveau1.html" class="btn">📖 Leçons de Grammaire →</a>
+            <a href="hieroglyphes-exercices-dechiffrage.html" class="btn">✍️ Exercices de Déchiffrage →</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="hieroglyphes-parcours-complet.html" class="btn">← Retour au Parcours</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+            <a href="hieroglyphes-grammaire-niveau1.html" class="btn">Étape 2 : Grammaire →</a>
+        </div>
+    </div>
+
+    <script>
+        // Recherche en temps réel
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.hieroglyph-card');
+
+            cards.forEach(card => {
+                const searchData = card.getAttribute('data-search') || '';
+                const visible = searchData.includes(searchTerm) || searchTerm === '';
+                card.style.display = visible ? 'block' : 'none';
+            });
+        });
+
+        // Filtrage par catégorie
+        function filterCategory(category) {
+            // Mettre à jour les boutons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Afficher/masquer les sections
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(section => {
+                if (category === 'all') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = section.getAttribute('data-category') === category ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Animation au survol
+        document.querySelectorAll('.hieroglyph-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const sound = this.querySelector('.hieroglyph-sound').textContent;
+                const name = this.querySelector('.hieroglyph-name').textContent;
+                alert(`${name}\nPrononciation : ${sound}`);
+            });
+        });
+
+        // Fond étoilé animé avec étoiles scintillantes et étoiles filantes
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const stars = [];
+        const starCount = 250;
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random(),
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                increasing: Math.random() > 0.5
+            });
+        }
+
+        const shootingStars = [];
+
+        function createShootingStar() {
+            const startX = Math.random() * canvas.width;
+            const startY = Math.random() * canvas.height / 2;
+
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                length: Math.random() * 80 + 40,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 4 + Math.random() * 0.3,
+                opacity: 1,
+                tail: []
+            });
+        }
+
+        setInterval(() => {
+            if (shootingStars.length < 3) {
+                createShootingStar();
+            }
+        }, Math.random() * 2000 + 3000);
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#000814';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+                ctx.fill();
+
+                if (star.increasing) {
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity >= 1) {
+                        star.opacity = 1;
+                        star.increasing = false;
+                    }
+                } else {
+                    star.opacity -= star.twinkleSpeed;
+                    if (star.opacity <= 0.2) {
+                        star.opacity = 0.2;
+                        star.increasing = true;
+                    }
+                }
+            });
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.opacity -= 0.01;
+
+                if (star.opacity <= 0 || star.x > canvas.width || star.y > canvas.height) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const gradient = ctx.createLinearGradient(
+                    star.x,
+                    star.y,
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+                gradient.addColorStop(0.5, `rgba(150, 200, 255, ${star.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(150, 200, 255, 0)');
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(
+                    star.x - Math.cos(star.angle) * star.length,
+                    star.y - Math.sin(star.angle) * star.length
+                );
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            drawStars();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        setTimeout(() => createShootingStar(), 1000);
+        setTimeout(() => createShootingStar(), 3000);
+    </script>
+</body>
+</html>

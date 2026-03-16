@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓇳 Symboles Maya - Niveau Débutant</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="maya-animated-bg.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a5f3e 0%, #0d3d27 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a5f3e;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #1a5f3e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2e7d52;
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .number-card {
+            background: #f0f8f5;
+            border: 2px solid #2e7d52;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .number-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .number-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1a5f3e;
+            margin-bottom: 5px;
+        }
+
+        .number-dots {
+            font-size: 1.5em;
+            color: #d32f2f;
+        }
+
+        .number-bars {
+            font-size: 1.5em;
+            color: #1976d2;
+        }
+
+        .calendar-box {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.2) 100%);
+            border: 3px solid #ffc107;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .calendar-wheel {
+            text-align: center;
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .exercise {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .exercise h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .quiz {
+            background: #f3e5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #9C27B0;
+        }
+
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #7b1fa2;
+        }
+
+        .quiz-options {
+            margin: 10px 0;
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(30, 30, 45, 0.7);
+            border: 2px solid #9C27B0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #e1bee7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1a5f3e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #0d3d27;
+        }
+
+        .btn-home {
+            background: #607d8b;
+        }
+
+        .btn-home:hover {
+            background: #455a64;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+        }
+
+        ul {
+            line-height: 2;
+            color: #c0c0c0;
+        }
+
+        .success {
+            background: #c8e6c9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error {
+            background: #ffcdd2;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+    <script src="theme-backgrounds.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>𓇳 Symboles Maya</h1>
+        <p class="subtitle">Niveau Débutant - Introduction au calendrier et aux chiffres</p>
+        <div style="text-align: center;">
+            <span class="level-badge">🌱 Débutant</span>
+        </div>
+
+        <div class="section">
+            <h2>🌍 Introduction à la Civilisation Maya</h2>
+            <div class="info-box">
+                <p><strong>Les Mayas</strong> ont développé une des civilisations les plus avancées de Mésoamérique (250-900 apr. J.-C.). Ils excellaient en astronomie, mathématiques, et développèrent un système d'écriture sophistiqué.</p>
+                <br>
+                <p><strong>Points clés :</strong></p>
+                <ul>
+                    <li>Civilisation présente au Mexique, Guatemala, Belize, Honduras</li>
+                    <li>Inventeurs du concept du zéro (avant les Arabes !)</li>
+                    <li>Système de numération en base 20 (vigésimal)</li>
+                    <li>Maîtres de l'astronomie et des calendriers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔢 Système de Numération Maya</h2>
+            <p>Les Mayas utilisaient un système très simple avec seulement 3 symboles :</p>
+
+            <div class="info-box">
+                <h4>Les 3 symboles de base :</h4>
+                <ul>
+                    <li><strong>Point (●)</strong> = 1</li>
+                    <li><strong>Barre (━)</strong> = 5</li>
+                    <li><strong>Coquillage (⊙)</strong> = 0 (zéro)</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 30px;">Nombres de 0 à 19 :</h3>
+            <div class="number-grid">
+                <div class="number-card">
+                    <div class="number-value">0</div>
+                    <div>⊙</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">1</div>
+                    <div class="number-dots">●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">2</div>
+                    <div class="number-dots">●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">3</div>
+                    <div class="number-dots">●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">4</div>
+                    <div class="number-dots">●●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">5</div>
+                    <div class="number-bars">━</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">6</div>
+                    <div class="number-bars">━</div>
+                    <div class="number-dots">●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">7</div>
+                    <div class="number-bars">━</div>
+                    <div class="number-dots">●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">8</div>
+                    <div class="number-bars">━</div>
+                    <div class="number-dots">●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">9</div>
+                    <div class="number-bars">━</div>
+                    <div class="number-dots">●●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">10</div>
+                    <div class="number-bars">━<br>━</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">11</div>
+                    <div class="number-bars">━<br>━</div>
+                    <div class="number-dots">●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">12</div>
+                    <div class="number-bars">━<br>━</div>
+                    <div class="number-dots">●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">13</div>
+                    <div class="number-bars">━<br>━</div>
+                    <div class="number-dots">●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">14</div>
+                    <div class="number-bars">━<br>━</div>
+                    <div class="number-dots">●●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">15</div>
+                    <div class="number-bars">━<br>━<br>━</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">16</div>
+                    <div class="number-bars">━<br>━<br>━</div>
+                    <div class="number-dots">●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">17</div>
+                    <div class="number-bars">━<br>━<br>━</div>
+                    <div class="number-dots">●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">18</div>
+                    <div class="number-bars">━<br>━<br>━</div>
+                    <div class="number-dots">●●●</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-value">19</div>
+                    <div class="number-bars">━<br>━<br>━</div>
+                    <div class="number-dots">●●●●</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📅 Le Calendrier Maya de Base</h2>
+            <div class="calendar-box">
+                <h3 style="text-align: center; color: #1a5f3e;">Le Tzolk'in - Calendrier Sacré</h3>
+                <div class="calendar-wheel">☀️</div>
+                <p style="text-align: center;">
+                    <strong>260 jours</strong> = 13 nombres × 20 glyphes
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h4>Les 3 calendriers mayas principaux :</h4>
+                <ul>
+                    <li><strong>Tzolk'in</strong> (260 jours) - Calendrier sacré, divinatoire</li>
+                    <li><strong>Haab</strong> (365 jours) - Calendrier solaire, agricole</li>
+                    <li><strong>Compte Long</strong> - Décompte depuis la création du monde</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="quiz">
+                <h3>✅ Quiz de Vérification - Niveau Débutant</h3>
+
+                <div class="quiz-question">1. Combien vaut une barre (━) dans le système maya ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(1, 'a')">a) 1</button>
+                    <button class="quiz-option" onclick="checkAnswer(1, 'b')">b) 5</button>
+                    <button class="quiz-option" onclick="checkAnswer(1, 'c')">c) 10</button>
+                </div>
+                <div id="result1" class="success"></div>
+
+                <div class="quiz-question" style="margin-top: 20px;">2. Quelle est la base du système de numération maya ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(2, 'a')">a) Base 10</button>
+                    <button class="quiz-option" onclick="checkAnswer(2, 'b')">b) Base 20</button>
+                    <button class="quiz-option" onclick="checkAnswer(2, 'c')">c) Base 60</button>
+                </div>
+                <div id="result2" class="success"></div>
+
+                <div class="quiz-question" style="margin-top: 20px;">3. Combien de jours compte le calendrier Tzolk'in ?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(3, 'a')">a) 365 jours</button>
+                    <button class="quiz-option" onclick="checkAnswer(3, 'b')">b) 260 jours</button>
+                    <button class="quiz-option" onclick="checkAnswer(3, 'c')">c) 180 jours</button>
+                </div>
+                <div id="result3" class="success"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="exercise">
+                <h3>📝 Exercices Pratiques</h3>
+
+                <h4>Exercice 1 : Écrire des nombres</h4>
+                <p>Essayez d'écrire ces nombres en symboles mayas :</p>
+                <ul>
+                    <li>7 = ━ ●●</li>
+                    <li>12 = ━━ ●●</li>
+                    <li>19 = ━━━ ●●●●</li>
+                </ul>
+
+                <h4 style="margin-top: 20px;">Exercice 2 : Lire des nombres</h4>
+                <p>Quel nombre représente : ━━ ●●● ?</p>
+                <p style="color: #666; font-size: 0.9em; margin-top: 10px;">
+                    Réponse : 13 (deux barres = 10, trois points = 3)
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Objectifs du Niveau Débutant</h2>
+            <ul>
+                <li>✅ Comprendre le système de numération maya (0-19)</li>
+                <li>✅ Connaître les trois symboles de base (point, barre, coquillage)</li>
+                <li>✅ Découvrir les calendriers mayas (Tzolk'in, Haab)</li>
+                <li>✅ Savoir que les Mayas ont inventé le zéro</li>
+            </ul>
+        </div>
+
+        <div class="navigation">
+            <a href="index_COMPLET.html" class="btn btn-home">⌂ Accueil</a>
+            <a href="maya-intermediaire.html" class="btn">Niveau Intermédiaire →</a>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            1: 'b',
+            2: 'b',
+            3: 'b'
+        };
+
+        function checkAnswer(questionNum, selectedAnswer) {
+            const resultDiv = document.getElementById('result' + questionNum);
+
+            if (selectedAnswer === correctAnswers[questionNum]) {
+                resultDiv.className = 'success';
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = '✅ Correct ! Bravo !';
+            } else {
+                resultDiv.className = 'error';
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = '❌ Incorrect. Réessayez !';
+            }
+
+            setTimeout(() => {
+                if (resultDiv.className === 'success') {
+                    resultDiv.style.display = 'none';
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

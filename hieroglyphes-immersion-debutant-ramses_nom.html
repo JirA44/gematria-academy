@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𓂀 Nom de Ramsès II</title>
+    <link rel="stylesheet" href="force-dark-mode.css">
+    <link rel="stylesheet" href="hieroglyphes-animated-bg.css">
+    <script src="progression-system.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .level-debutant {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4caf50;
+            color: #81c784;
+        }
+
+        .level-intermediaire {
+            background: rgba(255, 152, 0, 0.3);
+            border: 2px solid #ff9800;
+            color: #ffb74d;
+        }
+
+        .level-expert {
+            background: rgba(156, 39, 176, 0.3);
+            border: 2px solid #9c27b0;
+            color: #ce93d8;
+        }
+
+        .monument-card {
+            background: rgba(25, 25, 40, 0.9);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .context-box {
+            background: rgba(255, 243, 205, 0.1);
+            border-left: 4px solid rgba(255, 193, 7, 0.7);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+
+        .inscription-display {
+            background: rgba(40, 40, 60, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 2px solid rgba(196, 156, 98, 0.5);
+        }
+
+        .hieroglyphic-text {
+            font-size: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            line-height: 1.8;
+            direction: rtl;
+            letter-spacing: 0.5rem;
+        }
+
+        .word-by-word {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .word-block {
+            background: rgba(30, 30, 45, 0.85);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .word-block:hover {
+            border-color: rgba(138, 43, 226, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .word-hieroglyph {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .word-pronunciation {
+            font-size: 1.3rem;
+            color: #ffa726;
+            font-weight: bold;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 167, 38, 0.1);
+            border-radius: 5px;
+        }
+
+        .word-transliteration {
+            font-size: 1.2rem;
+            color: #64b5f6;
+            margin: 0.5rem 0;
+            font-style: italic;
+        }
+
+        .word-translation {
+            font-size: 1.1rem;
+            color: #81c784;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .word-explanation {
+            font-size: 0.9rem;
+            color: #b0b0c0;
+            margin-top: 0.5rem;
+        }
+
+        .translation-box {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .translation-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #81c784;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .hint-box {
+            background: rgba(100, 150, 255, 0.1);
+            border-left: 4px solid rgba(100, 150, 255, 0.7);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .exercise-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px dashed rgba(138, 43, 226, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .quiz-section {
+            background: rgba(25, 25, 40, 0.9);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            background: rgba(40, 40, 60, 0.7);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: rgba(138, 43, 226, 0.6);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(231, 76, 60, 0.3);
+            border-color: #e74c3c;
+        }
+
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+        }
+
+        .quiz-feedback.incorrect {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e57373;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-3px);
+        }
+
+        .score-display {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.3rem;
+        }
+    </style>
+    <link rel="stylesheet" href="animated-background.css">
+    <script src="animated-background.js" defer></script>
+    <script src="theme-backgrounds.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <span class="level-badge level-debutant">Niveau Debutant</span>
+        <h1>𓂀 Nom de Ramsès II</h1>
+        <p class="subtitle">Temple d'Abou Simbel, Abou Simbel, Nubie</p>
+
+        <div style="display: flex; justify-content: space-between; margin: 3rem 0;"><a href="hieroglyphes-immersion-debutant-ankh_symbole.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">← Précédent</a><a href="immersion-inscriptions-index.html" style="background: rgba(100, 100, 150, 0.3); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">📚 Index</a><a href="hieroglyphes-immersion-debutant-horus_nom.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">Suivant →</a></div>
+
+        <div class="monument-card">
+            <div class="context-box">
+                <strong>📍 Contexte historique :</strong><br>
+                <strong>Monument :</strong> Temple d'Abou Simbel<br>
+                <strong>Lieu :</strong> Abou Simbel, Nubie<br>
+                <strong>Époque :</strong> XIXe dynastie (1279-1213 av. J.-C.)<br>
+                <strong>Description :</strong> Le nom du plus grand bâtisseur de l'Égypte ancienne
+            </div>
+
+            <div class="inscription-display">
+                <h2 style="text-align: center; margin-bottom: 2rem;">📜 Inscription originale</h2>
+
+                <div class="hieroglyphic-text">
+                    𓂋𓏏𓇳𓏺𓇳
+                </div>
+
+                <button class="btn" onclick="toggleTranslation()">
+                    Révéler/Cacher la traduction mot à mot
+                </button>
+
+                <div id="translation-detail" class="hidden">
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Décomposition mot à mot :</h3>
+                    <div class="word-by-word">
+
+                    <div class="word-block">
+                        <div class="word-hieroglyph">𓂋𓏏</div>
+                        <div class="word-pronunciation">🗣️ rê</div>
+                        <div class="word-transliteration">rꜥ</div>
+                        <div class="word-translation">Rê</div>
+                        <div class="word-explanation">Le dieu soleil Rê</div>
+                    </div>
+
+                    <div class="word-block">
+                        <div class="word-hieroglyph">𓇳𓏺</div>
+                        <div class="word-pronunciation">🗣️ ms</div>
+                        <div class="word-transliteration">ms</div>
+                        <div class="word-translation">a enfanté</div>
+                        <div class="word-explanation">Verbe 'enfanter, créer'</div>
+                    </div>
+
+                    <div class="word-block">
+                        <div class="word-hieroglyph">𓇳</div>
+                        <div class="word-pronunciation">🗣️ sou</div>
+                        <div class="word-transliteration">sw</div>
+                        <div class="word-translation">lui</div>
+                        <div class="word-explanation">Pronom 'lui, le'</div>
+                    </div>
+
+                    </div>
+
+                    <div class="translation-box">
+                        <div class="translation-title">📖 Traduction littérale :</div>
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Rê-a-enfanté-lui</p>
+
+                        <div class="translation-title">✨ Traduction fluide :</div>
+                        <p style="font-size: 1.3rem; font-weight: bold;">Ramsès (celui que Rê a enfanté)</p>
+                    </div>
+
+                    <div class="hint-box">
+                        📚 <strong>Grammaire :</strong> Nom théophore : Dieu + Verbe + Pronom
+                    </div>
+
+                    <div class="hint-box">
+                        🏛️ <strong>Contexte culturel :</strong><br>⚔️ <strong>RAMSÈS II - LE GRAND PHARAON BÂTISSEUR</strong><br><br><strong>Signification du nom :</strong><br>"Ramsès" (Rꜥ-ms-sw) signifie littéralement "<strong>Rê l'a engendré</strong>" ou "<strong>Né de Rê</strong>"<ul><li><strong>Rê</strong> (Rꜥ) : Le dieu solaire suprême</li></ul>- <strong>Mès</strong> (ms) : Engendrer, donner naissance<ul><li><strong>Sou</strong> (sw) : Pronom le/lui</li></ul><br>Le nom affirme donc la filiation divine du pharaon avec le dieu solaire.<br><br><strong>Cartouche royal :</strong><br>Le cartouche de Ramsès II contient les hiéroglyphes suivants :<ul><li><strong>𓇳</strong> : Rê (le soleil)</li></ul>- <strong>𓅓𓋴</strong> : Mès (engendrer)<ul><li><strong>𓋴</strong> : Sou (lui)</li></ul><br><strong>Identité complète :</strong><ul><li><strong>Nom de naissance</strong> : Ramsès (Ra-msj-sw)</li></ul>- <strong>Nom de couronnement</strong> : Ousermaâtrê-Setepenrê ("Puissante est la justice de Rê, Élu de Rê")<ul><li><strong>Dynastie</strong> : XIXe dynastie</li></ul>- <strong>Dates de règne</strong> : ~1279-1213 avant J.-C.<ul><li><strong>Durée</strong> : <strong>66-67 ans</strong> - l'un des plus longs règnes de l'histoire égyptienne</li></ul>- <strong>Âge de mort</strong> : 90-91 ans (exceptionnel pour l'époque)<br><br><strong>Pourquoi "le Grand" ?</strong><br>Ramsès II mérite ce titre pour plusieurs raisons :<br><br><strong>1. Bâtisseur monumental :</strong><ul><li><strong>Abou Simbel</strong> : Deux temples monumentaux taillés dans la falaise</li></ul>  - Grand temple : 4 colosses de 20m de haut à son effigie<ul><li>Petit temple : Dédié à son épouse Néfertari</li></ul>- <strong>Ramesséum</strong> : Son temple funéraire gigantesque à Thèbes<ul><li><strong>Pi-Ramsès</strong> : Nouvelle capitale dans le Delta du Nil</li></ul>- <strong>Modifications</strong> : Agrandit Karnak, Louxor, et d'innombrables temples<br><br><strong>2. Guerrier redoutable :</strong><ul><li><strong>Bataille de Qadesh</strong> (1274 av. J.-C.) : Affrontement épique contre les Hittites</li></ul>  - Ramsès prétend à une grande victoire<ul><li>En réalité : bataille indécise mais racontée partout</li></ul>  - Propagande monumentale : récit gravé sur tous ses temples<ul><li><strong>Traité de paix</strong> : Premier traité de paix de l'histoire (avec les Hittites)</li></ul>- <strong>Campagnes</strong> : Nombreuses expéditions en Nubie, Libye, Canaan<br><br><strong>3. Famille prolifique :</strong><ul><li><strong>Épouses</strong> : 8 épouses principales + nombreuses épouses secondaires</li></ul>- <strong>Enfants</strong> : Plus de <strong>100 enfants</strong> (52 fils, 40+ filles documentés)<ul><li><strong>Épouse favorite</strong> : Néfertari ("La plus belle")</li></ul>- <strong>Succession</strong> : Son 13e fils, Mineptah, lui succède (les 12 premiers morts avant lui)<br><br><strong>4. Propagande et image :</strong><ul><li><strong>Colosses partout</strong> : Statues gigantesques à son effigie dans toute l'Égypte</li></ul>- <strong>Usurpation</strong> : Effaçait les noms d'autres pharaons pour graver le sien<ul><li><strong>Auto-divinisation</strong> : Se représentait comme un dieu de son vivant</li></ul><br><strong>Momie :</strong><ul><li>Découverte en 1881 dans la cachette de Deir el-Bahari</li></ul>- État de conservation : Excellent<ul><li>Caractéristiques : Cheveux roux/blonds, 1m75</li></ul>- Actuellement au Musée national de la civilisation égyptienne, Le Caire<br><br><br><strong>Réponse à 'Que signifie 'Ramsès' ?' :</strong><br>Rê l'a enfanté. Ramsès signifie 'Rê (dieu soleil) l'a enfanté'<br><br><strong>Réponse à 'Combien de temps Ramsès II a-t-il régné ?' :</strong><br>66 ans. Ramsès II régna 66 ans, l'un des règnes les plus longs de l'histoire égyptienne
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-box">
+                <h3>✍️ Exercice pratique</h3>
+                <p style="margin: 1rem 0;">Identifiez les trois éléments du nom : dieu, action, bénéficiaire.</p>
+                <button class="btn" onclick="completeExercise()">
+                    J'ai terminé mon exercice (12 points)
+                </button>
+            </div>
+
+            
+            <div style="background: rgba(255, 193, 7, 0.15); border: 3px solid rgba(255, 193, 7, 0.8); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+                <h2 style="color: #ffc107; margin-bottom: 1.5rem; text-align: center;">📖 Vocabulaire à apprendre</h2>
+
+                <div style="display: grid; gap: 1.5rem;">
+
+                    <!-- Vocabulaire principal -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4caf50;">
+                        <div style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">𓂋𓏏𓇳𓏺𓇳</div>
+                        <h3 style="color: #81c784; margin-bottom: 1rem; text-align: center;">
+                            <strong style="font-size: 1.8rem;">Rê</strong>
+                        </h3>
+
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            🗣️ Prononciation : <strong style="color: #81c784;">rê</strong>
+                        </p>
+
+                        <p style="margin-top: 1rem; font-size: 1.1rem; text-align: center;">
+                            Le dieu soleil Rê
+                        </p>
+
+                    </div>
+
+                    <!-- Info 1: Que signifie 'Ramsès' ?... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ba68c8;">
+                        <h3 style="color: #ba68c8; margin-bottom: 1rem; text-align: center;">Que signifie 'Ramsès' ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ba68c8; font-size: 1.4rem;">Rê l'a enfanté</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 2: Combien de temps Ramsès II a-t... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4fc3f7;">
+                        <h3 style="color: #4fc3f7; margin-bottom: 1rem; text-align: center;">Combien de temps Ramsès II a-t-il régné ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #4fc3f7; font-size: 1.4rem;">66 ans</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 3: Quel est le monument le plus c... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ff9800;">
+                        <h3 style="color: #ff9800; margin-bottom: 1rem; text-align: center;">Quel est le monument le plus célèbre de Ramsès II ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ff9800; font-size: 1.4rem;">Abou Simbel</strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 193, 7, 0.15); border: 3px solid rgba(255, 193, 7, 0.8); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+                <h2 style="color: #ffc107; margin-bottom: 1.5rem; text-align: center;">📖 Vocabulaire à apprendre</h2>
+
+                <div style="display: grid; gap: 1.5rem;">
+
+                    <!-- Vocabulaire principal -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4caf50;">
+                        <div style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">𓂋𓏏𓇳𓏺𓇳</div>
+                        <h3 style="color: #81c784; margin-bottom: 1rem; text-align: center;">
+                            <strong style="font-size: 1.8rem;">Rê</strong>
+                        </h3>
+
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            🗣️ Prononciation : <strong style="color: #81c784;">rê</strong>
+                        </p>
+
+                        <p style="margin-top: 1rem; font-size: 1.1rem; text-align: center;">
+                            Le dieu soleil Rê
+                        </p>
+
+                    </div>
+
+                    <!-- Info 1: Que signifie 'Ramsès' ?... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ba68c8;">
+                        <h3 style="color: #ba68c8; margin-bottom: 1rem; text-align: center;">Que signifie 'Ramsès' ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ba68c8; font-size: 1.4rem;">Rê l'a enfanté</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 2: Combien de temps Ramsès II a-t... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #4fc3f7;">
+                        <h3 style="color: #4fc3f7; margin-bottom: 1rem; text-align: center;">Combien de temps Ramsès II a-t-il régné ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #4fc3f7; font-size: 1.4rem;">66 ans</strong>
+                        </p>
+                    </div>
+
+                    <!-- Info 3: Quel est le monument le plus c... -->
+                    <div style="background: rgba(30, 30, 45, 0.6); padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ff9800;">
+                        <h3 style="color: #ff9800; margin-bottom: 1rem; text-align: center;">Quel est le monument le plus célèbre de Ramsès II ?</h3>
+                        <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                            <strong style="color: #ff9800; font-size: 1.4rem;">Abou Simbel</strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+<div class="quiz-section">
+                <h2 style="margin-bottom: 2rem;">🧠 Quiz de compréhension</h2>
+
+                <div class="quiz-question" id="quiz-0">
+                    <h4>Question 1 :</h4>
+                    <p>Que signifie 'Ramsès' ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('ramses_nom', 0, 0, 1)">
+                        Roi du soleil
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('ramses_nom', 0, 1, 1)">
+                        Rê l'a enfanté
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('ramses_nom', 0, 2, 1)">
+                        Fils de la lune
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('ramses_nom', 0, 3, 1)">
+                        Guerrier divin
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-0" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-1">
+                    <h4>Question 2 :</h4>
+                    <p>Combien de temps Ramsès II a-t-il régné ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('ramses_nom', 1, 0, 2)">
+                        10 ans
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('ramses_nom', 1, 1, 2)">
+                        30 ans
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('ramses_nom', 1, 2, 2)">
+                        66 ans
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('ramses_nom', 1, 3, 2)">
+                        100 ans
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-1" style="display: none;"></div>
+                </div>
+
+                <div class="quiz-question" id="quiz-2">
+                    <h4>Question 3 :</h4>
+                    <p>Quel est le monument le plus célèbre de Ramsès II ?</p>
+                    <div class="quiz-options">
+
+                    <div class="quiz-option" data-index="0" onclick="checkAnswer('ramses_nom', 2, 0, 1)">
+                        Grande Pyramide
+                    </div>
+
+                    <div class="quiz-option" data-index="1" onclick="checkAnswer('ramses_nom', 2, 1, 1)">
+                        Abou Simbel
+                    </div>
+
+                    <div class="quiz-option" data-index="2" onclick="checkAnswer('ramses_nom', 2, 2, 1)">
+                        Sphinx
+                    </div>
+
+                    <div class="quiz-option" data-index="3" onclick="checkAnswer('ramses_nom', 2, 3, 1)">
+                        Temple de Karnak
+                    </div>
+
+                    </div>
+                    <div class="quiz-feedback" id="feedback-2" style="display: none;"></div>
+                </div>
+
+                <div class="score-display" id="quiz-score" style="display: none;">
+                    Score : <span id="score-value">0</span> / 3
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="hieroglyphes-debutant.html" class="btn-nav">⬅️ Retour au cours</a>
+            <a href="progression-dashboard.html" class="btn-nav">📊 Voir ma progression</a>
+            <a href="index_COMPLET.html" class="btn-nav">🏠 Accueil</a>
+        </div>
+    </div>
+
+    <script>
+        let quizAnswered = {};
+        let correctAnswers = 0;
+        let exerciseCompleted = false;
+
+        function toggleTranslation() {
+            const detail = document.getElementById('translation-detail');
+            detail.classList.toggle('hidden');
+        }
+
+        function checkAnswer(inscriptionId, questionIndex, selectedIndex, correctIndex) {
+            if (quizAnswered[questionIndex]) return; // Déjà répondu
+
+            const options = document.querySelectorAll(`#quiz-${questionIndex} .quiz-option`);
+            const feedback = document.getElementById(`feedback-${questionIndex}`);
+            const explanation = ["Rams\u00e8s signifie 'R\u00ea (dieu soleil) l'a enfant\u00e9'", "Rams\u00e8s II r\u00e9gna 66 ans, l'un des r\u00e8gnes les plus longs de l'histoire \u00e9gyptienne", "Abou Simbel avec ses 4 colosses de 20 m\u00e8tres est le monument le plus embl\u00e9matique de Rams\u00e8s II"];
+
+            quizAnswered[questionIndex] = true;
+
+            if (selectedIndex === correctIndex) {
+                options[selectedIndex].classList.add('correct');
+                feedback.className = 'quiz-feedback correct';
+                feedback.textContent = '✅ Correct ! ' + explanation[questionIndex];
+                correctAnswers++;
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                options[correctIndex].classList.add('correct');
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = '❌ Incorrect. La bonne réponse était : ' + options[correctIndex].textContent + '. ' + explanation[questionIndex];
+            }
+
+            feedback.style.display = 'block';
+
+            // Désactiver tous les boutons de cette question
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            // Afficher le score si toutes les questions sont répondues
+            if (Object.keys(quizAnswered).length === 3) {
+                const scoreDisplay = document.getElementById('quiz-score');
+                const scoreValue = document.getElementById('score-value');
+                scoreValue.textContent = correctAnswers;
+                scoreDisplay.style.display = 'block';
+
+                // Calculer le score en pourcentage
+                const percentage = Math.round((correctAnswers / 3) * 100);
+
+                // Sauvegarder dans le système de progression
+                if (typeof ProgressionSystem !== 'undefined') {
+                    ProgressionSystem.sauvegarderResultat(
+                        'hieroglyphes',
+                        'debutant',
+                        'ramses_nom',
+                        percentage
+                    );
+                }
+
+                // Afficher message
+                if (percentage >= 80) {
+                    alert('🎉 Excellent ! Vous avez obtenu ' + percentage + '% !');
+                } else if (percentage >= 60) {
+                    alert('👍 Bien joué ! Vous avez obtenu ' + percentage + '%. Continuez ainsi !');
+                } else {
+                    alert('📚 Vous avez obtenu ' + percentage + '%. Relisez le contenu et réessayez !');
+                }
+            }
+        }
+
+        function completeExercise() {
+            if (exerciseCompleted) {
+                alert('Vous avez déjà validé cet exercice !');
+                return;
+            }
+
+            exerciseCompleted = true;
+
+            // Sauvegarder dans le système de progression
+            if (typeof ProgressionSystem !== 'undefined') {
+                ProgressionSystem.sauvegarderResultat(
+                    'hieroglyphes',
+                    'debutant',
+                    'ramses_nom_exercice',
+                    100 // Exercice de copie = 100% si complété
+                );
+            }
+
+            alert('✅ Exercice validé ! Vous avez gagné 12 points !');
+        }
+    </script>
+
+    <div style="display: flex; justify-content: space-between; margin: 3rem 0;"><a href="hieroglyphes-immersion-debutant-ankh_symbole.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">← Précédent</a><a href="immersion-inscriptions-index.html" style="background: rgba(100, 100, 150, 0.3); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">📚 Index</a><a href="hieroglyphes-immersion-debutant-horus_nom.html" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-size: 1.1rem;">Suivant →</a></div>
+
+</body>
+</html>

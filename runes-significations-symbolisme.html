@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Significations & Symbolisme des Runes | Gematria Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(100, 200, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-text {
+            text-align: center;
+            color: #b0bec5;
+            margin: 2rem auto;
+            max-width: 900px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .section-title {
+            color: #64b5f6;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem 0;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 15px;
+        }
+
+        .aett-title {
+            color: #81c784;
+            font-size: 1.8rem;
+            margin: 3rem 0 1rem 0;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(129, 199, 132, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(129, 199, 132, 0.3);
+        }
+
+        .runes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .rune-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .rune-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 181, 246, 0.7);
+            box-shadow: 0 10px 40px rgba(100, 181, 246, 0.4);
+        }
+
+        .rune-header {
+            text-align: center;
+            border-bottom: 2px solid rgba(100, 181, 246, 0.3);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rune-symbol {
+            font-size: 4.5rem;
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .rune-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .rune-pronunciation {
+            color: #81c784;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .rune-section {
+            margin: 1.5rem 0;
+        }
+
+        .rune-section h4 {
+            color: #ffc107;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rune-section p {
+            color: #b0bec5;
+            line-height: 1.7;
+            padding-left: 1rem;
+        }
+
+        .rune-section ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+
+        .rune-section li {
+            color: #b0bec5;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .rune-section li:before {
+            content: "▸";
+            color: #64b5f6;
+            position: absolute;
+            left: -1.2rem;
+        }
+
+        .divination-box {
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-left: 4px solid #64b5f6;
+        }
+
+        .divination-upright {
+            margin-bottom: 0.8rem;
+        }
+
+        .divination-upright strong {
+            color: #4caf50;
+        }
+
+        .divination-reversed strong {
+            color: #ff9800;
+        }
+
+        .bind-runes-section {
+            background: rgba(255, 193, 7, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .bind-runes-section h3 {
+            color: #ffc107;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bind-example {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .bind-example h4 {
+            color: #64b5f6;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(255, 193, 7, 0.5);
+        }
+
+        .quiz-section h3 {
+            color: #ffc107;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin: 2rem 0 1rem 0;
+            color: #fff;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: rgba(100, 181, 246, 0.1);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .quiz-option:hover {
+            background: rgba(100, 181, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+        }
+
+        .quiz-feedback {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            font-weight: bold;
+            min-height: 2rem;
+        }
+
+        .quiz-score {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(100, 181, 246, 0.5);
+        }
+
+        .btn-next {
+            display: block;
+            margin: 1.5rem auto;
+            width: fit-content;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .runes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔮 Étape 2 : Significations & Symbolisme des Runes</h1>
+            <p>Explorez les profondeurs ésotériques du Futhark Elder</p>
+        </header>
+
+        <div class="intro-text">
+            <p>Les runes ne sont pas de simples lettres, mais des portails vers la sagesse ancestrale nordique. Chaque rune incarne des forces cosmiques, des archétypes divins et des principes universels. Dans cette section, vous découvrirez les significations littérales, symboliques et divinatoires des 24 runes du Futhark Elder, organisées par <strong>Aett</strong> (famille de 8 runes).</p>
+        </div>
+
+        <!-- PREMIER AETT -->
+        <div class="aett-title">🌾 Premier Aett : Aett de Freyr (Fertilité & Prospérité)</div>
+        <p style="text-align: center; color: #b0bec5; margin-bottom: 2rem;">Les runes de la manifestation matérielle, de la croissance et de l'abondance</p>
+
+        <div class="runes-grid">
+            <!-- FEHU -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚠ</div>
+                    <div class="rune-name">FEHU</div>
+                    <div class="rune-pronunciation">[fé-hou]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Bétail, richesse mobile, propriété. Dans les sociétés nordiques, le bétail représentait la richesse principale.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Énergie primordiale de création. Fehu incarne le pouvoir de manifester l'abondance, la circulation de l'énergie vitale et la transformation du potentiel en réalité tangible. C'est le feu créateur qui anime toute forme de richesse.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Freyr (dieu de la fertilité et de la prospérité)</li>
+                        <li><strong>Élément :</strong> Feu (créateur et dynamique)</li>
+                        <li><strong>Arbre :</strong> Sureau</li>
+                        <li><strong>Pierre :</strong> Ambre, citrine</li>
+                        <li><strong>Couleur :</strong> Or, rouge vif</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Abondance à venir, nouveau revenu, succès matériel, énergie créative prospère. Partage généreux des richesses. Capacité de manifester vos désirs dans le monde physique.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Perte financière, blocage énergétique, avidité, mauvaise gestion des ressources. Attachement excessif aux possessions matérielles. Nécessité de réévaluer votre relation à l'abondance.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- URUZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚢ</div>
+                    <div class="rune-name">URUZ</div>
+                    <div class="rune-pronunciation">[ou-rouz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Aurochs (bœuf sauvage disparu), force brute, puissance indomptée de la nature.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Force vitale primitive, énergie tellurique, santé robuste. Uruz représente la vitalité sauvage qui coule dans nos veines, le pouvoir de guérison naturelle et la force de transformation personnelle. C'est l'énergie qui façonne la matière brute.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Thor (force), Audhumla (vache cosmique)</li>
+                        <li><strong>Élément :</strong> Terre (manifestation de la force)</li>
+                        <li><strong>Arbre :</strong> Bouleau</li>
+                        <li><strong>Pierre :</strong> Jaspe rouge, hématite</li>
+                        <li><strong>Couleur :</strong> Vert foncé, brun terreux</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Vitalité accrue, guérison, force physique et mentale, nouvelle énergie. Passage initiatique vers une nouvelle forme. Opportunité de développer votre force intérieure.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Faiblesse, maladie, énergie mal dirigée, agressivité. Force utilisée de manière destructive. Besoin de canaliser votre puissance de façon constructive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THURISAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚦ</div>
+                    <div class="rune-name">THURISAZ</div>
+                    <div class="rune-pronunciation">[thou-ri-saz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Géant, épine, marteau de Thor. Représente à la fois la menace et la protection.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Force réactive, protection agressive, destruction nécessaire avant la reconstruction. Thurisaz incarne le chaos contrôlé, l'épine qui protège la rose, le gardien du seuil. C'est l'énergie qui brise les obstacles et défend contre les forces hostiles.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Thor (protecteur de Midgard)</li>
+                        <li><strong>Élément :</strong> Feu (destructeur et purificateur)</li>
+                        <li><strong>Arbre :</strong> Aubépine (épineuse mais protectrice)</li>
+                        <li><strong>Pierre :</strong> Obsidienne, grenat</li>
+                        <li><strong>Couleur :</strong> Rouge sang, noir</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Protection active, conflit nécessaire, destruction constructive, percée. Moment pour défendre vos frontières. Courage face à l'adversité. Purification par le feu.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Danger, précipitation, conflit destructif, vulnérabilité. Protection inadéquate. Agression mal canalisée. Besoin de patience et de réflexion.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANSUZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚨ</div>
+                    <div class="rune-name">ANSUZ</div>
+                    <div class="rune-pronunciation">[an-souz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Dieu ancestral, bouche divine, parole sacrée. Lien direct avec Odin.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Inspiration divine, communication sacrée, sagesse reçue, souffle d'Odin qui anime les humains. Ansuz est la rune de la révélation, de la prophétie et du chant galdr. Elle représente le pont entre les mondes, la voix des ancêtres et la parole créatrice.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Odin (Allfather, dieu de la sagesse)</li>
+                        <li><strong>Élément :</strong> Air (communication, esprit)</li>
+                        <li><strong>Arbre :</strong> Frêne (Yggdrasil)</li>
+                        <li><strong>Pierre :</strong> Lapis lazuli, émeraude</li>
+                        <li><strong>Couleur :</strong> Bleu profond, violet</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Message divin, conseil sage, inspiration créative, nouvelle connaissance. Communication importante à venir. Écoute de l'intuition et des signes. Enseignement spirituel.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Mauvais conseil, malentendu, manipulation verbale, sagesse ignorée. Blocage communicationnel. Difficulté à écouter votre voix intérieure. Méfiance envers les faux prophètes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAIDO -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚱ</div>
+                    <div class="rune-name">RAIDO</div>
+                    <div class="rune-pronunciation">[raï-do]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Chevauchée, voyage, roue, chariot. Mouvement cyclique et directionnel.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Voyage initiatique, quête spirituelle, rythme cosmique, ordre naturel. Raido représente le chemin juste (right way), l'harmonie avec les cycles universels et le mouvement conscient vers un but. C'est la roue de l'année, le char du soleil.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Thor (voyageur des mondes), Nerthus</li>
+                        <li><strong>Élément :</strong> Air/Feu (mouvement dynamique)</li>
+                        <li><strong>Arbre :</strong> Chêne</li>
+                        <li><strong>Pierre :</strong> Chrysoprase, tourmaline</li>
+                        <li><strong>Couleur :</strong> Rouge vif, or</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Voyage physique ou spirituel, progression harmonieuse, alignement avec le rythme juste. Décisions basées sur la justice et l'ordre. Réunion ou réconciliation en approche.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Voyage retardé, désalignement, chaos, rupture de rythme. Injustice. Séparation douloureuse. Besoin de réévaluer votre direction de vie.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KENAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚲ</div>
+                    <div class="rune-name">KENAZ</div>
+                    <div class="rune-pronunciation">[ké-naz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Torche, flamme contrôlée, feu domestique. Lumière dans l'obscurité.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Illumination intérieure, connaissance technique et spirituelle, créativité artistique, transformation alchimique. Kenaz est le feu de la forge qui transforme la matière brute en art, la torche qui révèle les mystères cachés, la flamme de l'inspiration.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Freyja (magie), Heimdall (illumination)</li>
+                        <li><strong>Élément :</strong> Feu (transformateur, maîtrisé)</li>
+                        <li><strong>Arbre :</strong> Pin</li>
+                        <li><strong>Pierre :</strong> Cornaline, ambre brûlé</li>
+                        <li><strong>Couleur :</strong> Orange, jaune lumineux</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Révélation, créativité débordante, maîtrise technique, passion ardente. Nouveau projet artistique ou intellectuel. Énergie sexuelle créative. Guérison par le feu intérieur.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Extinction, perte de créativité, maladie, ignorance. Obscurcissement. Incapacité à voir clairement. Besoin de raviver votre flamme intérieure.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GEBO -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚷ</div>
+                    <div class="rune-name">GEBO</div>
+                    <div class="rune-pronunciation">[gué-bo]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Don, cadeau, échange équitable. Réciprocité sacrée.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Alliance sacrée, partenariat divin, sacrifice mutuel, équilibre cosmique. Gebo représente le concept nordique de "gift" - tout don implique une obligation de retour. C'est l'union des opposés, le mariage mystique, l'équilibre parfait entre donner et recevoir.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Gefjon (déesse des dons), Odin et Frigg (couple divin)</li>
+                        <li><strong>Élément :</strong> Air (échange, mouvement)</li>
+                        <li><strong>Arbre :</strong> Orme</li>
+                        <li><strong>Pierre :</strong> Quartz rose, opale</li>
+                        <li><strong>Couleur :</strong> Bleu ciel, rose</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Partenariat harmonieux, générosité, don inattendu, équilibre parfait. Alliance amoureuse ou commerciale. Sacrifice qui sera récompensé. Union sacrée.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Gebo n'a pas de position inversée car elle est symétrique - elle représente l'équilibre parfait. Cependant, mal entourée, elle peut indiquer un déséquilibre dans les échanges, une dette karmique ou un don empoisonné.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WUNJO -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚹ</div>
+                    <div class="rune-name">WUNJO</div>
+                    <div class="rune-pronunciation">[woun-yo]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Joie, bonheur, harmonie. État de plénitude et de satisfaction.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Joie spirituelle, alignement avec le wyrd (destin), harmonie parfaite entre désir et réalité. Wunjo est l'aboutissement du premier Aett - la joie qui vient de la prospérité bien gérée (Fehu), de la force (Uruz), de la protection (Thurisaz), de la sagesse (Ansuz), du bon chemin (Raido), de la connaissance (Kenaz) et du partage (Gebo).</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Freyr et Freyja (joie, plaisir), Baldr (perfection)</li>
+                        <li><strong>Élément :</strong> Air/Terre (manifestation joyeuse)</li>
+                        <li><strong>Arbre :</strong> Frêne</li>
+                        <li><strong>Pierre :</strong> Citrine, diamant</li>
+                        <li><strong>Couleur :</strong> Jaune doré, blanc lumineux</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Bonheur véritable, succès, harmonie familiale, accomplissement. Période de joie et de célébration. Alignement parfait avec votre destinée. Guérison émotionnelle.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Tristesse, aliénation, désharmonie, retard dans la joie attendue. Difficulté à trouver la satisfaction. Besoin de réévaluer ce qui vous rend vraiment heureux.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ 1 -->
+        <div class="quiz-section" id="quiz1">
+            <h3>🎯 Quiz 1 : Premier Aett (Freyr)</h3>
+            <p style="text-align: center; color: #b0bec5; margin-bottom: 1rem;">Testez votre compréhension des 8 premières runes</p>
+            <div id="quiz1-container"></div>
+            <div class="quiz-score">
+                Score : <span id="score1" style="color: #4caf50; font-weight: bold;">0</span> / 8
+            </div>
+            <button class="btn btn-next" id="resetQuiz1">Recommencer le Quiz</button>
+        </div>
+
+        <!-- DEUXIÈME AETT -->
+        <div class="aett-title">🌉 Deuxième Aett : Aett de Heimdall (Transformation & Destin)</div>
+        <p style="text-align: center; color: #b0bec5; margin-bottom: 2rem;">Les runes des épreuves, de la transformation et du destin inéluctable</p>
+
+        <div class="runes-grid">
+            <!-- HAGALAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚺ</div>
+                    <div class="rune-name">HAGALAZ</div>
+                    <div class="rune-pronunciation">[ha-ga-laz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Grêle, grain de glace destructeur. Force élémentaire incontrôlable.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Disruption divine, destruction nécessaire, graine cosmique de transformation. Hagalaz contient le nombre 9 (sacré pour Odin) et représente la structure de l'univers. C'est la tempête qui détruit pour permettre une renaissance. Le cristal de grêle contient en lui la perfection géométrique de l'ordre cosmique.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Heimdall (gardien), Urd (norne du passé)</li>
+                        <li><strong>Élément :</strong> Glace/Eau (destruction créatrice)</li>
+                        <li><strong>Arbre :</strong> If, frêne</li>
+                        <li><strong>Pierre :</strong> Quartz cristal, onyx</li>
+                        <li><strong>Couleur :</strong> Blanc glacé, bleu glacier</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Bouleversement soudain, destruction libératrice, crise initiatique, force majeure. Événement hors de votre contrôle qui transformera votre vie. Accepter le changement radical.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Hagalaz n'a pas de position inversée - la disruption cosmique est absolue. Elle annonce toujours une transformation majeure, que vous soyez prêt ou non.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAUTHIZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᚾ</div>
+                    <div class="rune-name">NAUTHIZ</div>
+                    <div class="rune-pronunciation">[naw-tiz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Besoin, nécessité, contrainte. Le feu de friction créé par le besoin.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Nécessité créatrice, contrainte qui forge le caractère, résistance qui renforce. Nauthiz est le feu sacré produit par la friction de deux bois (need-fire), symbole de l'effort nécessaire pour créer quelque chose de précieux. C'est l'épreuve qui révèle votre vraie nature, la dette karmique qui doit être payée.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Nornes (tisserandes du destin), Skuld (norne du futur)</li>
+                        <li><strong>Élément :</strong> Feu (friction, nécessité)</li>
+                        <li><strong>Arbre :</strong> Hêtre, sorbier</li>
+                        <li><strong>Pierre :</strong> Obsidienne neigeuse, lapis lazuli</li>
+                        <li><strong>Couleur :</strong> Noir, rouge foncé</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Épreuve nécessaire, contrainte qui enseigne, délai frustrant mais bénéfique, patience requise. Moment d'apprendre par la difficulté. Résistance qui vous renforce.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Souffrance inutile, manque mal géré, dépendance, auto-sabotage. Refus d'apprendre la leçon. Victimisation. Besoin de transformer la contrainte en motivation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISA -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛁ</div>
+                    <div class="rune-name">ISA</div>
+                    <div class="rune-pronunciation">[i-sa]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Glace, immobilité, stase. Le froid qui fige toute activité.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Ego concentré, volonté pure, immobilité créatrice, cristallisation de l'essence. Isa est la rune du "je suis" primordial, le pilier de glace qui soutient les neuf mondes, le moment suspendu avant l'action. C'est l'hiver qui préserve la graine pour le printemps, la méditation profonde qui concentre le pouvoir.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Skadi (géante des glaces), Verdandi (norne du présent)</li>
+                        <li><strong>Élément :</strong> Glace (immobilité absolue)</li>
+                        <li><strong>Arbre :</strong> Aulne</li>
+                        <li><strong>Pierre :</strong> Quartz clair, pierre de lune</li>
+                        <li><strong>Couleur :</strong> Blanc pur, argent</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Pause nécessaire, arrêt du temps, concentration, introspection profonde. Moment pour se recentrer sur soi. Clarté glaciale. Préservation de l'essentiel. Période d'hibernation spirituelle.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Isa n'a pas de position inversée - la glace est la glace. Cependant, mal aspectée, elle peut indiquer un blocage permanent, de l'isolement, de la froideur émotionnelle ou de la rigidité excessive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JERA -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛃ</div>
+                    <div class="rune-name">JERA</div>
+                    <div class="rune-pronunciation">[yé-ra]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Année, moisson, cycle complet. Le temps nécessaire pour qu'une graine devienne récolte.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Roue solaire, cycle cosmique, justice karmique, réciprocité universelle. Jera représente le concept "ce que tu sèmes, tu le récolteras". C'est la grande roue de l'année qui tourne, les saisons qui se succèdent, le temps qui récompense la patience et l'effort. Les deux formes en S représentent l'été et l'hiver en équilibre éternel.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Freyr et Freyja (fertilité), Sif (déesse des moissons)</li>
+                        <li><strong>Élément :</strong> Terre (cycles naturels)</li>
+                        <li><strong>Arbre :</strong> Chêne</li>
+                        <li><strong>Pierre :</strong> Cornaline, citrine</li>
+                        <li><strong>Couleur :</strong> Or, vert, brun</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Récolte méritée, aboutissement, récompense du travail accompli, cycle favorable. Justice karmique positive. Patience récompensée. Abondance en temps voulu.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Jera n'a pas de position inversée - le cycle tourne toujours. Cependant, mal aspectée, elle peut indiquer une mauvaise récolte due à un mauvais semis, un timing défavorable ou l'impatience.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EIHWAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛇ</div>
+                    <div class="rune-name">EIHWAZ</div>
+                    <div class="rune-pronunciation">[aï-waz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>If (arbre sacré), arc de chasse. Bois dur utilisé pour la magie et la guerre.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Mort initiatique et renaissance, axe vertical entre les mondes, endurance transcendante, pouvoir de Yggdrasil. Eihwaz est l'arbre-monde lui-même, le pilier qui relie tous les royaumes. L'if est toxique mais éternel, symbole de mort et d'immortalité. C'est la rune du sacrifice d'Odin sur Yggdrasil - la mort qui mène à l'illumination.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Odin (pendu sur l'arbre), Ullr (dieu de l'arc)</li>
+                        <li><strong>Élément :</strong> Tous (arbre-monde connecte tout)</li>
+                        <li><strong>Arbre :</strong> If (sacré et vénéneux)</li>
+                        <li><strong>Pierre :</strong> Topaze, améthyste</li>
+                        <li><strong>Couleur :</strong> Vert sombre, violet profond</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Transformation profonde, initiation mystique, endurance face à l'épreuve, connexion aux mondes spirituels. Mort symbolique d'un ancien moi. Force intérieure pour traverser l'obscurité.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Eihwaz n'a pas de position inversée - elle est un axe vertical parfait. Elle peut cependant indiquer une résistance à la transformation nécessaire, une peur de la mort symbolique ou un blocage spirituel.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERTHRO -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛈ</div>
+                    <div class="rune-name">PERTHRO</div>
+                    <div class="rune-pronunciation">[pèr-thro]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Coupe à dés, matrice, secret caché. Récipient du mystère.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Mystère du destin, synchronicité, matrices karmiques, secrets du wyrd. Perthro est la coupe dans laquelle les Nornes puisent pour tisser le destin, le puits d'Urd, le hasard qui n'en est pas un. Elle représente les mystères féminins de la naissance et de la divination, la connexion au flux du temps non-linéaire.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Nornes (Urd, Verdandi, Skuld), Frigg (voyante)</li>
+                        <li><strong>Élément :</strong> Eau (mystère, inconscient)</li>
+                        <li><strong>Arbre :</strong> Pommier, peuplier</li>
+                        <li><strong>Pierre :</strong> Aigue-marine, perle</li>
+                        <li><strong>Couleur :</strong> Bleu nuit, argent</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Révélation occulte, synchronicité, mystère bénéfique, don psychique. Quelque chose de caché sera révélé. Chance au jeu de la vie. Secrets du destin.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Secret désagréable, illusions, addiction, déception. Mystère toxique. Manipulation du hasard. Obsession des résultats futurs au détriment du présent.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALGIZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛉ</div>
+                    <div class="rune-name">ALGIZ</div>
+                    <div class="rune-pronunciation">[al-guiz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Élan, protection, bois de cerf, main levée vers le divin.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Connexion divine, antenne spirituelle, protection sacrée, pont entre mondes. Algiz est la main levée du chaman en transe, les bois du cerf cosmique qui touchent le ciel, l'invocation qui appelle les dieux. C'est la protection la plus puissante - celle qui vient d'en haut. La forme évoque aussi Yggdrasil et l'humain en prière.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Heimdall (gardien vigilant), Valkyries (protectrices)</li>
+                        <li><strong>Élément :</strong> Air (connexion spirituelle)</li>
+                        <li><strong>Arbre :</strong> If, sorbier</li>
+                        <li><strong>Pierre :</strong> Améthyste, quartz clair</li>
+                        <li><strong>Couleur :</strong> Or lumineux, blanc pur</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Protection divine active, éveil spirituel, intuition aiguisée, défense magique. Connexion avec votre ange gardien ou esprit totem. Moment de vigilance sacrée.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Vulnérabilité, perte de connexion spirituelle, protection inadéquate, naïveté. Besoin de renforcer vos boucliers psychiques. Attention aux influences négatives.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOWILO -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛊ</div>
+                    <div class="rune-name">SOWILO</div>
+                    <div class="rune-pronunciation">[so-wi-lo]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Soleil, roue solaire, éclair de lumière. Source de toute vie.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Volonté victorieuse, énergie solaire pure, illumination totale, succès assuré. Sowilo est la foudre de clarté qui dissipe tout doute, le soleil qui vainc toujours l'obscurité, l'énergie masculine créatrice au sommet de sa puissance. Elle clôture le deuxième Aett par la victoire de la lumière après les épreuves. C'est le "si" sacré - la force de vie elle-même.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Sunna/Sól (déesse du soleil), Baldr (lumineux)</li>
+                        <li><strong>Élément :</strong> Feu/Air (lumière pure)</li>
+                        <li><strong>Arbre :</strong> Genévrier, laurier</li>
+                        <li><strong>Pierre :</strong> Citrine, diamant, topaze dorée</li>
+                        <li><strong>Couleur :</strong> Or brillant, jaune solaire</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Victoire assurée, succès éclatant, énergie vitale débordante, clarté totale. La lumière vient dissiper les ténèbres. Guérison puissante. Confiance absolue. Objectif atteint.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Sowilo n'a pas de position inversée - le soleil est toujours le soleil. Cependant, mal aspectée, elle peut indiquer un excès d'ego, un orgueil démesuré, ou l'épuisement dû à trop de feu.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ 2 -->
+        <div class="quiz-section" id="quiz2">
+            <h3>🎯 Quiz 2 : Deuxième Aett (Heimdall)</h3>
+            <p style="text-align: center; color: #b0bec5; margin-bottom: 1rem;">Maîtrisez-vous les runes de transformation ?</p>
+            <div id="quiz2-container"></div>
+            <div class="quiz-score">
+                Score : <span id="score2" style="color: #4caf50; font-weight: bold;">0</span> / 8
+            </div>
+            <button class="btn btn-next" id="resetQuiz2">Recommencer le Quiz</button>
+        </div>
+
+        <!-- TROISIÈME AETT -->
+        <div class="aett-title">⚖️ Troisième Aett : Aett de Tyr (Courage & Communauté)</div>
+        <p style="text-align: center; color: #b0bec5; margin-bottom: 2rem;">Les runes de la civilisation, de l'honneur et du retour au sacré</p>
+
+        <div class="runes-grid">
+            <!-- TIWAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛏ</div>
+                    <div class="rune-name">TIWAZ</div>
+                    <div class="rune-pronunciation">[ti-waz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Tyr (dieu de la guerre et de la justice), lance, flèche vers le ciel.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Justice cosmique, sacrifice honorable, courage moral, ordre divin. Tiwaz représente Tyr qui sacrifia sa main pour lier Fenrir - le sacrifice du soi pour le bien commun. C'est la loi, l'honneur, le guerrier spirituel qui combat pour la justice. La forme pointe vers Polaris, l'étoile qui guide les navigateurs.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Tyr (justice, honneur, courage)</li>
+                        <li><strong>Élément :</strong> Air (raison, justice)</li>
+                        <li><strong>Arbre :</strong> Chêne</li>
+                        <li><strong>Pierre :</strong> Hématite, rubis</li>
+                        <li><strong>Couleur :</strong> Rouge sang, or</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Victoire honorable, justice rendue, courage face au danger, sacrifice nécessaire. Leadership juste. Bataille spirituelle. Défense des principes. Intégrité récompensée.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Injustice, lâcheté, déshonneur, combat perdu. Manque de courage pour défendre vos principes. Sacrifice inutile. Besoin de retrouver votre code moral.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BERKANO -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛒ</div>
+                    <div class="rune-name">BERKANO</div>
+                    <div class="rune-pronunciation">[bèr-ka-no]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Bouleau, déesse-mère, croissance, renaissance printanière.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Principe féminin créateur, naissance et renaissance, soins maternels, croissance douce. Berkano est la Grande Mère sous toutes ses formes - Frigg, Freyja, la Terre elle-même. Le bouleau est le premier arbre à reverdir au printemps. C'est la fertilité, la famille, la guérison par l'amour, le foyer sacré.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Frigg, Freyja, Berchta (mère divine)</li>
+                        <li><strong>Élément :</strong> Terre (nourriture, croissance)</li>
+                        <li><strong>Arbre :</strong> Bouleau (arbre de renaissance)</li>
+                        <li><strong>Pierre :</strong> Pierre de lune, quartz rose</li>
+                        <li><strong>Couleur :</strong> Vert tendre, blanc argenté</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Nouvelle naissance (littérale ou symbolique), croissance, fertilité, soins maternels. Nouveau projet qui grandit. Guérison douce. Retour à la maison. Amour maternel.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Problèmes familiaux, stérilité, négligence, croissance entravée. Conflits maternels. Difficulté à prendre soin de soi ou des autres. Besoin de nourrir votre âme.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EHWAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛖ</div>
+                    <div class="rune-name">EHWAZ</div>
+                    <div class="rune-pronunciation">[é-waz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Cheval, partenariat, véhicule, mouvement harmonieux.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Alliance sacrée entre l'humain et l'animal, confiance mutuelle, progression harmonieuse, dualité en équilibre. Ehwaz représente Sleipnir (cheval à 8 pattes d'Odin) et tous les partenariats où deux êtres deviennent plus forts ensemble. Les deux lignes parallèles montrent l'égalité et le respect mutuel.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Odin (Sleipnir), Freyja (char tiré par chats)</li>
+                        <li><strong>Élément :</strong> Terre/Air (mouvement terrestre)</li>
+                        <li><strong>Arbre :</strong> Frêne, chêne</li>
+                        <li><strong>Pierre :</strong> Chrysoprase, agate</li>
+                        <li><strong>Couleur :</strong> Blanc, brun</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Partenariat harmonieux, voyage partagé, confiance mutuelle, progression rapide grâce à la collaboration. Mariage, amitié profonde ou alliance professionnelle. Synergie parfaite.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Partenariat rompu, trahison, désaccord, progression bloquée. Manque de confiance. Relation déséquilibrée. Besoin de réévaluer vos alliances.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MANNAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛗ</div>
+                    <div class="rune-name">MANNAZ</div>
+                    <div class="rune-pronunciation">[man-naz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Humain, humanité, société, conscience de soi.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Divine humanité, interconnexion sociale, intelligence collective, le "je" dans le "nous". Mannaz représente Ask et Embla (premiers humains) recevant le souffle d'Odin. C'est la conscience qui nous distingue des animaux, la culture qui nous élève, la communauté qui nous soutient. La forme évoque deux personnes se soutenant mutuellement.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Heimdall (père des classes humaines), Odin (créateur)</li>
+                        <li><strong>Élément :</strong> Air (pensée, raison)</li>
+                        <li><strong>Arbre :</strong> Houx</li>
+                        <li><strong>Pierre :</strong> Grenat, onyx</li>
+                        <li><strong>Couleur :</strong> Rouge foncé, violet</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Conscience de soi accrue, coopération humaine, intelligence collective, aide de la communauté. Comprendre votre place dans le monde. Empathie et compassion. Évolution personnelle.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Isolement, égoïsme, exclusion sociale, perte d'identité. Conflit avec la société. Auto-sabotage. Besoin de reconnexion avec votre humanité et celle des autres.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAGUZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛚ</div>
+                    <div class="rune-name">LAGUZ</div>
+                    <div class="rune-pronunciation">[la-gouz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Eau, lac, flux, océan. L'élément liquide dans toutes ses formes.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Flux psychique, intuition profonde, inconscient collectif, émotions purificatrices. Laguz est l'eau qui s'adapte à tout, coule autour des obstacles, érode la pierre. C'est le puits sacré, les larmes de guérison, la mer primordiale d'où vient toute vie. Elle représente aussi les rêves, les visions et la magie fluide.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Njord (mer), Nerthus (lac sacré), Aegir et Ran</li>
+                        <li><strong>Élément :</strong> Eau (flux, émotion, intuition)</li>
+                        <li><strong>Arbre :</strong> Saule</li>
+                        <li><strong>Pierre :</strong> Aigue-marine, perle, pierre de lune</li>
+                        <li><strong>Couleur :</strong> Bleu profond, vert d'eau</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Intuition puissante, rêves prophétiques, flux émotionnel sain, adaptabilité. Purification par l'eau. Connexion aux énergies lunaires. Voyage sur l'eau. Lâcher-prise.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Noyade émotionnelle, illusions, peurs irrationnelles, stagnation. Émotions toxiques. Intuition bloquée. Besoin de drainer les eaux stagnantes de votre psyché.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INGWAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛜ</div>
+                    <div class="rune-name">INGWAZ</div>
+                    <div class="rune-pronunciation">[ing-waz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Freyr (aussi appelé Ing), fertilité, graine, potentiel enfermé.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Gestation divine, potentiel en incubation, énergie contenue prête à exploser, accomplissement interne. Ingwaz est la graine dans la terre avant le printemps, la grossesse avant la naissance, le moment de calme avant la percée. La forme de losange représente la matrice, l'œuf cosmique, le potentiel parfait.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Freyr/Ing (fertilité masculine), Nerthus (terre-mère)</li>
+                        <li><strong>Élément :</strong> Terre/Eau (fertilité)</li>
+                        <li><strong>Arbre :</strong> Pommier</li>
+                        <li><strong>Pierre :</strong> Ambre, jaspe jaune</li>
+                        <li><strong>Couleur :</strong> Jaune or, vert tendre</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Période de gestation, potentiel qui mûrit, accomplissement interne, nouvelle vie en préparation. Patience - quelque chose de merveilleux est en train de se former. Fertilité et abondance futures assurées.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Ingwaz n'a pas de position inversée - la graine contient toujours son potentiel. Cependant, mal aspectée, elle peut indiquer une gestation trop longue, un potentiel gaspillé ou une peur de l'accouchement (littéral ou symbolique).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAGAZ -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛞ</div>
+                    <div class="rune-name">DAGAZ</div>
+                    <div class="rune-pronunciation">[da-gaz]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Jour, aube, lumière qui vient après la nuit, éveil.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Percée spirituelle, éveil de conscience, transformation instantanée, synthèse des opposés. Dagaz est le moment où la nuit devient jour, l'instant de révélation soudaine, l'illumination. La forme en sablier représente la jonction des mondes, le moment où tout bascule. C'est l'aube d'une nouvelle ère de conscience.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Heimdall (aube), Baldr (lumière parfaite)</li>
+                        <li><strong>Élément :</strong> Air/Feu (lumière de l'esprit)</li>
+                        <li><strong>Arbre :</strong> Épicéa</li>
+                        <li><strong>Pierre :</strong> Cristal de roche clair, diamant</li>
+                        <li><strong>Couleur :</strong> Bleu clair de l'aube, blanc lumineux</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Percée majeure, illumination soudaine, transformation radicale, espoir nouveau. L'aube après la nuit noire. Révélation qui change tout. Équilibre parfait entre opposés. Nouveau départ radical.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Note :</strong> Dagaz n'a pas de position inversée - l'aube vient toujours. Elle peut cependant indiquer une résistance au changement radical, une peur de la lumière après l'obscurité, ou un aveuglement par trop de clarté soudaine.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTHALA -->
+            <div class="rune-card">
+                <div class="rune-header">
+                    <div class="rune-symbol">ᛟ</div>
+                    <div class="rune-name">OTHALA</div>
+                    <div class="rune-pronunciation">[o-tha-la]</div>
+                </div>
+
+                <div class="rune-section">
+                    <h4>📜 Signification Littérale</h4>
+                    <p>Héritage ancestral, propriété familiale, patrimoine, terre natale.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🌟 Sens Ésotérique</h4>
+                    <p>Héritage spirituel, sagesse ancestrale, racines profondes, accomplissement du cycle. Othala clôture le Futhark - c'est le retour au foyer après le voyage initiatique complet à travers les 24 runes. Elle représente ce qui ne peut être acheté mais seulement hérité : traditions, sang, terre, mémoire ancestrale. C'est votre place dans la lignée éternelle.</p>
+                </div>
+
+                <div class="rune-section">
+                    <h4>⚡ Correspondances</h4>
+                    <ul>
+                        <li><strong>Divinité :</strong> Odin (ancêtre de tous), Frigg (foyer)</li>
+                        <li><strong>Élément :</strong> Terre (racines, fondations)</li>
+                        <li><strong>Arbre :</strong> Aubépine</li>
+                        <li><strong>Pierre :</strong> Rubis, grenat</li>
+                        <li><strong>Couleur :</strong> Or profond, brun terre</li>
+                    </ul>
+                </div>
+
+                <div class="rune-section">
+                    <h4>🔮 Interprétation Divinatoire</h4>
+                    <div class="divination-box">
+                        <div class="divination-upright">
+                            <strong>Droite :</strong> Héritage reçu, retour aux racines, propriété acquise, sagesse ancestrale. Connexion à vos ancêtres. Traditions familiales. Accomplissement du cycle. Votre vraie place trouvée.
+                        </div>
+                        <div class="divination-reversed">
+                            <strong>Inversée :</strong> Rupture avec les racines, héritage refusé ou perdu, sans-abri spirituel, traditions toxiques. Conflit familial. Besoin de créer votre propre héritage plutôt que de dépendre de celui reçu.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ 3 -->
+        <div class="quiz-section" id="quiz3">
+            <h3>🎯 Quiz 3 : Troisième Aett (Tyr)</h3>
+            <p style="text-align: center; color: #b0bec5; margin-bottom: 1rem;">Complétez votre maîtrise du Futhark Elder</p>
+            <div id="quiz3-container"></div>
+            <div class="quiz-score">
+                Score : <span id="score3" style="color: #4caf50; font-weight: bold;">0</span> / 8
+            </div>
+            <button class="btn btn-next" id="resetQuiz3">Recommencer le Quiz</button>
+        </div>
+
+        <!-- BIND RUNES -->
+        <div class="bind-runes-section">
+            <h3>🔱 Les Bind Runes (Bindrúnir)</h3>
+            <p style="text-align: center; color: #b0bec5; margin: 1rem auto 2rem; max-width: 800px;">
+                Les Bind Runes sont des combinaisons de plusieurs runes fusionnées en un seul symbole magique. Chaque rune apporte son pouvoir, créant une synergie plus puissante que la somme de ses parties. Utilisées pour la protection, la magie et les intentions concentrées.
+            </p>
+
+            <div class="bind-example">
+                <h4>Protection & Succès</h4>
+                <p style="text-align: center; font-size: 3rem; color: #64b5f6; margin: 1rem 0;">ᛉᛏ</p>
+                <p style="color: #b0bec5; text-align: center;">
+                    <strong>Algiz (ᛉ) + Tiwaz (ᛏ)</strong><br>
+                    Protection divine + Justice victorieuse<br>
+                    Utilisée par les guerriers pour la protection et la victoire honorable
+                </p>
+            </div>
+
+            <div class="bind-example">
+                <h4>Amour & Harmonie</h4>
+                <p style="text-align: center; font-size: 3rem; color: #64b5f6; margin: 1rem 0;">ᚷᚹ</p>
+                <p style="color: #b0bec5; text-align: center;">
+                    <strong>Gebo (ᚷ) + Wunjo (ᚹ)</strong><br>
+                    Don sacré + Joie<br>
+                    Pour attirer l'amour harmonieux et les partenariats joyeux
+                </p>
+            </div>
+
+            <div class="bind-example">
+                <h4>Richesse & Croissance</h4>
+                <p style="text-align: center; font-size: 3rem; color: #64b5f6; margin: 1rem 0;">ᚠᛃ</p>
+                <p style="color: #b0bec5; text-align: center;">
+                    <strong>Fehu (ᚠ) + Jera (ᛃ)</strong><br>
+                    Richesse mobile + Moisson<br>
+                    Pour la prospérité qui vient de l'effort patient et du bon timing
+                </p>
+            </div>
+
+            <div class="bind-example">
+                <h4>Sagesse & Connaissance</h4>
+                <p style="text-align: center; font-size: 3rem; color: #64b5f6; margin: 1rem 0;">ᚨᚲ</p>
+                <p style="color: #b0bec5; text-align: center;">
+                    <strong>Ansuz (ᚨ) + Kenaz (ᚲ)</strong><br>
+                    Parole divine + Torche de connaissance<br>
+                    Pour l'illumination spirituelle et la compréhension profonde
+                </p>
+            </div>
+
+            <div class="bind-example">
+                <h4>Guérison & Renaissance</h4>
+                <p style="text-align: center; font-size: 3rem; color: #64b5f6; margin: 1rem 0;">ᚢᛒ</p>
+                <p style="color: #b0bec5; text-align: center;">
+                    <strong>Uruz (ᚢ) + Berkano (ᛒ)</strong><br>
+                    Force vitale + Croissance nouvelle<br>
+                    Pour la guérison complète et le renouveau après la maladie
+                </p>
+            </div>
+
+            <p style="text-align: center; color: #81c784; margin-top: 2rem; font-style: italic;">
+                Pour créer votre propre Bind Rune, choisissez 2-4 runes dont les significations correspondent à votre intention, puis superposez-les en partageant des lignes communes. Chargez le symbole par la méditation et le chant galdr.
+            </p>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+            <a href="runes-parcours-complet.html" class="btn">← Retour au Parcours</a>
+            <a href="index.html" class="btn">🏠 Accueil</a>
+            <a href="runes-alphabet-complet.html" class="btn">← Étape 1 : Alphabet</a>
+            <a href="#" class="btn" style="background: linear-gradient(135deg, #ffc107, #ff9800);">Étape 3 : Exercices →</a>
+        </div>
+    </div>
+
+    <script>
+        // QUIZ DATA
+        const quiz1Questions = [
+            {
+                question: "Quelle rune représente la richesse mobile et l'abondance ?",
+                options: ["Fehu", "Uruz", "Gebo", "Wunjo"],
+                correct: "Fehu",
+                explanation: "Fehu (ᚠ) signifie bétail/richesse et représente l'abondance matérielle et l'énergie de manifestation."
+            },
+            {
+                question: "Quelle divinité est associée à Ansuz ?",
+                options: ["Thor", "Odin", "Freyr", "Tyr"],
+                correct: "Odin",
+                explanation: "Ansuz (ᚨ) est directement liée à Odin, le Allfather, et représente la sagesse divine et la communication sacrée."
+            },
+            {
+                question: "Quelle rune symbolise la protection par l'épine ?",
+                options: ["Thurisaz", "Algiz", "Tiwaz", "Uruz"],
+                correct: "Thurisaz",
+                explanation: "Thurisaz (ᚦ) signifie géant/épine et représente la protection agressive, comme le marteau de Thor."
+            },
+            {
+                question: "Quelle rune est associée à l'élément Feu transformateur ?",
+                options: ["Kenaz", "Sowilo", "Fehu", "Dagaz"],
+                correct: "Kenaz",
+                explanation: "Kenaz (ᚲ) est la torche, le feu maîtrisé qui transforme et illumine, associé à la créativité et la connaissance."
+            },
+            {
+                question: "Quelle rune représente le voyage et le rythme juste ?",
+                options: ["Raido", "Ehwaz", "Laguz", "Jera"],
+                correct: "Raido",
+                explanation: "Raido (ᚱ) signifie chevauchée/voyage et représente le mouvement harmonieux en accord avec l'ordre cosmique."
+            },
+            {
+                question: "Quelle rune n'a PAS de position inversée car elle est symétrique ?",
+                options: ["Gebo", "Wunjo", "Fehu", "Raido"],
+                correct: "Gebo",
+                explanation: "Gebo (ᚷ) est parfaitement symétrique et représente l'équilibre parfait du don et de la réception."
+            },
+            {
+                question: "Quelle rune clôture le premier Aett avec la joie ?",
+                options: ["Wunjo", "Gebo", "Sowilo", "Dagaz"],
+                correct: "Wunjo",
+                explanation: "Wunjo (ᚹ) est la dernière rune du premier Aett et représente la joie, l'harmonie et l'accomplissement."
+            },
+            {
+                question: "Quelle rune représente la force vitale primitive de l'aurochs ?",
+                options: ["Uruz", "Fehu", "Thurisaz", "Tiwaz"],
+                correct: "Uruz",
+                explanation: "Uruz (ᚢ) signifie aurochs (bœuf sauvage) et incarne la force brute, la vitalité et la puissance de transformation."
+            }
+        ];
+
+        const quiz2Questions = [
+            {
+                question: "Quelle rune représente la disruption divine et la transformation radicale ?",
+                options: ["Hagalaz", "Thurisaz", "Nauthiz", "Isa"],
+                correct: "Hagalaz",
+                explanation: "Hagalaz (ᚺ) signifie grêle et représente la destruction nécessaire qui précède la renaissance."
+            },
+            {
+                question: "Quelle rune symbolise le feu de friction créé par le besoin ?",
+                options: ["Nauthiz", "Kenaz", "Sowilo", "Thurisaz"],
+                correct: "Nauthiz",
+                explanation: "Nauthiz (ᚾ) représente la nécessité créatrice, le feu sacré produit par la friction de deux bois."
+            },
+            {
+                question: "Quelle rune est associée à l'immobilité de la glace ?",
+                options: ["Isa", "Hagalaz", "Nauthiz", "Laguz"],
+                correct: "Isa",
+                explanation: "Isa (ᛁ) signifie glace et représente la concentration, l'ego pur et le moment de stase créatrice."
+            },
+            {
+                question: "Quelle rune représente la moisson et le cycle de l'année ?",
+                options: ["Jera", "Ingwaz", "Berkano", "Dagaz"],
+                correct: "Jera",
+                explanation: "Jera (ᛃ) signifie année/moisson et incarne le principe 'ce que tu sèmes, tu le récolteras'."
+            },
+            {
+                question: "Quelle rune est liée à l'arbre If et à Yggdrasil ?",
+                options: ["Eihwaz", "Algiz", "Berkano", "Othala"],
+                correct: "Eihwaz",
+                explanation: "Eihwaz (ᛇ) représente l'If, arbre sacré associé à Yggdrasil, symbolisant mort et renaissance."
+            },
+            {
+                question: "Quelle rune symbolise les mystères du destin et la coupe des Nornes ?",
+                options: ["Perthro", "Hagalaz", "Nauthiz", "Isa"],
+                correct: "Perthro",
+                explanation: "Perthro (ᛈ) est la coupe du mystère, liée aux Nornes et aux secrets du wyrd (destin)."
+            },
+            {
+                question: "Quelle rune représente la protection divine et l'antenne spirituelle ?",
+                options: ["Algiz", "Thurisaz", "Tiwaz", "Sowilo"],
+                correct: "Algiz",
+                explanation: "Algiz (ᛉ) symbolise la main levée vers le divin, les bois du cerf, la connexion et protection sacrée."
+            },
+            {
+                question: "Quelle rune clôture le deuxième Aett avec la victoire du soleil ?",
+                options: ["Sowilo", "Dagaz", "Wunjo", "Tiwaz"],
+                correct: "Sowilo",
+                explanation: "Sowilo (ᛊ) est le soleil victorieux qui dissipe l'obscurité, concluant le deuxième Aett avec la lumière."
+            }
+        ];
+
+        const quiz3Questions = [
+            {
+                question: "Quelle rune représente le dieu qui sacrifia sa main pour la justice ?",
+                options: ["Tiwaz", "Ansuz", "Thurisaz", "Othala"],
+                correct: "Tiwaz",
+                explanation: "Tiwaz (ᛏ) représente Tyr qui sacrifia sa main pour lier Fenrir, symbole de justice et courage."
+            },
+            {
+                question: "Quelle rune symbolise la déesse-mère et le bouleau ?",
+                options: ["Berkano", "Laguz", "Ingwaz", "Perthro"],
+                correct: "Berkano",
+                explanation: "Berkano (ᛒ) représente le bouleau, la renaissance printanière et le principe maternel créateur."
+            },
+            {
+                question: "Quelle rune représente le partenariat harmonieux et Sleipnir ?",
+                options: ["Ehwaz", "Raido", "Gebo", "Mannaz"],
+                correct: "Ehwaz",
+                explanation: "Ehwaz (ᛖ) symbolise le cheval, notamment Sleipnir, et représente le partenariat basé sur la confiance."
+            },
+            {
+                question: "Quelle rune incarne l'humanité et la conscience collective ?",
+                options: ["Mannaz", "Othala", "Tiwaz", "Dagaz"],
+                correct: "Mannaz",
+                explanation: "Mannaz (ᛗ) représente l'humain, la société, l'interconnexion sociale et la divine humanité."
+            },
+            {
+                question: "Quelle rune est associée à l'eau, l'intuition et les rêves ?",
+                options: ["Laguz", "Isa", "Perthro", "Berkano"],
+                correct: "Laguz",
+                explanation: "Laguz (ᛚ) symbolise l'eau sous toutes ses formes, l'intuition profonde et le flux psychique."
+            },
+            {
+                question: "Quelle rune représente la graine en gestation et Freyr/Ing ?",
+                options: ["Ingwaz", "Jera", "Berkano", "Fehu"],
+                correct: "Ingwaz",
+                explanation: "Ingwaz (ᛜ) est liée à Freyr (Ing) et représente le potentiel en incubation, la gestation divine."
+            },
+            {
+                question: "Quelle rune symbolise l'aube et la percée spirituelle ?",
+                options: ["Dagaz", "Sowilo", "Kenaz", "Ansuz"],
+                correct: "Dagaz",
+                explanation: "Dagaz (ᛞ) est l'aube, le moment de transformation instantanée, la synthèse des opposés et l'illumination."
+            },
+            {
+                question: "Quelle rune clôture le Futhark avec l'héritage ancestral ?",
+                options: ["Othala", "Dagaz", "Ingwaz", "Mannaz"],
+                correct: "Othala",
+                explanation: "Othala (ᛟ) est la dernière rune du Futhark et représente l'héritage, les racines et le retour au foyer."
+            }
+        ];
+
+        // QUIZ FUNCTIONS
+        function createQuiz(containerId, questions, scoreId, resetBtnId) {
+            const container = document.getElementById(containerId);
+            let currentQ = 0;
+            let score = 0;
+            let answered = new Set();
+
+            function displayQuestion() {
+                if (currentQ >= questions.length) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 2rem;">
+                            <h4 style="color: #4caf50; font-size: 2rem;">Quiz Terminé !</h4>
+                            <p style="color: #b0bec5; font-size: 1.3rem; margin-top: 1rem;">
+                                Vous avez obtenu <strong style="color: #ffc107;">${score}</strong> sur ${questions.length}
+                            </p>
+                            <p style="color: #64b5f6; margin-top: 1rem;">
+                                ${score === questions.length ? "Parfait ! Vous maîtrisez cet Aett !" :
+                                  score >= questions.length * 0.75 ? "Excellent travail !" :
+                                  score >= questions.length * 0.5 ? "Bien joué ! Continuez à étudier." :
+                                  "Révisez les runes et réessayez !"}
+                            </p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const q = questions[currentQ];
+                const optionsHTML = q.options.map(opt =>
+                    `<div class="quiz-option" data-answer="${opt}">${opt}</div>`
+                ).join('');
+
+                container.innerHTML = `
+                    <div class="quiz-question">Question ${currentQ + 1}/${questions.length}</div>
+                    <div class="quiz-question">${q.question}</div>
+                    <div class="quiz-options">${optionsHTML}</div>
+                    <div class="quiz-feedback"></div>
+                `;
+
+                // Add click handlers
+                document.querySelectorAll(`#${containerId} .quiz-option`).forEach(opt => {
+                    opt.addEventListener('click', function() {
+                        if (answered.has(currentQ)) return;
+
+                        answered.add(currentQ);
+                        const answer = this.dataset.answer;
+                        const feedback = container.querySelector('.quiz-feedback');
+                        const allOptions = container.querySelectorAll('.quiz-option');
+
+                        allOptions.forEach(o => o.style.pointerEvents = 'none');
+
+                        if (answer === q.correct) {
+                            this.classList.add('correct');
+                            feedback.innerHTML = `<span style="color: #4caf50;">✅ Correct !</span> ${q.explanation}`;
+                            score++;
+                            document.getElementById(scoreId).textContent = score;
+                        } else {
+                            this.classList.add('wrong');
+                            feedback.innerHTML = `<span style="color: #f44336;">❌ Incorrect.</span> ${q.explanation}`;
+                            allOptions.forEach(o => {
+                                if (o.dataset.answer === q.correct) {
+                                    o.classList.add('correct');
+                                }
+                            });
+                        }
+
+                        setTimeout(() => {
+                            currentQ++;
+                            displayQuestion();
+                        }, 3000);
+                    });
+                });
+            }
+
+            displayQuestion();
+
+            document.getElementById(resetBtnId).addEventListener('click', () => {
+                currentQ = 0;
+                score = 0;
+                answered.clear();
+                document.getElementById(scoreId).textContent = '0';
+                displayQuestion();
+            });
+        }
+
+        // Initialize all quizzes
+        createQuiz('quiz1-container', quiz1Questions, 'score1', 'resetQuiz1');
+        createQuiz('quiz2-container', quiz2Questions, 'score2', 'resetQuiz2');
+        createQuiz('quiz3-container', quiz3Questions, 'score3', 'resetQuiz3');
+    </script>
+</body>
+</html>
