@@ -109,7 +109,17 @@
         ]
     }
     </script>
-</head>
+
+    <style>
+        .domain-directory{margin:2rem 0 3rem;padding:clamp(1.25rem,3vw,2.5rem);border:1px solid rgba(212,175,55,.4);border-radius:20px;background:linear-gradient(145deg,rgba(18,25,48,.94),rgba(35,22,57,.9));box-shadow:0 16px 42px rgba(0,0,0,.22)}
+        .domain-directory h2{text-align:center;margin:0 0 .6rem}.domain-directory-intro{text-align:center;max-width:760px;margin:0 auto 1.5rem;opacity:.9}
+        .domain-directory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:.85rem}
+        .domain-directory-card{display:flex;align-items:center;min-height:68px;padding:1rem 1.1rem;border:1px solid rgba(212,175,55,.25);border-radius:13px;background:rgba(255,255,255,.055);color:inherit;text-decoration:none;font-weight:650;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+        .domain-directory-card:hover,.domain-directory-card:focus-visible{transform:translateY(-2px);border-color:#d4af37;background:rgba(212,175,55,.13);outline:none}
+        .domain-directory-archive{margin:1.25rem 0 0;text-align:center}.domain-directory-archive a{color:#e3c45f;font-weight:700}
+        @media(max-width:520px){.domain-directory{padding:1.15rem}.domain-directory-grid{grid-template-columns:1fr 1fr;gap:.6rem}.domain-directory-card{padding:.8rem;min-height:60px;font-size:.93rem}}
+    </style>
+    </head>
 <body>
     <!-- Widget XP/Niveau -->
     <div id="xpWidget" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(236, 72, 153, 0.9)); padding: 10px 20px; border-radius: 25px; color: white; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: none; cursor: pointer;" onclick="window.location.href='pages/user/profile.html'">
@@ -260,6 +270,30 @@
 <section class="hero" aria-labelledby="hero-title">
             <h2 id="hero-title">Bienvenue dans votre parcours initiatique</h2>
             <p>Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.</p>
+        </section>
+
+        <section class="domain-directory" aria-labelledby="domain-directory-title">
+            <h2 id="domain-directory-title">Explorer les 16 domaines</h2>
+            <p class="domain-directory-intro">Choisissez un domaine pour accéder directement à ses cours et outils. Les parcours de logique commencent par les bases et avancent pas à pas.</p>
+            <div class="domain-directory-grid">
+                <a class="domain-directory-card" href="#runes">ᚱ Runes nordiques</a>
+                <a class="domain-directory-card" href="#gematria">✡ Gématrie hébraïque</a>
+                <a class="domain-directory-card" href="#hieroglyphes">𓂀 Hiéroglyphes égyptiens</a>
+                <a class="domain-directory-card" href="#maya">Glyphes mayas</a>
+                <a class="domain-directory-card" href="parcours-logique-progressif.html">🧠 Logique — parcours progressif</a>
+                <a class="domain-directory-card" href="pages/logique/types-raisonnement.html">Types de raisonnement</a>
+                <a class="domain-directory-card" href="#mandala">Mandalas sacrés</a>
+                <a class="domain-directory-card" href="pages/meditation/chakras.html">Méditation et chakras</a>
+                <a class="domain-directory-card" href="pages/coreen/coreen-debutant.html">Langue coréenne</a>
+                <a class="domain-directory-card" href="pages/japonais/japonais-debutant.html">Langue japonaise</a>
+                <a class="domain-directory-card" href="pages/tarot/tarot-debutant.html">Tarot</a>
+                <a class="domain-directory-card" href="pages/astrologie/signes-zodiaque.html">Astrologie</a>
+                <a class="domain-directory-card" href="pages/alchimie/alchimie-debutant.html">Alchimie</a>
+                <a class="domain-directory-card" href="pages/kabbale/kabbale-debutant.html">Kabbale</a>
+                <a class="domain-directory-card" href="pages/numerologie/numerologie-debutant.html">Numérologie</a>
+                <a class="domain-directory-card" href="pages/astronomie/astronomie-debutant.html">Astronomie</a>
+            </div>
+            <p class="domain-directory-archive">Les anciennes leçons détaillées sont également disponibles : <a href="index_ecritures_sacrees.html">ouvrir les 83 leçons Maya, Runes et Hiéroglyphes →</a></p>
         </section>
 
         <section id="runes" class="section-category" aria-labelledby="runes-title">
