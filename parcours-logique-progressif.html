@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GematriaAcademy — Pensée & Logique</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07070d;
+  --bg2: #0d0d18;
+  --card: #111120;
+  --border: #1e1e35;
+  --gold: #c8a84b;
+  --gold-light: #e8c870;
+  --gold-dark: #7a5f20;
+  --text: #d8d0c0;
+  --muted: #6a6458;
+  --success: #4a9e6f;
+  --danger: #9e4a4a;
+  --locked: #1a1a28;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; }
+
+/* TOP NAV */
+#top-nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(7,7,13,.92); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 20px; height:48px;
+}
+.nav-back {
+  display:flex; align-items:center; gap:8px; text-decoration:none;
+  color:var(--muted); font-size:12px; transition:.15s;
+}
+.nav-back:hover { color:var(--text); }
+.nav-brand { font-family:'Cinzel',serif; font-size:13px; color:var(--gold); letter-spacing:2px; }
+.nav-help {
+  background:none; border:1px solid var(--border); border-radius:6px;
+  padding:5px 12px; color:var(--muted); font-size:11px; cursor:pointer;
+  transition:.15s;
+}
+.nav-help:hover { border-color:var(--gold-dark); color:var(--text); }
+
+/* HELP MODAL */
+#help-modal {
+  display:none; position:fixed; inset:0; z-index:200;
+  background:rgba(0,0,0,.7); align-items:center; justify-content:center;
+}
+#help-modal.open { display:flex; }
+.help-card {
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  padding:32px; max-width:500px; width:90%;
+}
+.help-title { font-family:'Cinzel',serif; font-size:18px; color:var(--gold); margin-bottom:20px; }
+.help-steps { display:flex; flex-direction:column; gap:14px; }
+.help-step { display:flex; gap:14px; }
+.help-num { width:28px; height:28px; border-radius:50%; background:var(--gold-dark);
+  display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif;
+  font-size:12px; color:var(--gold-light); flex-shrink:0; }
+.help-step-text { font-size:13px; line-height:1.6; color:var(--text); }
+.help-step-text strong { color:var(--gold); }
+.help-close { margin-top:24px; width:100%; background:var(--gold-dark); border:none;
+  border-radius:8px; padding:10px; color:var(--gold-light); font-family:'Cinzel',serif;
+  font-size:12px; letter-spacing:2px; cursor:pointer; }
+
+/* LOGIN */
+#login-screen {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(ellipse at center, #0d0d22 0%, #07070d 70%);
+}
+.login-card {
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  padding:48px 40px; width:380px; text-align:center;
+}
+.login-logo { font-size:48px; margin-bottom:16px; }
+.login-title { font-family:'Cinzel',serif; font-size:22px; color:var(--gold); letter-spacing:3px; margin-bottom:4px; }
+.login-sub { font-size:12px; color:var(--muted); letter-spacing:2px; margin-bottom:36px; }
+.login-card input {
+  width:100%; background:#0a0a14; border:1px solid var(--border); border-radius:8px;
+  padding:12px 16px; color:var(--text); font-size:14px; margin-bottom:12px;
+  font-family:'Inter',sans-serif; outline:none; transition:.2s;
+}
+.login-card input:focus { border-color:var(--gold-dark); }
+.btn-gold {
+  width:100%; background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  border:none; border-radius:8px; padding:13px; color:#0a0a0a;
+  font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px;
+  cursor:pointer; font-weight:700; transition:.2s;
+}
+.btn-gold:hover { filter:brightness(1.15); }
+.login-hint { font-size:11px; color:var(--muted); margin-top:16px; }
+.login-error { color:#c84b4b; font-size:13px; margin-top:8px; }
+
+/* APP LAYOUT */
+#app { display:none; min-height:100vh; flex-direction:row; padding-top:48px; }
+#sidebar {
+  width:260px; background:var(--bg2); border-right:1px solid var(--border);
+  padding:24px 16px; display:flex; flex-direction:column; gap:20px;
+  position:fixed; height:100vh; overflow-y:auto; z-index:10;
+}
+#main { margin-left:260px; padding:32px; min-height:100vh; }
+
+/* SIDEBAR */
+.sidebar-user { text-align:center; padding-bottom:16px; border-bottom:1px solid var(--border); }
+.sidebar-avatar { width:48px; height:48px; background:var(--gold-dark); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; margin:0 auto 8px;
+  font-family:'Cinzel',serif; font-size:18px; color:var(--gold-light); }
+.sidebar-name { font-family:'Cinzel',serif; font-size:13px; color:var(--gold); }
+.sidebar-level { font-size:11px; color:var(--muted); margin-top:2px; }
+
+.progress-block { }
+.progress-label { font-size:11px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+.progress-bar { height:4px; background:var(--border); border-radius:4px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--gold-dark),var(--gold)); border-radius:4px; transition:.4s; }
+
+.sidebar-nav { display:flex; flex-direction:column; gap:2px; }
+.nav-phase { }
+.nav-phase-title {
+  font-size:10px; color:var(--muted); letter-spacing:2px; padding:8px 8px 4px;
+  text-transform:uppercase;
+}
+.nav-item {
+  padding:7px 10px; border-radius:6px; cursor:pointer; font-size:12px;
+  color:var(--muted); transition:.15s; display:flex; align-items:center; gap:8px;
+}
+.nav-item:hover { background:var(--border); color:var(--text); }
+.nav-item.active { background:var(--gold-dark); color:var(--gold-light); }
+.nav-item.done { color:var(--success); }
+.nav-item.locked { opacity:.8; cursor:pointer; }
+.nav-item.locked { opacity:.72; cursor:pointer; }
+.nav-dot { width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0; }
+
+/* GEMATRIA CALC */
+.gem-calc { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:14px; }
+.gem-calc-title { font-family:'Cinzel',serif; font-size:11px; color:var(--gold); letter-spacing:2px; margin-bottom:10px; }
+.gem-input {
+  width:100%; background:#0a0a14; border:1px solid var(--border); border-radius:6px;
+  padding:8px 10px; color:var(--text); font-size:13px; font-family:'Inter',sans-serif;
+  outline:none; margin-bottom:8px;
+}
+.gem-results { display:flex; flex-direction:column; gap:4px; }
+.gem-row { display:flex; justify-content:space-between; font-size:11px; }
+.gem-sys { color:var(--muted); }
+.gem-val { color:var(--gold); font-weight:600; }
+
+.btn-logout { background:none; border:1px solid var(--border); border-radius:6px;
+  padding:8px; color:var(--muted); font-size:11px; cursor:pointer; width:100%;
+  transition:.15s; }
+.btn-logout:hover { border-color:var(--danger); color:var(--danger); }
+
+/* DASHBOARD */
+#dashboard {}
+.dash-header { margin-bottom:32px; }
+.dash-title { font-family:'Cinzel',serif; font-size:28px; color:var(--gold); margin-bottom:4px; }
+.dash-sub { font-size:14px; color:var(--muted); }
+.dash-stats { display:flex; gap:16px; margin-top:20px; }
+.stat-card { background:var(--card); border:1px solid var(--border); border-radius:10px;
+  padding:16px 20px; flex:1; }
+.stat-num { font-family:'Cinzel',serif; font-size:24px; color:var(--gold); }
+.stat-label { font-size:11px; color:var(--muted); margin-top:2px; }
+
+.phase-section { margin-bottom:36px; }
+.phase-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.phase-badge {
+  width:32px; height:32px; border-radius:8px; display:flex; align-items:center;
+  justify-content:center; font-family:'Cinzel',serif; font-size:13px; font-weight:700;
+}
+.phase-title-text { font-family:'Cinzel',serif; font-size:16px; color:var(--text); }
+.phase-sub { font-size:12px; color:var(--muted); }
+
+.courses-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.course-card {
+  background:var(--card); border:1px solid var(--border); border-radius:10px;
+  padding:16px; cursor:pointer; transition:.2s; position:relative;
+}
+.course-card:hover:not(.locked) { border-color:var(--gold-dark); transform:translateY(-2px); }
+.course-card.locked { opacity:.82; cursor:pointer; background:var(--locked); }
+.course-card.locked { opacity:.72; cursor:pointer; }
+.course-card.locked:hover { border-color:var(--gold-dark); }
+.course-card.locked .card-lock { color:var(--gold); }
+.course-card.locked .card-unlock-hint { display:block; font-size:10px; color:var(--muted); margin-top:7px; line-height:1.45; }
+.course-card.done { border-color:var(--success); opacity:.85; }
+.course-card.done::after {
+  content:'✓'; position:absolute; top:10px; right:10px;
+  color:var(--success); font-size:14px; font-weight:700;
+}
+.card-id { font-size:10px; color:var(--muted); margin-bottom:6px; letter-spacing:1px; }
+.card-icon { font-size:24px; margin-bottom:8px; }
+.card-title { font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.card-duration { font-size:11px; color:var(--muted); }
+.card-lock { font-size:16px; position:absolute; top:10px; right:10px; }
+
+/* COURSE VIEW */
+#course-view { display:none; }
+.cv-back { background:none; border:none; color:var(--muted); cursor:pointer;
+  font-size:13px; margin-bottom:24px; display:flex; align-items:center; gap:6px; }
+.cv-back:hover { color:var(--text); }
+.cv-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:28px; }
+.cv-meta { font-size:11px; color:var(--muted); letter-spacing:1px; margin-bottom:6px; }
+.cv-title { font-family:'Cinzel',serif; font-size:26px; color:var(--gold); }
+.cv-badge { font-size:40px; }
+
+.section-block { background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:24px; margin-bottom:20px; }
+.section-title { font-family:'Cinzel',serif; font-size:14px; color:var(--gold);
+  letter-spacing:2px; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+
+.theory-text { font-size:14px; line-height:1.8; color:var(--text); }
+.theory-text p { margin-bottom:12px; }
+.key-points { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.key-points li { display:flex; gap:10px; font-size:13px; color:var(--text); }
+.key-points li::before { content:'◆'; color:var(--gold); font-size:8px; flex-shrink:0; margin-top:4px; }
+
+.exercise-prompt { font-size:14px; line-height:1.7; color:var(--text); margin-bottom:16px; }
+.exercise-textarea {
+  width:100%; background:#0a0a14; border:1px solid var(--border); border-radius:8px;
+  padding:14px; color:var(--text); font-size:14px; font-family:'Inter',sans-serif;
+  resize:vertical; min-height:140px; outline:none; line-height:1.6; transition:.2s;
+}
+.exercise-textarea:focus { border-color:var(--gold-dark); }
+.word-count { font-size:11px; color:var(--muted); margin-top:6px; }
+
+.mcq-option {
+  display:block; width:100%; text-align:left; background:#0a0a14;
+  border:1px solid var(--border); border-radius:8px; padding:12px 16px;
+  color:var(--text); font-size:13px; cursor:pointer; margin-bottom:8px;
+  transition:.2s; font-family:'Inter',sans-serif;
+}
+.mcq-option:hover { border-color:var(--gold-dark); }
+.mcq-option.correct { border-color:var(--success); background:rgba(74,158,111,.1); color:#7dd4a8; }
+.mcq-option.wrong { border-color:var(--danger); background:rgba(158,74,74,.1); color:#d49090; }
+
+.fill-blank-group { display:flex; gap:10px; margin-bottom:10px; align-items:center; }
+.fill-prompt { font-size:14px; color:var(--text); flex:1; }
+.fill-input {
+  width:80px; background:#0a0a14; border:1px solid var(--border); border-radius:6px;
+  padding:8px 10px; color:var(--text); font-size:14px; font-family:'Inter',sans-serif;
+  text-align:center; outline:none;
+}
+.fill-result { font-size:14px; width:20px; }
+
+.compress-counter { font-size:13px; color:var(--muted); margin-top:8px; }
+.compress-counter.over { color:var(--danger); }
+.compress-counter.ok { color:var(--success); }
+
+.validate-row { display:flex; gap:12px; align-items:center; margin-top:20px; flex-wrap:wrap; }
+.btn-validate {
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold)); border:none;
+  border-radius:8px; padding:12px 28px; color:#0a0a0a; font-family:'Cinzel',serif;
+  font-size:12px; letter-spacing:2px; cursor:pointer; font-weight:700; transition:.2s;
+}
+.btn-validate:hover { filter:brightness(1.1); }
+.btn-validate:disabled { opacity:.4; cursor:default; filter:none; }
+.btn-next {
+  background:var(--success); border:none; border-radius:8px; padding:12px 24px;
+  color:#fff; font-family:'Cinzel',serif; font-size:12px; letter-spacing:2px;
+  cursor:pointer; font-weight:700; display:none;
+}
+.feedback-msg { font-size:13px; padding:10px 14px; border-radius:8px; flex:1; }
+.feedback-msg.success { background:rgba(74,158,111,.15); color:#7dd4a8; border:1px solid rgba(74,158,111,.3); }
+.feedback-msg.info { background:rgba(200,168,75,.1); color:var(--gold); border:1px solid rgba(200,168,75,.2); }
+
+.symbol-glossary { background:#0a0a14; border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-top:12px; }
+.symbol-glossary summary { cursor:pointer; color:var(--gold); font-size:12px; letter-spacing:.4px; }
+.symbol-glossary p { margin-top:8px; color:var(--muted); font-size:11px; line-height:1.65; }
+
+.criteria-box { background:#0a0a14; border-radius:8px; padding:14px; margin-top:12px; font-size:12px; color:var(--muted); line-height:1.7; }
+
+/* Matching exercise */
+.match-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.match-col { display:flex; flex-direction:column; gap:8px; }
+.match-item {
+  background:#0a0a14; border:1px solid var(--border); border-radius:8px;
+  padding:10px 14px; font-size:13px; cursor:pointer; transition:.2s;
+}
+.match-item:hover { border-color:var(--gold-dark); }
+.match-item.selected { border-color:var(--gold); background:rgba(200,168,75,.1); }
+.match-item.matched { border-color:var(--success); background:rgba(74,158,111,.1); cursor:default; }
+.match-item.wrong { border-color:var(--danger); }
+.match-score { font-size:13px; color:var(--muted); margin-top:12px; }
+
+/* Phase colors */
+.p1 { background:rgba(200,75,75,.2); color:#e88; }
+.p2 { background:rgba(200,124,75,.2); color:#e8a; }
+.p3 { background:rgba(200,168,75,.2); color:var(--gold); }
+.p4 { background:rgba(75,200,124,.2); color:#8e8; }
+.p5 { background:rgba(75,124,200,.2); color:#88e; }
+.p6 { background:rgba(124,75,200,.2); color:#c8e; }
+
+@media(max-width:900px) {
+  #sidebar { width:200px; }
+  #main { margin-left:200px; padding:20px; }
+  .courses-grid { grid-template-columns:repeat(2,1fr); }
+  .dash-stats { flex-wrap:wrap; }
+}
+/* Restored historical learning library */
+.library-tabs { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 22px; }
+.library-tab { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:10px 14px; color:var(--muted); cursor:pointer; font:600 12px Inter,sans-serif; }
+.library-tab.active { color:var(--gold); border-color:var(--gold-dark); background:#17130b; }
+.library-intro { padding:16px 18px; border:1px solid var(--border); border-radius:10px; color:var(--muted); font-size:13px; line-height:1.7; margin-bottom:18px; }
+.library-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin:0 0 12px; }
+.library-card-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
+.library-card-num { color:var(--gold); font-size:11px; letter-spacing:1px; white-space:nowrap; }
+.library-card-title { font-family:'Cinzel',serif; font-size:15px; color:var(--text); }
+.library-card-desc { color:var(--muted); font-size:13px; line-height:1.75; white-space:pre-line; }
+.library-symbols { color:var(--gold); font-size:12px; line-height:1.8; margin-top:10px; }
+.library-duration { color:var(--muted); font-size:11px; margin-top:8px; }
+.library-notice { border-left:3px solid var(--gold-dark); padding:10px 13px; background:#12110e; color:var(--muted); font-size:12px; line-height:1.7; margin:0 0 20px; }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav id="top-nav">
+  <a class="nav-back" href="https://supa-dashboard.pages.dev">← Supa Suite</a>
+  <a class="nav-brand" href="https://gematria-academy.pages.dev" style="text-decoration:none">◆ GEMATRIA ACADEMY</a>
+  <button class="nav-help" onclick="document.getElementById('help-modal').classList.add('open')">? Comment faire</button>
+</nav>
+
+<!-- HELP MODAL -->
+<div id="help-modal">
+  <div class="help-card">
+    <div class="help-title">◆ Comment utiliser l'Académie</div>
+    <div class="help-steps">
+      <div class="help-step">
+        <div class="help-num">1</div>
+        <div class="help-step-text"><strong>Connecte-toi</strong> avec ton prénom et le mot de révélation <strong>LOGOS</strong>. Ta progression est sauvegardée automatiquement.</div>
+      </div>
+      <div class="help-step">
+        <div class="help-num">2</div>
+        <div class="help-step-text"><strong>Choisis un cours</strong> sur le tableau de bord. Les 29 cours restent visibles ; certains sont consultables avant leur tour, mais ne peuvent être validés qu’au bon moment du parcours.</div>
+      </div>
+      <div class="help-step">
+        <div class="help-num">3</div>
+        <div class="help-step-text"><strong>Lis la théorie</strong>, puis fais l'exercice. Chaque exercice a ses propres critères de validation.</div>
+      </div>
+      <div class="help-step">
+        <div class="help-num">4</div>
+        <div class="help-step-text"><strong>Le calculateur gématrique</strong> dans la barre latérale est disponible en permanence — utilise-le pour les exercices de gematria.</div>
+      </div>
+      <div class="help-step">
+        <div class="help-num">5</div>
+        <div class="help-step-text">Les exercices <strong>texte libre</strong> sont à auto-validation : sois honnête avec les critères affichés. C'est ton propre développement.</div>
+      </div>
+    </div>
+    <button class="help-close" onclick="document.getElementById('help-modal').classList.remove('open')">FERMER</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">◆</div>
+    <div class="login-title">GEMATRIA ACADEMY</div>
+    <div class="login-sub">PENSÉE &amp; LOGIQUE</div>
+    <input type="text" id="login-name" placeholder="Ton nom" autocomplete="off">
+    <input type="password" id="login-pass" placeholder="Mot de révélation">
+    <button class="btn-gold" onclick="doLogin()">ENTRER</button>
+    <div class="login-error" id="login-error"></div>
+    <div class="login-hint">Mot de révélation : LOGOS</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <aside id="sidebar">
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" id="sb-avatar">?</div>
+      <div class="sidebar-name" id="sb-name">—</div>
+      <div class="sidebar-level" id="sb-level">Niveau 0</div>
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-label"><span>Progression</span><span id="sb-progress-txt">0/29</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="sb-progress-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="sidebar-nav" id="sidebar-nav"></div>
+
+    <div class="gem-calc">
+      <div class="gem-calc-title">⟁ CALCULATEUR</div>
+      <input class="gem-input" id="gem-word" placeholder="Entre un mot..." oninput="calcGematria()">
+      <div class="gem-results" id="gem-results">
+        <div class="gem-row"><span class="gem-sys">Simple (A=1)</span><span class="gem-val" id="g-simple">—</span></div>
+        <div class="gem-row"><span class="gem-sys">Réduction (somme des chiffres)</span><span class="gem-val" id="g-reduce">—</span></div>
+        <div class="gem-row"><span class="gem-sys">Pythagorique (A=1 à I=9, puis répétition)</span><span class="gem-val" id="g-pyth">—</span></div>
+      </div>
+    </div>
+
+    <button class="btn-logout" onclick="logout()">↩ Déconnexion</button>
+  </aside>
+
+  <main id="main">
+    <!-- DASHBOARD -->
+          <div class="library-tabs" aria-label="Domaines d’apprentissage">
+        <button class="library-tab" id="tab-logic" onclick="showLibraryDomain('logic')">🧠 Logique & pensée critique</button>
+        <button class="library-tab" id="tab-maya" onclick="showLibraryDomain('maya')">🌞 Écriture maya</button>
+        <button class="library-tab" id="tab-runes" onclick="showLibraryDomain('runes')">ᚠ Runes nordiques</button>
+        <button class="library-tab" id="tab-hieroglyphs" onclick="showLibraryDomain('hieroglyphs')">𓂀 Hiéroglyphes égyptiens</button>
+      </div>
+      <div class="library-notice">Les cours de logique et les parcours historiques sont regroupés dans la même Académie. Les parcours restaurés proviennent d’une ancienne version et restent consultables ; vérifie leurs contenus avec des sources spécialisées avant tout usage académique ou rituel.</div>
+      <div id="library-view" style="display:none"></div>
+    <div id="dashboard">
+      <div class="dash-header">
+        <div class="dash-title">Gematria Academy — Bibliothèque</div>
+        <div class="dash-sub">Choisis un domaine : parcours progressif de logique, écriture maya, runes nordiques ou hiéroglyphes égyptiens.</div>
+        <div class="dash-stats">
+          <div class="stat-card"><div class="stat-num" id="stat-done">0</div><div class="stat-label">Cours complétés</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-phase">1</div><div class="stat-label">Phase actuelle</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-level">0</div><div class="stat-label">Niveau</div></div>
+        </div>
+      </div>
+      <div id="phases-container"></div>
+    </div>
+
+    <!-- COURSE VIEW -->
+    <div id="course-view">
+      <button class="cv-back" onclick="showDashboard()">← Retour au tableau de bord</button>
+      <div id="cv-content"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+const ARCHIVE_PATHS = [{"id":"maya","title":"Parcours de maîtrise maya","lessons":[{"number":"1","title":"Histoire et Contexte","description":"Découvrez l'origine des glyphes mayas, leur développement à travers les périodes préclassique (-2000 à 250), classique (250-900) et postclassique (900-1524). Comprenez le contexte culturel, religieux et cosmologique. Sites majeurs: Tikal, Palenque, Copán, Calakmul, Yaxchilán.","symbols":["🌞Glyphe K'IN - Soleil/Jour","🌙Glyphe AKBAL - Nuit"],"duration":""},{"number":"2","title":"Structure Syllabique","description":"Apprenez comment les glyphes mayas combinent syllabes (CV - consonne+voyelle) et logogrammes. Maîtrisez les 5 voyelles (a, e, i, o, u) et les 20 principales consonnes: b, ch, ch', h, j, k, k', l, m, n, p, p', s, t, t', tz, tz', w, x, y. Principe de complémentation phonétique et substitution.","symbols":[],"duration":""},{"number":"3","title":"Les 20 Jours Sacrés (Tzolk'in)","description":"Maîtrisez les 20 glyphes des jours du calendrier Tzolk'in (260 jours): IMIX (crocodile), IK' (vent), AK'BAL (nuit), K'AN (maïs), CHIKCHAN (serpent), KIMI (mort), MANIK' (main/cerf), LAMAT (Vénus), MULUK (eau), OK (chien), CHUWEN (singe), EB (route), B'EN (roseau), IX (jaguar), MEN (aigle), K'IB' (cire), KABAN (terre), ETZ'NAB (silex), KAWAK (tempête), AJAW (seigneur).","symbols":["🐊IMIX - Crocodile primordial","🌬️IK' - Vent/Souffle","🌑AK'BAL - Obscurité","🌽K'AN - Maïs/Graine"],"duration":""},{"number":"4","title":"Nombres et Système Vigésimal","description":"Comprenez le système de numération maya en base 20. Apprenez les symboles: point (•) = 1, barre (―) = 5, coquillage (🐚) = 0 (invention du zéro!). Notation positionnelle verticale. Exemples: 6 = •―, 13 = ••• ― ―, 19 = •••• ― ― ―. Apprenez à écrire de 0 à 19, puis 20-400. Glyphes de tête pour 0-13.","symbols":[],"duration":""},{"number":"5","title":"Glyphes Directionnels et Couleurs","description":"Les 4 directions sacrées et leurs couleurs cosmologiques: LAKIN (Est - CHAK/rouge), CHIK'IN (Ouest - EK'/noir), XAMAN (Nord - SAK/blanc), NOJOL (Sud - K'AN/jaune). Centre: YAX (vert/bleu). Arbre du monde (Yaxche') à chaque direction. Bacabs (dieux soutenant le ciel). Oiseaux directionnels.","symbols":["⬆️XAMAN - Nord blanc","➡️LAKIN - Est rouge","⬇️NOJOL - Sud jaune"],"duration":""},{"number":"6","title":"Premiers Verbes d'Action","description":"Apprenez les 20 verbes les plus courants avec leurs glyphes: SIYAJ (naître), CHAM (mourir), IL (voir), U-BA (entendre), AL (dire/parler), XIB (marcher), WE' (manger), UK' (boire), TZ'A' (donner), CHUK (prendre/capturer), PAT (faire/former), TAL (venir), BIN (aller), K'AL (attacher/lier), CHOK (jeter/lancer), PUL (brûler), JOY (entourer), OCH (entrer), EL (sortir), EM (descendre).","symbols":[],"duration":""},{"number":"7","title":"Pronoms et Particules","description":"Pronoms personnels: IN (je/mon), A (tu/ton), U (il/elle/son), K (nous/notre), A...OB' (vous/votre), U...OB' (ils/elles/leur). Particules temporelles: UCHIY (il est arrivé que), UHTIY (cela s'est passé). Prépositions: TA (à/dans), TI' (vers), ICHIL (dans), YOK (sur).","symbols":[],"duration":""},{"number":"8","title":"Corps Humain","description":"30+ glyphes anatomiques: JOL (tête), ICH (œil/visage), NI' (nez), CHI' (bouche), XICH (oreille), K'AB' (main/bras), OK (pied/jambe), PIXAN (âme/cœur), BAK (os/corps), TZ'AM (crâne), K'AB'A' (nom), IK' (souffle/vie), KIK' (sang), CH'ICH' (chair), BÄKEL (chair/corps), JATZ' (frapper), TOK' (silex/couteau - pour sacrifices).","symbols":[],"duration":""},{"number":"9","title":"Les 18 Mois Solaires + Wayeb","description":"Calendrier Haab (365 jours): 18 mois de 20 jours + 5 jours Wayeb (néfastes). POP (natte), WO (grenouille), SIP (cerf rouge), SOTZ' (chauve-souris), TZEK (crâne), XUL (fin), YAXK'IN (nouveaux jours soleil), MOL (rassembler), CH'EN (puits), YAX (vert/premier), SAK (blanc), KEH (cerf), MAK (couvrir), K'ANK'IN (jours soleil jaune), MUWAN (hibou), PAX (tambour), K'AYAB (tortue), KUMK'U (grenier), WAYEB (jours sans nom).","symbols":[],"duration":""},{"number":"10","title":"Panthéon Maya - Divinités Principales","description":"40+ dieux mayas avec leurs glyphes: ITZAMNA (créateur, dieu D), K'INICH AJAW (seigneur soleil, dieu G), CHAAK (dieu de la pluie, dieu B), K'AWIIL (foudre/royauté, dieu K), IXCHEL (déesse lune/médecine, déesse I), YUM KAAX (dieu du maïs, dieu E), AH PUCH/KIMI (mort, dieu A), KUKULKAN (serpent à plumes, Quetzalcoatl), BOLON TZACAB (vision serpentine), WAY (esprit compagnon), K'UH (sacré/dieu), PAWAHTUN (dieux porteurs).","symbols":[],"duration":""},{"number":"11","title":"Titres Royaux et Noblesse","description":"50+ titres hiérarchiques: K'UHUL AJAW (roi divin), KALOOMTE' (seigneur suprême - titre rare et prestigieux), SAJAL (gouverneur régional), AJ K'UHUN (gardien des dieux/prêtre), BAKAB (soutien du ciel - 4 dieux cosmologiques), NAKOM (chef guerrier), BATAB (chef local), AH K'IN (prêtre solaire), CHILAM (prophète/interprète), IX (dame noble), IXIK AJAW (reine), OCHK'IN KALOOMTE' (guerrier de l'ouest), YAJAW (vassal).","symbols":[],"duration":""},{"number":"12","title":"Glyphes Toponymiques","description":"Noms des 60+ cités mayas principales avec leurs glyphes-emblèmes: MUTAL (Tikal), LAKAMHA' (Palenque), OXWITIK (Copán), KAN/KANU'L (Calakmul - royaume du Serpent), PA'CHAN (Yaxchilán), YOKIB' (Piedras Negras), OXMUL (Uxmal), CHICHEN ITZA (bouche du puits Itza), ZAMA (Tulum - aube), EK' BALAM (jaguar étoile), KO'BAH (Cobá), XUKPI' (Quiriguá), SAK T'ZI' (Dos Pilas), SIYAJ CHAN K'AWIIL (nom royal).","symbols":[],"duration":""},{"number":"13","title":"Glyphes d'Animaux Sacrés","description":"60+ animaux dans la cosmologie maya: B'ALAM (jaguar - pouvoir royal), KAN (serpent - sagesse), MUT (oiseau/augure), MA'AX (singe hurleur), AYIN (crocodile - terre primordiale), KEH (cerf - sacrifice), PEK (chien - guide vers Xibalba), KUTZ (dindon), TZ'UNUN (colibri - soleil), MO' (ara - feu), SOTZ' (chauve-souris - mort), CHÄK (copal/résine), IXIK (féminin), ITZAM (iguane céleste), AK (tortue - carapace terrestre), KELEM (jeune/fort), plus glyphes de transformation homme-animal (wayob').","symbols":[],"duration":""},{"number":"14","title":"Plantes et Agriculture","description":"50+ glyphes botaniques: IXIM (maïs - base civilisation), KAKAW (cacao - monnaie et boisson sacrée), BU'UL (haricot), K'UM (courge), KUTZ (tabac - offrandes), TAM (coton), YA' (sapotille/chicle), IK (piment), ON (avocat), P'AK (tomate), TE' (arbre), NICH (fleur), AK' (tortue/carapace), CH'OM (obsidienne), TUN (pierre/année), KAB' (terre/miel), CHAK KIK' (cacao rouge), NIK (fleur), HAL (épis de maïs).","symbols":[],"duration":""},{"number":"15","title":"Parenté et Relations Familiales","description":"70+ glyphes familiaux et anatomiques: MÄAM (grand-père/ancêtre), CHICH (grand-mère), TATA (père), NA' (mère), AL (fils/enfant), IXIK (fille/femme), SUKU'UN (frère aîné), ITZA'AT (sage/savant), ATAN (épouse - femme de), YATAN (son épouse), UPAKAL (fils de - généalogie), YICHNAL (compagnon de), -IIL (suffixe de relation), BAH (soi-même/image), WINIK (homme/personne/20), IXIK (femme noble).","symbols":[],"duration":""},{"number":"16","title":"Évènements Historiques et Guerres","description":"Glyphes d'actions historiques et militaires: CH'AK (décapiter/hacher), JUB'UY (renverser/détruire - victoire totale), CHUK (capturer), PA' (casser/briser), PAT (former/construire - édifices), K'AL (lier/attacher - accession au trône), YUTAL (ses joyaux - mariage), SIYAJ (naître - dates de naissance), OCH-B'IH (entrer sur le chemin - mort), EL-K'IN (sortie du soleil - ouest), OCH-K'IN (entrée du soleil - est), TZ'AK (conjurer/compléter), CHUM (s'asseoir - intronisation).","symbols":[],"duration":""},{"number":"17","title":"Architecture et Objets","description":"60+ glyphes d'édifices et objets: OTOT (maison/bâtiment), NAH (première maison), PIB'NAH (bain de vapeur/pyramide), K'UH-NAH (maison du dieu/temple), BAAH (tête/sommet/premier), TUN (pierre/période de 360 jours), LAKAM-TUN (grande pierre/stèle), K'AL-TUN (lier les pierres - fin de période), JUN (livre/papier), HU'N (livre plié - codex), TZ'IB' (écriture/peinture), AJ-TZ'IB' (celui qui écrit - scribe), PAKAL (bouclier), TOK'-PAKAL (bouclier de silex), CHAHUK (foudre - hache).","symbols":[],"duration":""},{"number":"18","title":"Compte Long - Système Calendaire Avancé","description":"Maîtrise complète du Compte Long (date absolue depuis création 3114 av. J.-C.): B'AK'TUN (144 000 jours = 394 ans), K'ATUN (7 200 jours = 20 ans), TUN (360 jours), WINAL (20 jours), K'IN (1 jour). Format: 9.15.10.0.0 = 9 bak'tuns, 15 k'atuns, 10 tuns, 0 winals, 0 k'ins. Seigneurs de la Nuit (9 divinités), Glyphes G (9 cycles). Série Supplémentaire (cycles lunaires), Glyphes A et X.","symbols":[],"duration":""},{"number":"19","title":"Formules Standard d'Inscription","description":"Phrases-type des stèles et monuments: \"UCHIY, u-K'AL-wa TUN-ni, u-K'UHUL AJAW...\" (Il arriva, il lia la pierre [fin de k'atun], le roi divin...). Formule d'introduction (ISL - Initial Series Introductory Glyph), Date de Série Initiale, Glyphe F (mois lunaire), Glyphe E (jour lunaire), Glyphe D (lunation en cours), Glyphe C (position dans série de 6), Formule de dédicace, Formule de possession (\"u-\" = son/sa).","symbols":[],"duration":""},{"number":"20","title":"Lecture de Stèles Complètes","description":"Exercices pratiques sur 15 stèles majeures: Stèle 31 de Tikal (avec références à Teotihuacan), Stèles de Copán (série dynastique), Tablier du Palais de Palenque (généalogie de Pakal), Stèles de Quiriguá (les plus hautes du monde maya - 10m), Panel 3 de Piedras Negras (captif royal), Linteaux de Yaxchilán (Dame Xoc et rituel de sang). Pratique: ordre de lecture, paires de glyphes, cartouches.","symbols":[],"duration":""},{"number":"21","title":"Codex de Dresden - Partie 1","description":"Pages 1-39 du Codex de Dresden (XIe-XIIe siècle, 78 pages totales): Tables astronomiques de Vénus (pages 24, 46-50), cycles de 584 jours, apparitions comme étoile du matin/soir, divinités associées, augures et prédictions. Almanachs divinatoires (pages 4-23), rituels agricoles, chasse, pêche. Plus de 150 glyphes spécifiques.","symbols":[],"duration":""},{"number":"22","title":"Codex de Dresden - Partie 2","description":"Pages 40-78: Tables d'éclipses (pages 51-58) avec périodes de 177 jours, saisons d'éclipses, noeuds lunaires. Nouveau Feu/Nouvelle Année (pages 25-28), Déluge final (pages 74), serpent céleste crachant l'eau. Tables de multiplication pour calculs calendaires (pages 61-69). Page 74: fin du monde avec eau déversée du ciel.","symbols":[],"duration":""},{"number":"23","title":"Codex de Madrid (Tro-Cortesiano)","description":"112 pages (le plus long des 4 codex survivants): almanachs de 260 jours, cérémonies du Nouvel An, rituels agricoles (pages 34-37: maïs, cacao), chasse au cerf (pages 38-49), apiculture (pages 103-112), tissage (pages 79-88), pluie et dieu Chaak omniprésent (pages 30-33). Glyphes de la vie quotidienne, activités pratiques, moins astronomique.","symbols":[],"duration":""},{"number":"24","title":"Codex de Paris (Peresianus)","description":"22 pages (très endommagé, écrit recto-verso): prophéties de k'atun (périodes de 20 ans), rituels de fin de période, katun-wheels, cérémonies pour le dieu Chaak. Pages consacrées aux années Tun, prédictions selon le jour du Tzolk'in qui commence l'année. Katun 11 Ajaw, Katun 9 Ajaw, etc. (cycle de 13 katuns = 256 ans).","symbols":[],"duration":""},{"number":"25","title":"Codex de Grolier (Maya de México)","description":"10 pages fragmentaires (authenticité débattue jusqu'en 2018, maintenant acceptée): table de Vénus simplifiée, cycle de 584 jours, 5 apparitions complètes, figures de divinités en armure, style Mixtèque-Maya de transition. Plus ancien des codex (XIIe siècle). Comparaison avec Codex de Dresden.","symbols":[],"duration":""},{"number":"26","title":"Inscriptions de Palenque - Ensemble Monumental","description":"Temple des Inscriptions (617 glyphes - 2e plus long texte): histoire de Pakal le Grand (603-683), sa mort, son sarcophage. Tablier du Palais: généalogie remontant à l'an 993 av. J.-C. (mythique). Groupe des Croix (Temples du Soleil, de la Croix, de la Croix Feuillue): cosmologie tripartite, naissance des dieux en 3309 av. J.-C., accession de K'inich Kan B'ahlam II en 684. 400+ glyphes contextuels.","symbols":[],"duration":""},{"number":"27","title":"Escalier Hiéroglyphique de Copán","description":"Le plus long texte maya connu: 2200+ glyphes sur 63 marches. Histoire militaire et dynastique de Copán (426-755 apr. J.-C.), 5 souverains assis entre les glyphes, guerres contre Quiriguá, alliances avec Tikal et Calakmul. Construit par K'ak' Yipyaj Chan K'awiil (13e souverain) en 755. Partiellement effondré et reconstruit. Exercice de déchiffrement progressif sur 2 mois.","symbols":[],"duration":""},{"number":"28","title":"Variations Stylistiques Régionales","description":"Styles régionaux et chronologiques: Petén central (Tikal, Uaxactun), région Usumacinta (Yaxchilán, Piedras Negras, Palenque - plus cursif), style Puuc (Uxmal, Kabah - géométrique), Chenes (Río Bec), Yucatán nord (Chichén Itzá - postclassique), Highlands (Copán, Quiriguá). Évolution: Préclassique (rares), Classique ancien (300-600), Classique récent (600-900 - apogée), Postclassique (simplification). Identifier 50 exemples par style.","symbols":[],"duration":""},{"number":"29","title":"Glyphes de Tête vs. Glyphes Pleins","description":"Substitution allographique: mêmes valeurs, formes différentes. Glyphes de tête (variantes anthropomorphes/zoomorphes, plus élaborés): nombres 0-13 en têtes de divinités, mois en têtes, jours en têtes. Glyphes pleins (formes abstraites/géométriques, plus courants). Exemples: K'IN (jour/soleil) en 5+ variantes, CHAM (mort) en 7 variantes. Maîtriser 100+ paires tête/plein.","symbols":[],"duration":""},{"number":"30","title":"Compte Long - Calculs Avancés","description":"Nombres de distance (DN - Distance Numbers): calculer dates passées/futures. Opérateurs: \"u-ti\" (depuis), \"ti\" (jusqu'à/vers). Exemple: \"9.12.0.0.0, 1 Ajaw 8 Keh, u-ti 13 k'atuns, 9.15.0.0.0, 4 Ajaw 13 Yax\". Calculs astronomiques: cycle de Vénus (584 jours = 5 cycles de 146.88), synodique de Mars (780 jours), cycle d'éclipses (173 jours), année tropique (365.242 jours - précision maya: 365.242!).","symbols":[],"duration":""},{"number":"31","title":"Céramique Peinte - Corpus PSS","description":"Vases cylindriques du Classique récent (600-900): Primary Standard Sequence (formule standard au bord): \"yu-k'i-b'i\" (son vase à boire pour), \"u-tz'i-b'i\" (son écriture/peinture), \"u-ch'ok-ch'ok-kaj\" (son chocolat), signature du scribe, nom du propriétaire. 300+ vases photographiés par J. Kerr. Scènes mythologiques: Héros Jumeaux, danse à Xibalba, cour de roi. Exercice: analyser 30 vases PSS complets.","symbols":[],"duration":""},{"number":"32","title":"Mythologie - Popol Vuh en Glyphes","description":"Correspondances entre Popol Vuh (texte k'iche' colonial) et glyphes classiques. Héros Jumeaux: HUNAHPU (Hun Ajaw - chasseur à sarbacane) et XBALANQUE (Yax B'alam - jaguar solaire). Sept Perroquet (Wuqub' Kaqix), Seigneurs de Xibalba (monde souterrain): Hun Kame, Wukub Kame, etc. Création du monde: sortie de l'humanité des grottes/montagnes, création à partir du maïs. Vase K1226 (danse de Hunahpu décapité).","symbols":[],"duration":""},{"number":"33","title":"Glyphes Rares et Hapax","description":"150+ glyphes n'apparaissant qu'une fois ou très rarement (hapax legomena): glyphes de sites mineurs, titres locaux uniques, noms de dieux régionaux, objets rares, événements uniques. Glyphes non déchiffrés (environ 15-20% du corpus total restent mystérieux). Glyphes controversés avec lectures multiples proposées. Nouvelles découvertes (San Bartolo 2001, La Corona 2012, Xultún 2012). Méthodologie de déchiffrement par substitution.","symbols":[],"duration":""},{"number":"34","title":"Peintures Murales de Bonampak","description":"3 chambres avec fresques et glyphes (Structure 1, vers 790): Chambre 1: présentation de l'héritier, assemblée de seigneurs. Chambre 2: bataille, capture de prisonniers, scène de torture/jugement. Chambre 3: danse rituelle, sacrifice par saignée, autosacrifice. 100+ glyphes accompagnant les scènes, noms de personnages, dates, cartouches identifiant les captifs. Yajaw Chan Muwaan (roi de Bonampak).","symbols":[],"duration":""},{"number":"35","title":"Projet de Recherche Final","description":"Projet magistral au choix: (1) Transcription et traduction complète d'un monument non publié, (2) Étude comparative de styles de 3 sites, (3) Analyse d'un corpus thématique (tous les glyphes de mariage, ou toutes les références à Teotihuacan), (4) Création d'un codex moderne en style authentique (récit de 50+ glyphes sur écorce battue). Présentation académique avec méthodologie complète.","symbols":[],"duration":""}]},{"id":"runes","title":"Parcours des runes nordiques","lessons":[{"number":"1","title":"Premier Aett : Runes de Freyr (Fertilité)","description":"Les 8 premières runes associées au dieu Freyr (fertilité/prospérité): ᚠ FEHU (bétail, richesse mobile, lettre F), ᚢ URUZ (aurochs, force brute, U), ᚦ THURISAZ (géant, épine, protection, TH), ᚨ ANSUZ (dieu Ase, communication, A), ᚱ RAIDHO (chariot, voyage, chevauchée, R), ᚲ KENAZ (torche, connaissance, K), ᚷ GEBO (don, échange équitable, G), ᚹ WUNJO (joie, perfection, W). Mémorisation: significations ésotériques, valeurs phonétiques, formes graphiques.","symbols":["ᚠFehu - F - Richesse","ᚢUruz - U - Force","ᚦThurisaz - TH - Géant","ᚨAnsuz - A - Dieu","ᚱRaidho - R - Voyage","ᚲKenaz - K - Torche","ᚷGebo - G - Don"],"duration":""},{"number":"2","title":"Deuxième Aett : Runes de Heimdall (Chaos)","description":"Les 8 runes du milieu associées à Heimdall (gardien du Bifrost): ᚺ HAGALAZ (grêle, destruction naturelle, H), ᚾ NAUTHIZ (besoin, nécessité, N), ᛁ ISA (glace, stase, immobilité, I), ᛃ JERA (année, récolte, cycle, J/Y), ᛇ EIHWAZ (if, mort/renaissance, défense, EI), ᛈ PERTHRO (destin, secrets, P), ᛉ ALGIZ (élan, protection divine, Z), ᛊ SOWILO (soleil, succès, victoire, S). Aett des épreuves et transformations. Runes puissantes et dangereuses.","symbols":["ᚺHagalaz - H - Grêle","ᚾNauthiz - N - Besoin","ᛁIsa - I - Glace","ᛃJera - J - Année","ᛇEihwaz - EI - If","ᛈPerthro - P - Destin","ᛉAlgiz - Z - Protection"],"duration":""},{"number":"3","title":"Troisième Aett : Runes de Tyr (Ordre)","description":"Les 8 dernières runes associées à Tyr (dieu de la guerre et justice): ᛏ TIWAZ (Tyr, justice divine, sacrifice, T), ᛒ BERKANO (bouleau, croissance, B), ᛖ EHWAZ (cheval, partenariat, mouvement, E), ᛗ MANNAZ (homme, humanité, M), ᛚ LAGUZ (eau, intuition, flux, L), ᛜ INGWAZ (dieu Ing, fertilité, NG), ᛞ DAGAZ (jour, éveil, transformation, D), ᛟ OTHALA (héritage, propriété, O). Aett de l'accomplissement spirituel et social.","symbols":["ᛏTiwaz - T - Dieu Tyr","ᛒBerkano - B - Bouleau","ᛖEhwaz - E - Cheval","ᛗMannaz - M - Humain","ᛚLaguz - L - Eau","ᛜIngwaz - NG - Ing","ᛞDagaz - D - Jour"],"duration":""},{"number":"4","title":"Phonétique et Translittération","description":"Correspondances phonétiques exactes proto-norrois/vieux norrois. Règles de translittération standard (système de Krause): minuscules latines, diphtongues (ei, au), consonnes géminées. Écriture boustrophédon (alternance gauche-droite comme le bœuf laboure). Ligatures runiques historiques. Abréviations courantes (runes muettes, compléments phonétiques). Exercices de transcription bidirectionnelle.","symbols":[],"duration":""},{"number":"5","title":"Inscriptions Archéologiques Anciennes","description":"Étude de 30+ inscriptions authentiques du Elder Futhark: Bracteates d'or (amulettes IIIe-VIe s.): Himlingøje, Skodborg, Vadstena. Fibules: Vimose, Thorsberg, Nydam (sites de sacrifices). Pierre de Kylver (Gotland, ~400 - seul futhark complet préservé). Cornes d'or de Gallehus (disparues): \"ek hlewagastiz holtijaz horna tawido\" (Je, Hlewagast fils de Holt, ai fait la corne). Lance d'Øvre Stabu: \"raunijaz\" (testeur). Pierre d'Einang (Norvège, ~400).","symbols":[],"duration":""},{"number":"6","title":"Significations Ésotériques - Poèmes Runiques","description":"Trois poèmes runiques médiévaux préservant sens ancien: **Poème runique anglo-saxon** (IXe s., 29 strophes en vieil anglais). **Poème runique norvégien** (XIIIe s., 16 strophes, plus cryptique). **Poème runique islandais** (XVe s., 16 strophes, influencé par christianisme). Correspondances avec Hávamál (Edda poétique): strophes 138-145 (Odin suspendu à Yggdrasil 9 nuits, sacrifié à lui-même, découverte des runes). Symbolisme magique, divinatoire, initiatique.","symbols":[],"duration":""},{"number":"7","title":"Pratique de Gravure sur Différents Supports","description":"Techniques de gravure historiques: bois (plus courant, périssable), pierre (monuments durables), os (objets personnels), métal (armes, bijoux). Outils: couteaux, burins, poinçons. Direction du grain du bois. Exercices pratiques: graver votre nom, phrases simples, formules magiques. Comprendre pourquoi les runes sont angulaires (facilitées pour gravure vs. écriture fluide). Patine et coloration (ocre rouge, charbon).","symbols":[],"duration":""},{"number":"8","title":"Runes et Mythologie Nordique","description":"Contexte mythologique des Ases et Vanes. Yggdrasil (arbre-monde) et 9 mondes. Nornes (Urd, Verdandi, Skuld) et destin. Sacrifice d'Odin pour les runes (Hávamál 138-145): pendu à Yggdrasil, transpercé de lance, 9 nuits sans nourriture ni boisson. Runes comme don sacré. Völva (voyantes) utilisant runes pour divination. Berserkers et runes de protection au combat. Egill Skallagrimsson (Xe s.) poète et maître runique.","symbols":[],"duration":""}]},{"id":"hieroglyphs","title":"Parcours des hiéroglyphes égyptiens","lessons":[{"number":"1","title":"Alphabet Unilatère (26 Signes)","description":"Les 26 signes phonétiques de base (consonnes, voyelles non écrites): 𓄿 aleph (a/glottal), 𓇋 i (roseau fleuri), 𓇌 y (double roseau), 𓂝 ayin (avant-bras), 𓅱 w (poussin de caille), 𓃀 b (jambe), 𓊪 p (natte carrée), 𓆑 f (vipère cornue), 𓅓 m (chouette), 𓈖 n (eau/zigzag), 𓂋 r (bouche), 𓉔 h (cour de maison), 𓎛 h emphatique (mèche torsadée), 𓐍 kh (placenta?), 𓄡 kh guttural (ventre d'animal), 𓋴 s (verrou de porte), 𓊃 s emphatique (étoffe pliée), 𓈙 sh (bassin), 𓈎 q/k (corbeille), 𓎡 k (colline), 𓎼 g (support de jarre), 𓏏 t (pain demi-circulaire), 𓍿 tj/tch (corde entravée), 𓂧 d (main), 𓆓 dj (cobra dressé).","symbols":["𓄿Aleph - vautour égyptien","𓇋I - roseau fleuri","𓅱W - poussin de caille","𓃀B - jambe","𓅓M - chouette"],"duration":""},{"number":"2","title":"Bilatères Courants (100+ Signes)","description":"Signes à deux consonnes les plus fréquents par catégorie Gardiner: 𓏤 w3 (roseau+vautour), 𓊪𓏏 pt (ciel), 𓊃𓏏 st (siège femme), 𓎛𓏏 ht (ventre), 𓈖𓏏 nt (couronne rouge), 𓊖 nw (jarre), 𓉐 pr (maison/domaine), 𓌻 mn (damier de senet), 𓆑𓏏 snb (santé), 𓇋𓏏 jt (père), 𓅓𓏏 mwt (mère), 𓊨 ḥm (majesté/serviteur), 𓈙𓈙 šs (albâtre), 𓆣 wsr (puissant), 𓊹 nṯr (dieu), 𓊽 ḏd (stabilité-pilier djed), 𓋹 nfr (beauté/perfection), 𓆼 ḫ3 (mille), 𓎟 nb (seigneur/tout), 𓊪𓏏𓎛 ḥtp (offrande/paix). Exercices: reconnaissance rapide, usage contextuel.","symbols":[],"duration":""},{"number":"3","title":"Trilatères Essentiels (80+ Signes)","description":"Signes à trois consonnes fondamentaux: 𓋹 nfr (beau/bon - trachée+cœur+poumons), 𓊵 nṯr (dieu - étendard), 𓆣 wsr (puissant - sceptre-ouas), 𓋹𓈖𓐍 ꜥnḫ (vie - croix ansée), 𓊽 ḏd (stable - pilier djed), 𓃻 ḥtp (offrir/satisfait - pain sur natte), 𓎟 nb (seigneur/maître - corbeille), 𓅭 w3ḥ (durable - papyrus+phénix), 𓋴𓈖𓃀 snb (santé), 𓇳 r ꜥ (Rê - disque solaire), 𓊪𓏏𓎛 pth (Ptah), 𓁹 jr (faire/créer - œil), 𓌳𓁹 ꜥnḫ (vivre - croix+œil), 𓅬𓏏 3bd (mois), 𓏏𓂋𓐍 ḫrw (jour/voix), 𓊹𓅆𓀭 nṯr (divin + déterminatif), 𓃀𓁷𓏏 ꜥḥꜥ (combattre), 𓈙𓌙𓏏 šms (suivre/servir), 𓂋𓂝𓏏 r-ꜥ (soleil - formule \"bouche du soleil\").","symbols":[],"duration":""},{"number":"4","title":"Déterminatifs Humains (50+ Signes)","description":"Déterminatifs de personnes et actions humaines (catégorie A Gardiner): 𓀀 homme assis (adulte masculin général), 𓀁 homme assis + bâton (homme âgé/vénérable), 𓀂 homme assis + main à bouche (manger/boire/parler), 𓀃 homme tête en bas (mort/renversement), 𓀀𓏏𓀁 homme+femme (couple), 𓁐 femme assise (féminin adulte), 𓁐𓏏 (féminin suffixe), 𓀔 enfant assis doigt à bouche (enfance/jeunesse), 𓀕 enfant (fils/enfant), 𓀎 homme + couronne (roi/pharaon), 𓀼 homme dansant (joie/danse), 𓀽 homme fatigué (fatigue), 𓁶 femme accouchant (naissance), 𓁷 bras levés (ka/force vitale), 𓁹 œil (voir/actions visuelles), 𓂀 homme bras levés (louange/adoration), 𓂂 homme armes levées (violence/ennemi), 𓂃 homme renversé (défaite/mort au combat), 𓀠 homme agenouillé (respect/supplication).","symbols":[],"duration":""},{"number":"5","title":"Déterminatifs Animaux (80+ Signes)","description":"Catégories E (mammifères), G (oiseaux), I (reptiles/amphibiens): 𓃀 taureau (force/vigueur), 𓃒 vache (déesse Hathor), 𓃗 bélier (Amon/Khnoum), 𓃘 mouton couché (troupeau), 𓃙 chèvre, 𓃚 gazelle, 𓃛 oryx (désert/Seth), 𓃜 antilope, 𓃝 chien couché (Anubis), 𓃡 chacal (mort/embaumement), 𓃭 lion couché (pouvoir royal), 𓃮 lion marchant (force), 𓃰 léopard, 𓃱 chat (Bastet), 𓃵 singe (Thot/sagesse), 𓃻 veau/offrande (sacrifice), 𓄀 éléphant (rare - Nubie), 𓄁 girafe (Nubie/Sud), 𓄂 autruche, 𓅃 faucon (Horus/roi), 𓅆 faucon sur étendard (dieu), 𓅊 vautour (protection maternelle), 𓅓 chouette (m - sagesse), 𓅔 ibis (Thot), 𓅕 oie (fils/Geb), 𓅰 serpent (magie/danger), 𓆈 cobra dressé (uraeus/royauté), 𓆉 scarabée (Khépri/renaissance), 𓆊 scorpion (Serket), 𓆌 grenouille (Heqet/millions), 𓆍 crocodile (Sobek).","symbols":[],"duration":""},{"number":"6","title":"Direction d'Écriture et Esthétique","description":"Règles fondamentales d'orientation: Lecture ➡️ gauche-à-droite ou ⬅️ droite-à-gauche (signes font face au début du texte). Colonnes verticales ⬇️ (reliefs monumentaux). **Principe esthétique du \"signe noble\"**: dieux/roi toujours en première position (exemple: 𓊹𓏏 nṯr-t \"déesse\" même si prononcé nṯr.t). **Quadrats harmonieux**: groupements en carrés virtuels pour équilibre visuel (petit signe peut remplir espace). **Remplissage esthétique**: signes petits (𓏤 trait, 𓏛 petits signes) pour compléter. Exercices: identifier direction de 30 textes, créer compositions équilibrées.","symbols":[],"duration":""},{"number":"7","title":"Cartouches Royaux - Titulature","description":"Structure des 5 noms royaux: (1) **Nom d'Horus** 𓅃 (palais-serekh), (2) **Nebty** 𓅒𓏏𓃀𓏏 (deux maîtresses - Nekhbet+Ouadjet), (3) **Horus d'or** 𓅃𓈉, (4) **Nom de couronnement** 𓆥𓏏 (nsw-bity \"roi de HE/BE\") + cartouche 𓍹...𓍺, (5) **Nom de naissance** 𓅭𓇳 (s3-rꜥ \"fils de Rê\") + cartouche. 50+ cartouches royaux: Khéops 𓍹𓎛𓅱𓊪𓅱𓊃𓍺 (Khufu), Khéphren 𓍹𓎛𓅄𓊪𓂋𓅱𓊃𓍺 (Khafre), Thoutmosis III 𓍹𓇳𓁦𓌸𓅆𓍺 (Men-kheper-Re), Hatchepsout 𓍹𓄟𓆑𓅱𓊃𓅆𓍺 (Maatkare), Aménophis III 𓍹𓇳𓏠𓈖𓆣𓍺 (Neb-maatre), Akhenaton 𓍹𓇋𓏏𓈖𓇳𓍺 (Akhenaten), Toutânkhamon 𓍹𓏏𓊵𓏏𓊗𓏭𓇳𓏮𓎟𓍺, Ramsès II 𓍹𓅱𓊃𓇋𓅭𓂋𓇳𓍺 (Usermaatre), Cléopâtre VII 𓍹𓈎𓃭𓇋𓇌𓇌𓊪𓇗𓇳𓍺.","symbols":[],"duration":""},{"number":"8","title":"Nombres et Système Décimal","description":"Système décimal additif (non positionnel): | (trait) = 1, ∩ (anse) = 10, 𓍢 (corde enroulée) = 100, 𓆼 (fleur de lotus) = 1000, 𓂭 (doigt pointé) = 10000, 𓆏 (têtard/grenouille) = 100000, 𓁨 (homme bras levés/dieu Heh) = 1000000 (infini). Exemple: 2749 = 𓆼𓆼𓍢𓍢𓍢𓍢𓍢𓍢𓍢∩∩∩∩||||||||. **Fractions**: 𓏤 (trait) + bouche 𓂋 sur nombre (𓂋 sur 3 = 1/3). Fractions courantes: 𓏴 (2/3), 𓂝 (1/2 - bras), 𓏤 𓂋 sur nombres. **Nombres ordinaux**: addition de 𓏤 (trait) après nombre. Exercices: écrire dates (ex: an 33 de Ramsès II), quantités d'offrandes.","symbols":[],"duration":""},{"number":"9","title":"Titres et Fonctions - Société","description":"100+ titres administratifs et religieux: 𓊹𓊪𓏏𓀀 ḥm-nṯr (prophète/prêtre), 𓊹𓏏𓀀 ḥm-nṯr-tpy (premier prophète), 𓊹𓄿𓀀 sš (scribe - palette+encrier), 𓉔𓃀𓏏𓊪𓀀 jry-pꜥt (noble héréditaire), 𓍋𓏏𓅓𓀀 jm3ḫw (bienheureux/vénérable), 𓌨𓀀 ṯ3ty (vizir), 𓂓𓏏𓀗 ḥ3ty-ꜥ (gouverneur/maire), 𓁷𓏤𓏏𓊪𓀀 jmy-r (surveillant de), 𓂋𓏏𓏏𓀀 rḫyt (peuple/sujets), 𓎡𓏏𓀀 wꜥb (prêtre pur), 𓊹𓏏𓏭𓀀 wꜥb (prêtre wab), 𓏏𓏐𓏏𓏏𓁐 ḥmt (épouse), 𓏏𓏐𓏏𓏏𓁐𓏏 ḥmt-nsw (épouse royale), 𓏏𓏐𓏏𓏏𓁐𓆇𓅆 ḥmt-nsw-wrt (grande épouse royale), 𓃒𓅆𓇳 ḥwt-ḥr (Hathor - prêtresse).","symbols":[],"duration":""},{"number":"10","title":"Formules d'Offrande - ḥtp-dj-nsw","description":"Formule funéraire omniprésente: 𓊹𓌨𓏏𓇳 ḥtp-dj-nsw \"offrande que donne le roi\" (structure: offrande + donner + roi). Structure complète: \"Offrande que donne le roi [+ nom divinité] afin qu'il accorde une invocation d'offrandes en pain, bière, bœuf, volaille, albâtre, lin pour le ka de [nom défunt] justifié/vénérable.\" Exemple type: 𓊹𓌨𓏏𓇳 𓊨𓏏𓉐𓊪𓏏𓅆 𓇋𓏏𓆑 𓎛𓏏𓏏𓀁𓊃𓏏𓊗𓅓𓇋𓈖𓋹𓏏𓊹𓏏𓏏𓅱𓏏𓊪𓂋𓏏𓆄𓏏𓅱𓏏𓆘𓏏𓏯𓅱𓏏𓏇𓁷𓈖𓎡𓀀𓁹𓅆𓐍𓅱𓇋𓅓𓎛𓀁. Variations régionales et chronologiques. 30+ exemples de stèles.","symbols":[],"duration":""},{"number":"11","title":"Grammaire : Pronoms Personnels","description":"**Pronoms indépendants**: 𓇋𓈖𓎡 jnk (je-emphase), 𓈖𓍿𓎡 ntk (tu masc.), 𓈖𓍿𓏏 ntt (tu fém.), 𓇋𓊵𓏏𓆑 ntf (lui), 𓇋𓊵𓏏𓆇 nts (elle), 𓇋𓈖𓈖 jnn (nous), 𓈖𓍿𓈖 nttn (vous), 𓇋𓊵𓏏𓅆𓈖 ntsn (eux/elles). **Suffixes pronominaux** (possessifs/objets): -j/.j (moi), -k (toi masc.), -t (toi fém.), -f (lui), -s (elle), -n (nous), -ṯn (vous), -sn (eux/elles). **Pronoms dépendants**: wj (me), tw (te), sw (le), sy (la), n (nous), ṯn (vous), sn (les). **Démonstratifs**: 𓊪𓈖/𓊪𓅱 pn/pw (celui-ci masc.), 𓏏𓈖/𓏏𓅱 tn/tw (celle-ci fém.), 𓈖𓈖/𓈖𓅱 nn/nw (ceux-ci). Exercices: déclinaison complète, 50 phrases.","symbols":[],"duration":""},{"number":"12","title":"Constructions Verbales - Formes Suffixales","description":"**Forme sdm.f** (il entend - aoriste/présent gnomique): 𓊃𓂧𓅓𓆑 sdm.f. **Forme sdm.n.f** (il a entendu - parfait accompli): 𓊃𓂧𓅓𓈖𓆑 sdm.n.f. **Forme sdm.in.f** (et alors il entendit - parfait narratif): 𓊃𓂧𓅓𓇋𓈖𓆑 sdm.in.f. **Forme sdm.hr.f** (il entendra - prospectif futur): 𓊃𓂧𓅓𓁷𓂋𓆑 sdm.ḥr.f. **Forme sdm.k3.f** (il puisse entendre - subjonctif): 𓊃𓂧𓅓𓎡𓄿𓆑 sdm.k3.f. **Forme sdm.t.f** (afin qu'il entende - subjonctif passé): 𓊃𓂧𓅓𓏏𓆑. **Impératif**: 𓊃𓂧𓅓 sdm (entends!). Verbes faibles (2ae-gem, 3ae-inf, etc.). Conjugaisons complètes de 30 verbes courants: jrj (faire), jj (venir), rdj (donner), prj (sortir), ꜥḥꜥ (se lever), sḏm (entendre), mꜣꜣ (voir), ḏd (dire).","symbols":[],"duration":""},{"number":"13","title":"Textes des Pyramides (2400-2300 av. J.-C.)","description":"Plus anciens textes religieux du monde: 800+ formules (numérotées PT 1-759 par K. Sethe). Pyramides d'**Ounas** (PT 1-759 premier corpus complet), **Téti**, **Pépi I**, **Mérenrê**, **Pépi II**. Formules majeures: PT 213-222 (Navigation céleste), PT 245-246 (Échelle vers le ciel), PT 273-274 (Cannibalisme rituel - roi mange dieux), PT 302-312 (Résurrection), PT 366-374 (Offrandes), PT 477-480 (Transformation en étoile circumpolaire), PT 519-521 (Osiris/roi identification). Langue archaïque: verbes anciens, syntaxe pré-classique. Exercices: translittération 50 formules, traduction 20 passages.","symbols":[],"duration":""},{"number":"14","title":"Textes des Sarcophages (2100-1800 av. J.-C.)","description":"Moyen Empire: 1185 formules (numérotées CT 1-1185 par A. de Buck). Développement/démocratisation des TP. **Livre des Deux Chemins** (CT 1029-1185): première carte géographique de l'au-delà, itinéraires terrestres/aquatiques vers Rosetjau. Formules majeures: CT 1-27 (Devenir Osiris), CT 38-41 (Navigation), CT 75-80 (Transformations), CT 125 (Champs d'Ialou), CT 154-160 (Repousser dangers), CT 225-230 (Provisionnement), CT 335-340 (Ne pas mourir à nouveau), CT 714-723 (Connaissances magiques), CT 1130-1185 (Chemins de Rosetjau). Innovations linguistiques vs. TP. Sarcophages peints: Bersha (B1-B4), Meir (M1-M7), el-Lisht.","symbols":[],"duration":""},{"number":"15","title":"Livre des Morts - Partie 1 (Chapitres 1-90)","description":"Nouvel Empire: 190 chapitres (numérotés par R. Lepsius 1842). **Titre égyptien**: 𓂋𓅱𓈖𓅱𓏏𓊪𓂋𓏏𓂻𓁷𓂋𓅱 r n prt-m-ḥrw \"Formules pour sortir au jour\". Chapitres 1-16 (Procession funéraire, arrivée nécropole), 17-20 (Glorifications), 21-30 (Protection du cœur/bouche), 30B (Ne pas témoigner contre - scarabée de cœur), 31-63 (Repousser dangers: crocodiles, serpents, pièges), 64-66 (Sortir au jour), 72-77 (Transformations: faucon, lotus, dieu, bennou), 78-88 (Naviguer en barque divine), 89-90 (Rejoindre le ka). Papyrus majeurs: Ani (BM 10470), Hunefer (BM 9901), Nébqed (Louvre), Nu (BM 10477). Exercices: traduction 30 chapitres.","symbols":[],"duration":""},{"number":"16","title":"Livre des Morts - Partie 2 (Chapitres 91-130)","description":"Chapitres 91-99 (Transformations suite: bélier, phénix, serpent), 100 (Barque de Rê), 101-116 (Connaissance de l'au-delà), **Chapitre 125 - LE PLUS IMPORTANT**: Jugement d'Osiris, Psychostasie (pesée du cœur), 42 déclarations négatives (\"Je n'ai pas tué\", \"Je n'ai pas volé\", etc.), 14 juges divins, Ammit (dévoreur de cœurs impurs), justification. Structure chapitre 125: Entrée salle des Deux Maât, 1ère déclaration (7 affirmations), 2e déclaration (42 confessions négatives devant 42 juges), pesée cœur vs. plume Maât, déclaration d'innocence. Vignettes: balance, Anubis, Thot enregistre, Osiris trône. Chapitres 126-130 (Formules babouins, vénération dieux).","symbols":[],"duration":""},{"number":"17","title":"Livre des Morts - Partie 3 (Chapitres 131-190)","description":"Chapitres 131-137 (Formules lumières/feu), 138-140 (Entrée dans Au-delà), 141-142 (Connaissance noms divins), 143 (Provisionnement), 144-147 (Portes du Duat), 148-150 (Nourritures célestes), 151-162 (Protection physique du corps/momie), 163-165 (Empêcher putréfaction), 166 (Appuie-tête), 172-173 (Acclamations Osiris), 175-176 (Ne pas mourir à nouveau), 178-185 (Résurrection/relever), 186-190 (Glorifications Hathor). **Papyrus tardifs** (Ptolémaïque/Romain): Nesikhonsou (Louvre 3292 - 4m de long), Padiouénamoniou, Nespakachouty. **Papyrus démotiques**: Setna I-II (contes magiques). Évolution chapitres, variations textuelles, illustrations polychromes.","symbols":[],"duration":""},{"number":"18","title":"Littérature Classique - Contes","description":"**Conte de Sinouhé** (chef-d'œuvre absolu): exil d'un courtisan après mort Aménemhat I, aventures en Syrie, nostalgie Égypte, retour, réhabilitation. Papyrus Berlin 3022, 10499. **Naufragé** (Papyrus Ermitage 1115): récit fantastique, île serpent-génie, merveilles. **Paysan Éloquent** (9 discours rhétoriques sur justice): paysan spolié plaide cause. **Deux Frères** (Anoubis et Bata, thème Putiphar): trahison, métamorphoses, magie. **Prêtre Nebounenef**: roman d'aventures magiques. **Vérité et Mensonge**: allégorie. **Prince Prédestiné**: mort prédite (crocodile/serpent/chien), fin perdue. **Prise de Joppé** (campagne Thoutmosis III): soldats cachés dans jarres (proto-Troie). **Khnoumhotep et Nykaankh**: amitié homoérotique? Lecture complète 8 contes.","symbols":[],"duration":""},{"number":"19","title":"Littérature Sapientiale - Enseignements","description":"**Enseignement de Ptahhotep** (Ancien Empire, Ve dyn.): 37 maximes sagesse, éthique fonctionnaire, comportement social. \"Ne sois pas orgueilleux de ton savoir...\" **Enseignement de Kagemni**: similaire, fragments. **Enseignement pour Mérykarê** (roi Xe dyn. à son fils): sagesse politique, justice, soin sujets. **Enseignement de Khéty** (Satire des Métiers): éloge métier de scribe vs. mépris autres métiers (pêcheur, potier, blanchisseur...). **Enseignement d'Amenemopé** (30 chapitres, influence Proverbes bibliques): sagesse personnelle, humilité, piété. **Loyaliste pour Sésostris** III: loyauté au roi. **Enseignement d'Ani**: sagesse familiale. **Aménémopé**: attitude envers richesse/pauvreté. Analyse comparative, vocabulaire moral.","symbols":[],"duration":""},{"number":"20","title":"Hymnes et Poésie Religieuse","description":"**Hymne au Nil** (Hâpy): célébration inondation annuelle, fertilité, prospérité. Papyrus Sallier II, Chester Beatty V. **Grand Hymne à Aton** (Akhenaton, Amarna): monothéisme solaire révolutionnaire, toute vie dépend disque solaire. Tombe d'Ay (Amarna). Parallèles Psaume 104. **Hymnes à Amon-Rê**: dieu universel, créateur, multiples formes. **Hymnes à Osiris**: stèle d'Ikhernofret (Abydos), mystères osiriens. **Hymne à Ptah**: cosmogonie memphite, création par la parole. **Hymnes à Hathor**: déesse lointaine, ivresse, musique. **Hymnes royaux**: glorification pharaon (Sésostris III, Ramsès II). **Hymne à Min** (fête Opet). **Hymnes solaires**: Livre Portes, Amdouat. Poésie amoureuse (Papyrus Harris 500).","symbols":[],"duration":""},{"number":"21","title":"Inscriptions Monumentales - Temples Nouvel Empire","description":"**Karnak** (plus grand complexe religieux): annales Thoutmosis III (guerres asiatiques), poème Qadesh (Ramsès II vs. Hittites), textes couronnement, listes d'offrandes, processions Opet, textes cosmogoniques. **Louxor**: scène naissance divine Aménophis III, procession Opet (jonction Karnak-Louxor). **Abydos**: listes royales Séthi I (76 cartouches), mystères osiriens, temple Séthi I + Ramsès II. **Dendérah**: temple Hathor (Ptolémaïque), zodiaque circulaire, cryptes, textes astronomiques, 7000+ hiéroglyphes temple! **Edfou**: temple Horus (mieux préservé), mythe Horus vs. Seth, rituels quotidiens, dimensions temple. **Philae**: temple Isis, dernier hiéroglyphe daté (394 apr. J.-C.). **Kom Ombo**: double temple Sobek/Horus, instruments médicaux. Exercices: 50 inscriptions.","symbols":[],"duration":""},{"number":"22","title":"Panthéon Égyptien Complet (100+ Divinités)","description":"**Créateurs**: Atoum (Héliopolis), Ptah (Memphis), Khnoum (Éléphantine), Amon (Thèbes). **Ennéade héliopolitaine**: Atoum, Shou, Tefnout, Geb, Nout, Osiris, Isis, Seth, Nephtys. **Ogdoade hermopolitaine**: 8 dieux primordiaux (Noun/Nounet, Heh/Hehet, Kek/Keket, Amon/Amaunet). **Triade thébaine**: Amon, Mout, Khonsou. **Triade memphite**: Ptah, Sekhmet, Nefertoum. **Triade abydienne**: Osiris, Isis, Horus. **Solaires**: Rê, Atoum, Khepri, Horakhty. **Funéraires**: Osiris, Anubis, Wepwaoet, Sokar, les 4 fils d'Horus (Amset, Hâpy, Douamoutef, Qebehsenouef). **Dangereuses**: Seth, Apophis, Sekhmet, Bastet. **Sagesse**: Thot, Maât, Seshat. **Fertilité**: Min, Hathor, Bes, Taouret. **Locales**: Sobek (Fayoum), Neith (Saïs), Montou (Thèbes). Formes animales, épithètes, centres cultes, fonctions, iconographie. 200+ hiéroglyphes noms divins.","symbols":[],"duration":""},{"number":"23","title":"Géographie Sacrée - Toponymie Complète","description":"**42 nomes d'Égypte** (22 Haute-Égypte, 20 Basse-Égypte): chaque nome a emblème, capitale, divinité tutélaire. **Haute-Égypte**: Éléphantine (Khnoum), Edfou (Horus), Elkab (Nekhbet), Thèbes (Amon - 4 nomes), Abydos (Osiris), Dendérah (Hathor), Coptos (Min), etc. **Basse-Égypte**: Memphis (Ptah), Héliopolis (Rê-Atoum), Saïs (Neith), Boubastis (Bastet), Tanis, Mendès, etc. **Villes majeures** (50+): hiéroglyphes spécifiques. **Pays étrangers**: Ta-Sety/Koush (Nubie), Pount (Somalie?), Retenou (Syrie-Palestine), Khéta (Hittites), Tjemehou (Libye), Ouadj-Our (Grande-Verte/Méditerranée), Iam (Irem - Soudan), Keftiu (Crète). **Géographie funéraire**: Douât (au-delà), Iat-Djeseret (Vallée Rois), Per-Djat (nécropole), Cher-Nefer (belle tombe).","symbols":[],"duration":""},{"number":"24","title":"Calendrier et Astronomie Égyptienne","description":"**3 saisons** (4 mois chacune): Akhet (inondation, mois I-IV), Peret (germination/émergence, V-VIII), Shemou (chaleur/récolte, IX-XII). **Mois**: Thot, Phaophi, Athyr, Khoiak, Tybi, Méchir, Phamenoth, Pharmouthi, Pakhons, Payni, Epiphi, Mesore + 5 jours épagomènes. **Décans**: 36 groupes d'étoiles (10 jours chacun), tables décans (plafonds tombeaux). **Heures**: 12 heures jour, 12 heures nuit (variables selon saison). **Horl oges stellaires**: diagonales, transits. **Cycle sothiaque**: 1460 ans (Sirius). **Astronomie**: observations Vénus, Mars, Jupiter, Saturne. **Zodiaque** (ptolémaïque): Dendérah, Esna - influences grecques. **Fêtes religieuses**: Opet (2e mois Akhet, 27 jours Ramsès III!), Belle Fête Vallée, Mystères Osiris (Khoiak), Nouvelle Année (1er Thot), fête Sokar, fête Min, etc.","symbols":[],"duration":""},{"number":"25","title":"Livres de l'Au-Delà - Livre de l'Amdouat","description":"**Amdouat** (\"Livre de ce qui est dans le Duat\"): 12 heures de la nuit, voyage de Rê dans l'au-delà. Version complète tombeaux royaux (Thoutmosis III premier). **12 heures détaillées**: 1ère: entrée dans Douât, accueil par génies. 2e: terres arables de l'Ouernes, Champs d'Ialou. 3e: eaux primordiales Noun, Osiris juge. 4e-5e: difficultés, désert, gardiens serpents. 6e: montagne sacrée, Khépri transforme Rê vieilli. 7e: Apophis (serpent du chaos) attaqué/neutralisé. 8e: vêtements, préparation. 9e-10e: préparation renaissance. 11e: châtiment damnés, lac de feu. 12e: régénération complète de Rê, renaissance comme Khépri (scarabée), sortie à l'aube. **Illustrations détaillées**: registres supérieurs/médians/inférieurs, texte accompagnement. Tombes: KV 34 (Thoutmosis III), KV 35 (Aménophis II), KV 43 (Thoutmosis IV), etc.","symbols":[],"duration":""},{"number":"26","title":"Livre des Portes","description":"12 heures + introduction/conclusion. Similaire Amdouat mais accent sur **portes gardées** entre chaque heure. Gardiens-serpents, formules magiques pour passer. **Structure**: Texte divisé en sections (chaque heure = porte + région). **Scène Jugement** (4e/5e heure): pesée des cœurs, Osiris trône, justification. **Lac de Feu** (11e heure): purification bénis, anéantissement damnés. **Représentations graphiques** distinctes: registres verticaux, barques solaires, divinités nomenclature spécifique. Tombes: Horemheb (KV 57), Ramsès I (KV 16), Séthi I (KV 17 - chef-d'œuvre), Ramsès VI (KV 9), Ramsès IX (KV 6). Sarcophages (Djedkhonsouiouefankh, etc.).","symbols":[],"duration":""},{"number":"27","title":"Livre des Cavernes","description":"6 sections (2 registres par section = 12 scènes). **Cavernes**: régions souterraines abritant formes d'Osiris, morts bienheureux, damnés. **Thématique**: résurrection osirienne, union Rê-Osiris nuit. **Section 1**: descente Rê, divinités l'accueillent. **Sections 2-5**: cavernes avec momies, résurrection progressive, apparitions divines, châtiment ennemis. **Section 6**: régénération finale, union Noun/naissance. **Particularité**: textes moins standardisés qu'Amdouat/Portes, variations importantes. Tombes: Séthi I (KV 17), Ramsès III (KV 11), Ramsès IV (KV 2), Ramsès VI (KV 9), Ramsès VII (KV 1), Ramsès IX (KV 6). Aussi temples (Médinet Habou).","symbols":[],"duration":""},{"number":"28","title":"Livre de la Terre + Nout + Vache Céleste","description":"**Livre de la Terre** (anciennement \"Livre d'Aker\"): 4 sections, accent sur terre/Aker (dieu-lion double). Résurrection depuis terre (vs. ciel). Ramsès VI (KV 9 - version complète). **Livre de Nout**: cosmogonie céleste, déesse Nout (ciel) avale Rê soir/enfante matin. Plafonds astronomiques (Séthi I, Ramsès IV, VI, IX). Textes expliquant décans, constellations. **Livre de la Vache Céleste**: mythe destruction humanité rebelle, Rê se retire au ciel sur dos vache Mehet-Oueret. Textes + illustration vache géante. Toutânkhamon (KV 62 - 4 chapelles), Séthi I (KV 17), Ramsès II (KV 7), Ramsès III (KV 11), etc. **Livre du Jour et Nuit**: voyage diurne/nocturne soleil, complément Amdouat.","symbols":[],"duration":""},{"number":"29","title":"Hiératique - Écriture Cursive Sacerdotale","description":"Écriture cursive dérivée hiéroglyphes (usage simultané 3200 av. J.-C.-période romaine). **Évolution paléographique**: Ancien Empire (archaïque), Moyen Empire (classique - Sinouhé), Nouvel Empire (chancellerie vs. littéraire), Basse Époque (cursif rapide), Ptolémaïque (anormal). **Papyrus littéraires majeurs**: Prisse (Ptahhotep - ~1850 av. J.-C., plus ancien rouleau intact), Westcar (contes magiques), Edwin Smith (médecine/chirurgie - 48 cas trauma), Ebers (médecine - 110 pages), Rhind (mathématiques - 87 problèmes), Chester Beatty (contes, poésie amoureuse), Papyrus Harris I (plus long - 41m! - inventaire temples Ramsès III). **Méthodologie**: signes hiératiques numérotés (Möller), transcription → hiéroglyphique. Exercices: transcription 50 lignes hiératique Moyen Empire.","symbols":[],"duration":""},{"number":"30","title":"Démotique - Écriture Populaire","description":"Stade cursif extrême (650 av. J.-C. - 452 apr. J.-C.). Dérivé hiératique anormal (Basse-Égypte). **Pierre de Rosette** (196 av. J.-C.): trilinguisme hiéroglyphique/démotique/grec - clé déchiffrement Champollion. Décret Memphis Ptolémée V. **Papyrus démotiques**: contrats (ventes, mariages, divorces), reçus fiscaux, testaments. **Littérature**: Cycle Setna (magie, nécromanie - Setna I-II, fils Ramsès II), Mythe Œil Soleil, Conte Inaros, sagesse Ankhsheshonq. **Textes magiques**: sortilèges, invocations démonsiaques. **Langue**: néo-égyptien tardif + emprunts grecs. **Alphabet démotique**: 24 signes + logogrammes. Complexité: ligatures, groupes. Apprentissage: 240h minimum. Tables de concordance démotique-copte.","symbols":[],"duration":""},{"number":"31","title":"Copte - Dernier Stade de l'Égyptien","description":"Alphabet grec (24 lettres) + 6-8 lettres démotiques (ϣ ϥ ϩ ϫ ϭ ϯ + ϥ ϧ). IIe-XVIIe siècles. **Dialectes**: Sahidique (Haute-Égypte, classique littéraire), Bohaïrique (Basse-Égypte/Delta, liturgie actuelle Église copte), Fayoumique (Fayoum), Akhmimique (Akhmim), Lycopolitain (Assiout), Oxyrhynchite. **Textes bibliques**: Ancien/Nouveau Testament (traductions IIIe s.), **Apocryphes**: Évangiles gnostiques Nag Hammadi (1945 - 52 traités), Bibliothèque gnostique unique. **Littérature monastique**: Vies de saints (Pachôme, Antoine), homélies (Shenoute), correspondance. **Langue**: vocabulaire égyptien + emprunts grecs massifs. Syntaxe: système conjugaison copte vs. égyptien classique. **Apprentissage**: base pour comprendre vocalisation égyptien ancien (copte préserve voyelles!).","symbols":[],"duration":""},{"number":"32","title":"Cryptographie Hiéroglyphique","description":"Systèmes d'écriture secrète (temples ptolémaïques surtout). **Méthodes**: (1) **Substitution phonétique**: valeur inhabituelle d'un signe (𓃀 normalement b → valeur r). (2) **Acrophonie**: signe utilisé pour 1ère lettre de son nom (𓃭 rw/lion → valeur r). (3) **Signes inventés**: glyphes créés spécifiquement (Esna: 100+ signes uniques!). (4) **Métathèse**: inversion lettres. (5) **Lectures multiples**: 1 signe = plusieurs valeurs simultanées. **Textes cryptographiques**: Esna (temple Khnoum - cryptographie extrême), Dendérah, Edfou, inscriptions sacerdotales. **Exemple**: cryptographie Ramsès II (éloges royaux codés). **Recherche**: déchiffrement continu (publications récentes 2000s). Exercices: déchiffrer 10 textes cryptographiques simples.","symbols":[],"duration":""},{"number":"33","title":"Variation Diachronique - 3500 Ans d'Évolution","description":"**Période pré-dynastique** (3300-3000): signes archaïques (étiquettes Abydos, palettes Narmer). **Ancien Empire** (2686-2181): hiéroglyphes monumentaux standardisés, Textes Pyramides (archaïsmes). **Première Période Intermédiaire** (2181-2055): décentralisation, variantes régionales. **Moyen Empire** (2055-1650): apogée classique, normalisation, littérature. **Deuxième Période Intermédiaire** (1650-1550): Hyksôs, influences asiatiques limitées. **Nouvel Empire** (1550-1077): expansion, néo-égyptien (oralité), évolution formes. **Troisième Période Intermédiaire** (1077-664): morcellement, hiératique anormal. **Basse Époque** (664-332): renaissance archaïsante (imitation Ancien Empire), démotique émerge. **Ptolémaïque** (332-30): explosion signes (Esna 7000!), cryptographie, influences grecques. **Romain** (30 av.-394 apr.): déclin progressif, dernier hiéroglyphe 24 août 394 (Philae). Paléographie: dater inscription par formes graphiques.","symbols":[],"duration":""},{"number":"34","title":"Pierre de Rosette - Trilingue Fondateur","description":"**Découverte**: juillet 1799, Rosette (Delta), soldat français (campagne Bonaparte). **Texte**: décret Memphis 196 av. J.-C., Ptolémée V Épiphane, prêtres Memphis. **3 écritures, 3 stades langue**: Hiéroglyphique (14 lignes, fragmentaire - égyptien moyen archaïsant), Démotique (32 lignes, quasi-complet - démotique), Grec (54 lignes, complet - koinè). **Histoire déchiffrement**: Sylvestre de Sacy, Åkerblad (démotique), Thomas Young (avancées), Jean-François Champollion (percée 1822 - phonétisme cartouches Ptolémée/Cléopâtre). **Méthode Champollion**: comparaison cartouches, valeurs phonétiques, généralisation. **Étude comparative 3 versions**: contenu identique, variations formulation, reconstruction parties manquantes hiéroglyphique. Exercice: traduire les 3 versions, comparer nuances. British Museum EA 24.","symbols":[],"duration":""},{"number":"35","title":"Textes Magiques et Médec","description":"**Papyrus magiques**: Harris Magical (formules protection), Leiden I 348 (sortilèges), Ramesseum (magie cérémonielle), Turin Magical Papyrus, London Hay 10252, Bremner-Rhind (renverser Apophis). **Formules**: protection contre serpents/scorpions, envoûtements amoureux, malédictions, protection maison/enfants, guérison maladies. **Figurines envoûtement**: textes exécration (casser pots/figurines ennemis). **Papyrus médicaux**: Edwin Smith (trauma/chirurgie - 48 cas cliniques, descriptions anatomiques précises), Ebers (médecine générale - 877 prescriptions, ophtalmologie, gynécologie, dermatologie), Kahun (gynécologie/obstétrique), Hearst (thérapeutique), Berlin 3038 (cardiologie/vaisseaux), Chester Beatty VI (anus/rectum), Carlsberg VIII (ophtalmologie). **Vocabulaire spécialisé**: organes (jb cœur, mw vaisseaux, s cerveau), pathologies, drogues/plantes, minéraux. **Magie-médecine**: indissociables (incantations + remèdes).","symbols":[],"duration":""},{"number":"36","title":"Textes Administratifs et Économiques","description":"**Deir el-Médineh** (village artisans Vallée des Rois): 6000+ ostraca + papyrus. Lettres, comptes, listes rations, absentéisme, litiges juridiques, testaments, adoptions. Vie quotidienne détaillée (salaires, prix, vols, adultères!). **Papyrus Wilbour** (Ramsès V): cadastre terres agricoles, taxation, surface parcelles. **Papyrus Harris I** (Ramsès III - 41m): inventaire donations temples (or, argent, terres, esclaves, animaux), comptabilité royale colossale. **Décrets royaux**: exemptions fiscales, privilèges temples, fondations cultuelles. **Lettres officielles**: correspondance diplomatique (Amarna - 382 tablettes akkadien cuneiform), rapports administrateurs, instructions vizir. **Listes**: inventaires, recensements (Louvre C100 - statistiques). **Registres comptables**: entrées/sorties greniers, trésors temples. Vocabulaire économique/juridique.","symbols":[],"duration":""},{"number":"37","title":"Signes Rares, Variantes et Hapax","description":"**Liste Gardiner** (1927): 763 signes classés (A-Z + Aa). **Extensions**: nombreux signes non répertoriés (estimations 5000-7000+ total incluant variantes). **Signes rares**: usage unique/très limité (ex: signes spécifiques 1 temple). **Hapax graphiques**: n'apparaissent qu'une fois corpus entier. **Variantes régionales**: mêmes valeurs, formes différentes (Memphis vs. Thèbes). **Variantes chronologiques**: évolution graphique même signe sur siècles. **Signes ptolémaïques**: explosion créativité tardive (Dendérah, Esna, Edfou). **Dendérah**: recensement Sylvie Cauville identifie 7000+ signes uniques (variantes, ligatures, cryptographie)! **Néologismes**: création signes objets nouveaux (époques tardives: influences grecques/perses). **Corruptions de copistes**: erreurs transmission, mal compris puis répétés. Recherche épigraphique: identification, catalogage nouveaux signes (publications continues).","symbols":[],"duration":""},{"number":"38","title":"Analyse Paléographique Avancée","description":"**Datation par l'écriture**: formes diagnostiques signes évoluent chronologiquement. Critères: proportion signes, traits caractéristiques, espacement, régularité. **Identification ateliers de scribes**: \"mains\" individuelles (Temple Séthi I Abydos: 4-5 ateliers distincts identifiables). Styles régionaux: Memphis (sobre), Thèbes (élaboré), Nubie (influences locales). **Corrections anciennes**: repentirs, modifications, palimpsestes (réutilisation supports). **Traces outils**: burins (pierre), calames (papyrus/ostraca), pinceaux (peinture). **Grilles préparatoires**: lignes guides (papyrus), quadrillage (parois temples). **Technique**: relief en creux (incisé) vs. relief levé (saillant), peinture seule (tombes privées). **Analyse matérielle**: supports (calcaire, grès, granit, basalte, papyrus, cuir, bois, lin), pigments (blanc gypse, noir charbon, rouge ocre, bleu/vert frites, jaune ocre/orpiment). Méthodes scientifiques modernes: photogrammétrie, RTI, multispectral imaging.","symbols":[],"duration":""},{"number":"39","title":"Égyptien Néo-égyptien (Ramesside)","description":"Nouvel Empire tardif (XIXe-XXe dynasties, 1300-1077): langue parlée entre dans écriture. **Caractéristiques**: système verbal nouveau (auxiliaires temps), articles définis (p3, t3, n3), particules (nombreuses vs. EM), constructions second présent, conversion narrative, futur III, emprunts sémitiques (guerre/commerce Asie). **Textes en néo-égyptien**: Papyrus Anastasi (lettres modèles scribes), Enseignements (Ani, Amenemopé tardif), poésie amoureuse (P. Harris 500, P. Chester Beatty I), Bataille Qadesh (récit Ramsès II), contes populaires (Deux Frères, Horus/Seth, Vérité/Mensonge, Ounamon), correspondance Deir el-Médineh, rapports ouvriers, procès-verbaux. **Grammaire**: paradigmes différents égyptien moyen (apprendre séparément après maîtrise EM). **Transition démotique**: évolution ultérieure.","symbols":[],"duration":""},{"number":"40","title":"Projet de Recherche Final","description":"**Choix projet magistral** (6 mois - 1 an travail universitaire): **(A) Édition philologique texte**: établissement texte hiéroglyphique (relevés épigraphiques ou collation papyrus), transcription, translittération, traduction ligne par ligne, apparat critique (variantes manuscrits), glossaire complet, index, commentaire grammatical, notes philologiques/historiques, bibliographie exhaustive. Normes: TLA (Thesaurus Linguae Aegyptiae). **(B) Corpus thématique**: rassembler TOUTES occurrences d'un mot/formule à travers corpus (ex: études sur jmꜣḫw \"vénérable\", ou formules résurrection). Analyse diachronique, évolution sémantique, statistiques, répartition géographique/chronologique. **(C) Étude grammaticale**: 1 phénomène syntaxique sur grand corpus (ex: ordre mots, usage particules, voix passive, constructions relatives). Méthodologie linguistique rigoureuse. **(D) Monographie temple/tombe**: publication complète monument (épigraphie, architecture, iconographie, contexte historique). Standards: Oriental Institute Chicago.","symbols":[],"duration":""}]}];
+
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const SYMBOL_GLOSSARY = [
+  { tokens:['→'], description:'→ (flèche orientée : « mène à » ou influence supposée) indique une direction proposée ; elle ne prouve pas à elle seule une causalité.' },
+  { tokens:['↔'], description:'↔ (double flèche : équivalence ou correspondance réciproque, selon le contexte).' },
+  { tokens:['≠'], description:'≠ (signe « différent de ») indique que deux valeurs ne sont pas égales.' },
+  { tokens:['='], description:'= (signe égal : « a la même valeur que ») exprime une égalité, pas une succession.' },
+  { tokens:['¬'], description:'¬ (négation : « non ») inverse la valeur de vérité d’une proposition.' },
+  { tokens:['∧'], description:'∧ (conjonction : « et ») est vraie si les deux propositions le sont.' },
+  { tokens:['∨'], description:'∨ (disjonction inclusive : « ou, éventuellement les deux ») est vraie si au moins une proposition l’est.' },
+  { tokens:['∀'], description:'∀ (quantificateur universel : « pour tout ») porte sur chaque élément du domaine indiqué.' },
+  { tokens:['∃'], description:'∃ (quantificateur existentiel : « il existe ») affirme qu’au moins un élément satisfait la propriété.' },
+  { tokens:['∈'], description:'∈ (signe d’appartenance : « appartient à l’ensemble »).' },
+  { tokens:['×'], description:'× (signe de multiplication : produit de deux valeurs).' },
+  { tokens:['Σ'], description:'Σ (lettre grecque sigma : somme des termes précisés).' },
+  { tokens:['∞'], description:'∞ (signe infini : grandeur ou ensemble sans borne finie, suivant le contexte).' },
+  { tokens:['π'], description:'π (lettre grecque pi : rapport du périmètre d’un cercle à son diamètre en géométrie euclidienne).' },
+  { tokens:['φ'], description:'φ (lettre grecque phi : désigne ici le nombre d’or, environ 1,618).' },
+  { tokens:['Fₙ','Fₙ₊₁'], description:'Fₙ (terme de rang n dans la suite de Fibonacci) ; Fₙ₊₁/Fₙ (rapport du terme suivant au terme actuel).' },
+  { tokens:['r =','r≈','corrélation'], description:'r (coefficient de corrélation linéaire) résume l’association entre deux variables ; il ne démontre pas la causalité.' },
+  { tokens:['EV','espérance'], description:'EV (expected value, espérance mathématique) : moyenne théorique pondérée des résultats possibles.' },
+  { tokens:['WR','win rate'], description:'WR (win rate, taux de réussite) : part des opérations gagnantes dans l’échantillon.' },
+  { tokens:['R:R','risk/reward'], description:'R:R (risk/reward, rapport risque/rendement) : rapport entre perte potentielle et gain visé ; préciser l’ordre retenu.' },
+  { tokens:['PF','profit factor'], description:'PF (profit factor, facteur de profit) : gains bruts divisés par pertes brutes pour la période étudiée.' }
+];
+
+const PHASES = [
+  { id:1, name:"Observer et représenter", sub:"Distinguer faits, motifs, logique et nombres", cls:"p1" },
+  { id:2, name:"Logique et arguments", sub:"Connecteurs, syllogismes, quantificateurs et biais", cls:"p2" },
+  { id:3, name:"Relations et systèmes", sub:"Induction, abduction, causalité, corrélation et analogies",cls:"p3" },
+  { id:4, name:"Modèles et abstraction", sub:"Construire, comparer et réviser des modèles", cls:"p4" },
+  { id:5, name:"Transfert et critique", sub:"Analogies, preuves, gematria et débat structuré", cls:"p5" },
+  { id:6, name:"Intégration et décision", sub:"Intuition, probabilités, compression et synthèse",cls:"p6" },
+];
+
+const COURSES = [
+  // ── PHASE 1 ──────────────────────────────────────────────────────────────
+  {
+    id:"1.1", phase:1, icon:"👁️", title:"Observation Pure", duration:"15 min",
+    theory:`<p>La plupart des gens n'observent pas — ils <em>confirment</em>. Leur regard cherche ce qu'il s'attend à trouver, et filtre tout le reste.</p><p>L'observation pure, c'est couper ce filtre. Voir ce qui <em>est</em>, pas ce qu'on suppose. C'est la compétence de base de tout esprit puissant — sans elle, toute analyse repose sur du sable.</p><p>Cette discipline est difficile parce qu'elle va contre l'économie cognitive : notre cerveau préfère confirmer ses modèles plutôt que les remettre en question.</p>`,
+    keyPoints:["Séparer fait et interprétation","Décrire sans catégoriser","Voir avant de juger","Base de toute analyse solide"],
+    exercise:{
+      type:"free_text",
+      title:"L'Exercice du Regard",
+      prompt:`Prends un objet devant toi — n'importe lequel. Décris-le en 50 mots minimum <strong>sans utiliser</strong> :<br>— Des jugements (<em>beau, vieux, inutile, intéressant</em>)<br>— Des noms de catégorie (<em>"c'est une chaise"</em>)<br>— Des suppositions (<em>"ça sert à..."</em>)<br><br>Uniquement : formes, couleurs, textures, dimensions, positions relatives.`,
+      minWords:50,
+      placeholder:"Décris l'objet en faits purs...",
+      selfValidate:true,
+      criteria:"Tu valides toi-même : es-tu certain de n'avoir utilisé aucun jugement, aucune catégorie, aucune supposition ?"
+    }
+  },
+  {
+    id:"1.2", phase:1, icon:"🌿", title:"Décomposition", duration:"15 min",
+    theory:`<p>Décomposer, c'est transformer une question trop vaste en sous-questions observables. Ce n'est pas supposer que tout peut être divisé sans fin : certaines contraintes, unités ou conventions sont utiles comme éléments de base pour une analyse donnée.</p><p>Commence par préciser la question, puis sépare ses dimensions (temps, personnes, ressources, mécanismes, preuves). Vérifie qu'elles sont assez distinctes et qu'ensemble elles couvrent le problème. Une carte reste un modèle : elle sélectionne des détails, elle n'est pas la réalité.</p><p>Après avoir séparé les éléments, cherche aussi leurs dépendances. Une liste ne montre pas encore comment les parties s'influencent.</p>`,
+    keyPoints:["Rien n'est indivisible","Suivre la structure réelle","Chaque partie doit être compréhensible seule","Identifier où exactement est le problème"],
+    exercise:{
+      type:"free_text",
+      title:"Découper le Réel",
+      prompt:`Prends <strong>l'un de ces problèmes</strong> (ou le tien) :<br><br>— "Je n'arrive pas à me concentrer"<br>— "Ma situation financière est bloquée"<br>— "Une relation dans ma vie est tendue"<br><br>Décompose-le en arbre : 3 composantes minimales, chacune avec 2 sous-parties. Format libre, mais chaque élément doit être spécifique et actionnable.`,
+      minWords:60,
+      placeholder:"Problème :\n├── Composante A\n│   ├── Sous-partie A1\n│   └── Sous-partie A2\n├── Composante B\n│   └── ...\n└── Composante C",
+      selfValidate:true,
+      criteria:"Valide si : chaque composante est distincte, chaque sous-partie est concrète et ne se répète pas dans l'arbre."
+    }
+  },
+  {
+    id:"1.3", phase:1, icon:"🔷", title:"Patterns de Base", duration:"20 min",
+    theory:`<p>Un motif est une régularité candidate dans des observations. Pour le reconnaître, formule une règle qui explique les exemples, puis cherche un nouvel exemple ou contre-exemple. Plusieurs règles peuvent expliquer une courte séquence : on ne peut donc pas conclure trop vite qu'on a trouvé la règle unique.</p><p>Par exemple, 2, 4, 6, 8 peut suivre « ajouter 2 », mais aussi une règle plus compliquée choisie pour ne convenir qu'à ces quatre termes. On préfère la règle simple, testable, et utile pour prédire la suite ; on garde en tête qu'elle reste une hypothèse.</p><p>En gematria, des valeurs égales sont des coïncidences calculables selon un alphabet choisi. Elles peuvent suggérer une piste de lecture, mais elles ne démontrent à elles seules ni un lien historique, ni une intention, ni une vérité cachée.</p>`,
+    keyPoints:["Un motif est une hypothèse sur une régularité","Énoncer la règle et la tester sur de nouveaux cas","Des exemples courts admettent plusieurs règles","Une correspondance numérique est une piste, pas une preuve"],
+    exercise:{
+      type:"fill_blank",
+      title:"Compléter les Séquences",
+      sequences:[
+        { prompt:"2 — 4 — 6 — 8 — ___", answer:"10", hint:"Progression arithmétique +2" },
+        { prompt:"A — C — E — G — ___", answer:"I", hint:"Sauts de 2 lettres" },
+        { prompt:"1 — 1 — 2 — 3 — 5 — ___", answer:"8", hint:"Suite de Fibonacci : chaque terme, à partir du troisième, est la somme des deux précédents" },
+        { prompt:"3 — 9 — 27 — 81 — ___", answer:"243", hint:"Multiplication par 3" },
+        { prompt:"7 — 14 — 28 — 56 — ___", answer:"112", hint:"Doublement" },
+        { prompt:"1 — 4 — 9 — 16 — 25 — ___", answer:"36", hint:"Carrés parfaits" },
+      ]
+    }
+  },
+  {
+    id:"1.4", phase:1, icon:"🔢", title:"Gematria Simple", duration:"20 min",
+    theory:`<p>La gematria associe des nombres aux lettres selon une convention. Ce cours utilise l'alphabet latin sans accents, avec A=1, B=2, jusqu'à Z=26. Ainsi, LUNE vaut L(12)+U(21)+N(14)+E(5)=52. Ce choix est un système de calcul moderne pour l'exercice ; il ne faut pas le confondre avec la gematria hébraïque, qui utilise un autre alphabet et ses propres valeurs.</p><p>La réduction numérique additionne les chiffres d'un total jusqu'à obtenir un chiffre de 1 à 9 : 47 → 4+7=11 → 1+1=2. La flèche → signifie « donne » ou « conduit à ». Cette opération est une convention de résumé, pas une preuve de relation entre les mots.</p><p>Deux mots de même valeur ont une égalité arithmétique dans ce système. Pour interpréter cette égalité, il faut ensuite une hypothèse indépendante et des éléments de contexte ; le nombre seul ne démontre aucune connexion sémantique.</p>`,
+    keyPoints:["Alphabet latin sans accents : A=1 à Z=26","Une réduction dépend d'une convention annoncée","Même total = égalité dans le calcul choisi","Une égalité numérique ne prouve pas un lien de sens"],
+    exercise:{
+      type:"gematria_practice",
+      title:"Calculer & Connecter",
+      words:["LOGOS","LUNE","SOL","FEU","VIDE"],
+      answers:{ "LOGOS":68, "LUNE":52, "SOL":46, "FEU":32, "VIDE":40 },
+      prompt:"Utilise le calculateur dans la barre latérale. Calcule la valeur simple (A=1...Z=26) de chaque mot, puis leur réduction. Note les correspondances que tu trouves."
+    }
+  },
+
+  {
+    id:"1.5", phase:1, icon:"📏", title:"Propositions et connecteurs", duration:"20 min",
+    theory:`<p>Une proposition est une phrase à laquelle on peut attribuer vrai ou faux, comme « la porte est ouverte ». Une question ou un ordre n'est pas une proposition au même sens.</p><p>Les connecteurs logiques construisent des phrases composées : ¬P (non P, négation), P ∧ Q (P et Q, conjonction), P ∨ Q (P ou Q, disjonction inclusive : l'un, l'autre, ou les deux), et P → Q (si P alors Q, implication). Ici P et Q sont des variables représentant des propositions. La flèche n'affirme pas que P cause Q : elle décrit une relation logique.</p><p>Pour lire une implication, il faut distinguer sa condition et sa conséquence. « S'il pleut, le sol est mouillé » ne permet pas de conclure qu'il pleut dès qu'on voit un sol mouillé ; l'arrosage est une autre explication possible.</p>`,
+    keyPoints:["Une proposition a une valeur de vérité","¬ signifie non ; ∧ signifie et ; ∨ signifie ou inclusif","P → Q n'affirme pas P et ne prouve pas une causalité","La conséquence seule ne permet pas de retrouver la condition"],
+    exercise:{type:"mcq_series",title:"Lire les connecteurs",questions:[
+      {q:"P est vrai et Q est faux. Quelle est la valeur de P ∧ Q (P et Q) ?",options:["Vrai","Faux","Impossible à savoir"],correct:1,explanation:"Une conjonction P ∧ Q n'est vraie que si P et Q sont tous deux vrais."},
+      {q:"« Si l'alarme sonne, je sors. Je sors. Donc l'alarme a sonné. » Quelle erreur ?",options:["Aucune : raisonnement valide","Affirmation du conséquent","Négation de l'antécédent"],correct:1,explanation:"D'autres raisons peuvent expliquer que je sorte. De P → Q et Q, on ne peut pas déduire P."},
+      {q:"Dans P ∨ Q (P ou Q inclusif), quelle situation rend la formule fausse ?",options:["P vrai, Q faux","P faux, Q vrai","P faux et Q faux"],correct:2,explanation:"Le « ou » inclusif est vrai si au moins une proposition est vraie. Il est faux seulement si les deux sont fausses."}
+    ]}
+  },
+  {
+    id:"1.6", phase:1, icon:"🔢", title:"Égalités et ordre des opérations", duration:"20 min",
+    theory:`<p>Le signe = (égal à) affirme que deux expressions ont la même valeur. Ce n'est ni une flèche temporelle ni « voici le résultat suivant » : 2+3=5 est une égalité, tandis que 2+3→5 est une façon informelle d'annoncer un calcul.</p><p>Pour évaluer une expression, respecte les priorités usuelles : parenthèses, puissances, multiplication et division, puis addition et soustraction. Dans 2+3×4, la multiplication se fait avant l'addition : 14. Des parenthèses lèvent l'ambiguïté : (2+3)×4=20.</p><p>En gematria, montre chaque étape et indique si tu additionnes les valeurs des lettres, puis si tu appliques une réduction. Une arithmétique correcte vérifie le calcul, pas l'interprétation symbolique.</p>`,
+    keyPoints:["= signifie « a la même valeur que »","Les priorités d'opérations évitent les ambiguïtés","Les parenthèses indiquent explicitement l'ordre","Vérifier un calcul ne prouve pas une interprétation"],
+    exercise:{type:"mcq_series",title:"Vérifier les calculs",questions:[
+      {q:"Combien vaut 2+3×4 selon les priorités usuelles ?",options:["20","14","24"],correct:1,explanation:"On multiplie d'abord : 3×4=12, puis on ajoute 2, soit 14."},
+      {q:"Que signifie 2+3=5 ?",options:["2+3 arrive ensuite à 5","Les deux expressions ont la même valeur","2 et 3 sont toujours égaux à 5"],correct:1,explanation:"Le signe = exprime une égalité de valeur entre les expressions à gauche et à droite."},
+      {q:"LOGOS vaut L(12)+O(15)+G(7)+O(15)+S(19) selon A=1 à Z=26. Quel est le total ?",options:["58","68","78"],correct:1,explanation:"12+15+7+15+19=68. Ce résultat vaut selon le système alphabétique annoncé."}
+    ]}
+  },
+
+  // ── PHASE 2 ──────────────────────────────────────────────────────────────
+  {
+    id:"2.1", phase:2, icon:"⚖️", title:"Syllogismes", duration:"20 min",
+    theory:`<p>Un argument relie des prémisses (les raisons avancées) à une conclusion (ce qu'on veut établir). En déduction, la forme est valide si, dans tous les cas où les prémisses sont vraies, la conclusion l'est aussi. La validité décrit donc la forme du raisonnement ; la vérité décrit une affirmation ou une prémisse à propos du monde.</p><p>Le symbole ∴ (donc) annonce la conclusion. Le signe ≠ (n'est pas égal à) sert ici à rappeler que « valide » et « vrai » sont deux notions différentes. Un argument valide à partir d'une prémisse fausse peut aboutir à une conclusion fausse ou vraie par hasard : la validité seule ne tranche pas le fait.</p><p>Pour examiner un argument, réécris les prémisses explicitement, vérifie la forme, puis demande quelles preuves soutiennent les prémisses. Certaines règles de logique présentées ici concernent la déduction ; elles ne s'appliquent pas telles quelles à l'induction, qui rend une conclusion plus ou moins probable.</p>`,
+    keyPoints:["Validité : impossibilité d'avoir des prémisses vraies et une conclusion fausse","Vérité : conformité d'une affirmation aux faits","Vérifier séparément forme et preuves","Ne pas confondre déduction et induction"],
+    exercise:{
+      type:"mcq_series",
+      title:"Valide ou Non ?",
+      questions:[
+        {
+          q:"P1: Tous les hommes sont mortels. P2: Socrate est un homme. C: Socrate est mortel.",
+          options:["Valide et probablement vrai","Valide mais faux","Non valide","Non valide et faux"],
+          correct:0, explanation:"Syllogisme classique parfaitement valide. La conclusion découle nécessairement des prémisses."
+        },
+        {
+          q:"P1: Tous les chats sont noirs. P2: Mon animal est un chat. C: Mon animal est noir.",
+          options:["Valide et vrai","Valide mais repose sur une prémisse fausse","Non valide","Impossible à juger"],
+          correct:1, explanation:"La structure est valide (conclusion suit des prémisses), mais P1 est factuellement fausse — donc la conclusion peut être fausse en réalité."
+        },
+        {
+          q:"P1: Certains traders gagnent de l'argent. P2: Hugo est trader. C: Hugo gagne de l'argent.",
+          options:["Valide","Non valide — 'certains' ne permet pas cette conclusion","Valide si Hugo est bon","Dépend du marché"],
+          correct:1, explanation:"'Certains' ne permet pas de conclure sur un individu spécifique. C'est une erreur de quantification très commune."
+        },
+        {
+          q:"P1: Si je travaille, je réussis. P2: Je réussis. C: Donc j'ai travaillé.",
+          options:["Valide","Non valide — c'est une affirmation du conséquent","Valide si le travail est la seule voie","Valide dans ce contexte"],
+          correct:1, explanation:"Erreur classique : 'Si A alors B' + 'B' ne permet pas de conclure 'A'. Il peut y avoir d'autres causes de B."
+        }
+      ]
+    }
+  },
+  {
+    id:"2.5", phase:2, icon:"🔍", title:"Induction et abduction", duration:"25 min",
+    theory:`<p>La déduction teste ce qui suit nécessairement de prémisses. L'induction généralise à partir de cas observés : elle peut être forte ou faible, mais sa conclusion reste révisable. L'abduction propose une explication possible pour des indices observés : c'est une hypothèse à départager des autres.</p><p>Exemple inductif : « j'ai vu dix cygnes blancs, donc les cygnes de cette région sont souvent blancs ». Un cygne noir peut réfuter la généralisation universelle, mais pas nécessairement la tendance statistique. Exemple abductif : « le sol est mouillé, l'arrosage pourrait l'expliquer ». L'abduction propose une cause, elle ne prouve pas laquelle est vraie.</p><p>Demande toujours : quelle est la taille et la qualité de l'échantillon ? Quelles autres explications existent ? Quelle observation serait discriminante ?</p>`,
+    keyPoints:["Déduction : conséquence nécessaire si les prémisses tiennent","Induction : généralisation incertaine à partir d'observations","Abduction : hypothèse explicative parmi plusieurs","La force d'une inférence dépend des preuves et du contexte"],
+    exercise:{type:"mcq_series",title:"Reconnaître le type de raisonnement",questions:[
+      {q:"« Chaque matin observé cette semaine, le bus est arrivé à l'heure ; il arrivera probablement à l'heure demain. »",options:["Déduction","Induction","Abduction"],correct:1,explanation:"Une série passée sert à formuler une prévision probable, pas certaine : c'est une induction."},
+      {q:"« Le détecteur de fumée sonne ; de la fumée pourrait expliquer l'alarme. »",options:["Déduction","Induction","Abduction"],correct:2,explanation:"On propose une explication possible d'un indice. Il faut comparer d'autres causes, comme la vapeur ou un défaut du détecteur."},
+      {q:"« Tous les carrés ont quatre côtés. Cette figure est un carré. Donc elle a quatre côtés. »",options:["Déduction valide","Induction certaine","Abduction"],correct:0,explanation:"La conclusion suit nécessairement des deux prémisses, même si l'application exige de vérifier que la figure est bien un carré."}
+    ]}
+  },
+  {
+    id:"2.6", phase:2, icon:"⛓️", title:"Quantificateurs et ensembles", duration:"25 min",
+    theory:`<p>Un quantificateur indique combien d'éléments satisfont une affirmation. ∀x (pour tout x) exprime une affirmation universelle ; ∃x (il existe au moins un x) exprime une affirmation existentielle. Le symbole ∈ signifie « appartient à un ensemble » : x∈A se lit « x appartient à A ».</p><p>Exemple : ∀x∈A, P(x) signifie « pour tout x appartenant à A, P est vrai ». Pour réfuter une affirmation universelle, un contre-exemple suffit. Pour étayer une existence, il faut présenter un cas qui satisfait les conditions.</p><p>Attention aux portées : « chaque élève lit un livre » peut vouloir dire que chacun lit un livre quelconque, ou qu'il existe un livre que tous lisent. Écris les quantificateurs pour lever l'ambiguïté.</p>`,
+    keyPoints:["∀ signifie « pour tout » ; ∃ signifie « il existe »","∈ signifie « appartient à »","Un seul contre-exemple réfute un universel","Préciser l'ordre et la portée des quantificateurs"],
+    exercise:{type:"mcq_series",title:"Lire les quantificateurs",questions:[
+      {q:"Que signifie ∃x∈A : P(x) ?",options:["Tous les éléments de A ont P","Au moins un élément de A a P","A est égal à P"],correct:1,explanation:"∃ est le quantificateur existentiel : il suffit d'un élément témoin de A qui vérifie P."},
+      {q:"Une affirmation dit : « Tous les nombres entiers sont pairs. » Qu'est-ce qui la réfute ?",options:["Un entier impair, par exemple 3","Un nombre décimal","Un grand nombre pair"],correct:0,explanation:"Une affirmation universelle est réfutée par un seul contre-exemple qui appartient au domaine annoncé."},
+      {q:"A={2,4,6}. Que signifie 4∈A ?",options:["4 appartient à l'ensemble A","A est le nombre 4","4 est égal à tous les éléments de A"],correct:0,explanation:"Le symbole ∈ signifie « appartient à » ; 4 est bien un élément de cet ensemble."}
+    ]}
+  },
+  {
+    id:"2.2", phase:2, icon:"🧠", title:"Biais Cognitifs", duration:"25 min",
+    theory:`<p>Une heuristique est une règle pratique qui accélère un jugement. Elle est souvent utile, mais peut produire des erreurs systématiques dans certaines conditions : on parle alors de biais. Un biais est une possibilité à examiner, pas une étiquette qui suffit à réfuter un argument.</p><p>La flèche dans « identifier → vérifier » (identifier conduit à vérifier) rappelle qu'il faut poursuivre l'examen : quelles informations manquent ? Quel taux de base comparer ? Quelle observation pourrait me faire changer d'avis ? On peut aussi appliquer les mêmes questions aux arguments de son opposant. Une bonne analyse réduit certaines erreurs sans prétendre supprimer tout biais.</p>`,
+    keyPoints:["Une heuristique est une règle rapide, pas forcément une erreur","Un biais est un risque à tester dans un cas précis","Demander ce qui pourrait réfuter son hypothèse","Appliquer le même examen à toutes les positions"],
+    exercise:{
+      type:"matching",
+      title:"Identifier le Biais",
+      pairs:[
+        { scenario:"Tu lis un article qui confirme ce que tu penses déjà du bitcoin. Tu le partages.", bias:"Biais de confirmation" },
+        { scenario:"Tu as perdu 200€ au trading mais tu continues parce que tu 'ne peux pas perdre'.", bias:"Aversion à la perte" },
+        { scenario:"Tu vois que 85% des gens ont choisi l'option A. Tu choisis A.", bias:"Preuve sociale" },
+        { scenario:"Le premier prix qu'on t'annonce influence toutes tes négociations suivantes.", bias:"Ancrage" },
+        { scenario:"Après un trade gagnant, tu te souviens avoir 'su' dès le début que ça marcherait.", bias:"Biais rétrospectif" },
+      ]
+    }
+  },
+  {
+    id:"2.3", phase:2, icon:"🔄", title:"Pensée Inverse", duration:"20 min",
+    theory:`<p>La pensée inverse formule une question complémentaire : au lieu de « qu'est-ce qui favoriserait la réussite ? », demande « qu'est-ce qui rendrait l'échec presque certain ? ». Cette liste aide à repérer des risques que la question directe laisse dans l'ombre. Elle ne garantit pas le succès : il faut vérifier que les causes recensées sont pertinentes et qu'on peut agir dessus.</p><p>En cryptographie historique, l'Atbash est un procédé de substitution de l'alphabet hébreu : Aleph ↔ Tav, Beth ↔ Shin, etc. Le signe ↔ signifie ici « se correspondent dans les deux sens ». C'est une transformation de lettres, distincte de l'inversion d'un raisonnement ; l'analogie entre les deux ne prouve aucune relation cachée.</p>`,
+    keyPoints:["La question inverse aide à inventorier les risques","Transformer une liste de risques en actions vérifiables","L'Atbash est une substitution alphabétique précise","Un exemple de symétrie n'est pas une preuve logique"],
+    exercise:{
+      type:"free_text",
+      title:"Inverser pour Clarifier",
+      prompt:`Choisis un objectif personnel (ex: "être discipliné", "faire croître mon capital", "améliorer ma pensée").<br><br><strong>Étape 1 :</strong> Écris l'objectif.<br><strong>Étape 2 :</strong> Inverse-le : "Pour être <em>certain</em> d'échouer à cet objectif, je dois..."<br><strong>Étape 3 :</strong> Liste 5 comportements garantissant l'échec.<br><strong>Étape 4 :</strong> Note quels comportements tu fais <em>déjà</em>.`,
+      minWords:80,
+      placeholder:"Objectif :\n\nPour échouer à cet objectif :\n1.\n2.\n3.\n4.\n5.\n\nCeux que je fais déjà :",
+      selfValidate:true,
+      criteria:"Valide si l'étape 4 est honnête et non vide."
+    }
+  },
+  {
+    id:"2.4", phase:2, icon:"✨", title:"Correspondances Gématriques", duration:"25 min",
+    theory:`<p>Une correspondance gématrique est une égalité entre des sommes de lettres dans un alphabet donné. Elle peut servir de point de départ à une question ou à un jeu interprétatif. Pour passer de l'égalité à une affirmation sur le sens, il faut des raisons indépendantes : usages attestés, contexte, histoire des mots ou mécanisme causal.</p><p>La pensée latérale peut proposer une association inattendue ; la pensée critique la met ensuite à l'épreuve. Note aussi les correspondances que tu as cherchées sans trouver, afin d'éviter de ne retenir que les coïncidences flatteuses.</p>`,
+    keyPoints:["Une égalité dépend du système de valeurs choisi","Générer une association et la justifier sont deux étapes distinctes","Chercher aussi les contre-exemples","Le contexte linguistique compte davantage que la seule valeur"],
+    exercise:{
+      type:"free_text",
+      title:"Trouver les Connexions",
+      prompt:`Utilise le calculateur pour trouver <strong>3 paires de mots</strong> avec la même valeur gématrique (système simple A=1...Z=26).<br><br>Pour chaque paire :<br>1. Écris les deux mots et leur valeur commune<br>2. Explore la connexion possible entre eux (symbolique, conceptuelle, phonétique...)<br><br>Exemples de mots à tester : FEU, EAU, AIR, TERRE, OR, ARGENT, NOIR, BLANC, LUMIÈRE, OMBRE...`,
+      minWords:60,
+      placeholder:"Paire 1 : MOT1 (valeur) + MOT2 (valeur) → connexion : ...\nPaire 2 : ...\nPaire 3 : ...",
+      selfValidate:true,
+      criteria:"Valide si les valeurs sont exactes (vérifiable avec le calc) et si les connexions sont expliquées."
+    }
+  },
+
+  // ── PHASE 3 ──────────────────────────────────────────────────────────────
+  {
+    id:"3.1", phase:3, icon:"🕸️", title:"Graphes de Causalité", duration:"25 min",
+    theory:`<p>Un graphe causal représente des hypothèses de cause à effet. A → B se lit « A pourrait contribuer à B ». La flèche → (flèche orientée, indiquant le sens supposé de l'influence) ne prouve pas la causalité : il faut considérer le temps, les mécanismes possibles, les facteurs communs et d'autres explications.</p><p>Une boucle de rétroaction existe lorsque les effets d'un élément finissent par l'influencer à leur tour. Sur un graphe, cela crée un cycle. Dessiner le cycle aide à raisonner, mais sa présence dans un dessin n'établit pas qu'il existe dans le monde : il faut des observations.</p><p>Pour chaque flèche, précise son sens, les conditions où elle devrait apparaître, ce qui pourrait l'expliquer autrement et l'observation qui pourrait contredire ton hypothèse. Un facteur commun peut faire varier deux choses ensemble sans que l'une cause l'autre.</p>`,
+    keyPoints:["Une flèche est une hypothèse de causalité à vérifier","Chercher les facteurs communs et les causes alternatives","Un cycle dessiné ne suffit pas à prouver une rétroaction","Un modèle causal doit pouvoir être contredit par une observation"],
+    exercise:{
+      type:"free_text",
+      title:"Cartographier une Chaîne",
+      prompt:`Construis un graphe de causalité pour l'une de ces situations :<br><br>— "Manque de sommeil → ..."<br>— "Capital insuffisant → ..."<br>— "Mauvaise concentration → ..."<br><br>Règles :<br>• Minimum 3 niveaux de profondeur causale<br>• Identifier au moins 1 boucle de rétroaction (un effet qui redevient cause)<br>• Identifier 1 point de levier (la cause qui génère le plus d'effets)`,
+      minWords:80,
+      placeholder:"A → B → C → D\n     ↘ E → F\n          ↗\n     (boucle: F → A)\nPoint de levier : ...",
+      selfValidate:true,
+      criteria:"Valide si : 3 niveaux présents, au moins 1 boucle identifiée, 1 point de levier nommé."
+    }
+  },
+  {
+    id:"3.2", phase:3, icon:"∞", title:"Paradoxes", duration:"20 min",
+    theory:`<p>Un paradoxe est une conclusion surprenante ou contradictoire issue d'un ensemble d'affirmations ou de règles. La première étape consiste à écrire précisément ces règles, leurs hypothèses et les mots ambigus. Certaines contradictions révèlent un conflit réel ; d'autres viennent d'une définition imprécise ou d'une prémisse fausse.</p><p>Le symbole ∞ (infini) désigne une grandeur sans borne finie dans le contexte mathématique approprié. Le symbole 0 (zéro) représente notamment une quantité nulle. Ils ne forment pas à eux seuls un paradoxe : l'expression « le vide contient tout » est une métaphore à clarifier, pas un résultat mathématique.</p><p>Avant de « tenir les deux côtés », vérifie qu'ils portent sur le même objet, la même période et le même sens des mots. Si les prémisses sont incompatibles, il faut localiser cette incompatibilité plutôt que déclarer automatiquement les deux propositions vraies.</p>`,
+    keyPoints:["Énoncer les hypothèses avant de déclarer un paradoxe","Vérifier les définitions et le périmètre des affirmations","Une contradiction peut révéler une prémisse incohérente","L'infini et zéro ont des sens formels, pas une signification universelle"],
+    exercise:{
+      type:"mcq_series",
+      title:"Comprendre les Paradoxes",
+      questions:[
+        {
+          q:"Le paradoxe de l'identité : 'Le bateau de Thésée' — si on remplace toutes les planches d'un bateau une par une, est-ce encore le même bateau ?",
+          options:["Oui, c'est le même (continuité)","Non, c'est un autre (composition)","Les deux à la fois — identité est un paradoxe de continuité vs composition","La question est sans réponse"],
+          correct:2, explanation:"Les deux réponses sont valides selon l'angle. L'identité est à la fois continuité (même bateau) et composition (nouveau bateau). Tenir les deux sans trancher = pensée paradoxale."
+        },
+        {
+          q:"Un trader perd 60% de ses trades mais reste profitable sur la période observée. Quelle explication est mathématiquement possible ?",
+          options:["C'est impossible","Ses gains moyens dépassent assez ses pertes moyennes","Le taux de réussite prouve qu'il est rentable","Le résultat d'une période garantit les suivantes"],
+          correct:1, explanation:"Le taux de réussite seul ne détermine pas le profit. Il faut connaître la taille moyenne des gains et des pertes, les frais et la période. Même un résultat positif passé ne garantit pas l'avenir."
+        },
+        {
+          q:"Quelle est la meilleure réaction face à un vrai paradoxe (les deux côtés sont également valides) ?",
+          options:["Choisir le côté le plus logique","Suspendre le jugement et opérer avec les deux","Chercher une erreur dans les prémisses","Ignorer le paradoxe"],
+          correct:1, explanation:"Opérer avec les deux côtés simultanément sans forcer une résolution — c'est la capacité cognitive qui distingue la pensée ordinaire de la pensée avancée."
+        }
+      ]
+    }
+  },
+  {
+    id:"3.5", phase:3, icon:"📊", title:"Corrélation et causalité", duration:"25 min",
+    theory:`<p>Une corrélation décrit une variation conjointe de deux mesures. Elle peut signaler un lien, mais elle ne donne pas à elle seule sa cause. Le symbole r (lettre latine utilisée ici pour le coefficient de corrélation) résume souvent la force et la direction d'une relation linéaire dans un échantillon ; r proche de 1 indique une association linéaire positive forte, près de −1 une association négative forte, près de 0 peu d'association linéaire. Cela n'exclut pas une relation non linéaire.</p><p>Une variable tierce peut influencer les deux mesures, ou la direction causale peut être inversée. Exemple : les ventes de glaces et les baignades augmentent en été ; la température peut contribuer aux deux. La corrélation ne signifie pas que l'une cause l'autre.</p><p>Pour étayer une causalité, il faut un mécanisme plausible, une chronologie cohérente et un plan d'observation ou d'expérience qui traite les autres explications. Les données observationnelles peuvent être utiles, mais leurs limites doivent rester visibles.</p>`,
+    keyPoints:["Une association statistique ne suffit pas à établir une cause","Le coefficient r résume une relation linéaire, pas toutes les formes de lien","Chercher facteurs communs et causalité inverse","Vérifier le mécanisme, la chronologie et le plan d'étude"],
+    exercise:{type:"mcq_series",title:"Interpréter une association",questions:[
+      {q:"Dans une ville, les ventes de glaces et les baignades augmentent ensemble l'été. Quelle conclusion est la plus prudente ?",options:["Les glaces causent les baignades","Les baignades causent les ventes","Une troisième variable comme la chaleur peut contribuer aux deux"],correct:2,explanation:"La variation conjointe n'indique pas le sens causal. La saison et la température sont des explications communes plausibles."},
+      {q:"Une corrélation proche de zéro prouve-t-elle que deux variables n'ont aucun lien ?",options:["Oui, toujours","Non : elles peuvent avoir un lien non linéaire","Oui, si l'échantillon est grand"],correct:1,explanation:"Le coefficient r standard mesure une association linéaire ; une relation courbe peut exister même si r est proche de zéro."},
+      {q:"Quelle observation appuierait le mieux une hypothèse causale ?",options:["Deux courbes augmentent au même moment","Une expérience ou une comparaison conçue pour isoler l'effet et ses alternatives","Un titre qui décrit une corrélation"],correct:1,explanation:"Un plan qui contrôle ou répartit les facteurs concurrents peut mieux distinguer une cause des explications alternatives."}
+    ]}
+  },
+  {
+    id:"3.3", phase:3, icon:"🔡", title:"Gematria Avancée", duration:"30 min",
+    theory:`<p>Le notarikon est une pratique d'interprétation où les lettres d'un mot sont lues comme les initiales d'autres mots. Les expansions possibles sont nombreuses ; une proposition particulière doit être présentée comme une interprétation, sauf si une source historique établit cet usage.</p><p>La temurah désigne des procédés de substitution de lettres dans certaines traditions. L'Atbash est un cas précis, construit sur l'alphabet hébreu : Aleph ↔ Tav, Beth ↔ Shin. Le signe ↔ (correspondance réciproque) indique ici qu'on remplace chaque lettre par sa partenaire de l'autre extrémité. La version française de l'exercice transpose cette idée à l'alphabet latin (A ↔ Z, B ↔ Y, etc.) ; elle est une adaptation pédagogique, pas la méthode hébraïque originale.</p><p>Une substitution est un procédé mécanique. Le texte produit ne révèle pas automatiquement un message voulu : il faut une règle définie avant l'analyse et des preuves indépendantes pour attribuer une intention à l'auteur.</p>`,
+    keyPoints:["Notarikon : lecture de lettres comme initiales","Temurah : famille de procédés de substitution","Atbash : appariement symétrique précis de l'alphabet","Une transformation ne démontre pas l'intention ni la vérité du résultat"],
+    exercise:{
+      type:"free_text",
+      title:"Appliquer les Techniques",
+      prompt:`<strong>Exercice 1 — Atbash :</strong> Transforme le mot LOGOS avec l'Atbash français (A↔Z, B↔Y, C↔X...). Écris chaque lettre et sa correspondante.<br><br><strong>Exercice 2 — Notarikon :</strong> Crée un notarikon pour un mot de ton choix (5 lettres min). Chaque lettre = initiale d'un mot qui forme une phrase cohérente.<br><br><strong>Exercice 3 — Réflexion :</strong> Quelle couche de sens as-tu trouvée que tu n'aurais pas vue autrement ?`,
+      minWords:60,
+      placeholder:"Atbash latin (alphabet A-Z) :\nL↔O, O↔L, G↔T, O↔L, S↔H\nRésultat : OLTLH\n\nNotarikon :\nMot : ...\nL = ...\n...",
+      selfValidate:true,
+      criteria:"Valide si l'Atbash est appliqué correctement (vérifiable) et le notarikon forme une phrase."
+    }
+  },
+  {
+    id:"3.4", phase:3, icon:"🔗", title:"Analogies Profondes", duration:"25 min",
+    theory:`<p>Une analogie profonde n'est pas une comparaison superficielle. C'est la découverte d'une <em>structure commune</em> entre deux domaines différents. Quand A:B comme C:D, la relation entre A et B est la même qu'entre C et D.</p><p>Einstein pensait en analogies. Munger pensait en analogies. C'est l'un des outils cognitifs les plus puissants : transférer une compréhension d'un domaine où on est expert vers un domaine qu'on comprend mal.</p>`,
+    keyPoints:["Analogie = structure commune, pas similarité","Outil de transfert de compréhension","Chercher la relation, pas les objets","Une bonne analogie est falsifiable"],
+    exercise:{
+      type:"analogy_fill",
+      title:"Compléter les Structures",
+      analogies:[
+        { a:"Racine", b:"Arbre", c:"Fondation", d:"?", answer:"Bâtiment", hint:"Ce qui supporte la structure visible" },
+        { a:"Biais", b:"Pensée", c:"Virus", d:"?", answer:"Ordinateur", hint:"Perturbation du système normal" },
+        { a:"RSI", b:"Momentum", c:"Thermomètre", d:"?", answer:"Température", hint:"L'indicateur mesure quoi ?" },
+        { a:"Capital", b:"Trading", c:"Carburant", d:"?", answer:"Moteur", hint:"Ce que le capital permet de faire tourner" },
+        { a:"Prémisse", b:"Conclusion", c:"Graine", d:"?", answer:"Fruit", hint:"Ce qui découle naturellement" },
+      ]
+    }
+  },
+
+  // ── PHASE 4 ──────────────────────────────────────────────────────────────
+  {
+    id:"4.1", phase:4, icon:"🗺️", title:"Modèles Mentaux", duration:"25 min",
+    theory:`<p>Un modèle mental est une représentation simplifiée qui sert une tâche précise : expliquer, prévoir, comparer ou décider. Tout modèle laisse des choses de côté. Il faut donc préciser ce qu'il représente, le domaine où il est utile et les observations qui pourraient le mettre en défaut.</p><p>Quelques outils : les premiers principes (examiner les hypothèses de base), le coût d'opportunité (valeur de la meilleure option abandonnée), la marge de sécurité (garder une réserve face à l'incertitude) et l'inversion (examiner les conditions d'échec). Aucun n'est une recette universelle : choisis-le selon la question et compare ses résultats avec ceux d'autres modèles.</p>`,
+    keyPoints:["Un modèle répond à une question limitée","Rendre visibles ses hypothèses et omissions","Comparer plusieurs modèles si la décision est importante","Réviser un modèle quand les observations le contredisent"],
+    exercise:{
+      type:"free_text",
+      title:"Appliquer Premier Principe",
+      prompt:`Le modèle <strong>"Premier Principe"</strong> : décomposer un problème jusqu'à ses vérités irréductibles (ce qu'on ne peut pas remettre en question), puis reconstruire depuis là.<br><br>Applique-le à cette question : <em>"Pourquoi la plupart des traders perdent ?"</em><br><br>1. Liste les hypothèses habituelles sur ce sujet<br>2. Remets-les en question une par une<br>3. Identifie ce qui est irréductiblement vrai (les "premiers principes")<br>4. Reconstruis ta conclusion depuis ces fondations`,
+      minWords:100,
+      placeholder:"Hypothèses habituelles :\n- ...\n\nRemise en question :\n- ...\n\nPremiers principes irréductibles :\n- ...\n\nConclusion reconstruite :\n...",
+      selfValidate:true,
+      criteria:"Valide si les premiers principes sont vraiment irréductibles (non-questionnables) et si la conclusion s'y ancre."
+    }
+  },
+  {
+    id:"4.2", phase:4, icon:"🪞", title:"Méta-Cognition", duration:"25 min",
+    theory:`<p>La métacognition consiste à surveiller et ajuster sa propre démarche de pensée. Elle aide à distinguer ce qu'on sait, ce qu'on suppose et ce qui reste incertain. Une émotion peut signaler une préoccupation ou une réaction ; elle n'est ni une preuve que l'idée est vraie, ni un bruit qu'il faudrait toujours ignorer.</p><p>Tiens un journal bref : décision, informations disponibles à ce moment, hypothèses, niveau de confiance et critère qui te ferait réviser ton avis. Plus tard, compare le processus et le résultat. Cette trace réduit le biais rétrospectif, sans rendre le souvenir ou l'auto-évaluation parfaitement fiables.</p>`,
+    keyPoints:["Séparer les connaissances, hypothèses et inconnues","Noter son niveau de confiance avant le résultat","Une émotion est une donnée à interpréter","Réviser les critères lorsque de nouvelles preuves arrivent"],
+    exercise:{
+      type:"free_text",
+      title:"Observer son Processus",
+      prompt:`Rappelle-toi une <strong>décision difficile</strong> que tu as prise récemment (trading, projet, relation).<br><br>Analyse-la en méta :<br>1. Quel était ton état émotionnel au moment de décider ?<br>2. Quelles pensées tu <em>évitais</em> de regarder ?<br>3. Quelle heuristique ou biais était probablement actif ?<br>4. Si tu devais prendre cette décision aujourd'hui, que ferais-tu différemment ?<br>5. Quel pattern cette décision révèle-t-elle sur ta façon habituelle de penser ?`,
+      minWords:100,
+      placeholder:"Décision : ...\n\n1. État émotionnel : ...\n2. Pensées évitées : ...\n3. Biais probable : ...\n4. Différence aujourd'hui : ...\n5. Pattern révélé : ...",
+      selfValidate:true,
+      criteria:"Valide si la réponse 5 nomme un vrai pattern récurrent, pas juste une observation sur ce cas unique."
+    }
+  },
+  {
+    id:"4.3", phase:4, icon:"🌀", title:"Nombres & Structures", duration:"30 min",
+    theory:`<p>Une suite est une liste ordonnée de nombres définie par une règle. La suite de Fibonacci commence ici par 1, 1 et chaque nouveau terme est la somme des deux précédents : 1, 1, 2, 3, 5, 8… Le rapport de deux termes consécutifs tend vers φ (phi, lettre grecque utilisée ici pour le nombre d'or), environ 1,618.</p><p>La formule Fₙ₊₁/Fₙ (terme suivant divisé par le terme actuel) décrit ce rapport ; la barre oblique / signifie « divisé par ». Pi, noté π (lettre grecque désignant le rapport entre la circonférence d'un cercle et son diamètre en géométrie euclidienne), est une autre constante. Leur présence dans une formule ne suffit pas à prouver qu'un motif observé dans un marché ou un objet naturel suit cette formule. Il faut mesurer, comparer à des modèles plus simples et tenir compte des coïncidences.</p><p>Les ratios de Fibonacci parfois tracés sur des graphiques financiers sont une convention d'analyse technique. Leurs niveaux ne prédisent pas mécaniquement les cours ; une évaluation sérieuse demande une règle fixée à l'avance et des tests sur des données non utilisées pour construire cette règle.</p>`,
+    keyPoints:["Définir la suite ou la structure avant de chercher des exemples","φ (phi) est le nombre d'or, environ 1,618","Une ressemblance numérique ne démontre pas une loi naturelle ou financière","Tester un motif sur des données nouvelles et un modèle de comparaison"],
+    exercise:{
+      type:"mcq_series",
+      title:"Identifier les Structures",
+      questions:[
+        {
+          q:"La suite de Fibonacci commence par 1,1,2,3,5,8. Quel est le rapport entre deux termes consécutifs à l'infini ?",
+          options:["1.5","1.618 (nombre d'or φ)","2.0","3.14"],
+          correct:1, explanation:"Le rapport Fn+1/Fn tend vers φ = 1.618... C'est la connexion entre Fibonacci et le nombre d'or."
+        },
+        {
+          q:"En gematria hébraïque, la lettre Aleph (א) a la valeur 1. Quelle est la valeur du mot EMET (אמת = Aleph + Mem + Tav) ?",
+          options:["441","442","400","451"],
+          correct:0, explanation:"א=1, מ=40, ת=400. Total = 441 = 21². Le carré parfait est souvent considéré symboliquement."
+        },
+        {
+          q:"Dans un marché haussier, on observe souvent des retracements de 38.2%, 50%, 61.8%. D'où vient le 61.8% ?",
+          options:["C'est arbitraire","C'est 1/φ (inverse du nombre d'or)","C'est la moitié de 123.6","C'est empirique"],
+          correct:1, explanation:"61.8% = 1/φ = 0.618. Les retracements de Fibonacci sont directement liés au nombre d'or."
+        }
+      ]
+    }
+  },
+  {
+    id:"4.4", phase:4, icon:"☯️", title:"Synthèse Contradictoire", duration:"30 min",
+    theory:`<p>Comparer une thèse et une objection peut clarifier les hypothèses des deux côtés. La flèche → (se lit « conduit à ») dans le raccourci « thèse + antithèse → synthèse » décrit une démarche pédagogique, pas une loi universelle de l'histoire ni une preuve. La synthèse n'est pas forcément possible : parfois un camp se trompe, les termes diffèrent ou les valeurs sont réellement incompatibles.</p><p>Pour faire un examen rigoureux, formule chaque position dans sa version la plus forte, précise les conditions où elle est vraie, puis cherche une réponse qui conserve les éléments établis et écarte les contradictions injustifiées. N'invente pas de compromis à 50/50 si les preuves favorisent davantage une position.</p>`,
+    keyPoints:["Formuler chaque position avec précision et équité","Séparer désaccord de faits, de définitions et de valeurs","Une synthèse n'est pas toujours disponible","Le poids des preuves prime sur un compromis arbitraire"],
+    exercise:{
+      type:"free_text",
+      title:"Dépasser la Contradiction",
+      prompt:`Choisis l'une de ces paires opposées :<br><br>— "Le trading est risqué" vs "Le trading est nécessaire"<br>— "La discipline est rigidité" vs "La liberté est indiscipline"<br>— "Les émotions nuisent à la décision" vs "Les émotions sont des données utiles"<br><br>1. Développe la <strong>thèse</strong> (premier côté) — 3 arguments solides<br>2. Développe l'<strong>antithèse</strong> (côté opposé) — 3 arguments solides<br>3. Construis la <strong>synthèse</strong> — la perspective qui <em>contient</em> les deux`,
+      minWords:120,
+      placeholder:"Paire choisie : ... vs ...\n\nThèse :\n1.\n2.\n3.\n\nAntithèse :\n1.\n2.\n3.\n\nSynthèse :\n...",
+      selfValidate:true,
+      criteria:"Valide si la synthèse n'est pas juste '50% des deux' mais une vraie perspective supérieure qui intègre les deux côtés."
+    }
+  },
+
+  // ── PHASE 5 ──────────────────────────────────────────────────────────────
+  {
+    id:"5.1", phase:5, icon:"🌐", title:"Transfert Inter-Domaines", duration:"30 min",
+    theory:`<p>Une analogie compare deux situations qui partagent une structure. La notation « A est à B comme C est à D » doit expliciter la relation commune ; elle ne dit pas que les objets ou les mécanismes sont identiques.</p><p>Pour transférer une idée, décompose-la en relation, hypothèses et conditions de réussite. Compare ensuite ces éléments au nouveau domaine. Un transfert devient utile quand il produit une prédiction testable ; il échoue si une différence importante casse la relation.</p>`,
+    keyPoints:["Décrire la relation commune, pas seulement les objets","Énoncer les conditions et différences importantes","Déduire une prédiction vérifiable","Réviser ou abandonner l'analogie si elle échoue"],
+    exercise:{
+      type:"free_text",
+      title:"Transférer un Principe",
+      prompt:`Choisis un principe que tu maîtrises bien dans <strong>un domaine</strong> (trading, sport, jeu, cuisine, musique...) et applique-le à un domaine différent.<br><br>Format :<br>1. Le principe dans son domaine d'origine (avec exemple concret)<br>2. Le principe extrait de façon abstraite (sans référence au domaine)<br>3. Application au nouveau domaine (avec exemple concret)<br>4. Ce que le transfert révèle de nouveau dans l'un ou l'autre domaine`,
+      minWords:100,
+      placeholder:"Domaine d'origine : ...\nPrincipe : ...\nExemple : ...\n\nPrincipe abstrait : ...\n\nNouveau domaine : ...\nApplication : ...\n\nCe que ça révèle : ...",
+      selfValidate:true,
+      criteria:"Valide si le principe abstrait est vraiment générique (applicable à n'importe quel domaine) et si l'application est concrète."
+    }
+  },
+  {
+    id:"5.2", phase:5, icon:"📐", title:"Systèmes de Notation", duration:"25 min",
+    theory:`<p>Un système de notation rend explicites des critères et leur importance. Pour des notes C₁, C₂ (critère 1, critère 2), le symbole × (multiplié par) combine chaque note à son poids, puis + (addition) regroupe les contributions. Exemple : score = C₁×0,6 + C₂×0,4, avec des poids dont la somme vaut 1, soit 100 %.</p><p>Le score est un modèle, pas une mesure objective par défaut. Évite le double comptage, teste le système sur des cas connus, observe s'il change réellement une décision et examine comment une autre personne noterait les mêmes critères. La précision décimale ne compense pas des critères mal définis.</p>`,
+    keyPoints:["Définir des critères observables","Vérifier que les poids totalisent 100 %","Tester les notes sur plusieurs exemples","Distinguer résultat numérique et certitude"],
+    exercise:{
+      type:"free_text",
+      title:"Créer ton Système",
+      prompt:`Crée un système de notation pour évaluer <strong>la qualité d'une décision importante</strong> (trading, business, vie personnelle — à toi de choisir).<br><br>Ton système doit avoir :<br>• 4-6 critères explicites<br>• Un poids pour chaque critère (total = 100%)<br>• Une échelle (ex: 1-5 ou 1-10)<br>• La formule du score final<br>• Un exemple d'application sur une décision réelle<br><br>Puis note une décision récente avec ton système.`,
+      minWords:100,
+      placeholder:"Critère 1 : ... (poids : 30%)\nCritère 2 : ... (poids : 25%)\n...\n\nFormule : Score = C1×0.30 + C2×0.25 + ...\n\nApplication :\nDécision : ...\nC1 : 7/10 × 0.30 = 2.1\n...\nScore final : .../10",
+      selfValidate:true,
+      criteria:"Valide si les poids totalisent 100%, si les critères sont distincts, et si l'exemple est appliqué."
+    }
+  },
+  {
+    id:"5.3", phase:5, icon:"📜", title:"Lecture Gématrique", duration:"35 min",
+    theory:`<p>Une lecture gématrique calcule des valeurs selon un alphabet et une règle de normalisation définis à l'avance. Ici, le système est A=1 à Z=26 et les accents sont retirés. Les espaces et signes de ponctuation ne contribuent pas au total. Ces choix doivent rester identiques pour comparer les mots.</p><p>Le texte « Les nombres gouvernent le monde » a besoin de contrôles : vérifier les additions, noter les valeurs obtenues et préciser les comparaisons recherchées avant d'interpréter. Une régularité découverte après de nombreuses tentatives peut apparaître par hasard. La somme seule ne révèle pas l'intention de l'auteur ni la vérité de la phrase ; le contexte linguistique et les sources historiques restent essentiels.</p>`,
+    keyPoints:["Fixer l'alphabet et la normalisation avant le calcul","Montrer les additions pour rendre le résultat vérifiable","Tenir compte des nombreuses comparaisons possibles","Séparer interprétation numérique et preuves historiques"],
+    exercise:{
+      type:"free_text",
+      title:"Analyser un Texte",
+      prompt:`Applique la lecture gématrique à cette phrase de Pythagore :<br><br><em>"Les nombres gouvernent le monde."</em><br><br>1. Calcule la valeur de chaque mot (A=1...Z=26)<br>2. Calcule leur réduction<br>3. Cherche des correspondances (valeurs identiques, multiples, patterns)<br>4. Analyse : que révèle la structure numérique de cette phrase ?<br>5. Trouve un autre texte court et applique la même analyse`,
+      minWords:80,
+      placeholder:"LES = L(12)+E(5)+S(19) = 36 → réduction: 9\nNOMBRES = ...\n...\n\nCorrespondances :\n...\n\nAnalyse :\n...",
+      selfValidate:true,
+      criteria:"Valide si tous les calculs sont présents et si l'analyse va au-delà des chiffres bruts."
+    }
+  },
+  {
+    id:"5.4", phase:5, icon:"🗣️", title:"Débat Intérieur", duration:"30 min",
+    theory:`<p>Un débat structuré expose les arguments favorables et défavorables à une position. Construis d'abord l'argument adverse dans sa forme la plus solide (principe de charité), puis vérifie les preuves et les hypothèses des deux côtés. Cette méthode sert à corriger son avis, non à produire un équilibre artificiel.</p><p>Garde une trace de ta conclusion provisoire, de ton niveau de confiance et des éléments qui pourraient la modifier. Si une valeur morale ou une préférence personnelle intervient, nomme-la séparément d'une affirmation factuelle.</p>`,
+    keyPoints:["Présenter l'objection dans sa version la plus forte","Comparer les preuves sous des critères symétriques","Séparer jugements de valeur et faits vérifiables","Indiquer ce qui ferait changer d'avis"],
+    exercise:{
+      type:"free_text",
+      title:"Débattre contre Soi",
+      prompt:`Prends une <strong>conviction forte</strong> que tu as sur un sujet (trading, vie, philosophie...).<br><br>Format en 4 temps :<br><strong>Thèse :</strong> Ta conviction + tes 3 meilleurs arguments<br><strong>Contre :</strong> Les 3 meilleurs arguments adverses (sois impitoyable)<br><strong>Réplique :</strong> Ta réponse aux arguments adverses<br><strong>Verdict :</strong> Ta conviction après débat — renforcée, modifiée, ou abandonnée ? Pourquoi ?`,
+      minWords:150,
+      placeholder:"Ma conviction : ...\n\nThèse :\n1.\n2.\n3.\n\nContre (avocat du diable) :\n1.\n2.\n3.\n\nRéplique :\n...\n\nVerdict :\n...",
+      selfValidate:true,
+      criteria:"Valide si les arguments adverses sont vraiment forts (pas des hommes de paille) et si le verdict est honnête."
+    }
+  },
+
+  // ── PHASE 6 ──────────────────────────────────────────────────────────────
+  {
+    id:"6.1", phase:6, icon:"⚡", title:"Intuition Logique", duration:"30 min",
+    theory:`<p>WR (win rate, taux de trades gagnants) = gains divisés par le nombre total de trades. R:R (risk/reward, rapport rendement/risque dans cet exemple) = gain moyen visé divisé par la perte moyenne risquée ; l'ordre doit toujours être annoncé. Ici, perdre 70 % des trades n'empêche pas d'être bénéficiaire si les gains moyens compensent suffisamment les pertes, les frais et le glissement.</p><p>L'intuition est un jugement rapide façonné par l'expérience et le contexte. Elle peut être utile dans un environnement régulier où les retours sont fiables ; elle est moins fiable quand les situations changent, que les retours sont rares ou qu'un résultat dépend largement du hasard.</p><p>Traite ton intuition comme une hypothèse. Note-la avant le calcul, explicite les indices qui l'ont déclenchée, puis compare-la à une méthode vérifiable et à des résultats répétés. En décision à enjeu, ajoute les probabilités, les coûts et les conséquences d'une erreur.</p>`,
+    keyPoints:["L'intuition peut fournir une hypothèse rapide","Sa fiabilité dépend du domaine et de la qualité du retour","Noter le jugement avant de connaître le résultat","Vérifier par une méthode et des données adaptées"],
+    exercise:{
+      type:"free_text",
+      title:"Pré-Analyser",
+      prompt:`Exercice en 2 temps :<br><br><strong>Temps 1 — Intuition (2 min chrono)</strong> : Lis ce problème et note ta réaction immédiate, sans réfléchir :<br><em>"Un trader a un WR de 30% mais prétend être profitable. Son R:R est 4:1. Capital initial $100. Comment évaluer ?"</em><br><br><strong>Temps 2 — Analyse formelle</strong> : Maintenant calcule formellement. EV par trade, résultat sur 100 trades, conclusion.<br><br><strong>Temps 3 — Comparaison</strong> : Ton intuition était-elle dans la bonne direction ? Qu'est-ce qui t'a guidé ?`,
+      minWords:100,
+      placeholder:"INTUITION (immédiat) :\n...\n\nANALYSE FORMELLE :\nEV par trade = (0.30 × 4) - (0.70 × 1) = ...\nSur 100 trades : ...\nConclusion : ...\n\nCOMPARAISON :\nMon intuition était : juste / fausse / partielle\nCe qui m'a guidé : ...",
+      selfValidate:true,
+      criteria:"Valide si le calcul formel est correct et si la comparaison intuition/analyse est honnête."
+    }
+  },
+  {
+    id:"6.2", phase:6, icon:"💎", title:"Compression Maximale", duration:"30 min",
+      theory:`<p>La compression consiste à raccourcir un raisonnement en conservant les informations nécessaires à son usage. Elle n'est réussie que si les conditions importantes et les exceptions ne disparaissent pas. Une formule est compacte parce que ses symboles ont été définis ; sans ces définitions, elle devient moins claire qu'une phrase.</p><p>Après avoir condensé, demande à quelqu'un de reformuler l'idée et teste-la sur un contre-exemple. Si l'abréviation produit une conclusion différente de l'argument complet, elle a supprimé une information importante.</p>`,
+    keyPoints:["Tu ne peux comprimer que ce que tu comprends","Chaque mot doit porter son poids","Éliminer le méta-commentaire","La formule est la compression ultime"],
+    exercise:{
+      type:"compression",
+      title:"Comprimer l'Essentiel",
+      originals:[
+        {
+          text:"Pour réussir en trading sur le long terme, il faut non seulement avoir une stratégie qui fonctionne statistiquement, avec un espérance mathématique positive prouvée sur suffisamment de trades, mais aussi être capable de l'exécuter de façon disciplinée et consistante, sans que les émotions générées par les pertes ou les gains n'interfèrent avec le processus de prise de décision rationnel.",
+          maxWords:12,
+          example:"Edge positif + exécution disciplinée = profitabilité long terme."
+        }
+      ]
+    }
+  },
+  {
+    id:"6.3", phase:6, icon:"🔮", title:"Gematria Révélation", duration:"35 min",
+    theory:`<p>Ce cours approfondit la lecture symbolique en séparant découverte et justification. Une égalité numérique peut inspirer une question, mais elle ne révèle pas à elle seule une vérité sur les mots concernés. Une interprétation devient plus solide si elle s'appuie sur la langue, l'histoire, le contexte et des sources contrôlables.</p><p>Attention au biais de sélection : si l'on teste beaucoup de mots, d'alphabets, de réductions et de permutations, certaines égalités étonnantes apparaîtront forcément. Pour évaluer l'idée, fixe le système à l'avance, conserve aussi les essais infructueux et demande ce qui pourrait invalider l'interprétation. Le résultat est alors une exploration documentée, pas une preuve mathématique.</p>`,
+    keyPoints:["La gematria peut générer des pistes de recherche","Les liens de sens demandent des preuves indépendantes","Consigner aussi les essais sans correspondance","Une égalité arithmétique n'établit ni intention ni vérité"],
+    exercise:{
+      type:"free_text",
+      title:"Révéler des Connexions",
+      prompt:`Utilise le calculateur pour explorer ces groupes de mots et trouver des connexions gématriques significatives :<br><br>Groupe 1 : TEMPS, MORT, DIEU, FORME<br>Groupe 2 : OR, LUX (latin = lumière), VIE, VRAI<br>Groupe 3 : Cherche 2 mots de ton choix dans le même thème et qui partagent une valeur<br><br>Pour chaque connexion trouvée :<br>1. Les mots et leur valeur commune<br>2. Pourquoi cette connexion pourrait être significative (pas juste numérique)<br>3. Ce qu'elle invite à comprendre`,
+      minWords:100,
+      placeholder:"CONNEXION 1 :\nMot A (valeur X) + Mot B (valeur X)\nSignification : ...\nInsight : ...\n\nCONNEXION 2 :\n...",
+      selfValidate:true,
+      criteria:"Valide si au moins 2 connexions sont trouvées avec des valeurs vérifiables ET si les insights vont au-delà du chiffre."
+    }
+  },
+  {
+    id:"6.4", phase:6, icon:"🎲", title:"Pensée Probabiliste", duration:"30 min",
+    theory:`<p>Une probabilité exprime un degré d'incertitude entre 0 et 1 (ou entre 0 % et 100 %). Dans un modèle à issues exhaustives et incompatibles, les probabilités doivent totaliser 1, soit 100 %. Attribuer « 70 % à X, 20 % à Y et 10 % à Z » n'a de sens que si X, Y et Z couvrent réellement les possibilités pertinentes.</p><p>L'espérance mathématique, notée E[X] (valeur moyenne pondérée de résultats possibles X), se calcule en multipliant chaque résultat par sa probabilité, puis en additionnant les produits : E[X]=Σ pᵢxᵢ. Le symbole Σ (sigma majuscule, somme des termes indiqués) rappelle d'additionner les résultats ; pᵢ est la probabilité de l'issue i et xᵢ sa valeur. L'espérance est une moyenne théorique, non une promesse sur le prochain résultat.</p><p>La calibration compare les probabilités annoncées aux fréquences observées sur un grand nombre de cas comparables. Elle demande des prévisions enregistrées à l'avance ; on ne peut pas déduire la rentabilité d'un taux de réussite seul sans connaître gains, pertes, frais et règles de taille.</p>`,
+    keyPoints:["Définir des scénarios mutuellement exclusifs et suffisamment complets","Une espérance pondère chaque résultat par sa probabilité","Une moyenne théorique ne prédit pas un résultat isolé","Évaluer la calibration sur des prévisions conservées à l'avance"],
+    exercise:{
+      type:"free_text",
+      title:"Raisonner sous Incertitude",
+      prompt:`Une stratégie a gagné 110 trades et perdu 90 sur 200 trades observés. Les gains moyens avant frais sont de 70 € et les pertes moyennes de 50 €. Les frais moyens sont de 4 € par trade. Ces estimations restent incertaines.<br><br>1. Calcule le taux de réussite historique (gains divisés par total des trades).<br>2. Calcule l'espérance observée par trade : probabilité de gain × gain moyen − probabilité de perte × perte moyenne − frais.<br>3. Estime l'espérance sur 10 trades selon ce modèle. Explique pourquoi ce résultat n'est pas garanti.<br>4. Si le prochain trade perd, qu'est-ce que cela dit — et ne dit pas — sur la qualité de la décision ?<br>5. Donne un critère de réévaluation et une limite au modèle.`,
+      minWords:120,
+      placeholder:"Taux de réussite = 110 / 200 = ...\nTaux de perte = 90 / 200 = ...\n\nEspérance/trade = (p_gain × 70 €) − (p_perte × 50 €) − 4 € = ...\nEspérance modèle sur 10 trades = ...\nLimites : ...\n\nDécision et raisons : ...\nCe qu'un trade perdant permet de conclure : ...\nCritère de réévaluation : ...",
+      selfValidate:true,
+      criteria:"Valide si l'EV est calculé correctement et si la question 4 distingue bien qualité de décision et qualité de résultat."
+    }
+  }
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+let state = {
+  user: null,
+  progress: {},     // { "1.1": true, "1.2": true, ... }
+  currentCourse: null,
+  exerciseState: {}
+};
+
+function saveProgress() {
+  localStorage.setItem('ga_progress_' + state.user, JSON.stringify(state.progress));
+}
+function loadProgress() {
+  const raw = localStorage.getItem('ga_progress_' + state.user);
+  state.progress = raw ? JSON.parse(raw) : {};
+  if (state.progress['2.15'] && !state.progress['2.5']) state.progress['2.5'] = true;
+  for (const id of Object.keys(state.progress)) {
+    const major = parseInt(id.split('.')[0], 10);
+    const minor = parseInt(id.split('.')[1], 10);
+    if (major === 2 && minor >= 5) { state.progress['1.5'] = true; state.progress['1.6'] = true; }
+    if (major === 3 && minor >= 1) { state.progress['1.5'] = true; state.progress['1.6'] = true; state.progress['2.5'] = true; }
+    if (major >= 4) { state.progress['1.5'] = true; state.progress['1.6'] = true; state.progress['2.5'] = true; state.progress['3.5'] = true; }
+  }
+  saveProgress();
+}
+function isUnlocked(id) {
+  const idx = COURSES.findIndex(c => c.id === id);
+  if (idx === 0) return true;
+  const course = COURSES[idx];
+  const required = COURSES.filter(previous => previous.phase < course.phase || (previous.phase === course.phase && previous.id.localeCompare(course.id, undefined, {numeric:true}) < 0));
+  return required.every(previous => !!state.progress[previous.id]);
+}
+function isDone(id) { return !!state.progress[id]; }
+
+// ─── LOGIN ───────────────────────────────────────────────────────────────────
+function doLogin() {
+  const name = document.getElementById('login-name').value.trim();
+  const pass = document.getElementById('login-pass').value.trim().toUpperCase();
+  if (!name) { showErr("Entre ton nom."); return; }
+  if (pass !== 'LOGOS') { showErr("Mot de révélation incorrect."); return; }
+  state.user = name;
+  loadProgress();
+  // Migrate completions saved before newly added course IDs existed.
+  state.progress['1.5'] = state.progress['1.5'] || false;
+  state.progress['1.6'] = state.progress['1.6'] || false;
+  state.progress['2.5'] = state.progress['2.5'] || false;
+  state.progress['3.5'] = state.progress['3.5'] || false;
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  initApp();
+}
+function showErr(msg) { document.getElementById('login-error').textContent = msg; }
+function logout() {
+  state.user = null; state.progress = {}; state.currentCourse = null;
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-name').value = '';
+  document.getElementById('login-pass').value = '';
+}
+document.getElementById('login-pass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+// ─── GEMATRIA CALCULATOR ─────────────────────────────────────────────────────
+function calcGematria() {
+  const w = document.getElementById('gem-word').value.toUpperCase().replace(/[^A-Z]/g,'');
+  if (!w) {
+    ['g-simple','g-reduce','g-pyth'].forEach(id => document.getElementById(id).textContent = '—');
+    return;
+  }
+  let simple = 0, pyth = 0;
+  for (const c of w) {
+    const v = c.charCodeAt(0) - 64;
+    simple += v;
+    pyth += ((v-1)%9)+1;
+  }
+  const reduce = n => { while(n>9) n=[...String(n)].reduce((a,b)=>a+parseInt(b),0); return n; };
+  document.getElementById('g-simple').textContent = simple;
+  document.getElementById('g-reduce').textContent = reduce(simple);
+  document.getElementById('g-pyth').textContent = reduce(pyth);
+}
+
+// ─── APP INIT ─────────────────────────────────────────────────────────────────
+function initApp() {
+  const done = Object.keys(state.progress).filter(id => COURSES.some(course => course.id === id) && state.progress[id]).length;
+  const level = Math.floor(done/4);
+  document.getElementById('sb-name').textContent = state.user;
+  document.getElementById('sb-avatar').textContent = state.user[0].toUpperCase();
+  document.getElementById('sb-level').textContent = `Niveau ${level}`;
+  document.getElementById('sb-progress-txt').textContent = `${done}/${COURSES.length}`;
+  document.getElementById('sb-progress-fill').style.width = `${(done/COURSES.length)*100}%`;
+  document.getElementById('stat-done').textContent = done;
+  const nextCourse = COURSES.find(c => isUnlocked(c.id) && !isDone(c.id));
+  document.getElementById('stat-phase').textContent = nextCourse ? nextCourse.phase : 6;
+  document.getElementById('stat-level').textContent = level;
+  buildSidebar();
+  buildDashboard();
+  showDashboard();
+}
+
+function buildSidebar() {
+  const nav = document.getElementById('sidebar-nav');
+  nav.innerHTML = '';
+  PHASES.forEach(p => {
+    const phaseDiv = document.createElement('div');
+    phaseDiv.className = 'nav-phase';
+    phaseDiv.innerHTML = `<div class="nav-phase-title">Phase ${p.id}</div>`;
+    COURSES.filter(c=>c.phase===p.id).forEach(c => {
+      const item = document.createElement('div');
+      const locked = !isUnlocked(c.id);
+      const done2 = isDone(c.id);
+      item.className = `nav-item ${locked?'locked':''} ${done2?'done':''}`;
+      item.innerHTML = `<div class="nav-dot"></div>${c.id} ${c.title}${locked?' (cours non validé)':''}`;
+      item.onclick = () => openCourse(c.id);
+      phaseDiv.appendChild(item);
+    });
+    nav.appendChild(phaseDiv);
+  });
+}
+
+function buildDashboard() {
+  const cont = document.getElementById('phases-container');
+  cont.innerHTML = '';
+  PHASES.forEach(p => {
+    const sec = document.createElement('div');
+    sec.className = 'phase-section';
+    sec.innerHTML = `<div class="phase-header">
+      <div class="phase-badge ${p.cls}">${p.id}</div>
+      <div><div class="phase-title-text">${p.name}</div><div class="phase-sub">${p.sub}</div></div>
+    </div>
+    <div class="courses-grid" id="grid-${p.id}"></div>`;
+    cont.appendChild(sec);
+    const grid = document.getElementById(`grid-${p.id}`);
+    COURSES.filter(c=>c.phase===p.id).forEach(c => {
+      const locked = !isUnlocked(c.id);
+      const done2 = isDone(c.id);
+      const card = document.createElement('div');
+      card.className = `course-card ${locked?'locked':''} ${done2?'done':''}`;
+      card.innerHTML = `<div class="card-id">COURS ${c.id}</div>
+        <div class="card-icon">${c.icon}</div>
+        <div class="card-title">${c.title}</div>
+      <div class="card-duration">${c.duration}</div>
+        ${locked?'<div class="card-lock">🔎 Consultation anticipée</div>':''}`;
+      card.onclick = () => openCourse(c.id);
+      if (locked) {
+        card.title = 'Consultation libre ; validation après les leçons précédentes.';
+        card.insertAdjacentHTML('beforeend', '<div class="card-unlock-hint">Tu peux l’étudier maintenant. La validation est disponible au bon moment du parcours.</div>');
+      }
+      grid.appendChild(card);
+    });
+  });
+}
+
+function showLibraryDomain(domain) {
+  const view = document.getElementById('library-view');
+  const dashboard = document.getElementById('phases-container');
+  document.querySelectorAll('.library-tab').forEach(tab => tab.classList.toggle('active', tab.id === `tab-${domain}`));
+  const stats = document.querySelector('.dash-stats');
+  stats.style.display = domain === 'logic' ? 'flex' : 'none';
+  if (domain === 'logic') {
+    view.style.display = 'none';
+    dashboard.style.display = 'block';
+    return;
+  }
+  const path = ARCHIVE_PATHS.find(item => item.id === domain);
+  if (!path) return;
+  dashboard.style.display = 'none';
+  view.style.display = 'block';
+  view.innerHTML = `<div class="dash-title">${path.title}</div><div class="library-intro">${path.lessons.length} leçons restaurées depuis l’ancienne version de Gematria Academy. Leur contenu descriptif est conservé ; cette bibliothèque n’affecte pas la progression du parcours logique.</div>` + path.lessons.map(lesson => `<article class="library-card"><div class="library-card-head"><div class="library-card-title">${lesson.title}</div><div class="library-card-num">LEÇON ${lesson.number}</div></div><div class="library-card-desc">${lesson.description}</div>${lesson.symbols.length ? `<div class="library-symbols">${lesson.symbols.join(' · ')}</div>` : ''}${lesson.duration ? `<div class="library-duration">${lesson.duration}</div>` : ''}</article>`).join('');
+  window.scrollTo(0,0);
+}
+
+function showDashboard() {
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('course-view').style.display = 'none';
+}
+
+// ─── COURSE VIEW ─────────────────────────────────────────────────────────────
+function openCourse(id) {
+  state.currentCourse = id;
+  state.courseUnlocked = isUnlocked(id);
+  state.exerciseState = {};
+  const c = COURSES.find(x=>x.id===id);
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('course-view').style.display = 'block';
+  const phase = PHASES.find(p=>p.id===c.phase);
+  document.getElementById('cv-content').innerHTML = buildCourseHTML(c, phase);
+  initExercise(c);
+  window.scrollTo(0,0);
+}
+
+function buildCourseHTML(c, phase) {
+  const courseText = c.theory + ' ' + JSON.stringify(c.keyPoints || []) + ' ' + JSON.stringify(c.exercise || {});
+  const symbols = SYMBOL_GLOSSARY.filter(entry => entry.tokens.some(token => courseText.includes(token)));
+  return `
+    <div class="cv-header">
+      <div>
+        <div class="cv-meta">PHASE ${c.phase} — ${phase.name.toUpperCase()} • COURS ${c.id}</div>
+        <div class="cv-title">${c.title}</div>
+      </div>
+      <div class="cv-badge">${c.icon}</div>
+    </div>
+
+    ${!isUnlocked(c.id)?'<div class="criteria-box">Consultation anticipée : lis la théorie et l’exercice. Tu pourras valider ce cours après les leçons précédentes.</div>':''}
+    <div class="section-block">
+      <div class="section-title">◆ THÉORIE</div>
+      <div class="theory-text">${c.theory}</div>
+      ${c.keyPoints ? `<div style="margin-top:16px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:1px;">POINTS CLÉS</div>
+        <ul class="key-points">${c.keyPoints.map(k=>`<li>${k}</li>`).join('')}</ul>
+      </div>` : ''}
+    </div>
+
+    <div class="section-block">
+      <div class="section-title">⚡ EXERCICE${c.exercise?.title ? ' — '+c.exercise.title : ''}</div>
+      <div id="exercise-area"></div>
+    </div>
+    <details class="symbol-glossary" open><summary>Repères — noms et significations des symboles de ce cours</summary><div>${symbols.map(s=>`<p>${s.description}</p>`).join('') || '<p>Aucun symbole logique supplémentaire dans cette leçon.</p>'}</div></details>
+    ${isDone(c.id)?`<div style="background:rgba(74,158,111,.1);border:1px solid rgba(74,158,111,.3);border-radius:10px;padding:16px;color:#7dd4a8;font-size:14px;margin-top:8px;">✓ Cours complété. Tu peux le revoir librement.</div>`:''}
+  `;
+}
+
+function initExercise(c) {
+  const area = document.getElementById('exercise-area');
+  const ex = c.exercise;
+  if (!ex) { area.innerHTML = '<p style="color:var(--muted)">Pas d\'exercice pour ce cours.</p>'; return; }
+
+  if (ex.type === 'free_text') renderFreeText(area, c, ex);
+  else if (ex.type === 'fill_blank') renderFillBlank(area, c, ex);
+  else if (ex.type === 'mcq_series') renderMCQ(area, c, ex);
+  else if (ex.type === 'matching') renderMatching(area, c, ex);
+  else if (ex.type === 'gematria_practice') renderGematriaPractice(area, c, ex);
+  else if (ex.type === 'analogy_fill') renderAnalogyFill(area, c, ex);
+  else if (ex.type === 'compression') renderCompression(area, c, ex);
+}
+
+// ─── EXERCISE RENDERERS ───────────────────────────────────────────────────────
+
+function renderFreeText(area, c, ex) {
+  const completed = isDone(c.id);
+  const canValidate = isUnlocked(c.id);
+  area.innerHTML = `
+    <div class="exercise-prompt">${ex.prompt}</div>
+    <textarea class="exercise-textarea" id="ex-text" placeholder="${ex.placeholder||'Écris ta réponse ici...'}" oninput="updateWordCount(this,'wc-main')"></textarea>
+    <div class="word-count" id="wc-main">0 mots${ex.minWords?` (minimum ${ex.minWords})`:''}</div>
+    ${ex.criteria?`<div class="criteria-box">📋 Critères de validation : ${ex.criteria}</div>`:''}
+    <div class="validate-row">
+      <button class="btn-validate" id="btn-val" onclick="selfValidate('${c.id}')" ${completed || ex.minWords || !canValidate?'disabled':''}>
+        ${ex.selfValidate?'✓ Je valide — Cours complété':'Valider'}
+      </button>
+      <div class="feedback-msg info" style="display:none" id="ex-feedback"></div>
+      <button class="btn-next" id="btn-next" onclick="goNext('${c.id}')" ${completed && canValidate?'style="display:inline-block"':''}>Cours Suivant →</button>
+    </div>
+  `;
+  if (ex.minWords) {
+    document.getElementById('ex-text').addEventListener('input', () => {
+      const words = countWords(document.getElementById('ex-text').value);
+      const ok = words >= ex.minWords && canValidate;
+      document.getElementById('btn-val').disabled = !ok;
+    });
+  }
+}
+
+function updateWordCount(el, wcId) {
+  const words = countWords(el.value);
+  const wc = document.getElementById(wcId);
+  if (wc) wc.textContent = `${words} mots`;
+}
+
+function countWords(text) {
+  return text.trim().split(/\s+/).filter(w=>w.length>0).length;
+}
+
+function selfValidate(id) {
+  if (!isUnlocked(id)) {
+    showFeedback('Ce cours est consultable maintenant ; sa validation viendra après les leçons précédentes.', false);
+    return;
+  }
+  const course = COURSES.find(item => item.id === id);
+  if (course?.exercise?.minWords && countWords(document.getElementById('ex-text')?.value || '') < course.exercise.minWords) {
+    showFeedback(`Écris au moins ${course.exercise.minWords} mots avant de valider.`, false);
+    return;
+  }
+  if (course?.exercise?.selfValidate && !course.exercise.minWords && countWords(document.getElementById('ex-text')?.value || '') === 0) {
+    showFeedback('Écris ta réponse avant de valider le cours.', false);
+    return;
+  }
+  if (course?.exercise?.type === 'compression') {
+    const allWithinLimit = course.exercise.originals.every((item, i) => {
+      const answer = document.getElementById(`comp-${i}`)?.value || '';
+      return countWords(answer) > 0 && countWords(answer) <= item.maxWords;
+    });
+    if (!allWithinLimit) {
+      showFeedback('Écris ta reformulation et respecte le nombre maximal de mots avant de valider.', false);
+      return;
+    }
+  }
+  state.progress[id] = true; saveProgress();
+  showFeedback('Cours complété ! Continue sur ta lancée.', true);
+  document.getElementById('btn-next').style.display = 'inline-block';
+  document.getElementById('btn-val').disabled = true;
+  updateSidebar();
+}
+
+function showFeedback(msg, success=true) {
+  const fb = document.getElementById('ex-feedback');
+  if (!fb) return;
+  fb.textContent = msg;
+  fb.className = 'feedback-msg ' + (success?'success':'info');
+  fb.style.display = 'block';
+}
+
+function goNext(id) {
+  const idx = COURSES.findIndex(c=>c.id===id);
+  const next = COURSES.slice(idx+1).find(course => isUnlocked(course.id));
+  buildDashboard(); buildSidebar();
+  if (next) openCourse(next.id);
+  else showDashboard();
+}
+
+function updateSidebar() {
+  const done = Object.keys(state.progress).filter(id => COURSES.some(course => course.id === id) && state.progress[id]).length;
+  document.getElementById('sb-progress-txt').textContent = `${done}/${COURSES.length}`;
+  document.getElementById('sb-progress-fill').style.width = `${(done/COURSES.length)*100}%`;
+  document.getElementById('sb-level').textContent = `Niveau ${Math.floor(done/4)}`;
+  document.getElementById('stat-done').textContent = done;
+  const nextCourse = COURSES.find(c => isUnlocked(c.id) && !isDone(c.id));
+  document.getElementById('stat-phase').textContent = nextCourse ? nextCourse.phase : 6;
+  document.getElementById('stat-level').textContent = Math.floor(done/4);
+}
+
+function renderFillBlank(area, c, ex) {
+  let html = `<div class="exercise-prompt">Complète chaque séquence — trouve le terme suivant.</div>`;
+  ex.sequences.forEach((s,i) => {
+    html += `<div class="fill-blank-group">
+      <div class="fill-prompt">${s.prompt}</div>
+      <input class="fill-input" id="fill-${i}" placeholder="?" onkeydown="if(event.key==='Enter')checkFill(${i},'${s.answer}')">
+      <button onclick="checkFill(${i},'${s.answer}')" style="background:var(--gold-dark);border:none;border-radius:6px;padding:8px 12px;color:#fff;cursor:pointer;font-size:12px;">OK</button>
+      <div class="fill-result" id="fill-res-${i}"></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px;display:none" id="fill-hint-${i}">${s.hint}</div>`;
+  });
+  const completed = isDone(c.id);
+  html += `<div class="validate-row">
+    <button class="btn-validate" id="btn-val" onclick="completeFill('${c.id}')" ${completed || !isUnlocked(c.id)?'disabled':''}>Valider l'exercice</button>
+    <button class="btn-next" id="btn-next" onclick="goNext('${c.id}')" ${completed && isUnlocked(c.id)?'style="display:inline-block"':''}>Cours Suivant →</button>
+  </div>`;
+  area.innerHTML = html;
+  state.exerciseState.fillScore = 0;
+  state.exerciseState.fillTotal = ex.sequences.length;
+}
+
+function checkFill(i, answer) {
+  const input = document.getElementById(`fill-${i}`);
+  const res = document.getElementById(`fill-res-${i}`);
+  const hint = document.getElementById(`fill-hint-${i}`);
+  if (input.value.trim().toUpperCase() === answer.toUpperCase()) {
+    res.textContent = '✓'; res.style.color = 'var(--success)';
+    input.style.borderColor = 'var(--success)'; input.disabled = true;
+    state.exerciseState.fillScore = (state.exerciseState.fillScore||0) + 1;
+  } else {
+    res.textContent = '✗'; res.style.color = 'var(--danger)';
+    input.style.borderColor = 'var(--danger)';
+    hint.style.display = 'block';
+  }
+}
+
+function completeFill(id) {
+  if (!isUnlocked(id)) return;
+  const c = COURSES.find(course => course.id === id);
+  const allCorrect = c.exercise.sequences.every((item, i) => document.getElementById(`fill-${i}`).disabled);
+  if (!allCorrect) {
+    showFeedback('Complète correctement toutes les séquences avant de valider.', false);
+    return;
+  }
+  state.progress[id] = true; saveProgress(); updateSidebar();
+  document.getElementById('btn-next').style.display = 'inline-block';
+  document.getElementById('btn-val').disabled = true;
+}
+
+function renderMCQ(area, c, ex) {
+  let html = ``;
+  state.exerciseState.mcqAnswered = 0;
+  state.exerciseState.mcqCorrect = 0;
+  state.exerciseState.mcqTotal = ex.questions.length;
+  const completed = isDone(c.id);
+  const canValidate = isUnlocked(c.id);
+  ex.questions.forEach((q,qi) => {
+    html += `<div style="margin-bottom:20px;padding:16px;background:#0a0a14;border-radius:8px;border:1px solid var(--border)" id="mcq-block-${qi}">
+      <div style="font-size:14px;margin-bottom:12px;line-height:1.6">${qi+1}. ${q.q}</div>
+      ${q.options.map((o,oi)=>`<button class="mcq-option" id="mcq-${qi}-${oi}" ${completed || !canValidate?'disabled':''} onclick="checkMCQ(${qi},${oi},${q.correct},'${c.id}')">${o}</button>`).join('')}
+      <div style="display:none;font-size:12px;color:var(--muted);margin-top:8px;padding:8px;background:#0d0d18;border-radius:6px" id="mcq-exp-${qi}">${q.explanation}</div>
+    </div>`;
+  });
+  html += `<div class="validate-row"><button class="btn-next" id="btn-next" ${completed && canValidate?'style="display:inline-block"':''} onclick="goNext('${c.id}')">Cours Suivant →</button></div>`;
+  area.innerHTML = html;
+}
+
+function checkMCQ(qi, oi, correct, courseId) {
+  if (!isUnlocked(courseId)) return;
+  const block = document.getElementById(`mcq-block-${qi}`);
+  if (block.dataset.answered) return;
+  const opts = block.querySelectorAll('.mcq-option');
+  if (oi !== correct) {
+    opts[oi].classList.add('wrong');
+    document.getElementById(`mcq-exp-${qi}`).style.display = 'block';
+    state.exerciseState.mcqErrors = (state.exerciseState.mcqErrors||0)+1;
+    return;
+  }
+  block.dataset.answered = '1';
+  opts.forEach((b,i) => { b.disabled = true; if(i===correct) b.classList.add('correct'); });
+  if (oi !== correct) opts[oi].classList.add('wrong');
+  state.exerciseState.mcqCorrect = (state.exerciseState.mcqCorrect||0) + (oi === correct ? 1 : 0);
+  document.getElementById(`mcq-exp-${qi}`).style.display = 'block';
+  state.exerciseState.mcqAnswered = (state.exerciseState.mcqAnswered||0)+1;
+  if (state.exerciseState.mcqAnswered >= state.exerciseState.mcqTotal) {
+    if (state.exerciseState.mcqCorrect !== state.exerciseState.mcqTotal) return;
+    state.progress[courseId] = true; saveProgress(); updateSidebar();
+    document.getElementById('btn-next').style.display = 'inline-block';
+  }
+}
+
+function renderMatching(area, c, ex) {
+  const shuffledBias = [...ex.pairs.map(p=>p.bias)].sort(()=>Math.random()-.5);
+  let html = `<div class="exercise-prompt">Associe chaque scénario au biais correspondant. Clique sur un scénario puis sur le biais.</div>
+    <div class="match-grid" style="${isUnlocked(c.id)?'':'opacity:.75;pointer-events:none'}">
+      <div class="match-col">
+        ${ex.pairs.map((p,i)=>`<div class="match-item" id="ms-${i}" data-idx="${i}" onclick="selectScenario(${i})">${p.scenario}</div>`).join('')}
+      </div>
+      <div class="match-col">
+        ${shuffledBias.map((b,i)=>`<div class="match-item" id="mb-${i}" data-bias="${b}" onclick="selectBias('${b}',${i})">${b}</div>`).join('')}
+      </div>
+    </div>
+    <div class="match-score" id="match-score"></div>
+    <div class="validate-row"><button class="btn-next" id="btn-next" ${isDone(c.id) && isUnlocked(c.id)?'style="display:inline-block"':''} onclick="goNext('${c.id}')">Cours Suivant →</button></div>`;
+  area.innerHTML = html;
+  state.exerciseState.matchSelected = null;
+  state.exerciseState.matchDone = 0;
+  state.exerciseState.matchErrors = 0;
+  state.exerciseState.matchTotal = ex.pairs.length;
+  state.exerciseState.pairs = ex.pairs;
+}
+
+function selectScenario(idx) {
+  if (!isUnlocked(state.currentCourse)) return;
+  document.querySelectorAll('[id^="ms-"]').forEach(el => el.classList.remove('selected'));
+  const el = document.getElementById(`ms-${idx}`);
+  if (el.classList.contains('matched')) return;
+  el.classList.add('selected');
+  state.exerciseState.matchSelected = idx;
+}
+
+function selectBias(bias, bidx) {
+  if (!isUnlocked(state.currentCourse)) return;
+  const bEl = document.getElementById(`mb-${bidx}`);
+  if (bEl.classList.contains('matched')) return;
+  const selIdx = state.exerciseState.matchSelected;
+  if (selIdx === null) return;
+  const sEl = document.getElementById(`ms-${selIdx}`);
+  const correctBias = state.exerciseState.pairs[selIdx].bias;
+  if (bias === correctBias) {
+    sEl.classList.remove('selected'); sEl.classList.add('matched');
+    bEl.classList.add('matched');
+    state.exerciseState.matchDone++;
+    if (state.exerciseState.matchDone >= state.exerciseState.matchTotal) {
+      const courseId = state.currentCourse;
+      if ((state.exerciseState.matchErrors||0) > 0) state.exerciseState.matchHadErrors = true;
+      state.progress[courseId] = true; saveProgress(); updateSidebar();
+      document.getElementById('match-score').textContent = '✓ Toutes les associations correctes !';
+      document.getElementById('btn-next').style.display = 'inline-block';
+    }
+  } else {
+    state.exerciseState.matchErrors = (state.exerciseState.matchErrors||0) + 1;
+    sEl.classList.remove('selected'); sEl.classList.add('wrong');
+    setTimeout(()=>sEl.classList.remove('wrong'), 800);
+    document.getElementById('match-score').textContent = 'Essaie encore…';
+  }
+  state.exerciseState.matchSelected = null;
+}
+
+function renderGematriaPractice(area, c, ex) {
+  let html = `<div class="exercise-prompt">${ex.prompt}</div>
+    <div style="margin-bottom:16px">`;
+  ex.words.forEach(w => {
+    html += `<div class="fill-blank-group">
+      <div class="fill-prompt" style="font-family:'Cinzel',serif;color:var(--gold)">${w}</div>
+      <input class="fill-input" id="gp-${w}" placeholder="valeur" style="width:90px" ${isUnlocked(c.id)?'':'disabled'}>
+      <button onclick="checkGP('${w}',${ex.answers[w]})" ${isUnlocked(c.id)?'':'disabled'} style="background:var(--gold-dark);border:none;border-radius:6px;padding:8px 12px;color:#fff;cursor:pointer;font-size:12px;">OK</button>
+      <div class="fill-result" id="gp-res-${w}"></div>
+    </div>`;
+  });
+  html += `</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Utilise le calculateur → dans la barre latérale. Tape chaque mot pour obtenir sa valeur.</div>
+    <div class="validate-row">
+      <button class="btn-validate" onclick="completeGP('${c.id}')" ${isDone(c.id) || !isUnlocked(c.id)?'disabled':''}>Valider</button>
+      <button class="btn-next" id="btn-next" ${isDone(c.id) && isUnlocked(c.id)?'style="display:inline-block"':''} onclick="goNext('${c.id}')">Cours Suivant →</button>
+    </div>`;
+  area.innerHTML = html;
+}
+
+function checkGP(word, correct) {
+  const val = parseInt(document.getElementById(`gp-${word}`).value);
+  const res = document.getElementById(`gp-res-${word}`);
+  if (val === correct) { res.textContent = '✓'; res.style.color='var(--success)'; }
+  else { res.textContent = `✗ (${correct})`; res.style.color='var(--danger)'; }
+}
+
+function completeGP(id) {
+  if (!isUnlocked(id)) return;
+  const c = COURSES.find(course => course.id === id);
+  const allCorrect = c.exercise.words.every(word => parseInt(document.getElementById(`gp-${word}`).value, 10) === c.exercise.answers[word]);
+  if (!allCorrect) {
+    showFeedback('Vérifie chaque valeur avant de valider l’exercice.', false);
+    return;
+  }
+  state.progress[id] = true; saveProgress(); updateSidebar();
+  document.getElementById('btn-next').style.display = 'inline-block';
+}
+
+function renderAnalogyFill(area, c, ex) {
+  let html = `<div class="exercise-prompt">Complète chaque analogie. A est à B ce que C est à ___.</div>`;
+  ex.analogies.forEach((a,i) => {
+    html += `<div class="fill-blank-group" style="flex-wrap:wrap;gap:8px">
+      <div class="fill-prompt">${a.a} : ${a.b} :: ${a.c} : ___</div>
+      <input class="fill-input" id="an-${i}" placeholder="?" style="width:120px" ${isUnlocked(c.id)?'':'disabled'} onkeydown="if(event.key==='Enter')checkAnalogy(${i},'${a.answer}')">
+      <button onclick="checkAnalogy(${i},'${a.answer}')" ${isUnlocked(c.id)?'':'disabled'} style="background:var(--gold-dark);border:none;border-radius:6px;padding:8px 12px;color:#fff;cursor:pointer;font-size:12px;">OK</button>
+      <div class="fill-result" id="an-res-${i}"></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px;display:none" id="an-hint-${i}">Indice : ${a.hint}</div>`;
+  });
+  html += `<div class="validate-row">
+    <button class="btn-validate" onclick="completeAnalogy('${c.id}')" ${isDone(c.id) || !isUnlocked(c.id)?'disabled':''}>Valider</button>
+    <button class="btn-next" id="btn-next" ${isDone(c.id) && isUnlocked(c.id)?'style="display:inline-block"':''} onclick="goNext('${c.id}')">Cours Suivant →</button>
+  </div>`;
+  area.innerHTML = html;
+}
+
+function checkAnalogy(i, answer) {
+  if (!isUnlocked(state.currentCourse)) return;
+  const input = document.getElementById(`an-${i}`);
+  const res = document.getElementById(`an-res-${i}`);
+  const hint = document.getElementById(`an-hint-${i}`);
+  const val = input.value.trim().toUpperCase();
+  const expected = answer.toUpperCase();
+  if (val === expected) {
+    res.textContent = '✓'; res.style.color='var(--success)'; input.disabled=true;
+  } else {
+    res.textContent = '✗'; res.style.color='var(--danger)';
+    hint.style.display='block';
+  }
+}
+
+function completeAnalogy(id) {
+  if (!isUnlocked(id)) return;
+  const c = COURSES.find(course => course.id === id);
+  const allCorrect = c.exercise.analogies.every((item, i) => document.getElementById(`an-${i}`).disabled && document.getElementById(`an-${i}`).value.trim().toLowerCase() === item.answer.toLowerCase());
+  if (!allCorrect) {
+    showFeedback('Complète correctement toutes les analogies avant de valider.', false);
+    return;
+  }
+  state.progress[id] = true; saveProgress(); updateSidebar();
+  document.getElementById('btn-next').style.display = 'inline-block';
+}
+
+function renderCompression(area, c, ex) {
+  let html = `<div class="exercise-prompt">Compresse le texte suivant en <strong>${ex.originals[0].maxWords} mots maximum</strong> sans perdre l'essentiel.</div>`;
+  ex.originals.forEach((o,i) => {
+    html += `
+      <div style="background:#0a0a14;border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px;font-size:13px;color:var(--muted);line-height:1.7;font-style:italic">"${o.text}"</div>
+      <textarea class="exercise-textarea" id="comp-${i}" placeholder="Ta version compressée..." ${isUnlocked(c.id)?'':'disabled'} oninput="checkCompression(${i},${o.maxWords})" style="min-height:80px"></textarea>
+      <div class="compress-counter" id="comp-count-${i}">0 / ${o.maxWords} mots max</div>
+    `;
+  });
+  html += `<div class="validate-row">
+    <button class="btn-validate" id="btn-val" onclick="selfValidate('${c.id}')" ${isDone(c.id) || !isUnlocked(c.id)?'disabled':''}>Valider</button>
+    <div style="font-size:12px;color:var(--muted)">Exemple possible : <em>"${ex.originals[0].example}"</em></div>
+    <button class="btn-next" id="btn-next" ${isDone(c.id) && isUnlocked(c.id)?'style="display:inline-block"':''} onclick="goNext('${c.id}')">Cours Suivant →</button>
+  </div>`;
+  area.innerHTML = html;
+}
+
+function checkCompression(i, maxW) {
+  const text = document.getElementById(`comp-${i}`).value;
+  const words = countWords(text);
+  const el = document.getElementById(`comp-count-${i}`);
+  el.textContent = `${words} / ${maxW} mots max`;
+  el.className = 'compress-counter ' + (words > maxW ? 'over' : words > 0 ? 'ok' : '');
+}
+
+// Enter key on login name
+document.getElementById('login-name').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('login-pass').focus(); });
+</script>
+</body>
+</html>
