@@ -78,6 +78,7 @@ class GematriaAuth {
             }, { merge: true });
         } catch (error) {
             console.error('Erreur sauvegarde:', error);
+            throw error;
         }
     }
 
