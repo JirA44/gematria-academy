@@ -1,0 +1,92 @@
+{
+  "hebreu-gematria-parcours-complet.html": {
+    "reason": "Standalone legacy page outside the production route map; its broken lesson links are deferred from this repair.",
+    "links": [
+      "hebreu-textes-sacres.html",
+      "kabbale-arbre-vie.html",
+      "hebreu-flashcards.html",
+      "gematria-avancee.html",
+      "noms-divins-72.html"
+    ]
+  },
+  "hebreu-gematria-parcours-multilingue.html": {
+    "reason": "Standalone legacy page outside the production route map; its broken lesson links are deferred from this repair.",
+    "links": [
+      "textes-bibliques.html",
+      "kabbale-noms-dieu.html",
+      "flashcards-hebreu.html"
+    ]
+  },
+  "mayas-glyphes-parcours-complet.html": {
+    "reason": "Standalone legacy page outside the production route map; its broken lesson links are deferred from this repair.",
+    "links": [
+      "mayas-syllabaire.html",
+      "mayas-numeration.html",
+      "mayas-calendriers.html",
+      "mayas-noms-royaux.html",
+      "mayas-steles-dechiffrage.html",
+      "mayas-flashcards-codex.html",
+      "mayas-carte-sites.html",
+      "mayas-introduction.html"
+    ]
+  },
+  "mayas-glyphes-parcours-multilingue.html": {
+    "reason": "Standalone legacy page outside the production route map; its broken lesson links are deferred from this repair.",
+    "links": [
+      "maya-syllabaire.html",
+      "maya-chiffres.html",
+      "maya-calendriers.html",
+      "maya-noms-royaux.html",
+      "maya-steles.html",
+      "flashcards-maya.html"
+    ]
+  },
+  "pages/demo/demo-quiz.html": {
+    "reason": "Demo page outside the production route map; its page and resources are deferred for a separate demo review.",
+    "links": [
+      "style.css",
+      "fix-contrast.css",
+      "animated-background.css",
+      "bleus-cosmiques.css",
+      "knowledge-validation.css",
+      "student-dashboard.css",
+      "index_mega_enriched.html"
+    ]
+  },
+  "parcours-cryptographie-sacree.html": {
+    "reason": "Standalone legacy page outside the production route map; its lesson routes are deferred from this repair.",
+    "links": [
+      "crypto-antiquite.html",
+      "crypto-kabbale.html",
+      "crypto-medieval.html",
+      "crypto-renaissance.html",
+      "crypto-moderne.html",
+      "crypto-quantique.html",
+      "crypto-playground.html",
+      "crypto-challenges.html"
+    ]
+  },
+  "parcours-ecritures-sacrees-comparees.html": {
+    "reason": "Standalone legacy page outside the production route map; its lesson routes are deferred from this repair.",
+    "links": [
+      "sanskrit-devanagari-parcours.html",
+      "chinois-classique-parcours.html",
+      "calligraphie-arabe-parcours.html",
+      "cuneiforme-parcours.html",
+      "comparaison-interactive.html",
+      "timeline-ecritures.html"
+    ]
+  },
+  "runes-divination.html": {
+    "reason": "Unlinked root-level legacy duplicate; the maintained route lives under pages/runes/.",
+    "links": [
+      "runes-bind-runes.html"
+    ]
+  },
+  "runes-mythologie-nordique.html": {
+    "reason": "Unlinked root-level legacy duplicate; the maintained route lives under pages/runes/.",
+    "links": [
+      "runes-bind-runes.html"
+    ]
+  }
+}
