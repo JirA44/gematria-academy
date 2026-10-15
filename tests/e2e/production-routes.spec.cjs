@@ -6,6 +6,6 @@ for (const route of routeMap.browser_sample) {
     const response = await page.goto("/" + route, { waitUntil: "domcontentloaded" });
     expect(response, route + " should return a response").not.toBeNull();
     expect(response.status(), route + " should load successfully").toBe(200);
-    await expect(page.locator("body"), route + " should render a body").toBeVisible();
+    await expect(page.locator("body"), route + " should contain page content").toContainText(/\S/);
   });
 }
