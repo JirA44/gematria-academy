@@ -72,7 +72,12 @@ def main() -> int:
     route_data = json.loads(ROUTE_MAP_PATH.read_text(encoding="utf-8"))
     expected_routes = set(route_data["routes"])
     actual_routes = set()
-    html_files = sorted(path.relative_to(ROOT).as_posix() for path in ROOT.rglob("*.html"))
+    generated_directories = {".git", "node_modules", "test-results", "playwright-report"}
+    html_files = sorted(
+        path.relative_to(ROOT).as_posix()
+        for path in ROOT.rglob("*.html")
+        if not generated_directories.intersection(path.relative_to(ROOT).parts)
+    )
     for page in html_files:
         for reference in parse_page(page):
             target = local_target(page, reference)
