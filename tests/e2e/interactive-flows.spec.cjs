@@ -17,8 +17,10 @@ function expectNoBrowserErrors(errors) {
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.clear();
-    sessionStorage.clear();
+    if (!sessionStorage.getItem("__gematria_e2e_initialized")) {
+      localStorage.clear();
+      sessionStorage.setItem("__gematria_e2e_initialized", "true");
+    }
   });
 });
 
@@ -40,11 +42,13 @@ test("Gematria calculator handles standard and reduced methods", async ({ page }
 test("Numerology calculator validates, calculates, and exports a result", async ({ page }) => {
   const errors = watchBrowserErrors(page);
   await page.goto("/pages/numerologie/calculateur-numerologie.html");
-  const dialogPromise = page.waitForEvent("dialog");
+  const dialogPromise = page.waitForEvent("dialog").then(async dialog => {
+    const message = dialog.message();
+    await dialog.accept();
+    return message;
+  });
   await page.getByRole("button", { name: /Calculer mon thème complet/ }).click();
-  const dialog = await dialogPromise;
-  expect(dialog.message()).toContain("remplir tous les champs");
-  await dialog.accept();
+  expect(await dialogPromise).toContain("remplir tous les champs");
 
   await page.locator("#fullName").fill("Ada Lovelace");
   await page.locator("#birthDay").fill("15");
@@ -71,11 +75,13 @@ test("Rune reading saves to sandboxed local storage and resumes after reload", a
   await page.waitForFunction(() => document.querySelectorAll("#runesContainer .rune-stone").length === 3);
   await expect(page.locator("#runesContainer .rune-stone")).toHaveCount(3);
 
-  const dialogPromise = page.waitForEvent("dialog");
+  const dialogPromise = page.waitForEvent("dialog").then(async dialog => {
+    const message = dialog.message();
+    await dialog.accept();
+    return message;
+  });
   await page.getByRole("button", { name: /Sauvegarder ce tirage/ }).click();
-  const dialog = await dialogPromise;
-  expect(dialog.message()).toContain("sauvegardé");
-  await dialog.accept();
+  expect(await dialogPromise).toContain("sauvegardé");
 
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("runeReadings")));
   expect(saved).toHaveLength(1);
