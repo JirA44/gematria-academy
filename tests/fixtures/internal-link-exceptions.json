@@ -50,7 +50,10 @@
       "bleus-cosmiques.css",
       "knowledge-validation.css",
       "student-dashboard.css",
-      "index_mega_enriched.html"
+      "index_mega_enriched.html",
+      "animated-background.js",
+      "knowledge-validation.js",
+      "student-dashboard.js"
     ]
   },
   "parcours-cryptographie-sacree.html": {

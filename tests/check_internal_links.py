@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -27,8 +28,12 @@ class LocalReferenceParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         for name, value in attrs:
-            if name.lower() in ATTRIBUTES and value:
+            normalized_name = name.lower()
+            if normalized_name in ATTRIBUTES and value:
                 self.references.append(value.strip())
+            elif normalized_name == "onclick" and value:
+                # Resolve literal location.href assignments used for navigation.
+                self.references.extend(match.group(1) for match in re.finditer(r"(?:window\.)?location\.href\s*=\s*['\"]([^'\"]+)['\"]", value))
 
     def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         self.handle_starttag(tag, attrs)
