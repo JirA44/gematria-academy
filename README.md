@@ -23,6 +23,23 @@ Le contenu peut servir à découvrir ces traditions et leurs systèmes symboliqu
 
 ---
 
+## English
+
+### What is Gematria Academy for?
+
+Gematria Academy brings together learning paths, reference pages, and exercises about symbolic and cultural traditions, including runes, Hebrew gematria, hieroglyphs, Mayan glyphs, logic, and reflection practices.
+
+### Why use it?
+
+Information on these subjects is often scattered and can mix history, interpretation, and belief. The Academy organizes material into a progression so learners can explore concepts, practice, and return to related lessons.
+
+The site can be used to study these traditions and their symbolic systems. Esoteric or spiritual interpretations are not, by themselves, scientific or historical evidence.
+
+### Example learning path
+
+Start with the beginner runes lesson, learn the symbols, use the available exercises or flashcards, then continue to intermediate and advanced material. Revisit topics that remain difficult.
+
+
 ## 📂 Structure du Projet
 
 ```
