@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>🔮 Académie des Sagesses Ésotériques - Runes, Gématrie, Hiéroglyphes</title>
+    <title>Académie des traditions symboliques | Gematria Academy</title>
     <meta name="title" content="Académie des Sagesses Ésotériques - Gematria Academy">
-    <meta name="description" content="Plateforme d'apprentissage complète des sagesses anciennes : Runes Nordiques, Gématrie Hébraïque, Hiéroglyphes Égyptiens, Glyphes Mayas. Plus de 500 leçons interactives avec système de validation des connaissances.">
+    <meta name="description" content="Parcours, pages de référence, exercices et outils autour des runes, de la gématrie, des hiéroglyphes, des glyphes mayas et du raisonnement logique.">
     <meta name="keywords" content="runes nordiques, gématrie hébraïque, hiéroglyphes égyptiens, glyphes mayas, kabbale, ésotérisme, sagesses anciennes, apprentissage en ligne, cours ésotériques, futhark, aleph-bet, méditation, mandalas, chakras">
     <meta name="author" content="Gematria Academy">
     <meta name="robots" content="index, follow">
@@ -17,8 +17,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gematria-academy.pages.dev/">
-    <meta property="og:title" content="🔮 Académie des Sagesses Ésotériques - Gematria Academy">
-    <meta property="og:description" content="Découvrez les secrets ancestraux : Runes, Gématrie, Hiéroglyphes, Glyphes Mayas. Plus de 500 leçons interactives pour maîtriser les sagesses anciennes.">
+    <meta property="og:title" content="Académie des traditions symboliques | Gematria Academy">
+    <meta property="og:description" content="Explorez des traditions symboliques et des outils d’apprentissage par des parcours, des exercices et des pages de référence.">
     <meta property="og:image" content="https://gematria-academy.pages.dev/assets/images/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -28,8 +28,8 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://gematria-academy.pages.dev/">
-    <meta property="twitter:title" content="🔮 Académie des Sagesses Ésotériques">
-    <meta property="twitter:description" content="Maîtrisez les runes nordiques, la gématrie hébraïque, les hiéroglyphes égyptiens et les glyphes mayas avec plus de 500 leçons interactives.">
+    <meta property="twitter:title" content="Académie des traditions symboliques">
+    <meta property="twitter:description" content="Parcours et exercices sur les runes, la gématrie, les hiéroglyphes, les glyphes mayas et le raisonnement.">
     <meta property="twitter:image" content="https://gematria-academy.pages.dev/assets/images/og-image.jpg">
 
     <!-- Canonical URL -->
@@ -118,6 +118,25 @@
         .domain-directory-card:hover,.domain-directory-card:focus-visible{transform:translateY(-2px);border-color:#d4af37;background:rgba(212,175,55,.13);outline:none}
         .domain-directory-archive{margin:1.25rem 0 0;text-align:center}.domain-directory-archive a{color:#e3c45f;font-weight:700}
         @media(max-width:520px){.domain-directory{padding:1.15rem}.domain-directory-grid{grid-template-columns:1fr 1fr;gap:.6rem}.domain-directory-card{padding:.8rem;min-height:60px;font-size:.93rem}}
+    
+        .purpose-panel {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(167,139,250,.35);
+        }
+        .purpose-panel > h2 { text-align: center; margin-bottom: 1.25rem; }
+        .purpose-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1rem; }
+        .purpose-card { padding: 1.25rem; border-radius: 14px; background: rgba(15,24,48,.55); }
+        .purpose-card h3 { margin-bottom: .6rem; color: #c4b5fd; }
+        .purpose-card p, .purpose-card li, .purpose-note { line-height: 1.6; }
+        .purpose-card ol { padding-left: 1.25rem; }
+        .purpose-links { display: grid; gap: .45rem; margin-top: 1rem; }
+        .purpose-note { margin: 1rem auto 0; max-width: 1000px; opacity: .85; text-align: center; font-size: .93rem; }
+        @media (max-width: 640px) { .purpose-panel { padding: 1.25rem; } }
+
     </style>
     </head>
 <body>
@@ -238,15 +257,15 @@
 
     <nav role="navigation" aria-label="Navigation principale">
         <div class="nav-container">
-            <a href="index_production.html" class="active" aria-current="page">Accueil</a>
-            <a href="#runes">Runes</a>
-            <a href="#gematria">Gematria</a>
-            <a href="#hieroglyphes">Hiéroglyphes</a>
-            <a href="#maya">Glyphes Mayas</a>
-            <a href="pages/meditation/chakras.html">Chakras</a>
-            <a href="#mandala">Mandalas</a>
-            <a href="#logique">Logique</a>
-            <a href="pages/logique/types-raisonnement.html">Raisonnements</a>
+            <a href="index_production.html" class="active" aria-current="page" data-i18n="nav_home">Accueil</a>
+            <a href="#runes" data-i18n="nav_runes">Runes</a>
+            <a href="#gematria" data-i18n="nav_gematria">Gematria</a>
+            <a href="#hieroglyphes" data-i18n="nav_hieroglyphs">Hiéroglyphes</a>
+            <a href="#maya" data-i18n="nav_maya">Glyphes Mayas</a>
+            <a href="pages/meditation/chakras.html" data-i18n="nav_chakras">Chakras</a>
+            <a href="#mandala" data-i18n="nav_mandalas">Mandalas</a>
+            <a href="#logique" data-i18n="nav_logic">Logique</a>
+            <a href="pages/logique/types-raisonnement.html" data-i18n="nav_reasoning">Raisonnements</a>
             <a href="pages/coreen/coreen-debutant.html">Coreen</a>
             <a href="pages/japonais/japonais-debutant.html">Japonais</a>
             <a href="pages/tarot/tarot-debutant.html">Tarot</a>
@@ -268,13 +287,41 @@
         </div>
 
 <section class="hero" aria-labelledby="hero-title">
-            <h2 id="hero-title">Bienvenue dans votre parcours initiatique</h2>
-            <p>Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.</p>
+            <h2 id="hero-title" data-i18n="hero_title">Explorer des traditions et des systèmes symboliques</h2>
+            <p data-i18n="hero_text">Des parcours, pages de référence et exercices pour découvrir les runes, la gématrie, les hiéroglyphes, les glyphes mayas et le raisonnement logique.</p>
         </section>
 
-        <section class="domain-directory" aria-labelledby="domain-directory-title">
-            <h2 id="domain-directory-title">Explorer les 16 domaines</h2>
-            <p class="domain-directory-intro">Choisissez un domaine pour accéder directement à ses cours et outils. Les parcours de logique commencent par les bases et avancent pas à pas.</p>
+        <section class="purpose-panel" aria-labelledby="purpose-title">
+    <h2 id="purpose-title" data-i18n="purpose_title">À quoi sert l’Académie ?</h2>
+    <div class="purpose-grid">
+        <article class="purpose-card">
+            <h3 data-i18n="purpose_what_label">À quoi ça sert ?</h3>
+            <p data-i18n="purpose_what">Étudier des systèmes symboliques et des traditions culturelles grâce à des parcours, des pages de référence et des exercices.</p>
+        </article>
+        <article class="purpose-card">
+            <h3 data-i18n="purpose_why_label">Pourquoi l’utiliser ?</h3>
+            <p data-i18n="purpose_why">Les ressources sont souvent dispersées. L’Académie les organise par thème et niveau pour faciliter la découverte, la pratique et la révision.</p>
+        </article>
+        <article class="purpose-card">
+            <h3 data-i18n="purpose_examples_label">Exemples d’utilisation</h3>
+            <ol>
+                <li data-i18n="purpose_example1">Commencer par les bases des runes, puis utiliser l’alphabet et les flashcards pour réviser.</li>
+                <li data-i18n="purpose_example2">Saisir un mot hébreu dans le calculateur de gématrie, puis examiner le résultat dans le cadre du système choisi.</li>
+                <li data-i18n="purpose_example3">Faire un exercice de logique, vérifier son raisonnement et reprendre une notion mal comprise.</li>
+            </ol>
+            <div class="purpose-links">
+                <a href="pages/runes/runes-debutant.html" data-i18n="purpose_link_runes">Parcours débutant sur les runes →</a>
+                <a href="pages/gematria/calculateur-gematria.html" data-i18n="purpose_link_calculator">Calculateur de gématrie →</a>
+                <a href="pages/logique/exercices-logique.html" data-i18n="purpose_link_logic">Exercices de logique →</a>
+            </div>
+        </article>
+    </div>
+    <p class="purpose-note" data-i18n="purpose_note">Les contenus historiques, culturels, spirituels et ésotériques n’ont pas tous le même statut. Une interprétation symbolique n’est pas, à elle seule, une preuve scientifique ou historique.</p>
+</section>
+
+<section class="domain-directory" aria-labelledby="domain-directory-title">
+            <h2 id="domain-directory-title" data-i18n="domain_directory_title">Explorer les domaines</h2>
+            <p class="domain-directory-intro" data-i18n="domain_directory_intro">Choisissez un domaine pour accéder à ses cours et outils. Commencez par les bases et avancez pas à pas.</p>
             <div class="domain-directory-grid">
                 <a class="domain-directory-card" href="#runes">ᚱ Runes nordiques</a>
                 <a class="domain-directory-card" href="#gematria">✡ Gématrie hébraïque</a>
@@ -860,13 +907,33 @@
         const translations = {
             fr: {
                 title: "🔮 Académie des Sagesses Anciennes",
+                purpose_title: "À quoi sert l’Académie ?",
+                purpose_what_label: "À quoi ça sert ?",
+                purpose_what: "Étudier des systèmes symboliques et des traditions culturelles grâce à des parcours, des pages de référence et des exercices.",
+                purpose_why_label: "Pourquoi l’utiliser ?",
+                purpose_why: "Les ressources sont souvent dispersées. L’Académie les organise par thème et niveau pour faciliter la découverte, la pratique et la révision.",
+                purpose_examples_label: "Exemples d’utilisation",
+                purpose_example1: "Commencer par les bases des runes, puis utiliser l’alphabet et les flashcards pour réviser.",
+                purpose_example2: "Saisir un mot hébreu dans le calculateur de gématrie, puis examiner le résultat dans le cadre du système choisi.",
+                purpose_example3: "Faire un exercice de logique, vérifier son raisonnement et reprendre une notion mal comprise.",
+                purpose_link_runes: "Parcours débutant sur les runes →",
+                purpose_link_calculator: "Calculateur de gématrie →",
+                purpose_link_logic: "Exercices de logique →",
+                purpose_note: "Les contenus historiques, culturels, spirituels et ésotériques n’ont pas tous le même statut. Une interprétation symbolique n’est pas, à elle seule, une preuve scientifique ou historique.",
                 subtitle: "Runes, Gematria, Hiéroglyphes & Glyphes Mayas - Voyage initiatique de la connaissance ésotérique",
                 nav_home: "Accueil",
+                nav_hieroglyphs: "Hiéroglyphes",
+                nav_maya: "Glyphes mayas",
+                nav_chakras: "Chakras",
+                nav_mandalas: "Mandalas",
+                nav_reasoning: "Raisonnement",
+                domain_directory_title: "Explorer les domaines",
+                domain_directory_intro: "Choisissez un domaine pour accéder à ses cours et outils. Commencez par les bases et avancez pas à pas.",
                 nav_runes: "Runes",
                 nav_gematria: "Gematria",
                 nav_logic: "Logique",
-                hero_title: "Bienvenue dans votre parcours initiatique",
-                hero_text: "Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.",
+                hero_title: "Explorer des traditions et des systèmes symboliques",
+                hero_text: "Des parcours, pages de référence et exercices pour découvrir les runes, la gématrie, les hiéroglyphes, les glyphes mayas et le raisonnement logique.",
                 runes_title: "📿 Les Runes Nordiques",
                 runes_intro: "Les runes sont un ancien système d'écriture utilisé par les peuples germaniques et scandinaves. Chaque rune porte une signification symbolique profonde.",
                 gematria_title: "✡️ La Gematria Hébraïque",
@@ -901,13 +968,33 @@
             },
             en: {
                 title: "🔮 Academy of Ancient Wisdom",
+                purpose_title: "What is the Academy for?",
+                purpose_what_label: "What can you use it for?",
+                purpose_what: "Study symbolic systems and cultural traditions through learning paths, reference pages, and exercises.",
+                purpose_why_label: "Why use it?",
+                purpose_why: "Resources on these subjects are often scattered. The Academy organizes them by topic and level to support discovery, practice, and review.",
+                purpose_examples_label: "Examples",
+                purpose_example1: "Start with the runes basics, then use the alphabet and flashcards to review.",
+                purpose_example2: "Enter a Hebrew word in the gematria calculator, then consider the result within the selected system.",
+                purpose_example3: "Try a logic exercise, check your reasoning, and revisit a concept you did not understand.",
+                purpose_link_runes: "Beginner runes path →",
+                purpose_link_calculator: "Gematria calculator →",
+                purpose_link_logic: "Logic exercises →",
+                purpose_note: "Historical, cultural, spiritual, and esoteric material can have different kinds of support. A symbolic interpretation is not, by itself, scientific or historical evidence.",
                 subtitle: "Runes, Gematria, Hieroglyphs & Mayan Glyphs - Initiatory journey of esoteric knowledge",
                 nav_home: "Home",
+                nav_hieroglyphs: "Hieroglyphs",
+                nav_maya: "Mayan glyphs",
+                nav_chakras: "Chakras",
+                nav_mandalas: "Mandalas",
+                nav_reasoning: "Reasoning",
+                domain_directory_title: "Explore the subjects",
+                domain_directory_intro: "Choose a subject to open its lessons and tools. Start with the basics and progress step by step.",
                 nav_runes: "Runes",
                 nav_gematria: "Gematria",
                 nav_logic: "Logic",
-                hero_title: "Welcome to your initiatory path",
-                hero_text: "Découvrez les secrets ancestraux des civilisations anciennes : runes nordiques, gematria hébraïque, hiéroglyphes égyptiens, glyphes mayas, mandalas sacrés et logiques. Un apprentissage progressif structuré en trois niveaux de maîtrise.",
+                hero_title: "Explore traditions and symbolic systems",
+                hero_text: "Explore runes, gematria, hieroglyphs, Mayan glyphs, and logic through learning paths, reference pages, and exercises.",
                 runes_title: "📿 Nordic Runes",
                 runes_intro: "Runes are an ancient writing system used by Germanic and Scandinavian peoples. Each rune carries deep symbolic meaning.",
                 gematria_title: "✡️ Hebrew Gematria",
@@ -960,11 +1047,14 @@
         }
 
         function applyTranslations() {
-            const t = translations[currentLang];
-
-            // Header
-            document.querySelector('[data-i18n="title"]').textContent = t.title;
-            document.querySelector('[data-i18n="subtitle"]').textContent = t.subtitle;
+            const t = translations[currentLang] || {};
+            document.documentElement.lang = currentLang;
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                const key = element.getAttribute('data-i18n');
+                if (Object.prototype.hasOwnProperty.call(t, key)) {
+                    element.textContent = t[key];
+                }
+            });
         }
 
         // Charger la langue au démarrage
