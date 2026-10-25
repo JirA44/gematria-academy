@@ -2,6 +2,25 @@
 
 Plateforme d'apprentissage complète des sagesses anciennes : Runes Nordiques, Gématrie Hébraïque, Hiéroglyphes, Glyphes Mayas, et bien plus.
 
+## À quoi sert l’Académie ?
+
+Gematria Academy rassemble des parcours d’initiation, des pages de référence et des exercices autour de traditions symboliques et culturelles : runes, gématrie hébraïque, hiéroglyphes, glyphes mayas, logique et pratiques de réflexion.
+
+## Pourquoi l’utiliser ?
+
+Les ressources sur ces sujets sont souvent dispersées et mélangent histoire, interprétation et croyance. L’Académie propose une progression organisée pour explorer les notions, s’exercer et retrouver les pages associées depuis un même site.
+
+Le contenu peut servir à découvrir ces traditions et leurs systèmes symboliques. Les interprétations ésotériques ou spirituelles présentées ne constituent pas, à elles seules, des preuves scientifiques ou historiques.
+
+## Exemple de parcours
+
+1. Ouvrir une rubrique, par exemple les runes nordiques.
+2. Commencer par la page de niveau débutant et apprendre les symboles.
+3. Utiliser les exercices ou flashcards disponibles pour vérifier sa compréhension.
+4. Continuer vers les pages de niveau intermédiaire et avancé, puis revenir aux notions difficiles.
+
+
+
 ---
 
 ## 📂 Structure du Projet
