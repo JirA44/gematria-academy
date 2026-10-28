@@ -72,7 +72,7 @@ def parse_page(page: str) -> list[str]:
 def sitemap_routes() -> set[str]:
     """Treat sitemap entries as public entry points alongside homepage links."""
     content = SITEMAP_PATH.read_text(encoding="utf-8")
-    locations = re.findall(r"<loc>\\s*(.*?)\\s*</loc>", content, flags=re.IGNORECASE | re.DOTALL)
+    locations = re.findall(r"<loc>\s*(.*?)\s*</loc>", content, flags=re.IGNORECASE | re.DOTALL)
     routes: set[str] = set()
     for location in locations:
         path = unquote(urlsplit(location.strip()).path).lstrip("/")
