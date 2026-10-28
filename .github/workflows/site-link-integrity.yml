@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: "22"
       - run: python3 tests/check_internal_links.py
+      - run: python3 tests/check_production_metadata.py
       - run: npm install --no-save @playwright/test
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test --config=playwright.config.cjs
