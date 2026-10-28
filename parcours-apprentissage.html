@@ -56,13 +56,13 @@ function render(){
  catalogue.innerHTML="";
  for(const [name,items] of sections){const section=document.createElement("section");section.innerHTML='<h3 class="section-title">'+escapeHtml(name)+'</h3><div class="grid"></div>';const grid=section.querySelector(".grid");
   for(const p of items){const card=document.createElement("article");card.className="card";card.innerHTML='<div class="card-head"><div class="icon" aria-hidden="true">'+escapeHtml(p.icon)+'</div><div><h3>'+escapeHtml(p.name)+'</h3><p>'+escapeHtml(p.summary)+'</p></div></div><p class="lens"><strong>Réflexe de pensée :</strong> '+escapeHtml(p.lens)+'</p><ol class="steps"></ol>';
-   p.steps.forEach((s,i)=>{const li=document.createElement("li");li.className="step";const checked=!!state[p.id+"."+i];li.innerHTML='<span class="step-n">'+(i+1)+'</span><span><span class="step-title">'+escapeHtml(s[0])+'</span><span class="step-hint">'+escapeHtml(s[2])+'</span></span><span style="display:flex;align-items:center;gap:8px"><a href="'+escapeAttr(s[1])+'">Ouvrir →</a><input class="check" type="checkbox" aria-label="Marquer '+escapeAttr(s[0])+' comme étudié" data-id="'+p.id+"."+i+'" '+(checked?"checked":"")+'></span>';grid.append(li)});
+   p.steps.forEach((s,i)=>{const li=document.createElement("li");li.className="step";const checked=!!state[p.id+"."+i];li.innerHTML='<span class="step-n">'+(i+1)+'</span><span><span class="step-title">'+escapeHtml(s[0])+'</span><span class="step-hint">'+escapeHtml(s[2])+'</span></span><span style="display:flex;align-items:center;gap:8px"><a href="'+escapeAttr(s[1])+'">Ouvrir →</a><input class="check" type="checkbox" aria-label="Marquer '+escapeAttr(s[0])+' comme étudié" data-id="'+p.id+"."+i+'" '+(checked?"checked":"")+'></span>';card.querySelector(".steps").append(li)});
    section.querySelector(".grid").append(card);
   }
   catalogue.append(section)
  }
  document.getElementById("empty").style.display=filtered.length?"none":"block";
- catalogue.querySelectorAll(".check").forEach(box=>box.addEventListener("change",()=>{state[box.dataset.id]=box.checked;if(!box.checked)delete state[box.dataset.id];localStorage.setItem(KEY,JSON.stringify(state));updateProgress();updateResume()}));
+ catalogue.querySelectorAll(".check").forEach(box=>box.addEventListener("change",()=>{state[box.dataset.id]=box.checked;if(!box.checked)delete state[box.dataset.id];localStorage.setItem(KEY,JSON.stringify(state));updateProgress();render()}));
 }
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function escapeAttr(v){return escapeHtml(v)}
