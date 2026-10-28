@@ -188,9 +188,9 @@
         // Appliquer le mode nuit immédiatement pour éviter le flash
         (function() {
             const darkModePref = localStorage.getItem('darkMode');
-            if (darkModePref === null || darkModePref === 'true') {
-                document.body.classList.add('dark-mode');
-            }
+            const isDark = darkModePref === null || darkModePref === 'true';
+            document.body.classList.toggle('dark-mode', isDark);
+            document.body.classList.toggle('light-mode', !isDark);
         })();
     </script>
     <!-- Skip to main content link for keyboard navigation -->
@@ -861,8 +861,8 @@
     <script>
         // Mode Nuit
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
+            const isDark = document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode', !isDark);
             localStorage.setItem('darkMode', isDark);
 
             // Mettre à jour le texte et attributs ARIA du bouton
@@ -880,24 +880,21 @@
         // Charger la préférence au démarrage (mode nuit par défaut)
         window.addEventListener('DOMContentLoaded', () => {
             const darkModePref = localStorage.getItem('darkMode');
-            // Si aucune préférence, ou si darkMode === 'true', activer le mode nuit
             const isDark = darkModePref === null || darkModePref === 'true';
-            if (isDark) {
-                document.body.classList.add('dark-mode');
-                const btn = document.querySelector('.cosmic-btn-dark');
-                if (btn) {
-                    btn.setAttribute('aria-pressed', 'true');
-                    btn.setAttribute('aria-label', 'Basculer en mode jour');
-                    const btnText = btn.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = 'Mode Jour';
-                    const btnIcon = btn.querySelector('.btn-icon');
-                    if (btnIcon) btnIcon.textContent = '☀️';
-                }
-                // Enregistrer la préférence par défaut
-                if (darkModePref === null) {
-                    localStorage.setItem('darkMode', 'true');
-                }
+            document.body.classList.toggle('dark-mode', isDark);
+            document.body.classList.toggle('light-mode', !isDark);
+
+            const btn = document.querySelector('.cosmic-btn-dark');
+            if (btn) {
+                btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+                btn.setAttribute('aria-label', isDark ? 'Basculer en mode jour' : 'Basculer en mode nuit');
+                const btnText = btn.querySelector('.btn-text');
+                if (btnText) btnText.textContent = isDark ? 'Mode Jour' : 'Mode Nuit';
+                const btnIcon = btn.querySelector('.btn-icon');
+                if (btnIcon) btnIcon.textContent = isDark ? '☀️' : '🌙';
             }
+
+            if (darkModePref === null) localStorage.setItem('darkMode', 'true');
         });
 
         // Smooth scrolling pour les ancres

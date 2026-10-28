@@ -127,7 +127,7 @@ export default {
     } catch {
       return response;
     }
-    const scriptTag = '<script defer src="/assets/js/site-language.js?v=1"></script>';
+    const scriptTag = '<script defer src="/assets/js/site-language.js?v=2"></script>';
     if (!html.includes("/assets/js/site-language.js")) {
       if (/<\/head\s*>/i.test(html)) html = html.replace(/<\/head\s*>/i, scriptTag + "</head>");
       else html = scriptTag + html;
