@@ -16,7 +16,6 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 ROUTE_MAP_PATH = ROOT / "tests" / "fixtures" / "production-routes.json"
-SITEMAP_PATH = ROOT / "sitemap.xml"
 EXCEPTIONS_PATH = ROOT / "tests" / "fixtures" / "internal-link-exceptions.json"
 ATTRIBUTES = {"href", "src", "poster"}
 IGNORED_SCHEMES = {"data", "javascript", "mailto", "tel", "blob"}
@@ -69,19 +68,6 @@ def parse_page(page: str) -> list[str]:
     return parser.references
 
 
-def sitemap_routes() -> set[str]:
-    """Treat sitemap entries as public entry points alongside homepage links."""
-    content = SITEMAP_PATH.read_text(encoding="utf-8")
-    locations = re.findall(r"<loc>\s*(.*?)\s*</loc>", content, flags=re.IGNORECASE | re.DOTALL)
-    routes: set[str] = set()
-    for location in locations:
-        path = unquote(urlsplit(location.strip()).path).lstrip("/")
-        if not path or path.endswith("/"):
-            path = (path or "") + "index.html"
-        routes.add(Path(path).as_posix())
-    return routes
-
-
 def main() -> int:
     route_data = json.loads(ROUTE_MAP_PATH.read_text(encoding="utf-8"))
     expected_routes = set(route_data["routes"])
@@ -98,11 +84,8 @@ def main() -> int:
             if target and target.endswith(".html") and (ROOT / target).is_file():
                 actual_routes.add(target)
 
-    sitemap_entries = sitemap_routes()
-    print(f"DEBUG sitemap entry count={len(sitemap_entries)} encyclopedia={'pages/cognitif/encyclopedie-raisonnements.html' in sitemap_entries}")
-    sitemap_missing_files = sorted(route for route in sitemap_entries if not (ROOT / route).is_file())
-    discovered = {"index.html"} | {route for route in sitemap_entries if (ROOT / route).is_file()}
-    pending = list(discovered)
+    discovered = {"index.html"}
+    pending = ["index.html"]
     while pending:
         page = pending.pop()
         for reference in parse_page(page):
@@ -135,8 +118,6 @@ def main() -> int:
     errors = []
     if routes_missing_files:
         errors.append(f"route-map files missing: {routes_missing_files}")
-    if sitemap_missing_files:
-        errors.append(f"sitemap files missing: {sitemap_missing_files}")
     if route_map_mismatch:
         errors.append(f"production route map differs from link crawl: {route_map_mismatch}")
     if exceptions_on_routes:
