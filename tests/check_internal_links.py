@@ -99,6 +99,7 @@ def main() -> int:
                 actual_routes.add(target)
 
     sitemap_entries = sitemap_routes()
+    print(f"DEBUG sitemap entry count={len(sitemap_entries)} encyclopedia={'pages/cognitif/encyclopedie-raisonnements.html' in sitemap_entries}")
     sitemap_missing_files = sorted(route for route in sitemap_entries if not (ROOT / route).is_file())
     discovered = {"index.html"} | {route for route in sitemap_entries if (ROOT / route).is_file()}
     pending = list(discovered)
