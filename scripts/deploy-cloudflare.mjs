@@ -6,7 +6,7 @@ import { extname, join, relative, sep } from "node:path";
 const root = process.cwd();
 const output = await mkdtemp(join(tmpdir(), "gematria-pages-"));
 const allowedExtensions = new Set([
-  ".html", ".css", ".js", ".mjs", ".cjs", ".json", ".xml", ".webmanifest",
+  ".html", ".css", ".js", ".mjs", ".cjs", ".json", ".jsonc", ".xml", ".webmanifest",
   ".svg", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".avif",
   ".woff", ".woff2", ".ttf", ".otf", ".pdf", ".mp3", ".mp4", ".webm", ".ogg"
 ]);
@@ -16,13 +16,13 @@ const excludedDirectories = new Set([
   "coverage", "dist", "build", ".firebase"
 ]);
 const excludedName = /(?:^|[._-])(?:backup|bak)(?:$|[._-])/i;
-const excludedFiles = new Set(["firebase.json", "firestore.rules", "firestore.indexes.json", "package.json", "package-lock.json", "npm-shrinkwrap.json"]);
+const excludedFiles = new Set(["firebase.json", "firestore.rules", "firestore.indexes.json", "wrangler.jsonc", "package.json", "package-lock.json", "npm-shrinkwrap.json"]);
 
 async function stageDirectory(source, target) {
   await mkdir(target, { recursive: true });
   for (const entry of await readdir(source, { withFileTypes: true })) {
     if (entry.name.startsWith(".") || excludedDirectories.has(entry.name)) continue;
-    if (excludedName.test(entry.name) || /\.log$|\.pyc?$|\.bat$|\.ps1$|\.md$/i.test(entry.name)) continue;
+    if (excludedFiles.has(entry.name) || excludedName.test(entry.name) || /\.log$|\.pyc?$|\.bat$|\.ps1$|\.md$/i.test(entry.name)) continue;
     const from = join(source, entry.name);
     const to = join(target, entry.name);
     if (entry.isDirectory()) {
