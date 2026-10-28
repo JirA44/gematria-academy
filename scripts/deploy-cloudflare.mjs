@@ -22,7 +22,7 @@ async function stageDirectory(source, target) {
   await mkdir(target, { recursive: true });
   for (const entry of await readdir(source, { withFileTypes: true })) {
     if (entry.name.startsWith(".") || excludedDirectories.has(entry.name)) continue;
-    if (excludedName.test(entry.name) || /\.log$|\.pyc?$|\.bat$|\.ps1$|\.md$/i.test(entry.name)) continue;
+    if (excludedFiles.has(entry.name) || excludedName.test(entry.name) || /\.log$|\.pyc?$|\.bat$|\.ps1$|\.md$/i.test(entry.name)) continue;
     const from = join(source, entry.name);
     const to = join(target, entry.name);
     if (entry.isDirectory()) {
