@@ -1,157 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-    <!-- Page d'accueil -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/index_production.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <!-- Pages de Runes -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/runes/runes-parcours-complet.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/runes/runes-debutant.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/runes/runes-intermediaire.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/runes/runes-expert.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Pages de Gématrie -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/gematria/gematria-debutant.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/gematria/gematria-intermediaire.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/gematria/gematria-expert.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Pages d'Hiéroglyphes -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/hieroglyphes/hieroglyphes-parcours-complet.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Pages Mayas -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/maya/glyphes-mayas-intro.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Pages de Logique -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/logique/logique-debutant.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Pages de Méditation -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/meditation/mandala.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/meditation/chakras.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Versions -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/versions/index_enrichi.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/versions/index_mega_enriched.html</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Portail restauré et parcours de raisonnement -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/index_ecritures_sacrees.html</loc>
-        <lastmod>2026-10-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/parcours-logique-progressif.html</loc>
-        <lastmod>2026-10-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Encyclopédie des raisonnements -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/pages/cognitif/encyclopedie-raisonnements.html</loc>
-        <lastmod>2026-10-28</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Parcours progressifs multi-domaines -->
-    <url>
-        <loc>https://master.gematria-academy.pages.dev/parcours-apprentissage.html</loc>
-        <lastmod>2026-10-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.95</priority>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://gematria-academy.pages.dev/index.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/index_ecritures_sacrees.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/index_mega_enriched.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/index_principal.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/index_production.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/index_standard.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/alchimie/alchimie-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/alchimie/alchimie-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/alchimie/alchimie-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/alchimie/alchimie-introduction.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/alchimie/pierre-philosophale.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astrologie/astronomie-sacree.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astrologie/constellations.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astrologie/signes-zodiaque.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astronomie/astronomie-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astronomie/astronomie-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astronomie/astronomie-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/astronomie/astronomie-parcours-complet.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/cognitif/encyclopedie-raisonnements.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/coreen/coreen-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/coreen/coreen-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/coreen/coreen-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/coreen/dictionnaire-coreen.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/gematria/alphabet-hebreu.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/gematria/calculateur-gematria.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/gematria/gematria-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/gematria/gematria-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/gematria/gematria-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/hieroglyphes/hieroglyphes-contexte-culturel.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/hieroglyphes/hieroglyphes-exercices-phrases.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/hieroglyphes/hieroglyphes-jeux-interactifs.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/hieroglyphes/hieroglyphes-momification.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/hieroglyphes/hieroglyphes-parcours-complet.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/hieroglyphes/immersion-inscriptions-index.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/japonais/dictionnaire-japonais.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/japonais/japonais-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/japonais/japonais-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/japonais/japonais-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/kabbale/arbre-de-vie.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/kabbale/kabbale-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/kabbale/kabbale-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/kabbale/kabbale-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/logique/exercices-logique.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/logique/logique-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/logique/logique-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/logique/logique-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/logique/types-raisonnement.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/maya/glyphes-mayas-intro.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/maya/maya-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/maya/maya-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/maya/maya-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/meditation/chakras.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/meditation/mandala.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/meditation/mandala_anime.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/meditation/meditation-guidee.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/numerologie/calculateur-numerologie.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/numerologie/numerologie-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/numerologie/numerologie-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/numerologie/numerologie-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/alphabet-runes.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-divination.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-expert.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-flashcards.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-intermediaire.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-mythologie-nordique.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/runes-parcours-complet.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/runes/tirage-runes.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/tarot/tarot-arcanes-majeurs.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/tarot/tarot-arcanes-mineurs.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/tarot/tarot-debutant.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/tarot/tirage-tarot.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/user/login.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/user/profile.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/versions/index_enrichi.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/pages/versions/index_mega_enriched.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/parcours-apprentissage.html</loc></url>
+  <url><loc>https://gematria-academy.pages.dev/parcours-logique-progressif.html</loc></url>
 </urlset>
