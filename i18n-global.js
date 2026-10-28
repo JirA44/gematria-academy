@@ -1,63 +1,63 @@
 /**
- * Système de traduction global pour l'Académie des Runes & Gematria
- * Ce script gère la langue sur toutes les pages du site
+ * Traductions éditoriales disponibles et synchronisation avec le sélecteur global.
+ * Les traductions de page existantes couvrent encore seulement certaines clés FR/EN/ES;
+ * le Worker Pages traduit le reste du contenu à la demande.
  */
-
-// Langue par défaut
 const supportedLanguages = ['fr', 'en', 'zh', 'hi', 'es', 'ar', 'bn', 'pt', 'ru', 'ur'];
-let currentLang = supportedLanguages.includes(localStorage.getItem('language')) ? localStorage.getItem('language') : 'fr';
+let currentLang = supportedLanguages.includes(localStorage.getItem('language'))
+    ? localStorage.getItem('language')
+    : 'fr';
 
-/**
- * Applique les traductions sur la page actuelle
- */
 function applyTranslations() {
-    const pageName = document.body.dataset.page || 'default';
-
-    // Récupérer les traductions pour cette page
-    if (typeof translations !== 'undefined' && translations[currentLang]) {
-        const t = translations[currentLang];
-
-        // Traduire tous les éléments avec data-i18n
-        document.querySelectorAll('[data-i18n]').forEach(element => {
+    const dictionary = typeof translations !== 'undefined' ? translations[currentLang] : null;
+    if (dictionary) {
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
             const key = element.getAttribute('data-i18n');
-            if (t[key]) {
-                // Gérer les cas spéciaux (placeholder, title, etc.)
-                if (element.hasAttribute('placeholder')) {
-                    element.placeholder = t[key];
-                } else if (element.hasAttribute('title')) {
-                    element.title = t[key];
-                } else {
-                    element.textContent = t[key];
-                }
-            }
+            if (!Object.prototype.hasOwnProperty.call(dictionary, key)) return;
+            if (element.hasAttribute('placeholder')) element.placeholder = dictionary[key];
+            else if (element.hasAttribute('title')) element.title = dictionary[key];
+            else element.textContent = dictionary[key];
         });
     }
-
-    // Mettre à jour la langue du document
-    document.documentElement.lang = currentLang;
-}
-
-/**
- * Change la langue et sauvegarde la préférence
- */
-function toggleLanguage() {
-    const index = supportedLanguages.indexOf(currentLang);
-    currentLang = supportedLanguages[(index + 1) % supportedLanguages.length];
-    localStorage.setItem('language', currentLang);
-    applyTranslations();
-    updateLanguageButton();
-    window.siteLanguage?.set(currentLang);
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : currentLang;
+    document.documentElement.dir = ['ar', 'ur'].includes(currentLang) ? 'rtl' : 'ltr';
 }
 
 function updateLanguageButton() {
-    const btn = document.querySelector('.lang-toggle');
-    if (btn) {
-        const labels = {
-            fr: '🌐 EN', en: '🌐 中文', zh: '🌐 हिन्दी', hi: '🌐 ES', es: '🌐 العربية',
-            ar: '🌐 বাংলা', bn: '🌐 PT', pt: '🌐 RU', ru: '🌐 اردو', ur: '🌐 FR'
-        };
-        btn.textContent = labels[currentLang] || '🌐 EN';
-    }
+    const button = document.querySelector('.lang-toggle');
+    if (!button) return;
+    const labels = {
+        fr: '🌐 EN', en: '🌐 中文', zh: '🌐 हिन्दी', hi: '🌐 ES', es: '🌐 العربية',
+        ar: '🌐 বাংলা', bn: '🌐 PT', pt: '🌐 RU', ru: '🌐 اردو', ur: '🌐 FR'
+    };
+    button.textContent = labels[currentLang] || '🌐 EN';
 }
 
+function setLanguage(language) {
+    if (!supportedLanguages.includes(language)) return;
+    currentLang = language;
+    localStorage.setItem('language', language);
+    applyTranslations();
+    updateLanguageButton();
+    window.siteLanguage?.set(language);
+}
 
+function toggleLanguage() {
+    const index = supportedLanguages.indexOf(currentLang);
+    setLanguage(supportedLanguages[(index + 1) % supportedLanguages.length]);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('language');
+    if (supportedLanguages.includes(saved)) currentLang = saved;
+    applyTranslations();
+    updateLanguageButton();
+    document.querySelector('.lang-toggle')?.addEventListener('click', toggleLanguage);
+});
+
+window.i18n = {
+    getCurrentLang: () => currentLang,
+    setLang: setLanguage,
+    toggleLanguage,
+    applyTranslations
+};
