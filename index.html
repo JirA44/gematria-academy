@@ -1051,7 +1051,7 @@
             const btn = document.querySelector('.cosmic-btn-lang');
             if (btn) {
                 btn.setAttribute('aria-pressed', currentLang === 'en' ? 'true' : 'false');
-                btn.setAttribute('aria-label', currentLang === 'fr' ? 'Changer la langue en anglais' : 'Switch language to French');
+                btn.setAttribute('aria-label', 'Changer la langue d’affichage');
                 const btnText = btn.querySelector('.btn-text');
                 const labels = { fr: 'EN', en: '中文', zh: 'हिन्दी', hi: 'ES', es: 'العربية', ar: 'বাংলা', bn: 'PT', pt: 'RU', ru: 'اردو', ur: 'FR' };
                 if (btnText) btnText.textContent = labels[currentLang] || 'EN';
@@ -1080,7 +1080,8 @@
                     btn.setAttribute('aria-pressed', currentLang === 'en' ? 'true' : 'false');
                     btn.setAttribute('aria-label', currentLang === 'fr' ? 'Changer la langue en anglais' : 'Switch language to French');
                     const btnText = btn.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = currentLang === 'fr' ? 'EN' : 'FR';
+                    const labels = { fr: 'EN', en: '中文', zh: 'हिन्दी', hi: 'ES', es: 'العربية', ar: 'বাংলা', bn: 'PT', pt: 'RU', ru: 'اردو', ur: 'FR' };
+                    if (btnText) btnText.textContent = labels[currentLang] || 'EN';
                 }
             }
         });
