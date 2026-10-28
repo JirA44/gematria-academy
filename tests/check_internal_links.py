@@ -10,7 +10,6 @@ from __future__ import annotations
 import json
 import os
 import re
-import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -72,13 +71,11 @@ def parse_page(page: str) -> list[str]:
 
 def sitemap_routes() -> set[str]:
     """Treat sitemap entries as public entry points alongside homepage links."""
-    namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-    root = ET.parse(SITEMAP_PATH).getroot()
+    content = SITEMAP_PATH.read_text(encoding="utf-8")
+    locations = re.findall(r"<loc>\\s*(.*?)\\s*</loc>", content, flags=re.IGNORECASE | re.DOTALL)
     routes: set[str] = set()
-    for element in root.findall(f".//{namespace}loc"):
-        if not element.text:
-            continue
-        path = unquote(urlsplit(element.text.strip()).path).lstrip("/")
+    for location in locations:
+        path = unquote(urlsplit(location.strip()).path).lstrip("/")
         if not path or path.endswith("/"):
             path = (path or "") + "index.html"
         routes.add(Path(path).as_posix())
