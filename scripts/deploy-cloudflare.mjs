@@ -6,7 +6,7 @@ import { extname, join, relative, sep } from "node:path";
 const root = process.cwd();
 const output = await mkdtemp(join(tmpdir(), "gematria-pages-"));
 const allowedExtensions = new Set([
-  ".html", ".css", ".js", ".mjs", ".cjs", ".json", ".xml", ".webmanifest",
+  ".html", ".css", ".js", ".mjs", ".cjs", ".json", ".jsonc", ".xml", ".webmanifest",
   ".svg", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".avif",
   ".woff", ".woff2", ".ttf", ".otf", ".pdf", ".mp3", ".mp4", ".webm", ".ogg"
 ]);
