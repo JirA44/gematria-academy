@@ -16,7 +16,7 @@ const excludedDirectories = new Set([
   "coverage", "dist", "build", ".firebase"
 ]);
 const excludedName = /(?:^|[._-])(?:backup|bak)(?:$|[._-])/i;
-const excludedFiles = new Set(["firebase.json", "firestore.rules", "firestore.indexes.json", "package.json", "package-lock.json", "npm-shrinkwrap.json"]);
+const excludedFiles = new Set(["firebase.json", "firestore.rules", "firestore.indexes.json", "wrangler.jsonc", "package.json", "package-lock.json", "npm-shrinkwrap.json"]);
 
 async function stageDirectory(source, target) {
   await mkdir(target, { recursive: true });
