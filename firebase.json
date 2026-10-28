@@ -7,15 +7,25 @@
     "public": ".",
     "ignore": [
       "firebase.json",
+      "firestore.rules",
+      "firestore.indexes.json",
       "**/.*",
       "**/node_modules/**",
+      "**/.git/**",
       "**/*.log",
       "**/*.md",
-      "**/.git/**",
-      "**/.vscode/**",
-      "**/package*.json",
       "**/*.py",
-      "**/*.spec"
+      "**/*.pyc",
+      "**/*.bat",
+      "**/*.ps1",
+      "**/*.backup",
+      "**/*.backup_*",
+      "**/*backup*",
+      "**/tests/**",
+      "**/.github/**",
+      "**/scripts/**",
+      "**/*.spec",
+      "**/package*.json"
     ],
     "rewrites": [
       {
