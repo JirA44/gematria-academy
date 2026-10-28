@@ -1040,8 +1040,11 @@
         let currentLang = 'fr';
 
         function toggleLanguage() {
-            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            const languageOrder = ['fr', 'en', 'zh', 'hi', 'es', 'ar', 'bn', 'pt', 'ru', 'ur'];
+            const nextIndex = (languageOrder.indexOf(currentLang) + 1) % languageOrder.length;
+            currentLang = languageOrder[nextIndex];
             localStorage.setItem('language', currentLang);
+            window.siteLanguage?.set(currentLang);
             applyTranslations();
 
             // Mettre à jour le bouton avec attributs ARIA
@@ -1050,7 +1053,8 @@
                 btn.setAttribute('aria-pressed', currentLang === 'en' ? 'true' : 'false');
                 btn.setAttribute('aria-label', currentLang === 'fr' ? 'Changer la langue en anglais' : 'Switch language to French');
                 const btnText = btn.querySelector('.btn-text');
-                if (btnText) btnText.textContent = currentLang === 'fr' ? 'EN' : 'FR';
+                const labels = { fr: 'EN', en: '中文', zh: 'हिन्दी', hi: 'ES', es: 'العربية', ar: 'বাংলা', bn: 'PT', pt: 'RU', ru: 'اردو', ur: 'FR' };
+                if (btnText) btnText.textContent = labels[currentLang] || 'EN';
             }
         }
 
