@@ -931,14 +931,40 @@
             }
         }
 
+        const originalTranslationText = new WeakMap();
         function applyTranslations() {
-            const t = translations[currentLang];
-
-            // Header
-            document.querySelector('[data-i18n="title"]').textContent = t.title;
-            document.querySelector('[data-i18n="subtitle"]').textContent = t.subtitle;
+            const t = translations[currentLang] || translations.fr;
+            document.documentElement.lang = currentLang;
+            const textMap = new Map();
+            Object.keys(translations.fr).forEach(key => {
+                const source = translations.fr[key], translated = translations.en[key];
+                if (source && translated) textMap.set(source, translated);
+            });
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const translated = t[element.dataset.i18n];
+                if (translated) element.textContent = translated;
+            });
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+            let node;
+            while ((node = walker.nextNode())) {
+                if (!originalTranslationText.has(node)) originalTranslationText.set(node, node.nodeValue);
+                const original = originalTranslationText.get(node);
+                const trimmed = original.trim();
+                if (!trimmed) continue;
+                const translated = currentLang === 'en' ? textMap.get(trimmed) : trimmed;
+                if (translated) node.nodeValue = original.replace(trimmed, translated);
+            }
+            document.title = currentLang === 'en'
+                ? '🔮 Academy of Ancient Wisdom - Runes, Gematria & Hieroglyphs'
+                : '🔮 Académie des Sagesses Ésotériques - Runes, Gématrie, Hiéroglyphes';
+            const langButton = document.querySelector('.cosmic-btn-lang');
+            if (langButton) {
+                langButton.setAttribute('aria-pressed', currentLang === 'en' ? 'true' : 'false');
+                langButton.setAttribute('aria-label', currentLang === 'fr' ? 'Changer la langue en anglais' : 'Switch language to French');
+                const label = langButton.querySelector('.btn-text');
+                if (label) label.textContent = currentLang === 'fr' ? 'EN' : 'FR';
+            }
         }
-
         // Charger la langue au démarrage
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('language');
