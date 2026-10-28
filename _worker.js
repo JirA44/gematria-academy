@@ -11,7 +11,7 @@ const LANGUAGES = {
 };
 
 const requestWindows = new Map();
-const MAX_REQUESTS_PER_MINUTE = 40;
+const MAX_REQUESTS_PER_MINUTE = 12;
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -42,14 +42,18 @@ async function translate(request, env) {
   if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
   const origin = request.headers.get("Origin");
   const requestUrl = new URL(request.url);
-  if (!origin || new URL(origin).origin !== requestUrl.origin) return json({ error: "origin_not_allowed" }, 403);
+  let originUrl;
+  try { originUrl = origin ? new URL(origin) : null; } catch { originUrl = null; }
+  if (!originUrl || originUrl.origin !== requestUrl.origin) return json({ error: "origin_not_allowed" }, 403);
   if (!env.AI || typeof env.AI.run !== "function") return json({ error: "translation_unavailable" }, 503);
 
   const contentLength = Number(request.headers.get("Content-Length") || 0);
   if (contentLength > 12_000) return json({ error: "payload_too_large" }, 413);
   let payload;
   try {
-    payload = await request.json();
+    const raw = await request.text();
+    if (raw.length > 12_000) return json({ error: "payload_too_large" }, 413);
+    payload = JSON.parse(raw);
   } catch {
     return json({ error: "invalid_json" }, 400);
   }
@@ -111,6 +115,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/i18n/translate") return translate(request, env);
+    if (request.method !== "GET") return env.ASSETS.fetch(request);
 
     const response = await env.ASSETS.fetch(request);
     const type = response.headers.get("Content-Type") || "";
