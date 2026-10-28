@@ -7,13 +7,26 @@ class GematriaAuth {
         this.db = null;
         this.auth = null;
         this.initialized = false;
+        this.initPromise = null;
         this.listeners = [];
     }
 
     async init() {
         if (this.initialized) return;
-        
+        if (!this.initPromise) {
+            this.initPromise = this._init().catch(error => {
+                this.initPromise = null;
+                throw error;
+            });
+        }
+        return this.initPromise;
+    }
+
+    async _init() {
         try {
+            if (!window.FIREBASE_CONFIG || !window.isFirebaseConfigured?.()) {
+                throw new Error("Configuration Firebase absente ou invalide.");
+            }
             // Charger Firebase depuis CDN
             const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js');
             const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updateProfile } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
@@ -41,7 +54,8 @@ class GematriaAuth {
             onAuthStateChanged(this.auth, async (user) => {
                 this.user = user;
                 if (user) {
-                    await this.loadUserData(user.uid);
+                    try { await this.loadUserData(user.uid); }
+                    catch (error) { console.error("Erreur chargement profil Firestore:", error); }
                 }
                 this.notifyListeners();
             });
@@ -50,7 +64,7 @@ class GematriaAuth {
             console.log('🔥 Firebase Auth initialisé');
         } catch (error) {
             console.error('❌ Erreur Firebase:', error);
-            this.loadFromLocalStorage();
+            throw error;
         }
     }
 
@@ -65,7 +79,7 @@ class GematriaAuth {
             return null;
         } catch (error) {
             console.error('Erreur chargement données:', error);
-            return null;
+            throw error;
         }
     }
 
@@ -78,6 +92,7 @@ class GematriaAuth {
             }, { merge: true });
         } catch (error) {
             console.error('Erreur sauvegarde:', error);
+            throw error;
         }
     }
 
@@ -113,6 +128,7 @@ class GematriaAuth {
     async signInWithGoogle() {
         await this.init();
         const provider = new this.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: "select_account" });
         const result = await this.signInWithPopup(this.auth, provider);
         
         // Vérifier si nouveau user
@@ -132,6 +148,22 @@ class GematriaAuth {
         }
         
         return result.user;
+    }
+
+    // Progression privée du parcours mémoire, conforme aux règles Firestore.
+    async loadProgression(progressId) {
+        await this.init();
+        if (!this.user) return null;
+        const ref = this.doc(this.db, "users", this.user.uid, "progression", progressId);
+        const snapshot = await this.getDoc(ref);
+        return snapshot.exists() ? snapshot.data() : null;
+    }
+
+    async saveProgression(progressId, data) {
+        await this.init();
+        if (!this.user) throw new Error("Connecte-toi pour synchroniser ta progression.");
+        const ref = this.doc(this.db, "users", this.user.uid, "progression", progressId);
+        await this.setDoc(ref, { ...data, updatedAt: this.serverTimestamp() }, { merge: true });
     }
 
     // Déconnexion
@@ -177,5 +209,8 @@ class GematriaAuth {
 
 // Instance globale
 window.gematriaAuth = new GematriaAuth();
-window.gematriaAuth.init();
+window.gematriaAuth.init().catch(error => {
+    console.error("Initialisation Firebase impossible :", error);
+    window.dispatchEvent(new CustomEvent("authInitializationError", { detail: { error } }));
+});
 console.log('🔐 Auth système initialisé');
