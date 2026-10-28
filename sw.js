@@ -1,6 +1,7 @@
 // Service Worker pour Gematria Academy
 // Version 1.0.0
-const CACHE_NAME = 'gematria-academy-v1';
+const CACHE_PREFIX = 'gematria-academy-';
+const CACHE_NAME = 'gematria-academy-v2';
 const OFFLINE_URL = '/offline.html';
 
 // Fichiers à mettre en cache immédiatement
@@ -35,7 +36,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           // Supprimer les anciens caches
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName.startsWith(CACHE_PREFIX) && cacheName !== CACHE_NAME) {
             console.log('[Service Worker] Suppression ancien cache:', cacheName);
             return caches.delete(cacheName);
           }
@@ -80,7 +81,7 @@ self.addEventListener('fetch', (event) => {
           }
 
           // Si c'est une page HTML, retourner la page offline
-          if (event.request.headers.get('accept').includes('text/html')) {
+          if ((event.request.headers.get('accept') || '').includes('text/html')) {
             return caches.match(OFFLINE_URL);
           }
 
