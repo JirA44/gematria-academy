@@ -172,3 +172,35 @@ test("Gematria navigation returns from a lesson to the academy", async ({ page }
   await expect(page.locator("h1")).toBeVisible();
   expectNoBrowserErrors(errors);
 });
+
+
+test("Home day and night modes use distinct palettes and account controls stay left of language selector", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+  const body = page.locator("body");
+  await expect(body).toHaveClass(/dark-mode/);
+  const nightBackground = await body.evaluate(element => getComputedStyle(element).backgroundImage);
+
+  await page.locator(".cosmic-btn-dark").click();
+  await expect(body).toHaveClass(/light-mode/);
+  await expect(body).not.toHaveClass(/dark-mode/);
+  const dayBackground = await body.evaluate(element => getComputedStyle(element).backgroundImage);
+  expect(dayBackground).not.toBe(nightBackground);
+
+  await expect(page.locator("#login-button")).toHaveCSS("order", "-2");
+  await expect(page.locator("#profile-button")).toHaveCSS("order", "-1");
+
+  // Simulate the fixed selector injected by the Cloudflare Worker.
+  await page.evaluate(() => {
+    const panel = document.createElement("aside");
+    panel.id = "ga-language-panel";
+    Object.assign(panel.style, {
+      position: "fixed", top: "10px", right: "10px",
+      width: "390px", height: "52px", zIndex: "2147483000"
+    });
+    document.body.append(panel);
+  });
+  const controls = await page.locator(".header-buttons-cosmic").boundingBox();
+  const languagePanel = await page.locator("#ga-language-panel").boundingBox();
+  expect(controls.x + controls.width).toBeLessThanOrEqual(languagePanel.x);
+});

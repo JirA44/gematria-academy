@@ -156,3 +156,51 @@ body.dark-mode .subtitle {
 body:not(.dark-mode) .section-category {
     border: 2px solid rgba(0, 0, 0, 0.1);
 }
+
+
+/* Mode jour nettement distinct du thème nuit. */
+body.light-mode {
+    color: #263449 !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%) !important;
+}
+body.light-mode header {
+    color: #172033 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #dce6f2 100%) !important;
+    border-bottom: 1px solid #cbd5e1;
+}
+body.light-mode nav {
+    color: #172033 !important;
+    background: #dce6f2 !important;
+    border-block: 1px solid #cbd5e1;
+}
+body.light-mode nav a {
+    color: #172033 !important;
+}
+body.light-mode main,
+body.light-mode footer {
+    color: #263449 !important;
+}
+body.light-mode .hero,
+body.light-mode .section-category,
+body.light-mode .card {
+    color: #172033 !important;
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 8px 24px rgba(30, 41, 59, 0.10) !important;
+}
+body.light-mode .hero p,
+body.light-mode .intro,
+body.light-mode .card p,
+body.light-mode .card li {
+    color: #475569 !important;
+    text-shadow: none !important;
+}
+body.light-mode .cosmic-btn {
+    color: #34255a !important;
+    background: rgba(255, 255, 255, 0.92);
+    border-color: #8b72c8;
+}
+body.light-mode .cosmic-btn:hover {
+    color: #261447 !important;
+    background: #eee8ff;
+}

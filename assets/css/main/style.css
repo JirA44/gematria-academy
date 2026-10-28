@@ -23,17 +23,18 @@
     --header-bg: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
 }
 
-/* Mode Clair (optionnel) */
+/* Mode Jour : fond clair, cartes blanches et texte sombre. */
 body.light-mode {
-    --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --body-bg: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%);
     --card-bg: #ffffff;
-    --card-text: #333;
-    --header-bg: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-    --primary: #2c3e50;
-    --secondary: #34495e;
-    --bg-light: #ecf0f1;
-    --text-light: #333;
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --card-text: #172033;
+    --header-bg: linear-gradient(135deg, #ffffff 0%, #dce6f2 100%);
+    --primary: #dce6f2;
+    --secondary: #475569;
+    --bg-light: #f1f5f9;
+    --text-light: #263449;
+    --text-dark: #172033;
+    --shadow: 0 6px 24px rgba(30, 41, 59, 0.12);
 }
 
 body {
