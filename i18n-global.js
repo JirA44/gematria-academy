@@ -4,7 +4,8 @@
  */
 
 // Langue par défaut
-let currentLang = localStorage.getItem('language') || 'fr';
+const supportedLanguages = ['fr', 'en', 'zh', 'hi', 'es', 'ar', 'bn', 'pt', 'ru', 'ur'];
+let currentLang = supportedLanguages.includes(localStorage.getItem('language')) ? localStorage.getItem('language') : 'fr';
 
 /**
  * Applique les traductions sur la page actuelle
@@ -95,7 +96,7 @@ window.addEventListener('DOMContentLoaded', () => {
 window.i18n = {
     getCurrentLang: () => currentLang,
     setLang: (lang) => {
-        if (['fr', 'en', 'es'].includes(lang)) {
+        if (supportedLanguages.includes(lang)) {
             currentLang = lang;
             localStorage.setItem('language', currentLang);
             applyTranslations();
