@@ -10,12 +10,13 @@ const allowedExtensions = new Set([
   ".svg", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".avif",
   ".woff", ".woff2", ".ttf", ".otf", ".pdf", ".mp3", ".mp4", ".webm", ".ogg"
 ]);
-const allowedSpecialFiles = new Set(["_headers", "_redirects", "_routes.json"]);
+const allowedSpecialFiles = new Set(["_headers", "_redirects", "_routes.json", "robots.txt", "CNAME"]);
 const excludedDirectories = new Set([
   ".git", ".github", ".vscode", "node_modules", "tests", "scripts",
   "coverage", "dist", "build", ".firebase"
 ]);
 const excludedName = /(?:^|[._-])(?:backup|bak)(?:$|[._-])/i;
+const excludedFiles = new Set(["firebase.json", "firestore.rules", "firestore.indexes.json", "package.json", "package-lock.json", "npm-shrinkwrap.json"]);
 
 async function stageDirectory(source, target) {
   await mkdir(target, { recursive: true });
