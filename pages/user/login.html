@@ -64,6 +64,7 @@
             padding: 1rem;
             text-align: center;
             cursor: pointer;
+            font: inherit;
             color: #aaa;
             transition: all 0.3s;
             border-bottom: 3px solid transparent;
@@ -286,9 +287,9 @@
                 <div class="social-login">
                     <h4>Ou se connecter avec :</h4>
                     <div class="social-btns">
-                        <div class="social-btn" onclick="socialLogin('google')">🔵</div>
-                        <div class="social-btn" onclick="socialLogin('facebook')">🔷</div>
-                        <div class="social-btn" onclick="socialLogin('github')">⚫</div>
+                        <button type="button" class="social-btn" aria-label="Continuer avec Google" onclick="socialLogin('google')">🔵</button>
+                        <button type="button" class="social-btn" aria-label="Continuer avec Facebook" onclick="socialLogin('facebook')">🔷</button>
+                        <button type="button" class="social-btn" aria-label="Continuer avec GitHub" onclick="socialLogin('github')">⚫</button>
                     </div>
                 </div>
             </div>
@@ -363,7 +364,7 @@
                 showMessage('✅ Connexion réussie ! Redirection...', 'success');
                 setTimeout(() => window.location.href = 'profile.html', 1500);
             } catch (error) {
-                showMessage('❌ ' + (error.message || 'Email ou mot de passe incorrect'), 'error');
+                showMessage('❌ ' + (friendlyAuthError(error)), 'error');
             }
         }
 
@@ -389,8 +390,19 @@
                 showMessage('✅ Inscription réussie ! Bienvenue !', 'success');
                 setTimeout(() => window.location.href = 'profile.html', 1500);
             } catch (error) {
-                showMessage('❌ ' + (error.message || 'Erreur inscription'), 'error');
+                showMessage('❌ ' + (friendlyAuthError(error)), 'error');
             }
+        }
+
+        function friendlyAuthError(error) {
+            const code = error?.code || '';
+            if (code === 'auth/unauthorized-domain') {
+                return 'Ce domaine n’est pas autorisé par Firebase Authentication. Ajoute gematria-academy.pages.dev dans Firebase Console → Authentication → Paramètres → Domaines autorisés.';
+            }
+            if (code === 'auth/popup-blocked') return 'La fenêtre Google a été bloquée. Autorise les fenêtres pop-up pour ce site puis réessaie.';
+            if (code === 'auth/popup-closed-by-user') return 'La fenêtre Google a été fermée avant la fin de la connexion.';
+            if (code === 'auth/network-request-failed') return 'La connexion réseau a échoué. Vérifie Internet puis réessaie.';
+            return error?.message || 'La connexion a échoué. Réessaie.';
         }
 
         async function socialLogin(provider) {
@@ -403,7 +415,7 @@
                         setTimeout(() => window.location.href = 'profile.html', 1500);
                     }
                 } catch (error) {
-                    showMessage('❌ ' + (error.message || 'Erreur Google'), 'error');
+                    showMessage('❌ ' + friendlyAuthError(error), 'error');
                 }
             } else {
                 showMessage('🔧 ' + provider + ' : bientôt disponible !', 'error');
