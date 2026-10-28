@@ -239,6 +239,7 @@
   function init() {
     const saved = (() => { try { return localStorage.getItem("language"); } catch { return null; } })();
     currentLanguage = supported.has(saved) ? saved : detectLanguage();
+    try { localStorage.setItem("language", currentLanguage); } catch { /* Preference is optional. */ }
     createPanel();
     updatePanel();
     document.documentElement.lang = currentLanguage === "zh" ? "zh-CN" : currentLanguage;
