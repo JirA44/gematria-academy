@@ -75,6 +75,7 @@
     "pages/user/profile.html",
     "pages/versions/index_enrichi.html",
     "pages/versions/index_mega_enriched.html",
+    "parcours-apprentissage.html",
     "parcours-logique-progressif.html"
   ],
   "browser_sample": [
