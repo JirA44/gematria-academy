@@ -41,68 +41,23 @@ function applyTranslations() {
  * Change la langue et sauvegarde la préférence
  */
 function toggleLanguage() {
-    // Cycle entre fr, en, es
-    if (currentLang === 'fr') {
-        currentLang = 'en';
-    } else if (currentLang === 'en') {
-        currentLang = 'es';
-    } else {
-        currentLang = 'fr';
-    }
-
+    const index = supportedLanguages.indexOf(currentLang);
+    currentLang = supportedLanguages[(index + 1) % supportedLanguages.length];
     localStorage.setItem('language', currentLang);
     applyTranslations();
     updateLanguageButton();
+    window.siteLanguage?.set(currentLang);
 }
 
-/**
- * Met à jour le texte du bouton de langue
- */
 function updateLanguageButton() {
     const btn = document.querySelector('.lang-toggle');
     if (btn) {
         const labels = {
-            'fr': '🌐 EN',
-            'en': '🌐 ES',
-            'es': '🌐 FR'
+            fr: '🌐 EN', en: '🌐 中文', zh: '🌐 हिन्दी', hi: '🌐 ES', es: '🌐 العربية',
+            ar: '🌐 বাংলা', bn: '🌐 PT', pt: '🌐 RU', ru: '🌐 اردو', ur: '🌐 FR'
         };
         btn.textContent = labels[currentLang] || '🌐 EN';
     }
 }
 
-/**
- * Initialisation au chargement de la page
- */
-window.addEventListener('DOMContentLoaded', () => {
-    // Charger la langue sauvegardée
-    currentLang = localStorage.getItem('language') || 'fr';
 
-    // Appliquer les traductions
-    applyTranslations();
-
-    // Mettre à jour le bouton de langue
-    updateLanguageButton();
-
-    // Attacher l'événement au bouton de langue s'il existe
-    const langBtn = document.querySelector('.lang-toggle');
-    if (langBtn) {
-        langBtn.addEventListener('click', toggleLanguage);
-    }
-});
-
-/**
- * Permet d'accéder aux fonctions depuis l'extérieur
- */
-window.i18n = {
-    getCurrentLang: () => currentLang,
-    setLang: (lang) => {
-        if (supportedLanguages.includes(lang)) {
-            currentLang = lang;
-            localStorage.setItem('language', currentLang);
-            applyTranslations();
-            updateLanguageButton();
-        }
-    },
-    toggleLanguage,
-    applyTranslations
-};
