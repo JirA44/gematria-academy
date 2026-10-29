@@ -463,11 +463,18 @@
             }
             profileLoaded = true;
 
+            let cachedGamification = {};
+            try {
+                cachedGamification = JSON.parse(localStorage.getItem('gematria_academy_user') || '{}');
+            } catch (error) {
+                console.warn('Données de gamification locales illisibles :', error);
+            }
+            const game = { ...cachedGamification, ...(user.gamification || {}) };
             const progress = {
                 runes: 0, gematria: 0, hieroglyphes: 0, maya: 0, logique: 0,
                 ...(user.progress && typeof user.progress === 'object' ? user.progress : {})
             };
-            const streak = Number(user.dailyStreak ?? user.streak ?? 0) || 0;
+            const streak = Number(game.dailyStreak ?? user.dailyStreak ?? user.streak ?? 0) || 0;
             const totalProgress = Object.values(progress).reduce((sum, value) => sum + (Number(value) || 0), 0);
             document.getElementById('userName').textContent = user.displayName || user.name || 'Utilisateur';
             document.getElementById('userEmail').textContent = user.email || '';
@@ -478,11 +485,17 @@
             }
 
             let level = 'Débutant';
-            if (Number(user.level) >= 3 || totalProgress >= 300) level = 'Expert';
-            else if (Number(user.level) >= 2 || totalProgress >= 150) level = 'Intermédiaire';
-            document.getElementById('userLevel').textContent = user.level ? `Niveau ${user.level}` : `Niveau ${level}`;
-            document.getElementById('totalPoints').textContent = Number(user.xp ?? totalProgress * 10) || 0;
-            const lessons = Array.isArray(user.lessonsCompleted) ? user.lessonsCompleted.length
+            if (Number(game.level ?? user.level) >= 3 || totalProgress >= 300) level = 'Expert';
+            else if (Number(game.level ?? user.level) >= 2 || totalProgress >= 150) level = 'Intermédiaire';
+            const levelInfo = typeof GamificationSystem !== 'undefined'
+                ? GamificationSystem.levels.find(item => item.level === Number(game.level ?? user.level))
+                : null;
+            document.getElementById('userLevel').textContent = levelInfo
+                ? `${levelInfo.icon} ${levelInfo.name}`
+                : user.level ? `Niveau ${user.level}` : `Niveau ${level}`;
+            document.getElementById('totalPoints').textContent = Number(game.xp ?? user.xp ?? totalProgress * 10) || 0;
+            const lessons = Array.isArray(game.lessonsCompleted) ? game.lessonsCompleted.length
+                : Array.isArray(user.lessonsCompleted) ? user.lessonsCompleted.length
                 : Number(user.completedLessons ?? Math.floor(totalProgress / 5)) || 0;
             document.getElementById('completedLessons').textContent = lessons;
             document.getElementById('currentStreak').textContent = streak;
@@ -628,7 +641,6 @@
         }
 
         // Appeler après chargement
-        setTimeout(displayGamificationData, 1000);
 
         });
     </script>
