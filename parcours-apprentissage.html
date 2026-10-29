@@ -178,7 +178,7 @@ function rateReview(rating){
  else if(rating==="hard"){record.days=Math.max(1,Number(record.days||1)*1.4);record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
  else if(rating==="good"){const intervals=[1,3,7,14,30,60];record.days=intervals[Math.min(Number(record.repetitions||0),intervals.length-1)];record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
  else{record.days=Math.max(4,Number(record.days||1)*2.5);record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
- record.lastRating=rating;record.updatedAt=Date.now();reviewSchedule[activeReviewKey]=record;if(rating==="good"||rating==="easy")mastery[activeReviewKey]=Date.now();saveMastery();saveReviewSchedule();persistSyncMeta();queueCloudSync();activeReviewKey=null;
+ record.lastRating=rating;record.updatedAt=Date.now();reviewSchedule[activeReviewKey]=record;if(rating==="good"||rating==="easy")mastery[activeReviewKey]=Date.now();saveMastery();saveReviewSchedule();persistSyncMeta();queueCloudSync();activeReviewKey=null;render();
  const next=nextReview();if(next)renderReviewCard(next);else{renderReviewCard(null);updateReviewSummary("Session terminée. Les rappels reviendront selon les intervalles choisis.")}
 }
 function mergeRemote(remote){
