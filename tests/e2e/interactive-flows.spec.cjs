@@ -210,3 +210,31 @@ test("Home day and night modes use distinct palettes and account controls stay l
   expect(controls.x).toBeLessThanOrEqual(20);
   expect(controls.x + controls.width).toBeLessThanOrEqual(languagePanel.x);
 });
+
+
+test("Standard and production portals keep account controls clear of the language panel", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  for (const route of ["/", "/index_standard.html", "/index_production.html"]) {
+    await page.goto(route);
+    const versions = await page.locator('link[href*="assets/css/main/"]').evaluateAll(links =>
+      links.filter(link => /(?:style|fix-contrast|cosmic-header-styles)\.css/.test(link.href))
+        .map(link => new URL(link.href).searchParams.get("v"))
+    );
+    expect(versions).toEqual(["20261029-2", "20261029-2", "20261029-2"]);
+
+    await page.evaluate(() => {
+      const panel = document.createElement("aside");
+      panel.id = "ga-language-panel";
+      Object.assign(panel.style, {
+        position: "fixed", top: "10px", right: "10px",
+        width: "390px", height: "52px", zIndex: "2147483000"
+      });
+      document.body.append(panel);
+    });
+    const controls = await page.locator(".header-buttons-cosmic").boundingBox();
+    const languagePanel = await page.locator("#ga-language-panel").boundingBox();
+    expect(controls.x).toBeLessThanOrEqual(20);
+    expect(controls.x + controls.width).toBeLessThanOrEqual(languagePanel.x);
+    await page.locator("#ga-language-panel").evaluate(element => element.remove());
+  }
+});
