@@ -210,3 +210,31 @@ test("Home day and night modes use distinct palettes and account controls stay l
   expect(controls.x).toBeLessThanOrEqual(20);
   expect(controls.x + controls.width).toBeLessThanOrEqual(languagePanel.x);
 });
+
+
+test("Learning paths schedule varied active-recall practice", async ({ page }) => {
+  const errors = watchBrowserErrors(page);
+  await page.goto("/parcours-apprentissage.html");
+  await expect(page.locator("#domain-count")).toHaveText("18");
+  await expect(page.locator("#review-count")).toHaveText("0");
+  await expect(page.locator("#review-start")).toBeDisabled();
+
+  await page.locator(".check").first().check();
+  await expect(page.locator("#review-count")).toHaveText("1");
+  await page.locator("#review-start").click();
+  await expect(page.locator("#review-session")).toBeVisible();
+  await expect(page.locator("#review-step-title")).not.toBeEmpty();
+  await expect(page.locator("#review-type")).toContainText("Rappel");
+  await page.locator("#review-answer").fill("Je rappelle les idées principales de la leçon avec un exemple que je formule de mémoire.");
+  await page.locator("#review-reveal").click();
+  await expect(page.locator("#review-hint")).toBeVisible();
+  await expect(page.locator("#review-ratings")).toBeVisible();
+  await page.locator('[data-review-rating="good"]').click();
+
+  await expect(page.locator("#review-count")).toHaveText("0");
+  await expect(page.locator("#review-session")).toBeHidden();
+  const schedule = await page.evaluate(() => JSON.parse(localStorage.getItem("gematria_spaced_reviews_v1")));
+  expect(schedule["runes.0"].repetitions).toBe(1);
+  expect(schedule["runes.0"].dueAt - Date.now()).toBeGreaterThan(20 * 60 * 60 * 1000);
+  expectNoBrowserErrors(errors);
+});
