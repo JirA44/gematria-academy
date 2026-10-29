@@ -245,6 +245,9 @@ test("Learning paths schedule varied active-recall practice", async ({ page }) =
   await expect(page.locator("#domain-count")).toHaveText("18");
   await expect(page.locator("#review-count")).toHaveText("0");
   await expect(page.locator("#review-start")).toBeDisabled();
+  await expect(page.locator(".step-level").first()).toContainText("Niveau 1 · Débutant / facile");
+  await expect(page.locator(".step-level").nth(1)).toContainText("Niveau 2 · Fondations");
+  await expect(page.locator(".check").nth(1)).toBeDisabled();
 
   await page.locator(".check").first().check();
   await expect(page.locator("#review-count")).toHaveText("1");
@@ -257,11 +260,36 @@ test("Learning paths schedule varied active-recall practice", async ({ page }) =
   await expect(page.locator("#review-hint")).toBeVisible();
   await expect(page.locator("#review-ratings")).toBeVisible();
   await page.locator('[data-review-rating="good"]').click();
+  await expect(page.locator(".check").nth(1)).toBeEnabled();
 
   await expect(page.locator("#review-count")).toHaveText("0");
   await expect(page.locator("#review-session")).toBeHidden();
   const schedule = await page.evaluate(() => JSON.parse(localStorage.getItem("gematria_spaced_reviews_v1")));
   expect(schedule["runes.0"].repetitions).toBe(1);
   expect(schedule["runes.0"].dueAt - Date.now()).toBeGreaterThan(20 * 60 * 60 * 1000);
+  expectNoBrowserErrors(errors);
+});
+
+
+test("Learning path progression syncs to the signed-in student account", async ({ page }) => {
+  const errors = watchBrowserErrors(page);
+  await page.route("**/assets/js/auth/firebase-config.js", route => route.fulfill({
+    contentType: "application/javascript",
+    body: "window.FIREBASE_CONFIG={};window.isFirebaseConfigured=()=>true;"
+  }));
+  await page.route("**/assets/js/auth/auth-system.js", route => route.fulfill({
+    contentType: "application/javascript",
+    body: `window.__cloudSaves=[];window.gematriaAuth={
+      onAuthStateChanged(callback){callback({uid:"student-test"})},
+      async loadProgression(){return null},
+      async saveProgression(id,data){window.__cloudSaves.push({id,data})}
+    };`
+  }));
+  await page.goto("/parcours-apprentissage.html");
+  await expect(page.locator("#sync-title")).toHaveText("Progression synchronisée");
+  await page.locator(".check").first().check();
+  await page.waitForFunction(() => window.__cloudSaves.some(save =>
+    save.id === "learning-paths" && save.data.changes["runes.0"]?.completed === true
+  ));
   expectNoBrowserErrors(errors);
 });
