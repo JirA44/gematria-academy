@@ -177,7 +177,31 @@
 
         .social-btn:hover {
             background: rgba(100, 181, 246, 0.4);
-            transform: scale(1.05);
+            transform: scale(1.02);
+        }
+
+        .social-btn.google-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: #fff;
+            border-color: #dadce0;
+            color: #3c4043;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .social-btn.google-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .google-mark {
+            color: #4285f4;
+            font-size: 1.55rem;
+            font-weight: 800;
+            line-height: 1;
         }
 
         .forgot-password {
@@ -289,9 +313,10 @@
                 <div class="social-login">
                     <h4>Ou se connecter avec :</h4>
                     <div class="social-btns">
-                        <button type="button" class="social-btn" aria-label="Continuer avec Google" onclick="socialLogin('google')">🔵</button>
-                        <button type="button" class="social-btn" aria-label="Continuer avec Facebook" onclick="socialLogin('facebook')">🔷</button>
-                        <button type="button" class="social-btn" aria-label="Continuer avec GitHub" onclick="socialLogin('github')">⚫</button>
+                        <button type="button" class="social-btn google-btn" onclick="socialLogin('google')">
+                            <span class="google-mark" aria-hidden="true">G</span>
+                            <span>Continuer avec Google</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -325,9 +350,10 @@
                 <div class="social-login">
                     <h4>Ou s'inscrire avec :</h4>
                     <div class="social-btns">
-                        <div class="social-btn" onclick="socialLogin('google')">🔵</div>
-                        <div class="social-btn" onclick="socialLogin('facebook')">🔷</div>
-                        <div class="social-btn" onclick="socialLogin('github')">⚫</div>
+                        <button type="button" class="social-btn google-btn" onclick="socialLogin('google')">
+                            <span class="google-mark" aria-hidden="true">G</span>
+                            <span>S’inscrire avec Google</span>
+                        </button>
                     </div>
                 </div>
             </div>
