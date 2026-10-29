@@ -437,74 +437,74 @@
             { icon: '👑', name: 'Maître Absolu', condition: 'total >= 400' }
         ];
 
-        function loadProfile() {
-            const userString = localStorage.getItem('currentUser');
+        let profileLoaded = false;
 
-            if (!userString) {
+        function readLocalProfile() {
+            for (const key of ['currentUser', 'gematria_user']) {
+                try {
+                    const saved = localStorage.getItem(key);
+                    if (saved) return JSON.parse(saved);
+                } catch (error) {
+                    console.warn('Profil local illisible :', error);
+                }
+            }
+            return null;
+        }
+
+        function loadProfile(authUser = null, remoteData = {}) {
+            if (profileLoaded) return;
+            const storedUser = readLocalProfile();
+            const user = authUser
+                ? { ...(storedUser || {}), ...authUser, ...remoteData, uid: authUser.uid }
+                : storedUser;
+            if (!user) {
                 window.location.href = 'login.html';
                 return;
             }
+            profileLoaded = true;
 
-            const user = JSON.parse(userString);
-
-            // Initialiser les données de progression si elles n'existent pas
-            if (!user.progress) {
-                user.progress = {
-                    runes: Math.floor(Math.random() * 60),
-                    gematria: Math.floor(Math.random() * 40),
-                    hieroglyphes: Math.floor(Math.random() * 30),
-                    maya: Math.floor(Math.random() * 25),
-                    logique: Math.floor(Math.random() * 50)
-                };
+            let cachedGamification = {};
+            try {
+                cachedGamification = JSON.parse(localStorage.getItem('gematria_academy_user') || '{}');
+            } catch (error) {
+                console.warn('Données de gamification locales illisibles :', error);
             }
-
-            if (!user.badges) {
-                user.badges = ['🎓 Premier pas'];
-            }
-
-            if (!user.streak) {
-                user.streak = Math.floor(Math.random() * 10);
-            }
-
-            // Afficher les infos de base
+            const game = { ...cachedGamification, ...(user.gamification || {}) };
+            const progress = {
+                runes: 0, gematria: 0, hieroglyphes: 0, maya: 0, logique: 0,
+                ...(user.progress && typeof user.progress === 'object' ? user.progress : {})
+            };
+            const streak = Number(game.dailyStreak ?? user.dailyStreak ?? user.streak ?? 0) || 0;
+            const totalProgress = Object.values(progress).reduce((sum, value) => sum + (Number(value) || 0), 0);
             document.getElementById('userName').textContent = user.displayName || user.name || 'Utilisateur';
             document.getElementById('userEmail').textContent = user.email || '';
-
-            const signupDate = user.signupDate || user.loginDate;
+            const signupDate = user.signupDate || user.createdAt || user.loginDate;
             if (signupDate) {
-                const date = new Date(signupDate);
-                document.getElementById('memberSince').textContent = date.toLocaleDateString('fr-FR');
+                const date = signupDate.toDate ? signupDate.toDate() : new Date(signupDate);
+                if (!Number.isNaN(date.getTime())) document.getElementById('memberSince').textContent = date.toLocaleDateString('fr-FR');
             }
 
-            // Calculer le niveau
-            const totalProgress = Object.values(user.progress).reduce((a, b) => a + b, 0);
             let level = 'Débutant';
-            if (totalProgress >= 300) level = 'Expert';
-            else if (totalProgress >= 150) level = 'Intermédiaire';
+            if (Number(game.level ?? user.level) >= 3 || totalProgress >= 300) level = 'Expert';
+            else if (Number(game.level ?? user.level) >= 2 || totalProgress >= 150) level = 'Intermédiaire';
+            const levelInfo = typeof GamificationSystem !== 'undefined'
+                ? GamificationSystem.levels.find(item => item.level === Number(game.level ?? user.level))
+                : null;
+            document.getElementById('userLevel').textContent = levelInfo
+                ? `${levelInfo.icon} ${levelInfo.name}`
+                : user.level ? `Niveau ${user.level}` : `Niveau ${level}`;
+            document.getElementById('totalPoints').textContent = Number(game.xp ?? user.xp ?? totalProgress * 10) || 0;
+            const lessons = Array.isArray(game.lessonsCompleted) ? game.lessonsCompleted.length
+                : Array.isArray(user.lessonsCompleted) ? user.lessonsCompleted.length
+                : Number(user.completedLessons ?? Math.floor(totalProgress / 5)) || 0;
+            document.getElementById('completedLessons').textContent = lessons;
+            document.getElementById('currentStreak').textContent = streak;
+            for (const domain of ['runes', 'gematria', 'hieroglyphes', 'maya', 'logique']) {
+                updateProgress(domain, Number(progress[domain]) || 0);
+            }
 
-            document.getElementById('userLevel').textContent = `Niveau ${level}`;
-
-            // Afficher les stats
-            document.getElementById('totalPoints').textContent = totalProgress * 10;
-            document.getElementById('completedLessons').textContent = Math.floor(totalProgress / 5);
-            document.getElementById('currentStreak').textContent = user.streak;
-
-            // Afficher la progression
-            updateProgress('runes', user.progress.runes);
-            updateProgress('gematria', user.progress.gematria);
-            updateProgress('hieroglyphes', user.progress.hieroglyphes);
-            updateProgress('maya', user.progress.maya);
-            updateProgress('logique', user.progress.logique);
-
-            // Calculer et afficher les badges
-            const earnedBadges = calculateBadges(user);
-            displayBadges(earnedBadges);
-
-            // Afficher l'historique
+            displayBadges(calculateBadges({ ...user, progress, streak }));
             displayHistory(user);
-
-            // Sauvegarder les modifications
-            localStorage.setItem('gematria_progress_' + (user.uid || 'local'), JSON.stringify({ progress: user.progress, badges: user.badges, streak: user.streak }));
         }
 
         function updateProgress(domain, value) {
@@ -555,32 +555,54 @@
 
         function displayHistory(user) {
             const historyList = document.getElementById('historyList');
-            const history = [
-                { date: new Date(), action: 'Connexion au profil' },
-                { date: new Date(Date.now() - 86400000), action: 'Complété: Runes Débutant' },
-                { date: new Date(Date.now() - 172800000), action: 'Badge obtenu: Apprenti Runique' },
-                { date: new Date(Date.now() - 259200000), action: 'Exercices de logique terminés' },
-                { date: new Date(Date.now() - 345600000), action: 'Inscription à l\'Académie' }
-            ];
-
-            historyList.innerHTML = history.map(item => `
-                <div class="history-item">
-                    <div class="history-date">${item.date.toLocaleDateString('fr-FR')} à ${item.date.toLocaleTimeString('fr-FR')}</div>
-                    <div class="history-action">${item.action}</div>
-                </div>
-            `).join('');
+            const history = Array.isArray(user.history) ? user.history : [];
+            if (!history.length) {
+                historyList.textContent = 'Aucune activité enregistrée pour le moment.';
+                return;
+            }
+            historyList.innerHTML = '';
+            history.forEach(item => {
+                const rawDate = item.date || item.createdAt;
+                const date = rawDate?.toDate ? rawDate.toDate() : new Date(rawDate);
+                const row = document.createElement('div');
+                row.className = 'history-item';
+                const dateLabel = document.createElement('div');
+                dateLabel.className = 'history-date';
+                dateLabel.textContent = Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString('fr-FR');
+                const actionLabel = document.createElement('div');
+                actionLabel.className = 'history-action';
+                actionLabel.textContent = item.action || item.label || 'Activité';
+                row.append(dateLabel, actionLabel);
+                historyList.append(row);
+            });
         }
 
-        function logout() {
-            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+        async function logout() {
+            if (!confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) return;
+            try {
+                if (window.gematriaAuth?.isLoggedIn) await window.gematriaAuth.signOut();
                 localStorage.removeItem('currentUser');
+                localStorage.removeItem('gematria_user');
                 window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Échec de la déconnexion :', error);
+                alert('La déconnexion a échoué. Réessaie.');
             }
         }
 
         // Charger le profil au chargement de la page
         window.addEventListener('DOMContentLoaded', () => {
-            loadProfile();
+            const auth = window.gematriaAuth;
+            if (auth?.onAuthStateChanged) {
+                auth.onAuthStateChanged(user => {
+                    if (user) loadProfile(user, auth.userData || {});
+                    else if (auth.authResolved) loadProfile();
+                });
+                auth.init().catch(() => loadProfile());
+                window.addEventListener('authInitializationError', () => loadProfile(), { once: true });
+            } else {
+                loadProfile();
+            }
             
         // Afficher les données de gamification
         function displayGamificationData() {
@@ -619,7 +641,6 @@
         }
 
         // Appeler après chargement
-        setTimeout(displayGamificationData, 1000);
 
         });
     </script>
