@@ -154,7 +154,7 @@
         const expectedBase=profile.challenge==='names'?names.slice(0,count).map(x=>x[0].toLocaleLowerCase('fr')):rounds.slice(0,count);
         const expected=stage===3?expectedBase.slice().reverse():expectedBase;
         const normalized=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-        const matched=expected.map(x=>answers.findIndex(a=>normalized(a).includes(normalized(x))));
+        const matched=expected.map(x=>answers.findIndex(a=>normalized(a)===normalized(x)));
         const correct=matched.filter(i=>i>=0).length;
         const recallScore=correct/expected.length*100;
         const orderScore=matched.reduce((sum,index,position)=>sum+(index===position?1:0),0)/expected.length*100;
