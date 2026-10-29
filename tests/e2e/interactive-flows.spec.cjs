@@ -190,7 +190,12 @@ test("Home day and night modes use distinct palettes and account controls stay l
   await expect(page.locator("#login-button")).toHaveCSS("order", "-2");
   await expect(page.locator("#profile-button")).toHaveCSS("order", "-1");
 
-  // Simulate the fixed selector injected by the Cloudflare Worker.
+  const stylesheetVersions = await page.locator('link[href*="assets/css/main/"]').evaluateAll(links =>
+    links.filter(link => /(?:style|fix-contrast|cosmic-header-styles)\.css/.test(link.href))
+      .map(link => new URL(link.href).searchParams.get("v"))
+  );
+  expect(stylesheetVersions).toEqual(["20261029-2", "20261029-2", "20261029-2"]);
+
   await page.evaluate(() => {
     const panel = document.createElement("aside");
     panel.id = "ga-language-panel";
@@ -202,5 +207,6 @@ test("Home day and night modes use distinct palettes and account controls stay l
   });
   const controls = await page.locator(".header-buttons-cosmic").boundingBox();
   const languagePanel = await page.locator("#ga-language-panel").boundingBox();
+  expect(controls.x).toBeLessThanOrEqual(20);
   expect(controls.x + controls.width).toBeLessThanOrEqual(languagePanel.x);
 });
