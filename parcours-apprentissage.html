@@ -17,6 +17,21 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 .empty{display:none;text-align:center;color:var(--muted);padding:30px;border:1px dashed var(--line);border-radius:12px}.foot{margin:48px 0 32px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.foot a{margin-right:16px}
 @media(max-width:760px){.loop{grid-template-columns:1fr}.loop div{text-align:left}.grid{grid-template-columns:1fr}.progress-panel{align-items:flex-start;flex-direction:column}.bar{width:100%}.hero{padding:48px 0 30px}.step{grid-template-columns:25px 1fr auto}.step a{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.review-panel{border:1px solid rgba(213,180,93,.3);border-radius:18px;padding:24px;margin:28px 0;background:linear-gradient(135deg,rgba(25,38,56,.95),rgba(14,19,32,.96));box-shadow:0 12px 30px #0003}
+.review-head{display:flex;align-items:center;justify-content:space-between;gap:24px}.review-head h2{font:600 clamp(22px,3vw,30px) Cinzel,serif;color:var(--gold2);margin:3px 0 8px}.review-head p:not(.review-kicker){color:var(--muted);max-width:720px;margin:0}.review-kicker{margin:0;color:var(--blue);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.review-start-wrap{display:grid;justify-items:center;gap:4px;min-width:190px}.review-start-wrap strong{font:600 34px Cinzel,serif;color:var(--gold2)}.review-start-wrap span{font-size:12px;color:var(--muted)}
+.review-button,.review-ratings button{border:1px solid rgba(213,180,93,.6);border-radius:9px;padding:10px 14px;color:#f8f4e8;background:#55431d;cursor:pointer;font-weight:700}.review-button:hover,.review-ratings button:hover{background:#6a5323}.review-button:disabled{opacity:.55;cursor:not-allowed}
+.review-button.secondary{background:rgba(136,184,216,.12);border-color:rgba(136,184,216,.45);color:#dceeff}.review-summary{margin:16px 0 0;color:var(--muted);font-size:13px}
+.review-session{margin-top:18px;padding:20px;border:1px solid var(--line);border-radius:14px;background:rgba(5,8,15,.4)}#review-session[hidden],#review-hint[hidden],#review-ratings[hidden]{display:none!important}
+.review-meta{font-size:12px;color:var(--muted)}.review-type{display:inline-block;margin:10px 0 4px;padding:4px 9px;border-radius:99px;background:rgba(136,184,216,.12);color:#b9dcf2;font-size:11px;font-weight:700}
+#review-step-title{font:600 20px Cinzel,serif;color:var(--gold2);margin:5px 0}.review-prompt{color:#e4e8f0;margin:0 0 12px}
+#review-answer{width:100%;resize:vertical;min-height:110px;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--text);background:#0c1220;font:inherit;line-height:1.5}
+.review-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}.review-actions a{color:var(--gold2);font-size:13px}.review-hint{padding:12px;border-left:3px solid var(--gold);background:rgba(213,180,93,.08);color:#f1dfaa;border-radius:0 8px 8px 0}
+.review-feedback{min-height:1.4em;color:#f3c978;font-size:13px}.review-ratings{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.review-ratings span{width:100%;font-size:12px;color:var(--muted)}.review-ratings button{padding:8px 11px;font-size:12px}
+.review-privacy{color:var(--muted);font-size:11px}.review-close{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:6px 0}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:760px){.review-panel{padding:18px}.review-head{align-items:flex-start;flex-direction:column}.review-start-wrap{justify-items:start}.review-ratings{align-items:stretch}.review-ratings button{flex:1 1 calc(50% - 8px)}}
 </style>
 </head>
 <body>
@@ -31,7 +46,34 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 <section class="method" aria-labelledby="method-title"><h2 id="method-title">Le cycle d’apprentissage de l’Académie</h2><p>La même rigueur accompagne tous les domaines, avec des questions adaptées à chaque tradition, discipline et système.</p>
 <div class="loop"><div><b>01 · Observer</b>Qu’est-ce qui est réellement présent ?</div><div><b>02 · Contextualiser</b>Quel système et quelle source ?</div><div><b>03 · Formuler</b>Quelle règle ou hypothèse ?</div><div><b>04 · Tester</b>Quel exemple peut la vérifier ou la contredire ?</div><div><b>05 · Réviser</b>Que permet la conclusion — et que ne permet-elle pas ?</div></div></section>
 <section class="progress-panel" aria-live="polite"><div class="progress-copy"><strong>Ta progression sur les parcours</strong><span id="progress-label">Aucune étape terminée pour l’instant.</span><div class="bar" role="progressbar" aria-label="Progression générale" aria-valuemin="0" aria-valuemax="100"><span id="progress-fill"></span></div></div><a id="resume-link" href="#catalogue">Choisir un parcours ↓</a></section>
-<section aria-labelledby="catalogue-title"><h2 class="section-title" id="catalogue-title">Le catalogue des parcours</h2><p class="section-intro">Chaque étape ouvre une leçon déjà présente dans l’Académie. Coche-la une fois étudiée : ta progression est conservée sur cet appareil.</p>
+<section class="review-panel" aria-labelledby="review-title">
+  <div class="review-head">
+    <div><p class="review-kicker">Pratique de rappel</p><h2 id="review-title">Réactive tes connaissances pour les retenir</h2><p>Les étapes étudiées reviennent à réviser. Le rappel mélange explication, liens entre notions et mise en pratique.</p></div>
+    <div class="review-start-wrap"><strong id="review-count">0</strong><span>à réviser</span><button class="review-button" id="review-start" type="button" disabled>Commencer la session</button></div>
+  </div>
+  <p class="review-summary" id="review-summary" role="status" aria-live="polite">Coche une étape étudiée pour créer son premier rappel.</p>
+  <div class="review-session" id="review-session" hidden aria-live="polite">
+    <div class="review-meta" id="review-meta"></div>
+    <p class="review-type" id="review-type"></p>
+    <h3 id="review-step-title"></h3>
+    <p class="review-prompt" id="review-prompt"></p>
+    <label class="visually-hidden" for="review-answer">Ta réponse de mémoire</label>
+    <textarea id="review-answer" rows="4" placeholder="Écris de mémoire, sans rouvrir la leçon…"></textarea>
+    <div class="review-actions"><a id="review-open" href="#" target="_blank" rel="noopener noreferrer">Rouvrir la leçon</a><button class="review-button secondary" id="review-reveal" type="button">Comparer avec le repère</button></div>
+    <p class="review-hint" id="review-hint" hidden></p>
+    <p class="review-feedback" id="review-feedback" role="status" aria-live="polite"></p>
+    <div class="review-ratings" id="review-ratings" hidden>
+      <span>Comment l’as-tu retrouvée ?</span>
+      <button type="button" data-review-rating="again">Pas retrouvée</button>
+      <button type="button" data-review-rating="hard">Difficile</button>
+      <button type="button" data-review-rating="good">Retenue</button>
+      <button type="button" data-review-rating="easy">Facile</button>
+    </div>
+    <p class="review-privacy">Ta réponse n’est pas enregistrée. Seul le calendrier de révision reste dans ce navigateur.</p>
+    <button class="review-close" id="review-close" type="button">Terminer la session</button>
+  </div>
+</section>
+<section aria-labelledby="catalogue-title"><h2 class="section-title" id="catalogue-title">Le catalogue des parcours</h2><p class="section-intro">Chaque étape ouvre une leçon de l’Académie. Après l’avoir étudiée, coche-la pour la retrouver en rappel actif : les révisions mêlent plusieurs domaines et reviennent à intervalles croissants. La progression et les rappels sont conservés sur cet appareil.</p>
 <div class="tools"><input id="search" type="search" placeholder="Rechercher un domaine ou une méthode…" aria-label="Rechercher un parcours"><select id="group-filter" aria-label="Filtrer par famille"><option value="">Toutes les familles</option></select><select id="status-filter" aria-label="Filtrer par progression"><option value="">Tous les parcours</option><option value="in-progress">À poursuivre</option><option value="done">Terminés</option><option value="new">Non commencés</option></select></div>
 <div id="catalogue"></div><p class="empty" id="empty">Aucun parcours ne correspond à ces filtres.</p>
 </section>
@@ -40,14 +82,88 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 <script>
 const PATHS=[{"id":"runes","name":"Runes nordiques","icon":"ᚱ","group":"Écritures & langues","summary":"Lire le Futhark, comprendre ses familles de signes et replacer les runes dans leur contexte historique.","lens":"Observation des formes → hypothèses phonétiques → lecture contextualisée.","steps":[["Découvrir les runes","pages/runes/runes-debutant.html","Repérer formes, noms et contexte."],["Mémoriser l’alphabet","pages/runes/alphabet-runes.html","Associer chaque signe à une valeur sans confondre son et symbole."],["Lire et pratiquer","pages/runes/runes-intermediaire.html","Comparer les signes dans des séquences."],["Approfondir et transférer","pages/runes/runes-parcours-complet.html","Relier lecture, mythologie et sources."]]},{"id":"hebreu-gematria","name":"Hébreu & gématrie","icon":"א","group":"Écritures & langues","summary":"Passer de la reconnaissance des lettres à des calculs explicités et à une interprétation prudente des textes.","lens":"Convention → calcul vérifiable → contexte → interprétation argumentée.","steps":[["Reconnaître l’alphabet","pages/gematria/alphabet-hebreu.html","Observer les lettres, leurs formes et leurs valeurs."],["Apprendre le calcul","pages/gematria/gematria-debutant.html","Montrer les opérations et nommer le système choisi."],["Comparer les systèmes","pages/gematria/gematria-intermediaire.html","Distinguer égalité numérique et lien de sens."],["Analyser et nuancer","pages/gematria/gematria-expert.html","Replacer une correspondance dans son texte et ses limites."]]},{"id":"hieroglyphes","name":"Hiéroglyphes égyptiens","icon":"𓂀","group":"Écritures & langues","summary":"Construire une lecture à partir des signes, des principes d’écriture et d’inscriptions graduées.","lens":"Voir → classer → lire → vérifier dans l’inscription et son contexte.","steps":[["Entrer dans l’écriture","pages/hieroglyphes/hieroglyphes-debutant.html","Identifier la direction de lecture et les familles de signes."],["Apprendre l’alphabet et les signes","pages/hieroglyphes/hieroglyphes-parcours-complet.html","Distinguer phonogrammes, idéogrammes et déterminatifs."],["Déchiffrer des phrases","pages/hieroglyphes/hieroglyphes-exercices-phrases.html","Justifier chaque étape de lecture."],["Lire des inscriptions","pages/hieroglyphes/immersion-inscriptions-index.html","Comparer sa lecture à une source contextualisée."]]},{"id":"maya","name":"Glyphes mayas","icon":"☼","group":"Écritures & langues","summary":"Étudier le fonctionnement des glyphes, des calendriers et des inscriptions par niveaux.","lens":"Décrire la forme → repérer la structure → tester la lecture → la situer historiquement.","steps":[["Découvrir les glyphes","pages/maya/glyphes-mayas-intro.html","Observer les signes et leur contexte culturel."],["Apprendre les bases","pages/maya/maya-debutant.html","Reconnaître les composants et les principes de lecture."],["Lire des ensembles","mayas-glyphes-parcours-complet.html","Relier signe, séquence et calendrier."],["Approfondir","pages/maya/maya-expert.html","Comparer des interprétations et leurs sources."]]},{"id":"coreen","name":"Coréen","icon":"한","group":"Écritures & langues","summary":"Progresser de l’alphabet hangeul vers la lecture et l’analyse de structures de langue.","lens":"Reconnaissance → assemblage → phrase → transfert en contexte.","steps":[["Découvrir le hangeul","pages/coreen/coreen-debutant.html","Observer comment les lettres s’assemblent en blocs syllabiques."],["Réviser le vocabulaire","pages/coreen/dictionnaire-coreen.html","Associer forme, son et sens."],["Pratiquer les structures","pages/coreen/coreen-intermediaire.html","Repérer les régularités grammaticales."],["Lire avec autonomie","pages/coreen/coreen-expert.html","Expliquer les choix de lecture et les nuances."]]},{"id":"japonais","name":"Japonais","icon":"あ","group":"Écritures & langues","summary":"Articuler systèmes d’écriture, vocabulaire et structures pour lire de façon autonome.","lens":"Repérer le système → segmenter → interpréter → vérifier en contexte.","steps":[["Commencer le japonais","pages/japonais/japonais-debutant.html","Distinguer hiragana, katakana et kanji."],["Explorer les mots","pages/japonais/dictionnaire-japonais.html","Observer les lectures et usages."],["Construire des phrases","pages/japonais/japonais-intermediaire.html","Identifier les relations entre les éléments."],["Lire des textes complexes","pages/japonais/japonais-expert.html","Réviser son interprétation à partir du contexte."]]},{"id":"logique","name":"Logique & raisonnement","icon":"∴","group":"Pensée & analyse","summary":"Un cursus de 29 leçons pour apprendre à observer, découper, inférer, tester et réviser une idée.","lens":"Faits → question → hypothèses → test → conclusion calibrée.","steps":[["Commencer par les bases","pages/logique/logique-debutant.html","Séparer proposition, fait et interprétation."],["Explorer les formes de raisonnement","pages/logique/types-raisonnement.html","Distinguer déduction, induction, abduction et analogie."],["Suivre le parcours progressif","parcours-logique-progressif.html","Avancer par phases avec exercices et auto-évaluation."],["S’entraîner et transférer","pages/logique/exercices-logique.html","Résoudre de nouveaux problèmes et expliquer la méthode."]]},{"id":"cognition","name":"Sciences cognitives & biais","icon":"🧠","group":"Pensée & analyse","summary":"Comprendre comment attention, mémoire, biais et modèles mentaux influencent nos jugements.","lens":"Observer sa première intuition → chercher l’alternative → confronter aux données.","steps":[["Découvrir la cognition","pages/cognitif/cognitif-debutant.html","Repérer les étapes entre perception et décision."],["Identifier les biais","pages/cognitif/biais-cognitifs.html","Chercher ce qui pourrait contredire une première impression."],["Choisir un modèle mental","pages/logique/modeles-mentaux.html","Utiliser un modèle comme outil, pas comme vérité universelle."],["Comparer les raisonnements","pages/cognitif/encyclopedie-raisonnements.html","Savoir quand une méthode aide et quand elle induit en erreur."]]},{"id":"astrologie","name":"Astrologie & ciel culturel","icon":"☾","group":"Traditions & symboles","summary":"Explorer les systèmes astrologiques comme des traditions de symboles, avec une distinction claire entre récit culturel et preuve.","lens":"Comprendre le système → interpréter ses symboles → distinguer tradition et constat empirique.","steps":[["Découvrir les signes","pages/astrologie/signes-zodiaque.html","Apprendre le vocabulaire interne du système."],["Explorer les constellations","pages/astrologie/constellations.html","Distinguer constellations astronomiques et figures culturelles."],["Étudier les cycles","pages/astrologie/cycles-cosmiques.html","Comparer les cycles décrits et les phénomènes observables."],["Relier ciel et culture","pages/astrologie/astronomie-sacree.html","Présenter une interprétation comme une lecture située."]]},{"id":"tarot","name":"Tarot","icon":"🃏","group":"Traditions & symboles","summary":"Apprendre les familles de cartes, construire une lecture cohérente et distinguer interprétation et prédiction.","lens":"Décrire → relier les symboles → formuler plusieurs lectures → réfléchir aux biais.","steps":[["Découvrir le tarot","pages/tarot/tarot-debutant.html","Décrire une carte avant d’y projeter une histoire."],["Étudier les arcanes majeurs","pages/tarot/tarot-arcanes-majeurs.html","Comparer les motifs et leur place dans le jeu."],["Explorer les arcanes mineurs","pages/tarot/tarot-arcanes-mineurs.html","Repérer les variations et les motifs répétés."],["Pratiquer un tirage","pages/tarot/tirage-tarot.html","Garder plusieurs hypothèses et relire son interprétation."]]},{"id":"alchimie","name":"Alchimie","icon":"⚗","group":"Traditions & symboles","summary":"Étudier les textes et symboles alchimiques en distinguant histoire, métaphore et lecture personnelle.","lens":"Décrire le symbole → situer l’époque → comparer les sources → argumenter une lecture.","steps":[["Introduction à l’alchimie","pages/alchimie/alchimie-introduction.html","Poser le contexte avant l’interprétation."],["Parcours débutant","pages/alchimie/alchimie-debutant.html","Reconnaître les termes et symboles de base."],["Parcours intermédiaire","pages/alchimie/alchimie-intermediaire.html","Comparer plusieurs interprétations."],["Pierre philosophale et expertise","pages/alchimie/pierre-philosophale.html","Séparer les affirmations historiques des récits symboliques."]]},{"id":"kabbale","name":"Kabbale & Arbre de Vie","icon":"עץ","group":"Traditions & symboles","summary":"Parcourir les concepts et représentations kabbalistiques en gardant visibles leurs sources et traditions.","lens":"Apprendre les termes → cartographier les relations → comparer les traditions → interpréter avec contexte.","steps":[["Découvrir les bases","pages/kabbale/kabbale-debutant.html","Distinguer concepts, métaphores et écoles."],["Cartographier l’Arbre de Vie","pages/kabbale/arbre-de-vie.html","Repérer relations et limites d’un schéma."],["Approfondir","pages/kabbale/kabbale-intermediaire.html","Comparer les explications proposées."],["Étudier les textes avancés","pages/kabbale/kabbale-expert.html","Relier une idée à sa tradition textuelle."]]},{"id":"numerologie","name":"Numérologie","icon":"№","group":"Nombres & formes","summary":"Manipuler des conventions numériques, vérifier les calculs et traiter les correspondances comme des pistes à contextualiser.","lens":"Définir la convention → calculer → comparer → évaluer ce que le résultat permet de conclure.","steps":[["Découvrir la numérologie","pages/numerologie/numerologie-debutant.html","Identifier les règles de calcul choisies."],["Calculer des exemples","pages/numerologie/calculateur-numerologie.html","Montrer chaque opération."],["Comparer les méthodes","pages/numerologie/numerologie-intermediaire.html","Noter comment une convention change le résultat."],["Approfondir avec prudence","pages/numerologie/numerologie-expert.html","Distinguer régularité arithmétique et preuve d’un lien."]]},{"id":"astronomie","name":"Astronomie","icon":"🪐","group":"Sciences & systèmes","summary":"Un fil d’apprentissage par niveaux pour passer des observations visibles aux modèles astronomiques.","lens":"Question → observation → modèle → prédiction → révision.","steps":[["Niveau débutant","pages/astronomie/astronomie-debutant.html","Poser des observations simples."],["Niveau intermédiaire","pages/astronomie/astronomie-intermediaire.html","Comparer des modèles explicatifs."],["Parcours complet","pages/astronomie/astronomie-parcours-complet.html","Relier les notions dans une progression."],["Niveau expert","pages/astronomie/astronomie-expert.html","Examiner preuves, limites et incertitudes."]]},{"id":"meditation","name":"Méditation & attention","icon":"◎","group":"Pratique & réflexion","summary":"Pratiquer observation et attention sans confondre expérience subjective et explication scientifique.","lens":"Observer l’expérience → la décrire → distinguer sensation et interprétation → revenir au présent.","steps":[["Découvrir la pratique","pages/meditation/meditation-guidee.html","Noter sensations et pensées comme des observations."],["Explorer les chakras","pages/meditation/chakras.html","Situer le vocabulaire dans sa tradition."],["Pratiquer la visualisation","pages/meditation/visualisation.html","Distinguer l’exercice vécu d’une conclusion médicale."],["Approfondir mantras","pages/meditation/mantras-sacres.html","Relier pratique, contexte et réflexion personnelle."]]},{"id":"mandalas","name":"Mandalas & géométrie sacrée","icon":"✺","group":"Nombres & formes","summary":"Étudier formes, symétries et significations culturelles avec des étapes d’observation et de comparaison.","lens":"Repérer forme → décrire symétrie → comparer constructions → interpréter dans son contexte.","steps":[["Découvrir les mandalas","pages/meditation/mandala.html","Décrire la structure visuelle avant le symbole."],["Explorer les formes","pages/gematria/geometrie-sacree.html","Identifier les propriétés géométriques démontrables."],["Relier les symboles","pages/gematria/fleur-de-vie.html","Comparer les usages selon les traditions."],["Animer et composer","pages/meditation/mandala_anime.html","Expliquer les choix de composition."]]},{"id":"ecritures-comparees","name":"Comparer les écritures","icon":"⇄","group":"Comparaison & création","summary":"Comparer plusieurs systèmes sans les réduire à un seul modèle, puis documenter ce qui est comparable.","lens":"Définir les critères → aligner des exemples → relever écarts → conclure avec prudence.","steps":[["Découvrir les écritures","pages/logique/types-raisonnement.html","Choisir ce que l’on compare et pourquoi."],["Comparer les systèmes","parcours-ecritures-sacrees-comparees.html","Repérer les ressemblances et différences."],["Étudier les inscriptions","pages/hieroglyphes/immersion-inscriptions-index.html","Ancrer l’analyse sur des objets et sources."],["Synthétiser","parcours-logique-progressif.html","Expliquer la méthode et signaler ses limites."]]},{"id":"cryptographie","name":"Cryptographie & codes","icon":"⌘","group":"Comparaison & création","summary":"Passer de simples transformations à l’analyse de codes, avec des méthodes vérifiables.","lens":"Repérer la règle → tester des exemples → chercher un contre-exemple → valider la méthode.","steps":[["Bases du raisonnement","pages/logique/logique-debutant.html","Définir règles, symboles et hypothèses."],["Explorer les codes","parcours-cryptographie-sacree.html","Suivre les transformations étape par étape."],["Pratiquer la logique","pages/logique/exercices-logique.html","Tester une stratégie sur des exercices variés."],["Analyser ses méthodes","pages/cognitif/encyclopedie-raisonnements.html","Savoir expliquer pourquoi une piste fonctionne."]]}];
 const KEY="gematria_learning_paths_v1";
+const REVIEW_KEY="gematria_spaced_reviews_v1";
 const state=loadState();
+const reviewSchedule=loadReviewState();
+let activeReviewKey=null;
+const REVIEW_EXERCISES=[
+ {name:"Rappel libre",prompt:"Sans rouvrir la leçon, rappelle l’idée principale et deux éléments qui la soutiennent."},
+ {name:"Explique avec tes mots",prompt:"Explique cette étape comme à quelqu’un qui la découvre. Ajoute un exemple simple."},
+ {name:"Relie les notions",prompt:"Relie cette idée à une autre notion du parcours : qu’ont-elles en commun et qu’est-ce qui les distingue ?"},
+ {name:"Mise en pratique",prompt:"Invente un exemple nouveau et montre comment tu appliquerais cette idée, étape par étape."},
+ {name:"Vérifie ton raisonnement",prompt:"Quelles observations, étapes ou sources permettraient de vérifier ton explication ?"}
+];
+
 const catalogue=document.getElementById("catalogue");
 const groups=[...new Set(PATHS.map(p=>p.group))];
 for(const group of groups){const o=document.createElement("option");o.value=group;o.textContent=group;document.getElementById("group-filter").append(o)}
 document.getElementById("domain-count").textContent=PATHS.length;
 function loadState(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch{return {}}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));updateProgress();render()}
+function loadReviewState(){try{return JSON.parse(localStorage.getItem(REVIEW_KEY)||"{}")}catch{return {}}}
 function pathDone(p){return p.steps.filter((_,i)=>state[p.id+"."+i]).length}
+function reviewKey(p,i){return p.id+"."+i}
+function saveReviewSchedule(){localStorage.setItem(REVIEW_KEY,JSON.stringify(reviewSchedule))}
+function dueReviews(now=Date.now()){
+ return PATHS.flatMap(p=>p.steps.map((step,i)=>{const key=reviewKey(p,i);const record=reviewSchedule[key];return state[key]&&record&&Number(record.dueAt)<=now?{key,p,step,i,record}:null}).filter(Boolean))
+}
+function nextReview(){
+ const due=dueReviews();if(!due.length)return null;
+ const oldest=Math.min(...due.map(item=>Number(item.record.dueAt)));
+ const near=due.filter(item=>Number(item.record.dueAt)<=oldest+5*60*1000);
+ return near[Math.floor(Math.random()*near.length)]
+}
+function updateReviewSummary(message){
+ const due=dueReviews();document.getElementById("review-count").textContent=due.length;
+ const start=document.getElementById("review-start");start.disabled=!due.length;start.textContent=due.length?"Réviser maintenant ("+due.length+")":"Aucun rappel dû";
+ const summary=document.getElementById("review-summary");
+ if(message){summary.textContent=message;return}
+ if(due.length){summary.textContent=due.length+" rappel"+(due.length>1?"s":"")+" à faire. Les parcours sont mélangés pour t’entraîner à retrouver les notions." ;return}
+ const records=Object.keys(reviewSchedule).filter(key=>state[key]).map(key=>Number(reviewSchedule[key].dueAt)).filter(Number.isFinite);
+ if(!records.length){summary.textContent="Coche une étape après l’avoir étudiée : elle sera ajoutée à ta première révision.";return}
+ const next=Math.min(...records);const remaining=next-Date.now();
+ if(remaining<60*60*1000)summary.textContent="Prochain rappel dans environ "+Math.max(1,Math.round(remaining/60000))+" min.";
+ else if(remaining<24*60*60*1000)summary.textContent="Prochain rappel dans environ "+Math.ceil(remaining/3600000)+" h.";
+ else summary.textContent="Prochain rappel prévu le "+new Intl.DateTimeFormat("fr-FR",{dateStyle:"medium"}).format(new Date(next))+".";
+}
+function setStepStudied(key,checked){
+ if(checked){state[key]=true;if(!reviewSchedule[key])reviewSchedule[key]={dueAt:Date.now(),days:0,repetitions:0,lapses:0}}
+ else{delete state[key];delete reviewSchedule[key];if(activeReviewKey===key)activeReviewKey=null}
+ localStorage.setItem(KEY,JSON.stringify(state));saveReviewSchedule();updateProgress();render()
+}
+function renderReviewCard(item){
+ const session=document.getElementById("review-session");
+ if(!item){activeReviewKey=null;session.hidden=true;return false}
+ activeReviewKey=item.key;session.hidden=false;
+ const record=item.record,exercise=REVIEW_EXERCISES[(Number(record.repetitions||0)+Number(record.lapses||0)+item.i)%REVIEW_EXERCISES.length];
+ document.getElementById("review-meta").textContent=item.p.group+" · "+item.p.name;
+ document.getElementById("review-type").textContent=exercise.name;
+ document.getElementById("review-step-title").textContent=item.step[0];
+ document.getElementById("review-prompt").textContent=exercise.prompt;
+ document.getElementById("review-open").href=item.step[1];
+ document.getElementById("review-answer").value="";
+ document.getElementById("review-hint").textContent="Repère de l’étape : "+item.step[2];
+ document.getElementById("review-hint").hidden=true;
+ document.getElementById("review-ratings").hidden=true;
+ document.getElementById("review-feedback").textContent="";
+ return true
+}
+function startReview(){const item=nextReview();if(!item){updateReviewSummary("Aucune révision n’est due pour le moment.");return}renderReviewCard(item)}
+function revealReviewHint(){
+ const answer=document.getElementById("review-answer").value.trim();
+ if(answer.length<12){document.getElementById("review-feedback").textContent="Écris d’abord quelques mots de mémoire, même si tu hésites.";return}
+ document.getElementById("review-hint").hidden=false;document.getElementById("review-ratings").hidden=false;
+ document.getElementById("review-feedback").textContent="Compare ton rappel avec le repère de l’étape, puis évalue-le honnêtement."
+}
+function rateReview(rating){
+ if(!activeReviewKey)return;
+ const record=reviewSchedule[activeReviewKey]||{dueAt:Date.now(),days:0,repetitions:0,lapses:0},now=Date.now(),day=86400000;
+ if(rating==="again"){record.lapses=Number(record.lapses||0)+1;record.repetitions=0;record.days=0;record.dueAt=now+15*60*1000}
+ else if(rating==="hard"){record.days=Math.max(1,Number(record.days||1)*1.4);record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
+ else if(rating==="good"){const intervals=[1,3,7,14,30,60];record.days=intervals[Math.min(Number(record.repetitions||0),intervals.length-1)];record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
+ else{record.days=Math.max(4,Number(record.days||1)*2.5);record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
+ record.lastRating=rating;reviewSchedule[activeReviewKey]=record;saveReviewSchedule();activeReviewKey=null;
+ const next=nextReview();if(next)renderReviewCard(next);else{renderReviewCard(null);updateReviewSummary("Session terminée. Les rappels reviendront selon les intervalles choisis.")}
+}
 function render(){
  const q=document.getElementById("search").value.trim().toLocaleLowerCase("fr");
  const group=document.getElementById("group-filter").value,status=document.getElementById("status-filter").value;
@@ -62,7 +178,7 @@ function render(){
   catalogue.append(section)
  }
  document.getElementById("empty").style.display=filtered.length?"none":"block";
- catalogue.querySelectorAll(".check").forEach(box=>box.addEventListener("change",()=>{state[box.dataset.id]=box.checked;if(!box.checked)delete state[box.dataset.id];localStorage.setItem(KEY,JSON.stringify(state));updateProgress();render()}));
+ catalogue.querySelectorAll(".check").forEach(box=>box.addEventListener("change",()=>setStepStudied(box.dataset.id,box.checked)));
 }
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function escapeAttr(v){return escapeHtml(v)}
@@ -71,10 +187,17 @@ function updateProgress(){
  document.getElementById("done-count").textContent=done;
  document.getElementById("progress-label").textContent=done?done+" / "+total+" étapes terminées":"Aucune étape terminée pour l’instant.";
  const pct=total?Math.round(done/total*100):0;document.getElementById("progress-fill").style.width=pct+"%";document.querySelector('[role="progressbar"]').setAttribute("aria-valuenow",pct);
- updateResume()
+ updateResume();updateReviewSummary()
 }
 function updateResume(){const next=PATHS.flatMap(p=>p.steps.map((s,i)=>({p,s,i}))).find(x=>!state[x.p.id+"."+x.i]);const a=document.getElementById("resume-link");a.href=next?next.s[1]:"#catalogue";a.textContent=next?"Reprendre : "+next.p.name+" · étape "+(next.i+1)+" →":"Tous les jalons sont validés"}
 for(const id of ["search","group-filter","status-filter"])document.getElementById(id).addEventListener(id==="search"?"input":"change",render);
+document.getElementById("review-start").addEventListener("click",startReview);
+document.getElementById("review-reveal").addEventListener("click",revealReviewHint);
+document.getElementById("review-close").addEventListener("click",()=>{renderReviewCard(null);updateReviewSummary()});
+document.querySelectorAll("[data-review-rating]").forEach(button=>button.addEventListener("click",()=>rateReview(button.dataset.reviewRating)));
+let migratedReview=false;
+for(const p of PATHS)for(let i=0;i<p.steps.length;i++){const key=reviewKey(p,i);if(state[key]&&!reviewSchedule[key]){reviewSchedule[key]={dueAt:Date.now(),days:0,repetitions:0,lapses:0};migratedReview=true}}
+if(migratedReview)saveReviewSchedule();
 render();updateProgress();
 </script>
 </body></html>
