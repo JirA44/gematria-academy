@@ -106,7 +106,10 @@
       "#ga-language-panel label{font-weight:600}",
       "#ga-language-panel select{max-width:145px;border:1px solid #556078;border-radius:6px;background:#182138;color:inherit;padding:5px}",
       "#ga-language-panel span{max-width:150px;color:#c8cddd;font-size:10px}",
-      "@media(max-width:600px){#ga-language-panel{top:auto;right:8px;bottom:8px;left:8px;justify-content:space-between}#ga-language-panel span{max-width:120px}}"
+      ".header-buttons-cosmic{position:relative!important;top:auto!important;left:0!important;right:auto!important;width:calc(100% - clamp(405px,35vw,460px))!important;min-height:44px;display:flex;align-items:flex-start;justify-content:flex-start;gap:.45rem;flex-wrap:wrap;margin:0 0 1rem}",
+      "#login-button{order:-2!important}#profile-button{order:-1!important}",
+      "@media(max-width:900px){.header-buttons-cosmic{width:100%!important;padding-top:60px;margin-bottom:.75rem}}",
+      "@media(max-width:600px){.header-buttons-cosmic{padding-top:0}#ga-language-panel{top:auto;right:8px;bottom:8px;left:8px;justify-content:space-between}#ga-language-panel span{max-width:120px}}"
     ].join("");
     document.head.append(style);
     document.body.append(panel);
