@@ -7,6 +7,7 @@ class GematriaAuth {
         this.db = null;
         this.auth = null;
         this.initialized = false;
+        this.authResolved = false;
         this.initPromise = null;
         this.listeners = [];
     }
@@ -57,6 +58,7 @@ class GematriaAuth {
                     try { await this.loadUserData(user.uid); }
                     catch (error) { console.error("Erreur chargement profil Firestore:", error); }
                 }
+                this.authResolved = true;
                 this.notifyListeners();
             });
 
@@ -192,7 +194,7 @@ class GematriaAuth {
     // Observer pattern
     onAuthStateChanged(callback) {
         this.listeners.push(callback);
-        if (this.initialized) callback(this.user);
+        if (this.authResolved) callback(this.user);
         return () => {
             this.listeners = this.listeners.filter(l => l !== callback);
         };
