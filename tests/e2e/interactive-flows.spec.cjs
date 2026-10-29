@@ -293,3 +293,41 @@ test("Learning path progression syncs to the signed-in student account", async (
   ));
   expectNoBrowserErrors(errors);
 });
+
+
+test("Memory recall uses the selected language and accepts its vocabulary", async ({ page }) => {
+  const errors = watchBrowserErrors(page);
+  await page.route("**/assets/js/auth/firebase-config.js", route => route.fulfill({
+    contentType: "application/javascript",
+    body: ""
+  }));
+  await page.route("**/assets/js/auth/auth-system.js", route => route.fulfill({
+    contentType: "application/javascript",
+    body: ""
+  }));
+
+  await page.goto("/memory-path.html");
+  await page.evaluate(() => localStorage.setItem("language", "zh"));
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
+  await page.locator('[data-challenge="lists"]').click();
+  await page.locator("#profileForm").evaluate(form => form.requestSubmit());
+  await page.locator("#launchExercise").click();
+  await expect(page.locator("#wordList .word-chip")).toHaveText(["苹果", "灯", "河流"]);
+
+  await page.evaluate(() => {
+    const selector = document.createElement("select");
+    selector.id = "ga-language-select";
+    selector.innerHTML = '<option value="zh">中文</option><option value="ru">Русский</option>';
+    document.body.append(selector);
+    selector.value = "ru";
+    selector.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+  await expect(page.locator("html")).toHaveAttribute("lang", "ru");
+  await expect(page.locator("#wordList .word-chip")).toHaveText(["яблоко", "лампа", "река"]);
+  await page.locator("#hideWords").click();
+  await page.locator("#recallInput").fill("яблоко, лампа, река");
+  await page.locator("#checkRecall").click();
+  await expect(page.locator("#exerciseFeedback")).toContainText("3 sur 3");
+  expectNoBrowserErrors(errors);
+});
