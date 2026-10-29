@@ -311,6 +311,7 @@ test("Memory recall uses the selected language and accepts its vocabulary", asyn
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
   await page.locator('[data-challenge="lists"]').click();
+  await page.locator("#profileForm").evaluate(form => form.requestSubmit());
   await page.locator("#launchExercise").click();
   await expect(page.locator("#wordList .word-chip")).toHaveText(["苹果", "灯", "河流"]);
 
