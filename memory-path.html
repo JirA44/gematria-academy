@@ -29,6 +29,7 @@
         <section class="panel" id="pathPanel" aria-labelledby="pathTitle">
           <div class="section-head"><div><h2 id="pathTitle">Ton parcours progressif</h2><p>Un diagnostic, une méthode, un exercice, puis une révision au bon moment.</p></div><span class="badge" id="levelBadge">À personnaliser</span></div>
           <div class="progress-track" role="progressbar" aria-label="Avancement du parcours" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="tip" id="curriculumProgress" aria-live="polite" style="margin:14px 0 18px"></div>
           <div class="path" id="pathSteps">
             <article class="step active" data-step="profile"><div class="step-icon">🧭</div><div><h3>1 · Faire le point</h3><p>Définis ton objectif et repère les situations difficiles.</p></div><button class="button secondary small step-action" data-action="profile">Mon profil</button></article>
             <article class="step" data-step="methods"><div class="step-icon">🧩</div><div><h3>2 · Découvrir les méthodes</h3><p>Apprends à encoder, associer, organiser et rappeler.</p></div><button class="button secondary small step-action" data-action="methods">Voir les méthodes</button></article>
@@ -99,14 +100,30 @@
     function friendlyError(error){const code=error?.code||'';if(code.includes('permission-denied'))return 'Vérifie les règles Firestore pour users/{uid}/progression.';if(code.includes('network'))return 'Vérifie ta connexion Internet puis réessaie.';return error?.message||'Erreur inconnue.'}
     function save(){persistLocal();render();if(user)syncRemote()}
     function updateProfileForm(){if(!profile)return;$('#goal').value=profile.goal||'names';$('#level').value=profile.level||'beginner';$('#minutes').value=String(profile.minutes||10);$$('[data-challenge]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.challenge===(profile.challenge||'names'))))}
-    function levelName(){const n=profile.sessions.length;return n<3?'Fondations':n<8?'Entraînement':'Consolidation'}
+    function recentAverage(count){const scores=profile.sessions.slice(-count).map(x=>Number(x.score)||0);return scores.length===count?scores.reduce((a,b)=>a+b,0)/count:null}
+    function curriculumStage(){
+      const n=profile.sessions.length;let stage=0;
+      if(n>=3&&(recentAverage(3)||0)>=60)stage=1;
+      if(stage>=1&&n>=8&&(recentAverage(3)||0)>=70)stage=2;
+      if(stage>=2&&n>=15&&(recentAverage(5)||0)>=80)stage=3;
+      return stage;
+    }
+    function levelName(){return ['Découverte','Débutant','Intermédiaire','Avancé'][curriculumStage()]}
     function nextDue(){return profile.reviews.filter(r=>!r.done).sort((a,b)=>a.due-b.due)[0]}
     function render(){
       $('#statSessions').textContent=profile.sessions.length;
       const avg=profile.sessions.length?Math.round(profile.sessions.reduce((s,x)=>s+x.score,0)/profile.sessions.length):null;
       $('#statAccuracy').textContent=avg===null?'—':`${avg}%`;
       const due=nextDue();$('#statReview').textContent=due?(due.due<=Date.now()?(currentLang==='en'?'Today':'Aujourd’hui'):new Intl.DateTimeFormat(currentLang==='en'?'en-US':'fr-FR',{day:'numeric',month:'short'}).format(new Date(due.due))):(currentLang==='en'?'Not started':'À démarrer');
-      $('#levelBadge').textContent=profile.sessions.length?levelName():'À personnaliser';
+      const stage=curriculumStage();$('#levelBadge').textContent=levelName();
+      const gates=[{count:3,score:60,window:3,name:'Débutant'},{count:8,score:70,window:3,name:'Intermédiaire'},{count:15,score:80,window:5,name:'Avancé'}];
+      const gate=gates[stage];const progress=$('#curriculumProgress');
+      const recent=recentAverage(gate?.window||3);const completedSessions=Math.min(profile.sessions.length,gate?.count||0);
+      progress.innerHTML=stage===3
+        ? (currentLang==='en'?'<strong>Advanced level reached.</strong> Keep practising and review your weak spots to make learning last. Your results are saved with your profile when cloud sync is available.':'<strong>Niveau avancé atteint.</strong> Continue à pratiquer et révise tes points fragiles pour ancrer les acquis. Ta progression suit ton profil lorsque la synchronisation cloud est disponible.')
+        : (currentLang==='en'?'<strong>Current level: '+levelName()+'.</strong> Next: '+gate.name+'. Sessions: '+completedSessions+'/'+gate.count+'; recent average: '+(recent===null?'—':Math.round(recent)+'%')+'/'+gate.score+'% over the last '+gate.window+'. The level unlocks only after both conditions are met.':'<strong>Niveau actuel : '+levelName()+'.</strong> Prochain palier : '+gate.name+'. Séances : '+completedSessions+'/'+gate.count+' ; moyenne récente : '+(recent===null?'—':Math.round(recent)+' %')+'/'+gate.score+' % sur les '+gate.window+' dernières. Le niveau se débloque lorsque les deux conditions sont remplies.');
+
+      applyLanguage(progress);
       const completed=new Set();if(profile.baseline!==null)completed.add('profile');if(profile.sessions.some(s=>s.type==='exercise'))completed.add('methods');if(profile.sessions.length)completed.add('exercise');if(profile.reviews.some(r=>r.done))completed.add('review');
       $$('.step').forEach(el=>{const done=completed.has(el.dataset.step);el.classList.toggle('done',done);el.classList.toggle('active',!done&&[...$$('.step')].findIndex(x=>x.dataset.step===el.dataset.step)===completed.size);const action=$('[data-action]',el);if(done)action.textContent='Revoir'})
       const percent=Math.round(completed.size/4*100);$('#progressFill').style.width=percent+'%';$('.progress-track').setAttribute('aria-valuenow',String(percent));
@@ -121,21 +138,26 @@
     function startExercise(isReview=false){
       activeExerciseIsReview=isReview;
       const rounds=currentLang==='en'?['apple','lamp','river','key','compass','butterfly','mountain','book','pineapple']:['pomme','lampe','rivière','clé','boussole','papillon','montagne','livre','ananas'];
-      const names=currentLang==='en'?[['Lina','a red scarf'],['Noé','round glasses'],['Maya','a yellow bag'],['Amir','green sneakers'],['Zoé','a large hat']]:[['Lina','un foulard rouge'],['Noé','des lunettes rondes'],['Maya','un sac jaune'],['Amir','des baskets vertes'],['Zoé','un grand chapeau']];
-      const count=profile.sessions.length<3?3:profile.sessions.length<8?4:5;
-      const list=profile.challenge==='names'?names.slice(0,count).map(x=>x[0]+' ('+x[1]+')'):rounds.slice(0,profile.sessions.length<3?5:profile.sessions.length<8?7:9);
+      const names=currentLang==='en'?[['Lina','a red scarf'],['Noé','round glasses'],['Maya','a yellow bag'],['Amir','green sneakers'],['Zoé','a large hat'],['Nora','a blue umbrella'],['Yanis','a striped shirt'],['Inès','a silver bracelet'],['Adam','a green cap']]:[['Lina','un foulard rouge'],['Noé','des lunettes rondes'],['Maya','un sac jaune'],['Amir','des baskets vertes'],['Zoé','un grand chapeau'],['Nora','un parapluie bleu'],['Yanis','un tee-shirt rayé'],['Inès','un bracelet argenté'],['Adam','une casquette verte']];
+      const stage=curriculumStage();
+      const count=[3,5,7,9][stage];
+      const list=profile.challenge==='names'?names.slice(0,count).map(x=>x[0]+' ('+x[1]+')'):rounds.slice(0,count);
+      const strictOrder=stage>=2;
       const title=isReview?'Rappel de ta dernière méthode':profile.challenge==='names'?'Associer des noms à un détail':profile.challenge==='lists'?'Mémoriser une liste en images':profile.challenge==='focus'?'Observer puis rappeler':'Mémoriser par associations';
       const tip=profile.challenge==='names'?'Associe chaque prénom à son détail distinctif et imagine les deux ensemble.':profile.challenge==='lists'?'Relie les mots dans une petite scène visuelle absurde.':'Crée une image précise pour chaque élément, puis relie-les entre eux.';
       $('#exerciseFeedback').textContent='';
-      $('#exerciseContent').innerHTML=`<div class="exercise-box"><span class="badge">${isReview?'Révision espacée':'Exercice · 2 à 4 minutes'}</span><h3>${title}</h3><p>${tip}</p><p><strong>Étape 1 :</strong> regarde les éléments, invente tes images, puis cache-les quand tu es prêt.</p><div class="exercise-words" id="wordList">${list.map(x=>`<span class="word-chip">${escapeHtml(x)}</span>`).join('')}</div><button class="button secondary small" id="hideWords">J’ai créé mes images — cacher</button><div id="recallArea" class="hidden"><p><strong>Étape 2 :</strong> écris ce dont tu te souviens, séparé par des virgules. Pour les noms, le prénom suffit.</p><label for="recallInput" class="sr-only">Tes réponses</label><input id="recallInput" type="text" autocomplete="off" placeholder="Écris les éléments dont tu te souviens" style="width:100%;padding:12px;background:#101a2c;border:1px solid var(--line);border-radius:10px;color:var(--text)"><button class="button small" id="checkRecall" style="margin-top:12px">Vérifier mon rappel</button></div></div>`;
+      $('#exerciseContent').innerHTML=`<div class="exercise-box"><span class="badge">${isReview?'Révision espacée':'Exercice · 2 à 4 minutes'}</span><h3>${title}</h3><p>${tip}</p>${strictOrder?'<p class="tip">'+(currentLang==='en'?'At this level, recall the items in the exact order shown.':'À ce niveau, rappelle les éléments dans l’ordre exact de la liste.')+'</p>':''}<p><strong>Étape 1 :</strong> regarde les éléments, invente tes images, puis cache-les quand tu es prêt.</p><div class="exercise-words" id="wordList">${list.map(x=>`<span class="word-chip">${escapeHtml(x)}</span>`).join('')}</div><button class="button secondary small" id="hideWords">J’ai créé mes images — cacher</button><div id="recallArea" class="hidden"><p><strong>Étape 2 :</strong> écris ce dont tu te souviens, séparé par des virgules. Pour les noms, le prénom suffit.</p><label for="recallInput" class="sr-only">Tes réponses</label><input id="recallInput" type="text" autocomplete="off" placeholder="Écris les éléments dont tu te souviens" style="width:100%;padding:12px;background:#101a2c;border:1px solid var(--line);border-radius:10px;color:var(--text)"><button class="button small" id="checkRecall" style="margin-top:12px">Vérifier mon rappel</button></div></div>`;
       applyLanguage($('#exerciseContent'));
       $('#hideWords').addEventListener('click',()=>{$('#wordList').classList.add('hidden');$('#hideWords').classList.add('hidden');$('#recallArea').classList.remove('hidden');applyLanguage($('#recallArea'));$('#recallInput').focus()});
       $('#checkRecall').addEventListener('click',()=>{
         const answers=$('#recallInput').value.toLocaleLowerCase(currentLang==='en'?'en':'fr').split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);
-        const expected=profile.challenge==='names'?names.slice(0,count).map(x=>x[0].toLocaleLowerCase('fr')):rounds.slice(0,profile.sessions.length<3?5:profile.sessions.length<8?7:9);
+        const expected=profile.challenge==='names'?names.slice(0,count).map(x=>x[0].toLocaleLowerCase('fr')):rounds.slice(0,count);
         const normalized=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-        const correct=expected.filter(x=>answers.some(a=>normalized(a).includes(normalized(x)))).length;
-        const score=Math.round(correct/expected.length*100);
+        const matched=expected.map(x=>answers.findIndex(a=>normalized(a).includes(normalized(x))));
+        const correct=matched.filter(i=>i>=0).length;
+        const recallScore=correct/expected.length*100;
+        const orderScore=matched.reduce((sum,index,position)=>sum+(index===position?1:0),0)/expected.length*100;
+        const score=Math.round(strictOrder?recallScore*0.7+orderScore*0.3:recallScore);
         recordSession(score,title,isReview);
         const label=score===100?'Bravo, rappel complet !':score>=60?'Bien joué, tu en as retrouvé plusieurs.':'C’est un point de départ : réessaie en créant des images plus nettes.';
         $('#exerciseFeedback').textContent=currentLang==='en'?`${english[label]||label} ${correct} of ${expected.length} items recalled.`:`${label} ${correct} sur ${expected.length} éléments retrouvés.`;
