@@ -293,7 +293,8 @@
         .back-btn:hover {
             transform: scale(1.05);
         }
-    </style>
+    .mastery-section{margin:24px 0;padding:22px;border:1px solid rgba(213,180,93,.35);border-radius:16px;background:linear-gradient(140deg,rgba(26,36,57,.96),rgba(16,21,36,.94));color:#e9e6dc}.mastery-section h3{margin:0 0 8px;color:#f0d989}.mastery-section>p{color:#b8c0d0}.mastery-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:16px 0}.mastery-summary-grid>div{padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.035)}.mastery-summary-grid strong{display:block;font-size:22px;color:#f0d989}.mastery-summary-grid span{font-size:12px;color:#b8c0d0}.mastery-section a{display:inline-flex;padding:9px 12px;border-radius:8px;background:#58451c;color:#fff2c1;text-decoration:none}.mastery-section small{display:block;margin-top:12px;color:#b8c0d0}
+</style>
 <meta name="description" content="👤 Mon Profil : parcours, ressources et exercices pour apprendre progressivement sur Gematria Academy.">
 <meta name="robots" content="noindex,follow">
 </head>
@@ -347,6 +348,19 @@
                 <div class="stat-label">Jours consécutifs</div>
             </div>
         </div>
+
+        <section class="mastery-section" id="learning-mastery" aria-labelledby="mastery-title">
+            <h3 id="mastery-title">🎯 Assimilation et maîtrise des compétences</h3>
+            <p>Une leçon ouverte compte comme étudiée, pas comme acquise. Ici, les réussites durables sont celles que l’élève a déclarées sans aide à travers plusieurs épreuves espacées.</p>
+            <div class="mastery-summary-grid">
+                <div><strong id="masteryStudied">0</strong><span>Étapes étudiées</span></div>
+                <div><strong id="masteryConfirmed">0</strong><span>Maîtrises durables autoévaluées</span></div>
+                <div><strong id="masteryDue">0</strong><span>Rappels à faire</span></div>
+            </div>
+            <p id="masterySummary" role="status" aria-live="polite">Chargement du suivi des apprentissages…</p>
+            <a href="../../parcours-apprentissage.html">Reprendre les parcours et exercices →</a>
+            <small>Les réponses libres ne sont pas corrigées automatiquement et leur texte n’est pas conservé.</small>
+        </section>
 
         <div class="progress-section" id="progress">
             <h3>📊 Progression par Domaine</h3>
@@ -438,6 +452,77 @@
         ];
 
         let profileLoaded = false;
+
+        function readLearningJson(key) {
+            try { return JSON.parse(localStorage.getItem(key) || '{}'); }
+            catch (error) { console.warn('Suivi des apprentissages illisible :', error); return {}; }
+        }
+
+        function renderLearningMastery(data) {
+            const studied = data.studied || {};
+            const schedules = data.schedules || {};
+            const mastery = data.mastery || {};
+            const changes = data.changes || {};
+            const completedKeys = new Set(Object.keys(studied).filter(key => studied[key]));
+            for (const [key, change] of Object.entries(changes)) {
+                if (change?.completed) completedKeys.add(key);
+                else completedKeys.delete(key);
+            }
+            const confirmed = Object.values(mastery).filter(value =>
+                value && typeof value === 'object' && value.status === 'durable' &&
+                Number(value.passes) >= 3 && Number(value.confirmedAt) > 0
+            ).length;
+            const now = Date.now();
+            const due = Object.entries(schedules).filter(([key, record]) =>
+                completedKeys.has(key) && Number(record?.dueAt) <= now
+            ).length;
+            document.getElementById('masteryStudied').textContent = completedKeys.size;
+            document.getElementById('masteryConfirmed').textContent = confirmed;
+            document.getElementById('masteryDue').textContent = due;
+            const summary = document.getElementById('masterySummary');
+            summary.textContent = due
+                ? due + ' rappel' + (due > 1 ? 's sont' : ' est') + ' à faire dans les parcours.'
+                : confirmed
+                    ? confirmed + ' compétence' + (confirmed > 1 ? 's sont' : ' est') + ' confirmée' + (confirmed > 1 ? 's' : '') + ' après plusieurs épreuves espacées.'
+                    : 'Aucune maîtrise durable autoévaluée pour le moment. Commence par étudier une étape, puis passe les épreuves sans aide.';
+        }
+
+        async function refreshLearningMastery(auth) {
+            const local = {
+                studied: readLearningJson('gematria_learning_paths_v1'),
+                schedules: readLearningJson('gematria_spaced_reviews_v1'),
+                mastery: readLearningJson('gematria_learning_mastery_v1'),
+                changes: readLearningJson('gematria_learning_sync_v1').changes || {}
+            };
+            renderLearningMastery(local);
+            if (!auth?.loadProgression) return;
+            try {
+                const remote = await auth.loadProgression('learning-paths');
+                if (!remote || typeof remote !== 'object') return;
+                const changes = { ...local.changes };
+                const changeKeys = new Set([...Object.keys(local.changes), ...Object.keys(remote.changes || {})]);
+                for (const key of changeKeys) {
+                    const localChange = local.changes[key] || { completed: !!local.studied[key], updatedAt: 0 };
+                    const remoteChange = remote.changes?.[key];
+                    if (remoteChange && Number(remoteChange.updatedAt || 0) > Number(localChange.updatedAt || 0)) changes[key] = remoteChange;
+                }
+                const schedules = { ...local.schedules };
+                for (const [key, value] of Object.entries(remote.schedules || {})) {
+                    if (!schedules[key] || Number(value.updatedAt || 0) > Number(schedules[key].updatedAt || 0)) schedules[key] = value;
+                }
+                const mastery = { ...local.mastery };
+                for (const [key, value] of Object.entries(remote.mastery || {})) {
+                    const localValue = mastery[key];
+                    const localTime = Number(localValue?.updatedAt || localValue?.confirmedAt || localValue || 0);
+                    const remoteTime = Number(value?.updatedAt || value?.confirmedAt || value || 0);
+                    if (!localValue || remoteTime > localTime) mastery[key] = value;
+                }
+                renderLearningMastery({ ...local, changes, schedules, mastery });
+            } catch (error) {
+                console.warn('Progression cloud non disponible sur le profil :', error);
+            }
+        }
+
 
         function readLocalProfile() {
             for (const key of ['currentUser', 'gematria_user']) {
@@ -593,9 +678,10 @@
         // Charger le profil au chargement de la page
         window.addEventListener('DOMContentLoaded', () => {
             const auth = window.gematriaAuth;
+            renderLearningMastery({ studied: readLearningJson("gematria_learning_paths_v1"), schedules: readLearningJson("gematria_spaced_reviews_v1"), mastery: readLearningJson("gematria_learning_mastery_v1"), changes: readLearningJson("gematria_learning_sync_v1").changes || {} });
             if (auth?.onAuthStateChanged) {
                 auth.onAuthStateChanged(user => {
-                    if (user) loadProfile(user, auth.userData || {});
+                    if (user) { loadProfile(user, auth.userData || {}); refreshLearningMastery(auth); }
                     else if (auth.authResolved) loadProfile();
                 });
                 auth.init().catch(() => loadProfile());

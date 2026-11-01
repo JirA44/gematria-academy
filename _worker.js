@@ -127,10 +127,35 @@ export default {
     } catch {
       return response;
     }
-    const scriptTag = '<script defer src="/assets/js/site-language.js?v=4"></script>';
-    if (!html.includes("/assets/js/site-language.js")) {
-      if (/<\/head\s*>/i.test(html)) html = html.replace(/<\/head\s*>/i, scriptTag + "</head>");
-      else html = scriptTag + html;
+    const mainMenuPages = new Set(["/", "/index.html", "/index_production.html", "/index_standard.html", "/index_principal.html", "/index_portal.html"]);
+    const navigationStyle = `<style id="ga-global-navigation-style">
+      .ga-global-nav,.ga-global-footer{width:min(1180px,calc(100% - 32px));margin:12px auto;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:10px 12px;border:1px solid rgba(213,180,93,.35);border-radius:12px;background:rgba(16,21,36,.94);color:#f4f0e7;font:600 13px/1.4 system-ui,sans-serif}
+      .ga-global-footer{margin:42px auto 18px;padding:18px 12px}
+      .ga-global-nav a,.ga-global-footer a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border:1px solid rgba(213,180,93,.3);border-radius:8px;background:rgba(255,255,255,.035);color:#f0d989;text-decoration:none}
+      .ga-global-nav a:hover,.ga-global-footer a:hover,.ga-global-nav a:focus-visible,.ga-global-footer a:focus-visible{background:rgba(213,180,93,.14);outline:2px solid #f0d989;outline-offset:2px}
+      #ga-page-top{position:absolute;top:0}
+      @media(max-width:600px){.ga-global-nav,.ga-global-footer{width:calc(100% - 20px);gap:6px;padding:9px}.ga-global-nav a,.ga-global-footer a{flex:1 1 42%;font-size:12px}}
+    </style>`;
+    if (!html.includes('id="ga-global-navigation-style"') && /<\/head\s*>/i.test(html)) {
+      html = html.replace(/<\/head\s*>/i, navigationStyle + "</head>");
+    }
+    if (!mainMenuPages.has(url.pathname.toLowerCase()) && !html.includes('class="ga-global-nav"')) {
+      const topNavigation = '<a id="ga-page-top" tabindex="-1" aria-hidden="true"></a><nav class="ga-global-nav" aria-label="Navigation Gematria Academy"><a href="/index.html">Menu principal</a><a href="/parcours-apprentissage.html">Hub des parcours</a><a href="/index_ecritures_sacrees.html">Hub des écritures</a></nav>';
+      const bottomNavigation = '<nav class="ga-global-footer" aria-label="Raccourcis de fin de page"><a href="#ga-page-top">↑ Haut de page</a><a href="/index.html">Menu principal</a><a href="/parcours-apprentissage.html">Hub des parcours</a><a href="/index_ecritures_sacrees.html">Hub des écritures</a></nav>';
+      if (/<body\b[^>]*>/i.test(html)) {
+        html = html.replace(/<body\b[^>]*>/i, (tag) => tag + topNavigation);
+        if (/<\/body\s*>/i.test(html)) html = html.replace(/<\/body\s*>/i, bottomNavigation + "</body>");
+        else html += bottomNavigation;
+      }
+    }
+    const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
+    const languageScriptPattern = /src=["'][^"']*assets\/js\/site-language\.js(?:\?[^"']*)?["']/i;
+    if (languageScriptPattern.test(html)) {
+      html = html.replace(languageScriptPattern, 'src="/assets/js/site-language.js?v=5"');
+    } else if (/<\/head\s*>/i.test(html)) {
+      html = html.replace(/<\/head\s*>/i, scriptTag + "</head>");
+    } else {
+      html = scriptTag + html;
     }
     const headers = new Headers(response.headers);
     headers.delete("Content-Length");
