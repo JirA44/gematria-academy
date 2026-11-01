@@ -108,6 +108,8 @@
       document.documentElement.lang=currentLang==='zh'?'zh-CN':currentLang;
       document.documentElement.dir=['ar','ur'].includes(currentLang)?'rtl':'ltr';
       document.title=pageTitles[currentLang]||pageTitles.fr;
+      const progressTrack=$('.progress-track');
+      if(progressTrack)progressTrack.setAttribute('aria-label',currentLang==='en'?'Path progress':'Avancement du parcours');
       const input=$('#recallInput');
       if(input)input.placeholder=recallPlaceholders[currentLang]||recallPlaceholders.fr;
     }
