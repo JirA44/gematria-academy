@@ -256,10 +256,13 @@ test("Learning paths schedule varied active-recall practice", async ({ page }) =
   await expect(page.locator("#review-step-title")).not.toBeEmpty();
   await expect(page.locator("#review-type")).toContainText("Rappel");
   await page.locator("#review-answer").fill("Je rappelle les idées principales de la leçon avec un exemple que je formule de mémoire.");
-  await page.locator("#review-reveal").click();
+  await page.locator("#review-submit").click();
+  await expect(page.locator("#review-evaluation")).toBeVisible();
   await expect(page.locator("#review-hint")).toBeVisible();
   await expect(page.locator("#review-ratings")).toBeVisible();
-  await page.locator('[data-review-rating="good"]').click();
+  await page.locator("#review-no-help").check();
+  await page.locator("#review-meets-criteria").check();
+  await page.locator('[data-review-rating="pass"]').click();
   await expect(page.locator(".check").nth(1)).toBeEnabled();
 
   await expect(page.locator("#review-count")).toHaveText("0");
