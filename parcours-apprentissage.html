@@ -118,7 +118,7 @@ const syncMeta=loadSyncMeta();
 let syncUser=null,syncBusy=false,syncQueued=false;
 let activeReviewKey=null;
 const REVIEW_PHASES=[
- {name:"Épreuve 1/3 · rappel sans aide",prompt:item=>"Sans rouvrir le cours, explique avec tes mots « "+item.step[0]+" ». Formule le principe central et donne un exemple précis."},
+ {name:"Épreuve 1/3 · Rappel sans aide",prompt:item=>"Sans rouvrir le cours, explique avec tes mots « "+item.step[0]+" ». Formule le principe central et donne un exemple précis."},
  {name:"Épreuve 2/3 · application nouvelle",prompt:item=>"Invente un exemple différent de celui du cours pour « "+item.step[0]+" ». Applique le repère étape par étape et justifie ta conclusion."},
  {name:"Épreuve 3/3 · transfert",prompt:item=>"Construis un cas nouveau où « "+item.step[0]+" » pourrait s’appliquer. Explique comment tu le reconnais, quelle démarche tu choisis et quelle limite ou contre-interprétation tu vérifies."},
  {name:"Confirmation à 7 jours · rappel durable",prompt:item=>"Sans revoir le cours, invente un second cas inédit pour « "+item.step[0]+" ». Réutilise la méthode, justifie chaque étape et précise ce que ta conclusion ne permet pas d’affirmer."}
