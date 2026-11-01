@@ -33,6 +33,7 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 .review-privacy{color:var(--muted);font-size:11px}.review-close{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:6px 0}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:760px){.review-panel{padding:18px}.review-head{align-items:flex-start;flex-direction:column}.review-start-wrap{justify-items:start}.review-ratings{align-items:stretch}.review-ratings button{flex:1 1 calc(50% - 8px)}}
+.review-evaluation{margin-top:16px;padding:14px;border:1px solid rgba(142,203,165,.28);border-radius:10px;background:rgba(142,203,165,.06)}.review-evaluation[hidden]{display:none!important}.review-evaluation h4{margin:0 0 8px;color:var(--green)}#review-criteria{margin:8px 0;padding-left:22px;color:var(--text);font-size:13px}#review-criteria li{margin:4px 0}.review-check{display:flex;align-items:flex-start;gap:8px;margin:10px 0;color:var(--muted);font-size:12px}.review-check input{margin-top:4px;accent-color:var(--green)}.review-ratings button:disabled{opacity:.45;cursor:not-allowed}.step-mastery{display:block;margin-top:4px;color:var(--muted);font-size:10px;line-height:1.35}.step-mastery.is-mastered{color:var(--green);font-weight:700}.step-mastery.is-pending{color:var(--gold2)}
 </style>
 </head>
 <body>
@@ -42,7 +43,7 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 <div class="eyebrow">Un campus · de nombreux domaines · des chemins progressifs</div>
 <h1>Apprendre à voir,<br>relier et raisonner</h1>
 <p>Choisis un domaine et avance du premier contact jusqu’à la pratique approfondie. Chaque itinéraire relie les ressources existantes à une méthode de pensée claire : observer, contextualiser, tester et réviser.</p>
-<div class="metrics"><span class="metric"><strong id="domain-count">18</strong> parcours thématiques</span><span class="metric"><strong>4</strong> niveaux progressifs · débutant → avancé</span><span class="metric"><strong id="done-count">0</strong> étapes validées</span></div>
+<div class="metrics"><span class="metric"><strong id="domain-count">18</strong> parcours thématiques</span><span class="metric"><strong>4</strong> niveaux progressifs · débutant → avancé</span><span class="metric"><strong id="done-count">0</strong> maîtrises durables</span></div>
 </section>
 <section class="method" aria-labelledby="method-title"><h2 id="method-title">Le cycle d’apprentissage de l’Académie</h2><p>La même rigueur accompagne tous les domaines, avec des questions adaptées à chaque tradition, discipline et système.</p>
 <div class="loop"><div><b>01 · Observer</b>Qu’est-ce qui est réellement présent ?</div><div><b>02 · Contextualiser</b>Quel système et quelle source ?</div><div><b>03 · Formuler</b>Quelle règle ou hypothèse ?</div><div><b>04 · Tester</b>Quel exemple peut la vérifier ou la contredire ?</div><div><b>05 · Réviser</b>Que permet la conclusion — et que ne permet-elle pas ?</div></div></section>
@@ -50,32 +51,27 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 <aside class="sync-panel" aria-live="polite"><div><strong id="sync-title">Progression enregistrée sur cet appareil</strong><span id="sync-copy">Connecte-toi pour retrouver tes acquis sur tes autres appareils.</span></div><a id="sync-login" href="/pages/user/login.html?return=%2Fparcours-apprentissage.html">Connexion / créer un compte →</a></aside>
 <section class="review-panel" aria-labelledby="review-title">
   <div class="review-head">
-    <div><p class="review-kicker">Pratique de rappel</p><h2 id="review-title">Réactive tes connaissances pour les retenir</h2><p>Les étapes étudiées reviennent à réviser. Le rappel mélange explication, liens entre notions et mise en pratique.</p></div>
-    <div class="review-start-wrap"><strong id="review-count">0</strong><span>à réviser</span><button class="review-button" id="review-start" type="button" disabled>Commencer la session</button></div>
+    <div><p class="review-kicker">Vérification de l’assimilation</p><h2 id="review-title">Prouve que tu sais réutiliser ce que tu as appris</h2><p>Rappel sans aide, application sur un exemple inédit, transfert, puis confirmation après 7 jours. Les leçons consultées restent simplement « étudiées » tant que ces étapes ne sont pas réussies.</p></div>
+    <div class="review-start-wrap"><strong id="review-count">0</strong><span>épreuves à faire</span><button class="review-button" id="review-start" type="button" disabled>Commencer la session</button></div>
   </div>
-  <p class="review-summary" id="review-summary" role="status" aria-live="polite">Coche une étape étudiée pour créer son premier rappel.</p>
+  <p class="review-summary" id="review-summary" role="status" aria-live="polite">Étudie une étape puis coche « étudiée » pour lancer sa première épreuve sans aide.</p>
   <div class="review-session" id="review-session" hidden aria-live="polite">
-    <div class="review-meta" id="review-meta"></div>
-    <p class="review-type" id="review-type"></p>
-    <h3 id="review-step-title"></h3>
-    <p class="review-prompt" id="review-prompt"></p>
-    <label class="visually-hidden" for="review-answer">Ta réponse de mémoire</label>
-    <textarea id="review-answer" rows="4" placeholder="Écris de mémoire, sans rouvrir la leçon…"></textarea>
-    <div class="review-actions"><a id="review-open" href="#" target="_blank" rel="noopener noreferrer">Rouvrir la leçon</a><button class="review-button secondary" id="review-reveal" type="button">Comparer avec le repère</button></div>
-    <p class="review-hint" id="review-hint" hidden></p>
-    <p class="review-feedback" id="review-feedback" role="status" aria-live="polite"></p>
-    <div class="review-ratings" id="review-ratings" hidden>
-      <span>Comment l’as-tu retrouvée ?</span>
-      <button type="button" data-review-rating="again">Pas retrouvée</button>
-      <button type="button" data-review-rating="hard">Difficile</button>
-      <button type="button" data-review-rating="good">Retenue</button>
-      <button type="button" data-review-rating="easy">Facile</button>
+    <div class="review-meta" id="review-meta"></div><p class="review-type" id="review-type"></p><h3 id="review-step-title"></h3><p class="review-prompt" id="review-prompt"></p>
+    <label class="visually-hidden" for="review-answer">Ta réponse sans aide</label><textarea id="review-answer" rows="4" placeholder="Réponds de mémoire sans rouvrir le cours ni chercher d’indice…"></textarea>
+    <div class="review-actions"><button class="review-button" id="review-submit" type="button">Terminer ma réponse</button></div>
+    <div class="review-evaluation" id="review-evaluation" hidden>
+      <h4>Compare ta réponse à ces critères</h4><ul id="review-criteria"></ul><p class="review-hint" id="review-hint" hidden></p>
+      <div class="review-actions"><a id="review-open" href="#" target="_blank" rel="noopener noreferrer" hidden>Rouvrir le cours après l’épreuve</a></div>
+      <label class="review-check"><input id="review-no-help" type="checkbox"> Je n’ai consulté ni le cours ni un indice avant de répondre.</label>
+      <label class="review-check"><input id="review-meets-criteria" type="checkbox"> Ma réponse satisfait les critères de cette épreuve.</label>
+      <p class="review-feedback" id="review-feedback" role="status" aria-live="polite"></p>
+      <div class="review-ratings" id="review-ratings" hidden><span>Évalue honnêtement ton résultat :</span><button type="button" data-review-rating="fail">À retravailler</button><button type="button" data-review-rating="pass" disabled>Réussi sans aide</button></div>
     </div>
-    <p class="review-privacy">Ta réponse n’est pas enregistrée. Ton calendrier, tes acquis et les niveaux débloqués suivent ton compte lorsqu’il est synchronisé.</p>
+    <p class="review-privacy">Le texte de ta réponse n’est pas enregistré. Seuls le statut de l’étape, les réussites déclarées et le calendrier de rappel sont conservés et synchronisés.</p>
     <button class="review-close" id="review-close" type="button">Terminer la session</button>
   </div>
 </section>
-<section aria-labelledby="catalogue-title"><h2 class="section-title" id="catalogue-title">Le catalogue des parcours</h2><p class="section-intro">Chaque étape ouvre une leçon de l’Académie. Chaque parcours monte du niveau 1 (débutant facile) au niveau 4 (avancé et exigeant). Réussis un rappel pour débloquer le palier suivant. Les révisions mêlent plusieurs domaines et reviennent à intervalles croissants. La progression est conservée sur cet appareil.</p>
+<section aria-labelledby="catalogue-title"><h2 class="section-title" id="catalogue-title">Le catalogue des parcours</h2><p class="section-intro">Chaque étape ouvre une leçon de l’Académie. Chaque parcours monte du niveau 1 (débutant facile) au niveau 4 (avancé et exigeant). Réussis les épreuves de rappel, d’application, de transfert et la confirmation à 7 jours pour débloquer le palier suivant. Une étape étudiée ne compte comme maîtrisée qu’après trois épreuves réussies sans aide et une confirmation après 7 jours. Les réponses ouvertes restent autoévaluées; le profil distingue étude, consolidation et maîtrise durable. La progression est conservée sur cet appareil et synchronisée avec le compte.</p>
 <div class="tools"><input id="search" type="search" placeholder="Rechercher un domaine ou une méthode…" aria-label="Rechercher un parcours"><select id="group-filter" aria-label="Filtrer par famille"><option value="">Toutes les familles</option></select><select id="status-filter" aria-label="Filtrer par progression"><option value="">Tous les parcours</option><option value="in-progress">À poursuivre</option><option value="done">Terminés</option><option value="new">Non commencés</option></select></div>
 <div id="catalogue"></div><p class="empty" id="empty">Aucun parcours ne correspond à ces filtres.</p>
 </section>
@@ -96,13 +92,28 @@ const reviewSchedule=loadReviewState();
 const syncMeta=loadSyncMeta();
 let syncUser=null,syncBusy=false,syncQueued=false;
 let activeReviewKey=null;
-const REVIEW_EXERCISES=[
- {name:"Rappel libre",prompt:"Sans rouvrir la leçon, rappelle l’idée principale et deux éléments qui la soutiennent."},
- {name:"Explique avec tes mots",prompt:"Explique cette étape comme à quelqu’un qui la découvre. Ajoute un exemple simple."},
- {name:"Relie les notions",prompt:"Relie cette idée à une autre notion du parcours : qu’ont-elles en commun et qu’est-ce qui les distingue ?"},
- {name:"Mise en pratique",prompt:"Invente un exemple nouveau et montre comment tu appliquerais cette idée, étape par étape."},
- {name:"Vérifie ton raisonnement",prompt:"Quelles observations, étapes ou sources permettraient de vérifier ton explication ?"}
+const REVIEW_PHASES=[
+ {name:"Épreuve 1/3 · rappel sans aide",prompt:item=>"Sans rouvrir le cours, explique avec tes mots « "+item.step[0]+" ». Formule le principe central et donne un exemple précis."},
+ {name:"Épreuve 2/3 · application nouvelle",prompt:item=>"Invente un exemple différent de celui du cours pour « "+item.step[0]+" ». Applique le repère étape par étape et justifie ta conclusion."},
+ {name:"Épreuve 3/3 · transfert",prompt:item=>"Construis un cas nouveau où « "+item.step[0]+" » pourrait s’appliquer. Explique comment tu le reconnais, quelle démarche tu choisis et quelle limite ou contre-interprétation tu vérifies."},
+ {name:"Confirmation à 7 jours · rappel durable",prompt:item=>"Sans revoir le cours, invente un second cas inédit pour « "+item.step[0]+" ». Réutilise la méthode, justifie chaque étape et précise ce que ta conclusion ne permet pas d’affirmer."}
 ];
+const DOMAIN_RUBRICS={
+ "Écritures & langues":"Distingue forme, son et sens; appuie ta lecture sur les signes observables et leur contexte.",
+ "Pensée & analyse":"Sépare faits, hypothèses et inférences; teste une autre explication ou un contre-exemple.",
+ "Traditions & symboles":"Situe l’interprétation dans son système et son contexte; distingue lecture symbolique, fait historique et preuve.",
+ "Nombres & formes":"Annonce la convention, montre le calcul ou la propriété, puis précise ce qu’une correspondance ne prouve pas.",
+ "Sciences & systèmes":"Distingue observation, modèle et prédiction; indique quelle observation pourrait corriger ta conclusion.",
+ "Pratique & réflexion":"Décris la méthode et l’expérience observée; distingue vécu subjectif et affirmation médicale ou scientifique.",
+ "Comparaison & création":"Définis les critères de comparaison, donne ressemblances et différences, puis précise la limite du rapprochement."
+};
+function assessmentCriteria(item,phase){
+ const domain=DOMAIN_RUBRICS[item.p.group]||"Explique ta démarche, donne un exemple précis et indique une limite ou une autre possibilité.";
+ if(phase===0)return ["Je retrouve le principe sans reprendre une phrase du cours.","Je donne un exemple pertinent et l’explique.","Repère attendu : "+item.step[2],domain];
+ if(phase===1)return ["Mon exemple est nouveau et différent de celui du cours.","Je montre les étapes d’application, pas seulement le résultat.","Je justifie ma conclusion avec le repère : "+item.step[2],domain];
+ if(phase===2)return ["Je transfère la compétence à une situation inédite.","Je justifie le choix de méthode et vérifie une alternative ou un contre-exemple.","Je précise les limites de ma conclusion.",domain];
+ return ["Je retrouve la méthode après le délai sans relire le cours.","J’applique la compétence à un second exemple inédit.","Mon raisonnement reste cohérent et je sais en préciser les limites.",domain];
+}
 
 const catalogue=document.getElementById("catalogue");
 const groups=[...new Set(PATHS.map(p=>p.group))];
@@ -115,8 +126,11 @@ function loadSyncMeta(){try{const value=JSON.parse(localStorage.getItem(SYNC_KEY
 function persistSyncMeta(){localStorage.setItem(SYNC_KEY,JSON.stringify(syncMeta))}
 function showSync(title,copy,login=true){document.getElementById("sync-title").textContent=title;document.getElementById("sync-copy").textContent=copy;document.getElementById("sync-login").hidden=!login}
 function saveMastery(){localStorage.setItem(MASTERY_KEY,JSON.stringify(mastery))}
-function isUnlocked(p,i){return i===0||!!mastery[reviewKey(p,i-1)]}
-function pathDone(p){return p.steps.filter((_,i)=>state[p.id+"."+i]).length}
+function isDurablyMastered(key){const value=mastery[key];return !!value&&typeof value==="object"&&value.status==="durable"&&Number(value.passes)>=3&&Number(value.confirmedAt)>0}
+function isLegacyMastered(key){return typeof mastery[key]==="number"&&Number.isFinite(mastery[key])}
+function isUnlocked(p,i){const key=reviewKey(p,i-1);return i===0||isDurablyMastered(key)||isLegacyMastered(key)}
+function pathDone(p){return p.steps.filter((_,i)=>isDurablyMastered(reviewKey(p,i))).length}
+function pathStudied(p){return p.steps.filter((_,i)=>!!state[reviewKey(p,i)]).length}
 function reviewKey(p,i){return p.id+"."+i}
 function saveReviewSchedule(){localStorage.setItem(REVIEW_KEY,JSON.stringify(reviewSchedule))}
 function dueReviews(now=Date.now()){
@@ -142,7 +156,7 @@ function updateReviewSummary(message){
  else summary.textContent="Prochain rappel prévu le "+new Intl.DateTimeFormat("fr-FR",{dateStyle:"medium"}).format(new Date(next))+".";
 }
 function setStepStudied(key,checked){
- if(checked){state[key]=true;if(!reviewSchedule[key])reviewSchedule[key]={dueAt:Date.now(),days:0,repetitions:0,lapses:0}}
+ if(checked){state[key]=true;if(!reviewSchedule[key])reviewSchedule[key]={dueAt:Date.now(),days:0,repetitions:0,lapses:0,passes:0,updatedAt:Date.now()}}
  else{delete state[key];delete reviewSchedule[key];delete mastery[key];const [pathId,indexText]=key.split(".");const from=Number(indexText);for(let i=from+1;i<4;i++){const later=pathId+"."+i;delete state[later];delete reviewSchedule[later];delete mastery[later];syncMeta.changes[later]={completed:false,updatedAt:Date.now()}}if(activeReviewKey===key)activeReviewKey=null}
  syncMeta.changes[key]={completed:!!checked,updatedAt:Date.now()};if(checked)reviewSchedule[key].updatedAt=Date.now();persistSyncMeta();saveMastery();
  localStorage.setItem(KEY,JSON.stringify(state));saveReviewSchedule();queueCloudSync();updateProgress();render()
@@ -151,38 +165,55 @@ function renderReviewCard(item){
  const session=document.getElementById("review-session");
  if(!item){activeReviewKey=null;session.hidden=true;return false}
  activeReviewKey=item.key;session.hidden=false;
- const record=item.record,exercise=REVIEW_EXERCISES[(Number(record.repetitions||0)+Number(record.lapses||0)+item.i)%REVIEW_EXERCISES.length];
- document.getElementById("review-meta").textContent=item.p.group+" · "+item.p.name;
+ const passes=Math.min(3,Math.max(0,Number(item.record.passes)||0)),phase=passes,exercise=REVIEW_PHASES[phase];
+ document.getElementById("review-meta").textContent=item.p.group+" · "+item.p.name+" · "+item.step[0];
  document.getElementById("review-type").textContent=exercise.name;
  document.getElementById("review-step-title").textContent=item.step[0];
- document.getElementById("review-prompt").textContent=exercise.prompt;
- document.getElementById("review-open").href=item.step[1];
- document.getElementById("review-answer").value="";
- document.getElementById("review-hint").textContent="Repère de l’étape : "+item.step[2];
+ document.getElementById("review-prompt").textContent=exercise.prompt(item);
+ document.getElementById("review-open").href=item.step[1];document.getElementById("review-open").hidden=true;
+ document.getElementById("review-answer").value="";document.getElementById("review-answer").disabled=false;
+ document.getElementById("review-submit").hidden=false;document.getElementById("review-evaluation").hidden=true;
+ const criteria=document.getElementById("review-criteria");criteria.replaceChildren();
+ for(const text of assessmentCriteria(item,phase)){const li=document.createElement("li");li.textContent=text;criteria.append(li)}
+ document.getElementById("review-hint").textContent="Repère du parcours : "+item.step[2]+" Réflexe du domaine : "+(DOMAIN_RUBRICS[item.p.group]||"Justifie la démarche et ses limites.");
  document.getElementById("review-hint").hidden=true;
- document.getElementById("review-ratings").hidden=true;
- document.getElementById("review-feedback").textContent="";
- return true
+ document.getElementById("review-no-help").checked=false;document.getElementById("review-meets-criteria").checked=false;
+ document.getElementById("review-ratings").hidden=true;document.getElementById("review-feedback").textContent="";
+ updateReviewRatingButtons();return true
+}
+function updateReviewRatingButtons(){
+ const allowed=document.getElementById("review-no-help").checked&&document.getElementById("review-meets-criteria").checked;
+ document.querySelector('[data-review-rating="pass"]').disabled=!allowed
+}
+function submitReviewAnswer(){
+ if(!activeReviewKey)return;
+ const answer=document.getElementById("review-answer").value.trim();
+ if(answer.length<30){document.getElementById("review-feedback").textContent="Développe un peu plus : explique ta démarche et donne un exemple avant de comparer.";return}
+ document.getElementById("review-answer").disabled=true;document.getElementById("review-submit").hidden=true;
+ document.getElementById("review-evaluation").hidden=false;document.getElementById("review-hint").hidden=false;
+ document.getElementById("review-open").hidden=false;document.getElementById("review-ratings").hidden=false;
+ document.getElementById("review-feedback").textContent="Compare ton travail aux critères. Le texte reste dans ton navigateur; seul ton résultat déclaré sera conservé.";
+ updateReviewRatingButtons()
 }
 function startReview(){const item=nextReview();if(!item){updateReviewSummary("Aucune révision n’est due pour le moment.");return}renderReviewCard(item)}
-function revealReviewHint(){
- const answer=document.getElementById("review-answer").value.trim();
- if(answer.length<12){document.getElementById("review-feedback").textContent="Écris d’abord quelques mots de mémoire, même si tu hésites.";return}
- document.getElementById("review-hint").hidden=false;document.getElementById("review-ratings").hidden=false;
- document.getElementById("review-feedback").textContent="Compare ton rappel avec le repère de l’étape, puis évalue-le honnêtement."
-}
 function rateReview(rating){
  if(!activeReviewKey)return;
- const record=reviewSchedule[activeReviewKey]||{dueAt:Date.now(),days:0,repetitions:0,lapses:0},now=Date.now(),day=86400000;
- if(rating==="again"){record.lapses=Number(record.lapses||0)+1;record.repetitions=0;record.days=0;record.dueAt=now+15*60*1000}
- else if(rating==="hard"){record.days=Math.max(1,Number(record.days||1)*1.4);record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
- else if(rating==="good"){const intervals=[1,3,7,14,30,60];record.days=intervals[Math.min(Number(record.repetitions||0),intervals.length-1)];record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
- else{record.days=Math.max(4,Number(record.days||1)*2.5);record.repetitions=Number(record.repetitions||0)+1;record.dueAt=now+record.days*day}
- record.lastRating=rating;record.updatedAt=Date.now();reviewSchedule[activeReviewKey]=record;if(rating==="good"||rating==="easy")mastery[activeReviewKey]=Date.now();saveMastery();saveReviewSchedule();persistSyncMeta();queueCloudSync();activeReviewKey=null;render();
- const next=nextReview();if(next)renderReviewCard(next);else{renderReviewCard(null);updateReviewSummary("Session terminée. Les rappels reviendront selon les intervalles choisis.")}
+ const noHelp=document.getElementById("review-no-help").checked,meetsCriteria=document.getElementById("review-meets-criteria").checked;
+ if(rating==="pass"&&(!noHelp||!meetsCriteria)){document.getElementById("review-feedback").textContent="Pour déclarer une réussite, confirme les deux critères après avoir répondu sans aide.";return}
+ const key=activeReviewKey,record=reviewSchedule[key]||{dueAt:Date.now(),days:0,repetitions:0,lapses:0,passes:0},now=Date.now(),day=86400000,passes=Math.min(3,Math.max(0,Number(record.passes)||0));
+ if(rating==="pass"){
+  record.lastRating="pass";record.repetitions=Number(record.repetitions||0)+1;record.updatedAt=now;
+  if(passes<3){record.passes=passes+1;record.days=[1,3,7][passes];record.dueAt=now+record.days*day}
+  else{record.passes=3;record.confirmedAt=now;record.days=14;record.dueAt=now+14*day;mastery[key]={status:"durable",passes:3,confirmedAt:now,updatedAt:now}}
+ }else{
+  record.lapses=Number(record.lapses||0)+1;record.passes=0;record.days=0;record.dueAt=now+15*60*1000;record.lastRating="fail";record.updatedAt=now;
+  if(mastery[key]&&typeof mastery[key]==="object")delete mastery[key]
+ }
+ reviewSchedule[key]=record;saveMastery();saveReviewSchedule();persistSyncMeta();queueCloudSync();activeReviewKey=null;render();updateProgress();
+ const next=nextReview();if(next)renderReviewCard(next);else{renderReviewCard(null);updateReviewSummary(rating==="pass"?"Épreuve enregistrée. La suite reviendra selon le calendrier de consolidation.":"Révision terminée. L’étape reste étudiée et pourra être retestée.")}
 }
 function mergeRemote(remote){
- const incoming=remote&&remote.version===2?remote:{};
+ const incoming=remote&&[2,3].includes(Number(remote.version))?remote:{};
  const incomingChanges=incoming.changes||{};
  for(const key of new Set([...Object.keys(state),...Object.keys(incomingChanges),...Object.keys(syncMeta.changes)])){
   const local=syncMeta.changes[key]||{completed:!!state[key],updatedAt:0},cloud=incomingChanges[key];
@@ -191,44 +222,44 @@ function mergeRemote(remote){
  const incomingSchedule=incoming.schedules||{};
  for(const [key,value] of Object.entries(incomingSchedule)){if(state[key]&&(!reviewSchedule[key]||Number(value.updatedAt||0)>Number(reviewSchedule[key].updatedAt||0)))reviewSchedule[key]=value}
  for(const [key,value] of Object.entries(reviewSchedule)){if(!state[key])delete reviewSchedule[key]}
- const cloudMastery=incoming.mastery||{};for(const [key,value] of Object.entries(cloudMastery)){if(state[key]&&!mastery[key])mastery[key]=value}
+ const cloudMastery=incoming.mastery||{};for(const [key,value] of Object.entries(cloudMastery)){const localValue=mastery[key],localTime=Number(localValue?.updatedAt||localValue?.confirmedAt||localValue||0),cloudTime=Number(value?.updatedAt||value?.confirmedAt||value||0);if(state[key]&&(!localValue||cloudTime>localTime))mastery[key]=value}
  persistSyncMeta();saveMastery();localStorage.setItem(KEY,JSON.stringify(state));saveReviewSchedule();
 }
 function queueCloudSync(){if(!syncUser)return;syncQueued=true;if(syncBusy)return;setTimeout(syncCloud,250)}
-async function syncCloud(){if(!syncUser||syncBusy||!window.gematriaAuth)return;syncBusy=true;syncQueued=false;showSync("Synchronisation en cours…","Tes acquis restent aussi enregistrés sur cet appareil.",false);try{const remote=await window.gematriaAuth.loadProgression("learning-paths");mergeRemote(remote);await window.gematriaAuth.saveProgression("learning-paths",{version:2,changes:syncMeta.changes,schedules:reviewSchedule,mastery});showSync("Progression synchronisée","Tes acquis et rappels sont liés à ton compte.",false);render();updateProgress()}catch(error){console.error("Synchronisation de la progression impossible:",error);showSync("Progression locale conservée","La synchronisation a échoué. Réessaie lorsque la connexion sera rétablie.",false)}finally{syncBusy=false;if(syncQueued)setTimeout(syncCloud,300)}}
+async function syncCloud(){if(!syncUser||syncBusy||!window.gematriaAuth)return;syncBusy=true;syncQueued=false;showSync("Synchronisation en cours…","Tes acquis restent aussi enregistrés sur cet appareil.",false);try{const remote=await window.gematriaAuth.loadProgression("learning-paths");mergeRemote(remote);await window.gematriaAuth.saveProgression("learning-paths",{version:3,changes:syncMeta.changes,schedules:reviewSchedule,mastery});showSync("Progression synchronisée","Tes acquis et rappels sont liés à ton compte.",false);render();updateProgress()}catch(error){console.error("Synchronisation de la progression impossible:",error);showSync("Progression locale conservée","La synchronisation a échoué. Réessaie lorsque la connexion sera rétablie.",false)}finally{syncBusy=false;if(syncQueued)setTimeout(syncCloud,300)}}
 function render(){
  const q=document.getElementById("search").value.trim().toLocaleLowerCase("fr");
  const group=document.getElementById("group-filter").value,status=document.getElementById("status-filter").value;
- const filtered=PATHS.filter(p=>(!q||(p.name+" "+p.summary+" "+p.lens+" "+p.group).toLocaleLowerCase("fr").includes(q))&&(!group||p.group===group)&&(!status||(status==="done"?pathDone(p)===p.steps.length:status==="new"?pathDone(p)===0:pathDone(p)>0&&pathDone(p)<p.steps.length)));
+ const filtered=PATHS.filter(p=>(!q||(p.name+" "+p.summary+" "+p.lens+" "+p.group).toLocaleLowerCase("fr").includes(q))&&(!group||p.group===group)&&(!status||(status==="done"?pathDone(p)===p.steps.length:status==="new"?pathStudied(p)===0:pathStudied(p)>0&&pathDone(p)<p.steps.length)));
  const sections=new Map();for(const p of filtered){if(!sections.has(p.group))sections.set(p.group,[]);sections.get(p.group).push(p)}
  catalogue.innerHTML="";
  for(const [name,items] of sections){const section=document.createElement("section");section.innerHTML='<h3 class="section-title">'+escapeHtml(name)+'</h3><div class="grid"></div>';const grid=section.querySelector(".grid");
   for(const p of items){const card=document.createElement("article");card.className="card";card.innerHTML='<div class="card-head"><div class="icon" aria-hidden="true">'+escapeHtml(p.icon)+'</div><div><h3>'+escapeHtml(p.name)+'</h3><p>'+escapeHtml(p.summary)+'</p></div></div><p class="lens"><strong>Réflexe de pensée :</strong> '+escapeHtml(p.lens)+'</p><ol class="steps"></ol>';
-   p.steps.forEach((s,i)=>{const li=document.createElement("li");li.className="step";const stepKey=p.id+"."+i,checked=!!state[stepKey],unlocked=isUnlocked(p,i),level=LEVELS[i];li.innerHTML='<span class="step-n">'+(i+1)+'</span><span><span class="step-level">'+level.label+'</span><span class="step-title">'+escapeHtml(s[0])+'</span><span class="step-hint">'+escapeHtml(level.focus)+' · '+escapeHtml(s[2])+'</span></span><span style="display:flex;align-items:center;gap:8px"><a href="'+escapeAttr(s[1])+'">Ouvrir →</a><input class="check" type="checkbox" aria-label="Marquer '+escapeAttr(s[0])+' comme étudié" title="'+(unlocked?"Étape disponible":checked?"Déjà étudiée":"Réussis un rappel du niveau précédent pour débloquer cette étape")+'" data-id="'+p.id+"."+i+'" '+(checked?"checked":"")+(!unlocked&&!checked?" disabled":"")+'></span>';card.querySelector(".steps").append(li)});
-   section.querySelector(".grid").append(card);
+   p.steps.forEach((s,i)=>{const li=document.createElement("li");li.className="step";const stepKey=p.id+"."+i,checked=!!state[stepKey],unlocked=isUnlocked(p,i),record=reviewSchedule[stepKey]||{},passes=Math.min(3,Math.max(0,Number(record.passes)||0)),durable=isDurablyMastered(stepKey),legacy=isLegacyMastered(stepKey);let masteryLabel=durable?"✅ Maîtrise durable confirmée":passes===3?"3/3 réussites · confirmation à 7 jours":checked?"Étudiée · "+passes+"/3 épreuves réussies":legacy?"Ancienne validation · à confirmer":"À étudier";const masteryClass=durable?" is-mastered":passes===3?" is-pending":"";li.innerHTML='<span class="step-n">'+(i+1)+'</span><span><span class="step-level">'+level.label+'</span><span class="step-title">'+escapeHtml(s[0])+'</span><span class="step-hint">'+escapeHtml(level.focus)+' · '+escapeHtml(s[2])+'</span><span class="step-mastery'+masteryClass+'">'+escapeHtml(masteryLabel)+'</span></span><span style="display:flex;align-items:center;gap:8px"><a href="'+escapeAttr(s[1])+'">Ouvrir →</a><input class="check" type="checkbox" aria-label="Marquer '+escapeAttr(s[0])+' comme étudié" title="'+(unlocked?"Étape disponible":checked?"Déjà étudiée":"Réussis les épreuves de maîtrise du niveau précédent pour débloquer cette étape")+'" data-id="'+p.id+"."+i+'" '+(checked?"checked":"")+(!unlocked&&!checked?" disabled":"")+'></span>';grid.append(li)});
+   catalogue.append(section)
   }
-  catalogue.append(section)
  }
  document.getElementById("empty").style.display=filtered.length?"none":"block";
- catalogue.querySelectorAll(".check").forEach(box=>box.addEventListener("change",()=>setStepStudied(box.dataset.id,box.checked)));
+ catalogue.querySelectorAll(".check").forEach(box=>box.addEventListener("change",()=>setStepStudied(box.dataset.id,box.checked)))
 }
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function escapeAttr(v){return escapeHtml(v)}
 function updateProgress(){
- let total=PATHS.reduce((n,p)=>n+p.steps.length,0),done=PATHS.reduce((n,p)=>n+pathDone(p),0);
- document.getElementById("done-count").textContent=done;
- document.getElementById("progress-label").textContent=done?done+" / "+total+" étapes terminées":"Aucune étape terminée pour l’instant.";
+ const total=PATHS.reduce((n,p)=>n+p.steps.length,0),done=PATHS.reduce((n,p)=>n+pathDone(p),0),studied=PATHS.reduce((n,p)=>n+pathStudied(p),0);
+ document.getElementById("done-count").textContent=done;document.getElementById("progress-label").textContent=done+" / "+total+" compétences durablement confirmées · "+studied+" étudiées";
  const pct=total?Math.round(done/total*100):0;document.getElementById("progress-fill").style.width=pct+"%";document.querySelector('[role="progressbar"]').setAttribute("aria-valuenow",pct);
  updateResume();updateReviewSummary()
 }
-function updateResume(){const next=PATHS.flatMap(p=>p.steps.map((s,i)=>({p,s,i}))).find(x=>!state[x.p.id+"."+x.i]);const a=document.getElementById("resume-link");a.href=next?next.s[1]:"#catalogue";a.textContent=next?"Reprendre : "+next.p.name+" · étape "+(next.i+1)+" →":"Tous les jalons sont validés"}
+function updateResume(){const next=PATHS.flatMap(p=>p.steps.map((s,i)=>({p,s,i}))).find(x=>!isDurablyMastered(x.p.id+"."+x.i));const a=document.getElementById("resume-link");a.href=next?next.s[1]:"#catalogue";a.textContent=next?"Reprendre : "+next.p.name+" · étape "+(next.i+1)+" →":"Toutes les compétences sont durablement confirmées"}
 for(const id of ["search","group-filter","status-filter"])document.getElementById(id).addEventListener(id==="search"?"input":"change",render);
 document.getElementById("review-start").addEventListener("click",startReview);
-document.getElementById("review-reveal").addEventListener("click",revealReviewHint);
+document.getElementById("review-submit").addEventListener("click",submitReviewAnswer);
+document.getElementById("review-no-help").addEventListener("change",updateReviewRatingButtons);
+document.getElementById("review-meets-criteria").addEventListener("change",updateReviewRatingButtons);
 document.getElementById("review-close").addEventListener("click",()=>{renderReviewCard(null);updateReviewSummary()});
 document.querySelectorAll("[data-review-rating]").forEach(button=>button.addEventListener("click",()=>rateReview(button.dataset.reviewRating)));
 let migratedReview=false;
-for(const p of PATHS)for(let i=0;i<p.steps.length;i++){const key=reviewKey(p,i);if(state[key]&&!reviewSchedule[key]){reviewSchedule[key]={dueAt:Date.now(),days:0,repetitions:0,lapses:0};migratedReview=true}}
+for(const p of PATHS)for(let i=0;i<p.steps.length;i++){const key=reviewKey(p,i);if(state[key]&&!reviewSchedule[key]){reviewSchedule[key]={dueAt:Date.now(),days:0,repetitions:0,lapses:0,passes:0,updatedAt:Date.now()};migratedReview=true}else if(state[key]&&!Number.isFinite(Number(reviewSchedule[key].passes))){reviewSchedule[key].passes=0;reviewSchedule[key].dueAt=Date.now();reviewSchedule[key].updatedAt=Date.now();migratedReview=true}}
 if(migratedReview)saveReviewSchedule();
 render();updateProgress();
 if(window.gematriaAuth){window.gematriaAuth.onAuthStateChanged(user=>{syncUser=user;if(user){showSync("Compte connecté","Chargement de ta progression…",false);queueCloudSync()}else showSync("Progression enregistrée sur cet appareil","Connecte-toi pour retrouver tes acquis sur tes autres appareils.",true)});window.addEventListener("authInitializationError",()=>showSync("Progression locale conservée","Connexion à Firebase indisponible pour le moment.",true));window.addEventListener("online",queueCloudSync)}
