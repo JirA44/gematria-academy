@@ -148,10 +148,14 @@ export default {
         else html += bottomNavigation;
       }
     }
-    const scriptTag = '<script defer src="/assets/js/site-language.js?v=4"></script>';
-    if (!html.includes("/assets/js/site-language.js")) {
-      if (/<\/head\s*>/i.test(html)) html = html.replace(/<\/head\s*>/i, scriptTag + "</head>");
-      else html = scriptTag + html;
+    const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
+    const languageScriptPattern = /src=["'][^"']*assets\/js\/site-language\.js(?:\?[^"']*)?["']/i;
+    if (languageScriptPattern.test(html)) {
+      html = html.replace(languageScriptPattern, 'src="/assets/js/site-language.js?v=5"');
+    } else if (/<\/head\s*>/i.test(html)) {
+      html = html.replace(/<\/head\s*>/i, scriptTag + "</head>");
+    } else {
+      html = scriptTag + html;
     }
     const headers = new Headers(response.headers);
     headers.delete("Content-Length");
