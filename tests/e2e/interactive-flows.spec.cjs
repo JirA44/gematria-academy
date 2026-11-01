@@ -263,12 +263,14 @@ test("Learning paths schedule varied active-recall practice", async ({ page }) =
   await page.locator("#review-no-help").check();
   await page.locator("#review-meets-criteria").check();
   await page.locator('[data-review-rating="pass"]').click();
-  await expect(page.locator(".check").nth(1)).toBeEnabled();
+  await expect(page.locator(".check").nth(1)).toBeDisabled();
+  await expect(page.locator(".step-mastery").first()).toContainText("1/3 épreuves réussies");
 
   await expect(page.locator("#review-count")).toHaveText("0");
   await expect(page.locator("#review-session")).toBeHidden();
   const schedule = await page.evaluate(() => JSON.parse(localStorage.getItem("gematria_spaced_reviews_v1")));
   expect(schedule["runes.0"].repetitions).toBe(1);
+  expect(schedule["runes.0"].passes).toBe(1);
   expect(schedule["runes.0"].dueAt - Date.now()).toBeGreaterThan(20 * 60 * 60 * 1000);
   expectNoBrowserErrors(errors);
 });
