@@ -102,7 +102,7 @@
     select.addEventListener("change", () => setLanguage(select.value));
     const style = document.createElement("style");
     style.textContent = [
-      "#ga-language-panel{position:relative;z-index:100;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:7px;width:fit-content;max-width:calc(100% - 20px);box-sizing:border-box;margin:8px auto 14px;padding:7px 9px;border:1px solid #d5b45d88;border-radius:10px;background:#101524ed;color:#f4f0e7;font:12px/1.3 system-ui,sans-serif;box-shadow:0 4px 20px #0005;backdrop-filter:blur(8px)}",
+      "#ga-language-panel{position:static!important;z-index:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:7px;width:fit-content;max-width:calc(100% - 20px);box-sizing:border-box;margin:8px auto 14px;padding:7px 9px;border:1px solid #d5b45d88;border-radius:10px;background:#101524ed;color:#f4f0e7;font:12px/1.3 system-ui,sans-serif;box-shadow:0 4px 20px #0005;backdrop-filter:blur(8px)}",
       "#ga-language-panel label{font-weight:600}",
       "#ga-language-panel select{max-width:145px;border:1px solid #556078;border-radius:6px;background:#182138;color:inherit;padding:5px}",
       "#ga-language-panel span{max-width:150px;color:#c8cddd;font-size:10px}",
@@ -114,8 +114,8 @@
     document.head.append(style);
     const headerButtons = document.querySelector(".header-buttons-cosmic");
     const header = headerButtons?.closest("header") || document.querySelector('header[role="banner"], header');
-    if (headerButtons) headerButtons.insertAdjacentElement("afterend", panel);
-    else if (header) header.prepend(panel);
+    if (header) header.insertAdjacentElement("afterend", panel);
+    else if (headerButtons) headerButtons.insertAdjacentElement("afterend", panel);
     else document.body.prepend(panel);
   }
 
