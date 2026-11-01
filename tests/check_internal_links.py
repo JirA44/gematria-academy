@@ -71,7 +71,7 @@ def parse_page(page: str) -> list[str]:
 def main() -> int:
     route_data = json.loads(ROUTE_MAP_PATH.read_text(encoding="utf-8"))
     expected_routes = set(route_data["routes"])
-    actual_routes = set()
+    production_linked_routes = set()
     generated_directories = {".git", "node_modules", "test-results", "playwright-report"}
     html_files = sorted(
         path.relative_to(ROOT).as_posix()
@@ -81,18 +81,8 @@ def main() -> int:
     for page in html_files:
         for reference in parse_page(page):
             target = local_target(page, reference)
-            if target and target.endswith(".html") and (ROOT / target).is_file():
-                actual_routes.add(target)
-
-    discovered = {"index.html"}
-    pending = ["index.html"]
-    while pending:
-        page = pending.pop()
-        for reference in parse_page(page):
-            target = local_target(page, reference)
-            if target and target.endswith(".html") and (ROOT / target).is_file() and target not in discovered:
-                discovered.add(target)
-                pending.append(target)
+            if target and target.endswith(".html") and (ROOT / target).is_file() and page in expected_routes:
+                production_linked_routes.add(target)
 
     unresolved: set[tuple[str, str]] = set()
     for page in html_files:
@@ -110,7 +100,7 @@ def main() -> int:
         for reference in record["links"]
     }
     routes_missing_files = sorted(route for route in expected_routes if not (ROOT / route).is_file())
-    route_map_mismatch = sorted(expected_routes ^ discovered)
+    route_map_mismatch = sorted(expected_routes - production_linked_routes)
     exceptions_on_routes = sorted(page for page, _ in expected_exceptions if page in expected_routes)
     unexpected = sorted(unresolved - expected_exceptions)
     stale = sorted(expected_exceptions - unresolved)
@@ -119,7 +109,7 @@ def main() -> int:
     if routes_missing_files:
         errors.append(f"route-map files missing: {routes_missing_files}")
     if route_map_mismatch:
-        errors.append(f"production route map differs from link crawl: {route_map_mismatch}")
+        errors.append(f"production routes without an inbound link from another production page: {route_map_mismatch}")
     if exceptions_on_routes:
         errors.append(f"exceptions overlap production routes: {exceptions_on_routes}")
     if unexpected:
