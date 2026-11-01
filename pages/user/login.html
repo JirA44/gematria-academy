@@ -425,7 +425,7 @@
         function friendlyAuthError(error) {
             const code = error?.code || '';
             if (code === 'auth/unauthorized-domain') {
-                return 'Ce domaine n’est pas autorisé par Firebase Authentication. Ajoute gematria-academy.pages.dev dans Firebase Console → Authentication → Paramètres → Domaines autorisés.';
+                return 'Firebase refuse ce domaine pour le projet auquel cette page est connectée (gematria-academy-ed04c). Vérifie que gematria-academy.pages.dev est autorisé dans Authentication → Paramètres → Domaines autorisés de ce même projet, ou que la configuration du site pointe vers le projet où tu l’as ajouté.';
             }
             if (code === 'auth/popup-blocked') return 'La fenêtre Google a été bloquée. Autorise les fenêtres pop-up pour ce site puis réessaie.';
             if (code === 'auth/popup-closed-by-user') return 'La fenêtre Google a été fermée avant la fin de la connexion.';
