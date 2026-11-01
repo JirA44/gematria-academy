@@ -84,12 +84,12 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
     <div class="review-meta" id="review-meta"></div><p class="review-type" id="review-type"></p><h3 id="review-step-title"></h3><p class="review-prompt" id="review-prompt"></p>
     <label class="visually-hidden" for="review-answer">Ta réponse sans aide</label><textarea id="review-answer" rows="4" placeholder="Réponds de mémoire sans rouvrir le cours ni chercher d’indice…"></textarea>
     <div class="review-actions"><button class="review-button" id="review-submit" type="button">Terminer ma réponse</button></div>
+    <p class="review-feedback" id="review-feedback" role="status" aria-live="polite"></p>
     <div class="review-evaluation" id="review-evaluation" hidden>
       <h4>Compare ta réponse à ces critères</h4><ul id="review-criteria"></ul><p class="review-hint" id="review-hint" hidden></p>
       <div class="review-actions"><a id="review-open" href="#" target="_blank" rel="noopener noreferrer" hidden>Rouvrir le cours après l’épreuve</a></div>
       <label class="review-check"><input id="review-no-help" type="checkbox"> Je n’ai consulté ni le cours ni un indice avant de répondre.</label>
       <label class="review-check"><input id="review-meets-criteria" type="checkbox"> Ma réponse satisfait les critères de cette épreuve.</label>
-      <p class="review-feedback" id="review-feedback" role="status" aria-live="polite"></p>
       <div class="review-ratings" id="review-ratings" hidden><span>Évalue honnêtement ton résultat :</span><button type="button" data-review-rating="fail">À retravailler</button><button type="button" data-review-rating="pass" disabled>Réussi sans aide</button></div>
     </div>
     <p class="review-privacy">Le texte de ta réponse n’est pas enregistré. Seuls le statut de l’étape, les réussites déclarées et le calendrier de rappel sont conservés et synchronisés.</p>
@@ -200,7 +200,7 @@ function showSync(title,copy,login=true){document.getElementById("sync-title").t
 function saveMastery(){localStorage.setItem(MASTERY_KEY,JSON.stringify(mastery))}
 function isDurablyMastered(key){const value=mastery[key];return !!value&&typeof value==="object"&&value.status==="durable"&&Number(value.passes)>=3&&Number(value.confirmedAt)>0}
 function isLegacyMastered(key){return typeof mastery[key]==="number"&&Number.isFinite(mastery[key])}
-function isUnlocked(p,i){const key=reviewKey(p,i-1);return i===0||isDurablyMastered(key)||isLegacyMastered(key)}
+function isUnlocked(p,i){const key=reviewKey(p,i-1);return i===0||isDurablyMastered(key)}
 function pathDone(p){return p.steps.filter((_,i)=>isDurablyMastered(reviewKey(p,i))).length}
 function pathStudied(p){return p.steps.filter((_,i)=>!!state[reviewKey(p,i)]).length}
 function reviewKey(p,i){return p.id+"."+i}
@@ -279,7 +279,7 @@ function rateReview(rating){
   else{record.passes=3;record.confirmedAt=now;record.days=14;record.dueAt=now+14*day;mastery[key]={status:"durable",passes:3,confirmedAt:now,updatedAt:now}}
  }else{
   record.lapses=Number(record.lapses||0)+1;record.passes=0;record.days=0;record.dueAt=now+15*60*1000;record.lastRating="fail";record.updatedAt=now;
-  if(mastery[key]&&typeof mastery[key]==="object")delete mastery[key]
+  if(mastery[key])delete mastery[key]
  }
  reviewSchedule[key]=record;saveMastery();saveReviewSchedule();persistSyncMeta();queueCloudSync();activeReviewKey=null;render();updateProgress();
  const next=nextReview();if(next)renderReviewCard(next);else{renderReviewCard(null);updateReviewSummary(rating==="pass"?"Épreuve enregistrée. La suite reviendra selon le calendrier de consolidation.":"Révision terminée. L’étape reste étudiée et pourra être retestée.")}
@@ -307,7 +307,7 @@ function render(){
  catalogue.innerHTML="";
  for(const [name,items] of sections){const section=document.createElement("section");section.innerHTML='<h3 class="section-title">'+escapeHtml(name)+'</h3><div class="grid"></div>';const grid=section.querySelector(".grid");
   for(const p of items){const card=document.createElement("article");card.className="card";card.innerHTML='<div class="card-head"><div class="icon" aria-hidden="true">'+escapeHtml(p.icon)+'</div><div><h3>'+escapeHtml(p.name)+'</h3><p>'+escapeHtml(p.summary)+'</p></div></div><p class="lens"><strong>Réflexe de pensée :</strong> '+escapeHtml(p.lens)+'</p><ol class="steps"></ol>';
-   p.steps.forEach((s,i)=>{const li=document.createElement("li");li.className="step";const stepKey=p.id+"."+i,checked=!!state[stepKey],unlocked=isUnlocked(p,i),record=reviewSchedule[stepKey]||{},passes=Math.min(3,Math.max(0,Number(record.passes)||0)),durable=isDurablyMastered(stepKey),legacy=isLegacyMastered(stepKey);let masteryLabel=durable?"✅ Maîtrise durable confirmée":passes===3?"3/3 réussites · confirmation à 7 jours":checked?"Étudiée · "+passes+"/3 épreuves réussies":legacy?"Ancienne validation · à confirmer":"À étudier";const masteryClass=durable?" is-mastered":passes===3?" is-pending":"";li.innerHTML='<span class="step-n">'+(i+1)+'</span><span><span class="step-level">'+level.label+'</span><span class="step-title">'+escapeHtml(s[0])+'</span><span class="step-hint">'+escapeHtml(level.focus)+' · '+escapeHtml(s[2])+'</span><span class="step-mastery'+masteryClass+'">'+escapeHtml(masteryLabel)+'</span></span><span style="display:flex;align-items:center;gap:8px"><a href="'+escapeAttr(s[1])+'">Ouvrir →</a><input class="check" type="checkbox" aria-label="Marquer '+escapeAttr(s[0])+' comme étudié" title="'+(unlocked?"Étape disponible":checked?"Déjà étudiée":"Réussis les épreuves de maîtrise du niveau précédent pour débloquer cette étape")+'" data-id="'+p.id+"."+i+'" '+(checked?"checked":"")+(!unlocked&&!checked?" disabled":"")+'></span>';grid.append(li)});
+   p.steps.forEach((s,i)=>{const li=document.createElement("li");li.className="step";const stepKey=p.id+"."+i,checked=!!state[stepKey],unlocked=isUnlocked(p,i),record=reviewSchedule[stepKey]||{},passes=Math.min(3,Math.max(0,Number(record.passes)||0)),durable=isDurablyMastered(stepKey),legacy=isLegacyMastered(stepKey);let masteryLabel=durable?"✅ Maîtrise durable confirmée":passes===3?"3/3 réussites · confirmation à 7 jours":passes>0?"Étudiée · "+passes+"/3 épreuves réussies":legacy?"Ancienne validation · à confirmer":checked?"Étudiée · 0/3 épreuves réussies":"À étudier";const masteryClass=durable?" is-mastered":passes===3?" is-pending":"";li.innerHTML='<span class="step-n">'+(i+1)+'</span><span><span class="step-level">'+level.label+'</span><span class="step-title">'+escapeHtml(s[0])+'</span><span class="step-hint">'+escapeHtml(level.focus)+' · '+escapeHtml(s[2])+'</span><span class="step-mastery'+masteryClass+'">'+escapeHtml(masteryLabel)+'</span></span><span style="display:flex;align-items:center;gap:8px"><a href="'+escapeAttr(s[1])+'">Ouvrir →</a><input class="check" type="checkbox" aria-label="Marquer '+escapeAttr(s[0])+' comme étudié" title="'+(unlocked?"Étape disponible":checked?"Déjà étudiée":"Réussis les épreuves de maîtrise du niveau précédent pour débloquer cette étape")+'" data-id="'+p.id+"."+i+'" '+(checked?"checked":"")+(!unlocked&&!checked?" disabled":"")+'></span>';grid.append(li)});
    catalogue.append(section)
   }
  }
