@@ -169,7 +169,7 @@ const PRACTICE_PROMPTS={
  "Après 7 jours, lis et transcris une nouvelle séquence sans le cours; vérifie ensuite chaque signe et ses limites."
  ]
 ,
- logic:[
+ logique:[
   "Sans notes, reconstruis l’argument lié à « {step} » : énonce les prémisses, la conclusion et ce qui est supposé.",
   "Applique la règle à un exemple inédit. Distingue la validité de la forme et la vérité des prémisses.",
   "Cherche un contre-exemple ou une autre explication; indique précisément quelle étape du raisonnement résiste ou échoue.",
@@ -258,7 +258,7 @@ const DOMAIN_RUBRICS={
  "Comparaison & création":"Définis les critères de comparaison, donne ressemblances et différences, puis précise la limite du rapprochement."
 };
 const PATH_RUBRICS={
- logic:"Nommer prémisses et conclusion; tester validité, exemple contraire et hypothèses cachées.",
+ logique:"Nommer prémisses et conclusion; tester validité, exemple contraire et hypothèses cachées.",
  cognition:"Séparer observation et inférence; proposer une alternative et préciser quelle donnée ferait réviser le jugement.",
  astrologie:"Nommer le système et sa source; séparer symbolique, observation du ciel et preuve empirique.",
  tarot:"Justifier une interprétation avec les éléments visibles; envisager une lecture alternative et éviter la prédiction présentée comme fait.",
@@ -272,7 +272,7 @@ const PATH_RUBRICS={
  cryptographie:"Montrer les étapes de transformation, tester par déchiffrement et identifier les limites de sécurité.",
  memoire:"Rappeler avant de relire, choisir une méthode adaptée et évaluer la rétention différée sans promettre de résultat."
 };
-function assessmentPrompt(item,phase){const prompt=PRACTICE_PROMPTS[item.p.id]?.[phase];return prompt||REVIEW_PHASES[phase].prompt(item)}
+function assessmentPrompt(item,phase){const prompt=PRACTICE_PROMPTS[item.p.id]?.[phase];return prompt?prompt.replaceAll("{step}",item.step[0]):REVIEW_PHASES[phase].prompt(item)}
 function assessmentCriteria(item,phase){
  const domain=LANGUAGE_RUBRICS[item.p.id]||PATH_RUBRICS[item.p.id]||DOMAIN_RUBRICS[item.p.group]||"Explique ta démarche, donne un exemple précis et indique une limite ou une autre possibilité.";
  if(phase===0)return ["Je retrouve le principe sans reprendre une phrase du cours.","Je donne un exemple pertinent et l’explique.","Repère attendu : "+item.step[2],domain];
