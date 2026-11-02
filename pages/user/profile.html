@@ -294,6 +294,18 @@
             transform: scale(1.05);
         }
     .mastery-section{margin:24px 0;padding:22px;border:1px solid rgba(213,180,93,.35);border-radius:16px;background:linear-gradient(140deg,rgba(26,36,57,.96),rgba(16,21,36,.94));color:#e9e6dc}.mastery-section h3{margin:0 0 8px;color:#f0d989}.mastery-section>p{color:#b8c0d0}.mastery-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:16px 0}.mastery-summary-grid>div{padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.035)}.mastery-summary-grid strong{display:block;font-size:22px;color:#f0d989}.mastery-summary-grid span{font-size:12px;color:#b8c0d0}.mastery-section a{display:inline-flex;padding:9px 12px;border-radius:8px;background:#58451c;color:#fff2c1;text-decoration:none}.mastery-section small{display:block;margin-top:12px;color:#b8c0d0}
+.mastery-tracks-details{margin:18px 0 12px;border-top:1px solid rgba(255,255,255,.12);padding-top:14px}
+.mastery-tracks-details>summary{cursor:pointer;color:#f0d989;font-weight:700}
+.mastery-track-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:10px;margin-top:14px}
+.mastery-track{padding:12px 14px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.025)}
+.mastery-track-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.mastery-track h4{margin:0;color:#f4f0e7;font-size:14px}
+.mastery-track-count{color:#f0d989;font-size:12px;font-weight:700;white-space:nowrap}
+.mastery-track progress{display:block;width:100%;height:8px;margin:9px 0 6px;accent-color:#d5b45d}
+.mastery-track p{margin:0;color:#b8c0d0;font-size:12px;line-height:1.5}
+.mastery-track-note{font-size:12px}
+@media(max-width:600px){.mastery-section{padding:16px}.mastery-track-head{align-items:flex-start;flex-direction:column;gap:3px}}
+
 </style>
 <meta name="description" content="👤 Mon Profil : parcours, ressources et exercices pour apprendre progressivement sur Gematria Academy.">
 <meta name="robots" content="noindex,follow">
@@ -358,6 +370,11 @@
                 <div><strong id="masteryDue">0</strong><span>Rappels à faire</span></div>
             </div>
             <p id="masterySummary" role="status" aria-live="polite">Chargement du suivi des apprentissages…</p>
+            <details class="mastery-tracks-details">
+                <summary>Voir le détail des 19 parcours</summary>
+                <div id="masteryTracks" class="mastery-track-list" aria-label="Maîtrise par domaine"></div>
+                <p class="mastery-track-note">La barre mesure les étapes durablement confirmées. Une étape consultée ou une réussite unique ne compte pas encore comme maîtrise.</p>
+            </details>
             <a href="../../parcours-apprentissage.html">Reprendre les parcours et exercices →</a>
             <small>Les réponses libres ne sont pas corrigées automatiquement et leur texte n’est pas conservé.</small>
         </section>
@@ -458,6 +475,28 @@
             catch (error) { console.warn('Suivi des apprentissages illisible :', error); return {}; }
         }
 
+        const learningTracks = [
+            { id: 'runes', name: 'Runes nordiques', steps: 4 },
+            { id: 'hebreu-gematria', name: 'Hébreu et gématrie', steps: 4 },
+            { id: 'hieroglyphes', name: 'Hiéroglyphes égyptiens', steps: 4 },
+            { id: 'maya', name: 'Glyphes mayas', steps: 4 },
+            { id: 'coreen', name: 'Coréen', steps: 4 },
+            { id: 'japonais', name: 'Japonais', steps: 4 },
+            { id: 'logique', name: 'Logique', steps: 4 },
+            { id: 'cognition', name: 'Cognition et raisonnement', steps: 4 },
+            { id: 'astrologie', name: 'Astrologie et astronomie sacrée', steps: 4 },
+            { id: 'tarot', name: 'Tarot', steps: 4 },
+            { id: 'alchimie', name: 'Alchimie', steps: 4 },
+            { id: 'kabbale', name: 'Kabbale', steps: 4 },
+            { id: 'numerologie', name: 'Numérologie', steps: 4 },
+            { id: 'astronomie', name: 'Astronomie', steps: 4 },
+            { id: 'meditation', name: 'Méditation', steps: 4 },
+            { id: 'mandalas', name: 'Mandalas', steps: 4 },
+            { id: 'ecritures-comparees', name: 'Comparaison des écritures', steps: 4 },
+            { id: 'cryptographie', name: 'Cryptographie', steps: 4 },
+            { id: 'memoire', name: 'Mémoire', steps: 4 }
+        ];
+
         function renderLearningMastery(data) {
             const studied = data.studied || {};
             const schedules = data.schedules || {};
@@ -479,6 +518,43 @@
             document.getElementById('masteryStudied').textContent = completedKeys.size;
             document.getElementById('masteryConfirmed').textContent = confirmed;
             document.getElementById('masteryDue').textContent = due;
+
+            const trackList = document.getElementById('masteryTracks');
+            trackList.replaceChildren();
+            for (const track of learningTracks) {
+                let studiedCount = 0;
+                let confirmedCount = 0;
+                let dueCount = 0;
+                for (let index = 0; index < track.steps; index += 1) {
+                    const key = track.id + '.' + index;
+                    if (completedKeys.has(key)) studiedCount += 1;
+                    const result = mastery[key];
+                    if (result && typeof result === 'object' && result.status === 'durable' &&
+                        Number(result.passes) >= 3 && Number(result.confirmedAt) > 0) confirmedCount += 1;
+                    if (completedKeys.has(key) && Number(schedules[key]?.dueAt) <= now) dueCount += 1;
+                }
+
+                const row = document.createElement('article');
+                row.className = 'mastery-track';
+                const head = document.createElement('div');
+                head.className = 'mastery-track-head';
+                const name = document.createElement('h4');
+                name.textContent = track.name;
+                const count = document.createElement('span');
+                count.className = 'mastery-track-count';
+                count.textContent = confirmedCount + '/' + track.steps + ' durable' + (dueCount ? ' · ' + dueCount + ' rappel' + (dueCount > 1 ? 's' : '') : '');
+                head.append(name, count);
+                const progress = document.createElement('progress');
+                progress.max = track.steps;
+                progress.value = confirmedCount;
+                progress.setAttribute('aria-label', track.name + ' : ' + confirmedCount + ' étapes durablement confirmées sur ' + track.steps);
+                const detail = document.createElement('p');
+                detail.textContent = studiedCount + '/' + track.steps + ' étapes étudiées · ' +
+                    (track.steps - confirmedCount) + ' à confirmer durablement';
+                row.append(head, progress, detail);
+                trackList.append(row);
+            }
+
             const summary = document.getElementById('masterySummary');
             summary.textContent = due
                 ? due + ' rappel' + (due > 1 ? 's sont' : ' est') + ' à faire dans les parcours.'
