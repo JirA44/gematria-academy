@@ -12,12 +12,20 @@ const LANGUAGES = {
 
 const requestWindows = new Map();
 const MAX_REQUESTS_PER_MINUTE = 12;
+const SITE_VERSION = "1.2.1321";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
     headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
   });
+}
+
+function insertBeforeLastTag(html, closingTagPattern, markup) {
+  const matches = [...html.matchAll(closingTagPattern)];
+  const closingTag = matches[matches.length - 1];
+  if (!closingTag) return html + markup;
+  return html.slice(0, closingTag.index) + markup + html.slice(closingTag.index);
 }
 
 function allowRequest(ip) {
@@ -147,6 +155,10 @@ export default {
         if (/<\/body\s*>/i.test(html)) html = html.replace(/<\/body\s*>/i, bottomNavigation + "</body>");
         else html += bottomNavigation;
       }
+    }
+    if (!html.includes('id="ga-site-version-footer"')) {
+      const versionFooter = '<footer id="ga-site-version-footer" class="ga-site-version" aria-label="Version détaillée de Gematria Academy">Version détaillée <strong>' + SITE_VERSION + '</strong></footer>';
+      html = insertBeforeLastTag(html, /<\\/body\\s*>/gi, versionFooter);
     }
     const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
     const languageScriptPattern = /src=["'][^"']*assets\/js\/site-language\.js(?:\?[^"']*)?["']/i;
