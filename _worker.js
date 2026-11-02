@@ -142,6 +142,8 @@ export default {
       .ga-global-nav a,.ga-global-footer a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border:1px solid rgba(213,180,93,.3);border-radius:8px;background:rgba(255,255,255,.035);color:#f0d989;text-decoration:none}
       .ga-global-nav a:hover,.ga-global-footer a:hover,.ga-global-nav a:focus-visible,.ga-global-footer a:focus-visible{background:rgba(213,180,93,.14);outline:2px solid #f0d989;outline-offset:2px}
       #ga-page-top{position:absolute;top:0}
+      .ga-site-version{width:min(1180px,calc(100% - 32px));margin:12px auto 20px;padding:8px 12px;border-top:1px solid rgba(213,180,93,.2);color:#9da6ba;text-align:center;font:11px/1.5 system-ui,sans-serif}
+      .ga-site-version strong{color:#f0d989;font-weight:700}
       @media(max-width:600px){.ga-global-nav,.ga-global-footer{width:calc(100% - 20px);gap:6px;padding:9px}.ga-global-nav a,.ga-global-footer a{flex:1 1 42%;font-size:12px}}
     </style>`;
     if (!html.includes('id="ga-global-navigation-style"') && /<\/head\s*>/i.test(html)) {
@@ -152,8 +154,7 @@ export default {
       const bottomNavigation = '<nav class="ga-global-footer" aria-label="Raccourcis de fin de page"><a href="#ga-page-top">↑ Haut de page</a><a href="/index.html">Menu principal</a><a href="/parcours-apprentissage.html">Hub des parcours</a><a href="/index_ecritures_sacrees.html">Hub des écritures</a></nav>';
       if (/<body\b[^>]*>/i.test(html)) {
         html = html.replace(/<body\b[^>]*>/i, (tag) => tag + topNavigation);
-        if (/<\/body\s*>/i.test(html)) html = html.replace(/<\/body\s*>/i, bottomNavigation + "</body>");
-        else html += bottomNavigation;
+        html = insertBeforeLastTag(html, /<\/body\s*>/gi, bottomNavigation);
       }
     }
     if (!html.includes('id="ga-site-version-footer"')) {
