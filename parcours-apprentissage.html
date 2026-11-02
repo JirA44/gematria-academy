@@ -284,10 +284,13 @@ function stepEnrichment(p,s,i){
 }
 \nfunction assessmentCriteria(item,phase){
  const domain=LANGUAGE_RUBRICS[item.p.id]||PATH_RUBRICS[item.p.id]||DOMAIN_RUBRICS[item.p.group]||"Explique ta démarche, donne un exemple précis et indique une limite ou une autre possibilité.";
- if(phase===0)return ["Je retrouve le principe sans reprendre une phrase du cours.","Je donne un exemple pertinent et l’explique.","Repère attendu : "+item.step[2],domain];
- if(phase===1)return ["Mon exemple est nouveau et différent de celui du cours.","Je montre les étapes d’application, pas seulement le résultat.","Je justifie ma conclusion avec le repère : "+item.step[2],domain];
- if(phase===2)return ["Je transfère la compétence à une situation inédite.","Je justifie le choix de méthode et vérifie une alternative ou un contre-exemple.","Je précise les limites de ma conclusion.",domain];
- return ["Je retrouve la méthode après le délai sans relire le cours.","J’applique la compétence à un second exemple inédit.","Mon raisonnement reste cohérent et je sais en préciser les limites.",domain];
+ const objective="Objectif de cette étape : "+item.step[2];
+ const reinforce="Renforcement : retrouve la notion sans aide, puis applique-la à un exemple nouveau.";
+ const deepen="Approfondissement : traite un cas plus complexe en t’appuyant sur "+item.p.lens;
+ if(phase===0)return [objective,reinforce,"Je retrouve le principe sans reprendre une phrase du cours.","Je donne un exemple pertinent et l’explique.","Repère attendu : "+item.step[2],domain];
+ if(phase===1)return [objective,reinforce,"Mon exemple est nouveau et différent de celui du cours.","Je montre les étapes d’application, pas seulement le résultat.","Je justifie ma conclusion avec le repère : "+item.step[2],domain];
+ if(phase===2)return [objective,deepen,"Je transfère la compétence à une situation inédite.","Je justifie le choix de méthode et vérifie une alternative ou un contre-exemple.","Je précise les limites de ma conclusion.",domain];
+ return [objective,reinforce,deepen,"Je retrouve la méthode après le délai sans relire le cours.","J’applique la compétence à un second exemple inédit.","Mon raisonnement reste cohérent et je sais en préciser les limites.",domain];
 }
 
 const catalogue=document.getElementById("catalogue");
