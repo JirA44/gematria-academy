@@ -159,7 +159,7 @@ export default {
     }
     if (!html.includes('id="ga-site-version-footer"')) {
       const versionFooter = '<footer id="ga-site-version-footer" class="ga-site-version" aria-label="Version détaillée de Gematria Academy">Version détaillée <strong>' + SITE_VERSION + '</strong></footer>';
-      html = insertBeforeLastTag(html, /<\\/body\\s*>/gi, versionFooter);
+      html = insertBeforeLastTag(html, <\/body\s*>, versionFooter);
     }
     const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
     const languageScriptPattern = /src=["'][^"']*assets\/js\/site-language\.js(?:\?[^"']*)?["']/i;
