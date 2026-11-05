@@ -123,8 +123,9 @@ class GematriaAuth {
         
         // Créer profil dans Firestore
         try {
+            await this.initFirestore();
             await this.saveUserData(result.user.uid, {
-            email,
+                email,
             displayName,
             createdAt: this.serverTimestamp(),
             xp: 0,
