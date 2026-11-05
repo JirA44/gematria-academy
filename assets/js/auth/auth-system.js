@@ -24,55 +24,71 @@ class GematriaAuth {
     }
 
     async _init() {
-        try {
-            if (!window.FIREBASE_CONFIG || !window.isFirebaseConfigured?.()) {
-                throw new Error("Configuration Firebase absente ou invalide.");
-            }
-            // Charger Firebase depuis CDN
-            const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js');
-            const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, updateProfile } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
-            const { getFirestore, doc, setDoc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
-
-            // Initialiser Firebase
-            const app = initializeApp(window.FIREBASE_CONFIG);
-            this.auth = getAuth(app);
-            this.db = getFirestore(app);
-            
-            // Sauvegarder les fonctions
-            this.signInWithEmailAndPassword = signInWithEmailAndPassword;
-            this.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
-            this.signOutFn = signOut;
-            this.GoogleAuthProvider = GoogleAuthProvider;
-            this.signInWithPopup = signInWithPopup;
-            this.updateProfile = updateProfile;
-            this.doc = doc;
-            this.setDoc = setDoc;
-            this.getDoc = getDoc;
-            this.updateDoc = updateDoc;
-            this.serverTimestamp = serverTimestamp;
-
-            // Écouter les changements d'auth
-            onAuthStateChanged(this.auth, async (user) => {
-                this.user = user;
-                if (user) {
-                    try { await this.loadUserData(user.uid); }
-                    catch (error) { console.error("Erreur chargement profil Firestore:", error); }
-                }
-                this.authResolved = true;
-                this.notifyListeners();
-            });
-
-            this.initialized = true;
-            console.log('🔥 Firebase Auth initialisé');
-        } catch (error) {
-            console.error('❌ Erreur Firebase:', error);
-            throw error;
+        if (!window.FIREBASE_CONFIG || !window.isFirebaseConfigured?.()) {
+            throw new Error("Configuration Firebase absente ou invalide.");
         }
+
+        // L'authentification ne doit pas dépendre du chargement de Firestore.
+        const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js');
+        const {
+            getAuth, onAuthStateChanged, signInWithEmailAndPassword,
+            createUserWithEmailAndPassword, signOut, GoogleAuthProvider,
+            signInWithPopup, updateProfile
+        } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
+
+        this.app = initializeApp(window.FIREBASE_CONFIG);
+        this.auth = getAuth(this.app);
+        this.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        this.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        this.signOutFn = signOut;
+        this.GoogleAuthProvider = GoogleAuthProvider;
+        this.signInWithPopup = signInWithPopup;
+        this.updateProfile = updateProfile;
+        this.initialized = true;
+
+        onAuthStateChanged(this.auth, async (user) => {
+            this.user = user;
+            if (user) {
+                try {
+                    await this.loadUserData(user.uid);
+                } catch (error) {
+                    console.warn("Profil Firestore indisponible; authentification conservée :", error);
+                }
+            }
+            this.authResolved = true;
+            this.notifyListeners();
+        });
+
+        console.log('🔥 Firebase Auth initialisé');
+    }
+
+    async initFirestore() {
+        if (this.db) return this.db;
+        if (!this.firestorePromise) {
+            this.firestorePromise = import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js')
+                .then(({ getFirestore, doc, setDoc, getDoc, updateDoc, serverTimestamp }) => {
+                    this.db = getFirestore(this.app);
+                    this.doc = doc;
+                    this.setDoc = setDoc;
+                    this.getDoc = getDoc;
+                    this.updateDoc = updateDoc;
+                    this.serverTimestamp = serverTimestamp;
+                    this.firestoreError = null;
+                    return this.db;
+                })
+                .catch((error) => {
+                    this.firestorePromise = null;
+                    this.firestoreError = error;
+                    throw error;
+                });
+        }
+        return this.firestorePromise;
     }
 
     // Charger données utilisateur depuis Firestore
     async loadUserData(uid) {
         try {
+            await this.initFirestore();
             const userDoc = await this.getDoc(this.doc(this.db, 'users', uid));
             if (userDoc.exists()) {
                 this.userData = userDoc.data();
@@ -88,6 +104,7 @@ class GematriaAuth {
     // Sauvegarder données utilisateur dans Firestore
     async saveUserData(uid, data) {
         try {
+            await this.initFirestore();
             await this.setDoc(this.doc(this.db, 'users', uid), {
                 ...data,
                 updatedAt: this.serverTimestamp()
@@ -105,7 +122,8 @@ class GematriaAuth {
         await this.updateProfile(result.user, { displayName });
         
         // Créer profil dans Firestore
-        await this.saveUserData(result.user.uid, {
+        try {
+            await this.saveUserData(result.user.uid, {
             email,
             displayName,
             createdAt: this.serverTimestamp(),
@@ -114,7 +132,10 @@ class GematriaAuth {
             badges: [],
             lessonsCompleted: [],
             dailyStreak: 0
-        });
+            });
+        } catch (error) {
+            console.warn('Compte créé, mais profil Firestore non synchronisé :', error);
+        }
         
         return result.user;
     }
@@ -133,10 +154,12 @@ class GematriaAuth {
         provider.setCustomParameters({ prompt: "select_account" });
         const result = await this.signInWithPopup(this.auth, provider);
         
-        // Vérifier si nouveau user
-        const userDoc = await this.getDoc(this.doc(this.db, 'users', result.user.uid));
-        if (!userDoc.exists()) {
-            await this.saveUserData(result.user.uid, {
+        // Le profil cloud est secondaire : un incident Firestore ne doit pas annuler la connexion.
+        try {
+            await this.initFirestore();
+            const userDoc = await this.getDoc(this.doc(this.db, 'users', result.user.uid));
+            if (!userDoc.exists()) {
+                await this.saveUserData(result.user.uid, {
                 email: result.user.email,
                 displayName: result.user.displayName,
                 photoURL: result.user.photoURL,
@@ -146,7 +169,10 @@ class GematriaAuth {
                 badges: [],
                 lessonsCompleted: [],
                 dailyStreak: 0
-            });
+                });
+            }
+        } catch (error) {
+            console.warn('Connexion réussie, mais profil Firestore non synchronisé :', error);
         }
         
         return result.user;
@@ -156,6 +182,7 @@ class GematriaAuth {
     async loadProgression(progressId) {
         await this.init();
         if (!this.user) return null;
+        await this.initFirestore();
         const ref = this.doc(this.db, "users", this.user.uid, "progression", progressId);
         const snapshot = await this.getDoc(ref);
         return snapshot.exists() ? snapshot.data() : null;
@@ -164,6 +191,7 @@ class GematriaAuth {
     async saveProgression(progressId, data) {
         await this.init();
         if (!this.user) throw new Error("Connecte-toi pour synchroniser ta progression.");
+        await this.initFirestore();
         const ref = this.doc(this.db, "users", this.user.uid, "progression", progressId);
         await this.setDoc(ref, { ...data, updatedAt: this.serverTimestamp() }, { merge: true });
     }
