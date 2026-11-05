@@ -12,7 +12,7 @@ const LANGUAGES = {
 
 const requestWindows = new Map();
 const MAX_REQUESTS_PER_MINUTE = 12;
-const SITE_VERSION = "1.2.1322";
+const SITE_VERSION = "1.2.1323";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
