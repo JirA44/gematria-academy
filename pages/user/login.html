@@ -422,11 +422,14 @@
             }
         }
 
+        let googleLoginInProgress = false;
+
         function friendlyAuthError(error) {
             const code = error?.code || '';
             if (code === 'auth/unauthorized-domain') {
                 return 'Cette page pointe actuellement vers le projet Firebase « gematria-academy-ed04c ». Le domaine que tu as autorisé dans « gematria-academy » ne s’applique donc pas à cette connexion. La configuration Firebase du site doit être alignée sur le projet de ton application Web.';
             }
+            if (code === 'auth/cancelled-popup-request') return 'Une autre fenêtre de connexion Google était déjà en cours. Ferme-la, attends un instant puis réessaie.';
             if (code === 'auth/popup-blocked') return 'La fenêtre Google a été bloquée. Autorise les fenêtres pop-up pour ce site puis réessaie.';
             if (code === 'auth/popup-closed-by-user') return 'La fenêtre Google a été fermée avant la fin de la connexion.';
             if (code === 'auth/network-request-failed') return 'La connexion réseau a échoué. Vérifie Internet puis réessaie.';
@@ -434,19 +437,33 @@
         }
 
         async function socialLogin(provider) {
-            if (provider === 'google') {
-                try {
-                    showMessage('🔄 Connexion Google...', 'success');
-                    const user = await window.gematriaAuth.signInWithGoogle();
-                    if (user) {
-                        showMessage('✅ Connexion réussie !', 'success');
-                        setTimeout(() => window.location.href = 'profile.html', 1500);
-                    }
-                } catch (error) {
-                    showMessage('❌ ' + friendlyAuthError(error), 'error');
-                }
-            } else {
+            if (provider !== 'google') {
                 showMessage('🔧 ' + provider + ' : bientôt disponible !', 'error');
+                return;
+            }
+            if (googleLoginInProgress) return;
+
+            const button = document.querySelector('.google-btn');
+            googleLoginInProgress = true;
+            if (button) {
+                button.disabled = true;
+                button.setAttribute('aria-busy', 'true');
+            }
+            try {
+                showMessage('🔄 Connexion Google...', 'success');
+                const user = await window.gematriaAuth.signInWithGoogle();
+                if (user) {
+                    showMessage('✅ Connexion réussie !', 'success');
+                    setTimeout(() => window.location.href = 'profile.html', 1500);
+                }
+            } catch (error) {
+                showMessage('❌ ' + friendlyAuthError(error), 'error');
+            } finally {
+                googleLoginInProgress = false;
+                if (button) {
+                    button.disabled = false;
+                    button.removeAttribute('aria-busy');
+                }
             }
         }
 
