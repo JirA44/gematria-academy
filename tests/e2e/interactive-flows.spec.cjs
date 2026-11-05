@@ -242,7 +242,7 @@ test("Standard and production portals keep account controls clear of the languag
 test("Learning paths schedule varied active-recall practice", async ({ page }) => {
   const errors = watchBrowserErrors(page);
   await page.goto("/parcours-apprentissage.html");
-  await expect(page.locator("#domain-count")).toHaveText("18");
+  await expect(page.locator("#domain-count")).toHaveText("19");
   await expect(page.locator("#review-count")).toHaveText("0");
   await expect(page.locator("#review-start")).toBeDisabled();
   await expect(page.locator(".step-level").first()).toContainText("Niveau 1 · Débutant / facile");
