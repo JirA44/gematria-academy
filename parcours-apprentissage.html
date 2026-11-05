@@ -47,7 +47,7 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 <div class="eyebrow">Un campus · de nombreux domaines · des chemins progressifs</div>
 <h1>Apprendre à voir,<br>relier et raisonner</h1>
 <p>Choisis un domaine et avance du premier contact jusqu’à la pratique approfondie. Chaque itinéraire relie les ressources existantes à une méthode de pensée claire : observer, contextualiser, tester et réviser.</p>
-<div class="metrics"><span class="metric"><strong id="domain-count">18</strong> parcours thématiques</span><span class="metric"><strong>4</strong> niveaux progressifs · débutant → avancé</span><span class="metric"><strong id="done-count">0</strong> maîtrises durables</span></div>
+<div class="metrics"><span class="metric"><strong id="domain-count">19</strong> parcours thématiques</span><span class="metric"><strong>4</strong> niveaux progressifs · débutant → avancé</span><span class="metric"><strong id="done-count">0</strong> maîtrises durables</span></div>
 </section>
 <section class="method" aria-labelledby="method-title"><h2 id="method-title">Le cycle d’apprentissage de l’Académie</h2><p>La même rigueur accompagne tous les domaines, avec des questions adaptées à chaque tradition, discipline et système.</p>
 <div class="loop"><div><b>01 · Observer</b>Qu’est-ce qui est réellement présent ?</div><div><b>02 · Contextualiser</b>Quel système et quelle source ?</div><div><b>03 · Formuler</b>Quelle règle ou hypothèse ?</div><div><b>04 · Tester</b>Quel exemple peut la vérifier ou la contredire ?</div><div><b>05 · Réviser</b>Que permet la conclusion — et que ne permet-elle pas ?</div></div></section>
@@ -282,7 +282,7 @@ function stepEnrichment(p,s,i){
  const items=[["À retenir","Sans regarder le cours, restitue l’idée centrale de « "+s[0]+" », puis reformule-la en une phrase personnelle. Vérifie que tu peux expliquer : "+focus],["Renforcement","Fais deux essais courts : un exemple guidé, puis un exemple nouveau. Note l’étape où tu hésites et corrige-la en explicitant ta méthode. Domaine : "+p.name+"."],["Approfondissement","Défi "+level.toLocaleLowerCase("fr")+": prends un cas moins évident, compare deux interprétations ou méthodes, puis défends celle qui convient le mieux. Repère : "+p.lens+" "+rubric]];
  const details=document.createElement("details");details.className="step-enrichment";const summary=document.createElement("summary");summary.textContent="Renforcer et approfondir";details.append(summary);const grid=document.createElement("div");grid.className="enrichment-grid";for(const [title,body] of items){const box=document.createElement("div");box.className="enrichment-card";const b=document.createElement("b");b.textContent=title;const pText=document.createElement("p");pText.textContent=body;box.append(b,pText);grid.append(box)}details.append(grid);return details
 }
-\nfunction assessmentCriteria(item,phase){
+function assessmentCriteria(item,phase){
  const domain=LANGUAGE_RUBRICS[item.p.id]||PATH_RUBRICS[item.p.id]||DOMAIN_RUBRICS[item.p.group]||"Explique ta démarche, donne un exemple précis et indique une limite ou une autre possibilité.";
  const objective="Objectif de cette étape : "+item.step[2];
  const reinforce="Renforcement : retrouve la notion sans aide, puis applique-la à un exemple nouveau.";
