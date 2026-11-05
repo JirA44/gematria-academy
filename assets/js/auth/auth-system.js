@@ -10,6 +10,7 @@ class GematriaAuth {
         this.authResolved = false;
         this.initPromise = null;
         this.listeners = [];
+        this.googleSignInPromise = null;
     }
 
     async init() {
@@ -148,35 +149,44 @@ class GematriaAuth {
         return result.user;
     }
 
-    // Connexion Google
-    async signInWithGoogle() {
-        await this.init();
-        const provider = new this.GoogleAuthProvider();
-        provider.setCustomParameters({ prompt: "select_account" });
-        const result = await this.signInWithPopup(this.auth, provider);
-        
-        // Le profil cloud est secondaire : un incident Firestore ne doit pas annuler la connexion.
-        try {
-            await this.initFirestore();
-            const userDoc = await this.getDoc(this.doc(this.db, 'users', result.user.uid));
-            if (!userDoc.exists()) {
-                await this.saveUserData(result.user.uid, {
-                email: result.user.email,
-                displayName: result.user.displayName,
-                photoURL: result.user.photoURL,
-                createdAt: this.serverTimestamp(),
-                xp: 0,
-                level: 1,
-                badges: [],
-                lessonsCompleted: [],
-                dailyStreak: 0
-                });
+    // Connexion Google : une seule popup simultanée par instance.
+    signInWithGoogle() {
+        if (this.googleSignInPromise) return this.googleSignInPromise;
+
+        this.googleSignInPromise = (async () => {
+            await this.init();
+            const provider = new this.GoogleAuthProvider();
+            provider.setCustomParameters({ prompt: "select_account" });
+            const result = await this.signInWithPopup(this.auth, provider);
+
+            // Le profil cloud est secondaire : un incident Firestore ne doit pas annuler la connexion.
+            try {
+                await this.initFirestore();
+                const userDoc = await this.getDoc(this.doc(this.db, 'users', result.user.uid));
+                if (!userDoc.exists()) {
+                    await this.saveUserData(result.user.uid, {
+                        email: result.user.email,
+                        displayName: result.user.displayName,
+                        photoURL: result.user.photoURL,
+                        createdAt: this.serverTimestamp(),
+                        xp: 0,
+                        level: 1,
+                        badges: [],
+                        lessonsCompleted: [],
+                        dailyStreak: 0
+                    });
+                }
+            } catch (error) {
+                console.warn('Connexion réussie, mais profil Firestore non synchronisé :', error);
             }
-        } catch (error) {
-            console.warn('Connexion réussie, mais profil Firestore non synchronisé :', error);
-        }
-        
-        return result.user;
+
+            return result.user;
+        })();
+
+        const activeAttempt = this.googleSignInPromise;
+        return activeAttempt.finally(() => {
+            if (this.googleSignInPromise === activeAttempt) this.googleSignInPromise = null;
+        });
     }
 
     // Progression privée du parcours mémoire, conforme aux règles Firestore.
