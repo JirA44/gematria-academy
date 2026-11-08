@@ -41,7 +41,7 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 .language-roadmap{margin:28px 0;padding:24px;border:1px solid rgba(136,184,216,.3);border-radius:18px;background:linear-gradient(145deg,rgba(19,31,48,.9),rgba(16,21,36,.94))}.language-roadmap h2{font:600 clamp(21px,3vw,29px) Cinzel,serif;color:var(--gold2);margin:0 0 8px}.language-roadmap>p{max-width:900px;color:var(--muted)}.language-track-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}.language-track{padding:17px;border:1px solid var(--line);border-radius:12px;background:rgba(5,8,15,.35)}.language-track h3{margin:0 0 8px;color:var(--blue);font:600 18px Cinzel,serif}.language-track ol{padding-left:22px;color:var(--text);font-size:13px}.language-track li{margin:6px 0}.language-track p{font-size:12px;color:var(--muted)}.language-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.language-links a{padding:6px 9px;border:1px solid rgba(213,180,93,.3);border-radius:8px;text-decoration:none;font-size:12px}.language-links a:hover{background:rgba(213,180,93,.1)}.language-note{font-size:12px;border-left:3px solid var(--blue);padding-left:10px}
 .practice-ladder{margin:28px 0;padding:24px;border:1px solid rgba(213,180,93,.3);border-radius:18px;background:rgba(12,16,28,.8)}.practice-ladder h2{font:600 clamp(21px,3vw,29px) Cinzel,serif;color:var(--gold2);margin:0 0 8px}.practice-ladder>p{max-width:950px;color:var(--muted)}.practice-ladder .language-track h3{min-height:2em}
 
-.step-enrichment{grid-column:2 / -1;margin:0 0 4px 0;border-top:1px solid rgba(136,184,216,.14);padding-top:5px;color:var(--muted);font-size:12px}.step-enrichment summary{cursor:pointer;color:var(--blue);font-weight:700;list-style-position:outside}.enrichment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.enrichment-card{padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.025)}.enrichment-card b{display:block;color:var(--gold2);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}.enrichment-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}@media(max-width:650px){.enrichment-grid{grid-template-columns:1fr}.step-enrichment{grid-column:1 / -1}}
+.step-enrichment{grid-column:2 / -1;margin:0 0 4px 0;border-top:1px solid rgba(136,184,216,.14);padding-top:5px;color:var(--muted);font-size:12px}.step-enrichment summary{cursor:pointer;color:var(--blue);font-weight:700;list-style-position:outside}.enrichment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px}.enrichment-intro{margin:7px 0;color:var(--muted);font-size:12px}.enrichment-proof{margin-top:10px;padding:12px;border:1px solid rgba(142,203,165,.25);border-radius:9px;background:rgba(142,203,165,.04);font-size:12px;color:var(--muted)}.enrichment-proof strong{color:var(--green)}.enrichment-proof ul{padding-left:20px;margin:7px 0}.enrichment-proof li{margin:5px 0}.enrichment-proof p{margin:7px 0}.enrichment-card{padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.025)}.enrichment-card b{display:block;color:var(--gold2);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}.enrichment-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}@media(max-width:650px){.enrichment-grid{grid-template-columns:1fr}.step-enrichment{grid-column:1 / -1}}
 </style>
 </head>
 <body>
@@ -373,10 +373,38 @@ const PATH_RUBRICS={
 function assessmentPrompt(item,phase){const prompt=PRACTICE_PROMPTS[item.p.id]?.[phase];return prompt?prompt.replaceAll("{step}",item.step[0]):REVIEW_PHASES[phase].prompt(item)}
 
 function stepEnrichment(p,s,i){
+ const profile=CERTIFICATION_PROFILES[p.id]||{};
  const rubric=LANGUAGE_RUBRICS[p.id]||PATH_RUBRICS[p.id]||DOMAIN_RUBRICS[p.group]||"Justifie ta démarche avec un exemple et indique une limite.";
- const focus=s[2];const level=LEVELS[Math.min(i,LEVELS.length-1)].label;
- const items=[["À retenir","Sans regarder le cours, restitue l’idée centrale de « "+s[0]+" », puis reformule-la en une phrase personnelle. Vérifie que tu peux expliquer : "+focus],["Renforcement","Fais deux essais courts : un exemple guidé, puis un exemple nouveau. Note l’étape où tu hésites et corrige-la en explicitant ta méthode. Domaine : "+p.name+"."],["Approfondissement","Défi "+level.toLocaleLowerCase("fr")+": prends un cas moins évident, compare deux interprétations ou méthodes, puis défends celle qui convient le mieux. Repère : "+p.lens+" "+rubric]];
- const details=document.createElement("details");details.className="step-enrichment";const summary=document.createElement("summary");summary.textContent="Renforcer et approfondir";details.append(summary);const grid=document.createElement("div");grid.className="enrichment-grid";for(const [title,body] of items){const box=document.createElement("div");box.className="enrichment-card";const b=document.createElement("b");b.textContent=title;const pText=document.createElement("p");pText.textContent=body;box.append(b,pText);grid.append(box)}details.append(grid);return details
+ const level=LEVELS[Math.min(i,LEVELS.length-1)].label;
+ const practice=PRACTICE_PROMPTS[p.id]||[];
+ const item={p,step:s};
+ const tasks=[
+  ["Objectif de l’étape",s[2]+" Pour progresser au-delà de la lecture du cours, réalise les tâches ci-dessous et garde une trace des erreurs corrigées."],
+  ["Rappel actif · 3 à 5 min",practice[0]?practice[0].replaceAll("{step}",s[0]):"Sans regarder le cours, explique « "+s[0]+" » avec tes mots et donne un exemple."],
+  ["Application · 10 à 15 min",practice[1]?practice[1].replaceAll("{step}",s[0]):"Applique la méthode de « "+s[0]+" » à un exemple inédit. Montre toutes les étapes."],
+  ["Défi de transfert · 15 à 25 min",practice[2]?practice[2].replaceAll("{step}",s[0]):"Construis un cas inédit et plus difficile pour « "+s[0]+" ». Compare deux méthodes, justifie ton choix et indique une limite."],
+  ["Révision différée · J+1, J+3, J+7",practice[3]?practice[3].replaceAll("{step}",s[0]):"Reviens sans notes après un délai; traite un nouvel exemple, corrige tes erreurs, puis retente quelques jours plus tard."],
+  ["Contrôle qualité",rubric+" Après chaque essai, note une erreur précise, la règle qui la corrige et un nouvel exemple qui prouve que tu as compris."]
+ ];
+ const details=document.createElement("details");details.className="step-enrichment";
+ const summary=document.createElement("summary");summary.textContent="Programme détaillé · 5 exercices gradués";details.append(summary);
+ const intro=document.createElement("p");intro.className="enrichment-intro";
+ intro.textContent="Niveau visé : "+level+". Les durées sont des repères de travail actif; les rappels reviennent sur plusieurs jours.";
+ details.append(intro);
+ const grid=document.createElement("div");grid.className="enrichment-grid";
+ for(const [title,body] of tasks){const box=document.createElement("div");box.className="enrichment-card";const b=document.createElement("b");b.textContent=title;const pText=document.createElement("p");pText.textContent=body;box.append(b,pText);grid.append(box)}
+ details.append(grid);
+ if(Array.isArray(profile.skills)&&profile.skills.length){
+  const proof=document.createElement("div");proof.className="enrichment-proof";
+  const heading=document.createElement("strong");heading.textContent="Compétences à construire dans ce parcours";proof.append(heading);
+  const list=document.createElement("ul");
+  for(const skill of profile.skills){const li=document.createElement("li");li.textContent=skill;list.append(li)}
+  proof.append(list);
+  if(profile.proof){const ev=document.createElement("p");ev.textContent="Preuve attendue à terme : "+profile.proof;proof.append(ev)}
+  if(profile.limit){const lim=document.createElement("p");lim.textContent="Limite du parcours : "+profile.limit;proof.append(lim)}
+  details.append(proof)
+ }
+ return details
 }
 function assessmentCriteria(item,phase){
  const domain=LANGUAGE_RUBRICS[item.p.id]||PATH_RUBRICS[item.p.id]||DOMAIN_RUBRICS[item.p.group]||"Explique ta démarche, donne un exemple précis et indique une limite ou une autre possibilité.";
