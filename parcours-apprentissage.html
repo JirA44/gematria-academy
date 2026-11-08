@@ -19,6 +19,10 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 @media(max-width:760px){.loop{grid-template-columns:1fr}.loop div{text-align:left}.grid{grid-template-columns:1fr}.progress-panel{align-items:flex-start;flex-direction:column}.bar{width:100%}.hero{padding:48px 0 30px}.step{grid-template-columns:25px 1fr auto}.step a{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+
+.certification-framework{margin:30px 0;padding:clamp(20px,4vw,32px);border:1px solid rgba(142,203,165,.34);border-radius:18px;background:linear-gradient(145deg,rgba(20,39,40,.72),rgba(16,21,36,.96))}
+.certification-framework h2{font:600 clamp(22px,3vw,30px) Cinzel,serif;color:#b9e5c8;margin:0 0 8px}.certification-framework h3{color:var(--gold2);font-size:16px;margin:0 0 8px}.certification-framework p{color:var(--muted);margin:8px 0}.certification-lead{max-width:900px}.cert-level-grid,.cert-skill-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.cert-skill-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cert-card{padding:16px;border:1px solid var(--line);border-radius:13px;background:rgba(8,12,21,.65)}.cert-card strong{display:block;color:var(--text);margin-bottom:5px}.cert-card p{font-size:13px;margin:0}.cert-card ul{padding-left:18px;margin:8px 0 0;color:var(--muted);font-size:13px}.cert-notice{padding:14px 16px;border-left:3px solid var(--gold);background:rgba(213,180,93,.08);border-radius:0 10px 10px 0}.cert-notice strong{color:var(--gold2)}.cert-standard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.cert-standard li{margin:5px 0;color:var(--muted)}
+@media(max-width:900px){.cert-level-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.cert-level-grid,.cert-skill-grid,.cert-standard{grid-template-columns:1fr}}
 .review-panel{border:1px solid rgba(213,180,93,.3);border-radius:18px;padding:24px;margin:28px 0;background:linear-gradient(135deg,rgba(25,38,56,.95),rgba(14,19,32,.96));box-shadow:0 12px 30px #0003}
 .review-head{display:flex;align-items:center;justify-content:space-between;gap:24px}.review-head h2{font:600 clamp(22px,3vw,30px) Cinzel,serif;color:var(--gold2);margin:3px 0 8px}.review-head p:not(.review-kicker){color:var(--muted);max-width:720px;margin:0}.review-kicker{margin:0;color:var(--blue);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
 .review-start-wrap{display:grid;justify-items:center;gap:4px;min-width:190px}.review-start-wrap strong{font:600 34px Cinzel,serif;color:var(--gold2)}.review-start-wrap span{font-size:12px;color:var(--muted)}
@@ -76,6 +80,36 @@ header{padding:22px 0 12px;border-bottom:1px solid rgba(213,180,93,.18)}.top{dis
 </section>
 <section class="progress-panel" aria-live="polite"><div class="progress-copy"><strong>Ta progression sur les parcours</strong><span id="progress-label">Aucune étape terminée pour l’instant.</span><div class="bar" role="progressbar" aria-label="Progression générale" aria-valuemin="0" aria-valuemax="100"><span id="progress-fill"></span></div></div><a id="resume-link" href="#catalogue">Choisir un parcours ↓</a></section>
 <aside class="sync-panel" aria-live="polite"><div><strong id="sync-title">Progression enregistrée sur cet appareil</strong><span id="sync-copy">Connecte-toi pour retrouver tes acquis sur tes autres appareils.</span></div><a id="sync-login" href="/pages/user/login.html?return=%2Fparcours-apprentissage.html">Connexion / créer un compte →</a></aside>
+<section class="certification-framework" id="certifications-maitrise" aria-labelledby="certification-title">
+  <p class="review-kicker">Niveaux, preuves et certificats</p>
+  <h2 id="certification-title">Une maîtrise se démontre compétence par compétence</h2>
+  <p class="certification-lead">Un certificat doit préciser ce que l’élève sait faire, sur quel domaine et dans quelles conditions. Il ne sera pas attribué parce qu’une page a été ouverte, qu’un parcours est coché ou qu’une réponse a été auto-déclarée réussie.</p>
+  <div class="cert-level-grid" aria-label="Niveaux de certification proposés">
+    <article class="cert-card"><strong>1 · Initiation</strong><p>Reconnaître les éléments essentiels et réussir des tâches guidées sur des exemples nouveaux.</p></article>
+    <article class="cert-card"><strong>2 · Fondations</strong><p>Expliquer les règles, lire ou résoudre des exemples simples et produire une réponse correcte sans modèle.</p></article>
+    <article class="cert-card"><strong>3 · Application autonome</strong><p>Réutiliser la méthode dans des situations inédites, justifier ses choix et corriger ses erreurs.</p></article>
+    <article class="cert-card"><strong>4 · Maîtrise approfondie</strong><p>Réussir une épreuve intégrée, comparer les interprétations et exposer les limites avec précision.</p></article>
+  </div>
+  <h3>Les compétences évaluées dépendent du parcours</h3>
+  <div class="cert-skill-grid">
+    <article class="cert-card"><strong>Langues vivantes · coréen et japonais</strong><ul><li>Lire et comprendre des textes adaptés au niveau.</li><li>Écrire une réponse ou un texte original avec grammaire et vocabulaire ciblés.</li><li>Comprendre un audio et parler dans une situation simulée.</li><li>La compétence orale exige un enregistrement ou un échange évalué; un QCM seul ne la valide pas.</li></ul></article>
+    <article class="cert-card"><strong>Écritures anciennes · hiéroglyphes, glyphes mayas, runes</strong><ul><li>Reconnaître les signes et leur organisation.</li><li>Lire une séquence inédite, repérer son orientation et justifier le découpage.</li><li>Transcrire ou composer une séquence avec la convention explicitement enseignée.</li><li>Une écriture ne prouve pas à elle seule la maîtrise d’une langue parlée.</li></ul></article>
+    <article class="cert-card"><strong>Hiéroglyphes · précision sur l’oral</strong><ul><li>Le certificat peut vérifier la lecture à voix haute d’une translittération conventionnelle.</li><li>Il ne prétendra pas certifier la prononciation exacte de l’égyptien ancien : les voyelles et la réalisation orale ne sont pas toujours connues.</li><li>La lecture, la transcription et la composition seront attestées séparément.</li></ul></article>
+    <article class="cert-card"><strong>Hébreu et gématrie</strong><ul><li>Distinguer reconnaissance, lecture/écriture de l’alphabet et calcul selon une convention annoncée.</li><li>Vérifier les calculs étape par étape et replacer les résultats dans leur contexte.</li><li>Le parcours de gématrie ne vaudra pas certificat de conversation en hébreu.</li></ul></article>
+    <article class="cert-card"><strong>Logique, cognition, mémoire, cryptographie et sciences</strong><ul><li>Résoudre un problème nouveau et expliquer la démarche.</li><li>Faire varier les données, vérifier le résultat et identifier les limites.</li><li>Pour les sujets historiques ou symboliques, distinguer sources, interprétations et hypothèses.</li></ul></article>
+    <article class="cert-card"><strong>Tarot, astrologie, alchimie, mandalas et traditions</strong><ul><li>Identifier les éléments et leurs conventions dans le cadre étudié.</li><li>Analyser un cas inédit sans présenter une interprétation comme un fait vérifié.</li><li>Le certificat porte sur les connaissances et méthodes du parcours, pas sur une validation scientifique de croyances.</li></ul></article>
+  </div>
+  <h3>Protocole anti-triche et délivrance</h3>
+  <ul class="cert-standard">
+    <li><strong>Épreuves variées :</strong> reconnaître, produire, expliquer et transférer; positions et questions tirées d’une banque de variantes.</li>
+    <li><strong>Sans aide :</strong> aucun indice ni corrigé pendant l’épreuve; une réponse déjà vue ne suffit pas.</li>
+    <li><strong>Dans le temps :</strong> plusieurs sessions espacées, avec rappel différé et contrôle de stabilité.</li>
+    <li><strong>Seuils explicites :</strong> score minimal annoncé, critères critiques sans erreur et compétences évaluées séparément.</li>
+    <li><strong>Oral authentique :</strong> épreuve audio/échange pour certifier l’écoute ou la parole; consentement requis pour l’enregistrement.</li>
+    <li><strong>Traçabilité :</strong> certificat avec niveau, compétences exactes, date, mode d’évaluation et identifiant vérifiable.</li>
+  </ul>
+  <p class="cert-notice"><strong>État honnête :</strong> le parcours propose déjà des rappels espacés et des réponses ouvertes, mais celles-ci reposent actuellement sur l’auto-évaluation. Elles ne suffisent pas à garantir l’absence de triche ni à délivrer un certificat de maîtrise vérifiée. Les certificats resteront distincts des validations de progression jusqu’à ce que les épreuves objectives, l’évaluation orale nécessaire et la vérification sécurisée soient en place. Aucun suivi vidéo ou collecte d’audio ne sera activé sans information et consentement.</p>
+</section>
 <section class="review-panel" aria-labelledby="review-title">
   <div class="review-head">
     <div><p class="review-kicker">Vérification de l’assimilation</p><h2 id="review-title">Prouve que tu sais réutiliser ce que tu as appris</h2><p>Rappel sans aide, application sur un exemple inédit, transfert, puis confirmation après 7 jours. Les leçons consultées restent simplement « étudiées » tant que ces étapes ne sont pas réussies.</p></div>
