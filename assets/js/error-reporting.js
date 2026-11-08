@@ -57,10 +57,10 @@
     } catch {}
     try {
       const response = await fetchNative(input, init);
-      if (sameOrigin && response.status >= 500) report("http_5xx");
+      if (response.status >= 500) report("http_5xx");
       return response;
     } catch (error) {
-      if (sameOrigin && String(input) !== ENDPOINT) report("fetch_failure");
+      if (String(input) !== ENDPOINT) report("fetch_failure");
       throw error;
     }
   };
@@ -78,15 +78,21 @@
   };
 
   function watchVisibleErrors() {
-    const selector = '[role="alert"],.error-message,.error-toast,.toast-error,.alert-danger,[data-error]';
+    const selector = '[role="alert"],[aria-live="assertive"],.error-message,.error-toast,.toast-error,.toast--error,.notification--error,.alert-danger,.alert-error,[data-error],[data-toast="error"]';
+    const errorWords = /erreur|impossible|échec|failed|failure|error|réessay|could not|unable to|not available/i;
     const check = node => {
-      if (!(node instanceof Element)) return;
-      if (node.matches(selector) || node.querySelector(selector)) report("visible_error");
+      const element = node instanceof Element ? node : node?.parentElement;
+      if (!element) return;
+      const target = element.matches(selector) ? element : element.querySelector(selector) || element.closest(selector);
+      if (target && errorWords.test(target.textContent || "")) report("visible_error");
     };
     const observer = new MutationObserver(records => {
-      for (const record of records) for (const node of record.addedNodes) check(node);
+      for (const record of records) {
+        if (record.type === "characterData") check(record.target);
+        for (const node of record.addedNodes || []) check(node);
+      }
     });
-    observer.observe(document.documentElement, { childList: true, subtree: true });
+    observer.observe(document.documentElement, { childList: true, characterData: true, subtree: true });
   }
   if (document.documentElement) watchVisibleErrors();
   else document.addEventListener("DOMContentLoaded", watchVisibleErrors, { once: true });
