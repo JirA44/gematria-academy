@@ -66,7 +66,56 @@ function allowClientErrorReport(ip) {
   return true;
 }
 
-async function receiveClientError(request) {
+const ERROR_INBOX_TITLE = "Boîte de réception — erreurs automatiques Gematria Academy";
+
+async function forwardClientErrorToGitHub(env, report) {
+  const token = env.GITHUB_ISSUES_TOKEN;
+  if (!token) return;
+  const headers = {
+    "Accept": "application/vnd.github+json",
+    "Authorization": "Bearer " + token,
+    "X-GitHub-Api-Version": "2022-11-28",
+    "Content-Type": "application/json"
+  };
+  const base = "https://api.github.com/repos/JirA44/gematria-academy";
+  try {
+    const listResponse = await fetch(base + "/issues?state=open&per_page=100", { headers });
+    if (!listResponse.ok) throw new Error("github_list_" + listResponse.status);
+    const issues = await listResponse.json();
+    let inbox = Array.isArray(issues) ? issues.find((issue) =>
+      !issue.pull_request && issue.title === ERROR_INBOX_TITLE
+    ) : null;
+    if (!inbox) {
+      const createResponse = await fetch(base + "/issues", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          title: ERROR_INBOX_TITLE,
+          body: "Les rapports techniques anonymisés de Gematria Academy sont regroupés dans les commentaires de cette issue. Aucun message utilisateur, URL, adresse IP, nom, e-mail ou contenu de formulaire n’est transmis.",
+          labels: []
+        })
+      });
+      if (!createResponse.ok) throw new Error("github_create_" + createResponse.status);
+      inbox = await createResponse.json();
+    }
+    const commentResponse = await fetch(base + "/issues/" + inbox.number + "/comments", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        body: "Rapport reçu — " + report.receivedAt +
+          "\n- Identifiant : " + report.reportId +
+          "\n- Type : " + report.code +
+          "\n- Catégorie : " + report.category +
+          "\n- Version : " + report.version
+      })
+    });
+    if (!commentResponse.ok) throw new Error("github_comment_" + commentResponse.status);
+  } catch (error) {
+    console.warn("gematria_error_forward_failed", String(error?.message || "unknown"));
+  }
+}
+
+async function receiveClientError(request, env, ctx) {
   if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
   const requestUrl = new URL(request.url);
   const origin = request.headers.get("Origin");
@@ -102,13 +151,17 @@ async function receiveClientError(request) {
   if (!allowClientErrorReport(ip)) return json({ error: "rate_limited" }, 429);
 
   const reportId = crypto.randomUUID();
-  console.warn("gematria_client_error", JSON.stringify({
+  const report = {
     reportId,
     code: payload.code,
     category: payload.category,
     version: payload.version,
     receivedAt: new Date().toISOString()
-  }));
+  };
+  console.warn("gematria_client_error", JSON.stringify(report));
+  if (env.GITHUB_ISSUES_TOKEN && ctx?.waitUntil) {
+    ctx.waitUntil(forwardClientErrorToGitHub(env, report));
+  }
   return json({ accepted: true, reportId }, 202);
 }
 
@@ -186,9 +239,9 @@ async function translate(request, env) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (url.pathname === "/api/client-errors") return receiveClientError(request);
+    if (url.pathname === "/api/client-errors") return receiveClientError(request, env, ctx);
     if (url.pathname === "/api/i18n/translate") return translate(request, env);
     if (request.method !== "GET") return env.ASSETS.fetch(request);
 
