@@ -238,11 +238,11 @@ export default {
       html = insertBeforeLastTag(html, /<\/body\s*>/gi, versionFooter);
     }
     const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
-    const reportScriptPattern = /src=["'][^"']*assets\\/js\\/error-reporting\\.js(?:\\?[^"']*)?["']/i;
+    const reportScriptPattern = /src=["'][^"']*assets\/js\/error-reporting\.js(?:\?[^"']*)?["']/i;
     if (reportScriptPattern.test(html)) {
       html = html.replace(reportScriptPattern, 'src="/assets/js/error-reporting.js?v=1"');
     } else if (/<\\/head\\s*>/i.test(html)) {
-      html = html.replace(/<\\/head\\s*>/i, '<script defer src="/assets/js/error-reporting.js?v=1"></script></head>');
+      html = html.replace(/<\/head\s*>/i, '<script defer src="/assets/js/error-reporting.js?v=1"></script></head>');
     }
 
     const languageScriptPattern = /src=["'][^"']*assets\/js\/site-language\.js(?:\?[^"']*)?["']/i;
