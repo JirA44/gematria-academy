@@ -14,7 +14,7 @@ const requestWindows = new Map();
 const clientErrorWindows = new Map();
 const MAX_REQUESTS_PER_MINUTE = 12;
 const MAX_CLIENT_ERROR_REPORTS_PER_MINUTE = 5;
-const SITE_VERSION = "1.2.1328";
+const SITE_VERSION = "1.2.1329";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -262,8 +262,9 @@ export default {
       .ga-global-nav a,.ga-global-footer a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border:1px solid rgba(213,180,93,.3);border-radius:8px;background:rgba(255,255,255,.035);color:#f0d989;text-decoration:none}
       .ga-global-nav a:hover,.ga-global-footer a:hover,.ga-global-nav a:focus-visible,.ga-global-footer a:focus-visible{background:rgba(213,180,93,.14);outline:2px solid #f0d989;outline-offset:2px}
       #ga-page-top{position:absolute;top:0}
-      .ga-site-version{width:min(1180px,calc(100% - 32px));margin:12px auto 20px;padding:8px 12px;border-top:1px solid rgba(213,180,93,.2);color:#9da6ba;text-align:center;font:11px/1.5 system-ui,sans-serif}
+      .ga-site-version{width:min(1180px,calc(100% - 32px));margin:12px auto 20px;padding:12px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px 18px;border-top:1px solid rgba(213,180,93,.2);color:#9da6ba;text-align:center;font:11px/1.5 system-ui,sans-serif}
       .ga-site-version strong{color:#f0d989;font-weight:700}
+      .ga-site-version .ga-site-age{color:#aeb7c8}
       @media(max-width:600px){.ga-global-nav,.ga-global-footer{width:calc(100% - 20px);gap:6px;padding:9px}.ga-global-nav a,.ga-global-footer a{flex:1 1 42%;font-size:12px}}
       .ga-error-reporting-control{width:min(1180px,calc(100% - 32px));margin:6px auto 12px;color:#d7dbe5;font:12px/1.5 system-ui,sans-serif}
       .ga-error-reporting-control details{border-left:2px solid rgba(213,180,93,.55);padding:5px 10px}
@@ -286,8 +287,18 @@ export default {
     if (!html.includes('id="ga-error-reporting-control"')) {
       html = insertBeforeLastTag(html, /<\/body\s*>/gi, "<div id=\"ga-error-reporting-control\" class=\"ga-error-reporting-control\"><details><summary id=\"ga-error-reporting-summary\">Signalement technique activé</summary><p>Lorsqu’une erreur survient, Gematria Academy envoie automatiquement son type, une catégorie de page et la version du site afin d’aider à corriger le bug. Le rapport ne contient ni texte saisi, ni nom, ni e-mail, ni jeton, ni URL complète. La requête réseau révèle toutefois l’adresse IP au fournisseur d’hébergement. Tu peux désactiver l’envoi ici.</p><label><input id=\"ga-error-reporting-enabled\" type=\"checkbox\" checked> Envoyer automatiquement les erreurs techniques</label></details></div>");
     }
-    if (!html.includes('id="ga-site-version-footer"')) {
-      const versionFooter = '<footer id="ga-site-version-footer" class="ga-site-version" aria-label="Version détaillée de Gematria Academy">Version détaillée <strong>' + SITE_VERSION + '</strong></footer>';
+    const createdAt = Date.UTC(2025, 9, 23);
+    const today = new Date();
+    const todayUtc = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+    const elapsedDays = Math.max(0, Math.floor((todayUtc - createdAt) / 86_400_000));
+    const currentYear = today.getUTCFullYear();
+    const copyrightYears = currentYear > 2025 ? "2025–" + currentYear : String(currentYear);
+    const footerContent = '<span class="ga-copyright">© ' + copyrightYears + ' Académie des Sagesses Anciennes · Savoir ancestral, apprentissage progressif</span><span>Version détaillée <strong>' + SITE_VERSION + '</strong></span><span class="ga-site-age">Dépôt créé le 23 octobre 2025 · ' + elapsedDays + ' jours</span>';
+    const versionFooter = '<p id="ga-site-version-footer" class="ga-site-version" aria-label="Copyright, version et ancienneté du dépôt">' + footerContent + '</p>';
+    const existingVersionFooter = /<p\b(?=[^>]*\bid=["']ga-site-version-footer["'])[^>]*>[\s\S]*?<\/p>/i;
+    if (existingVersionFooter.test(html)) {
+      html = html.replace(existingVersionFooter, versionFooter);
+    } else {
       html = insertBeforeLastTag(html, /<\/body\s*>/gi, versionFooter);
     }
     const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
