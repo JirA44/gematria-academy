@@ -11,8 +11,10 @@ const LANGUAGES = {
 };
 
 const requestWindows = new Map();
+const clientErrorWindows = new Map();
 const MAX_REQUESTS_PER_MINUTE = 12;
-const SITE_VERSION = "1.2.1323";
+const MAX_CLIENT_ERROR_REPORTS_PER_MINUTE = 5;
+const SITE_VERSION = "1.2.1324";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -44,6 +46,70 @@ function allowRequest(ip) {
     }
   }
   return true;
+}
+
+function allowClientErrorReport(ip) {
+  const now = Date.now();
+  const previous = clientErrorWindows.get(ip) || [];
+  const recent = previous.filter((stamp) => now - stamp < 60_000);
+  if (recent.length >= MAX_CLIENT_ERROR_REPORTS_PER_MINUTE) {
+    clientErrorWindows.set(ip, recent);
+    return false;
+  }
+  recent.push(now);
+  clientErrorWindows.set(ip, recent);
+  if (clientErrorWindows.size > 5000) {
+    for (const [key, values] of clientErrorWindows) {
+      if (!values.some((stamp) => now - stamp < 60_000)) clientErrorWindows.delete(key);
+    }
+  }
+  return true;
+}
+
+async function receiveClientError(request) {
+  if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
+  const requestUrl = new URL(request.url);
+  const origin = request.headers.get("Origin");
+  let originUrl;
+  try { originUrl = origin ? new URL(origin) : null; } catch { originUrl = null; }
+  if (!originUrl || originUrl.origin !== requestUrl.origin) return json({ error: "origin_not_allowed" }, 403);
+
+  const contentType = request.headers.get("Content-Type") || "";
+  if (!contentType.toLowerCase().includes("application/json")) return json({ error: "unsupported_media_type" }, 415);
+  const contentLength = Number(request.headers.get("Content-Length") || 0);
+  if (contentLength > 1_500) return json({ error: "payload_too_large" }, 413);
+
+  let payload;
+  try {
+    const raw = await request.text();
+    if (raw.length > 1_500) return json({ error: "payload_too_large" }, 413);
+    payload = JSON.parse(raw);
+  } catch {
+    return json({ error: "invalid_json" }, 400);
+  }
+
+  const expectedKeys = ["category", "code", "schema", "version"];
+  if (!payload || typeof payload !== "object" || Array.isArray(payload) ||
+      Object.keys(payload).sort().join(",") !== expectedKeys.join(",") ||
+      payload.schema !== 1 ||
+      !["javascript_error", "unhandled_rejection", "resource_load", "fetch_failure", "http_5xx", "console_error", "visible_error"].includes(payload.code) ||
+      !["auth", "language", "writing", "learning", "site"].includes(payload.category) ||
+      typeof payload.version !== "string" || !/^1\.2\.\d{3,5}$/.test(payload.version)) {
+    return json({ error: "invalid_payload" }, 400);
+  }
+
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+  if (!allowClientErrorReport(ip)) return json({ error: "rate_limited" }, 429);
+
+  const reportId = crypto.randomUUID();
+  console.warn("gematria_client_error", JSON.stringify({
+    reportId,
+    code: payload.code,
+    category: payload.category,
+    version: payload.version,
+    receivedAt: new Date().toISOString()
+  }));
+  return json({ accepted: true, reportId }, 202);
 }
 
 async function translate(request, env) {
@@ -122,6 +188,7 @@ async function translate(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/client-errors") return receiveClientError(request);
     if (url.pathname === "/api/i18n/translate") return translate(request, env);
     if (request.method !== "GET") return env.ASSETS.fetch(request);
 
@@ -145,6 +212,12 @@ export default {
       .ga-site-version{width:min(1180px,calc(100% - 32px));margin:12px auto 20px;padding:8px 12px;border-top:1px solid rgba(213,180,93,.2);color:#9da6ba;text-align:center;font:11px/1.5 system-ui,sans-serif}
       .ga-site-version strong{color:#f0d989;font-weight:700}
       @media(max-width:600px){.ga-global-nav,.ga-global-footer{width:calc(100% - 20px);gap:6px;padding:9px}.ga-global-nav a,.ga-global-footer a{flex:1 1 42%;font-size:12px}}
+      .ga-error-reporting-control{width:min(1180px,calc(100% - 32px));margin:6px auto 12px;color:#d7dbe5;font:12px/1.5 system-ui,sans-serif}
+      .ga-error-reporting-control details{border-left:2px solid rgba(213,180,93,.55);padding:5px 10px}
+      .ga-error-reporting-control summary{cursor:pointer;color:#f0d989;font-weight:600}
+      .ga-error-reporting-control p{max-width:820px;margin:8px 0;color:#aeb7c8}
+      .ga-error-reporting-control label{display:flex;align-items:center;gap:8px;width:fit-content;cursor:pointer}
+      .ga-error-reporting-control input{accent-color:#d5b45d}
     </style>`;
     if (!html.includes('id="ga-global-navigation-style"') && /<\/head\s*>/i.test(html)) {
       html = html.replace(/<\/head\s*>/i, navigationStyle + "</head>");
@@ -157,11 +230,21 @@ export default {
         html = insertBeforeLastTag(html, /<\/body\s*>/gi, bottomNavigation);
       }
     }
+    if (!html.includes('id="ga-error-reporting-control"')) {
+      html = insertBeforeLastTag(html, /<\/body\s*>/gi, "<div id=\"ga-error-reporting-control\" class=\"ga-error-reporting-control\"><details><summary id=\"ga-error-reporting-summary\">Signalement technique activé</summary><p>Lorsqu’une erreur survient, Gematria Academy envoie automatiquement son type, une catégorie de page et la version du site afin d’aider à corriger le bug. Le rapport ne contient ni texte saisi, ni nom, ni e-mail, ni jeton, ni URL complète. La requête réseau révèle toutefois l’adresse IP au fournisseur d’hébergement. Tu peux désactiver l’envoi ici.</p><label><input id=\"ga-error-reporting-enabled\" type=\"checkbox\" checked> Envoyer automatiquement les erreurs techniques</label></details></div>");
+    }
     if (!html.includes('id="ga-site-version-footer"')) {
       const versionFooter = '<footer id="ga-site-version-footer" class="ga-site-version" aria-label="Version détaillée de Gematria Academy">Version détaillée <strong>' + SITE_VERSION + '</strong></footer>';
       html = insertBeforeLastTag(html, /<\/body\s*>/gi, versionFooter);
     }
     const scriptTag = '<script defer src="/assets/js/site-language.js?v=5"></script>';
+    const reportScriptPattern = /src=["'][^"']*assets\\/js\\/error-reporting\\.js(?:\\?[^"']*)?["']/i;
+    if (reportScriptPattern.test(html)) {
+      html = html.replace(reportScriptPattern, 'src="/assets/js/error-reporting.js?v=1"');
+    } else if (/<\\/head\\s*>/i.test(html)) {
+      html = html.replace(/<\\/head\\s*>/i, '<script defer src="/assets/js/error-reporting.js?v=1"></script></head>');
+    }
+
     const languageScriptPattern = /src=["'][^"']*assets\/js\/site-language\.js(?:\?[^"']*)?["']/i;
     if (languageScriptPattern.test(html)) {
       html = html.replace(languageScriptPattern, 'src="/assets/js/site-language.js?v=5"');
