@@ -56,6 +56,7 @@
     <link rel="stylesheet" href="assets/css/animations/animated-background.css">
     <link rel="stylesheet" href="assets/css/animations/bleus-cosmiques.css">
     <link rel="stylesheet" href="assets/css/main/cosmic-header-styles.css?v=20261029-2">
+    <link rel="stylesheet" href="assets/css/main/homepage-redesign.css?v=20261108-1">
 
     <!-- JavaScript - Fixed paths to assets folder -->
     <script src="assets/js/animations/animated-background.js" defer></script>
@@ -140,12 +141,7 @@
 
     </style>
     </head>
-<body><nav aria-label="Raccourcis vers les écritures anciennes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:.8rem 1rem;background:#101524;color:#f4f0e7">
-  <a href="/pages/hieroglyphes/hieroglyphes-debutant.html" style="color:#f0d989">𓂀 Débuter les hiéroglyphes</a>
-  <a href="/pages/maya/dictionnaire-maya.html" style="color:#f0d989">📖 Dictionnaire maya</a>
-</nav>
-
-    <!-- Widget XP/Niveau -->
+<body>    <!-- Widget XP/Niveau -->
     <div id="xpWidget" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(236, 72, 153, 0.9)); padding: 10px 20px; border-radius: 25px; color: white; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: none; cursor: pointer;" onclick="window.location.href='pages/user/profile.html'">
         <span id="xpLevel" style="font-weight: bold;">🌱 Niv.1</span>
         <span id="xpPoints" style="margin-left: 10px; opacity: 0.9;">0 XP</span>
@@ -201,7 +197,7 @@
     <!-- Skip to main content link for keyboard navigation -->
     <a href="#main-content" class="skip-link">Passer au contenu principal</a>
 
-    <header role="banner">
+    <header class="home-header" role="banner"><p class="home-brandline"><span aria-hidden="true">✧</span> Gematria Academy <span class="brand-divider">/</span> langues · écritures · pensée</p>
         <!-- Boutons en haut à droite - Design cosmique -->
         <div class="header-buttons-cosmic" role="group" aria-label="Commandes principales">
             <button class="cosmic-btn cosmic-btn-dark"
@@ -285,27 +281,65 @@
     </nav>
 
     <main id="main-content" role="main">
-                <div class="fullscreen-hint"
-                     role="note"
-                     aria-label="Astuce d'utilisation"
-                     style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(33, 150, 243, 0.2)); border: 2px solid rgba(76, 175, 80, 0.5); border-radius: 15px; padding: 1rem 2rem; margin-bottom: 2rem; text-align: center; font-size: 1.1rem;">
-            <span aria-hidden="true">💡</span> <strong>Astuce :</strong> Appuyez sur <kbd style="background: rgba(255, 255, 255, 0.1); padding: 0.3rem 0.6rem; border-radius: 5px; border: 1px solid rgba(255, 255, 255, 0.3); font-family: monospace;">F11</kbd> pour profiter du site en plein écran !
-        </div>
-
-<section class="hero" aria-labelledby="hero-title">
-            <h2 id="hero-title" data-i18n="hero_title">Explorer des traditions et des systèmes symboliques</h2>
-            <p data-i18n="hero_text">Des parcours, pages de référence et exercices pour découvrir les runes, la gématrie, les hiéroglyphes, les glyphes mayas et le raisonnement logique.</p>
+<section class="home-hero" aria-labelledby="hero-title">
+  <div class="home-hero-copy">
+    <p class="home-eyebrow">Un atlas pour apprendre, pratiquer et approfondir</p>
+    <h2 id="hero-title" data-i18n="hero_title">Explorer des traditions et des systèmes symboliques</h2>
+    <p class="home-hero-text" data-i18n="hero_text">Des parcours, pages de référence et exercices pour découvrir les runes, la gématrie, les hiéroglyphes, les glyphes mayas et le raisonnement logique.</p>
+    <div class="home-hero-actions">
+      <a class="home-button home-button-primary" href="parcours-apprentissage.html">Commencer un parcours</a>
+      <a class="home-button home-button-secondary" href="#domain-directory-title">Explorer les domaines</a>
+    </div>
+    <div class="home-hero-facts" aria-label="Contenu de l’Académie">
+      <span><strong>19</strong> parcours</span><span><strong>6</strong> familles de savoir</span><span>cours · outils · révisions</span>
+    </div>
+  </div>
+  <div class="home-hero-mark" aria-hidden="true">
+    <div class="mark-ring mark-ring-outer"></div><div class="mark-ring mark-ring-inner"></div>
+    <span class="mark-eye">𓂀</span><span class="mark-rune">ᚱ</span><span class="mark-hebrew">א</span><span class="mark-sun">☼</span>
+    <p>Observer<br>Lire<br>Comprendre</p>
+  </div>
+</section>
+<section class="learning-path-cta" aria-labelledby="learning-path-title">
+  <div class="path-cta-copy">
+    <p class="path-cta-kicker">19 parcours · progression guidée · rappels de maîtrise</p>
+    <h2 id="learning-path-title">Avance du premier repère à la pratique autonome</h2>
+    <p>Choisis ton sujet, étudie une étape, entraîne-toi sur des exemples nouveaux et retrouve tes révisions au bon moment.</p>
+  </div>
+  <div class="path-cta-links">
+    <a class="path-cta-primary" href="parcours-apprentissage.html">Voir les parcours</a>
+    <a href="index_ecritures_sacrees.html">Explorer les écritures sacrées</a>
+    <a href="/pages/cognitif/encyclopedie-raisonnements.html">Ouvrir l’encyclopédie des raisonnements</a>
+  </div>
+</section>
+<section class="domain-directory" aria-labelledby="domain-directory-title">
+            <h2 id="domain-directory-title" data-i18n="domain_directory_title">Explorer les domaines</h2>
+            <p class="domain-directory-intro" data-i18n="domain_directory_intro">Choisissez un domaine pour accéder à ses cours et outils. Commencez par les bases et avancez pas à pas.</p>
+            <label class="domain-search-label" for="domain-search">Trouver un domaine</label><input id="domain-search" class="domain-search" type="search" placeholder="Ex. hiéroglyphes, coréen, logique…" autocomplete="off"><p id="domain-search-empty" class="domain-search-empty" hidden>Aucun domaine ne correspond. Essaie un autre mot.</p><div class="domain-directory-grid">
+                <a class="domain-directory-card" href="#runes">ᚱ Runes nordiques</a>
+                <a class="domain-directory-card" href="#gematria">✡ Gématrie hébraïque</a>
+                <a class="domain-directory-card" href="#hieroglyphes">𓂀 Hiéroglyphes égyptiens</a>
+                <a class="domain-directory-card" href="#maya">Glyphes mayas</a>
+                <a class="domain-directory-card" href="parcours-logique-progressif.html">🧠 Logique — parcours progressif</a>
+                <a class="domain-directory-card" href="pages/logique/types-raisonnement.html">Types de raisonnement</a>
+                <a class="domain-directory-card" href="#mandala">Mandalas sacrés</a>
+                <a class="domain-directory-card" href="pages/meditation/chakras.html">Méditation et chakras</a>
+                <a class="domain-directory-card" href="pages/coreen/coreen-debutant.html">Langue coréenne</a>
+                <a class="domain-directory-card" href="pages/japonais/japonais-debutant.html">Langue japonaise</a>
+                <a class="domain-directory-card" href="pages/tarot/tarot-debutant.html">Tarot</a>
+                <a class="domain-directory-card" href="pages/astrologie/signes-zodiaque.html">Astrologie</a>
+                <a class="domain-directory-card" href="pages/alchimie/alchimie-debutant.html">Alchimie</a>
+                <a class="domain-directory-card" href="pages/kabbale/kabbale-debutant.html">Kabbale</a>
+                <a class="domain-directory-card" href="pages/numerologie/numerologie-debutant.html">Numérologie</a>
+                <a class="domain-directory-card" href="pages/astronomie/astronomie-debutant.html">Astronomie</a>
+                <a class="domain-directory-card" href="memory-path.html">Mémoire et apprentissage</a>
+                <a class="domain-directory-card" href="parcours-ecritures-sacrees-comparees.html">Comparer les écritures</a>
+                <a class="domain-directory-card" href="parcours-cryptographie-sacree.html">Cryptographie et codes</a>
+            </div>
+            <p class="domain-directory-archive">Les anciennes leçons détaillées sont également disponibles : <a href="index_ecritures_sacrees.html">ouvrir les 83 leçons Maya, Runes et Hiéroglyphes →</a></p>
         </section>
-
-        <section class="learning-path-cta" aria-labelledby="learning-path-title" style="max-width:1200px;margin:1.5rem auto 2.5rem;padding:clamp(1.4rem,4vw,2.6rem);border:1px solid rgba(212,175,55,.45);border-radius:20px;background:linear-gradient(120deg,rgba(18,28,48,.94),rgba(39,28,58,.92));display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;box-shadow:0 16px 40px rgba(0,0,0,.2)">
-            <div style="max-width:760px"><p style="margin:0 0 .35rem;color:#9ecbe6;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:700">18 parcours thématiques · progression guidée · sauvegardée</p><h2 id="learning-path-title" style="margin:.25rem 0 .55rem;color:#f0d989;font-size:clamp(1.35rem,3vw,2rem)">Apprendre dans tous les domaines, étape par étape</h2><p style="margin:0;color:#d8d0c0;line-height:1.7">Choisis ton sujet, suis une progression claire et entraîne les mêmes réflexes de pensée : observer, contextualiser, formuler, tester et réviser.</p></div>
-            <a href="parcours-apprentissage.html" style="display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.3rem;border-radius:999px;background:linear-gradient(135deg,#c49c62,#e8c870);color:#11121a;font-weight:800;text-decoration:none;white-space:nowrap">Explorer les parcours →</a>
-            <a href="index_ecritures_sacrees.html" style="color:#e8c870;font-weight:700;text-decoration:underline;text-underline-offset:4px">Portail des écritures sacrées →</a>
-            <a href="/pages/cognitif/encyclopedie-raisonnements.html" style="color:#e8c870;font-weight:700;text-decoration:underline;text-underline-offset:4px">Encyclopédie des raisonnements →</a>
-        </section>
-
-        <section class="purpose-panel" aria-labelledby="purpose-title">
-    <h2 id="purpose-title" data-i18n="purpose_title">À quoi sert l’Académie ?</h2>
+<details class="home-disclosure"><summary>Notre approche pédagogique et nos sources</summary><section class="purpose-panel" aria-labelledby="purpose-title">
+    <h2 id="purpose-title" data-i18n="purpose_title">Une méthode pour apprendre avec discernement</h2>
     <div class="purpose-grid">
         <article class="purpose-card">
             <h3 data-i18n="purpose_what_label">À quoi ça sert ?</h3>
@@ -330,31 +364,17 @@
         </article>
     </div>
     <p class="purpose-note" data-i18n="purpose_note">Les contenus historiques, culturels, spirituels et ésotériques n’ont pas tous le même statut. Une interprétation symbolique n’est pas, à elle seule, une preuve scientifique ou historique.</p>
-</section>
+</section></details>
 
-<section class="domain-directory" aria-labelledby="domain-directory-title">
-            <h2 id="domain-directory-title" data-i18n="domain_directory_title">Explorer les domaines</h2>
-            <p class="domain-directory-intro" data-i18n="domain_directory_intro">Choisissez un domaine pour accéder à ses cours et outils. Commencez par les bases et avancez pas à pas.</p>
-            <div class="domain-directory-grid">
-                <a class="domain-directory-card" href="#runes">ᚱ Runes nordiques</a>
-                <a class="domain-directory-card" href="#gematria">✡ Gématrie hébraïque</a>
-                <a class="domain-directory-card" href="#hieroglyphes">𓂀 Hiéroglyphes égyptiens</a>
-                <a class="domain-directory-card" href="#maya">Glyphes mayas</a>
-                <a class="domain-directory-card" href="parcours-logique-progressif.html">🧠 Logique — parcours progressif</a>
-                <a class="domain-directory-card" href="pages/logique/types-raisonnement.html">Types de raisonnement</a>
-                <a class="domain-directory-card" href="#mandala">Mandalas sacrés</a>
-                <a class="domain-directory-card" href="pages/meditation/chakras.html">Méditation et chakras</a>
-                <a class="domain-directory-card" href="pages/coreen/coreen-debutant.html">Langue coréenne</a>
-                <a class="domain-directory-card" href="pages/japonais/japonais-debutant.html">Langue japonaise</a>
-                <a class="domain-directory-card" href="pages/tarot/tarot-debutant.html">Tarot</a>
-                <a class="domain-directory-card" href="pages/astrologie/signes-zodiaque.html">Astrologie</a>
-                <a class="domain-directory-card" href="pages/alchimie/alchimie-debutant.html">Alchimie</a>
-                <a class="domain-directory-card" href="pages/kabbale/kabbale-debutant.html">Kabbale</a>
-                <a class="domain-directory-card" href="pages/numerologie/numerologie-debutant.html">Numérologie</a>
-                <a class="domain-directory-card" href="pages/astronomie/astronomie-debutant.html">Astronomie</a>
-            </div>
-            <p class="domain-directory-archive">Les anciennes leçons détaillées sont également disponibles : <a href="index_ecritures_sacrees.html">ouvrir les 83 leçons Maya, Runes et Hiéroglyphes →</a></p>
-        </section>
+                
+
+
+
+        
+
+        
+
+
 
         <section id="runes" class="section-category" aria-labelledby="runes-title">
             <h2 id="runes-title"><span aria-hidden="true">📿</span> Les Runes Nordiques</h2>
@@ -1129,5 +1149,24 @@
             }
         });
     </script>
+<script>
+(() => {
+  const input = document.getElementById("domain-search");
+  const grid = document.querySelector(".domain-directory-grid");
+  const empty = document.getElementById("domain-search-empty");
+  if (!input || !grid || !empty) return;
+  const cards = [...grid.querySelectorAll(".domain-directory-card")];
+  input.addEventListener("input", () => {
+    const query = input.value.trim().toLocaleLowerCase("fr");
+    let visible = 0;
+    for (const card of cards) {
+      const matches = card.textContent.toLocaleLowerCase("fr").includes(query);
+      card.hidden = !matches;
+      if (matches) visible++;
+    }
+    empty.hidden = visible !== 0;
+  });
+})();
+</script>
 </body>
 </html>
