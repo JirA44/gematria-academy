@@ -2,7 +2,7 @@
   "use strict";
   const ENDPOINT = "/api/client-errors";
   const PREF_KEY = "gematria_error_reporting_enabled";
-  const VERSION = "1.2.1326";
+  const VERSION = "1.2.1327";
   const ALLOWED_CODES = new Set([
     "javascript_error", "unhandled_rejection", "resource_load",
     "fetch_failure", "http_5xx", "console_error", "visible_error"
