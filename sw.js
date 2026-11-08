@@ -1,7 +1,7 @@
 // Service Worker pour Gematria Academy
 // Version 1.0.0
 const CACHE_PREFIX = 'gematria-academy-';
-const CACHE_NAME = 'gematria-academy-v8';
+const CACHE_NAME = 'gematria-academy-v9';
 const OFFLINE_URL = '/offline.html';
 
 // Fichiers à mettre en cache immédiatement
