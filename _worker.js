@@ -241,7 +241,7 @@ export default {
     const reportScriptPattern = /src=["'][^"']*assets\/js\/error-reporting\.js(?:\?[^"']*)?["']/i;
     if (reportScriptPattern.test(html)) {
       html = html.replace(reportScriptPattern, 'src="/assets/js/error-reporting.js?v=1"');
-    } else if (/<\\/head\\s*>/i.test(html)) {
+    } else if (/<\/head\s*>/i.test(html)) {
       html = html.replace(/<\/head\s*>/i, '<script defer src="/assets/js/error-reporting.js?v=1"></script></head>');
     }
 
