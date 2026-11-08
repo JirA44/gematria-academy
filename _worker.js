@@ -14,7 +14,7 @@ const requestWindows = new Map();
 const clientErrorWindows = new Map();
 const MAX_REQUESTS_PER_MINUTE = 12;
 const MAX_CLIENT_ERROR_REPORTS_PER_MINUTE = 5;
-const SITE_VERSION = "1.2.1325";
+const SITE_VERSION = "1.2.1326";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
