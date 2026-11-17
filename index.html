@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="assets/css/animations/animated-background.css">
     <link rel="stylesheet" href="assets/css/animations/bleus-cosmiques.css">
     <link rel="stylesheet" href="assets/css/main/cosmic-header-styles.css?v=20261029-2">
-    <link rel="stylesheet" href="assets/css/main/homepage-redesign.css?v=20261108-2">
+    <link rel="stylesheet" href="assets/css/main/homepage-redesign.css?v=20261117-1">
 
     <!-- JavaScript - Fixed paths to assets folder -->
     <script src="assets/js/animations/animated-background.js" defer></script>
@@ -315,7 +315,7 @@
 <section class="domain-directory" aria-labelledby="domain-directory-title">
             <h2 id="domain-directory-title" data-i18n="domain_directory_title">Explorer les domaines</h2>
             <p class="domain-directory-intro" data-i18n="domain_directory_intro">Choisissez un domaine pour accéder à ses cours et outils. Commencez par les bases et avancez pas à pas.</p>
-            <label class="domain-search-label" for="domain-search">Trouver un domaine</label><input id="domain-search" class="domain-search" type="search" placeholder="Ex. hiéroglyphes, coréen, logique…" autocomplete="off"><p id="domain-search-empty" class="domain-search-empty" hidden>Aucun domaine ne correspond. Essaie un autre mot.</p><div class="domain-directory-grid">
+            <label class="domain-search-label" for="domain-search">Trouver un domaine</label><input id="domain-search" class="domain-search" type="search" placeholder="Ex. hiéroglyphes, coréen, logique…" autocomplete="off" aria-controls="domain-directory-results"><p id="domain-search-status" class="domain-search-status" aria-live="polite">19 domaines affichés</p><p id="domain-search-empty" class="domain-search-empty" hidden>Aucun domaine ne correspond. Essaie un autre mot.</p><div id="domain-directory-results" class="domain-directory-grid">
                 <a class="domain-directory-card" href="#runes">ᚱ Runes nordiques</a>
                 <a class="domain-directory-card" href="#gematria">✡ Gématrie hébraïque</a>
                 <a class="domain-directory-card" href="#hieroglyphes">𓂀 Hiéroglyphes égyptiens</a>
@@ -880,7 +880,7 @@
     </main>
 
     <footer>
-        <p id="ga-site-version-footer" class="app-version ga-site-version" aria-label="Copyright, version et date de création">© 2025–2026 Académie des Sagesses Anciennes · Version détaillée 1.2.1330 · Dépôt créé le 23 octobre 2025 · 381 jours</p>
+        <p id="ga-site-version-footer" class="app-version ga-site-version" aria-label="Copyright, version et date de création">© 2025–2026 Académie des Sagesses Anciennes · Version détaillée 1.2.1331 · Dépôt créé le 23 octobre 2025 · 381 jours</p>
     </footer>
 
     <script>
@@ -1154,17 +1154,21 @@
   const input = document.getElementById("domain-search");
   const grid = document.querySelector(".domain-directory-grid");
   const empty = document.getElementById("domain-search-empty");
-  if (!input || !grid || !empty) return;
+  const status = document.getElementById("domain-search-status");
+  if (!input || !grid || !empty || !status) return;
   const cards = [...grid.querySelectorAll(".domain-directory-card")];
+  const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("fr");
+  const searchIndex = cards.map((card) => normalize(card.textContent));
   input.addEventListener("input", () => {
-    const query = input.value.trim().toLocaleLowerCase("fr");
+    const query = normalize(input.value.trim());
     let visible = 0;
-    for (const card of cards) {
-      const matches = card.textContent.toLocaleLowerCase("fr").includes(query);
+    cards.forEach((card, index) => {
+      const matches = searchIndex[index].includes(query);
       card.hidden = !matches;
       if (matches) visible++;
-    }
+    });
     empty.hidden = visible !== 0;
+    status.textContent = visible + (visible > 1 ? " domaines affichés" : " domaine affiché");
   });
 })();
 </script>
