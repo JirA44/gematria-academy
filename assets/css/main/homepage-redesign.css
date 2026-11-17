@@ -127,3 +127,18 @@ body.light-mode .domain-search{background:#fffdf7!important;color:#283b49}
 body.light-mode .domain-nav{background:rgba(240,237,228,.96)!important}
 body.light-mode .domain-nav .nav-container a{color:#34495a!important}
 body.light-mode footer{background:#ded9ce!important;color:#354858!important}
+
+/* Search, keyboard and mobile polish */
+.domain-directory-card[hidden]{display:none!important}
+.domain-search-status{min-height:1.2em;margin:-12px 0 14px;color:#99a9b5;font-size:11px}
+:where(a,button,input,summary):focus-visible{outline:2px solid var(--home-gold-bright)!important;outline-offset:3px}
+.home-disclosure>summary:hover{background:rgba(205,180,119,.06)}
+@media(max-width:480px){
+  .home-hero-actions{display:grid;grid-template-columns:1fr}
+  .home-button{width:100%}
+  .home-hero-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .domain-directory{padding:20px 15px!important}
+  .domain-directory-grid{grid-template-columns:1fr}
+  .domain-directory-card{min-height:46px!important}
+}
+body.light-mode .domain-search-status{color:#586b78}
