@@ -142,3 +142,16 @@ body.light-mode footer{background:#ded9ce!important;color:#354858!important}
   .domain-directory-card{min-height:46px!important}
 }
 body.light-mode .domain-search-status{color:#586b78}
+
+/* A visible three-step learning rhythm */
+.learning-path-cta{display:grid!important;grid-template-columns:minmax(250px,1.15fr) minmax(250px,.9fr) auto;align-items:center;gap:clamp(18px,3vw,34px)}
+.path-cta-copy{max-width:600px}
+.path-steps{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.path-steps li{display:grid;grid-template-columns:30px 1fr;align-items:start;gap:10px}
+.path-steps li>span{display:grid;place-items:center;width:27px;height:27px;border:1px solid rgba(205,180,119,.48);border-radius:50%;color:var(--home-gold-bright);font:600 10px Georgia,serif}
+.path-steps strong{display:block;margin:1px 0 2px;color:#e6d9b4;font:600 14px Georgia,serif}
+.path-steps small{display:block;color:#aebbc5;font:11px/1.45 Inter,"Segoe UI",sans-serif}
+.path-cta-links{min-width:150px}
+@media(max-width:1000px){.learning-path-cta{grid-template-columns:minmax(0,1fr) minmax(240px,.85fr)}.path-cta-copy{grid-column:1/-1}.path-cta-links{grid-column:2;grid-row:2}}
+@media(max-width:760px){.learning-path-cta{grid-template-columns:1fr}.path-cta-copy,.path-steps,.path-cta-links{grid-column:1;grid-row:auto}.path-cta-links{width:100%}}
+@media(max-width:480px){.path-steps{gap:12px}.path-cta-links{align-items:stretch}.path-cta-links a{text-align:center}}
